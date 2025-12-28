@@ -1,0 +1,48 @@
+name: Weekly Update
+
+on:
+  schedule:
+    - cron: '0 11 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - run: pip install requests beautifulsoup4
+      
+      - name: Fetch photos
+        env:
+          IMAGN_USERNAME: ${{ secrets.IMAGN_USERNAME }}
+          IMAGN_PASSWORD: ${{ secrets.IMAGN_PASSWORD }}
+        run: cd scripts && python fetch_imagn.py
+      
+      - name: Generate site
+        run: cd scripts && python generate_site.py
+      
+      - name: Commit
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add data/ site/
+          git diff --staged --quiet || git commit -m "📸 Weekly update"
+          git push
+      
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - uses: actions/deploy-pages@v4
