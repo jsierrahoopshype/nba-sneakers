@@ -1,0 +1,50 @@
+<!-- NBA Shoe Gallery Embed - Week 2025-W51 -->
+<style>
+.hh-embed * { box-sizing: border-box; margin: 0; padding: 0; }
+.hh-embed { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 1200px; margin: 0 auto; padding: 16px; }
+.hh-embed h2 { font-size: 20px; margin-bottom: 16px; }
+.hh-embed .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.hh-embed .card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.1); cursor: pointer; }
+.hh-embed .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.hh-embed .card .img { position: relative; padding-top: 66%; background: #f0f0f0; }
+.hh-embed .card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.hh-embed .card .meta { padding: 10px; }
+.hh-embed .card .player { font-weight: 600; font-size: 13px; }
+.hh-embed .card .credit { font-size: 10px; color: #888; margin-top: 4px; }
+.hh-embed .lb { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 99999; align-items: center; justify-content: center; flex-direction: column; }
+.hh-embed .lb.active { display: flex; }
+.hh-embed .lb img { max-width: 90vw; max-height: 70vh; }
+.hh-embed .lb .close { position: absolute; top: 16px; right: 16px; color: #fff; font-size: 32px; cursor: pointer; }
+.hh-embed .lb .nav { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 36px; cursor: pointer; padding: 12px; }
+.hh-embed .lb .prev { left: 12px; }
+.hh-embed .lb .next { right: 12px; }
+.hh-embed .lb .info { color: #fff; text-align: center; padding: 12px; }
+</style>
+<div class="hh-embed" id="hh-embed">
+    <h2>NBA Shoe Photos of the Week</h2>
+    <div class="grid" id="hh-grid"></div>
+    <div class="lb" id="hh-lb">
+        <span class="close" id="hh-close">&times;</span>
+        <span class="nav prev" id="hh-prev">&#10094;</span>
+        <span class="nav next" id="hh-next">&#10095;</span>
+        <img src="" id="hh-img">
+        <div class="info" id="hh-info"></div>
+    </div>
+</div>
+<script>
+(function(){
+var photos=[{"src": "https://via.placeholder.com/800x533/1a1a2e/ffffff?text=LeBron+Nike+21", "thumb": "https://via.placeholder.com/400x267/1a1a2e/ffffff?text=LeBron", "player": "LeBron James", "headline": "NBA: Los Angeles Lakers at Boston Celtics", "photographer": "David Butler II", "source": "USA TODAY Sports", "date": "2024-12-25"}, {"src": "https://via.placeholder.com/800x533/16213e/ffffff?text=Curry+UA+12", "thumb": "https://via.placeholder.com/400x267/16213e/ffffff?text=Curry", "player": "Stephen Curry", "headline": "NBA: Golden State Warriors at Phoenix Suns", "photographer": "Mark J. Rebilas", "source": "USA TODAY Sports", "date": "2024-12-24"}, {"src": "https://via.placeholder.com/800x533/0f3460/ffffff?text=Giannis+Nike+Freak", "thumb": "https://via.placeholder.com/400x267/0f3460/ffffff?text=Giannis", "player": "Giannis Antetokounmpo", "headline": "NBA: Milwaukee Bucks at Miami Heat", "photographer": "Sam Navarro", "source": "USA TODAY Sports", "date": "2024-12-23"}, {"src": "https://via.placeholder.com/800x533/e94560/ffffff?text=Luka+Jordan+38", "thumb": "https://via.placeholder.com/400x267/e94560/ffffff?text=Luka", "player": "Luka Doncic", "headline": "NBA: Dallas Mavericks at Denver Nuggets", "photographer": "Ron Chenoy", "source": "USA TODAY Sports", "date": "2024-12-22"}, {"src": "https://via.placeholder.com/800x533/533483/ffffff?text=KD+Nike+16", "thumb": "https://via.placeholder.com/400x267/533483/ffffff?text=KD", "player": "Kevin Durant", "headline": "NBA: Phoenix Suns at Los Angeles Clippers", "photographer": "Kirby Lee", "source": "USA TODAY Sports", "date": "2024-12-21"}, {"src": "https://via.placeholder.com/800x533/2d4059/ffffff?text=Tatum+Jordan+37", "thumb": "https://via.placeholder.com/400x267/2d4059/ffffff?text=Tatum", "player": "Jayson Tatum", "headline": "NBA: Boston Celtics at New York Knicks", "photographer": "Vincent Carchietta", "source": "USA TODAY Sports", "date": "2024-12-20"}, {"src": "https://via.placeholder.com/800x533/ea5455/ffffff?text=LeBron+v2", "thumb": "https://via.placeholder.com/400x267/ea5455/ffffff?text=LeBron+v2", "player": "LeBron James", "headline": "NBA: Los Angeles Lakers at Chicago Bulls", "photographer": "Kamil Krzaczynski", "source": "USA TODAY Sports", "date": "2024-12-19"}, {"src": "https://via.placeholder.com/800x533/1a1a2e/ffffff?text=LeBron+v3", "thumb": "https://via.placeholder.com/400x267/1a1a2e/ffffff?text=LeBron+v3", "player": "LeBron James", "headline": "NBA: Los Angeles Lakers at Miami Heat", "photographer": "Sam Navarro", "source": "USA TODAY Sports", "date": "2024-12-18"}, {"src": "https://via.placeholder.com/800x533/16213e/ffffff?text=LeBron+v4", "thumb": "https://via.placeholder.com/400x267/16213e/ffffff?text=LeBron+v4", "player": "LeBron James", "headline": "NBA: Los Angeles Lakers at Philadelphia 76ers", "photographer": "Bill Streicher", "source": "USA TODAY Sports", "date": "2024-12-17"}, {"src": "https://via.placeholder.com/800x533/5c969e/ffffff?text=Curry+v2", "thumb": "https://via.placeholder.com/400x267/5c969e/ffffff?text=Curry+v2", "player": "Stephen Curry", "headline": "NBA: Golden State Warriors at Houston Rockets", "photographer": "Troy Taormina", "source": "USA TODAY Sports", "date": "2024-12-16"}, {"src": "https://via.placeholder.com/800x533/0f3460/ffffff?text=Curry+v3", "thumb": "https://via.placeholder.com/400x267/0f3460/ffffff?text=Curry+v3", "player": "Stephen Curry", "headline": "NBA: Golden State Warriors at Sacramento Kings", "photographer": "Kelley L Cox", "source": "USA TODAY Sports", "date": "2024-12-15"}, {"src": "https://via.placeholder.com/800x533/e94560/ffffff?text=Curry+v4", "thumb": "https://via.placeholder.com/400x267/e94560/ffffff?text=Curry+v4", "player": "Stephen Curry", "headline": "NBA: Golden State Warriors at Portland Trail Blazers", "photographer": "Craig Mitchelldyer", "source": "USA TODAY Sports", "date": "2024-12-14"}, {"src": "https://via.placeholder.com/800x533/533483/ffffff?text=Giannis+v2", "thumb": "https://via.placeholder.com/400x267/533483/ffffff?text=Giannis+v2", "player": "Giannis Antetokounmpo", "headline": "NBA: Milwaukee Bucks at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "USA TODAY Sports", "date": "2024-12-13"}, {"src": "https://via.placeholder.com/800x533/2d4059/ffffff?text=Giannis+v3", "thumb": "https://via.placeholder.com/400x267/2d4059/ffffff?text=Giannis+v3", "player": "Giannis Antetokounmpo", "headline": "NBA: Milwaukee Bucks at New York Knicks", "photographer": "Vincent Carchietta", "source": "USA TODAY Sports", "date": "2024-12-12"}, {"src": "https://via.placeholder.com/800x533/ea5455/ffffff?text=Giannis+v4", "thumb": "https://via.placeholder.com/400x267/ea5455/ffffff?text=Giannis+v4", "player": "Giannis Antetokounmpo", "headline": "NBA: Milwaukee Bucks at Atlanta Hawks", "photographer": "Brett Davis", "source": "USA TODAY Sports", "date": "2024-12-11"}, {"src": "https://via.placeholder.com/800x533/1a1a2e/ffffff?text=Luka+v2", "thumb": "https://via.placeholder.com/400x267/1a1a2e/ffffff?text=Luka+v2", "player": "Luka Doncic", "headline": "NBA: Dallas Mavericks at Los Angeles Lakers", "photographer": "Kirby Lee", "source": "USA TODAY Sports", "date": "2024-12-10"}, {"src": "https://via.placeholder.com/800x533/16213e/ffffff?text=Luka+v3", "thumb": "https://via.placeholder.com/400x267/16213e/ffffff?text=Luka+v3", "player": "Luka Doncic", "headline": "NBA: Dallas Mavericks at Phoenix Suns", "photographer": "Mark J. Rebilas", "source": "USA TODAY Sports", "date": "2024-12-09"}, {"src": "https://via.placeholder.com/800x533/0f3460/ffffff?text=Luka+v4", "thumb": "https://via.placeholder.com/400x267/0f3460/ffffff?text=Luka+v4", "player": "Luka Doncic", "headline": "NBA: Dallas Mavericks at Golden State Warriors", "photographer": "Darren Yamashita", "source": "USA TODAY Sports", "date": "2024-12-08"}, {"src": "https://via.placeholder.com/800x533/e94560/ffffff?text=Ant+AE1", "thumb": "https://via.placeholder.com/400x267/e94560/ffffff?text=Ant+AE1", "player": "Anthony Edwards", "headline": "NBA: Minnesota Timberwolves at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "USA TODAY Sports", "date": "2024-12-07"}, {"src": "https://via.placeholder.com/800x533/533483/ffffff?text=KD+v2", "thumb": "https://via.placeholder.com/400x267/533483/ffffff?text=KD+v2", "player": "Kevin Durant", "headline": "NBA: Phoenix Suns at Denver Nuggets", "photographer": "Ron Chenoy", "source": "USA TODAY Sports", "date": "2024-12-06"}];
+var idx=0,grid=document.getElementById('hh-grid'),lb=document.getElementById('hh-lb'),img=document.getElementById('hh-img'),info=document.getElementById('hh-info');
+function fmt(d){try{return new Date(d+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}catch(e){return d}}
+photos.forEach(function(p,i){
+var c=document.createElement('div');c.className='card';c.innerHTML='<div class="img"><img src="'+p.thumb+'" loading="lazy"></div><div class="meta"><div class="player">'+p.player+'</div><div class="credit">📷 '+p.photographer+' · '+fmt(p.date)+'</div></div>';
+c.onclick=function(){idx=i;show();lb.classList.add('active');document.body.style.overflow='hidden'};
+grid.appendChild(c);
+});
+function show(){var p=photos[idx];img.src=p.src;info.innerHTML='<div style="font-weight:600">'+p.player+'</div><div style="font-size:12px;color:#999;margin-top:4px">📷 '+p.photographer+' · '+p.source+' · '+fmt(p.date)+'</div>'}
+document.getElementById('hh-close').onclick=function(){lb.classList.remove('active');document.body.style.overflow=''};
+document.getElementById('hh-next').onclick=function(e){e.stopPropagation();idx=(idx+1)%photos.length;show()};
+document.getElementById('hh-prev').onclick=function(e){e.stopPropagation();idx=(idx-1+photos.length)%photos.length;show()};
+lb.onclick=function(e){if(e.target===lb){lb.classList.remove('active');document.body.style.overflow=''}};
+})();
+</script>

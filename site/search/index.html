@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Player Lookup | NBA Sneakers</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <a href="/" class="site-logo">👟 NBA Sneakers</a>
+        <nav class="site-nav">
+            <a href="/search/">🔍 Lookup</a>
+            <a href="/players/">Players</a>
+            <a href="/brands/">Brands</a>
+            <a href="/weekly/">Weekly</a>
+        </nav>
+    </div>
+</header>
+
+
+<div class="page-header">
+    <div class="container">
+        <div class="breadcrumb"><a href="/">Home</a> / Search</div>
+        <h1>🔍 Player Sneaker Lookup</h1>
+        <p class="subtitle">Search any NBA player's shoe history</p>
+    </div>
+</div>
+
+<main class="container">
+    <section class="section">
+        <!-- Search Box -->
+        <div class="search-box">
+            <input type="text" id="player-search" placeholder="Type a player name..." autocomplete="off">
+            <div id="search-results" class="search-results"></div>
+        </div>
+        
+        <!-- Quick Stats -->
+        <div class="search-stats">
+            <span><strong>4</strong> players with full timelines</span>
+            <span><strong>11</strong> total players in archive</span>
+        </div>
+    </section>
+    
+    <!-- Featured Players (4+ photos) -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">Featured Players</h2>
+            <span class="section-note">Players with 4+ shoe photos</span>
+        </div>
+        <div class="player-grid" id="featured-players">
+            <a href="/players/lebron-james/" class="player-card">
+    <div class="player-img" style="background-image: url('https://via.placeholder.com/400x267/1a1a2e/ffffff?text=LeBron')"></div>
+    <div class="player-info">
+        <div class="player-name">LeBron James</div>
+        <div class="player-count">4 photos</div>
+    </div>
+</a><a href="/players/stephen-curry/" class="player-card">
+    <div class="player-img" style="background-image: url('https://via.placeholder.com/400x267/16213e/ffffff?text=Curry')"></div>
+    <div class="player-info">
+        <div class="player-name">Stephen Curry</div>
+        <div class="player-count">4 photos</div>
+    </div>
+</a><a href="/players/giannis-antetokounmpo/" class="player-card">
+    <div class="player-img" style="background-image: url('https://via.placeholder.com/400x267/0f3460/ffffff?text=Giannis')"></div>
+    <div class="player-info">
+        <div class="player-name">Giannis Antetokounmpo</div>
+        <div class="player-count">4 photos</div>
+    </div>
+</a><a href="/players/luka-doncic/" class="player-card">
+    <div class="player-img" style="background-image: url('https://via.placeholder.com/400x267/e94560/ffffff?text=Luka')"></div>
+    <div class="player-info">
+        <div class="player-name">Luka Doncic</div>
+        <div class="player-count">4 photos</div>
+    </div>
+</a>
+        </div>
+    </section>
+    
+    <!-- All Players Alphabetical -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">All Players A-Z</h2>
+        </div>
+        <div class="alpha-list" id="all-players">
+            <span class="alpha-item disabled">Anthony Edwards <span>(1)</span></span><span class="alpha-item disabled">Damian Lillard <span>(1)</span></span><span class="alpha-item disabled">Devin Booker <span>(1)</span></span><a href="/players/giannis-antetokounmpo/" class="alpha-item">Giannis Antetokounmpo <span>(4)</span></a><span class="alpha-item disabled">James Harden <span>(1)</span></span><span class="alpha-item disabled">Jayson Tatum <span>(2)</span></span><span class="alpha-item disabled">Kevin Durant <span>(2)</span></span><a href="/players/lebron-james/" class="alpha-item">LeBron James <span>(4)</span></a><a href="/players/luka-doncic/" class="alpha-item">Luka Doncic <span>(4)</span></a><span class="alpha-item disabled">Shai Gilgeous-Alexander <span>(1)</span></span><a href="/players/stephen-curry/" class="alpha-item">Stephen Curry <span>(4)</span></a>
+        </div>
+    </section>
+</main>
+
+<script>
+// Player search functionality
+(function() {
+    const players = [{"name": "LeBron James", "slug": "lebron-james", "count": 4, "hasPage": true}, {"name": "Stephen Curry", "slug": "stephen-curry", "count": 4, "hasPage": true}, {"name": "Giannis Antetokounmpo", "slug": "giannis-antetokounmpo", "count": 4, "hasPage": true}, {"name": "Luka Doncic", "slug": "luka-doncic", "count": 4, "hasPage": true}, {"name": "Kevin Durant", "slug": "kevin-durant", "count": 2, "hasPage": false}, {"name": "Jayson Tatum", "slug": "jayson-tatum", "count": 2, "hasPage": false}, {"name": "Anthony Edwards", "slug": "anthony-edwards", "count": 1, "hasPage": false}, {"name": "Shai Gilgeous-Alexander", "slug": "shai-gilgeous-alexander", "count": 1, "hasPage": false}, {"name": "Devin Booker", "slug": "devin-booker", "count": 1, "hasPage": false}, {"name": "Damian Lillard", "slug": "damian-lillard", "count": 1, "hasPage": false}, {"name": "James Harden", "slug": "james-harden", "count": 1, "hasPage": false}];
+    
+    const searchInput = document.getElementById('player-search');
+    const resultsDiv = document.getElementById('search-results');
+    
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        
+        if (query.length < 2) {
+            resultsDiv.innerHTML = '';
+            resultsDiv.style.display = 'none';
+            return;
+        }
+        
+        const matches = players.filter(p => 
+            p.name.toLowerCase().includes(query)
+        ).slice(0, 10);
+        
+        if (matches.length === 0) {
+            resultsDiv.innerHTML = '<div class="no-results">No players found</div>';
+        } else {
+            resultsDiv.innerHTML = matches.map(p => {
+                if (p.hasPage) {
+                    return `<a href="/players/${p.slug}/" class="search-result-item">
+                        <span class="name">${p.name}</span>
+                        <span class="count">${p.count} photos</span>
+                    </a>`;
+                } else {
+                    return `<div class="search-result-item no-page">
+                        <span class="name">${p.name}</span>
+                        <span class="count">${p.count} photo${p.count > 1 ? 's' : ''} (coming soon)</span>
+                    </div>`;
+                }
+            }).join('');
+        }
+        resultsDiv.style.display = 'block';
+    });
+    
+    // Close results when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.search-box')) {
+            resultsDiv.style.display = 'none';
+        }
+    });
+    
+    // Keyboard navigation
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            resultsDiv.style.display = 'none';
+            this.blur();
+        }
+    });
+})();
+</script>
+
+
+<div class="lightbox" id="lightbox">
+    <span class="close">&times;</span>
+    <span class="nav prev">&#10094;</span>
+    <span class="nav next">&#10095;</span>
+    <span class="counter"></span>
+    <img src="" alt="">
+    <div class="info">
+        <div class="lb-player"></div>
+        <div class="lb-headline"></div>
+        <div class="lb-credit"></div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="container">
+        Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
+    </div>
+</footer>
+
+<script>window.galleryPhotos = [];</script>
+<script src="/js/gallery.js"></script>
+</body>
+</html>
