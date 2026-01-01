@@ -31,7 +31,7 @@ class SiteGenerator:
         self.archive = PhotoArchive(archive_path)
         self.output_dir = output_dir
         self.site_title = "NBA Sneakers"
-        self.site_url = ""  # Set this if using custom domain
+        self.base_url = "https://jsierrahoopshype.github.io/nba-sneakers"  # GitHub Pages URL
         
     def generate_all(self):
         """Generate entire site"""
@@ -668,19 +668,20 @@ document.addEventListener('DOMContentLoaded', function() {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<base href="{self.base_url}/">
 <title>{escape(title)} | {self.site_title}</title>
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <header class="site-header">
     <div class="container">
-        <a href="/" class="site-logo">👟 NBA Sneakers</a>
+        <a href="./" class="site-logo">👟 NBA Sneakers</a>
         <nav class="site-nav">
-            <a href="/search/">🔍 Lookup</a>
-            <a href="/players/">Players</a>
-            <a href="/brands/">Brands</a>
-            <a href="/weekly/">Weekly</a>
+            <a href="search/">🔍 Lookup</a>
+            <a href="players/">Players</a>
+            <a href="brands/">Brands</a>
+            <a href="weekly/">Weekly</a>
         </nav>
     </div>
 </header>
@@ -707,7 +708,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </footer>
 
 <script>window.galleryPhotos = {photos_json};</script>
-<script src="/js/gallery.js"></script>
+<script src="js/gallery.js"></script>
 </body>
 </html>'''
     
@@ -792,18 +793,18 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="photo-grid">
             {"".join(self._photo_card_html(p) for p in hero_photos)}
         </div>
-        {f'<div class="view-more"><a href="/weekly/{week}/">View all {len(weekly_photos)} photos from {week} →</a></div>' if len(weekly_photos) > 20 else ''}
+        {f'<div class="view-more"><a href="weekly/{week}/">View all {len(weekly_photos)} photos from {week} →</a></div>' if len(weekly_photos) > 20 else ''}
     </section>
     
     <!-- PLAYER TIMELINES -->
     <section class="section">
         <div class="section-header">
             <h2 class="section-title">🏀 Player Timelines</h2>
-            <a href="/players/" class="section-link">View all {stats['total_players']} players →</a>
+            <a href="players/" class="section-link">View all {stats['total_players']} players →</a>
         </div>
         <p class="section-desc">See every shoe photo for your favorite players</p>
         <div class="list-grid">
-            {"".join(f'<a href="/players/{p["slug"]}/" class="list-item"><span class="name">{escape(p["name"])}</span><span class="count">{p["count"]} photos</span></a>' for p in stats['top_players'][:12])}
+            {"".join(f'<a href="players/{p["slug"]}/" class="list-item"><span class="name">{escape(p["name"])}</span><span class="count">{p["count"]} photos</span></a>' for p in stats['top_players'][:12])}
         </div>
     </section>
     
@@ -811,10 +812,10 @@ document.addEventListener('DOMContentLoaded', function() {
     <section class="section">
         <div class="section-header">
             <h2 class="section-title">👟 Shop by Brand</h2>
-            <a href="/brands/" class="section-link">View all →</a>
+            <a href="brands/" class="section-link">View all →</a>
         </div>
         <div class="list-grid brands-grid">
-            {"".join(f'<a href="/brands/{b["slug"]}/" class="list-item brand-item"><span class="name">{escape(b["name"])}</span><span class="count">{b["count"]} photos</span></a>' for b in stats['top_brands'])}
+            {"".join(f'<a href="brands/{b["slug"]}/" class="list-item brand-item"><span class="name">{escape(b["name"])}</span><span class="count">{b["count"]} photos</span></a>' for b in stats['top_brands'])}
         </div>
     </section>
     
@@ -822,10 +823,10 @@ document.addEventListener('DOMContentLoaded', function() {
     <section class="section">
         <div class="section-header">
             <h2 class="section-title">📅 Past Weeks</h2>
-            <a href="/weekly/" class="section-link">View all →</a>
+            <a href="weekly/" class="section-link">View all →</a>
         </div>
         <div class="list-grid">
-            {"".join(f'<a href="/weekly/{w["week"]}/" class="list-item"><span class="name">{w["week"]}</span><span class="count">{w["count"]} photos</span></a>' for w in stats['recent_weeks'][:6] if w['week'] != week)}
+            {"".join(f'<a href="weekly/{w["week"]}/" class="list-item"><span class="name">{w["week"]}</span><span class="count">{w["count"]} photos</span></a>' for w in stats['recent_weeks'][:6] if w['week'] != week)}
         </div>
     </section>
     
@@ -873,7 +874,7 @@ document.addEventListener('DOMContentLoaded', function() {
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="/">Home</a> / Players</div>
+        <div class="breadcrumb"><a href="./">Home</a> / Players</div>
         <h1>Players</h1>
         <p class="subtitle">{len(featured)} players with full timelines · {len(players)} total in archive</p>
     </div>
@@ -886,7 +887,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <span class="section-note">4+ shoe photos</span>
         </div>
         <div class="list-grid">
-            {"".join(f'<a href="/players/{p["slug"]}/" class="list-item"><span class="name">{escape(p["name"])}</span><span class="count">{p["count"]} photos</span></a>' for p in featured)}
+            {"".join(f'<a href="players/{p["slug"]}/" class="list-item"><span class="name">{escape(p["name"])}</span><span class="count">{p["count"]} photos</span></a>' for p in featured)}
         </div>
     </section>
     
@@ -911,7 +912,7 @@ document.addEventListener('DOMContentLoaded', function() {
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="/">Home</a> / Brands</div>
+        <div class="breadcrumb"><a href="./">Home</a> / Brands</div>
         <h1>Brands</h1>
         <p class="subtitle">{len(brands)} brands represented</p>
     </div>
@@ -920,7 +921,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <main class="container">
     <section class="section">
         <div class="list-grid">
-            {"".join(f'<a href="/brands/{b["slug"]}/" class="list-item"><span class="name">{escape(b["name"])}</span><span class="count">{b["count"]} photos</span></a>' for b in brands)}
+            {"".join(f'<a href="brands/{b["slug"]}/" class="list-item"><span class="name">{escape(b["name"])}</span><span class="count">{b["count"]} photos</span></a>' for b in brands)}
         </div>
     </section>
 </main>
@@ -935,7 +936,7 @@ document.addEventListener('DOMContentLoaded', function() {
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="/">Home</a> / Weekly</div>
+        <div class="breadcrumb"><a href="./">Home</a> / Weekly</div>
         <h1>Weekly Galleries</h1>
         <p class="subtitle">{len(weeks)} weeks of shoe photos</p>
     </div>
@@ -944,7 +945,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <main class="container">
     <section class="section">
         <div class="list-grid">
-            {"".join(f'<a href="/weekly/{w["week"]}/" class="list-item"><span class="name">{w["week"]}</span><span class="count">{w["count"]} photos</span></a>' for w in weeks)}
+            {"".join(f'<a href="weekly/{w["week"]}/" class="list-item"><span class="name">{w["week"]}</span><span class="count">{w["count"]} photos</span></a>' for w in weeks)}
         </div>
     </section>
 </main>
@@ -962,7 +963,7 @@ document.addEventListener('DOMContentLoaded', function() {
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="/">Home</a> / Search</div>
+        <div class="breadcrumb"><a href="./">Home</a> / Search</div>
         <h1>🔍 Player Sneaker Lookup</h1>
         <p class="subtitle">Search any NBA player's shoe history</p>
     </div>
@@ -1036,7 +1037,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }} else {{
             resultsDiv.innerHTML = matches.map(p => {{
                 if (p.hasPage) {{
-                    return `<a href="/players/${{p.slug}}/" class="search-result-item">
+                    return `<a href="players/${{p.slug}}/" class="search-result-item">
                         <span class="name">${{p.name}}</span>
                         <span class="count">${{p.count}} photos</span>
                     </a>`;
@@ -1077,7 +1078,7 @@ document.addEventListener('DOMContentLoaded', function() {
         photos = self.archive.get_photos_by_player(player['slug'])
         preview_img = photos[0].get('thumbnail_url', '') if photos else ''
         
-        return f'''<a href="/players/{player['slug']}/" class="player-card">
+        return f'''<a href="players/{player['slug']}/" class="player-card">
     <div class="player-img" style="background-image: url('{escape(preview_img)}')"></div>
     <div class="player-info">
         <div class="player-name">{escape(player['name'])}</div>
@@ -1088,7 +1089,7 @@ document.addEventListener('DOMContentLoaded', function() {
     def _player_list_item_html(self, player: Dict) -> str:
         """Generate a simple list item for a player"""
         if player['count'] >= 4:
-            return f'<a href="/players/{player["slug"]}/" class="alpha-item">{escape(player["name"])} <span>({player["count"]})</span></a>'
+            return f'<a href="players/{player["slug"]}/" class="alpha-item">{escape(player["name"])} <span>({player["count"]})</span></a>'
         else:
             return f'<span class="alpha-item disabled">{escape(player["name"])} <span>({player["count"]})</span></span>'
     
@@ -1117,7 +1118,7 @@ document.addEventListener('DOMContentLoaded', function() {
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="/">Home</a> / <a href="/players/">Players</a> / {escape(player['name'])}</div>
+        <div class="breadcrumb"><a href="./">Home</a> / <a href="players/">Players</a> / {escape(player['name'])}</div>
         <h1>{escape(player['name'])}</h1>
         <p class="subtitle">{len(photos)} shoe photos</p>
     </div>
@@ -1150,7 +1151,7 @@ document.addEventListener('DOMContentLoaded', function() {
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="/">Home</a> / <a href="/brands/">Brands</a> / {escape(brand['name'])}</div>
+        <div class="breadcrumb"><a href="./">Home</a> / <a href="brands/">Brands</a> / {escape(brand['name'])}</div>
         <h1>{escape(brand['name'])}</h1>
         <p class="subtitle">{len(photos)} shoe photos</p>
     </div>
@@ -1183,7 +1184,7 @@ document.addEventListener('DOMContentLoaded', function() {
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="/">Home</a> / <a href="/weekly/">Weekly</a> / {week['week']}</div>
+        <div class="breadcrumb"><a href="./">Home</a> / <a href="weekly/">Weekly</a> / {week['week']}</div>
         <h1>Week of {week['week']}</h1>
         <p class="subtitle">{len(photos)} shoe photos</p>
     </div>
