@@ -663,25 +663,175 @@ document.addEventListener('DOMContentLoaded', function() {
     
     def _base_template(self, title: str, content: str, photos_json: str = "[]") -> str:
         """Wrap content in base HTML template"""
+        css = '''
+:root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #666;
+    --text-muted: #999;
+    --border: #e0e0e0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-hover: 0 4px 16px rgba(0,0,0,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+.site-header { background: var(--primary); color: white; padding: 16px 0; position: sticky; top: 0; z-index: 100; }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.site-logo { font-size: 20px; font-weight: 700; color: white; }
+.site-logo:hover { text-decoration: none; }
+.site-nav { display: flex; gap: 24px; }
+.site-nav a { color: rgba(255,255,255,0.8); font-size: 14px; }
+.site-nav a:hover { color: white; text-decoration: none; }
+.hero { background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%); color: white; padding: 48px 0; text-align: center; }
+.hero h1 { font-size: 32px; margin-bottom: 8px; }
+.hero p { opacity: 0.8; font-size: 16px; }
+.stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+.stat-item { text-align: center; }
+.stat-value { font-size: 28px; font-weight: 700; }
+.stat-label { font-size: 12px; opacity: 0.7; text-transform: uppercase; }
+.section { padding: 32px 0; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.section-title { font-size: 20px; font-weight: 600; }
+.section-link { font-size: 14px; }
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
+.photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo-card .meta { padding: 12px; }
+.photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+.photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
+.photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
+.list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
+.list-item .name { font-weight: 500; color: var(--text); }
+.list-item .count { font-size: 13px; color: var(--text-muted); }
+.page-header { padding: 32px 0; background: var(--card-bg); border-bottom: 1px solid var(--border); }
+.page-header h1 { font-size: 28px; margin-bottom: 4px; }
+.page-header .subtitle { color: var(--text-secondary); }
+.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.breadcrumb a { color: var(--text-secondary); }
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
+.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
+.lightbox .nav.prev { left: 16px; }
+.lightbox .nav.next { right: 16px; }
+.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
+.lightbox .lb-player { font-size: 18px; font-weight: 600; }
+.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
+.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
+.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
+.site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
+.weekly-hero { margin-bottom: 32px; }
+.section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
+.section-header .photo-count { font-size: 14px; color: var(--text-muted); font-weight: normal; }
+.section-header .section-note { font-size: 13px; color: var(--text-muted); }
+.view-more { text-align: center; margin-top: 24px; }
+.view-more a { display: inline-block; padding: 12px 24px; background: var(--primary); color: white; border-radius: 6px; font-size: 14px; font-weight: 500; }
+.view-more a:hover { text-decoration: none; opacity: 0.9; }
+.stats-section { background: var(--card-bg); border-radius: 12px; padding: 32px !important; margin-top: 32px; }
+.stats-section .stats-bar { margin-top: 0; }
+.brands-grid .brand-item { background: linear-gradient(135deg, var(--card-bg), #f8f9fa); }
+.search-box { position: relative; max-width: 500px; margin: 0 auto 24px; }
+.search-box input { width: 100%; padding: 16px 20px; font-size: 18px; border: 2px solid var(--border); border-radius: 12px; outline: none; transition: border-color 0.2s; }
+.search-box input:focus { border-color: var(--accent); }
+.search-box input::placeholder { color: var(--text-muted); }
+.search-results { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow-hover); max-height: 400px; overflow-y: auto; z-index: 100; }
+.search-result-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text); cursor: pointer; }
+.search-result-item:hover { background: var(--bg); text-decoration: none; }
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item.no-page { opacity: 0.6; cursor: default; }
+.search-result-item .name { font-weight: 500; }
+.search-result-item .count { font-size: 13px; color: var(--text-muted); }
+.no-results { padding: 16px; text-align: center; color: var(--text-muted); }
+.search-stats { display: flex; justify-content: center; gap: 32px; margin-bottom: 32px; font-size: 14px; color: var(--text-secondary); }
+.player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+.player-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; }
+.player-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.player-card .player-img { height: 120px; background-size: cover; background-position: center; background-color: var(--primary); }
+.player-card .player-info { padding: 12px; }
+.player-card .player-name { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+.player-card .player-count { font-size: 12px; color: var(--text-muted); }
+.alpha-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.alpha-item { padding: 8px 14px; background: var(--card-bg); border-radius: 6px; font-size: 14px; color: var(--text); box-shadow: var(--shadow); }
+.alpha-item:hover { text-decoration: none; box-shadow: var(--shadow-hover); }
+.alpha-item.disabled { opacity: 0.5; cursor: default; }
+.alpha-item span { color: var(--text-muted); font-size: 12px; }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } }
+'''
+        
+        js = '''
+document.addEventListener('DOMContentLoaded', function() {
+    const photos = window.galleryPhotos || [];
+    let currentIndex = 0;
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox || photos.length === 0) return;
+    const lbImg = lightbox.querySelector('img');
+    const lbPlayer = lightbox.querySelector('.lb-player');
+    const lbHeadline = lightbox.querySelector('.lb-headline');
+    const lbCredit = lightbox.querySelector('.lb-credit');
+    const counter = lightbox.querySelector('.counter');
+    function formatDate(dateStr) {
+        if (!dateStr) return '';
+        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
+        catch(e) { return dateStr; }
+    }
+    function showPhoto() {
+        const p = photos[currentIndex];
+        lbImg.src = p.image_url;
+        lbPlayer.textContent = p.player_name || 'NBA';
+        lbHeadline.textContent = p.headline || '';
+        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
+        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
+    }
+    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
+    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
+    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
+    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
+    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
+    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
+    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
+    let touchStartX = 0;
+    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
+});
+'''
+        
         return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<base href="{self.base_url}/">
 <title>{escape(title)} | {self.site_title}</title>
-<link rel="stylesheet" href="css/style.css">
+<style>{css}</style>
 </head>
 <body>
 
 <header class="site-header">
     <div class="container">
-        <a href="./" class="site-logo">👟 NBA Sneakers</a>
+        <a href="{self.base_url}/" class="site-logo">👟 NBA Sneakers</a>
         <nav class="site-nav">
-            <a href="search/">🔍 Lookup</a>
-            <a href="players/">Players</a>
-            <a href="brands/">Brands</a>
-            <a href="weekly/">Weekly</a>
+            <a href="{self.base_url}/search/">🔍 Lookup</a>
+            <a href="{self.base_url}/players/">Players</a>
+            <a href="{self.base_url}/brands/">Brands</a>
+            <a href="{self.base_url}/weekly/">Weekly</a>
         </nav>
     </div>
 </header>
@@ -708,7 +858,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </footer>
 
 <script>window.galleryPhotos = {photos_json};</script>
-<script src="js/gallery.js"></script>
+<script>{js}</script>
 </body>
 </html>'''
     
@@ -793,18 +943,18 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="photo-grid">
             {"".join(self._photo_card_html(p) for p in hero_photos)}
         </div>
-        {f'<div class="view-more"><a href="weekly/{week}/">View all {len(weekly_photos)} photos from {week} →</a></div>' if len(weekly_photos) > 20 else ''}
+        {f'<div class="view-more"><a href="{self.base_url}/weekly/{week}/">View all {len(weekly_photos)} photos from {week} →</a></div>' if len(weekly_photos) > 20 else ''}
     </section>
     
     <!-- PLAYER TIMELINES -->
     <section class="section">
         <div class="section-header">
             <h2 class="section-title">🏀 Player Timelines</h2>
-            <a href="players/" class="section-link">View all {stats['total_players']} players →</a>
+            <a href="{self.base_url}/players/" class="section-link">View all {stats['total_players']} players →</a>
         </div>
         <p class="section-desc">See every shoe photo for your favorite players</p>
         <div class="list-grid">
-            {"".join(f'<a href="players/{p["slug"]}/" class="list-item"><span class="name">{escape(p["name"])}</span><span class="count">{p["count"]} photos</span></a>' for p in stats['top_players'][:12])}
+            {"".join(f'<a href="{self.base_url}/players/{p["slug"]}/" class="list-item"><span class="name">{escape(p["name"])}</span><span class="count">{p["count"]} photos</span></a>' for p in stats['top_players'][:12])}
         </div>
     </section>
     
@@ -812,10 +962,10 @@ document.addEventListener('DOMContentLoaded', function() {
     <section class="section">
         <div class="section-header">
             <h2 class="section-title">👟 Shop by Brand</h2>
-            <a href="brands/" class="section-link">View all →</a>
+            <a href="{self.base_url}/brands/" class="section-link">View all →</a>
         </div>
         <div class="list-grid brands-grid">
-            {"".join(f'<a href="brands/{b["slug"]}/" class="list-item brand-item"><span class="name">{escape(b["name"])}</span><span class="count">{b["count"]} photos</span></a>' for b in stats['top_brands'])}
+            {"".join(f'<a href="{self.base_url}/brands/{b["slug"]}/" class="list-item brand-item"><span class="name">{escape(b["name"])}</span><span class="count">{b["count"]} photos</span></a>' for b in stats['top_brands'])}
         </div>
     </section>
     
@@ -823,10 +973,10 @@ document.addEventListener('DOMContentLoaded', function() {
     <section class="section">
         <div class="section-header">
             <h2 class="section-title">📅 Past Weeks</h2>
-            <a href="weekly/" class="section-link">View all →</a>
+            <a href="{self.base_url}/weekly/" class="section-link">View all →</a>
         </div>
         <div class="list-grid">
-            {"".join(f'<a href="weekly/{w["week"]}/" class="list-item"><span class="name">{w["week"]}</span><span class="count">{w["count"]} photos</span></a>' for w in stats['recent_weeks'][:6] if w['week'] != week)}
+            {"".join(f'<a href="{self.base_url}/weekly/{w["week"]}/" class="list-item"><span class="name">{w["week"]}</span><span class="count">{w["count"]} photos</span></a>' for w in stats['recent_weeks'][:6] if w['week'] != week)}
         </div>
     </section>
     
@@ -874,7 +1024,7 @@ document.addEventListener('DOMContentLoaded', function() {
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="./">Home</a> / Players</div>
+        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / Players</div>
         <h1>Players</h1>
         <p class="subtitle">{len(featured)} players with full timelines · {len(players)} total in archive</p>
     </div>
@@ -887,7 +1037,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <span class="section-note">4+ shoe photos</span>
         </div>
         <div class="list-grid">
-            {"".join(f'<a href="players/{p["slug"]}/" class="list-item"><span class="name">{escape(p["name"])}</span><span class="count">{p["count"]} photos</span></a>' for p in featured)}
+            {"".join(f'<a href="{self.base_url}/players/{p["slug"]}/" class="list-item"><span class="name">{escape(p["name"])}</span><span class="count">{p["count"]} photos</span></a>' for p in featured)}
         </div>
     </section>
     
@@ -912,7 +1062,7 @@ document.addEventListener('DOMContentLoaded', function() {
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="./">Home</a> / Brands</div>
+        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / Brands</div>
         <h1>Brands</h1>
         <p class="subtitle">{len(brands)} brands represented</p>
     </div>
@@ -921,7 +1071,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <main class="container">
     <section class="section">
         <div class="list-grid">
-            {"".join(f'<a href="brands/{b["slug"]}/" class="list-item"><span class="name">{escape(b["name"])}</span><span class="count">{b["count"]} photos</span></a>' for b in brands)}
+            {"".join(f'<a href="{self.base_url}/brands/{b["slug"]}/" class="list-item"><span class="name">{escape(b["name"])}</span><span class="count">{b["count"]} photos</span></a>' for b in brands)}
         </div>
     </section>
 </main>
@@ -936,7 +1086,7 @@ document.addEventListener('DOMContentLoaded', function() {
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="./">Home</a> / Weekly</div>
+        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / Weekly</div>
         <h1>Weekly Galleries</h1>
         <p class="subtitle">{len(weeks)} weeks of shoe photos</p>
     </div>
@@ -945,7 +1095,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <main class="container">
     <section class="section">
         <div class="list-grid">
-            {"".join(f'<a href="weekly/{w["week"]}/" class="list-item"><span class="name">{w["week"]}</span><span class="count">{w["count"]} photos</span></a>' for w in weeks)}
+            {"".join(f'<a href="{self.base_url}/weekly/{w["week"]}/" class="list-item"><span class="name">{w["week"]}</span><span class="count">{w["count"]} photos</span></a>' for w in weeks)}
         </div>
     </section>
 </main>
@@ -963,7 +1113,7 @@ document.addEventListener('DOMContentLoaded', function() {
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="./">Home</a> / Search</div>
+        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / Search</div>
         <h1>🔍 Player Sneaker Lookup</h1>
         <p class="subtitle">Search any NBA player's shoe history</p>
     </div>
@@ -1037,7 +1187,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }} else {{
             resultsDiv.innerHTML = matches.map(p => {{
                 if (p.hasPage) {{
-                    return `<a href="players/${{p.slug}}/" class="search-result-item">
+                    return `<a href="{self.base_url}/players/${{p.slug}}/" class="search-result-item">
                         <span class="name">${{p.name}}</span>
                         <span class="count">${{p.count}} photos</span>
                     </a>`;
@@ -1078,7 +1228,7 @@ document.addEventListener('DOMContentLoaded', function() {
         photos = self.archive.get_photos_by_player(player['slug'])
         preview_img = photos[0].get('thumbnail_url', '') if photos else ''
         
-        return f'''<a href="players/{player['slug']}/" class="player-card">
+        return f'''<a href="{self.base_url}/players/{player['slug']}/" class="player-card">
     <div class="player-img" style="background-image: url('{escape(preview_img)}')"></div>
     <div class="player-info">
         <div class="player-name">{escape(player['name'])}</div>
@@ -1089,7 +1239,7 @@ document.addEventListener('DOMContentLoaded', function() {
     def _player_list_item_html(self, player: Dict) -> str:
         """Generate a simple list item for a player"""
         if player['count'] >= 4:
-            return f'<a href="players/{player["slug"]}/" class="alpha-item">{escape(player["name"])} <span>({player["count"]})</span></a>'
+            return f'<a href="{self.base_url}/players/{player["slug"]}/" class="alpha-item">{escape(player["name"])} <span>({player["count"]})</span></a>'
         else:
             return f'<span class="alpha-item disabled">{escape(player["name"])} <span>({player["count"]})</span></span>'
     
@@ -1118,7 +1268,7 @@ document.addEventListener('DOMContentLoaded', function() {
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="./">Home</a> / <a href="players/">Players</a> / {escape(player['name'])}</div>
+        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / <a href="{self.base_url}/players/">Players</a> / {escape(player['name'])}</div>
         <h1>{escape(player['name'])}</h1>
         <p class="subtitle">{len(photos)} shoe photos</p>
     </div>
@@ -1151,7 +1301,7 @@ document.addEventListener('DOMContentLoaded', function() {
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="./">Home</a> / <a href="brands/">Brands</a> / {escape(brand['name'])}</div>
+        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / <a href="{self.base_url}/brands/">Brands</a> / {escape(brand['name'])}</div>
         <h1>{escape(brand['name'])}</h1>
         <p class="subtitle">{len(photos)} shoe photos</p>
     </div>
@@ -1184,7 +1334,7 @@ document.addEventListener('DOMContentLoaded', function() {
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="./">Home</a> / <a href="weekly/">Weekly</a> / {week['week']}</div>
+        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / <a href="{self.base_url}/weekly/">Weekly</a> / {week['week']}</div>
         <h1>Week of {week['week']}</h1>
         <p class="subtitle">{len(photos)} shoe photos</p>
     </div>
