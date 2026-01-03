@@ -315,8 +315,11 @@ def main():
     username = os.environ.get('IMAGN_USERNAME', '')
     password = os.environ.get('IMAGN_PASSWORD', '')
     
-    # Initialize archive
-    archive = PhotoArchive('data/archive.json')
+    # Initialize archive - use path relative to repo root
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    repo_root = os.path.dirname(script_dir)
+    archive_path = os.path.join(repo_root, 'data', 'archive.json')
+    archive = PhotoArchive(archive_path)
     print(f"Archive loaded: {len(archive.photos)} existing photos", file=sys.stderr)
     
     # Fetch new photos
