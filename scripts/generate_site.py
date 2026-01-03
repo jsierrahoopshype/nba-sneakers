@@ -1440,9 +1440,13 @@ lb.onclick=function(e){{if(e.target===lb){{lb.classList.remove('active');documen
 
 
 def main():
+    # Use paths relative to repo root
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    repo_root = os.path.dirname(script_dir)
+    
     generator = SiteGenerator(
-        archive_path="data/archive.json",
-        output_dir="site"
+        archive_path=os.path.join(repo_root, "data/archive.json"),
+        output_dir=os.path.join(repo_root, "site")
     )
     generator.generate_all()
 
