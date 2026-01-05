@@ -38,9 +38,24 @@ class ImagnFetcher:
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
         })
         self.logged_in = False
+    
+    def set_session_cookie(self, session_id: str) -> bool:
+        """Use existing session cookie instead of login"""
+        try:
+            self.session.cookies.set('sessionid', session_id, domain='www.imagn.com', path='/')
+            
+            # Verify session is valid by checking a protected page
+            resp = self.session.get(f"{self.BASE_URL}/search/", timeout=30)
+            if 'logout' in resp.text.lower() or 'my account' in resp.text.lower() or resp.status_code == 200:
+                self.logged_in = True
+                return True
+            return False
+        except Exception as e:
+            print(f"Session cookie error: {e}", file=sys.stderr)
+            return False
         
     def login(self, username: str, password: str) -> bool:
-        """Login to Imagn"""
+        """Login to Imagn (may fail due to CAPTCHA)"""
         try:
             resp = self.session.get(f"{self.BASE_URL}/login", timeout=30)
             soup = BeautifulSoup(resp.text, 'html.parser')
@@ -314,6 +329,7 @@ class ImagnFetcher:
 def main():
     username = os.environ.get('IMAGN_USERNAME', '')
     password = os.environ.get('IMAGN_PASSWORD', '')
+    session_id = os.environ.get('IMAGN_SESSION', '')
     
     # Initialize archive - use path relative to repo root
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -325,11 +341,18 @@ def main():
     # Fetch new photos
     fetcher = ImagnFetcher()
     
-    if username and password:
+    # Try session cookie first (bypasses CAPTCHA)
+    if session_id:
+        if fetcher.set_session_cookie(session_id):
+            print("Authenticated via session cookie", file=sys.stderr)
+        else:
+            print("Warning: Session cookie invalid or expired", file=sys.stderr)
+    # Fall back to login (may fail due to CAPTCHA)
+    elif username and password:
         if fetcher.login(username, password):
             print("Logged in to Imagn", file=sys.stderr)
         else:
-            print("Warning: Login failed", file=sys.stderr)
+            print("Warning: Login failed (likely CAPTCHA)", file=sys.stderr)
     else:
         print("Warning: No credentials provided", file=sys.stderr)
     
