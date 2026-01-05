@@ -92,162 +92,127 @@ class ImagnFetcher:
             return False
     
     def fetch_nba_shoes(self, days_back: int = 7) -> List[Dict]:
-        """Fetch NBA shoe photos from the last N days"""
+        """Fetch NBA shoe photos from the last N days using Imagn API"""
         photos = []
         seen_ids = set()
         
-        end_date = datetime.now()
-        start_date = end_date - timedelta(days=days_back)
+        # Use the simpleSearchAjax API endpoint
+        search_url = f"{self.BASE_URL}/simpleSearchAjax/"
         
-        queries = ["NBA shoe", "NBA sneaker", "basketball shoe"]
-        
-        for query in queries:
-            try:
-                results = self._search(query, start_date, end_date)
-                for photo in results:
-                    if photo['imagn_id'] not in seen_ids:
-                        seen_ids.add(photo['imagn_id'])
-                        photos.append(photo)
-            except Exception as e:
-                print(f"Search error for '{query}': {e}", file=sys.stderr)
-        
-        # Filter to shoe-related
-        shoe_keywords = [
-            'shoe', 'sneaker', 'kick', 'footwear',
-            'nike', 'jordan', 'adidas', 'puma', 'new balance',
-            'under armour', 'lebron', 'kobe', 'kd', 'kyrie', 
-            'giannis', 'curry', 'harden', 'luka'
-        ]
-        
-        filtered = []
-        for photo in photos:
-            text = f"{photo.get('headline', '')} {photo.get('caption', '')}".lower()
-            if any(kw in text for kw in shoe_keywords):
-                # Extract player name
-                photo['player_name'] = self._extract_player(photo)
-                filtered.append(photo)
-        
-        return filtered
-    
-    def _search(self, query: str, start_date: datetime, end_date: datetime) -> List[Dict]:
-        """Execute search query"""
-        photos = []
-        
-        search_urls = [
-            f"{self.BASE_URL}/sports/nba",
-            f"{self.BASE_URL}/search",
-        ]
+        # Content group IDs from the working search
+        cg_ids = "44,45,328,129,180,164,127,143,300,192,306,312"
         
         params = {
-            'q': query,
-            'query': query,
-            'from': start_date.strftime('%Y-%m-%d'),
-            'to': end_date.strftime('%Y-%m-%d'),
-            'sort': 'date',
+            'searchtxt': 'NBA shoes',
+            'searchCGOnly': cg_ids
         }
         
-        for url in search_urls:
-            try:
-                resp = self.session.get(url, params=params, timeout=60)
-                if resp.status_code == 200:
-                    html_photos = self._parse_html(resp.text)
-                    if html_photos:
-                        photos.extend(html_photos)
-                        break
-            except Exception as e:
-                continue
-        
-        return photos
-    
-    def _parse_html(self, html: str) -> List[Dict]:
-        """Parse HTML search results"""
-        photos = []
-        soup = BeautifulSoup(html, 'html.parser')
-        
-        # Try various selectors
-        selectors = ['.image-card', '.photo-item', '.gallery-item', '[data-image-id]', '.search-result']
-        
-        cards = []
-        for selector in selectors:
-            cards = soup.select(selector)
-            if cards:
-                break
-        
-        # Fallback: find img tags
-        if not cards:
-            for img in soup.find_all('img'):
-                src = img.get('src', '')
-                if any(x in src.lower() for x in ['imagn', 'usatsimg', 'gannett']):
-                    cards.append(img.parent or img)
-        
-        for card in cards:
-            try:
-                photo = self._parse_card(card)
-                if photo and photo.get('image_url'):
-                    photos.append(photo)
-            except Exception:
-                continue
-        
-        return photos
-    
-    def _parse_card(self, card) -> Optional[Dict]:
-        """Parse a single photo card"""
-        img = card.find('img') if hasattr(card, 'find') else card
-        if not img:
-            return None
-        
-        image_url = img.get('src') or img.get('data-src') or ''
-        if not image_url:
-            return None
-        
-        # Make absolute
-        if image_url.startswith('//'):
-            image_url = 'https:' + image_url
-        elif image_url.startswith('/'):
-            image_url = urljoin(self.BASE_URL, image_url)
-        
-        thumbnail_url = image_url
-        for old, new in [('/thumb/', '/full/'), ('_thumb', ''), ('/small/', '/large/')]:
-            if old in image_url:
-                image_url = image_url.replace(old, new)
-                break
-        
-        # Extract metadata
-        headline = ''
-        photographer = 'Imagn Images'
-        photo_date = ''
-        
-        if hasattr(card, 'select_one'):
-            for sel in ['.headline', '.title', 'h3', 'h4', '.caption']:
-                elem = card.select_one(sel)
-                if elem:
-                    headline = elem.get_text(strip=True)
-                    break
+        try:
+            print(f"Fetching from API: {search_url}", file=sys.stderr)
+            resp = self.session.get(search_url, params=params, timeout=60)
             
-            for sel in ['.photographer', '.credit', '.author']:
-                elem = card.select_one(sel)
-                if elem:
-                    photographer = elem.get_text(strip=True)
-                    break
+            if resp.status_code == 200:
+                try:
+                    data = resp.json()
+                    all_images = data.get('allImages', [])
+                    print(f"API returned {len(all_images)} images", file=sys.stderr)
+                    
+                    for img in all_images:
+                        photo = self._parse_api_image(img)
+                        if photo and photo['imagn_id'] not in seen_ids:
+                            seen_ids.add(photo['imagn_id'])
+                            photos.append(photo)
+                            
+                except json.JSONDecodeError as e:
+                    print(f"JSON parse error: {e}", file=sys.stderr)
+            else:
+                print(f"API returned status {resp.status_code}", file=sys.stderr)
+                
+        except Exception as e:
+            print(f"API fetch error: {e}", file=sys.stderr)
+        
+        # Filter to recent photos (within days_back)
+        cutoff_date = datetime.now() - timedelta(days=days_back)
+        filtered = []
+        for photo in photos:
+            try:
+                photo_date = datetime.fromisoformat(photo.get('photo_date', '').replace('Z', ''))
+                if photo_date >= cutoff_date:
+                    filtered.append(photo)
+            except:
+                # If date parsing fails, include the photo anyway
+                filtered.append(photo)
+        
+        print(f"Filtered to {len(filtered)} photos from last {days_back} days", file=sys.stderr)
+        return filtered
+    
+    def _parse_api_image(self, img: Dict) -> Optional[Dict]:
+        """Parse a single image from the API response"""
+        try:
+            img_id = str(img.get('id', ''))
+            if not img_id:
+                return None
             
-            for sel in ['.date', 'time', '[data-date]']:
-                elem = card.select_one(sel)
-                if elem:
-                    photo_date = elem.get('datetime') or elem.get_text(strip=True)
-                    break
+            # Build image URLs from the ID
+            # Full size: https://cdn.imagn.com/image/thumb/800-750/{id}.jpg
+            # Thumbnail: https://cdn.imagn.com/image/thumb/250-225/{id}.jpg
+            thumbnail_url = img.get('thumbnail_url') or f"https://cdn.imagn.com/image/thumb/250-225/{img_id}.jpg"
+            hover_url = img.get('hover_url') or f"https://cdn.imagn.com/image/thumb/450-425/{img_id}.jpg"
+            # Use larger size for main display
+            image_url = f"https://cdn.imagn.com/image/thumb/800-750/{img_id}.jpg"
+            
+            # Extract player name from keywords or caption
+            player_name = img.get('keywords', '')
+            if not player_name:
+                # Try to extract from caption
+                caption = img.get('caption', '') or img.get('captionClean', '')
+                player_name = self._extract_player_from_caption(caption)
+            
+            # Parse date
+            photo_date = img.get('create_date', '')
+            if photo_date and 'T' in photo_date:
+                photo_date = photo_date.split('T')[0]
+            
+            return {
+                'imagn_id': img_id,
+                'image_url': image_url,
+                'thumbnail_url': thumbnail_url,
+                'headline': img.get('headLine', ''),
+                'caption': img.get('captionClean', '') or img.get('caption', ''),
+                'photographer': img.get('photographer', 'Imagn Images'),
+                'source': img.get('source', 'USA TODAY Sports'),
+                'photo_date': photo_date,
+                'player_name': player_name,
+                'keywords': img.get('keywords', ''),
+            }
+        except Exception as e:
+            print(f"Error parsing image: {e}", file=sys.stderr)
+            return None
+    
+    def _extract_player_from_caption(self, caption: str) -> str:
+        """Extract player name from caption text"""
+        if not caption:
+            return ''
         
-        if not headline:
-            headline = img.get('alt', img.get('title', ''))
+        # Common patterns in Imagn captions
+        import re
         
-        imagn_id = (
-            card.get('data-image-id') if hasattr(card, 'get') else None
-        ) or card.get('data-id') if hasattr(card, 'get') else None
+        # Pattern: "shoes worn by [Team] [Position] [Name] (#)"
+        match = re.search(r'(?:worn by|of)\s+(?:\w+\s+){1,3}(?:forward|guard|center)?\s*([A-Z][a-z]+\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s*\(', caption)
+        if match:
+            return match.group(1).strip()
         
-        if not imagn_id:
-            imagn_id = self._extract_id(image_url)
+        # Pattern: "[Team] [position] [Name] (#)"
+        match = re.search(r'(?:Magic|Lakers|Celtics|Warriors|Heat|Bulls|Nets|Knicks|Bucks|Suns|Mavericks|Nuggets|Clippers|Kings|Hawks|Raptors|76ers|Cavaliers|Pacers|Hornets|Wizards|Pistons|Thunder|Timberwolves|Trail Blazers|Pelicans|Spurs|Jazz|Rockets|Grizzlies)\s+(?:forward|guard|center)\s+([A-Z][a-z]+\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s*\(', caption)
+        if match:
+            return match.group(1).strip()
         
+        return ''
+    
+    def _placeholder_for_old_parse_card(self) -> Optional[Dict]:
+        """Placeholder - old HTML parsing replaced by API"""
         return {
-            'imagn_id': imagn_id,
+            'imagn_id': None,
             'image_url': image_url,
             'thumbnail_url': thumbnail_url,
             'headline': headline,
