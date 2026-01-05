@@ -10,12 +10,6 @@ on:
   
   # Allow manual trigger
   workflow_dispatch:
-    inputs:
-      rebuild_only:
-        description: 'Only rebuild site (skip fetch)'
-        required: false
-        default: 'false'
-        type: boolean
 
 # Allow the workflow to push to the repo and deploy to Pages
 permissions:
@@ -31,7 +25,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Need full history to push
+          fetch-depth: 0
       
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -42,56 +36,28 @@ jobs:
         run: pip install requests beautifulsoup4
       
       - name: Fetch new photos from Imagn
-        if: ${{ github.event.inputs.rebuild_only != 'true' }}
         env:
           IMAGN_USERNAME: ${{ secrets.IMAGN_USERNAME }}
           IMAGN_PASSWORD: ${{ secrets.IMAGN_PASSWORD }}
           IMAGN_SESSION: ${{ secrets.IMAGN_SESSION }}
-          IMAGN_LIGHTBOX_ID: ${{ secrets.IMAGN_LIGHTBOX_ID }}
         run: |
           cd scripts
           python fetch_imagn.py
-          
-          # Show stats
-          echo "Archive stats:"
-          python -c "
-import json
-with open('../data/archive.json') as f:
-    data = json.load(f)
-    print(f'  Total photos: {data[\"photo_count\"]}')
-"
       
       - name: Generate static site
         run: |
           cd scripts
           python generate_site.py
-          
-          # Count generated files
-          echo "Generated files:"
-          find ../site -name "*.html" | wc -l
-      
-      - name: Get stats for summary
-        id: stats
-        run: |
-          PHOTO_COUNT=$(python -c "import json; print(json.load(open('data/archive.json'))['photo_count'])")
-          PLAYER_COUNT=$(find site/players -mindepth 1 -maxdepth 1 -type d | wc -l)
-          WEEK=$(date +%Y-W%W)
-          
-          echo "photos=$PHOTO_COUNT" >> $GITHUB_OUTPUT
-          echo "players=$PLAYER_COUNT" >> $GITHUB_OUTPUT
-          echo "week=$WEEK" >> $GITHUB_OUTPUT
       
       - name: Commit changes
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          
           git add data/ site/
-          
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "📸 Weekly update: ${{ steps.stats.outputs.week }} (${{ steps.stats.outputs.photos }} photos)"
+            git commit -m "Weekly photo update"
             git push
           fi
       
@@ -104,17 +70,4 @@ with open('../data/archive.json') as f:
           path: site
       
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v4
-      
-      - name: Summary
-        run: |
-          echo "## 📸 Weekly Update Complete" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- **Week:** ${{ steps.stats.outputs.week }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Total Photos:** ${{ steps.stats.outputs.photos }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Players:** ${{ steps.stats.outputs.players }}" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### 🔗 Links" >> $GITHUB_STEP_SUMMARY
-          echo "- [View Site](${{ steps.deployment.outputs.page_url }})" >> $GITHUB_STEP_SUMMARY
-          echo "- [Weekly Embed](${{ steps.deployment.outputs.page_url }}embed.html)" >> $GITHUB_STEP_SUMMARY
