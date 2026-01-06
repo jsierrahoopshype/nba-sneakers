@@ -91,8 +91,8 @@ class ImagnFetcher:
             print(f"Login error: {e}", file=sys.stderr)
             return False
     
-    def fetch_nba_shoes(self, days_back: int = 7) -> List[Dict]:
-        """Fetch NBA shoe photos from the last N days using Imagn API"""
+    def fetch_nba_shoes(self, days_back: int = 365, max_photos: int = 3000) -> List[Dict]:
+        """Fetch NBA shoe photos using Imagn API"""
         photos = []
         seen_ids = set()
         
@@ -102,49 +102,52 @@ class ImagnFetcher:
         # Content group IDs from the working search
         cg_ids = "44,45,328,129,180,164,127,143,300,192,306,312"
         
-        params = {
-            'searchtxt': 'NBA shoes',
-            'searchCGOnly': cg_ids
-        }
+        # Fetch multiple pages to get more photos
+        pages_to_fetch = (max_photos // 20) + 1
         
-        try:
-            print(f"Fetching from API: {search_url}", file=sys.stderr)
-            resp = self.session.get(search_url, params=params, timeout=60)
+        for page in range(1, pages_to_fetch + 1):
+            params = {
+                'searchtxt': 'NBA shoes',
+                'searchCGOnly': cg_ids,
+                'page': page,
+                'perpage': 20
+            }
             
-            if resp.status_code == 200:
-                try:
-                    data = resp.json()
-                    all_images = data.get('allImages', [])
-                    print(f"API returned {len(all_images)} images", file=sys.stderr)
-                    
-                    for img in all_images:
-                        photo = self._parse_api_image(img)
-                        if photo and photo['imagn_id'] not in seen_ids:
-                            seen_ids.add(photo['imagn_id'])
-                            photos.append(photo)
-                            
-                except json.JSONDecodeError as e:
-                    print(f"JSON parse error: {e}", file=sys.stderr)
-            else:
-                print(f"API returned status {resp.status_code}", file=sys.stderr)
-                
-        except Exception as e:
-            print(f"API fetch error: {e}", file=sys.stderr)
-        
-        # Filter to recent photos (within days_back)
-        cutoff_date = datetime.now() - timedelta(days=days_back)
-        filtered = []
-        for photo in photos:
             try:
-                photo_date = datetime.fromisoformat(photo.get('photo_date', '').replace('Z', ''))
-                if photo_date >= cutoff_date:
-                    filtered.append(photo)
-            except:
-                # If date parsing fails, include the photo anyway
-                filtered.append(photo)
+                print(f"Fetching page {page} from API...", file=sys.stderr)
+                resp = self.session.get(search_url, params=params, timeout=60)
+                
+                if resp.status_code == 200:
+                    try:
+                        data = resp.json()
+                        all_images = data.get('allImages', [])
+                        print(f"Page {page}: {len(all_images)} images", file=sys.stderr)
+                        
+                        if not all_images:
+                            break  # No more results
+                        
+                        for img in all_images:
+                            photo = self._parse_api_image(img)
+                            if photo and photo['imagn_id'] not in seen_ids:
+                                seen_ids.add(photo['imagn_id'])
+                                photos.append(photo)
+                                
+                        if len(photos) >= max_photos:
+                            break
+                                
+                    except json.JSONDecodeError as e:
+                        print(f"JSON parse error: {e}", file=sys.stderr)
+                        break
+                else:
+                    print(f"API returned status {resp.status_code}", file=sys.stderr)
+                    break
+                    
+            except Exception as e:
+                print(f"API fetch error: {e}", file=sys.stderr)
+                break
         
-        print(f"Filtered to {len(filtered)} photos from last {days_back} days", file=sys.stderr)
-        return filtered
+        print(f"Total fetched: {len(photos)} photos", file=sys.stderr)
+        return photos[:max_photos]
     
     def _parse_api_image(self, img: Dict) -> Optional[Dict]:
         """Parse a single image from the API response"""
