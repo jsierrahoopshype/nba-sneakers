@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lou Williams | NBA Sneakers</title>
+<style>
+:root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #666;
+    --text-muted: #999;
+    --border: #e0e0e0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-hover: 0 4px 16px rgba(0,0,0,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+.site-header { background: var(--primary); color: white; padding: 16px 0; position: sticky; top: 0; z-index: 100; }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.site-logo { font-size: 20px; font-weight: 700; color: white; }
+.site-logo:hover { text-decoration: none; }
+.site-nav { display: flex; gap: 24px; }
+.site-nav a { color: rgba(255,255,255,0.8); font-size: 14px; }
+.site-nav a:hover { color: white; text-decoration: none; }
+.hero { background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%); color: white; padding: 48px 0; text-align: center; }
+.hero h1 { font-size: 32px; margin-bottom: 8px; }
+.hero p { opacity: 0.8; font-size: 16px; }
+.stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+.stat-item { text-align: center; }
+.stat-value { font-size: 28px; font-weight: 700; }
+.stat-label { font-size: 12px; opacity: 0.7; text-transform: uppercase; }
+.section { padding: 32px 0; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.section-title { font-size: 20px; font-weight: 600; }
+.section-link { font-size: 14px; }
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
+.photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo-card .meta { padding: 12px; }
+.photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+.photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
+.photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
+.list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
+.list-item .name { font-weight: 500; color: var(--text); }
+.list-item .count { font-size: 13px; color: var(--text-muted); }
+.page-header { padding: 32px 0; background: var(--card-bg); border-bottom: 1px solid var(--border); }
+.page-header h1 { font-size: 28px; margin-bottom: 4px; }
+.page-header .subtitle { color: var(--text-secondary); }
+.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.breadcrumb a { color: var(--text-secondary); }
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
+.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
+.lightbox .nav.prev { left: 16px; }
+.lightbox .nav.next { right: 16px; }
+.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
+.lightbox .lb-player { font-size: 18px; font-weight: 600; }
+.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
+.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
+.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
+.site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
+.weekly-hero { margin-bottom: 32px; }
+.section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
+.section-header .photo-count { font-size: 14px; color: var(--text-muted); font-weight: normal; }
+.section-header .section-note { font-size: 13px; color: var(--text-muted); }
+.view-more { text-align: center; margin-top: 24px; }
+.view-more a { display: inline-block; padding: 12px 24px; background: var(--primary); color: white; border-radius: 6px; font-size: 14px; font-weight: 500; }
+.view-more a:hover { text-decoration: none; opacity: 0.9; }
+.stats-section { background: var(--card-bg); border-radius: 12px; padding: 32px !important; margin-top: 32px; }
+.stats-section .stats-bar { margin-top: 0; }
+.brands-grid .brand-item { background: linear-gradient(135deg, var(--card-bg), #f8f9fa); }
+.search-box { position: relative; max-width: 500px; margin: 0 auto 24px; }
+.search-box input { width: 100%; padding: 16px 20px; font-size: 18px; border: 2px solid var(--border); border-radius: 12px; outline: none; transition: border-color 0.2s; }
+.search-box input:focus { border-color: var(--accent); }
+.search-box input::placeholder { color: var(--text-muted); }
+.search-results { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow-hover); max-height: 400px; overflow-y: auto; z-index: 100; }
+.search-result-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text); cursor: pointer; }
+.search-result-item:hover { background: var(--bg); text-decoration: none; }
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item.no-page { opacity: 0.6; cursor: default; }
+.search-result-item .name { font-weight: 500; }
+.search-result-item .count { font-size: 13px; color: var(--text-muted); }
+.no-results { padding: 16px; text-align: center; color: var(--text-muted); }
+.search-stats { display: flex; justify-content: center; gap: 32px; margin-bottom: 32px; font-size: 14px; color: var(--text-secondary); }
+.player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+.player-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; }
+.player-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.player-card .player-img { height: 120px; background-size: cover; background-position: center; background-color: var(--primary); }
+.player-card .player-info { padding: 12px; }
+.player-card .player-name { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+.player-card .player-count { font-size: 12px; color: var(--text-muted); }
+.alpha-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.alpha-item { padding: 8px 14px; background: var(--card-bg); border-radius: 6px; font-size: 14px; color: var(--text); box-shadow: var(--shadow); }
+.alpha-item:hover { text-decoration: none; box-shadow: var(--shadow-hover); }
+.alpha-item.disabled { opacity: 0.5; cursor: default; }
+.alpha-item span { color: var(--text-muted); font-size: 12px; }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+        <nav class="site-nav">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/search/">🔍 Lookup</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/">Players</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/brands/">Brands</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/weekly/">Weekly</a>
+        </nav>
+    </div>
+</header>
+
+
+<div class="page-header">
+    <div class="container">
+        <div class="breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/">Home</a> / <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/">Players</a> / Lou Williams</div>
+        <h1>Lou Williams</h1>
+        <p class="subtitle">44 shoe photos</p>
+    </div>
+</div>
+
+<main class="container">
+    <section class="section">
+        <div class="photo-grid">
+            <div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17993380.jpg" alt="NBA: Atlanta Hawks at Oklahoma City Thunder" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Atlanta Hawks at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Mar 30, 2022</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17939834.jpg" alt="NBA: New Orleans Pelicans at Atlanta Hawks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: New Orleans Pelicans at Atlanta Hawks</div>
+        <div class="credit">📷 Dale Zanine · Imagn Images · Mar 20, 2022</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17620125.jpg" alt="NBA: Atlanta Hawks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Atlanta Hawks at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 04, 2022</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17590140.jpg" alt="NBA: Los Angeles Lakers at Atlanta Hawks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Lakers at Atlanta Hawks</div>
+        <div class="credit">📷 Dale Zanine · Imagn Images · Jan 30, 2022</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17555022.jpg" alt="NBA: Atlanta Hawks at Charlotte Hornets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Atlanta Hawks at Charlotte Hornets</div>
+        <div class="credit">📷 Sam Sharpe · Imagn Images · Jan 23, 2022</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17513311.jpg" alt="NBA: New York Knicks at Atlanta Hawks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: New York Knicks at Atlanta Hawks</div>
+        <div class="credit">📷 Brett Davis · Imagn Images · Jan 15, 2022</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17458774.jpg" alt="NBA: Atlanta Hawks at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Atlanta Hawks at Sacramento Kings</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 05, 2022</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15832207.jpg" alt="NBA: Atlanta Hawks at San Antonio Spurs" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Atlanta Hawks at San Antonio Spurs</div>
+        <div class="credit">📷 Scott Wachter · Imagn Images · Apr 01, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15576886.jpg" alt="NBA: Cleveland Cavaliers at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Cleveland Cavaliers at Los Angeles Clippers</div>
+        <div class="credit">📷 Kirby Lee · Imagn Images · Feb 14, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15536976.jpg" alt="NBA: Boston Celtics at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Boston Celtics at Los Angeles Clippers</div>
+        <div class="credit">📷 Kirby Lee · Imagn Images · Feb 05, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14914207.jpg" alt="NBA: Playoffs-Denver Nuggets at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Playoffs-Denver Nuggets at Los Angeles Clippers</div>
+        <div class="credit">📷 Kim Klement · Imagn Images · Sep 11, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14775014.jpg" alt="NBA: Playoffs-Dallas Mavericks at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Playoffs-Dallas Mavericks at Los Angeles Clippers</div>
+        <div class="credit">📷 Kim Klement · Imagn Images · Aug 19, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14159858.jpg" alt="NBA: Los Angeles Lakers at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Lakers at Los Angeles Clippers</div>
+        <div class="credit">📷 Kirby Lee · Imagn Images · Mar 08, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14131381.jpg" alt="NBA: Los Angeles Clippers at Oklahoma City Thunder" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Mar 03, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14021187.jpg" alt="NBA: Los Angeles Clippers at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Feb 09, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14003285.jpg" alt="NBA: Miami Heat at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Miami Heat at Los Angeles Clippers</div>
+        <div class="credit">📷 Kirby Lee · Imagn Images · Feb 05, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13942876.jpg" alt="NBA: Los Angeles Clippers at Atlanta Hawks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Atlanta Hawks</div>
+        <div class="credit">📷 Jason Getz · Imagn Images · Jan 22, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13902190.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 12, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13901333.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 12, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13847650.jpg" alt="NBA: Utah Jazz at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Utah Jazz at Los Angeles Clippers</div>
+        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Dec 28, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13838150.jpg" alt="NBA: Los Angeles Clippers at Los Angeles Lakers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Los Angeles Lakers</div>
+        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Dec 25, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13716510.jpg" alt="NBA: Los Angeles Clippers at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Nov 26, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13685529.jpg" alt="NBA: Oklahoma City Thunder at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Oklahoma City Thunder at Los Angeles Clippers</div>
+        <div class="credit">📷 Kelvin Kuo · Imagn Images · Nov 18, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13662601.jpg" alt="NBA: Los Angeles Clippers at Houston Rockets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Houston Rockets</div>
+        <div class="credit">📷 Troy Taormina · Imagn Images · Nov 13, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13600386.jpg" alt="NBA: San Antonio Spurs at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: San Antonio Spurs at Los Angeles Clippers</div>
+        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Oct 31, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12596322.jpg" alt="NBA: Playoffs-Golden State Warriors at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Playoffs-Golden State Warriors at Los Angeles Clippers</div>
+        <div class="credit">📷 Kirby Lee · Imagn Images · Apr 26, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12569103.jpg" alt="NBA: Playoffs-Golden State Warriors at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Playoffs-Golden State Warriors at Los Angeles Clippers</div>
+        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Apr 21, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12312167.jpg" alt="NBA: Oklahoma City Thunder at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Oklahoma City Thunder at Los Angeles Clippers</div>
+        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Mar 08, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12230399.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 24, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12099414.jpg" alt="NBA: Los Angeles Clippers at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Feb 02, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11975364.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 10, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11941367.jpg" alt="NBA: Los Angeles Clippers at Phoenix Suns" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Phoenix Suns</div>
+        <div class="credit">📷 Jennifer Stewart · Imagn Images · Jan 04, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11795812.jpg" alt="NBA: Los Angeles Clippers at Memphis Grizzlies" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Memphis Grizzlies</div>
+        <div class="credit">📷 Justin Ford · Imagn Images · Dec 05, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11778191.jpg" alt="NBA: Los Angeles Clippers at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Dec 02, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11700993.jpg" alt="NBA: Los Angeles Clippers at Atlanta Hawks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Atlanta Hawks</div>
+        <div class="credit">📷 Dale Zanine · Imagn Images · Nov 19, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11700719.jpg" alt="NBA: Los Angeles Clippers at Atlanta Hawks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Atlanta Hawks</div>
+        <div class="credit">📷 Dale Zanine · Imagn Images · Nov 19, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11640454.jpg" alt="NBA: Milwaukee Bucks at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Milwaukee Bucks at Los Angeles Clippers</div>
+        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Nov 10, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11393908.jpg" alt="NBA: Preseason-Los Angeles Clippers at Los Angeles Lakers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Preseason-Los Angeles Clippers at Los Angeles Lakers</div>
+        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Oct 06, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10722771.jpg" alt="NBA: Los Angeles Clippers at Minnesota Timberwolves" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Minnesota Timberwolves</div>
+        <div class="credit">📷 Brace Hemmelgarn · Imagn Images · Mar 20, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10709062.jpg" alt="NBA: Los Angeles Clippers at Houston Rockets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Houston Rockets</div>
+        <div class="credit">📷 Troy Taormina · Imagn Images · Mar 15, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10671086.jpg" alt="NBA: New York Knicks at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: New York Knicks at Los Angeles Clippers</div>
+        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Mar 02, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10660878.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 27, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10660885.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 27, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10645114.jpg" alt="NBA: Los Angeles Clippers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lou Williams</div>
+        <div class="headline">NBA: Los Angeles Clippers at Golden State Warriors</div>
+        <div class="credit">📷 Cary Edmondson · Imagn Images · Feb 22, 2018</div>
+    </div>
+</div>
+        </div>
+    </section>
+</main>
+
+
+<div class="lightbox" id="lightbox">
+    <span class="close">&times;</span>
+    <span class="nav prev">&#10094;</span>
+    <span class="nav next">&#10095;</span>
+    <span class="counter"></span>
+    <img src="" alt="">
+    <div class="info">
+        <div class="lb-player"></div>
+        <div class="lb-headline"></div>
+        <div class="lb-credit"></div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="container">
+        Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
+    </div>
+</footer>
+
+<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/17993380.jpg", "player_name": "Lou Williams", "headline": "NBA: Atlanta Hawks at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2022-03-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17939834.jpg", "player_name": "Lou Williams", "headline": "NBA: New Orleans Pelicans at Atlanta Hawks", "photographer": "Dale Zanine", "source": "Imagn Images", "photo_date": "2022-03-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17620125.jpg", "player_name": "Lou Williams", "headline": "NBA: Atlanta Hawks at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2022-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17590140.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Lakers at Atlanta Hawks", "photographer": "Dale Zanine", "source": "Imagn Images", "photo_date": "2022-01-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17555022.jpg", "player_name": "Lou Williams", "headline": "NBA: Atlanta Hawks at Charlotte Hornets", "photographer": "Sam Sharpe", "source": "Imagn Images", "photo_date": "2022-01-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17513311.jpg", "player_name": "Lou Williams", "headline": "NBA: New York Knicks at Atlanta Hawks", "photographer": "Brett Davis", "source": "Imagn Images", "photo_date": "2022-01-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17458774.jpg", "player_name": "Lou Williams", "headline": "NBA: Atlanta Hawks at Sacramento Kings", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2022-01-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15832207.jpg", "player_name": "Lou Williams", "headline": "NBA: Atlanta Hawks at San Antonio Spurs", "photographer": "Scott Wachter", "source": "Imagn Images", "photo_date": "2021-04-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15576886.jpg", "player_name": "Lou Williams", "headline": "NBA: Cleveland Cavaliers at Los Angeles Clippers", "photographer": "Kirby Lee", "source": "Imagn Images", "photo_date": "2021-02-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15536976.jpg", "player_name": "Lou Williams", "headline": "NBA: Boston Celtics at Los Angeles Clippers", "photographer": "Kirby Lee", "source": "Imagn Images", "photo_date": "2021-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14914207.jpg", "player_name": "Lou Williams", "headline": "NBA: Playoffs-Denver Nuggets at Los Angeles Clippers", "photographer": "Kim Klement", "source": "Imagn Images", "photo_date": "2020-09-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14775014.jpg", "player_name": "Lou Williams", "headline": "NBA: Playoffs-Dallas Mavericks at Los Angeles Clippers", "photographer": "Kim Klement", "source": "Imagn Images", "photo_date": "2020-08-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14159858.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Lakers at Los Angeles Clippers", "photographer": "Kirby Lee", "source": "Imagn Images", "photo_date": "2020-03-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14131381.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2020-03-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14021187.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2020-02-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14003285.jpg", "player_name": "Lou Williams", "headline": "NBA: Miami Heat at Los Angeles Clippers", "photographer": "Kirby Lee", "source": "Imagn Images", "photo_date": "2020-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13942876.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Atlanta Hawks", "photographer": "Jason Getz", "source": "Imagn Images", "photo_date": "2020-01-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13902190.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2020-01-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13901333.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2020-01-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13847650.jpg", "player_name": "Lou Williams", "headline": "NBA: Utah Jazz at Los Angeles Clippers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2019-12-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13838150.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Los Angeles Lakers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2019-12-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13716510.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2019-11-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13685529.jpg", "player_name": "Lou Williams", "headline": "NBA: Oklahoma City Thunder at Los Angeles Clippers", "photographer": "Kelvin Kuo", "source": "Imagn Images", "photo_date": "2019-11-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13662601.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-11-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13600386.jpg", "player_name": "Lou Williams", "headline": "NBA: San Antonio Spurs at Los Angeles Clippers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2019-10-31"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12596322.jpg", "player_name": "Lou Williams", "headline": "NBA: Playoffs-Golden State Warriors at Los Angeles Clippers", "photographer": "Kirby Lee", "source": "Imagn Images", "photo_date": "2019-04-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12569103.jpg", "player_name": "Lou Williams", "headline": "NBA: Playoffs-Golden State Warriors at Los Angeles Clippers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2019-04-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12312167.jpg", "player_name": "Lou Williams", "headline": "NBA: Oklahoma City Thunder at Los Angeles Clippers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2019-03-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12230399.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-02-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12099414.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2019-02-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11975364.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-01-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11941367.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Phoenix Suns", "photographer": "Jennifer Stewart", "source": "Imagn Images", "photo_date": "2019-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11795812.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2018-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11778191.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2018-12-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11700993.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Atlanta Hawks", "photographer": "Dale Zanine", "source": "Imagn Images", "photo_date": "2018-11-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11700719.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Atlanta Hawks", "photographer": "Dale Zanine", "source": "Imagn Images", "photo_date": "2018-11-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11640454.jpg", "player_name": "Lou Williams", "headline": "NBA: Milwaukee Bucks at Los Angeles Clippers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2018-11-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11393908.jpg", "player_name": "Lou Williams", "headline": "NBA: Preseason-Los Angeles Clippers at Los Angeles Lakers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2018-10-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10722771.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Minnesota Timberwolves", "photographer": "Brace Hemmelgarn", "source": "Imagn Images", "photo_date": "2018-03-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10709062.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-03-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10671086.jpg", "player_name": "Lou Williams", "headline": "NBA: New York Knicks at Los Angeles Clippers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2018-03-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10660878.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2018-02-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10660885.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2018-02-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10645114.jpg", "player_name": "Lou Williams", "headline": "NBA: Los Angeles Clippers at Golden State Warriors", "photographer": "Cary Edmondson", "source": "Imagn Images", "photo_date": "2018-02-22"}];</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const photos = window.galleryPhotos || [];
+    let currentIndex = 0;
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox || photos.length === 0) return;
+    const lbImg = lightbox.querySelector('img');
+    const lbPlayer = lightbox.querySelector('.lb-player');
+    const lbHeadline = lightbox.querySelector('.lb-headline');
+    const lbCredit = lightbox.querySelector('.lb-credit');
+    const counter = lightbox.querySelector('.counter');
+    function formatDate(dateStr) {
+        if (!dateStr) return '';
+        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
+        catch(e) { return dateStr; }
+    }
+    function showPhoto() {
+        const p = photos[currentIndex];
+        lbImg.src = p.image_url;
+        lbPlayer.textContent = p.player_name || 'NBA';
+        lbHeadline.textContent = p.headline || '';
+        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
+        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
+    }
+    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
+    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
+    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
+    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
+    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
+    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
+    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
+    let touchStartX = 0;
+    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
+});
+</script>
+</body>
+</html>

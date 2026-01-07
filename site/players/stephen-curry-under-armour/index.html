@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stephen Curry | Under Armour | NBA Sneakers</title>
+<style>
+:root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #666;
+    --text-muted: #999;
+    --border: #e0e0e0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-hover: 0 4px 16px rgba(0,0,0,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+.site-header { background: var(--primary); color: white; padding: 16px 0; position: sticky; top: 0; z-index: 100; }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.site-logo { font-size: 20px; font-weight: 700; color: white; }
+.site-logo:hover { text-decoration: none; }
+.site-nav { display: flex; gap: 24px; }
+.site-nav a { color: rgba(255,255,255,0.8); font-size: 14px; }
+.site-nav a:hover { color: white; text-decoration: none; }
+.hero { background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%); color: white; padding: 48px 0; text-align: center; }
+.hero h1 { font-size: 32px; margin-bottom: 8px; }
+.hero p { opacity: 0.8; font-size: 16px; }
+.stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+.stat-item { text-align: center; }
+.stat-value { font-size: 28px; font-weight: 700; }
+.stat-label { font-size: 12px; opacity: 0.7; text-transform: uppercase; }
+.section { padding: 32px 0; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.section-title { font-size: 20px; font-weight: 600; }
+.section-link { font-size: 14px; }
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
+.photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo-card .meta { padding: 12px; }
+.photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+.photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
+.photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
+.list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
+.list-item .name { font-weight: 500; color: var(--text); }
+.list-item .count { font-size: 13px; color: var(--text-muted); }
+.page-header { padding: 32px 0; background: var(--card-bg); border-bottom: 1px solid var(--border); }
+.page-header h1 { font-size: 28px; margin-bottom: 4px; }
+.page-header .subtitle { color: var(--text-secondary); }
+.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.breadcrumb a { color: var(--text-secondary); }
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
+.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
+.lightbox .nav.prev { left: 16px; }
+.lightbox .nav.next { right: 16px; }
+.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
+.lightbox .lb-player { font-size: 18px; font-weight: 600; }
+.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
+.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
+.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
+.site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
+.weekly-hero { margin-bottom: 32px; }
+.section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
+.section-header .photo-count { font-size: 14px; color: var(--text-muted); font-weight: normal; }
+.section-header .section-note { font-size: 13px; color: var(--text-muted); }
+.view-more { text-align: center; margin-top: 24px; }
+.view-more a { display: inline-block; padding: 12px 24px; background: var(--primary); color: white; border-radius: 6px; font-size: 14px; font-weight: 500; }
+.view-more a:hover { text-decoration: none; opacity: 0.9; }
+.stats-section { background: var(--card-bg); border-radius: 12px; padding: 32px !important; margin-top: 32px; }
+.stats-section .stats-bar { margin-top: 0; }
+.brands-grid .brand-item { background: linear-gradient(135deg, var(--card-bg), #f8f9fa); }
+.search-box { position: relative; max-width: 500px; margin: 0 auto 24px; }
+.search-box input { width: 100%; padding: 16px 20px; font-size: 18px; border: 2px solid var(--border); border-radius: 12px; outline: none; transition: border-color 0.2s; }
+.search-box input:focus { border-color: var(--accent); }
+.search-box input::placeholder { color: var(--text-muted); }
+.search-results { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow-hover); max-height: 400px; overflow-y: auto; z-index: 100; }
+.search-result-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text); cursor: pointer; }
+.search-result-item:hover { background: var(--bg); text-decoration: none; }
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item.no-page { opacity: 0.6; cursor: default; }
+.search-result-item .name { font-weight: 500; }
+.search-result-item .count { font-size: 13px; color: var(--text-muted); }
+.no-results { padding: 16px; text-align: center; color: var(--text-muted); }
+.search-stats { display: flex; justify-content: center; gap: 32px; margin-bottom: 32px; font-size: 14px; color: var(--text-secondary); }
+.player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+.player-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; }
+.player-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.player-card .player-img { height: 120px; background-size: cover; background-position: center; background-color: var(--primary); }
+.player-card .player-info { padding: 12px; }
+.player-card .player-name { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+.player-card .player-count { font-size: 12px; color: var(--text-muted); }
+.alpha-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.alpha-item { padding: 8px 14px; background: var(--card-bg); border-radius: 6px; font-size: 14px; color: var(--text); box-shadow: var(--shadow); }
+.alpha-item:hover { text-decoration: none; box-shadow: var(--shadow-hover); }
+.alpha-item.disabled { opacity: 0.5; cursor: default; }
+.alpha-item span { color: var(--text-muted); font-size: 12px; }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+        <nav class="site-nav">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/search/">🔍 Lookup</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/">Players</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/brands/">Brands</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/weekly/">Weekly</a>
+        </nav>
+    </div>
+</header>
+
+
+<div class="page-header">
+    <div class="container">
+        <div class="breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/">Home</a> / <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/">Players</a> / Stephen Curry | Under Armour</div>
+        <h1>Stephen Curry | Under Armour</h1>
+        <p class="subtitle">75 shoe photos</p>
+    </div>
+</div>
+
+<main class="container">
+    <section class="section">
+        <div class="photo-grid">
+            <div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15328441.jpg" alt="NBA: Preseason-Golden State Warriors at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Preseason-Golden State Warriors at Sacramento Kings</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Dec 17, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15320367.jpg" alt="NBA: Preseason-Golden State Warriors at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Preseason-Golden State Warriors at Sacramento Kings</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Dec 15, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15307444.jpg" alt="NBA: Preseason-Denver Nuggets at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Preseason-Denver Nuggets at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Dec 12, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14124606.jpg" alt="NBA: Washington Wizards at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Washington Wizards at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 01, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13596521.jpg" alt="NBA: Phoenix Suns at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Phoenix Suns at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Oct 30, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13564870.jpg" alt="NBA: Los Angeles Clippers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Los Angeles Clippers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Oct 24, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13537164.jpg" alt="NBA: Preseason-Los Angeles Lakers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Preseason-Los Angeles Lakers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Oct 18, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13494780.jpg" alt="NBA: Preseason-Minnesota Timberwolves at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Preseason-Minnesota Timberwolves at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Oct 10, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13470627.jpg" alt="NBA: Preseason-Los Angeles Lakers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Preseason-Los Angeles Lakers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Oct 05, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12596190.jpg" alt="NBA: Playoffs-Golden State Warriors at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Golden State Warriors at Los Angeles Clippers</div>
+        <div class="credit">📷 Kirby Lee · Imagn Images · Apr 26, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12531411.jpg" alt="NBA: Playoffs-Los Angeles Clippers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Los Angeles Clippers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 13, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12531408.jpg" alt="NBA: Playoffs-Los Angeles Clippers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Los Angeles Clippers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 13, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12531409.jpg" alt="NBA: Playoffs-Los Angeles Clippers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Los Angeles Clippers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 13, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12531425.jpg" alt="NBA: Playoffs-Los Angeles Clippers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Los Angeles Clippers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 13, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12462102.jpg" alt="NBA: Denver Nuggets at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Denver Nuggets at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 02, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12293106.jpg" alt="NBA: Boston Celtics at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Boston Celtics at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 05, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12225159.jpg" alt="NBA: Houston Rockets at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Houston Rockets at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Feb 23, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12209741.jpg" alt="NBA: Sacramento Kings at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Sacramento Kings at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Feb 21, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12153534.jpg" alt="NBA: Utah Jazz at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Utah Jazz at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Feb 12, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12101802.jpg" alt="NBA: Los Angeles Lakers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Los Angeles Lakers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Feb 02, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11925043.jpg" alt="NBA: Golden State Warriors at Phoenix Suns" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Golden State Warriors at Phoenix Suns</div>
+        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Dec 31, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11898019.jpg" alt="NBA: Los Angeles Lakers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Los Angeles Lakers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Dec 25, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11711303.jpg" alt="NBA: Oklahoma City Thunder at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Oklahoma City Thunder at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 21, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11624935.jpg" alt="NBA: Milwaukee Bucks at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Milwaukee Bucks at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 08, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11499493.jpg" alt="NBA: Phoenix Suns at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Phoenix Suns at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Oct 22, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11455861.jpg" alt="NBA: Oklahoma City Thunder at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Oklahoma City Thunder at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Oct 16, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11404718.jpg" alt="NBA: Preseason-Phoenix Suns at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Preseason-Phoenix Suns at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Oct 08, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11348735.jpg" alt="NBA: Preseason-Minnesota Timberwolves at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Preseason-Minnesota Timberwolves at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Sep 29, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10846664.jpg" alt="NBA: Playoffs-Houston Rockets at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Houston Rockets at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · May 20, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10689433.jpg" alt="NBA: San Antonio Spurs at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: San Antonio Spurs at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 08, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10624008.jpg" alt="NBA: All Star Game-Team Stephen Practice" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: All Star Game-Team Stephen Practice</div>
+        <div class="credit">📷 Kirby Lee · Imagn Images · Feb 17, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10624007.jpg" alt="NBA: All Star Game-Team Stephen Practice" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: All Star Game-Team Stephen Practice</div>
+        <div class="credit">📷 Kirby Lee · Imagn Images · Feb 17, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10546701.jpg" alt="NBA: Denver Nuggets at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Denver Nuggets at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Jan 08, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10069832.jpg" alt="NBA: Playoffs-San Antonio Spurs at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-San Antonio Spurs at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · May 16, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10069796.jpg" alt="NBA: Playoffs-San Antonio Spurs at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-San Antonio Spurs at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · May 16, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10050991.jpg" alt="NBA: Playoffs-Utah Jazz at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Utah Jazz at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · May 04, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10050984.jpg" alt="NBA: Playoffs-Utah Jazz at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Utah Jazz at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · May 04, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10050983.jpg" alt="NBA: Playoffs-Utah Jazz at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Utah Jazz at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · May 04, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10051121.jpg" alt="NBA: Playoffs-Utah Jazz at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Utah Jazz at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · May 02, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10051077.jpg" alt="NBA: Playoffs-Utah Jazz at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Utah Jazz at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · May 02, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10022018.jpg" alt="NBA: Playoffs-Portland Trail Blazers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Portland Trail Blazers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 16, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10021909.jpg" alt="NBA: Playoffs-Portland Trail Blazers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Portland Trail Blazers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 16, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10021990.jpg" alt="NBA: Playoffs-Portland Trail Blazers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Portland Trail Blazers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 16, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10021911.jpg" alt="NBA: Playoffs-Portland Trail Blazers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Portland Trail Blazers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 16, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10021933.jpg" alt="NBA: Playoffs-Portland Trail Blazers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Portland Trail Blazers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 16, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10022001.jpg" alt="NBA: Playoffs-Portland Trail Blazers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Portland Trail Blazers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 16, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10021912.jpg" alt="NBA: Playoffs-Portland Trail Blazers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Portland Trail Blazers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 16, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10021922.jpg" alt="NBA: Playoffs-Portland Trail Blazers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Portland Trail Blazers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 16, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10021314.jpg" alt="NBA: Los Angeles Lakers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Los Angeles Lakers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 12, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9980988.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Memphis Grizzlies at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 26, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9981008.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Memphis Grizzlies at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 26, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9980958.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Memphis Grizzlies at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 26, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9981010.jpg" alt="NBA: Milwaukee Bucks at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Milwaukee Bucks at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 18, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9981035.jpg" alt="NBA: Milwaukee Bucks at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Milwaukee Bucks at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 18, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9980984.jpg" alt="NBA: Milwaukee Bucks at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Milwaukee Bucks at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 18, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9981038.jpg" alt="NBA: Milwaukee Bucks at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Milwaukee Bucks at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 18, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9981139.jpg" alt="NBA: Milwaukee Bucks at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Milwaukee Bucks at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 18, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9980889.jpg" alt="NBA: Milwaukee Bucks at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Milwaukee Bucks at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 18, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9981187.jpg" alt="NBA: Milwaukee Bucks at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Milwaukee Bucks at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 18, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9981138.jpg" alt="NBA: Milwaukee Bucks at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Milwaukee Bucks at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 18, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9906200.jpg" alt="NBA: Brooklyn Nets at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Brooklyn Nets at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Feb 25, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9849592.jpg" alt="NBA: Los Angeles Clippers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Los Angeles Clippers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Jan 28, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9849566.jpg" alt="NBA: Los Angeles Clippers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Los Angeles Clippers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Jan 28, 2017</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9775543.jpg" alt="NBA: Utah Jazz at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Utah Jazz at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Dec 20, 2016</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9731392.jpg" alt="NBA: Houston Rockets at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Houston Rockets at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Dec 01, 2016</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9731322.jpg" alt="NBA: Houston Rockets at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Houston Rockets at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Dec 01, 2016</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9290972.jpg" alt="NBA: Playoffs-Portland Trail Blazers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Playoffs-Portland Trail Blazers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · May 11, 2016</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9056058.jpg" alt="NBA: Charlotte Hornets at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Charlotte Hornets at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Jan 11, 2016</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9056075.jpg" alt="NBA: Charlotte Hornets at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Charlotte Hornets at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Jan 11, 2016</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9056056.jpg" alt="NBA: Charlotte Hornets at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Charlotte Hornets at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Jan 11, 2016</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9056094.jpg" alt="NBA: Charlotte Hornets at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Charlotte Hornets at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Jan 11, 2016</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9056044.jpg" alt="NBA: Charlotte Hornets at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Charlotte Hornets at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Jan 11, 2016</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9027059.jpg" alt="NBA: Cleveland Cavaliers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Cleveland Cavaliers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Dec 25, 2015</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9027058.jpg" alt="NBA: Cleveland Cavaliers at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Cleveland Cavaliers at Golden State Warriors</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Dec 25, 2015</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/8910148.jpg" alt="NBA: Golden State Warriors at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry | Under Armour</div>
+        <div class="headline">NBA: Golden State Warriors at Sacramento Kings</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Nov 07, 2015</div>
+    </div>
+</div>
+        </div>
+    </section>
+</main>
+
+
+<div class="lightbox" id="lightbox">
+    <span class="close">&times;</span>
+    <span class="nav prev">&#10094;</span>
+    <span class="nav next">&#10095;</span>
+    <span class="counter"></span>
+    <img src="" alt="">
+    <div class="info">
+        <div class="lb-player"></div>
+        <div class="lb-headline"></div>
+        <div class="lb-credit"></div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="container">
+        Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
+    </div>
+</footer>
+
+<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/15328441.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Preseason-Golden State Warriors at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2020-12-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15320367.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Preseason-Golden State Warriors at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2020-12-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15307444.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Preseason-Denver Nuggets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2020-12-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14124606.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Washington Wizards at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2020-03-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13596521.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Phoenix Suns at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-10-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13564870.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Los Angeles Clippers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-10-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13537164.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Preseason-Los Angeles Lakers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-10-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13494780.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Preseason-Minnesota Timberwolves at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-10-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13470627.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Preseason-Los Angeles Lakers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-10-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12596190.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Golden State Warriors at Los Angeles Clippers", "photographer": "Kirby Lee", "source": "Imagn Images", "photo_date": "2019-04-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12531411.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Los Angeles Clippers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-04-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12531408.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Los Angeles Clippers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-04-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12531409.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Los Angeles Clippers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-04-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12531425.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Los Angeles Clippers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-04-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12462102.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Denver Nuggets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-04-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12293106.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Boston Celtics at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-03-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12225159.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Houston Rockets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-02-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12209741.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Sacramento Kings at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-02-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12153534.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Utah Jazz at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-02-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12101802.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Los Angeles Lakers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-02-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11925043.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Golden State Warriors at Phoenix Suns", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "photo_date": "2018-12-31"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11898019.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Los Angeles Lakers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2018-12-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11711303.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Oklahoma City Thunder at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2018-11-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11624935.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Milwaukee Bucks at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2018-11-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11499493.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Phoenix Suns at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2018-10-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11455861.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Oklahoma City Thunder at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2018-10-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11404718.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Preseason-Phoenix Suns at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2018-10-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11348735.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Preseason-Minnesota Timberwolves at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2018-09-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10846664.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Houston Rockets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2018-05-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10689433.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: San Antonio Spurs at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2018-03-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10624008.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: All Star Game-Team Stephen Practice", "photographer": "Kirby Lee", "source": "Imagn Images", "photo_date": "2018-02-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10624007.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: All Star Game-Team Stephen Practice", "photographer": "Kirby Lee", "source": "Imagn Images", "photo_date": "2018-02-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10546701.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Denver Nuggets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2018-01-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10069832.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-San Antonio Spurs at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-05-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10069796.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-San Antonio Spurs at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-05-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10050991.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Utah Jazz at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-05-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10050984.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Utah Jazz at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-05-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10050983.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Utah Jazz at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-05-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10051121.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Utah Jazz at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-05-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10051077.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Utah Jazz at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-05-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10022018.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Portland Trail Blazers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-04-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10021909.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Portland Trail Blazers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-04-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10021990.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Portland Trail Blazers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-04-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10021911.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Portland Trail Blazers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-04-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10021933.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Portland Trail Blazers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-04-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10022001.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Portland Trail Blazers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-04-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10021912.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Portland Trail Blazers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-04-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10021922.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Portland Trail Blazers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-04-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10021314.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Los Angeles Lakers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-04-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9980988.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Memphis Grizzlies at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-03-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9981008.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Memphis Grizzlies at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-03-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9980958.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Memphis Grizzlies at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-03-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9981010.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Milwaukee Bucks at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-03-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9981035.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Milwaukee Bucks at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-03-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9980984.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Milwaukee Bucks at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-03-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9981038.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Milwaukee Bucks at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-03-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9981139.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Milwaukee Bucks at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-03-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9980889.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Milwaukee Bucks at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-03-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9981187.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Milwaukee Bucks at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-03-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9981138.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Milwaukee Bucks at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-03-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9906200.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Brooklyn Nets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-02-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9849592.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Los Angeles Clippers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-01-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9849566.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Los Angeles Clippers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-01-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9775543.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Utah Jazz at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2016-12-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9731392.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Houston Rockets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2016-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9731322.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Houston Rockets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2016-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9290972.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Playoffs-Portland Trail Blazers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2016-05-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9056058.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Charlotte Hornets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2016-01-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9056075.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Charlotte Hornets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2016-01-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9056056.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Charlotte Hornets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2016-01-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9056094.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Charlotte Hornets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2016-01-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9056044.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Charlotte Hornets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2016-01-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9027059.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Cleveland Cavaliers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2015-12-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9027058.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Cleveland Cavaliers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2015-12-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/8910148.jpg", "player_name": "Stephen Curry | Under Armour", "headline": "NBA: Golden State Warriors at Sacramento Kings", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2015-11-07"}];</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const photos = window.galleryPhotos || [];
+    let currentIndex = 0;
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox || photos.length === 0) return;
+    const lbImg = lightbox.querySelector('img');
+    const lbPlayer = lightbox.querySelector('.lb-player');
+    const lbHeadline = lightbox.querySelector('.lb-headline');
+    const lbCredit = lightbox.querySelector('.lb-credit');
+    const counter = lightbox.querySelector('.counter');
+    function formatDate(dateStr) {
+        if (!dateStr) return '';
+        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
+        catch(e) { return dateStr; }
+    }
+    function showPhoto() {
+        const p = photos[currentIndex];
+        lbImg.src = p.image_url;
+        lbPlayer.textContent = p.player_name || 'NBA';
+        lbHeadline.textContent = p.headline || '';
+        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
+        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
+    }
+    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
+    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
+    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
+    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
+    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
+    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
+    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
+    let touchStartX = 0;
+    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
+});
+</script>
+</body>
+</html>

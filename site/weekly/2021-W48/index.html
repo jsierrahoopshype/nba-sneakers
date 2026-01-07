@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 2021-W48 | NBA Sneakers</title>
+<style>
+:root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #666;
+    --text-muted: #999;
+    --border: #e0e0e0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-hover: 0 4px 16px rgba(0,0,0,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+.site-header { background: var(--primary); color: white; padding: 16px 0; position: sticky; top: 0; z-index: 100; }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.site-logo { font-size: 20px; font-weight: 700; color: white; }
+.site-logo:hover { text-decoration: none; }
+.site-nav { display: flex; gap: 24px; }
+.site-nav a { color: rgba(255,255,255,0.8); font-size: 14px; }
+.site-nav a:hover { color: white; text-decoration: none; }
+.hero { background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%); color: white; padding: 48px 0; text-align: center; }
+.hero h1 { font-size: 32px; margin-bottom: 8px; }
+.hero p { opacity: 0.8; font-size: 16px; }
+.stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+.stat-item { text-align: center; }
+.stat-value { font-size: 28px; font-weight: 700; }
+.stat-label { font-size: 12px; opacity: 0.7; text-transform: uppercase; }
+.section { padding: 32px 0; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.section-title { font-size: 20px; font-weight: 600; }
+.section-link { font-size: 14px; }
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
+.photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo-card .meta { padding: 12px; }
+.photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+.photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
+.photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
+.list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
+.list-item .name { font-weight: 500; color: var(--text); }
+.list-item .count { font-size: 13px; color: var(--text-muted); }
+.page-header { padding: 32px 0; background: var(--card-bg); border-bottom: 1px solid var(--border); }
+.page-header h1 { font-size: 28px; margin-bottom: 4px; }
+.page-header .subtitle { color: var(--text-secondary); }
+.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.breadcrumb a { color: var(--text-secondary); }
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
+.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
+.lightbox .nav.prev { left: 16px; }
+.lightbox .nav.next { right: 16px; }
+.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
+.lightbox .lb-player { font-size: 18px; font-weight: 600; }
+.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
+.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
+.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
+.site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
+.weekly-hero { margin-bottom: 32px; }
+.section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
+.section-header .photo-count { font-size: 14px; color: var(--text-muted); font-weight: normal; }
+.section-header .section-note { font-size: 13px; color: var(--text-muted); }
+.view-more { text-align: center; margin-top: 24px; }
+.view-more a { display: inline-block; padding: 12px 24px; background: var(--primary); color: white; border-radius: 6px; font-size: 14px; font-weight: 500; }
+.view-more a:hover { text-decoration: none; opacity: 0.9; }
+.stats-section { background: var(--card-bg); border-radius: 12px; padding: 32px !important; margin-top: 32px; }
+.stats-section .stats-bar { margin-top: 0; }
+.brands-grid .brand-item { background: linear-gradient(135deg, var(--card-bg), #f8f9fa); }
+.search-box { position: relative; max-width: 500px; margin: 0 auto 24px; }
+.search-box input { width: 100%; padding: 16px 20px; font-size: 18px; border: 2px solid var(--border); border-radius: 12px; outline: none; transition: border-color 0.2s; }
+.search-box input:focus { border-color: var(--accent); }
+.search-box input::placeholder { color: var(--text-muted); }
+.search-results { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow-hover); max-height: 400px; overflow-y: auto; z-index: 100; }
+.search-result-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text); cursor: pointer; }
+.search-result-item:hover { background: var(--bg); text-decoration: none; }
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item.no-page { opacity: 0.6; cursor: default; }
+.search-result-item .name { font-weight: 500; }
+.search-result-item .count { font-size: 13px; color: var(--text-muted); }
+.no-results { padding: 16px; text-align: center; color: var(--text-muted); }
+.search-stats { display: flex; justify-content: center; gap: 32px; margin-bottom: 32px; font-size: 14px; color: var(--text-secondary); }
+.player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+.player-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; }
+.player-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.player-card .player-img { height: 120px; background-size: cover; background-position: center; background-color: var(--primary); }
+.player-card .player-info { padding: 12px; }
+.player-card .player-name { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+.player-card .player-count { font-size: 12px; color: var(--text-muted); }
+.alpha-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.alpha-item { padding: 8px 14px; background: var(--card-bg); border-radius: 6px; font-size: 14px; color: var(--text); box-shadow: var(--shadow); }
+.alpha-item:hover { text-decoration: none; box-shadow: var(--shadow-hover); }
+.alpha-item.disabled { opacity: 0.5; cursor: default; }
+.alpha-item span { color: var(--text-muted); font-size: 12px; }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+        <nav class="site-nav">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/search/">🔍 Lookup</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/">Players</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/brands/">Brands</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/weekly/">Weekly</a>
+        </nav>
+    </div>
+</header>
+
+
+<div class="page-header">
+    <div class="container">
+        <div class="breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/">Home</a> / <a href="https://jsierrahoopshype.github.io/nba-sneakers/weekly/">Weekly</a> / 2021-W48</div>
+        <h1>Week of 2021-W48</h1>
+        <p class="subtitle">91 shoe photos</p>
+    </div>
+</div>
+
+<main class="container">
+    <section class="section">
+        <div class="photo-grid">
+            <div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17302081.jpg" alt="NBA: Charlotte Hornets at Atlanta Hawks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Trae Young</div>
+        <div class="headline">NBA: Charlotte Hornets at Atlanta Hawks</div>
+        <div class="credit">📷 Brett Davis · Imagn Images · Dec 05, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17302008.jpg" alt="NBA: Charlotte Hornets at Atlanta Hawks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Gordon Hayward</div>
+        <div class="headline">NBA: Charlotte Hornets at Atlanta Hawks</div>
+        <div class="credit">📷 Brett Davis · Imagn Images · Dec 05, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17300992.jpg" alt="NBA: New Orleans Pelicans at Houston Rockets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Christian Wood</div>
+        <div class="headline">NBA: New Orleans Pelicans at Houston Rockets</div>
+        <div class="credit">📷 Erik Williams · Imagn Images · Dec 05, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17300779.jpg" alt="NBA: Utah Jazz at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lauri Markkanen</div>
+        <div class="headline">NBA: Utah Jazz at Cleveland Cavaliers</div>
+        <div class="credit">📷 Ken Blaze · Imagn Images · Dec 05, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17299960.jpg" alt="NBA: Utah Jazz at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Rudy Gobert</div>
+        <div class="headline">NBA: Utah Jazz at Cleveland Cavaliers</div>
+        <div class="credit">📷 Ken Blaze · Imagn Images · Dec 05, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17299825.jpg" alt="NBA: Utah Jazz at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Kevin Love</div>
+        <div class="headline">NBA: Utah Jazz at Cleveland Cavaliers</div>
+        <div class="credit">📷 Ken Blaze · Imagn Images · Dec 05, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17300272.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Scottie Barnes</div>
+        <div class="headline">NBA: Washington Wizards at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Dec 05, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17300303.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Dalano Banton</div>
+        <div class="headline">NBA: Washington Wizards at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Dec 05, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17300302.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Justin Champagnie</div>
+        <div class="headline">NBA: Washington Wizards at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Dec 05, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17299829.jpg" alt="NBA: Utah Jazz at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Joe Ingles</div>
+        <div class="headline">NBA: Utah Jazz at Cleveland Cavaliers</div>
+        <div class="credit">📷 Ken Blaze · Imagn Images · Dec 05, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17300683.jpg" alt="NBA: Utah Jazz at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Isaac Okoro</div>
+        <div class="headline">NBA: Utah Jazz at Cleveland Cavaliers</div>
+        <div class="credit">📷 Ken Blaze · Imagn Images · Dec 05, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17299416.jpg" alt="NBA: Utah Jazz at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Evan Mobley</div>
+        <div class="headline">NBA: Utah Jazz at Cleveland Cavaliers</div>
+        <div class="credit">📷 Ken Blaze · Imagn Images · Dec 05, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17299417.jpg" alt="NBA: Utah Jazz at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Royce O&#x27;Neale</div>
+        <div class="headline">NBA: Utah Jazz at Cleveland Cavaliers</div>
+        <div class="credit">📷 Ken Blaze · Imagn Images · Dec 05, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17295256.jpg" alt="NBA: Memphis Grizzlies at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Sterling Brown</div>
+        <div class="headline">NBA: Memphis Grizzlies at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17295820.jpg" alt="NBA: Boston Celtics at Portland Trail Blazers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">CJ Elleby</div>
+        <div class="headline">NBA: Boston Celtics at Portland Trail Blazers</div>
+        <div class="credit">📷 Troy Wayrynen · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17295852.jpg" alt="NBA: Boston Celtics at Portland Trail Blazers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jusuf Nurkic</div>
+        <div class="headline">NBA: Boston Celtics at Portland Trail Blazers</div>
+        <div class="credit">📷 Troy Wayrynen · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17295254.jpg" alt="NBA: Memphis Grizzlies at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Killian Tillie</div>
+        <div class="headline">NBA: Memphis Grizzlies at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17295267.jpg" alt="NBA: Memphis Grizzlies at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Desmond Bane</div>
+        <div class="headline">NBA: Memphis Grizzlies at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17295255.jpg" alt="NBA: Memphis Grizzlies at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Tyus Jones</div>
+        <div class="headline">NBA: Memphis Grizzlies at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17294553.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Dewayne Dedmon</div>
+        <div class="headline">NBA: Miami Heat at Milwaukee Bucks</div>
+        <div class="credit">📷 Jeff Hanisch · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17294551.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">NBA</div>
+        <div class="headline">NBA: Miami Heat at Milwaukee Bucks</div>
+        <div class="credit">📷 Jeff Hanisch · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17294554.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jrue Holiday</div>
+        <div class="headline">NBA: Miami Heat at Milwaukee Bucks</div>
+        <div class="credit">📷 Jeff Hanisch · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17294535.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Caleb Martin</div>
+        <div class="headline">NBA: Miami Heat at Milwaukee Bucks</div>
+        <div class="credit">📷 Jeff Hanisch · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17295448.jpg" alt="NBA: San Antonio Spurs at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Keldon Johnson</div>
+        <div class="headline">NBA: San Antonio Spurs at Golden State Warriors</div>
+        <div class="credit">📷 Stan Szeto · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17294531.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Rodney Hood</div>
+        <div class="headline">NBA: Miami Heat at Milwaukee Bucks</div>
+        <div class="credit">📷 Jeff Hanisch · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17294529.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Duncan Robinson</div>
+        <div class="headline">NBA: Miami Heat at Milwaukee Bucks</div>
+        <div class="credit">📷 Jeff Hanisch · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17294533.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Gabe Vincent</div>
+        <div class="headline">NBA: Miami Heat at Milwaukee Bucks</div>
+        <div class="credit">📷 Jeff Hanisch · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17295066.jpg" alt="NBA: Boston Celtics at Portland Trail Blazers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Enes Freedom</div>
+        <div class="headline">NBA: Boston Celtics at Portland Trail Blazers</div>
+        <div class="credit">📷 Troy Wayrynen · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17294534.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">P.J. Tucker</div>
+        <div class="headline">NBA: Miami Heat at Milwaukee Bucks</div>
+        <div class="credit">📷 Jeff Hanisch · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17294530.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Pat Connaughton</div>
+        <div class="headline">NBA: Miami Heat at Milwaukee Bucks</div>
+        <div class="credit">📷 Jeff Hanisch · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17294532.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Kyle Lowry</div>
+        <div class="headline">NBA: Miami Heat at Milwaukee Bucks</div>
+        <div class="credit">📷 Jeff Hanisch · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17324724.jpg" alt="NBA: Los Angeles Clippers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Terence Davis</div>
+        <div class="headline">NBA: Los Angeles Clippers at Sacramento Kings</div>
+        <div class="credit">📷 Darren Yamashita · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17295452.jpg" alt="NBA: San Antonio Spurs at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jakob Poeltl</div>
+        <div class="headline">NBA: San Antonio Spurs at Golden State Warriors</div>
+        <div class="credit">📷 Stan Szeto · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17324646.jpg" alt="NBA: Los Angeles Clippers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Serge Ibaka</div>
+        <div class="headline">NBA: Los Angeles Clippers at Sacramento Kings</div>
+        <div class="credit">📷 Darren Yamashita · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17324590.jpg" alt="NBA: Los Angeles Clippers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Marvin Bagley III</div>
+        <div class="headline">NBA: Los Angeles Clippers at Sacramento Kings</div>
+        <div class="credit">📷 Darren Yamashita · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17295468.jpg" alt="NBA: San Antonio Spurs at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Draymond Green</div>
+        <div class="headline">NBA: San Antonio Spurs at Golden State Warriors</div>
+        <div class="credit">📷 Stan Szeto · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17295459.jpg" alt="NBA: San Antonio Spurs at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Kevon Looney</div>
+        <div class="headline">NBA: San Antonio Spurs at Golden State Warriors</div>
+        <div class="credit">📷 Stan Szeto · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17295461.jpg" alt="NBA: San Antonio Spurs at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Tre Jones</div>
+        <div class="headline">NBA: San Antonio Spurs at Golden State Warriors</div>
+        <div class="credit">📷 Stan Szeto · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17293681.jpg" alt="NBA: Los Angeles Clippers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Paul George</div>
+        <div class="headline">NBA: Los Angeles Clippers at Sacramento Kings</div>
+        <div class="credit">📷 Darren Yamashita · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17295456.jpg" alt="NBA: San Antonio Spurs at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Derrick White</div>
+        <div class="headline">NBA: San Antonio Spurs at Golden State Warriors</div>
+        <div class="credit">📷 Stan Szeto · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17295412.jpg" alt="NBA: San Antonio Spurs at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry</div>
+        <div class="headline">NBA: San Antonio Spurs at Golden State Warriors</div>
+        <div class="credit">📷 Stan Szeto · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17295427.jpg" alt="NBA: San Antonio Spurs at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Tre Jones</div>
+        <div class="headline">NBA: San Antonio Spurs at Golden State Warriors</div>
+        <div class="credit">📷 Stan Szeto · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17295421.jpg" alt="NBA: San Antonio Spurs at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Dejounte Murray</div>
+        <div class="headline">NBA: San Antonio Spurs at Golden State Warriors</div>
+        <div class="credit">📷 Stan Szeto · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17293675.jpg" alt="NBA: Los Angeles Clippers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Buddy Hield</div>
+        <div class="headline">NBA: Los Angeles Clippers at Sacramento Kings</div>
+        <div class="credit">📷 Darren Yamashita · Imagn Images · Dec 04, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17285383.jpg" alt="NBA: Philadelphia 76ers at Atlanta Hawks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Trae Young</div>
+        <div class="headline">NBA: Philadelphia 76ers at Atlanta Hawks</div>
+        <div class="credit">📷 Brett Davis · Imagn Images · Dec 03, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17285381.jpg" alt="NBA: Philadelphia 76ers at Atlanta Hawks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Danny Green</div>
+        <div class="headline">NBA: Philadelphia 76ers at Atlanta Hawks</div>
+        <div class="credit">📷 Brett Davis · Imagn Images · Dec 03, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17285388.jpg" alt="NBA: Philadelphia 76ers at Atlanta Hawks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">John Collins</div>
+        <div class="headline">NBA: Philadelphia 76ers at Atlanta Hawks</div>
+        <div class="credit">📷 Brett Davis · Imagn Images · Dec 03, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17286700.jpg" alt="NBA: Phoenix Suns at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry</div>
+        <div class="headline">NBA: Phoenix Suns at Golden State Warriors</div>
+        <div class="credit">📷 Cary Edmondson · Imagn Images · Dec 03, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17275947.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jordan Nwora</div>
+        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 02, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17275922.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Fred VanVleet</div>
+        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 02, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17275920.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Fred VanVleet</div>
+        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 02, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17275949.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Thanasis Antetokounmpo</div>
+        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 02, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17274844.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Dalano Banton</div>
+        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 02, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17274876.jpg" alt="NBA: Oklahoma City Thunder at Memphis Grizzlies" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Ja Morant</div>
+        <div class="headline">NBA: Oklahoma City Thunder at Memphis Grizzlies</div>
+        <div class="credit">📷 Justin Ford · Imagn Images · Dec 02, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17296377.jpg" alt="NBA: Cleveland Cavaliers at Miami Heat" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">NBA</div>
+        <div class="headline">NBA: Cleveland Cavaliers at Miami Heat</div>
+        <div class="credit">📷 Sam Navarro · Imagn Images · Dec 01, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17269758.jpg" alt="NBA: Dallas Mavericks at New Orleans Pelicans" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">NBA</div>
+        <div class="headline">NBA: Dallas Mavericks at New Orleans Pelicans</div>
+        <div class="credit">📷 Andrew Wevers · Imagn Images · Dec 01, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17269762.jpg" alt="NBA: Dallas Mavericks at New Orleans Pelicans" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">NBA</div>
+        <div class="headline">NBA: Dallas Mavericks at New Orleans Pelicans</div>
+        <div class="credit">📷 Andrew Wevers · Imagn Images · Dec 01, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17270176.jpg" alt="NBA: Sacramento Kings at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Louis King</div>
+        <div class="headline">NBA: Sacramento Kings at Los Angeles Clippers</div>
+        <div class="credit">📷 Richard Mackson · Imagn Images · Dec 01, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17270157.jpg" alt="NBA: Sacramento Kings at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Chimezie Metu</div>
+        <div class="headline">NBA: Sacramento Kings at Los Angeles Clippers</div>
+        <div class="credit">📷 Richard Mackson · Imagn Images · Dec 01, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17270152.jpg" alt="NBA: Sacramento Kings at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Serge Ibaka</div>
+        <div class="headline">NBA: Sacramento Kings at Los Angeles Clippers</div>
+        <div class="credit">📷 Richard Mackson · Imagn Images · Dec 01, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17270049.jpg" alt="NBA: Sacramento Kings at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">NBA</div>
+        <div class="headline">NBA: Sacramento Kings at Los Angeles Clippers</div>
+        <div class="credit">📷 Richard Mackson · Imagn Images · Dec 01, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17263044.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">De&#x27;Anthony Melton</div>
+        <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17262925.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Pascal Siakam</div>
+        <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17263042.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Isaac Bonga</div>
+        <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17264071.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Buddy Hield</div>
+        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17264073.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Rajon Rondo</div>
+        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17264062.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Russell Westbrook</div>
+        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17264064.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Dwight Howard</div>
+        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17267788.jpg" alt="NBA: Golden State Warriors at Phoenix Suns" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephen Curry</div>
+        <div class="headline">NBA: Golden State Warriors at Phoenix Suns</div>
+        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17264058.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">De&#x27;Aaron Fox</div>
+        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17263073.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Desmond Bane</div>
+        <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17263072.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Santi Aldama</div>
+        <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17263306.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Scottie Barnes</div>
+        <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17263078.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Fred VanVleet</div>
+        <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17263425.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Tyrese Haliburton</div>
+        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17263131.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Carmelo Anthony</div>
+        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17263126.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Alex Len</div>
+        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17263125.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Anthony Davis</div>
+        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17263049.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Talen Horton-Tucker</div>
+        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17263048.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Chimezie Metu</div>
+        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 30, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17258374.jpg" alt="NBA: Cleveland Cavaliers at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Darius Garland</div>
+        <div class="headline">NBA: Cleveland Cavaliers at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Nov 29, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17258582.jpg" alt="NBA: Portland Trail Blazers at Utah Jazz" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Damian Lillard</div>
+        <div class="headline">NBA: Portland Trail Blazers at Utah Jazz</div>
+        <div class="credit">📷 Rob Gray · Imagn Images · Nov 29, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17258585.jpg" alt="NBA: Portland Trail Blazers at Utah Jazz" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Trent Forrest</div>
+        <div class="headline">NBA: Portland Trail Blazers at Utah Jazz</div>
+        <div class="credit">📷 Rob Gray · Imagn Images · Nov 29, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17258367.jpg" alt="NBA: Cleveland Cavaliers at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Ricky Rubio</div>
+        <div class="headline">NBA: Cleveland Cavaliers at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Nov 29, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17258369.jpg" alt="NBA: Cleveland Cavaliers at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lauri Markkanen</div>
+        <div class="headline">NBA: Cleveland Cavaliers at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Nov 29, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17261770.jpg" alt="NBA: Charlotte Hornets at Chicago Bulls" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Kelly Oubre Jr</div>
+        <div class="headline">NBA: Charlotte Hornets at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Nov 29, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17258261.jpg" alt="NBA: Charlotte Hornets at Chicago Bulls" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Zach LaVine</div>
+        <div class="headline">NBA: Charlotte Hornets at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Nov 29, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17257860.jpg" alt="NBA: Portland Trail Blazers at Utah Jazz" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Donovan Mitchell</div>
+        <div class="headline">NBA: Portland Trail Blazers at Utah Jazz</div>
+        <div class="credit">📷 Rob Gray · Imagn Images · Nov 29, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17258257.jpg" alt="NBA: Charlotte Hornets at Chicago Bulls" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Nikola Vucevic</div>
+        <div class="headline">NBA: Charlotte Hornets at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Nov 29, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17258254.jpg" alt="NBA: Charlotte Hornets at Chicago Bulls" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Demar DeRozan</div>
+        <div class="headline">NBA: Charlotte Hornets at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Nov 29, 2021</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17257100.jpg" alt="NBA: Cleveland Cavaliers at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Luka Doncic</div>
+        <div class="headline">NBA: Cleveland Cavaliers at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Nov 29, 2021</div>
+    </div>
+</div>
+        </div>
+    </section>
+</main>
+
+
+<div class="lightbox" id="lightbox">
+    <span class="close">&times;</span>
+    <span class="nav prev">&#10094;</span>
+    <span class="nav next">&#10095;</span>
+    <span class="counter"></span>
+    <img src="" alt="">
+    <div class="info">
+        <div class="lb-player"></div>
+        <div class="lb-headline"></div>
+        <div class="lb-credit"></div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="container">
+        Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
+    </div>
+</footer>
+
+<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/17302081.jpg", "player_name": "Trae Young", "headline": "NBA: Charlotte Hornets at Atlanta Hawks", "photographer": "Brett Davis", "source": "Imagn Images", "photo_date": "2021-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17302008.jpg", "player_name": "Gordon Hayward", "headline": "NBA: Charlotte Hornets at Atlanta Hawks", "photographer": "Brett Davis", "source": "Imagn Images", "photo_date": "2021-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17300992.jpg", "player_name": "Christian Wood", "headline": "NBA: New Orleans Pelicans at Houston Rockets", "photographer": "Erik Williams", "source": "Imagn Images", "photo_date": "2021-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17300779.jpg", "player_name": "Lauri Markkanen", "headline": "NBA: Utah Jazz at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2021-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17299960.jpg", "player_name": "Rudy Gobert", "headline": "NBA: Utah Jazz at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2021-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17299825.jpg", "player_name": "Kevin Love", "headline": "NBA: Utah Jazz at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2021-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17300272.jpg", "player_name": "Scottie Barnes", "headline": "NBA: Washington Wizards at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2021-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17300303.jpg", "player_name": "Dalano Banton", "headline": "NBA: Washington Wizards at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2021-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17300302.jpg", "player_name": "Justin Champagnie", "headline": "NBA: Washington Wizards at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2021-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17299829.jpg", "player_name": "Joe Ingles", "headline": "NBA: Utah Jazz at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2021-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17300683.jpg", "player_name": "Isaac Okoro", "headline": "NBA: Utah Jazz at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2021-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17299416.jpg", "player_name": "Evan Mobley", "headline": "NBA: Utah Jazz at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2021-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17299417.jpg", "player_name": "Royce O'Neale", "headline": "NBA: Utah Jazz at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2021-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17295256.jpg", "player_name": "Sterling Brown", "headline": "NBA: Memphis Grizzlies at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17295820.jpg", "player_name": "CJ Elleby", "headline": "NBA: Boston Celtics at Portland Trail Blazers", "photographer": "Troy Wayrynen", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17295852.jpg", "player_name": "Jusuf Nurkic", "headline": "NBA: Boston Celtics at Portland Trail Blazers", "photographer": "Troy Wayrynen", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17295254.jpg", "player_name": "Killian Tillie", "headline": "NBA: Memphis Grizzlies at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17295267.jpg", "player_name": "Desmond Bane", "headline": "NBA: Memphis Grizzlies at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17295255.jpg", "player_name": "Tyus Jones", "headline": "NBA: Memphis Grizzlies at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17294553.jpg", "player_name": "Dewayne Dedmon", "headline": "NBA: Miami Heat at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17294551.jpg", "player_name": "", "headline": "NBA: Miami Heat at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17294554.jpg", "player_name": "Jrue Holiday", "headline": "NBA: Miami Heat at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17294535.jpg", "player_name": "Caleb Martin", "headline": "NBA: Miami Heat at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17295448.jpg", "player_name": "Keldon Johnson", "headline": "NBA: San Antonio Spurs at Golden State Warriors", "photographer": "Stan Szeto", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17294531.jpg", "player_name": "Rodney Hood", "headline": "NBA: Miami Heat at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17294529.jpg", "player_name": "Duncan Robinson", "headline": "NBA: Miami Heat at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17294533.jpg", "player_name": "Gabe Vincent", "headline": "NBA: Miami Heat at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17295066.jpg", "player_name": "Enes Freedom", "headline": "NBA: Boston Celtics at Portland Trail Blazers", "photographer": "Troy Wayrynen", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17294534.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Miami Heat at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17294530.jpg", "player_name": "Pat Connaughton", "headline": "NBA: Miami Heat at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17294532.jpg", "player_name": "Kyle Lowry", "headline": "NBA: Miami Heat at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17324724.jpg", "player_name": "Terence Davis", "headline": "NBA: Los Angeles Clippers at Sacramento Kings", "photographer": "Darren Yamashita", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17295452.jpg", "player_name": "Jakob Poeltl", "headline": "NBA: San Antonio Spurs at Golden State Warriors", "photographer": "Stan Szeto", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17324646.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Los Angeles Clippers at Sacramento Kings", "photographer": "Darren Yamashita", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17324590.jpg", "player_name": "Marvin Bagley III", "headline": "NBA: Los Angeles Clippers at Sacramento Kings", "photographer": "Darren Yamashita", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17295468.jpg", "player_name": "Draymond Green", "headline": "NBA: San Antonio Spurs at Golden State Warriors", "photographer": "Stan Szeto", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17295459.jpg", "player_name": "Kevon Looney", "headline": "NBA: San Antonio Spurs at Golden State Warriors", "photographer": "Stan Szeto", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17295461.jpg", "player_name": "Tre Jones", "headline": "NBA: San Antonio Spurs at Golden State Warriors", "photographer": "Stan Szeto", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17293681.jpg", "player_name": "Paul George", "headline": "NBA: Los Angeles Clippers at Sacramento Kings", "photographer": "Darren Yamashita", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17295456.jpg", "player_name": "Derrick White", "headline": "NBA: San Antonio Spurs at Golden State Warriors", "photographer": "Stan Szeto", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17295412.jpg", "player_name": "Stephen Curry", "headline": "NBA: San Antonio Spurs at Golden State Warriors", "photographer": "Stan Szeto", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17295427.jpg", "player_name": "Tre Jones", "headline": "NBA: San Antonio Spurs at Golden State Warriors", "photographer": "Stan Szeto", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17295421.jpg", "player_name": "Dejounte Murray", "headline": "NBA: San Antonio Spurs at Golden State Warriors", "photographer": "Stan Szeto", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17293675.jpg", "player_name": "Buddy Hield", "headline": "NBA: Los Angeles Clippers at Sacramento Kings", "photographer": "Darren Yamashita", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17285383.jpg", "player_name": "Trae Young", "headline": "NBA: Philadelphia 76ers at Atlanta Hawks", "photographer": "Brett Davis", "source": "Imagn Images", "photo_date": "2021-12-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17285381.jpg", "player_name": "Danny Green", "headline": "NBA: Philadelphia 76ers at Atlanta Hawks", "photographer": "Brett Davis", "source": "Imagn Images", "photo_date": "2021-12-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17285388.jpg", "player_name": "John Collins", "headline": "NBA: Philadelphia 76ers at Atlanta Hawks", "photographer": "Brett Davis", "source": "Imagn Images", "photo_date": "2021-12-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17286700.jpg", "player_name": "Stephen Curry", "headline": "NBA: Phoenix Suns at Golden State Warriors", "photographer": "Cary Edmondson", "source": "Imagn Images", "photo_date": "2021-12-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17275947.jpg", "player_name": "Jordan Nwora", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2021-12-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17275922.jpg", "player_name": "Fred VanVleet", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2021-12-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17275920.jpg", "player_name": "Fred VanVleet", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2021-12-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17275949.jpg", "player_name": "Thanasis Antetokounmpo", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2021-12-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17274844.jpg", "player_name": "Dalano Banton", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2021-12-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17274876.jpg", "player_name": "Ja Morant", "headline": "NBA: Oklahoma City Thunder at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2021-12-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17296377.jpg", "player_name": "", "headline": "NBA: Cleveland Cavaliers at Miami Heat", "photographer": "Sam Navarro", "source": "Imagn Images", "photo_date": "2021-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17269758.jpg", "player_name": "", "headline": "NBA: Dallas Mavericks at New Orleans Pelicans", "photographer": "Andrew Wevers", "source": "Imagn Images", "photo_date": "2021-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17269762.jpg", "player_name": "", "headline": "NBA: Dallas Mavericks at New Orleans Pelicans", "photographer": "Andrew Wevers", "source": "Imagn Images", "photo_date": "2021-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17270176.jpg", "player_name": "Louis King", "headline": "NBA: Sacramento Kings at Los Angeles Clippers", "photographer": "Richard Mackson", "source": "Imagn Images", "photo_date": "2021-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17270157.jpg", "player_name": "Chimezie Metu", "headline": "NBA: Sacramento Kings at Los Angeles Clippers", "photographer": "Richard Mackson", "source": "Imagn Images", "photo_date": "2021-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17270152.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Sacramento Kings at Los Angeles Clippers", "photographer": "Richard Mackson", "source": "Imagn Images", "photo_date": "2021-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17270049.jpg", "player_name": "", "headline": "NBA: Sacramento Kings at Los Angeles Clippers", "photographer": "Richard Mackson", "source": "Imagn Images", "photo_date": "2021-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17263044.jpg", "player_name": "De'Anthony Melton", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17262925.jpg", "player_name": "Pascal Siakam", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17263042.jpg", "player_name": "Isaac Bonga", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17264071.jpg", "player_name": "Buddy Hield", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17264073.jpg", "player_name": "Rajon Rondo", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17264062.jpg", "player_name": "Russell Westbrook", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17264064.jpg", "player_name": "Dwight Howard", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17267788.jpg", "player_name": "Stephen Curry", "headline": "NBA: Golden State Warriors at Phoenix Suns", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17264058.jpg", "player_name": "De'Aaron Fox", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17263073.jpg", "player_name": "Desmond Bane", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17263072.jpg", "player_name": "Santi Aldama", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17263306.jpg", "player_name": "Scottie Barnes", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17263078.jpg", "player_name": "Fred VanVleet", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17263425.jpg", "player_name": "Tyrese Haliburton", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17263131.jpg", "player_name": "Carmelo Anthony", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17263126.jpg", "player_name": "Alex Len", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17263125.jpg", "player_name": "Anthony Davis", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17263049.jpg", "player_name": "Talen Horton-Tucker", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17263048.jpg", "player_name": "Chimezie Metu", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17258374.jpg", "player_name": "Darius Garland", "headline": "NBA: Cleveland Cavaliers at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2021-11-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17258582.jpg", "player_name": "Damian Lillard", "headline": "NBA: Portland Trail Blazers at Utah Jazz", "photographer": "Rob Gray", "source": "Imagn Images", "photo_date": "2021-11-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17258585.jpg", "player_name": "Trent Forrest", "headline": "NBA: Portland Trail Blazers at Utah Jazz", "photographer": "Rob Gray", "source": "Imagn Images", "photo_date": "2021-11-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17258367.jpg", "player_name": "Ricky Rubio", "headline": "NBA: Cleveland Cavaliers at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2021-11-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17258369.jpg", "player_name": "Lauri Markkanen", "headline": "NBA: Cleveland Cavaliers at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2021-11-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17261770.jpg", "player_name": "Kelly Oubre Jr", "headline": "NBA: Charlotte Hornets at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2021-11-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17258261.jpg", "player_name": "Zach LaVine", "headline": "NBA: Charlotte Hornets at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2021-11-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17257860.jpg", "player_name": "Donovan Mitchell", "headline": "NBA: Portland Trail Blazers at Utah Jazz", "photographer": "Rob Gray", "source": "Imagn Images", "photo_date": "2021-11-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17258257.jpg", "player_name": "Nikola Vucevic", "headline": "NBA: Charlotte Hornets at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2021-11-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17258254.jpg", "player_name": "Demar DeRozan", "headline": "NBA: Charlotte Hornets at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2021-11-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17257100.jpg", "player_name": "Luka Doncic", "headline": "NBA: Cleveland Cavaliers at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2021-11-29"}];</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const photos = window.galleryPhotos || [];
+    let currentIndex = 0;
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox || photos.length === 0) return;
+    const lbImg = lightbox.querySelector('img');
+    const lbPlayer = lightbox.querySelector('.lb-player');
+    const lbHeadline = lightbox.querySelector('.lb-headline');
+    const lbCredit = lightbox.querySelector('.lb-credit');
+    const counter = lightbox.querySelector('.counter');
+    function formatDate(dateStr) {
+        if (!dateStr) return '';
+        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
+        catch(e) { return dateStr; }
+    }
+    function showPhoto() {
+        const p = photos[currentIndex];
+        lbImg.src = p.image_url;
+        lbPlayer.textContent = p.player_name || 'NBA';
+        lbHeadline.textContent = p.headline || '';
+        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
+        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
+    }
+    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
+    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
+    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
+    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
+    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
+    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
+    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
+    let touchStartX = 0;
+    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
+});
+</script>
+</body>
+</html>

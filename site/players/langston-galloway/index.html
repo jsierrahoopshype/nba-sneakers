@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Langston Galloway | NBA Sneakers</title>
+<style>
+:root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #666;
+    --text-muted: #999;
+    --border: #e0e0e0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-hover: 0 4px 16px rgba(0,0,0,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+.site-header { background: var(--primary); color: white; padding: 16px 0; position: sticky; top: 0; z-index: 100; }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.site-logo { font-size: 20px; font-weight: 700; color: white; }
+.site-logo:hover { text-decoration: none; }
+.site-nav { display: flex; gap: 24px; }
+.site-nav a { color: rgba(255,255,255,0.8); font-size: 14px; }
+.site-nav a:hover { color: white; text-decoration: none; }
+.hero { background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%); color: white; padding: 48px 0; text-align: center; }
+.hero h1 { font-size: 32px; margin-bottom: 8px; }
+.hero p { opacity: 0.8; font-size: 16px; }
+.stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+.stat-item { text-align: center; }
+.stat-value { font-size: 28px; font-weight: 700; }
+.stat-label { font-size: 12px; opacity: 0.7; text-transform: uppercase; }
+.section { padding: 32px 0; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.section-title { font-size: 20px; font-weight: 600; }
+.section-link { font-size: 14px; }
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
+.photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo-card .meta { padding: 12px; }
+.photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+.photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
+.photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
+.list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
+.list-item .name { font-weight: 500; color: var(--text); }
+.list-item .count { font-size: 13px; color: var(--text-muted); }
+.page-header { padding: 32px 0; background: var(--card-bg); border-bottom: 1px solid var(--border); }
+.page-header h1 { font-size: 28px; margin-bottom: 4px; }
+.page-header .subtitle { color: var(--text-secondary); }
+.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.breadcrumb a { color: var(--text-secondary); }
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
+.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
+.lightbox .nav.prev { left: 16px; }
+.lightbox .nav.next { right: 16px; }
+.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
+.lightbox .lb-player { font-size: 18px; font-weight: 600; }
+.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
+.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
+.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
+.site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
+.weekly-hero { margin-bottom: 32px; }
+.section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
+.section-header .photo-count { font-size: 14px; color: var(--text-muted); font-weight: normal; }
+.section-header .section-note { font-size: 13px; color: var(--text-muted); }
+.view-more { text-align: center; margin-top: 24px; }
+.view-more a { display: inline-block; padding: 12px 24px; background: var(--primary); color: white; border-radius: 6px; font-size: 14px; font-weight: 500; }
+.view-more a:hover { text-decoration: none; opacity: 0.9; }
+.stats-section { background: var(--card-bg); border-radius: 12px; padding: 32px !important; margin-top: 32px; }
+.stats-section .stats-bar { margin-top: 0; }
+.brands-grid .brand-item { background: linear-gradient(135deg, var(--card-bg), #f8f9fa); }
+.search-box { position: relative; max-width: 500px; margin: 0 auto 24px; }
+.search-box input { width: 100%; padding: 16px 20px; font-size: 18px; border: 2px solid var(--border); border-radius: 12px; outline: none; transition: border-color 0.2s; }
+.search-box input:focus { border-color: var(--accent); }
+.search-box input::placeholder { color: var(--text-muted); }
+.search-results { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow-hover); max-height: 400px; overflow-y: auto; z-index: 100; }
+.search-result-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text); cursor: pointer; }
+.search-result-item:hover { background: var(--bg); text-decoration: none; }
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item.no-page { opacity: 0.6; cursor: default; }
+.search-result-item .name { font-weight: 500; }
+.search-result-item .count { font-size: 13px; color: var(--text-muted); }
+.no-results { padding: 16px; text-align: center; color: var(--text-muted); }
+.search-stats { display: flex; justify-content: center; gap: 32px; margin-bottom: 32px; font-size: 14px; color: var(--text-secondary); }
+.player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+.player-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; }
+.player-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.player-card .player-img { height: 120px; background-size: cover; background-position: center; background-color: var(--primary); }
+.player-card .player-info { padding: 12px; }
+.player-card .player-name { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+.player-card .player-count { font-size: 12px; color: var(--text-muted); }
+.alpha-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.alpha-item { padding: 8px 14px; background: var(--card-bg); border-radius: 6px; font-size: 14px; color: var(--text); box-shadow: var(--shadow); }
+.alpha-item:hover { text-decoration: none; box-shadow: var(--shadow-hover); }
+.alpha-item.disabled { opacity: 0.5; cursor: default; }
+.alpha-item span { color: var(--text-muted); font-size: 12px; }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+        <nav class="site-nav">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/search/">🔍 Lookup</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/">Players</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/brands/">Brands</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/weekly/">Weekly</a>
+        </nav>
+    </div>
+</header>
+
+
+<div class="page-header">
+    <div class="container">
+        <div class="breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/">Home</a> / <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/">Players</a> / Langston Galloway</div>
+        <h1>Langston Galloway</h1>
+        <p class="subtitle">106 shoe photos</p>
+    </div>
+</div>
+
+<main class="container">
+    <section class="section">
+        <div class="photo-grid">
+            <div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15363740.jpg" alt="NBA: Phoenix Suns at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Phoenix Suns at Sacramento Kings</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Dec 26, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14136556.jpg" alt="NBA: Oklahoma City Thunder at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Oklahoma City Thunder at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Mar 04, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14089880.jpg" alt="NBA: Detroit Pistons at Portland Trail Blazers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Portland Trail Blazers</div>
+        <div class="credit">📷 Steve Dykes · Imagn Images · Feb 23, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14024394.jpg" alt="NBA: Charlotte Hornets at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Charlotte Hornets at Detroit Pistons</div>
+        <div class="credit">📷 Eric Bronson · Imagn Images · Feb 10, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14015503.jpg" alt="NBA: New York Knicks at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: New York Knicks at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Feb 08, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14002374.jpg" alt="NBA: Phoenix Suns at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Phoenix Suns at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 05, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13989042.jpg" alt="NBA: Denver Nuggets at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Denver Nuggets at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Feb 02, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13980514.jpg" alt="NBA: Toronto Raptors at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Toronto Raptors at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 31, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13965243.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Cleveland Cavaliers at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 27, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13957496.jpg" alt="NBA: Brooklyn Nets at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Brooklyn Nets at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Jan 25, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13952011.jpg" alt="NBA: Memphis Grizzlies at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Memphis Grizzlies at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Jan 24, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13943937.jpg" alt="NBA: Sacramento Kings at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Sacramento Kings at Detroit Pistons</div>
+        <div class="credit">📷 Raj Mehta · Imagn Images · Jan 22, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13935357.jpg" alt="NBA: Detroit Pistons at Washington Wizards" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Washington Wizards</div>
+        <div class="credit">📷 Tommy Gilligan · Imagn Images · Jan 20, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13930357.jpg" alt="NBA: Detroit Pistons at Atlanta Hawks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Atlanta Hawks</div>
+        <div class="credit">📷 Jason Getz · Imagn Images · Jan 18, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13930377.jpg" alt="NBA: Detroit Pistons at Atlanta Hawks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Atlanta Hawks</div>
+        <div class="credit">📷 Jason Getz · Imagn Images · Jan 18, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13930347.jpg" alt="NBA: Detroit Pistons at Atlanta Hawks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Atlanta Hawks</div>
+        <div class="credit">📷 Jason Getz · Imagn Images · Jan 18, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13904832.jpg" alt="NBA: New Orleans Pelicans at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: New Orleans Pelicans at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 13, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13898594.jpg" alt="NBA: Chicago Bulls at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Chicago Bulls at Detroit Pistons</div>
+        <div class="credit">📷 Raj Mehta · Imagn Images · Jan 11, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13890555.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Cleveland Cavaliers at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Jan 09, 2020</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13911462.jpg" alt="NBA: Detroit Pistons at San Antonio Spurs" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at San Antonio Spurs</div>
+        <div class="credit">📷 Scott Wachter · Imagn Images · Dec 28, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13911852.jpg" alt="NBA: Detroit Pistons at San Antonio Spurs" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at San Antonio Spurs</div>
+        <div class="credit">📷 Scott Wachter · Imagn Images · Dec 28, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13833656.jpg" alt="NBA: Philadelphia 76ers at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Philadelphia 76ers at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 23, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13833683.jpg" alt="NBA: Philadelphia 76ers at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Philadelphia 76ers at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 23, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13826092.jpg" alt="NBA: Chicago Bulls at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Chicago Bulls at Detroit Pistons</div>
+        <div class="credit">📷 Raj Mehta · Imagn Images · Dec 21, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13813870.jpg" alt="NBA: Toronto Raptors at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Toronto Raptors at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Dec 18, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13803582.jpg" alt="NBA: Washington Wizards at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Washington Wizards at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 16, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13803609.jpg" alt="NBA: Washington Wizards at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Washington Wizards at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 16, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13796543.jpg" alt="NBA: Detroit Pistons at Houston Rockets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Houston Rockets</div>
+        <div class="credit">📷 Troy Taormina · Imagn Images · Dec 14, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13749933.jpg" alt="NBA: Milwaukee Bucks at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Milwaukee Bucks at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 04, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13749925.jpg" alt="NBA: Milwaukee Bucks at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Milwaukee Bucks at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 04, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13745465.jpg" alt="NBA: Detroit Pistons at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Dec 03, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13737904.jpg" alt="NBA: San Antonio Spurs at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: San Antonio Spurs at Detroit Pistons</div>
+        <div class="credit">📷 Raj Mehta · Imagn Images · Dec 01, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13728795.jpg" alt="NBA: Charlotte Hornets at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Charlotte Hornets at Detroit Pistons</div>
+        <div class="credit">📷 Raj Mehta · Imagn Images · Nov 29, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13719626.jpg" alt="NBA: Detroit Pistons at Charlotte Hornets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Charlotte Hornets</div>
+        <div class="credit">📷 Jeremy Brevard · Imagn Images · Nov 27, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13721974.jpg" alt="NBA: Orlando Magic at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Orlando Magic at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Nov 25, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13698361.jpg" alt="NBA: Atlanta Hawks at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Atlanta Hawks at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Nov 22, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13692170.jpg" alt="NBA: Detroit Pistons at Chicago Bulls" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Nov 20, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13669948.jpg" alt="NBA: Detroit Pistons at Charlotte Hornets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Charlotte Hornets</div>
+        <div class="credit">📷 Jeremy Brevard · Imagn Images · Nov 15, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13669945.jpg" alt="NBA: Detroit Pistons at Charlotte Hornets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Charlotte Hornets</div>
+        <div class="credit">📷 Jeremy Brevard · Imagn Images · Nov 15, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13655874.jpg" alt="NBA: Minnesota Timberwolves at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Minnesota Timberwolves at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Nov 11, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13655878.jpg" alt="NBA: Minnesota Timberwolves at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Minnesota Timberwolves at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Nov 11, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13655881.jpg" alt="NBA: Minnesota Timberwolves at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Minnesota Timberwolves at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Nov 11, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13626523.jpg" alt="NBA: New York Knicks at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: New York Knicks at Detroit Pistons</div>
+        <div class="credit">📷 Raj Mehta · Imagn Images · Nov 06, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13612066.jpg" alt="NBA: Brooklyn Nets at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Brooklyn Nets at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Nov 02, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13595572.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Oct 30, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13595768.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Oct 30, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13584385.jpg" alt="NBA: Indiana Pacers at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Indiana Pacers at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Oct 28, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13576976.jpg" alt="NBA: Philadelphia 76ers at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Philadelphia 76ers at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Oct 26, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13576979.jpg" alt="NBA: Philadelphia 76ers at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Philadelphia 76ers at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Oct 26, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13563316.jpg" alt="NBA: Atlanta Hawks at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Atlanta Hawks at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Oct 24, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13524502.jpg" alt="NBA: Preseason-Detroit Pistons at Charlotte Hornets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Preseason-Detroit Pistons at Charlotte Hornets</div>
+        <div class="credit">📷 Jeremy Brevard · Imagn Images · Oct 16, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13524501.jpg" alt="NBA: Preseason-Detroit Pistons at Charlotte Hornets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Preseason-Detroit Pistons at Charlotte Hornets</div>
+        <div class="credit">📷 Jeremy Brevard · Imagn Images · Oct 16, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13478149.jpg" alt="NBA: Preseason-Orlando Magic at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Preseason-Orlando Magic at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Oct 07, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12572804.jpg" alt="NBA: Playoffs-Milwaukee Bucks at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Playoffs-Milwaukee Bucks at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Apr 22, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12566738.jpg" alt="NBA: Playoffs-Milwaukee Bucks at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Playoffs-Milwaukee Bucks at Detroit Pistons</div>
+        <div class="credit">📷 Raj Mehta · Imagn Images · Apr 20, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12566739.jpg" alt="NBA: Playoffs-Milwaukee Bucks at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Playoffs-Milwaukee Bucks at Detroit Pistons</div>
+        <div class="credit">📷 Raj Mehta · Imagn Images · Apr 20, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12566736.jpg" alt="NBA: Playoffs-Milwaukee Bucks at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Playoffs-Milwaukee Bucks at Detroit Pistons</div>
+        <div class="credit">📷 Raj Mehta · Imagn Images · Apr 20, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12550673.jpg" alt="NBA: Playoffs-Detroit Pistons at Milwaukee Bucks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Playoffs-Detroit Pistons at Milwaukee Bucks</div>
+        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 17, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12505827.jpg" alt="NBA: Memphis Grizzlies at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Memphis Grizzlies at Detroit Pistons</div>
+        <div class="credit">📷 Raj Mehta · Imagn Images · Apr 09, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12446531.jpg" alt="NBA: Portland Trail Blazers at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Portland Trail Blazers at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Mar 30, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12432090.jpg" alt="NBA: Orlando Magic at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Orlando Magic at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Mar 28, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12375496.jpg" alt="NBA: Detroit Pistons at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Mar 18, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12375200.jpg" alt="NBA: Detroit Pistons at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Mar 18, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12370848.jpg" alt="NBA: Toronto Raptors at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Toronto Raptors at Detroit Pistons</div>
+        <div class="credit">📷 Raj Mehta · Imagn Images · Mar 17, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12357930.jpg" alt="NBA: Chicago Bulls at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Chicago Bulls at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Mar 10, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12311255.jpg" alt="NBA: Detroit Pistons at Chicago Bulls" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Mar 08, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12299018.jpg" alt="NBA: Minnesota Timberwolves at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Minnesota Timberwolves at Detroit Pistons</div>
+        <div class="credit">📷 Raj Mehta · Imagn Images · Mar 06, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12279638.jpg" alt="NBA: Toronto Raptors at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Toronto Raptors at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Mar 03, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12108973.jpg" alt="NBA: Denver Nuggets at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Denver Nuggets at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 04, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12076945.jpg" alt="NBA: Milwaukee Bucks at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Milwaukee Bucks at Detroit Pistons</div>
+        <div class="credit">📷 Raj Mehta · Imagn Images · Jan 29, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12034235.jpg" alt="NBA: Detroit Pistons at Washington Wizards" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Washington Wizards</div>
+        <div class="credit">📷 Tommy Gilligan · Imagn Images · Jan 21, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12034234.jpg" alt="NBA: Detroit Pistons at Washington Wizards" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Washington Wizards</div>
+        <div class="credit">📷 Tommy Gilligan · Imagn Images · Jan 21, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12026214.jpg" alt="NBA: Sacramento Kings at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Sacramento Kings at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Jan 19, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12026216.jpg" alt="NBA: Sacramento Kings at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Sacramento Kings at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Jan 19, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12009506.jpg" alt="NBA: Orlando Magic at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Orlando Magic at Detroit Pistons</div>
+        <div class="credit">📷 Raj Mehta · Imagn Images · Jan 16, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11932181.jpg" alt="NBA: Detroit Pistons at Memphis Grizzlies" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Memphis Grizzlies</div>
+        <div class="credit">📷 Justin Ford · Imagn Images · Jan 02, 2019</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11894123.jpg" alt="NBA: Atlanta Hawks at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Atlanta Hawks at Detroit Pistons</div>
+        <div class="credit">📷 Raj Mehta · Imagn Images · Dec 23, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11876290.jpg" alt="NBA: Detroit Pistons at Minnesota Timberwolves" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Minnesota Timberwolves</div>
+        <div class="credit">📷 Brace Hemmelgarn · Imagn Images · Dec 19, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11876291.jpg" alt="NBA: Detroit Pistons at Minnesota Timberwolves" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Minnesota Timberwolves</div>
+        <div class="credit">📷 Brace Hemmelgarn · Imagn Images · Dec 19, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11854296.jpg" alt="NBA: Boston Celtics at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Boston Celtics at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Dec 15, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11852556.jpg" alt="NBA: Boston Celtics at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Boston Celtics at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Dec 15, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11852553.jpg" alt="NBA: Boston Celtics at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Boston Celtics at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Dec 15, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11817343.jpg" alt="NBA: New Orleans Pelicans at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: New Orleans Pelicans at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Dec 09, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11772172.jpg" alt="NBA: Golden State Warriors at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Golden State Warriors at Detroit Pistons</div>
+        <div class="credit">📷 Raj Mehta · Imagn Images · Dec 01, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11762106.jpg" alt="NBA: Chicago Bulls at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Chicago Bulls at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Nov 30, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11744412.jpg" alt="NBA: New York Knicks at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: New York Knicks at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Nov 27, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11711810.jpg" alt="NBA: Detroit Pistons at Houston Rockets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Houston Rockets</div>
+        <div class="credit">📷 Troy Taormina · Imagn Images · Nov 21, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11699857.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Cleveland Cavaliers at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Nov 19, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11666018.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Nov 14, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11630747.jpg" alt="NBA: Detroit Pistons at Atlanta Hawks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Atlanta Hawks</div>
+        <div class="credit">📷 Brett Davis · Imagn Images · Nov 09, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11617910.jpg" alt="NBA: Detroit Pistons at Orlando Magic" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Orlando Magic</div>
+        <div class="credit">📷 Kim Klement · Imagn Images · Nov 07, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11604201.jpg" alt="NBA: Miami Heat at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Miami Heat at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Nov 05, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11538118.jpg" alt="NBA: Boston Celtics at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Boston Celtics at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Oct 27, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11538113.jpg" alt="NBA: Boston Celtics at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Boston Celtics at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Oct 27, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11504105.jpg" alt="NBA: Philadelphia 76ers at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Philadelphia 76ers at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Oct 23, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11485008.jpg" alt="NBA: Detroit Pistons at Chicago Bulls" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Oct 20, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11460979.jpg" alt="NBA: Brooklyn Nets at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Brooklyn Nets at Detroit Pistons</div>
+        <div class="credit">📷 Tim Fuller · Imagn Images · Oct 17, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11413995.jpg" alt="NBA: Preseason-Washington Wizards at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Preseason-Washington Wizards at Detroit Pistons</div>
+        <div class="credit">📷 Raj Mehta · Imagn Images · Oct 10, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10778561.jpg" alt="NBA: Toronto Raptors at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Toronto Raptors at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Apr 09, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10771245.jpg" alt="NBA: Dallas Mavericks at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Dallas Mavericks at Detroit Pistons</div>
+        <div class="credit">📷 Raj Mehta · Imagn Images · Apr 06, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10659268.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 26, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10659267.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 26, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10656364.jpg" alt="NBA: Detroit Pistons at Charlotte Hornets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Charlotte Hornets</div>
+        <div class="credit">📷 Jeremy Brevard · Imagn Images · Feb 25, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10656069.jpg" alt="NBA: Detroit Pistons at Charlotte Hornets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: Detroit Pistons at Charlotte Hornets</div>
+        <div class="credit">📷 Jeremy Brevard · Imagn Images · Feb 25, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10607972.jpg" alt="NBA: New Orleans Pelicans at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: New Orleans Pelicans at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 12, 2018</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10607971.jpg" alt="NBA: New Orleans Pelicans at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Langston Galloway</div>
+        <div class="headline">NBA: New Orleans Pelicans at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 12, 2018</div>
+    </div>
+</div>
+        </div>
+    </section>
+</main>
+
+
+<div class="lightbox" id="lightbox">
+    <span class="close">&times;</span>
+    <span class="nav prev">&#10094;</span>
+    <span class="nav next">&#10095;</span>
+    <span class="counter"></span>
+    <img src="" alt="">
+    <div class="info">
+        <div class="lb-player"></div>
+        <div class="lb-headline"></div>
+        <div class="lb-credit"></div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="container">
+        Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
+    </div>
+</footer>
+
+<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/15363740.jpg", "player_name": "Langston Galloway", "headline": "NBA: Phoenix Suns at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2020-12-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14136556.jpg", "player_name": "Langston Galloway", "headline": "NBA: Oklahoma City Thunder at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2020-03-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14089880.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Portland Trail Blazers", "photographer": "Steve Dykes", "source": "Imagn Images", "photo_date": "2020-02-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14024394.jpg", "player_name": "Langston Galloway", "headline": "NBA: Charlotte Hornets at Detroit Pistons", "photographer": "Eric Bronson", "source": "Imagn Images", "photo_date": "2020-02-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14015503.jpg", "player_name": "Langston Galloway", "headline": "NBA: New York Knicks at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2020-02-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14002374.jpg", "player_name": "Langston Galloway", "headline": "NBA: Phoenix Suns at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2020-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13989042.jpg", "player_name": "Langston Galloway", "headline": "NBA: Denver Nuggets at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2020-02-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13980514.jpg", "player_name": "Langston Galloway", "headline": "NBA: Toronto Raptors at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2020-01-31"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13965243.jpg", "player_name": "Langston Galloway", "headline": "NBA: Cleveland Cavaliers at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2020-01-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13957496.jpg", "player_name": "Langston Galloway", "headline": "NBA: Brooklyn Nets at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2020-01-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13952011.jpg", "player_name": "Langston Galloway", "headline": "NBA: Memphis Grizzlies at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2020-01-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13943937.jpg", "player_name": "Langston Galloway", "headline": "NBA: Sacramento Kings at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2020-01-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13935357.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Washington Wizards", "photographer": "Tommy Gilligan", "source": "Imagn Images", "photo_date": "2020-01-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13930357.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Atlanta Hawks", "photographer": "Jason Getz", "source": "Imagn Images", "photo_date": "2020-01-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13930377.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Atlanta Hawks", "photographer": "Jason Getz", "source": "Imagn Images", "photo_date": "2020-01-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13930347.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Atlanta Hawks", "photographer": "Jason Getz", "source": "Imagn Images", "photo_date": "2020-01-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13904832.jpg", "player_name": "Langston Galloway", "headline": "NBA: New Orleans Pelicans at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2020-01-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13898594.jpg", "player_name": "Langston Galloway", "headline": "NBA: Chicago Bulls at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2020-01-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13890555.jpg", "player_name": "Langston Galloway", "headline": "NBA: Cleveland Cavaliers at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2020-01-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13911462.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at San Antonio Spurs", "photographer": "Scott Wachter", "source": "Imagn Images", "photo_date": "2019-12-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13911852.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at San Antonio Spurs", "photographer": "Scott Wachter", "source": "Imagn Images", "photo_date": "2019-12-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13833656.jpg", "player_name": "Langston Galloway", "headline": "NBA: Philadelphia 76ers at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-12-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13833683.jpg", "player_name": "Langston Galloway", "headline": "NBA: Philadelphia 76ers at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-12-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13826092.jpg", "player_name": "Langston Galloway", "headline": "NBA: Chicago Bulls at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2019-12-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13813870.jpg", "player_name": "Langston Galloway", "headline": "NBA: Toronto Raptors at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2019-12-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13803582.jpg", "player_name": "Langston Galloway", "headline": "NBA: Washington Wizards at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-12-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13803609.jpg", "player_name": "Langston Galloway", "headline": "NBA: Washington Wizards at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-12-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13796543.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-12-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13749933.jpg", "player_name": "Langston Galloway", "headline": "NBA: Milwaukee Bucks at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13749925.jpg", "player_name": "Langston Galloway", "headline": "NBA: Milwaukee Bucks at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13745465.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2019-12-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13737904.jpg", "player_name": "Langston Galloway", "headline": "NBA: San Antonio Spurs at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2019-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13728795.jpg", "player_name": "Langston Galloway", "headline": "NBA: Charlotte Hornets at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2019-11-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13719626.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Charlotte Hornets", "photographer": "Jeremy Brevard", "source": "Imagn Images", "photo_date": "2019-11-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13721974.jpg", "player_name": "Langston Galloway", "headline": "NBA: Orlando Magic at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-11-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13698361.jpg", "player_name": "Langston Galloway", "headline": "NBA: Atlanta Hawks at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2019-11-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13692170.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2019-11-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13669948.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Charlotte Hornets", "photographer": "Jeremy Brevard", "source": "Imagn Images", "photo_date": "2019-11-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13669945.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Charlotte Hornets", "photographer": "Jeremy Brevard", "source": "Imagn Images", "photo_date": "2019-11-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13655874.jpg", "player_name": "Langston Galloway", "headline": "NBA: Minnesota Timberwolves at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2019-11-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13655878.jpg", "player_name": "Langston Galloway", "headline": "NBA: Minnesota Timberwolves at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2019-11-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13655881.jpg", "player_name": "Langston Galloway", "headline": "NBA: Minnesota Timberwolves at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2019-11-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13626523.jpg", "player_name": "Langston Galloway", "headline": "NBA: New York Knicks at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2019-11-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13612066.jpg", "player_name": "Langston Galloway", "headline": "NBA: Brooklyn Nets at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-11-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13595572.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2019-10-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13595768.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2019-10-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13584385.jpg", "player_name": "Langston Galloway", "headline": "NBA: Indiana Pacers at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-10-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13576976.jpg", "player_name": "Langston Galloway", "headline": "NBA: Philadelphia 76ers at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2019-10-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13576979.jpg", "player_name": "Langston Galloway", "headline": "NBA: Philadelphia 76ers at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2019-10-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13563316.jpg", "player_name": "Langston Galloway", "headline": "NBA: Atlanta Hawks at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-10-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13524502.jpg", "player_name": "Langston Galloway", "headline": "NBA: Preseason-Detroit Pistons at Charlotte Hornets", "photographer": "Jeremy Brevard", "source": "Imagn Images", "photo_date": "2019-10-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13524501.jpg", "player_name": "Langston Galloway", "headline": "NBA: Preseason-Detroit Pistons at Charlotte Hornets", "photographer": "Jeremy Brevard", "source": "Imagn Images", "photo_date": "2019-10-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13478149.jpg", "player_name": "Langston Galloway", "headline": "NBA: Preseason-Orlando Magic at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2019-10-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12572804.jpg", "player_name": "Langston Galloway", "headline": "NBA: Playoffs-Milwaukee Bucks at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-04-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12566738.jpg", "player_name": "Langston Galloway", "headline": "NBA: Playoffs-Milwaukee Bucks at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2019-04-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12566739.jpg", "player_name": "Langston Galloway", "headline": "NBA: Playoffs-Milwaukee Bucks at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2019-04-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12566736.jpg", "player_name": "Langston Galloway", "headline": "NBA: Playoffs-Milwaukee Bucks at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2019-04-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12550673.jpg", "player_name": "Langston Galloway", "headline": "NBA: Playoffs-Detroit Pistons at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2019-04-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12505827.jpg", "player_name": "Langston Galloway", "headline": "NBA: Memphis Grizzlies at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2019-04-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12446531.jpg", "player_name": "Langston Galloway", "headline": "NBA: Portland Trail Blazers at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2019-03-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12432090.jpg", "player_name": "Langston Galloway", "headline": "NBA: Orlando Magic at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-03-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12375496.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2019-03-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12375200.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2019-03-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12370848.jpg", "player_name": "Langston Galloway", "headline": "NBA: Toronto Raptors at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2019-03-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12357930.jpg", "player_name": "Langston Galloway", "headline": "NBA: Chicago Bulls at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-03-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12311255.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2019-03-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12299018.jpg", "player_name": "Langston Galloway", "headline": "NBA: Minnesota Timberwolves at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2019-03-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12279638.jpg", "player_name": "Langston Galloway", "headline": "NBA: Toronto Raptors at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-03-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12108973.jpg", "player_name": "Langston Galloway", "headline": "NBA: Denver Nuggets at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12076945.jpg", "player_name": "Langston Galloway", "headline": "NBA: Milwaukee Bucks at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2019-01-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12034235.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Washington Wizards", "photographer": "Tommy Gilligan", "source": "Imagn Images", "photo_date": "2019-01-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12034234.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Washington Wizards", "photographer": "Tommy Gilligan", "source": "Imagn Images", "photo_date": "2019-01-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12026214.jpg", "player_name": "Langston Galloway", "headline": "NBA: Sacramento Kings at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2019-01-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12026216.jpg", "player_name": "Langston Galloway", "headline": "NBA: Sacramento Kings at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2019-01-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12009506.jpg", "player_name": "Langston Galloway", "headline": "NBA: Orlando Magic at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2019-01-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11932181.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2019-01-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11894123.jpg", "player_name": "Langston Galloway", "headline": "NBA: Atlanta Hawks at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2018-12-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11876290.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Minnesota Timberwolves", "photographer": "Brace Hemmelgarn", "source": "Imagn Images", "photo_date": "2018-12-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11876291.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Minnesota Timberwolves", "photographer": "Brace Hemmelgarn", "source": "Imagn Images", "photo_date": "2018-12-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11854296.jpg", "player_name": "Langston Galloway", "headline": "NBA: Boston Celtics at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2018-12-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11852556.jpg", "player_name": "Langston Galloway", "headline": "NBA: Boston Celtics at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2018-12-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11852553.jpg", "player_name": "Langston Galloway", "headline": "NBA: Boston Celtics at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2018-12-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11817343.jpg", "player_name": "Langston Galloway", "headline": "NBA: New Orleans Pelicans at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2018-12-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11772172.jpg", "player_name": "Langston Galloway", "headline": "NBA: Golden State Warriors at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2018-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11762106.jpg", "player_name": "Langston Galloway", "headline": "NBA: Chicago Bulls at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11744412.jpg", "player_name": "Langston Galloway", "headline": "NBA: New York Knicks at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-11-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11711810.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-11-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11699857.jpg", "player_name": "Langston Galloway", "headline": "NBA: Cleveland Cavaliers at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2018-11-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11666018.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2018-11-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11630747.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Atlanta Hawks", "photographer": "Brett Davis", "source": "Imagn Images", "photo_date": "2018-11-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11617910.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Orlando Magic", "photographer": "Kim Klement", "source": "Imagn Images", "photo_date": "2018-11-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11604201.jpg", "player_name": "Langston Galloway", "headline": "NBA: Miami Heat at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-11-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11538118.jpg", "player_name": "Langston Galloway", "headline": "NBA: Boston Celtics at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-10-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11538113.jpg", "player_name": "Langston Galloway", "headline": "NBA: Boston Celtics at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-10-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11504105.jpg", "player_name": "Langston Galloway", "headline": "NBA: Philadelphia 76ers at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-10-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11485008.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2018-10-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11460979.jpg", "player_name": "Langston Galloway", "headline": "NBA: Brooklyn Nets at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2018-10-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11413995.jpg", "player_name": "Langston Galloway", "headline": "NBA: Preseason-Washington Wizards at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2018-10-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10778561.jpg", "player_name": "Langston Galloway", "headline": "NBA: Toronto Raptors at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-04-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10771245.jpg", "player_name": "Langston Galloway", "headline": "NBA: Dallas Mavericks at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2018-04-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10659268.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2018-02-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10659267.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2018-02-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10656364.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Charlotte Hornets", "photographer": "Jeremy Brevard", "source": "Imagn Images", "photo_date": "2018-02-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10656069.jpg", "player_name": "Langston Galloway", "headline": "NBA: Detroit Pistons at Charlotte Hornets", "photographer": "Jeremy Brevard", "source": "Imagn Images", "photo_date": "2018-02-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10607972.jpg", "player_name": "Langston Galloway", "headline": "NBA: New Orleans Pelicans at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-02-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10607971.jpg", "player_name": "Langston Galloway", "headline": "NBA: New Orleans Pelicans at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-02-12"}];</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const photos = window.galleryPhotos || [];
+    let currentIndex = 0;
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox || photos.length === 0) return;
+    const lbImg = lightbox.querySelector('img');
+    const lbPlayer = lightbox.querySelector('.lb-player');
+    const lbHeadline = lightbox.querySelector('.lb-headline');
+    const lbCredit = lightbox.querySelector('.lb-credit');
+    const counter = lightbox.querySelector('.counter');
+    function formatDate(dateStr) {
+        if (!dateStr) return '';
+        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
+        catch(e) { return dateStr; }
+    }
+    function showPhoto() {
+        const p = photos[currentIndex];
+        lbImg.src = p.image_url;
+        lbPlayer.textContent = p.player_name || 'NBA';
+        lbHeadline.textContent = p.headline || '';
+        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
+        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
+    }
+    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
+    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
+    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
+    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
+    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
+    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
+    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
+    let touchStartX = 0;
+    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
+});
+</script>
+</body>
+</html>

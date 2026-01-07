@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 2023-W01 | NBA Sneakers</title>
+<style>
+:root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #666;
+    --text-muted: #999;
+    --border: #e0e0e0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-hover: 0 4px 16px rgba(0,0,0,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+.site-header { background: var(--primary); color: white; padding: 16px 0; position: sticky; top: 0; z-index: 100; }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.site-logo { font-size: 20px; font-weight: 700; color: white; }
+.site-logo:hover { text-decoration: none; }
+.site-nav { display: flex; gap: 24px; }
+.site-nav a { color: rgba(255,255,255,0.8); font-size: 14px; }
+.site-nav a:hover { color: white; text-decoration: none; }
+.hero { background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%); color: white; padding: 48px 0; text-align: center; }
+.hero h1 { font-size: 32px; margin-bottom: 8px; }
+.hero p { opacity: 0.8; font-size: 16px; }
+.stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+.stat-item { text-align: center; }
+.stat-value { font-size: 28px; font-weight: 700; }
+.stat-label { font-size: 12px; opacity: 0.7; text-transform: uppercase; }
+.section { padding: 32px 0; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.section-title { font-size: 20px; font-weight: 600; }
+.section-link { font-size: 14px; }
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
+.photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo-card .meta { padding: 12px; }
+.photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+.photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
+.photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
+.list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
+.list-item .name { font-weight: 500; color: var(--text); }
+.list-item .count { font-size: 13px; color: var(--text-muted); }
+.page-header { padding: 32px 0; background: var(--card-bg); border-bottom: 1px solid var(--border); }
+.page-header h1 { font-size: 28px; margin-bottom: 4px; }
+.page-header .subtitle { color: var(--text-secondary); }
+.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.breadcrumb a { color: var(--text-secondary); }
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
+.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
+.lightbox .nav.prev { left: 16px; }
+.lightbox .nav.next { right: 16px; }
+.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
+.lightbox .lb-player { font-size: 18px; font-weight: 600; }
+.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
+.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
+.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
+.site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
+.weekly-hero { margin-bottom: 32px; }
+.section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
+.section-header .photo-count { font-size: 14px; color: var(--text-muted); font-weight: normal; }
+.section-header .section-note { font-size: 13px; color: var(--text-muted); }
+.view-more { text-align: center; margin-top: 24px; }
+.view-more a { display: inline-block; padding: 12px 24px; background: var(--primary); color: white; border-radius: 6px; font-size: 14px; font-weight: 500; }
+.view-more a:hover { text-decoration: none; opacity: 0.9; }
+.stats-section { background: var(--card-bg); border-radius: 12px; padding: 32px !important; margin-top: 32px; }
+.stats-section .stats-bar { margin-top: 0; }
+.brands-grid .brand-item { background: linear-gradient(135deg, var(--card-bg), #f8f9fa); }
+.search-box { position: relative; max-width: 500px; margin: 0 auto 24px; }
+.search-box input { width: 100%; padding: 16px 20px; font-size: 18px; border: 2px solid var(--border); border-radius: 12px; outline: none; transition: border-color 0.2s; }
+.search-box input:focus { border-color: var(--accent); }
+.search-box input::placeholder { color: var(--text-muted); }
+.search-results { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow-hover); max-height: 400px; overflow-y: auto; z-index: 100; }
+.search-result-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text); cursor: pointer; }
+.search-result-item:hover { background: var(--bg); text-decoration: none; }
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item.no-page { opacity: 0.6; cursor: default; }
+.search-result-item .name { font-weight: 500; }
+.search-result-item .count { font-size: 13px; color: var(--text-muted); }
+.no-results { padding: 16px; text-align: center; color: var(--text-muted); }
+.search-stats { display: flex; justify-content: center; gap: 32px; margin-bottom: 32px; font-size: 14px; color: var(--text-secondary); }
+.player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+.player-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; }
+.player-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.player-card .player-img { height: 120px; background-size: cover; background-position: center; background-color: var(--primary); }
+.player-card .player-info { padding: 12px; }
+.player-card .player-name { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+.player-card .player-count { font-size: 12px; color: var(--text-muted); }
+.alpha-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.alpha-item { padding: 8px 14px; background: var(--card-bg); border-radius: 6px; font-size: 14px; color: var(--text); box-shadow: var(--shadow); }
+.alpha-item:hover { text-decoration: none; box-shadow: var(--shadow-hover); }
+.alpha-item.disabled { opacity: 0.5; cursor: default; }
+.alpha-item span { color: var(--text-muted); font-size: 12px; }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+        <nav class="site-nav">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/search/">🔍 Lookup</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/">Players</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/brands/">Brands</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/weekly/">Weekly</a>
+        </nav>
+    </div>
+</header>
+
+
+<div class="page-header">
+    <div class="container">
+        <div class="breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/">Home</a> / <a href="https://jsierrahoopshype.github.io/nba-sneakers/weekly/">Weekly</a> / 2023-W01</div>
+        <h1>Week of 2023-W01</h1>
+        <p class="subtitle">105 shoe photos</p>
+    </div>
+</div>
+
+<main class="container">
+    <section class="section">
+        <div class="photo-grid">
+            <div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19751937.jpg" alt="NBA: Dallas Mavericks at Oklahoma City Thunder" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Christian Wood</div>
+        <div class="headline">NBA: Dallas Mavericks at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 08, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19751719.jpg" alt="NBA: Brooklyn Nets at Miami Heat" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Seth Curry</div>
+        <div class="headline">NBA: Brooklyn Nets at Miami Heat</div>
+        <div class="credit">📷 Michael Laughlin · Imagn Images · Jan 08, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19751938.jpg" alt="NBA: Dallas Mavericks at Oklahoma City Thunder" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Kenrich Williams</div>
+        <div class="headline">NBA: Dallas Mavericks at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 08, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19751964.jpg" alt="NBA: Brooklyn Nets at Miami Heat" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Kyrie Irving</div>
+        <div class="headline">NBA: Brooklyn Nets at Miami Heat</div>
+        <div class="credit">📷 Michael Laughlin · Imagn Images · Jan 08, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19751954.jpg" alt="NBA: Brooklyn Nets at Miami Heat" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Tyler Herro</div>
+        <div class="headline">NBA: Brooklyn Nets at Miami Heat</div>
+        <div class="credit">📷 Michael Laughlin · Imagn Images · Jan 08, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19751951.jpg" alt="NBA: Brooklyn Nets at Miami Heat" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Kevin Durant</div>
+        <div class="headline">NBA: Brooklyn Nets at Miami Heat</div>
+        <div class="credit">📷 Michael Laughlin · Imagn Images · Jan 08, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19751180.jpg" alt="NBA: Minnesota Timberwolves at Houston Rockets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Rudy Gobert</div>
+        <div class="headline">NBA: Minnesota Timberwolves at Houston Rockets</div>
+        <div class="credit">📷 Troy Taormina · Imagn Images · Jan 08, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19750741.jpg" alt="NBA: Portland Trail Blazers at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">O.G. Anunoby</div>
+        <div class="headline">NBA: Portland Trail Blazers at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 08, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19749849.jpg" alt="NBA: Philadelphia 76ers at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Alec Burks</div>
+        <div class="headline">NBA: Philadelphia 76ers at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 08, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19750807.jpg" alt="NBA: Portland Trail Blazers at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jusuf Nurkic</div>
+        <div class="headline">NBA: Portland Trail Blazers at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 08, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19749526.jpg" alt="NBA: Philadelphia 76ers at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jaden Ivey</div>
+        <div class="headline">NBA: Philadelphia 76ers at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 08, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19749527.jpg" alt="NBA: Philadelphia 76ers at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Tobias Harris</div>
+        <div class="headline">NBA: Philadelphia 76ers at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 08, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19749380.jpg" alt="NBA: Philadelphia 76ers at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">James Harden</div>
+        <div class="headline">NBA: Philadelphia 76ers at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 08, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19748510.jpg" alt="NBA: Portland Trail Blazers at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Josh Hart</div>
+        <div class="headline">NBA: Portland Trail Blazers at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 08, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19748508.jpg" alt="NBA: Portland Trail Blazers at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Drew Eubanks</div>
+        <div class="headline">NBA: Portland Trail Blazers at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 08, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19746195.jpg" alt="NBA: New Orleans Pelicans at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Willy Hernangomez | Luka Doncic</div>
+        <div class="headline">NBA: New Orleans Pelicans at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19746282.jpg" alt="NBA: New Orleans Pelicans at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jaxson Hayes</div>
+        <div class="headline">NBA: New Orleans Pelicans at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19746284.jpg" alt="NBA: New Orleans Pelicans at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Devonte&#x27; Graham</div>
+        <div class="headline">NBA: New Orleans Pelicans at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19746286.jpg" alt="NBA: New Orleans Pelicans at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Luka Doncic</div>
+        <div class="headline">NBA: New Orleans Pelicans at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19746701.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">De&#x27;Aaron Fox</div>
+        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
+        <div class="credit">📷 Cary Edmondson · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19746700.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Harrison Barnes</div>
+        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
+        <div class="credit">📷 Cary Edmondson · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19746254.jpg" alt="NBA: New Orleans Pelicans at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Trey Murphy III</div>
+        <div class="headline">NBA: New Orleans Pelicans at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19746357.jpg" alt="NBA: New Orleans Pelicans at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Herbert Jones</div>
+        <div class="headline">NBA: New Orleans Pelicans at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19773298.jpg" alt="NBA: Utah Jazz at Chicago Bulls" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lauri Markkanen</div>
+        <div class="headline">NBA: Utah Jazz at Chicago Bulls</div>
+        <div class="credit">📷 Jamie Sabau · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19746356.jpg" alt="NBA: New Orleans Pelicans at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jaden Hardy</div>
+        <div class="headline">NBA: New Orleans Pelicans at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19746359.jpg" alt="NBA: New Orleans Pelicans at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Dyson Daniels</div>
+        <div class="headline">NBA: New Orleans Pelicans at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19746304.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">NBA</div>
+        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
+        <div class="credit">📷 Cary Edmondson · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19745725.jpg" alt="NBA: Orlando Magic at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Paolo Banchero</div>
+        <div class="headline">NBA: Orlando Magic at Golden State Warriors</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19745750.jpg" alt="NBA: Orlando Magic at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Markelle Fultz</div>
+        <div class="headline">NBA: Orlando Magic at Golden State Warriors</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19745656.jpg" alt="NBA: Orlando Magic at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Ty Jerome</div>
+        <div class="headline">NBA: Orlando Magic at Golden State Warriors</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19745662.jpg" alt="NBA: Orlando Magic at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">NBA</div>
+        <div class="headline">NBA: Orlando Magic at Golden State Warriors</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19744164.jpg" alt="NBA: New Orleans Pelicans at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Christian Wood</div>
+        <div class="headline">NBA: New Orleans Pelicans at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19744167.jpg" alt="NBA: New Orleans Pelicans at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Garrett Temple</div>
+        <div class="headline">NBA: New Orleans Pelicans at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19744174.jpg" alt="NBA: New Orleans Pelicans at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Larry Nance Jr</div>
+        <div class="headline">NBA: New Orleans Pelicans at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 07, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19757646.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Mitchell Robinson</div>
+        <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19757650.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Miles McBride</div>
+        <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19757648.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Evan Fournier</div>
+        <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19738596.jpg" alt="NBA: Washington Wizards at Oklahoma City Thunder" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Shai Gilgeous-Alexander</div>
+        <div class="headline">NBA: Washington Wizards at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19738576.jpg" alt="NBA: Washington Wizards at Oklahoma City Thunder" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Kyle Kuzma</div>
+        <div class="headline">NBA: Washington Wizards at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19738569.jpg" alt="NBA: Washington Wizards at Oklahoma City Thunder" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Kyle Kuzma</div>
+        <div class="headline">NBA: Washington Wizards at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19738597.jpg" alt="NBA: Washington Wizards at Oklahoma City Thunder" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Josh Giddey</div>
+        <div class="headline">NBA: Washington Wizards at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19738762.jpg" alt="NBA: Washington Wizards at Oklahoma City Thunder" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Monte Morris</div>
+        <div class="headline">NBA: Washington Wizards at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19738763.jpg" alt="NBA: Washington Wizards at Oklahoma City Thunder" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Kenrich Williams</div>
+        <div class="headline">NBA: Washington Wizards at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19738545.jpg" alt="NBA: Brooklyn Nets at New Orleans Pelicans" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Dyson Daniels</div>
+        <div class="headline">NBA: Brooklyn Nets at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19757642.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Scottie Barnes</div>
+        <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19757635.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Fred VanVleet</div>
+        <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19738644.jpg" alt="NBA: Washington Wizards at Oklahoma City Thunder" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jalen Williams</div>
+        <div class="headline">NBA: Washington Wizards at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19736817.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Derrick Rose</div>
+        <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19757618.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jalen Brunson</div>
+        <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19757621.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Julius Randle</div>
+        <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19736821.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Julius Randle</div>
+        <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19737076.jpg" alt="NBA: Brooklyn Nets at New Orleans Pelicans" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Kevin Durant</div>
+        <div class="headline">NBA: Brooklyn Nets at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19737075.jpg" alt="NBA: Brooklyn Nets at New Orleans Pelicans" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Cam Thomas</div>
+        <div class="headline">NBA: Brooklyn Nets at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19737073.jpg" alt="NBA: Brooklyn Nets at New Orleans Pelicans" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Kevin Durant</div>
+        <div class="headline">NBA: Brooklyn Nets at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19736799.jpg" alt="NBA: Brooklyn Nets at New Orleans Pelicans" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Kevin Durant</div>
+        <div class="headline">NBA: Brooklyn Nets at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 06, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19733957.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Moses Brown</div>
+        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 05, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19733956.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Terance Mann</div>
+        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 05, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19733955.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Amir Coffey</div>
+        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 05, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19732990.jpg" alt="NBA: Boston Celtics at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jaylen Brown</div>
+        <div class="headline">NBA: Boston Celtics at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 05, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19733019.jpg" alt="NBA: Boston Celtics at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Spencer Dinwiddie</div>
+        <div class="headline">NBA: Boston Celtics at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 05, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19733018.jpg" alt="NBA: Boston Celtics at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Reggie Bullock</div>
+        <div class="headline">NBA: Boston Celtics at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 05, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19733011.jpg" alt="NBA: Boston Celtics at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Luka Doncic</div>
+        <div class="headline">NBA: Boston Celtics at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 05, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19732988.jpg" alt="NBA: Boston Celtics at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Derrick White</div>
+        <div class="headline">NBA: Boston Celtics at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 05, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19732991.jpg" alt="NBA: Boston Celtics at Dallas Mavericks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Christian Wood</div>
+        <div class="headline">NBA: Boston Celtics at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 05, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19726611.jpg" alt="NBA: Portland Trail Blazers at Minnesota Timberwolves" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jaden McDaniels</div>
+        <div class="headline">NBA: Portland Trail Blazers at Minnesota Timberwolves</div>
+        <div class="credit">📷 Brace Hemmelgarn · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19726747.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">NBA</div>
+        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19726748.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Giannis Antetokounmpo</div>
+        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19727059.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jevon Carter</div>
+        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19726612.jpg" alt="NBA: Portland Trail Blazers at Minnesota Timberwolves" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Rudy Gobert</div>
+        <div class="headline">NBA: Portland Trail Blazers at Minnesota Timberwolves</div>
+        <div class="credit">📷 Brace Hemmelgarn · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19726472.jpg" alt="NBA: Oklahoma City Thunder at Orlando Magic" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Terrence Ross</div>
+        <div class="headline">NBA: Oklahoma City Thunder at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19725620.jpg" alt="NBA: Memphis Grizzlies at Charlotte Hornets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Steven Adams</div>
+        <div class="headline">NBA: Memphis Grizzlies at Charlotte Hornets</div>
+        <div class="credit">📷 Sam Sharpe · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19727467.jpg" alt="NBA: Detroit Pistons at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Kevon Looney</div>
+        <div class="headline">NBA: Detroit Pistons at Golden State Warriors</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19727513.jpg" alt="NBA: Atlanta Hawks at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">De&#x27;Aaron Fox</div>
+        <div class="headline">NBA: Atlanta Hawks at Sacramento Kings</div>
+        <div class="credit">📷 Cary Edmondson · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19725413.jpg" alt="NBA: Portland Trail Blazers at Minnesota Timberwolves" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Damian Lillard</div>
+        <div class="headline">NBA: Portland Trail Blazers at Minnesota Timberwolves</div>
+        <div class="credit">📷 Brace Hemmelgarn · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19725463.jpg" alt="NBA: Phoenix Suns at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Donovan Mitchell</div>
+        <div class="headline">NBA: Phoenix Suns at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19727471.jpg" alt="NBA: Atlanta Hawks at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Dejounte Murray</div>
+        <div class="headline">NBA: Atlanta Hawks at Sacramento Kings</div>
+        <div class="credit">📷 Cary Edmondson · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19725614.jpg" alt="NBA: Memphis Grizzlies at Charlotte Hornets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Ja Morant</div>
+        <div class="headline">NBA: Memphis Grizzlies at Charlotte Hornets</div>
+        <div class="credit">📷 Sam Sharpe · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19725474.jpg" alt="NBA: Oklahoma City Thunder at Orlando Magic" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Caleb Houstan</div>
+        <div class="headline">NBA: Oklahoma City Thunder at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19725498.jpg" alt="NBA: Oklahoma City Thunder at Orlando Magic" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Tre Mann</div>
+        <div class="headline">NBA: Oklahoma City Thunder at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19725616.jpg" alt="NBA: Memphis Grizzlies at Charlotte Hornets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Mason Plumlee</div>
+        <div class="headline">NBA: Memphis Grizzlies at Charlotte Hornets</div>
+        <div class="credit">📷 Sam Sharpe · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19725555.jpg" alt="NBA: Phoenix Suns at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jarrett Allen</div>
+        <div class="headline">NBA: Phoenix Suns at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19725517.jpg" alt="NBA: Phoenix Suns at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Caris LeVert</div>
+        <div class="headline">NBA: Phoenix Suns at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19727417.jpg" alt="NBA: Atlanta Hawks at Sacramento Kings" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Trae Young</div>
+        <div class="headline">NBA: Atlanta Hawks at Sacramento Kings</div>
+        <div class="credit">📷 Cary Edmondson · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19725698.jpg" alt="NBA: Phoenix Suns at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Ish Wainright</div>
+        <div class="headline">NBA: Phoenix Suns at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19724799.jpg" alt="NBA: Portland Trail Blazers at Minnesota Timberwolves" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jerami Grant</div>
+        <div class="headline">NBA: Portland Trail Blazers at Minnesota Timberwolves</div>
+        <div class="credit">📷 Brace Hemmelgarn · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19726684.jpg" alt="NBA: Detroit Pistons at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jalen Duren</div>
+        <div class="headline">NBA: Detroit Pistons at Golden State Warriors</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19726685.jpg" alt="NBA: Detroit Pistons at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">NBA</div>
+        <div class="headline">NBA: Detroit Pistons at Golden State Warriors</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19726662.jpg" alt="NBA: Detroit Pistons at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Saddiq Bey</div>
+        <div class="headline">NBA: Detroit Pistons at Golden State Warriors</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19726664.jpg" alt="NBA: Detroit Pistons at Golden State Warriors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jaden Ivey</div>
+        <div class="headline">NBA: Detroit Pistons at Golden State Warriors</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19724854.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">OG Anunoby</div>
+        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19724320.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Pat Connaughton</div>
+        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19724310.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Chris Boucher</div>
+        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 04, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19720687.jpg" alt="NBA: Boston Celtics at Oklahoma City Thunder" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Blake Griffin</div>
+        <div class="headline">NBA: Boston Celtics at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 03, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19720566.jpg" alt="NBA: Boston Celtics at Oklahoma City Thunder" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Marcus Smart</div>
+        <div class="headline">NBA: Boston Celtics at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 03, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19720685.jpg" alt="NBA: Boston Celtics at Oklahoma City Thunder" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Luke Kornet</div>
+        <div class="headline">NBA: Boston Celtics at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 03, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19720690.jpg" alt="NBA: Boston Celtics at Oklahoma City Thunder" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Luguentz Dort</div>
+        <div class="headline">NBA: Boston Celtics at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 03, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19715381.jpg" alt="NBA: Detroit Pistons at Portland Trail Blazers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Damian Lillard | Josh Hart</div>
+        <div class="headline">NBA: Detroit Pistons at Portland Trail Blazers</div>
+        <div class="credit">📷 Troy Wayrynen · Imagn Images · Jan 02, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19714378.jpg" alt="NBA: Chicago Bulls at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Derrick Jones Jr</div>
+        <div class="headline">NBA: Chicago Bulls at Cleveland Cavaliers</div>
+        <div class="credit">📷 Ken Blaze · Imagn Images · Jan 02, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19714386.jpg" alt="NBA: Chicago Bulls at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Nikola Vucevic</div>
+        <div class="headline">NBA: Chicago Bulls at Cleveland Cavaliers</div>
+        <div class="credit">📷 Ken Blaze · Imagn Images · Jan 02, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19714026.jpg" alt="NBA: Chicago Bulls at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Demar DeRozan</div>
+        <div class="headline">NBA: Chicago Bulls at Cleveland Cavaliers</div>
+        <div class="credit">📷 Ken Blaze · Imagn Images · Jan 02, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19714032.jpg" alt="NBA: Chicago Bulls at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Robin Lopez</div>
+        <div class="headline">NBA: Chicago Bulls at Cleveland Cavaliers</div>
+        <div class="credit">📷 Ken Blaze · Imagn Images · Jan 02, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19714029.jpg" alt="NBA: Chicago Bulls at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Donovan Mitchell</div>
+        <div class="headline">NBA: Chicago Bulls at Cleveland Cavaliers</div>
+        <div class="credit">📷 Ken Blaze · Imagn Images · Jan 02, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19714229.jpg" alt="NBA: Los Angeles Lakers at Charlotte Hornets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Russell Westbrook</div>
+        <div class="headline">NBA: Los Angeles Lakers at Charlotte Hornets</div>
+        <div class="credit">📷 Sam Sharpe · Imagn Images · Jan 02, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19714233.jpg" alt="NBA: Los Angeles Lakers at Charlotte Hornets" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">NBA</div>
+        <div class="headline">NBA: Los Angeles Lakers at Charlotte Hornets</div>
+        <div class="credit">📷 Sam Sharpe · Imagn Images · Jan 02, 2023</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19714585.jpg" alt="NBA: Detroit Pistons at Portland Trail Blazers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Damian Lillard</div>
+        <div class="headline">NBA: Detroit Pistons at Portland Trail Blazers</div>
+        <div class="credit">📷 Troy Wayrynen · Imagn Images · Jan 02, 2023</div>
+    </div>
+</div>
+        </div>
+    </section>
+</main>
+
+
+<div class="lightbox" id="lightbox">
+    <span class="close">&times;</span>
+    <span class="nav prev">&#10094;</span>
+    <span class="nav next">&#10095;</span>
+    <span class="counter"></span>
+    <img src="" alt="">
+    <div class="info">
+        <div class="lb-player"></div>
+        <div class="lb-headline"></div>
+        <div class="lb-credit"></div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="container">
+        Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
+    </div>
+</footer>
+
+<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/19751937.jpg", "player_name": "Christian Wood", "headline": "NBA: Dallas Mavericks at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-01-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19751719.jpg", "player_name": "Seth Curry", "headline": "NBA: Brooklyn Nets at Miami Heat", "photographer": "Michael Laughlin", "source": "Imagn Images", "photo_date": "2023-01-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19751938.jpg", "player_name": "Kenrich Williams", "headline": "NBA: Dallas Mavericks at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-01-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19751964.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Miami Heat", "photographer": "Michael Laughlin", "source": "Imagn Images", "photo_date": "2023-01-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19751954.jpg", "player_name": "Tyler Herro", "headline": "NBA: Brooklyn Nets at Miami Heat", "photographer": "Michael Laughlin", "source": "Imagn Images", "photo_date": "2023-01-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19751951.jpg", "player_name": "Kevin Durant", "headline": "NBA: Brooklyn Nets at Miami Heat", "photographer": "Michael Laughlin", "source": "Imagn Images", "photo_date": "2023-01-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19751180.jpg", "player_name": "Rudy Gobert", "headline": "NBA: Minnesota Timberwolves at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2023-01-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19750741.jpg", "player_name": "O.G. Anunoby", "headline": "NBA: Portland Trail Blazers at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-01-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19749849.jpg", "player_name": "Alec Burks", "headline": "NBA: Philadelphia 76ers at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2023-01-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19750807.jpg", "player_name": "Jusuf Nurkic", "headline": "NBA: Portland Trail Blazers at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-01-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19749526.jpg", "player_name": "Jaden Ivey", "headline": "NBA: Philadelphia 76ers at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2023-01-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19749527.jpg", "player_name": "Tobias Harris", "headline": "NBA: Philadelphia 76ers at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2023-01-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19749380.jpg", "player_name": "James Harden", "headline": "NBA: Philadelphia 76ers at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2023-01-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19748510.jpg", "player_name": "Josh Hart", "headline": "NBA: Portland Trail Blazers at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-01-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19748508.jpg", "player_name": "Drew Eubanks", "headline": "NBA: Portland Trail Blazers at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-01-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19746195.jpg", "player_name": "Willy Hernangomez | Luka Doncic", "headline": "NBA: New Orleans Pelicans at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19746282.jpg", "player_name": "Jaxson Hayes", "headline": "NBA: New Orleans Pelicans at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19746284.jpg", "player_name": "Devonte' Graham", "headline": "NBA: New Orleans Pelicans at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19746286.jpg", "player_name": "Luka Doncic", "headline": "NBA: New Orleans Pelicans at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19746701.jpg", "player_name": "De'Aaron Fox", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "photographer": "Cary Edmondson", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19746700.jpg", "player_name": "Harrison Barnes", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "photographer": "Cary Edmondson", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19746254.jpg", "player_name": "Trey Murphy III", "headline": "NBA: New Orleans Pelicans at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19746357.jpg", "player_name": "Herbert Jones", "headline": "NBA: New Orleans Pelicans at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19773298.jpg", "player_name": "Lauri Markkanen", "headline": "NBA: Utah Jazz at Chicago Bulls", "photographer": "Jamie Sabau", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19746356.jpg", "player_name": "Jaden Hardy", "headline": "NBA: New Orleans Pelicans at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19746359.jpg", "player_name": "Dyson Daniels", "headline": "NBA: New Orleans Pelicans at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19746304.jpg", "player_name": "", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "photographer": "Cary Edmondson", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19745725.jpg", "player_name": "Paolo Banchero", "headline": "NBA: Orlando Magic at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19745750.jpg", "player_name": "Markelle Fultz", "headline": "NBA: Orlando Magic at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19745656.jpg", "player_name": "Ty Jerome", "headline": "NBA: Orlando Magic at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19745662.jpg", "player_name": "", "headline": "NBA: Orlando Magic at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19744164.jpg", "player_name": "Christian Wood", "headline": "NBA: New Orleans Pelicans at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19744167.jpg", "player_name": "Garrett Temple", "headline": "NBA: New Orleans Pelicans at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19744174.jpg", "player_name": "Larry Nance Jr", "headline": "NBA: New Orleans Pelicans at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19757646.jpg", "player_name": "Mitchell Robinson", "headline": "NBA: New York Knicks at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19757650.jpg", "player_name": "Miles McBride", "headline": "NBA: New York Knicks at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19757648.jpg", "player_name": "Evan Fournier", "headline": "NBA: New York Knicks at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19738596.jpg", "player_name": "Shai Gilgeous-Alexander", "headline": "NBA: Washington Wizards at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19738576.jpg", "player_name": "Kyle Kuzma", "headline": "NBA: Washington Wizards at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19738569.jpg", "player_name": "Kyle Kuzma", "headline": "NBA: Washington Wizards at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19738597.jpg", "player_name": "Josh Giddey", "headline": "NBA: Washington Wizards at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19738762.jpg", "player_name": "Monte Morris", "headline": "NBA: Washington Wizards at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19738763.jpg", "player_name": "Kenrich Williams", "headline": "NBA: Washington Wizards at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19738545.jpg", "player_name": "Dyson Daniels", "headline": "NBA: Brooklyn Nets at New Orleans Pelicans", "photographer": "Stephen Lew", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19757642.jpg", "player_name": "Scottie Barnes", "headline": "NBA: New York Knicks at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19757635.jpg", "player_name": "Fred VanVleet", "headline": "NBA: New York Knicks at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19738644.jpg", "player_name": "Jalen Williams", "headline": "NBA: Washington Wizards at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19736817.jpg", "player_name": "Derrick Rose", "headline": "NBA: New York Knicks at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19757618.jpg", "player_name": "Jalen Brunson", "headline": "NBA: New York Knicks at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19757621.jpg", "player_name": "Julius Randle", "headline": "NBA: New York Knicks at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19736821.jpg", "player_name": "Julius Randle", "headline": "NBA: New York Knicks at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19737076.jpg", "player_name": "Kevin Durant", "headline": "NBA: Brooklyn Nets at New Orleans Pelicans", "photographer": "Stephen Lew", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19737075.jpg", "player_name": "Cam Thomas", "headline": "NBA: Brooklyn Nets at New Orleans Pelicans", "photographer": "Stephen Lew", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19737073.jpg", "player_name": "Kevin Durant", "headline": "NBA: Brooklyn Nets at New Orleans Pelicans", "photographer": "Stephen Lew", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19736799.jpg", "player_name": "Kevin Durant", "headline": "NBA: Brooklyn Nets at New Orleans Pelicans", "photographer": "Stephen Lew", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19733957.jpg", "player_name": "Moses Brown", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2023-01-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19733956.jpg", "player_name": "Terance Mann", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2023-01-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19733955.jpg", "player_name": "Amir Coffey", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2023-01-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19732990.jpg", "player_name": "Jaylen Brown", "headline": "NBA: Boston Celtics at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19733019.jpg", "player_name": "Spencer Dinwiddie", "headline": "NBA: Boston Celtics at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19733018.jpg", "player_name": "Reggie Bullock", "headline": "NBA: Boston Celtics at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19733011.jpg", "player_name": "Luka Doncic", "headline": "NBA: Boston Celtics at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19732988.jpg", "player_name": "Derrick White", "headline": "NBA: Boston Celtics at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19732991.jpg", "player_name": "Christian Wood", "headline": "NBA: Boston Celtics at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19726611.jpg", "player_name": "Jaden McDaniels", "headline": "NBA: Portland Trail Blazers at Minnesota Timberwolves", "photographer": "Brace Hemmelgarn", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19726747.jpg", "player_name": "", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19726748.jpg", "player_name": "Giannis Antetokounmpo", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19727059.jpg", "player_name": "Jevon Carter", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19726612.jpg", "player_name": "Rudy Gobert", "headline": "NBA: Portland Trail Blazers at Minnesota Timberwolves", "photographer": "Brace Hemmelgarn", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19726472.jpg", "player_name": "Terrence Ross", "headline": "NBA: Oklahoma City Thunder at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19725620.jpg", "player_name": "Steven Adams", "headline": "NBA: Memphis Grizzlies at Charlotte Hornets", "photographer": "Sam Sharpe", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19727467.jpg", "player_name": "Kevon Looney", "headline": "NBA: Detroit Pistons at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19727513.jpg", "player_name": "De'Aaron Fox", "headline": "NBA: Atlanta Hawks at Sacramento Kings", "photographer": "Cary Edmondson", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19725413.jpg", "player_name": "Damian Lillard", "headline": "NBA: Portland Trail Blazers at Minnesota Timberwolves", "photographer": "Brace Hemmelgarn", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19725463.jpg", "player_name": "Donovan Mitchell", "headline": "NBA: Phoenix Suns at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19727471.jpg", "player_name": "Dejounte Murray", "headline": "NBA: Atlanta Hawks at Sacramento Kings", "photographer": "Cary Edmondson", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19725614.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Charlotte Hornets", "photographer": "Sam Sharpe", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19725474.jpg", "player_name": "Caleb Houstan", "headline": "NBA: Oklahoma City Thunder at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19725498.jpg", "player_name": "Tre Mann", "headline": "NBA: Oklahoma City Thunder at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19725616.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Memphis Grizzlies at Charlotte Hornets", "photographer": "Sam Sharpe", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19725555.jpg", "player_name": "Jarrett Allen", "headline": "NBA: Phoenix Suns at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19725517.jpg", "player_name": "Caris LeVert", "headline": "NBA: Phoenix Suns at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19727417.jpg", "player_name": "Trae Young", "headline": "NBA: Atlanta Hawks at Sacramento Kings", "photographer": "Cary Edmondson", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19725698.jpg", "player_name": "Ish Wainright", "headline": "NBA: Phoenix Suns at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19724799.jpg", "player_name": "Jerami Grant", "headline": "NBA: Portland Trail Blazers at Minnesota Timberwolves", "photographer": "Brace Hemmelgarn", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19726684.jpg", "player_name": "Jalen Duren", "headline": "NBA: Detroit Pistons at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19726685.jpg", "player_name": "", "headline": "NBA: Detroit Pistons at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19726662.jpg", "player_name": "Saddiq Bey", "headline": "NBA: Detroit Pistons at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19726664.jpg", "player_name": "Jaden Ivey", "headline": "NBA: Detroit Pistons at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19724854.jpg", "player_name": "OG Anunoby", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19724320.jpg", "player_name": "Pat Connaughton", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19724310.jpg", "player_name": "Chris Boucher", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19720687.jpg", "player_name": "Blake Griffin", "headline": "NBA: Boston Celtics at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-01-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19720566.jpg", "player_name": "Marcus Smart", "headline": "NBA: Boston Celtics at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-01-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19720685.jpg", "player_name": "Luke Kornet", "headline": "NBA: Boston Celtics at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-01-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19720690.jpg", "player_name": "Luguentz Dort", "headline": "NBA: Boston Celtics at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-01-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19715381.jpg", "player_name": "Damian Lillard | Josh Hart", "headline": "NBA: Detroit Pistons at Portland Trail Blazers", "photographer": "Troy Wayrynen", "source": "Imagn Images", "photo_date": "2023-01-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19714378.jpg", "player_name": "Derrick Jones Jr", "headline": "NBA: Chicago Bulls at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2023-01-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19714386.jpg", "player_name": "Nikola Vucevic", "headline": "NBA: Chicago Bulls at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2023-01-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19714026.jpg", "player_name": "Demar DeRozan", "headline": "NBA: Chicago Bulls at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2023-01-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19714032.jpg", "player_name": "Robin Lopez", "headline": "NBA: Chicago Bulls at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2023-01-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19714029.jpg", "player_name": "Donovan Mitchell", "headline": "NBA: Chicago Bulls at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2023-01-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19714229.jpg", "player_name": "Russell Westbrook", "headline": "NBA: Los Angeles Lakers at Charlotte Hornets", "photographer": "Sam Sharpe", "source": "Imagn Images", "photo_date": "2023-01-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19714233.jpg", "player_name": "", "headline": "NBA: Los Angeles Lakers at Charlotte Hornets", "photographer": "Sam Sharpe", "source": "Imagn Images", "photo_date": "2023-01-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19714585.jpg", "player_name": "Damian Lillard", "headline": "NBA: Detroit Pistons at Portland Trail Blazers", "photographer": "Troy Wayrynen", "source": "Imagn Images", "photo_date": "2023-01-02"}];</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const photos = window.galleryPhotos || [];
+    let currentIndex = 0;
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox || photos.length === 0) return;
+    const lbImg = lightbox.querySelector('img');
+    const lbPlayer = lightbox.querySelector('.lb-player');
+    const lbHeadline = lightbox.querySelector('.lb-headline');
+    const lbCredit = lightbox.querySelector('.lb-credit');
+    const counter = lightbox.querySelector('.counter');
+    function formatDate(dateStr) {
+        if (!dateStr) return '';
+        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
+        catch(e) { return dateStr; }
+    }
+    function showPhoto() {
+        const p = photos[currentIndex];
+        lbImg.src = p.image_url;
+        lbPlayer.textContent = p.player_name || 'NBA';
+        lbHeadline.textContent = p.headline || '';
+        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
+        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
+    }
+    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
+    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
+    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
+    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
+    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
+    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
+    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
+    let touchStartX = 0;
+    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
+});
+</script>
+</body>
+</html>
