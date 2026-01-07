@@ -50,14 +50,14 @@ class SiteGenerator:
         self._generate_brands_index()
         self._generate_weekly_index()
         
-        # Generate individual pages (only for players with 4+ photos)
+        # Generate individual pages for all players
         players_generated = 0
         for player in self.archive.get_all_players():
-            if player['count'] >= 4:  # Minimum 4 photos for a timeline page
+            if player['count'] >= 1:  # Generate page for any player with photos
                 self._generate_player_page(player)
                 players_generated += 1
         
-        print(f"Generated {players_generated} player timeline pages (4+ photos)", file=sys.stderr)
+        print(f"Generated {players_generated} player timeline pages", file=sys.stderr)
         
         for brand in self.archive.get_all_brands():
             self._generate_brand_page(brand)
@@ -1018,38 +1018,26 @@ document.addEventListener('DOMContentLoaded', function() {
     def _generate_players_index(self):
         """Generate players listing page"""
         players = self.archive.get_all_players()
-        featured = [p for p in players if p['count'] >= 4]
-        others = [p for p in players if p['count'] < 4]
         
         content = f'''
 <div class="page-header">
     <div class="container">
         <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / Players</div>
         <h1>Players</h1>
-        <p class="subtitle">{len(featured)} players with full timelines · {len(players)} total in archive</p>
+        <p class="subtitle">{len(players)} players in archive</p>
     </div>
 </div>
 
 <main class="container">
     <section class="section">
         <div class="section-header">
-            <h2 class="section-title">Featured Timelines</h2>
-            <span class="section-note">4+ shoe photos</span>
+            <h2 class="section-title">All Players</h2>
+            <span class="section-note">Click any player to see their shoe photos</span>
         </div>
         <div class="list-grid">
-            {"".join(f'<a href="{self.base_url}/players/{p["slug"]}/" class="list-item"><span class="name">{escape(p["name"])}</span><span class="count">{p["count"]} photos</span></a>' for p in featured)}
+            {"".join(f'<a href="{self.base_url}/players/{p["slug"]}/" class="list-item"><span class="name">{escape(p["name"])}</span><span class="count">{p["count"]} photo{"s" if p["count"] != 1 else ""}</span></a>' for p in players)}
         </div>
     </section>
-    
-    {f"""<section class="section">
-        <div class="section-header">
-            <h2 class="section-title">Coming Soon</h2>
-            <span class="section-note">Players with fewer photos (timeline pages generated at 4+)</span>
-        </div>
-        <div class="alpha-list">
-            {"".join(f'<span class="alpha-item disabled">{escape(p["name"])} <span>({p["count"]})</span></span>' for p in sorted(others, key=lambda x: x['name']))}
-        </div>
-    </section>""" if others else ""}
 </main>
 '''
         html = self._base_template("Players", content)
@@ -1107,8 +1095,8 @@ document.addEventListener('DOMContentLoaded', function() {
         """Generate the player search/lookup page"""
         all_players = self.archive.get_all_players()
         
-        # Players with timeline pages (4+ photos)
-        featured_players = [p for p in all_players if p['count'] >= 4]
+        # All players now have pages
+        featured_players = all_players
         
         content = f'''
 <div class="page-header">
@@ -1134,7 +1122,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </section>
     
-    <!-- Featured Players (4+ photos) -->
+    <!-- All Players -->
     <section class="section">
         <div class="section-header">
             <h2 class="section-title">Featured Players</h2>
@@ -1163,7 +1151,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'name': p['name'],
         'slug': p['slug'],
         'count': p['count'],
-        'hasPage': p['count'] >= 4
+        'hasPage': True
     } for p in all_players], ensure_ascii=False)};
     
     const searchInput = document.getElementById('player-search');
@@ -1186,17 +1174,10 @@ document.addEventListener('DOMContentLoaded', function() {
             resultsDiv.innerHTML = '<div class="no-results">No players found</div>';
         }} else {{
             resultsDiv.innerHTML = matches.map(p => {{
-                if (p.hasPage) {{
-                    return `<a href="{self.base_url}/players/${{p.slug}}/" class="search-result-item">
-                        <span class="name">${{p.name}}</span>
-                        <span class="count">${{p.count}} photos</span>
-                    </a>`;
-                }} else {{
-                    return `<div class="search-result-item no-page">
-                        <span class="name">${{p.name}}</span>
-                        <span class="count">${{p.count}} photo${{p.count > 1 ? 's' : ''}} (coming soon)</span>
-                    </div>`;
-                }}
+                return `<a href="{self.base_url}/players/${{p.slug}}/" class="search-result-item">
+                    <span class="name">${{p.name}}</span>
+                    <span class="count">${{p.count}} photo${{p.count > 1 ? 's' : ''}}</span>
+                </a>`;
             }}).join('');
         }}
         resultsDiv.style.display = 'block';
@@ -1238,10 +1219,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     def _player_list_item_html(self, player: Dict) -> str:
         """Generate a simple list item for a player"""
-        if player['count'] >= 4:
-            return f'<a href="{self.base_url}/players/{player["slug"]}/" class="alpha-item">{escape(player["name"])} <span>({player["count"]})</span></a>'
-        else:
-            return f'<span class="alpha-item disabled">{escape(player["name"])} <span>({player["count"]})</span></span>'
+        return f'<a href="{self.base_url}/players/{player["slug"]}/" class="alpha-item">{escape(player["name"])} <span>({player["count"]})</span></a>'
     
     def _generate_search_index(self):
         """Generate JSON index for search functionality"""
@@ -1253,7 +1231,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'name': p['name'],
                 'slug': p['slug'],
                 'count': p['count'],
-                'has_page': p['count'] >= 4,
+                'has_page': True,
                 'latest_date': p.get('latest_date', '')
             } for p in all_players]
         }
