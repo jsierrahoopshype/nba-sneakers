@@ -183,20 +183,25 @@ class ImagnFetcher:
             if not img_id:
                 return None
             
-            # Build image URLs from the ID
-            # Full size: https://cdn.imagn.com/image/thumb/800-750/{id}.jpg
-            # Thumbnail: https://cdn.imagn.com/image/thumb/250-225/{id}.jpg
-            thumbnail_url = img.get('thumbnail_url') or f"https://cdn.imagn.com/image/thumb/250-225/{img_id}.jpg"
-            hover_url = img.get('hover_url') or f"https://cdn.imagn.com/image/thumb/450-425/{img_id}.jpg"
-            # Use larger size for main display
-            image_url = f"https://cdn.imagn.com/image/thumb/800-750/{img_id}.jpg"
-            
             # Extract player name from keywords or caption
             player_name = img.get('keywords', '')
             if not player_name:
                 # Try to extract from caption
                 caption = img.get('caption', '') or img.get('captionClean', '')
                 player_name = self._extract_player_from_caption(caption)
+            
+            # FILTER: Skip photos with "|" in player name (multi-player or sports center shots)
+            if '|' in player_name:
+                return None
+            
+            # FILTER: Skip if player name is empty or too generic
+            if not player_name or len(player_name.strip()) < 3:
+                return None
+            
+            # Build image URLs from the ID
+            thumbnail_url = img.get('thumbnail_url') or f"https://cdn.imagn.com/image/thumb/250-225/{img_id}.jpg"
+            hover_url = img.get('hover_url') or f"https://cdn.imagn.com/image/thumb/450-425/{img_id}.jpg"
+            image_url = f"https://cdn.imagn.com/image/thumb/800-750/{img_id}.jpg"
             
             # Parse date
             photo_date = img.get('create_date', '')
@@ -212,7 +217,7 @@ class ImagnFetcher:
                 'photographer': img.get('photographer', 'Imagn Images'),
                 'source': img.get('source', 'USA TODAY Sports'),
                 'photo_date': photo_date,
-                'player_name': player_name,
+                'player_name': player_name.strip(),
                 'keywords': img.get('keywords', ''),
             }
         except Exception as e:
