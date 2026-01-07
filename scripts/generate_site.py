@@ -5,9 +5,9 @@ Static Site Generator for NBA Shoe Gallery
 Generates:
 - Homepage with recent photos and stats
 - Player timeline pages (/players/lebron-james/)
-- Brand hub pages (/brands/nike/)
 - Weekly gallery pages (/weekly/2024-W52/)
-- Browse pages (/players/, /brands/, /weekly/)
+- Browse pages (/players/, /weekly/)
+- Affiliate monetization modules
 
 Usage:
     python generate_site.py
@@ -23,6 +23,14 @@ from typing import List, Dict
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from archive import PhotoArchive
 
+# Try to import affiliate module
+try:
+    from affiliate import AffiliateRouter, get_affiliate_css, get_tracking_js, AFFILIATE_POSITIONS
+    HAS_AFFILIATE = True
+except ImportError:
+    HAS_AFFILIATE = False
+    AFFILIATE_POSITIONS = []
+
 
 class SiteGenerator:
     """Generates static HTML pages from photo archive"""
@@ -33,12 +41,18 @@ class SiteGenerator:
         self.site_title = "NBA Sneakers"
         self.base_url = "https://jsierrahoopshype.github.io/nba-sneakers"  # GitHub Pages URL
         
+        # Initialize affiliate router if available
+        if HAS_AFFILIATE:
+            self.affiliate = AffiliateRouter()
+        else:
+            self.affiliate = None
+        
     def generate_all(self):
         """Generate entire site"""
         print(f"Generating site from {len(self.archive.photos)} photos...", file=sys.stderr)
         
         # Create directories
-        for subdir in ['players', 'brands', 'weekly', 'css', 'js', 'search']:
+        for subdir in ['players', 'weekly', 'css', 'js', 'search']:
             os.makedirs(os.path.join(self.output_dir, subdir), exist_ok=True)
         
         # Generate pages
@@ -47,7 +61,6 @@ class SiteGenerator:
         self._generate_homepage()
         self._generate_search_page()
         self._generate_players_index()
-        self._generate_brands_index()
         self._generate_weekly_index()
         
         # Generate individual pages for all players
@@ -58,9 +71,6 @@ class SiteGenerator:
                 players_generated += 1
         
         print(f"Generated {players_generated} player timeline pages", file=sys.stderr)
-        
-        for brand in self.archive.get_all_brands():
-            self._generate_brand_page(brand)
         
         for week in self.archive.get_all_weeks():
             self._generate_weekly_page(week)
@@ -562,6 +572,191 @@ a:hover { text-decoration: underline; }
     font-size: 12px;
 }
 
+/* Header Search */
+.header-search {
+    position: relative;
+    flex: 1;
+    max-width: 300px;
+    margin: 0 20px;
+}
+.header-search input {
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    font-size: 14px;
+}
+.header-search input::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+.header-search input:focus {
+    outline: none;
+    background: rgba(255,255,255,0.25);
+}
+.quick-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow-hover);
+    display: none;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    margin-top: 4px;
+}
+.quick-results.active {
+    display: block;
+}
+.quick-result-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 14px;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+}
+.quick-result-item:hover {
+    background: var(--bg);
+    text-decoration: none;
+}
+.quick-result-item .name {
+    font-weight: 500;
+}
+.quick-result-item .count {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* Affiliate Module Styles */
+.affiliate-module {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 12px;
+    padding: 16px;
+    margin: 16px 0;
+    color: white;
+    grid-column: 1 / -1;
+}
+.affiliate-module.inline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+}
+.affiliate-module.featured {
+    text-align: center;
+    padding: 24px;
+}
+.buy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #e94560;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+.buy-btn:hover {
+    background: #d63850;
+    transform: translateY(-2px);
+    text-decoration: none;
+    color: white;
+}
+.buy-btn.large {
+    padding: 16px 32px;
+    font-size: 18px;
+}
+.btn-icon { font-size: 16px; }
+.btn-text { font-weight: 600; }
+.badge-success { background: #28a745; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.badge-warning { background: #ffc107; color: #000; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.badge-info { background: #17a2b8; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.module-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.module-icon { font-size: 24px; }
+.module-title { font-size: 18px; font-weight: 600; }
+.shoe-info { margin-bottom: 16px; }
+.shoe-name {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: rgba(255,255,255,0.9);
+}
+.compare-prices {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.compare-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+}
+.compare-link {
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: underline;
+}
+.compare-link:hover { color: white; }
+.track-shoe {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+.track-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.8);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+.track-btn:hover {
+    border-color: white;
+    color: white;
+}
+
+/* Toast notifications */
+.track-toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary);
+    color: white;
+    padding: 16px 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-hover);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+.track-toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+.track-toast small {
+    display: block;
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 4px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .hero h1 { font-size: 24px; }
@@ -569,12 +764,16 @@ a:hover { text-decoration: underline; }
     .stat-value { font-size: 22px; }
     .photo-grid { gap: 12px; }
     .lightbox .nav { font-size: 28px; padding: 10px; }
+    .header-search { display: none; }
+    .affiliate-module.featured { padding: 16px; }
+    .buy-btn.large { padding: 12px 20px; font-size: 16px; }
 }
 '''
         self._write_file('css/style.css', css)
     
     def _generate_js(self):
         """Generate shared JavaScript"""
+        # Lightbox functionality - no variable interpolation needed
         js = '''
 // Lightbox functionality
 document.addEventListener('DOMContentLoaded', function() {
@@ -656,6 +855,90 @@ document.addEventListener('DOMContentLoaded', function() {
     lightbox.addEventListener('touchend', function(e) {
         const diff = e.changedTouches[0].clientX - touchStartX;
         if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); }
+    });
+});
+'''
+        
+        # Header search and tracking - needs variable interpolation
+        base_url = self.base_url
+        js += '''
+// Header Quick Search
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('quick-search');
+    const resultsDiv = document.getElementById('quick-results');
+    
+    if (!searchInput || !resultsDiv) return;
+    
+    let players = [];
+    fetch("''' + base_url + '''/search/players.json")
+        .then(r => r.json())
+        .then(data => { players = data.players || []; })
+        .catch(e => console.log('Could not load player index'));
+    
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        
+        if (query.length < 2) {
+            resultsDiv.classList.remove('active');
+            return;
+        }
+        
+        const matches = players.filter(p => 
+            p.name.toLowerCase().includes(query)
+        ).slice(0, 8);
+        
+        if (matches.length === 0) {
+            resultsDiv.innerHTML = '<div class="quick-result-item"><span class="name">No players found</span></div>';
+        } else {
+            resultsDiv.innerHTML = matches.map(p => 
+                `<a href="''' + base_url + '''/players/${p.slug}/" class="quick-result-item">
+                    <span class="name">${p.name}</span>
+                    <span class="count">${p.count} photos</span>
+                </a>`
+            ).join('');
+        }
+        resultsDiv.classList.add('active');
+    });
+    
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.header-search')) {
+            resultsDiv.classList.remove('active');
+        }
+    });
+    
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            const firstLink = resultsDiv.querySelector('a');
+            if (firstLink) window.location.href = firstLink.href;
+        }
+    });
+});
+
+// Price Tracking
+const PriceTracker = {
+    tracks: JSON.parse(localStorage.getItem('shoeTracking') || '[]'),
+    addTrack: function(shoe, player) {
+        this.tracks.push({ shoe, player, added: new Date().toISOString() });
+        localStorage.setItem('shoeTracking', JSON.stringify(this.tracks));
+        this.showConfirmation(shoe);
+    },
+    showConfirmation: function(shoe) {
+        const toast = document.createElement('div');
+        toast.className = 'track-toast';
+        toast.innerHTML = '<span>🔔 Now tracking: ' + shoe + '</span><small>We\\'ll notify you of price drops</small>';
+        document.body.appendChild(toast);
+        setTimeout(() => toast.classList.add('show'), 100);
+        setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3000);
+    }
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.track-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            PriceTracker.addTrack(this.dataset.shoe, this.dataset.player);
+            this.textContent = '✓ Tracking';
+            this.disabled = true;
+        });
     });
 });
 '''
@@ -827,10 +1110,12 @@ document.addEventListener('DOMContentLoaded', function() {
 <header class="site-header">
     <div class="container">
         <a href="{self.base_url}/" class="site-logo">👟 NBA Sneakers</a>
+        <div class="header-search">
+            <input type="text" id="quick-search" placeholder="Search players..." autocomplete="off">
+            <div id="quick-results" class="quick-results"></div>
+        </div>
         <nav class="site-nav">
-            <a href="{self.base_url}/search/">🔍 Lookup</a>
             <a href="{self.base_url}/players/">Players</a>
-            <a href="{self.base_url}/brands/">Brands</a>
             <a href="{self.base_url}/weekly/">Weekly</a>
         </nav>
     </div>
@@ -862,7 +1147,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </body>
 </html>'''
     
-    def _photo_card_html(self, photo: Dict) -> str:
+    def _photo_card_html(self, photo: Dict, idx: int = None) -> str:
         """Generate HTML for a single photo card"""
         player = escape(photo.get('player_name') or 'NBA')
         headline = escape((photo.get('headline') or '')[:100])
@@ -990,10 +1275,6 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="stat-item">
                 <div class="stat-value">{stats['total_players']}</div>
                 <div class="stat-label">Players</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value">{stats['total_brands']}</div>
-                <div class="stat-label">Brands</div>
             </div>
             <div class="stat-item">
                 <div class="stat-value">{stats['total_weeks']}</div>
@@ -1240,8 +1521,25 @@ document.addEventListener('DOMContentLoaded', function() {
         print(f"Generated search index: {len(all_players)} players", file=sys.stderr)
     
     def _generate_player_page(self, player: Dict):
-        """Generate individual player page"""
+        """Generate individual player page with affiliate modules"""
         photos = self.archive.get_photos_by_player(player['slug'])
+        
+        # Build photo grid with affiliate modules inserted at key positions
+        photo_html_parts = []
+        affiliate_positions = [1, 20, 50, 100, 200, 500]
+        
+        for idx, photo in enumerate(photos):
+            position = idx + 1  # 1-indexed
+            
+            # Insert affiliate module at designated positions
+            if self.affiliate and position in affiliate_positions:
+                module_type = "featured" if position == 1 else "inline"
+                caption = photo.get('caption', '')
+                module_html = self.affiliate.get_buy_button_html(caption, player['name'], module_type)
+                photo_html_parts.append(module_html)
+            
+            # Add photo card
+            photo_html_parts.append(self._photo_card_html(photo, idx))
         
         content = f'''
 <div class="page-header">
@@ -1255,7 +1553,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <main class="container">
     <section class="section">
         <div class="photo-grid">
-            {"".join(self._photo_card_html(p) for p in photos)}
+            {"".join(photo_html_parts)}
         </div>
     </section>
 </main>
