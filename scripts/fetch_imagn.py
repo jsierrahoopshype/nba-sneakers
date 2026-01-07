@@ -91,7 +91,7 @@ class ImagnFetcher:
             print(f"Login error: {e}", file=sys.stderr)
             return False
     
-    def fetch_nba_shoes(self, days_back: int = 365, max_photos: int = 3000) -> List[Dict]:
+    def fetch_nba_shoes(self, days_back: int = 365, max_photos: int = 20000) -> List[Dict]:
         """Fetch NBA shoe photos using Imagn API with pagination"""
         photos = []
         seen_ids = set()
@@ -108,6 +108,10 @@ class ImagnFetcher:
         for page in range(1, pages_needed + 1):
             if len(photos) >= max_photos:
                 break
+            
+            # Progress update every 50 pages
+            if page % 50 == 0:
+                print(f"Progress: {len(photos)} photos fetched so far...", file=sys.stderr)
                 
             params = {
                 'q': 'NBA shoes',
@@ -155,9 +159,8 @@ class ImagnFetcher:
                         print(f"  Page {page}: {len(all_images)} images, {new_count} new (total: {len(photos)})", file=sys.stderr)
                         
                         # Small delay to be respectful to the server
-                        if page % 10 == 0:
-                            import time
-                            time.sleep(0.5)
+                        import time
+                        time.sleep(0.2)  # 200ms between requests
                                 
                     except json.JSONDecodeError as e:
                         print(f"JSON parse error on page {page}: {e}", file=sys.stderr)
