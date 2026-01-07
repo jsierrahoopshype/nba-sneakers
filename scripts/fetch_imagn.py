@@ -92,61 +92,85 @@ class ImagnFetcher:
             return False
     
     def fetch_nba_shoes(self, days_back: int = 365, max_photos: int = 3000) -> List[Dict]:
-        """Fetch NBA shoe photos using Imagn API"""
+        """Fetch NBA shoe photos using Imagn API with pagination"""
         photos = []
         seen_ids = set()
         
-        # Use the simpleSearchAjax API endpoint
-        search_url = f"{self.BASE_URL}/simpleSearchAjax/"
+        # Use the navigationSearchAjax endpoint with pagination
+        search_url = f"{self.BASE_URL}/navigationSearchAjax/"
         
-        # Content group IDs from the working search
+        # Content group IDs
         cg_ids = "44,45,328,129,180,164,127,143,300,192,306,312"
         
-        # Fetch multiple pages to get more photos
-        pages_to_fetch = (max_photos // 20) + 1
+        # Calculate pages needed (20 results per page)
+        pages_needed = (max_photos // 20) + 1
         
-        for page in range(1, pages_to_fetch + 1):
+        for page in range(1, pages_needed + 1):
+            if len(photos) >= max_photos:
+                break
+                
             params = {
-                'searchtxt': 'NBA shoes',
+                'q': 'NBA shoes',
+                'tag': ',',
+                'orientation': '',
+                'widthMin': '',
+                'widthMax': '',
+                'frmdate': '',
+                'todate': '',
+                'keyWord': '',
+                'keywordTypes': '',
                 'searchCGOnly': cg_ids,
-                'page': page,
-                'perpage': 20
+                'searchType': 'navigation',
+                'sort': 'DESC',
+                'npage': page,
+                'searchWithin': 'searchWithin',
+                'searchText': '',
+                'isSiteSearch': '',
+                'pageToken': '',
+                'lastPage': '',
+                'useAI': 'false'
             }
             
             try:
-                print(f"Fetching page {page} from API...", file=sys.stderr)
+                print(f"Fetching page {page}...", file=sys.stderr)
                 resp = self.session.get(search_url, params=params, timeout=60)
                 
                 if resp.status_code == 200:
                     try:
                         data = resp.json()
                         all_images = data.get('allImages', [])
-                        print(f"Page {page}: {len(all_images)} images", file=sys.stderr)
                         
                         if not all_images:
-                            break  # No more results
+                            print(f"  No more results at page {page}", file=sys.stderr)
+                            break
                         
+                        new_count = 0
                         for img in all_images:
                             photo = self._parse_api_image(img)
                             if photo and photo['imagn_id'] not in seen_ids:
                                 seen_ids.add(photo['imagn_id'])
                                 photos.append(photo)
-                                
-                        if len(photos) >= max_photos:
-                            break
+                                new_count += 1
+                        
+                        print(f"  Page {page}: {len(all_images)} images, {new_count} new (total: {len(photos)})", file=sys.stderr)
+                        
+                        # Small delay to be respectful to the server
+                        if page % 10 == 0:
+                            import time
+                            time.sleep(0.5)
                                 
                     except json.JSONDecodeError as e:
-                        print(f"JSON parse error: {e}", file=sys.stderr)
+                        print(f"JSON parse error on page {page}: {e}", file=sys.stderr)
                         break
                 else:
-                    print(f"API returned status {resp.status_code}", file=sys.stderr)
+                    print(f"API returned status {resp.status_code} on page {page}", file=sys.stderr)
                     break
                     
             except Exception as e:
-                print(f"API fetch error: {e}", file=sys.stderr)
+                print(f"Error fetching page {page}: {e}", file=sys.stderr)
                 break
         
-        print(f"Total fetched: {len(photos)} photos", file=sys.stderr)
+        print(f"Total fetched: {len(photos)} unique photos", file=sys.stderr)
         return photos[:max_photos]
     
     def _parse_api_image(self, img: Dict) -> Optional[Dict]:
