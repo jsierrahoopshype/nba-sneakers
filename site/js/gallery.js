@@ -81,3 +81,83 @@ document.addEventListener('DOMContentLoaded', function() {
         if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); }
     });
 });
+
+// Header Quick Search
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('quick-search');
+    const resultsDiv = document.getElementById('quick-results');
+    
+    if (!searchInput || !resultsDiv) return;
+    
+    let players = [];
+    fetch("https://jsierrahoopshype.github.io/nba-sneakers/search/players.json")
+        .then(r => r.json())
+        .then(data => { players = data.players || []; })
+        .catch(e => console.log('Could not load player index'));
+    
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        
+        if (query.length < 2) {
+            resultsDiv.classList.remove('active');
+            return;
+        }
+        
+        const matches = players.filter(p => 
+            p.name.toLowerCase().includes(query)
+        ).slice(0, 8);
+        
+        if (matches.length === 0) {
+            resultsDiv.innerHTML = '<div class="quick-result-item"><span class="name">No players found</span></div>';
+        } else {
+            resultsDiv.innerHTML = matches.map(p => 
+                `<a href="https://jsierrahoopshype.github.io/nba-sneakers/players/${p.slug}/" class="quick-result-item">
+                    <span class="name">${p.name}</span>
+                    <span class="count">${p.count} photos</span>
+                </a>`
+            ).join('');
+        }
+        resultsDiv.classList.add('active');
+    });
+    
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.header-search')) {
+            resultsDiv.classList.remove('active');
+        }
+    });
+    
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            const firstLink = resultsDiv.querySelector('a');
+            if (firstLink) window.location.href = firstLink.href;
+        }
+    });
+});
+
+// Price Tracking
+const PriceTracker = {
+    tracks: JSON.parse(localStorage.getItem('shoeTracking') || '[]'),
+    addTrack: function(shoe, player) {
+        this.tracks.push({ shoe, player, added: new Date().toISOString() });
+        localStorage.setItem('shoeTracking', JSON.stringify(this.tracks));
+        this.showConfirmation(shoe);
+    },
+    showConfirmation: function(shoe) {
+        const toast = document.createElement('div');
+        toast.className = 'track-toast';
+        toast.innerHTML = '<span>🔔 Now tracking: ' + shoe + '</span><small>We\'ll notify you of price drops</small>';
+        document.body.appendChild(toast);
+        setTimeout(() => toast.classList.add('show'), 100);
+        setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3000);
+    }
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.track-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            PriceTracker.addTrack(this.dataset.shoe, this.dataset.player);
+            this.textContent = '✓ Tracking';
+            this.disabled = true;
+        });
+    });
+});
