@@ -7,15 +7,17 @@
 <style>
 :root {
     --primary: #1a1a2e;
-    --accent: #e94560;
-    --bg: #f8f9fa;
+    --primary-dark: #0d0d1a;
+    --accent: #ff6b00;
+    --accent-hover: #e55d00;
+    --bg: #f5f5f5;
     --card-bg: #ffffff;
     --text: #1a1a1a;
-    --text-secondary: #666;
-    --text-muted: #999;
+    --text-secondary: #555;
+    --text-muted: #888;
     --border: #e0e0e0;
     --shadow: 0 2px 8px rgba(0,0,0,0.08);
-    --shadow-hover: 0 4px 16px rgba(0,0,0,0.12);
+    --shadow-hover: 0 4px 16px rgba(0,0,0,0.15);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -27,14 +29,14 @@ body {
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
-.site-header { background: var(--primary); color: white; padding: 16px 0; position: sticky; top: 0; z-index: 100; }
-.site-header .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-.site-logo { font-size: 20px; font-weight: 700; color: white; }
-.site-logo:hover { text-decoration: none; }
+.site-header { background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.site-logo { font-size: 22px; font-weight: 700; color: white; }
+.site-logo:hover { text-decoration: none; color: var(--accent); }
 .site-nav { display: flex; gap: 24px; }
-.site-nav a { color: rgba(255,255,255,0.8); font-size: 14px; }
-.site-nav a:hover { color: white; text-decoration: none; }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%); color: white; padding: 48px 0; text-align: center; }
+.site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
+.site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
+.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
 .hero h1 { font-size: 32px; margin-bottom: 8px; }
 .hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
@@ -112,7 +114,33 @@ a:hover { text-decoration: underline; }
 .alpha-item:hover { text-decoration: none; box-shadow: var(--shadow-hover); }
 .alpha-item.disabled { opacity: 0.5; cursor: default; }
 .alpha-item span { color: var(--text-muted); font-size: 12px; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } }
+.header-search { position: relative; flex: 1; max-width: 400px; margin: 0 24px; }
+.header-search input { width: 100%; padding: 12px 20px; border: 2px solid var(--accent); border-radius: 25px; background: white; color: var(--text); font-size: 15px; font-weight: 500; }
+.header-search input::placeholder { color: #888; }
+.header-search input:focus { outline: none; box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.2); }
+.quick-results { position: absolute; top: 100%; left: 0; right: 0; background: white; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); display: none; max-height: 350px; overflow-y: auto; z-index: 1000; margin-top: 8px; }
+.quick-results.active { display: block; }
+.quick-result-item { display: flex; justify-content: space-between; padding: 12px 16px; color: var(--text); border-bottom: 1px solid var(--border); }
+.quick-result-item:hover { background: #fff5eb; text-decoration: none; }
+.quick-result-item .name { font-weight: 600; }
+.quick-result-item .count { color: var(--accent); font-size: 13px; font-weight: 500; background: #fff5eb; padding: 2px 8px; border-radius: 12px; }
+.affiliate-module { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: 12px; padding: 16px; margin: 16px 0; color: white; grid-column: 1 / -1; }
+.affiliate-module.inline { display: flex; align-items: center; justify-content: center; padding: 12px; }
+.affiliate-module.featured { text-align: center; padding: 24px; }
+.buy-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+.buy-btn:hover { background: var(--accent-hover); transform: translateY(-2px); text-decoration: none; color: white; }
+.buy-btn.large { padding: 16px 32px; font-size: 18px; }
+.badge-success { background: #28a745; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.badge-warning { background: #ffc107; color: #000; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.badge-info { background: #17a2b8; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.module-header { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; }
+.shoe-info { margin-bottom: 16px; }
+.shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
+.compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
+.track-btn { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.track-btn:hover { border-color: white; color: white; }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
 </style>
 </head>
 <body>
@@ -310,14 +338,14 @@ a:hover { text-decoration: underline; }
         <div class="credit">📷 David Richard · Imagn Images · May 21, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10845520.jpg" alt="NBA: Playoffs-Boston Celtics at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10845524.jpg" alt="NBA: Playoffs-Boston Celtics at Cleveland Cavaliers" loading="lazy"></div>
     <div class="meta">
         <div class="player">Al Horford</div>
         <div class="headline">NBA: Playoffs-Boston Celtics at Cleveland Cavaliers</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · May 19, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10845524.jpg" alt="NBA: Playoffs-Boston Celtics at Cleveland Cavaliers" loading="lazy"></div>
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10845520.jpg" alt="NBA: Playoffs-Boston Celtics at Cleveland Cavaliers" loading="lazy"></div>
     <div class="meta">
         <div class="player">Al Horford</div>
         <div class="headline">NBA: Playoffs-Boston Celtics at Cleveland Cavaliers</div>
@@ -376,7 +404,7 @@ a:hover { text-decoration: underline; }
     </div>
 </footer>
 
-<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/27903814.jpg", "player_name": "Al Horford", "headline": "NBA: Golden State Warriors at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2025-12-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/26016680.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2025-04-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19483094.jpg", "player_name": "Al Horford", "headline": "NBA: Boston Celtics at Chicago Bulls", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "photo_date": "2022-11-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/18264431.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2022-05-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/18224929.jpg", "player_name": "Al Horford", "headline": "NBA: Boston Celtics at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2022-05-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14712391.jpg", "player_name": "Al Horford", "headline": "NBA: Orlando Magic at Philadelphia 76ers", "photographer": "Kevin C. Cox", "source": "Pool Photo", "photo_date": "2020-08-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14156738.jpg", "player_name": "Al Horford", "headline": "NBA: Philadelphia 76ers at Golden State Warriors", "photographer": "Cary Edmondson", "source": "Imagn Images", "photo_date": "2020-03-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14006325.jpg", "player_name": "Al Horford", "headline": "NBA: Philadelphia 76ers at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2020-02-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13897612.jpg", "player_name": "Al Horford", "headline": "NBA: Philadelphia 76ers at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2020-01-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13869238.jpg", "player_name": "Al Horford", "headline": "NBA: Philadelphia 76ers at Houston Rockets", "photographer": "Erik Williams", "source": "Imagn Images", "photo_date": "2020-01-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13833682.jpg", "player_name": "Al Horford", "headline": "NBA: Philadelphia 76ers at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-12-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13681648.jpg", "player_name": "Al Horford", "headline": "NBA: Philadelphia 76ers at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2019-11-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13584836.jpg", "player_name": "Al Horford", "headline": "NBA: Philadelphia 76ers at Atlanta Hawks", "photographer": "Brett Davis", "source": "Imagn Images", "photo_date": "2019-10-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12606773.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2019-04-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12113477.jpg", "player_name": "Al Horford", "headline": "NBA: Boston Celtics at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2019-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11729538.jpg", "player_name": "Al Horford", "headline": "NBA: Boston Celtics at Dallas Mavericks", "photographer": "Shane Roper", "source": "Imagn Images", "photo_date": "2018-11-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11587880.jpg", "player_name": "Al Horford", "headline": "NBA: Boston Celtics at Indiana Pacers", "photographer": "Trevor Ruszkowski", "source": "Imagn Images", "photo_date": "2018-11-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11587879.jpg", "player_name": "Al Horford", "headline": "NBA: Boston Celtics at Indiana Pacers", "photographer": "Trevor Ruszkowski", "source": "Imagn Images", "photo_date": "2018-11-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10847508.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2018-05-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10847501.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2018-05-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10845520.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Cleveland Cavaliers", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-05-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10845524.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Cleveland Cavaliers", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-05-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10824504.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Philadelphia 76ers", "photographer": "Bill Streicher", "source": "Imagn Images", "photo_date": "2018-05-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10806162.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2018-04-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10800997.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2018-04-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10688742.jpg", "player_name": "Al Horford", "headline": "NBA: Boston Celtics at Minnesota Timberwolves", "photographer": "Brad Rempel", "source": "Imagn Images", "photo_date": "2018-03-08"}];</script>
+<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/27903814.jpg", "player_name": "Al Horford", "headline": "NBA: Golden State Warriors at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2025-12-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/26016680.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2025-04-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19483094.jpg", "player_name": "Al Horford", "headline": "NBA: Boston Celtics at Chicago Bulls", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "photo_date": "2022-11-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/18264431.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2022-05-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/18224929.jpg", "player_name": "Al Horford", "headline": "NBA: Boston Celtics at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2022-05-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14712391.jpg", "player_name": "Al Horford", "headline": "NBA: Orlando Magic at Philadelphia 76ers", "photographer": "Kevin C. Cox", "source": "Pool Photo", "photo_date": "2020-08-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14156738.jpg", "player_name": "Al Horford", "headline": "NBA: Philadelphia 76ers at Golden State Warriors", "photographer": "Cary Edmondson", "source": "Imagn Images", "photo_date": "2020-03-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14006325.jpg", "player_name": "Al Horford", "headline": "NBA: Philadelphia 76ers at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2020-02-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13897612.jpg", "player_name": "Al Horford", "headline": "NBA: Philadelphia 76ers at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2020-01-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13869238.jpg", "player_name": "Al Horford", "headline": "NBA: Philadelphia 76ers at Houston Rockets", "photographer": "Erik Williams", "source": "Imagn Images", "photo_date": "2020-01-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13833682.jpg", "player_name": "Al Horford", "headline": "NBA: Philadelphia 76ers at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-12-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13681648.jpg", "player_name": "Al Horford", "headline": "NBA: Philadelphia 76ers at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2019-11-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13584836.jpg", "player_name": "Al Horford", "headline": "NBA: Philadelphia 76ers at Atlanta Hawks", "photographer": "Brett Davis", "source": "Imagn Images", "photo_date": "2019-10-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12606773.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2019-04-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12113477.jpg", "player_name": "Al Horford", "headline": "NBA: Boston Celtics at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2019-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11729538.jpg", "player_name": "Al Horford", "headline": "NBA: Boston Celtics at Dallas Mavericks", "photographer": "Shane Roper", "source": "Imagn Images", "photo_date": "2018-11-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11587880.jpg", "player_name": "Al Horford", "headline": "NBA: Boston Celtics at Indiana Pacers", "photographer": "Trevor Ruszkowski", "source": "Imagn Images", "photo_date": "2018-11-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11587879.jpg", "player_name": "Al Horford", "headline": "NBA: Boston Celtics at Indiana Pacers", "photographer": "Trevor Ruszkowski", "source": "Imagn Images", "photo_date": "2018-11-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10847508.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2018-05-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10847501.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2018-05-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10845524.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Cleveland Cavaliers", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-05-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10845520.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Cleveland Cavaliers", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-05-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10824504.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Philadelphia 76ers", "photographer": "Bill Streicher", "source": "Imagn Images", "photo_date": "2018-05-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10806162.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2018-04-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10800997.jpg", "player_name": "Al Horford", "headline": "NBA: Playoffs-Boston Celtics at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2018-04-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10688742.jpg", "player_name": "Al Horford", "headline": "NBA: Boston Celtics at Minnesota Timberwolves", "photographer": "Brad Rempel", "source": "Imagn Images", "photo_date": "2018-03-08"}];</script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const photos = window.galleryPhotos || [];
