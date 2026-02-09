@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 2026-W05 | NBA Sneakers</title>
+<style>
+:root {
+    --primary: #1a1a2e;
+    --primary-dark: #0d0d1a;
+    --accent: #ff6b00;
+    --accent-hover: #e55d00;
+    --bg: #f5f5f5;
+    --card-bg: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #555;
+    --text-muted: #888;
+    --border: #e0e0e0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-hover: 0 4px 16px rgba(0,0,0,0.15);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+.site-header { background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.site-logo { font-size: 22px; font-weight: 700; color: white; }
+.site-logo:hover { text-decoration: none; color: var(--accent); }
+.site-nav { display: flex; gap: 24px; }
+.site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
+.site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
+.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
+.hero h1 { font-size: 32px; margin-bottom: 8px; }
+.hero p { opacity: 0.8; font-size: 16px; }
+.stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+.stat-item { text-align: center; }
+.stat-value { font-size: 28px; font-weight: 700; }
+.stat-label { font-size: 12px; opacity: 0.7; text-transform: uppercase; }
+.section { padding: 32px 0; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.section-title { font-size: 20px; font-weight: 600; }
+.section-link { font-size: 14px; }
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
+.photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo-card .meta { padding: 12px; }
+.photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+.photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
+.photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
+.list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
+.list-item .name { font-weight: 500; color: var(--text); }
+.list-item .count { font-size: 13px; color: var(--text-muted); }
+.page-header { padding: 32px 0; background: var(--card-bg); border-bottom: 1px solid var(--border); }
+.page-header h1 { font-size: 28px; margin-bottom: 4px; }
+.page-header .subtitle { color: var(--text-secondary); }
+.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.breadcrumb a { color: var(--text-secondary); }
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
+.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
+.lightbox .nav.prev { left: 16px; }
+.lightbox .nav.next { right: 16px; }
+.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
+.lightbox .lb-player { font-size: 18px; font-weight: 600; }
+.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
+.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
+.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
+.site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
+.weekly-hero { margin-bottom: 32px; }
+.section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
+.section-header .photo-count { font-size: 14px; color: var(--text-muted); font-weight: normal; }
+.section-header .section-note { font-size: 13px; color: var(--text-muted); }
+.view-more { text-align: center; margin-top: 24px; }
+.view-more a { display: inline-block; padding: 12px 24px; background: var(--primary); color: white; border-radius: 6px; font-size: 14px; font-weight: 500; }
+.view-more a:hover { text-decoration: none; opacity: 0.9; }
+.stats-section { background: var(--card-bg); border-radius: 12px; padding: 32px !important; margin-top: 32px; }
+.stats-section .stats-bar { margin-top: 0; }
+.brands-grid .brand-item { background: linear-gradient(135deg, var(--card-bg), #f8f9fa); }
+.search-box { position: relative; max-width: 500px; margin: 0 auto 24px; }
+.search-box input { width: 100%; padding: 16px 20px; font-size: 18px; border: 2px solid var(--border); border-radius: 12px; outline: none; transition: border-color 0.2s; }
+.search-box input:focus { border-color: var(--accent); }
+.search-box input::placeholder { color: var(--text-muted); }
+.search-results { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow-hover); max-height: 400px; overflow-y: auto; z-index: 100; }
+.search-result-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text); cursor: pointer; }
+.search-result-item:hover { background: var(--bg); text-decoration: none; }
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item.no-page { opacity: 0.6; cursor: default; }
+.search-result-item .name { font-weight: 500; }
+.search-result-item .count { font-size: 13px; color: var(--text-muted); }
+.no-results { padding: 16px; text-align: center; color: var(--text-muted); }
+.search-stats { display: flex; justify-content: center; gap: 32px; margin-bottom: 32px; font-size: 14px; color: var(--text-secondary); }
+.player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+.player-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; }
+.player-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.player-card .player-img { height: 120px; background-size: cover; background-position: center; background-color: var(--primary); }
+.player-card .player-info { padding: 12px; }
+.player-card .player-name { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+.player-card .player-count { font-size: 12px; color: var(--text-muted); }
+.alpha-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.alpha-item { padding: 8px 14px; background: var(--card-bg); border-radius: 6px; font-size: 14px; color: var(--text); box-shadow: var(--shadow); }
+.alpha-item:hover { text-decoration: none; box-shadow: var(--shadow-hover); }
+.alpha-item.disabled { opacity: 0.5; cursor: default; }
+.alpha-item span { color: var(--text-muted); font-size: 12px; }
+.header-search { position: relative; flex: 1; max-width: 400px; margin: 0 24px; }
+.header-search input { width: 100%; padding: 12px 20px; border: 2px solid var(--accent); border-radius: 25px; background: white; color: var(--text); font-size: 15px; font-weight: 500; }
+.header-search input::placeholder { color: #888; }
+.header-search input:focus { outline: none; box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.2); }
+.quick-results { position: absolute; top: 100%; left: 0; right: 0; background: white; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); display: none; max-height: 350px; overflow-y: auto; z-index: 1000; margin-top: 8px; }
+.quick-results.active { display: block; }
+.quick-result-item { display: flex; justify-content: space-between; padding: 12px 16px; color: var(--text); border-bottom: 1px solid var(--border); }
+.quick-result-item:hover { background: #fff5eb; text-decoration: none; }
+.quick-result-item .name { font-weight: 600; }
+.quick-result-item .count { color: var(--accent); font-size: 13px; font-weight: 500; background: #fff5eb; padding: 2px 8px; border-radius: 12px; }
+.affiliate-module { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: 12px; padding: 16px; margin: 16px 0; color: white; grid-column: 1 / -1; }
+.affiliate-module.inline { display: flex; align-items: center; justify-content: center; padding: 12px; }
+.affiliate-module.featured { text-align: center; padding: 24px; }
+.buy-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+.buy-btn:hover { background: var(--accent-hover); transform: translateY(-2px); text-decoration: none; color: white; }
+.buy-btn.large { padding: 16px 32px; font-size: 18px; }
+.badge-success { background: #28a745; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.badge-warning { background: #ffc107; color: #000; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.badge-info { background: #17a2b8; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.module-header { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; }
+.shoe-info { margin-bottom: 16px; }
+.shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
+.compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
+.track-btn { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.track-btn:hover { border-color: white; color: white; }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+        <div class="header-search">
+            <input type="text" id="quick-search" placeholder="Search players..." autocomplete="off">
+            <div id="quick-results" class="quick-results"></div>
+        </div>
+        <nav class="site-nav">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/">Players</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/weekly/">Weekly</a>
+        </nav>
+    </div>
+</header>
+
+
+<div class="page-header">
+    <div class="container">
+        <div class="breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/">Home</a> / <a href="https://jsierrahoopshype.github.io/nba-sneakers/weekly/">Weekly</a> / 2026-W05</div>
+        <h1>Week of 2026-W05</h1>
+        <p class="subtitle">45 shoe photos</p>
+    </div>
+</div>
+
+<main class="container">
+    <section class="section">
+        <div class="photo-grid">
+            <div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28185474.jpg" alt="NBA: Denver Nuggets at Chicago Bulls" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Nikola Jokic</div>
+        <div class="headline">NBA: Denver Nuggets at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Feb 07, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28184215.jpg" alt="NBA: Denver Nuggets at Chicago Bulls" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Guerschon Yabusele</div>
+        <div class="headline">NBA: Denver Nuggets at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Feb 07, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28184183.jpg" alt="NBA: Denver Nuggets at Chicago Bulls" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lachlan Olbrich</div>
+        <div class="headline">NBA: Denver Nuggets at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Feb 07, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28185038.jpg" alt="NBA: Utah Jazz at Orlando Magic" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Ace Bailey</div>
+        <div class="headline">NBA: Utah Jazz at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Feb 07, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28185007.jpg" alt="NBA: Utah Jazz at Orlando Magic" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jase Richardson</div>
+        <div class="headline">NBA: Utah Jazz at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Feb 07, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28185024.jpg" alt="NBA: Utah Jazz at Orlando Magic" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jett Howard</div>
+        <div class="headline">NBA: Utah Jazz at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Feb 07, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28185011.jpg" alt="NBA: Utah Jazz at Orlando Magic" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jusuf Nurkic</div>
+        <div class="headline">NBA: Utah Jazz at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Feb 07, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28185034.jpg" alt="NBA: Utah Jazz at Orlando Magic" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Lauri Markkanen</div>
+        <div class="headline">NBA: Utah Jazz at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Feb 07, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28174334.jpg" alt="NBA: New York Knicks at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Cade Cunningham</div>
+        <div class="headline">NBA: New York Knicks at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 06, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28174336.jpg" alt="NBA: New York Knicks at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jalen Brunson</div>
+        <div class="headline">NBA: New York Knicks at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 06, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28174335.jpg" alt="NBA: New York Knicks at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Mikal Bridges</div>
+        <div class="headline">NBA: New York Knicks at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 06, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28175750.jpg" alt="NBA: New Orleans Pelicans at Minnesota Timberwolves" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Anthony Edwards</div>
+        <div class="headline">NBA: New Orleans Pelicans at Minnesota Timberwolves</div>
+        <div class="credit">📷 Jesse Johnson · Imagn Images · Feb 06, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28167636.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Guerschon Yabusele</div>
+        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28167616.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jamal Shead</div>
+        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28167628.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jaden Ivey</div>
+        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28167631.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Mac McClung</div>
+        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28167614.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jalen Smith</div>
+        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28167619.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Scottie Barnes</div>
+        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28167612.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Matas Buzelis</div>
+        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28166525.jpg" alt="NBA: Brooklyn Nets at Orlando Magic" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Noah Penda</div>
+        <div class="headline">NBA: Brooklyn Nets at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28166526.jpg" alt="NBA: Brooklyn Nets at Orlando Magic" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Ziaire Williams</div>
+        <div class="headline">NBA: Brooklyn Nets at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28167621.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Isaac Okoro</div>
+        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28166521.jpg" alt="NBA: Brooklyn Nets at Orlando Magic" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Egor Demin</div>
+        <div class="headline">NBA: Brooklyn Nets at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28166524.jpg" alt="NBA: Brooklyn Nets at Orlando Magic" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Wendell Carter Jr</div>
+        <div class="headline">NBA: Brooklyn Nets at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28166527.jpg" alt="NBA: Brooklyn Nets at Orlando Magic" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Nic Claxton</div>
+        <div class="headline">NBA: Brooklyn Nets at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28165007.jpg" alt="NBA: Washington Wizards at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Sharife Cooper</div>
+        <div class="headline">NBA: Washington Wizards at Detroit Pistons</div>
+        <div class="credit">📷 David Reginek · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28165011.jpg" alt="NBA: Washington Wizards at Detroit Pistons" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Sharife Cooper</div>
+        <div class="headline">NBA: Washington Wizards at Detroit Pistons</div>
+        <div class="credit">📷 David Reginek · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28160719.jpg" alt="NBA: Oklahoma City Thunder at San Antonio Spurs" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Victor Wembanyama</div>
+        <div class="headline">NBA: Oklahoma City Thunder at San Antonio Spurs</div>
+        <div class="credit">📷 Scott Wachter · Imagn Images · Feb 04, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28158209.jpg" alt="NBA: New Orleans Pelicans at Milwaukee Bucks" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Zion Williamson</div>
+        <div class="headline">NBA: New Orleans Pelicans at Milwaukee Bucks</div>
+        <div class="credit">📷 Jeff Hanisch · Imagn Images · Feb 04, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28160707.jpg" alt="NBA: Oklahoma City Thunder at San Antonio Spurs" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Stephon Castle</div>
+        <div class="headline">NBA: Oklahoma City Thunder at San Antonio Spurs</div>
+        <div class="credit">📷 Scott Wachter · Imagn Images · Feb 04, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28160723.jpg" alt="NBA: Oklahoma City Thunder at San Antonio Spurs" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jaylin Williams</div>
+        <div class="headline">NBA: Oklahoma City Thunder at San Antonio Spurs</div>
+        <div class="credit">📷 Scott Wachter · Imagn Images · Feb 04, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28155811.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jakob Poeltl</div>
+        <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 04, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28155808.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Bones Hyland</div>
+        <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 04, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28155804.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Donte DiVincenzo</div>
+        <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 04, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28155806.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Scottie Barnes</div>
+        <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 04, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28155800.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Anthony Edwards</div>
+        <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 04, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28155798.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Jamal Shead</div>
+        <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 04, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28155803.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Gradey Dick</div>
+        <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 04, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28155796.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Julius Randle</div>
+        <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 04, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28155797.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Garrett Temple</div>
+        <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 04, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28149873.jpg" alt="NBA: Atlanta Hawks at Miami Heat" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Zaccharie Risacher</div>
+        <div class="headline">NBA: Atlanta Hawks at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Feb 03, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28147915.jpg" alt="NBA: Phoenix Suns at Portland Trail Blazers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Yang Hansen</div>
+        <div class="headline">NBA: Phoenix Suns at Portland Trail Blazers</div>
+        <div class="credit">📷 Jaime Valdez · Imagn Images · Feb 03, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28148038.jpg" alt="NBA: Phoenix Suns at Portland Trail Blazers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Javonte Cooke</div>
+        <div class="headline">NBA: Phoenix Suns at Portland Trail Blazers</div>
+        <div class="credit">📷 Jaime Valdez · Imagn Images · Feb 03, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28145470.jpg" alt="NBA: Philadelphia 76ers at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">John Collins</div>
+        <div class="headline">NBA: Philadelphia 76ers at Los Angeles Clippers</div>
+        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Feb 02, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28145471.jpg" alt="NBA: Philadelphia 76ers at Los Angeles Clippers" loading="lazy"></div>
+    <div class="meta">
+        <div class="player">Kawhi Leonard</div>
+        <div class="headline">NBA: Philadelphia 76ers at Los Angeles Clippers</div>
+        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Feb 02, 2026</div>
+    </div>
+</div>
+        </div>
+    </section>
+</main>
+
+
+<div class="lightbox" id="lightbox">
+    <span class="close">&times;</span>
+    <span class="nav prev">&#10094;</span>
+    <span class="nav next">&#10095;</span>
+    <span class="counter"></span>
+    <img src="" alt="">
+    <div class="info">
+        <div class="lb-player"></div>
+        <div class="lb-headline"></div>
+        <div class="lb-credit"></div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="container">
+        Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
+    </div>
+</footer>
+
+<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/28185474.jpg", "player_name": "Nikola Jokic", "headline": "NBA: Denver Nuggets at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2026-02-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28184215.jpg", "player_name": "Guerschon Yabusele", "headline": "NBA: Denver Nuggets at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2026-02-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28184183.jpg", "player_name": "Lachlan Olbrich", "headline": "NBA: Denver Nuggets at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2026-02-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28185038.jpg", "player_name": "Ace Bailey", "headline": "NBA: Utah Jazz at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2026-02-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28185007.jpg", "player_name": "Jase Richardson", "headline": "NBA: Utah Jazz at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2026-02-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28185024.jpg", "player_name": "Jett Howard", "headline": "NBA: Utah Jazz at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2026-02-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28185011.jpg", "player_name": "Jusuf Nurkic", "headline": "NBA: Utah Jazz at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2026-02-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28185034.jpg", "player_name": "Lauri Markkanen", "headline": "NBA: Utah Jazz at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2026-02-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28174334.jpg", "player_name": "Cade Cunningham", "headline": "NBA: New York Knicks at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2026-02-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28174336.jpg", "player_name": "Jalen Brunson", "headline": "NBA: New York Knicks at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2026-02-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28174335.jpg", "player_name": "Mikal Bridges", "headline": "NBA: New York Knicks at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2026-02-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28175750.jpg", "player_name": "Anthony Edwards", "headline": "NBA: New Orleans Pelicans at Minnesota Timberwolves", "photographer": "Jesse Johnson", "source": "Imagn Images", "photo_date": "2026-02-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28167636.jpg", "player_name": "Guerschon Yabusele", "headline": "NBA: Chicago Bulls at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2026-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28167616.jpg", "player_name": "Jamal Shead", "headline": "NBA: Chicago Bulls at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2026-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28167628.jpg", "player_name": "Jaden Ivey", "headline": "NBA: Chicago Bulls at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2026-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28167631.jpg", "player_name": "Mac McClung", "headline": "NBA: Chicago Bulls at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2026-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28167614.jpg", "player_name": "Jalen Smith", "headline": "NBA: Chicago Bulls at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2026-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28167619.jpg", "player_name": "Scottie Barnes", "headline": "NBA: Chicago Bulls at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2026-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28167612.jpg", "player_name": "Matas Buzelis", "headline": "NBA: Chicago Bulls at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2026-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28166525.jpg", "player_name": "Noah Penda", "headline": "NBA: Brooklyn Nets at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2026-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28166526.jpg", "player_name": "Ziaire Williams", "headline": "NBA: Brooklyn Nets at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2026-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28167621.jpg", "player_name": "Isaac Okoro", "headline": "NBA: Chicago Bulls at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2026-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28166521.jpg", "player_name": "Egor Demin", "headline": "NBA: Brooklyn Nets at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2026-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28166524.jpg", "player_name": "Wendell Carter Jr", "headline": "NBA: Brooklyn Nets at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2026-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28166527.jpg", "player_name": "Nic Claxton", "headline": "NBA: Brooklyn Nets at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2026-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28165007.jpg", "player_name": "Sharife Cooper", "headline": "NBA: Washington Wizards at Detroit Pistons", "photographer": "David Reginek", "source": "Imagn Images", "photo_date": "2026-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28165011.jpg", "player_name": "Sharife Cooper", "headline": "NBA: Washington Wizards at Detroit Pistons", "photographer": "David Reginek", "source": "Imagn Images", "photo_date": "2026-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28160719.jpg", "player_name": "Victor Wembanyama", "headline": "NBA: Oklahoma City Thunder at San Antonio Spurs", "photographer": "Scott Wachter", "source": "Imagn Images", "photo_date": "2026-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28158209.jpg", "player_name": "Zion Williamson", "headline": "NBA: New Orleans Pelicans at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2026-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28160707.jpg", "player_name": "Stephon Castle", "headline": "NBA: Oklahoma City Thunder at San Antonio Spurs", "photographer": "Scott Wachter", "source": "Imagn Images", "photo_date": "2026-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28160723.jpg", "player_name": "Jaylin Williams", "headline": "NBA: Oklahoma City Thunder at San Antonio Spurs", "photographer": "Scott Wachter", "source": "Imagn Images", "photo_date": "2026-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28155811.jpg", "player_name": "Jakob Poeltl", "headline": "NBA: Minnesota Timberwolves at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2026-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28155808.jpg", "player_name": "Bones Hyland", "headline": "NBA: Minnesota Timberwolves at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2026-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28155804.jpg", "player_name": "Donte DiVincenzo", "headline": "NBA: Minnesota Timberwolves at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2026-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28155806.jpg", "player_name": "Scottie Barnes", "headline": "NBA: Minnesota Timberwolves at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2026-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28155800.jpg", "player_name": "Anthony Edwards", "headline": "NBA: Minnesota Timberwolves at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2026-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28155798.jpg", "player_name": "Jamal Shead", "headline": "NBA: Minnesota Timberwolves at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2026-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28155803.jpg", "player_name": "Gradey Dick", "headline": "NBA: Minnesota Timberwolves at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2026-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28155796.jpg", "player_name": "Julius Randle", "headline": "NBA: Minnesota Timberwolves at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2026-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28155797.jpg", "player_name": "Garrett Temple", "headline": "NBA: Minnesota Timberwolves at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2026-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28149873.jpg", "player_name": "Zaccharie Risacher", "headline": "NBA: Atlanta Hawks at Miami Heat", "photographer": "Rhona Wise", "source": "Imagn Images", "photo_date": "2026-02-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28147915.jpg", "player_name": "Yang Hansen", "headline": "NBA: Phoenix Suns at Portland Trail Blazers", "photographer": "Jaime Valdez", "source": "Imagn Images", "photo_date": "2026-02-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28148038.jpg", "player_name": "Javonte Cooke", "headline": "NBA: Phoenix Suns at Portland Trail Blazers", "photographer": "Jaime Valdez", "source": "Imagn Images", "photo_date": "2026-02-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28145470.jpg", "player_name": "John Collins", "headline": "NBA: Philadelphia 76ers at Los Angeles Clippers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2026-02-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/28145471.jpg", "player_name": "Kawhi Leonard", "headline": "NBA: Philadelphia 76ers at Los Angeles Clippers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2026-02-02"}];</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const photos = window.galleryPhotos || [];
+    let currentIndex = 0;
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox || photos.length === 0) return;
+    const lbImg = lightbox.querySelector('img');
+    const lbPlayer = lightbox.querySelector('.lb-player');
+    const lbHeadline = lightbox.querySelector('.lb-headline');
+    const lbCredit = lightbox.querySelector('.lb-credit');
+    const counter = lightbox.querySelector('.counter');
+    function formatDate(dateStr) {
+        if (!dateStr) return '';
+        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
+        catch(e) { return dateStr; }
+    }
+    function showPhoto() {
+        const p = photos[currentIndex];
+        lbImg.src = p.image_url;
+        lbPlayer.textContent = p.player_name || 'NBA';
+        lbHeadline.textContent = p.headline || '';
+        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
+        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
+    }
+    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
+    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
+    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
+    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
+    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
+    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
+    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
+    let touchStartX = 0;
+    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
+});
+</script>
+</body>
+</html>
