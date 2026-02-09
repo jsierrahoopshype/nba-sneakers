@@ -69,71 +69,59 @@ PLAYER_SIGNATURES = {
 
 
 # Affiliate program configuration
-# Priority order and commission rates
+# Real credentials for HoopsHype
+
+# Sovrn API Key (for GOAT, Foot Locker, Finish Line, Dick's)
+SOVRN_API_KEY = "530e01008149e736f5173d2766644aff"
+
+# Impact/StockX Partner ID
+STOCKX_PARTNER_ID = "2686854"
+
 AFFILIATE_PROGRAMS = {
     "stockx": {
         "name": "StockX",
-        "base_url": "https://stockx.com/search?s=",
+        "base_url": "https://stockx.pxf.io/c/{partner_id}/1192164/9498?subId1=nbasneakers&u=https://stockx.com/search?s=",
+        "partner_id": STOCKX_PARTNER_ID,
         "commission": 0.08,  # 8%
-        "tag": "hoopshype-20",  # Replace with actual affiliate tag
-        "priority": 1,  # Lower = higher priority
+        "priority": 1,
         "best_for": ["rare", "limited", "retro"],
+        "network": "impact",
     },
     "goat": {
         "name": "GOAT",
-        "base_url": "https://www.goat.com/search?query=",
+        "base_url": "https://redirect.viglink.com?key={api_key}&u=https://www.goat.com/search?query=",
+        "api_key": SOVRN_API_KEY,
         "commission": 0.07,
-        "tag": "hoopshype",
         "priority": 2,
         "best_for": ["rare", "limited", "retro"],
-    },
-    "nike": {
-        "name": "Nike",
-        "base_url": "https://www.nike.com/w?q=",
-        "commission": 0.10,
-        "tag": "hoopshype",
-        "priority": 3,
-        "best_for": ["nike", "jordan", "new_release"],
+        "network": "sovrn",
     },
     "footlocker": {
         "name": "Foot Locker",
-        "base_url": "https://www.footlocker.com/search?query=",
+        "base_url": "https://redirect.viglink.com?key={api_key}&u=https://www.footlocker.com/search?query=",
+        "api_key": SOVRN_API_KEY,
         "commission": 0.06,
-        "tag": "hoopshype",
-        "priority": 4,
+        "priority": 3,
         "best_for": ["general", "availability"],
+        "network": "sovrn",
     },
     "finishline": {
         "name": "Finish Line",
-        "base_url": "https://www.finishline.com/store/search?query=",
+        "base_url": "https://redirect.viglink.com?key={api_key}&u=https://www.finishline.com/store/search?query=",
+        "api_key": SOVRN_API_KEY,
         "commission": 0.06,
-        "tag": "hoopshype",
-        "priority": 5,
+        "priority": 4,
         "best_for": ["general", "availability"],
+        "network": "sovrn",
     },
     "dickssporting": {
         "name": "Dick's Sporting Goods",
-        "base_url": "https://www.dickssportinggoods.com/search/SearchDisplay?searchTerm=",
+        "base_url": "https://redirect.viglink.com?key={api_key}&u=https://www.dickssportinggoods.com/search/SearchDisplay?searchTerm=",
+        "api_key": SOVRN_API_KEY,
         "commission": 0.05,
-        "tag": "hoopshype",
-        "priority": 6,
+        "priority": 5,
         "best_for": ["general", "performance"],
-    },
-    "amazon": {
-        "name": "Amazon",
-        "base_url": "https://www.amazon.com/s?k=",
-        "commission": 0.04,
-        "tag": "hoopshype-20",
-        "priority": 7,
-        "best_for": ["general", "variety"],
-    },
-    "ebay": {
-        "name": "eBay",
-        "base_url": "https://www.ebay.com/sch/i.html?_nkw=",
-        "commission": 0.04,
-        "tag": "hoopshype",
-        "priority": 8,
-        "best_for": ["used", "rare", "deals"],
+        "network": "sovrn",
     },
 }
 
@@ -255,7 +243,10 @@ class AffiliateRouter:
             confidence = "latest_model"
         
         links = []
-        search_term = shoe_name.replace(' ', '+')
+        
+        # URL encode the search term
+        import urllib.parse
+        search_term = urllib.parse.quote_plus(shoe_name)
         
         # Sort programs by priority
         sorted_programs = sorted(
@@ -264,9 +255,18 @@ class AffiliateRouter:
         )
         
         for program_id, config in sorted_programs[:num_links]:
-            url = f"{config['base_url']}{search_term}"
-            if config.get('tag'):
-                url += f"&tag={config['tag']}"
+            # Build URL based on network type
+            if config.get('network') == 'impact':
+                # StockX via Impact
+                url = config['base_url'].format(partner_id=config['partner_id'])
+                url += search_term
+            elif config.get('network') == 'sovrn':
+                # GOAT, Foot Locker, Finish Line, Dick's via Sovrn/VigLink
+                base = config['base_url'].format(api_key=config['api_key'])
+                url = base + search_term
+            else:
+                # Fallback for any other network
+                url = config['base_url'] + search_term
             
             links.append(AffiliateLink(
                 url=url,
