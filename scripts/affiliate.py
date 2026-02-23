@@ -35,33 +35,33 @@ PLAYER_SIGNATURES = {
     "Devin Booker": [("Book 1", "Nike", "Nike Book")],
     "Ja Morant": [("Ja", "Nike", "Nike Ja")],
     "Sabrina Ionescu": [("Sabrina", "Nike", "Nike Sabrina")],
-    
+
     # Jordan Athletes
     "Luka Doncic": [("Jordan Luka", "Jordan", "Jordan Luka")],
     "Jayson Tatum": [("Jordan Tatum", "Jordan", "Jordan Tatum")],
     "Zion Williamson": [("Jordan Zion", "Jordan", "Jordan Zion")],
-    
+
     # Adidas Athletes
     "James Harden": [("Harden", "Adidas", "Adidas Harden")],
     "Damian Lillard": [("Dame", "Adidas", "Adidas Dame")],
     "Anthony Edwards": [("AE", "Adidas", "Adidas AE1")],
     "Trae Young": [("Trae Young", "Adidas", "Adidas Trae Young")],
-    
+
     # Under Armour Athletes
     "Stephen Curry": [("Curry", "Under Armour", "Under Armour Curry")],
     "Joel Embiid": [("Embiid", "Under Armour", "Under Armour Embiid")],
-    
+
     # Puma Athletes
     "LaMelo Ball": [("MB", "Puma", "Puma MB")],
     "Scoot Henderson": [("Scoot", "Puma", "Puma Scoot")],
-    
+
     # New Balance Athletes
     "Kawhi Leonard": [("Kawhi", "New Balance", "New Balance Kawhi")],
     "Jamal Murray": [("Two WXY", "New Balance", "New Balance Two WXY")],
-    
+
     # Converse Athletes
     "Draymond Green": [("All Star Pro BB", "Converse", "Converse All Star BB")],
-    
+
     # Anta Athletes
     "Kyrie Irving": [("Anta Kai", "Anta", "Anta Kyrie Kai")],
     "Klay Thompson": [("KT", "Anta", "Anta KT")],
@@ -85,7 +85,7 @@ AFFILIATE_PROGRAMS = {
         "search_url": "https://stockx.com/search",
         "tracking_params": {
             "utm_source": "impact",
-            "utm_medium": "affiliate", 
+            "utm_medium": "affiliate",
             "ir_campaignid": STOCKX_CAMPAIGN_ID,
             "ir_adid": STOCKX_AD_ID,
             "ir_partnerid": STOCKX_PARTNER_ID,
@@ -131,7 +131,7 @@ AFFILIATE_PROGRAMS = {
 
 class ShoeIdentifier:
     """Identifies shoes from photo captions and metadata"""
-    
+
     # Common shoe model patterns
     SHOE_PATTERNS = [
         # Nike patterns
@@ -143,43 +143,43 @@ class ShoeIdentifier:
         (r'Nike\s+(Kobe\s*\d+)', 'Nike', 'Kobe'),
         (r'Nike\s+(PG\s*\d+)', 'Nike', 'PG'),
         (r'Nike\s+(Kyrie\s*\d+)', 'Nike', 'Kyrie'),
-        
+
         # Jordan patterns
         (r'(Jordan\s+Luka\s*\d*)', 'Jordan', 'Luka'),
         (r'(Jordan\s+Tatum\s*\d*)', 'Jordan', 'Tatum'),
         (r'(Jordan\s+Zion\s*\d*)', 'Jordan', 'Zion'),
         (r'(Air\s+Jordan\s*\d+)', 'Jordan', 'Air Jordan'),
         (r'(Jordan\s*\d+)', 'Jordan', 'Air Jordan'),
-        
+
         # Adidas patterns
         (r'Adidas\s+(Harden\s*(?:Vol\.?\s*)?\d*)', 'Adidas', 'Harden'),
         (r'Adidas\s+(Dame\s*\d+)', 'Adidas', 'Dame'),
         (r'Adidas\s+(AE\s*\d*)', 'Adidas', 'AE'),
         (r'Adidas\s+(Trae\s+Young\s*\d*)', 'Adidas', 'Trae Young'),
-        
+
         # Under Armour patterns
         (r'Under\s+Armour\s+(Curry\s*\d+)', 'Under Armour', 'Curry'),
         (r'(Curry\s+Flow\s*\d*)', 'Under Armour', 'Curry'),
         (r'Under\s+Armour\s+(Embiid\s*\d*)', 'Under Armour', 'Embiid'),
-        
+
         # Puma patterns
         (r'Puma\s+(MB\.?\s*\d+)', 'Puma', 'MB'),
         (r'Puma\s+(Scoot\s*\d*)', 'Puma', 'Scoot'),
-        
+
         # New Balance patterns
         (r'New\s+Balance\s+(Kawhi\s*\d*)', 'New Balance', 'Kawhi'),
         (r'New\s+Balance\s+(Two\s+WXY)', 'New Balance', 'Two WXY'),
-        
+
         # Anta patterns
         (r'Anta\s+(Kai\s*\d*)', 'Anta', 'Kai'),
         (r'Anta\s+(KT\s*\d+)', 'Anta', 'KT'),
     ]
-    
+
     def identify_shoe(self, caption: str, player_name: str) -> Tuple[Optional[str], str]:
         """
         Identify shoe from caption text.
         Returns (shoe_name, confidence_level)
-        
+
         Confidence levels:
         - exact_match: Found specific shoe model in caption
         - closest_match: Found shoe line but not exact model
@@ -187,16 +187,16 @@ class ShoeIdentifier:
         """
         if not caption:
             return self._get_player_signature(player_name), "latest_model"
-        
+
         caption_upper = caption.upper()
-        
+
         # Try to find exact shoe model
         for pattern, brand, line in self.SHOE_PATTERNS:
             match = re.search(pattern, caption, re.IGNORECASE)
             if match:
                 shoe_name = match.group(1).strip()
                 return f"{brand} {shoe_name}", "exact_match"
-        
+
         # Check for brand mentions without specific model
         brands = ['Nike', 'Jordan', 'Adidas', 'Under Armour', 'Puma', 'New Balance', 'Anta', 'Converse', 'Li-Ning']
         for brand in brands:
@@ -205,10 +205,10 @@ class ShoeIdentifier:
                 sig = self._get_player_signature_for_brand(player_name, brand)
                 if sig:
                     return sig, "closest_match"
-        
+
         # Fall back to player's signature shoe
         return self._get_player_signature(player_name), "latest_model"
-    
+
     def _get_player_signature(self, player_name: str) -> Optional[str]:
         """Get player's primary signature shoe"""
         if player_name in PLAYER_SIGNATURES:
@@ -216,7 +216,7 @@ class ShoeIdentifier:
             if sigs:
                 return f"{sigs[0][1]} {sigs[0][0]}"
         return None
-    
+
     def _get_player_signature_for_brand(self, player_name: str, brand: str) -> Optional[str]:
         """Get player's signature for specific brand"""
         if player_name in PLAYER_SIGNATURES:
@@ -228,35 +228,35 @@ class ShoeIdentifier:
 
 class AffiliateRouter:
     """Routes to best affiliate program based on shoe and context"""
-    
+
     def __init__(self):
         self.identifier = ShoeIdentifier()
-    
-    def get_affiliate_links(self, caption: str, player_name: str, 
+
+    def get_affiliate_links(self, caption: str, player_name: str,
                            num_links: int = 3) -> List[AffiliateLink]:
         """
         Get ranked affiliate links for a shoe.
         Returns multiple options for comparison shopping.
         """
         shoe_name, confidence = self.identifier.identify_shoe(caption, player_name)
-        
+
         if not shoe_name:
             # No shoe identified, use generic basketball shoe search
             shoe_name = f"{player_name} basketball shoes"
             confidence = "latest_model"
-        
+
         links = []
-        
+
         # URL encode the search term
         import urllib.parse
         search_term = urllib.parse.quote_plus(shoe_name)
-        
+
         # Sort programs by priority
         sorted_programs = sorted(
             AFFILIATE_PROGRAMS.items(),
             key=lambda x: x[1]['priority']
         )
-        
+
         for program_id, config in sorted_programs[:num_links]:
             # Build URL based on network type
             if config.get('network') == 'impact':
@@ -277,7 +277,7 @@ class AffiliateRouter:
                     url = f"{config['search_url']}?searchTerm={search_term}"
                 else:
                     url = f"{config['search_url']}?q={search_term}"
-            
+
             links.append(AffiliateLink(
                 url=url,
                 program=config['name'],
@@ -286,31 +286,31 @@ class AffiliateRouter:
                 player_name=player_name,
                 commission_rate=config['commission']
             ))
-        
+
         return links
-    
+
     def get_best_link(self, caption: str, player_name: str) -> AffiliateLink:
         """Get single best affiliate link"""
         links = self.get_affiliate_links(caption, player_name, num_links=1)
         return links[0] if links else None
-    
-    def get_buy_button_html(self, caption: str, player_name: str, 
+
+    def get_buy_button_html(self, caption: str, player_name: str,
                            position: str = "inline") -> str:
         """
         Generate HTML for buy button module.
-        
+
         Position options:
         - inline: Small button within timeline
         - featured: Larger module with multiple options
         - sidebar: Compact sidebar widget
         """
         links = self.get_affiliate_links(caption, player_name, num_links=3)
-        
+
         if not links:
             return ""
-        
+
         primary = links[0]
-        
+
         # Confidence badge
         confidence_badges = {
             "exact_match": ("✓ Exact Match", "badge-success"),
@@ -318,10 +318,10 @@ class AffiliateRouter:
             "latest_model": ("★ Latest Model", "badge-info"),
         }
         badge_text, badge_class = confidence_badges.get(
-            primary.confidence, 
+            primary.confidence,
             ("Shop Now", "badge-default")
         )
-        
+
         if position == "inline":
             return f'''
 <div class="affiliate-module inline">
@@ -331,7 +331,7 @@ class AffiliateRouter:
         <span class="{badge_class}">{badge_text}</span>
     </a>
 </div>'''
-        
+
         elif position == "featured":
             secondary_html = ""
             if len(links) > 1:
@@ -340,7 +340,7 @@ class AffiliateRouter:
                 for link in links[1:]:
                     secondary_html += f'<a href="{link.url}" target="_blank" rel="noopener sponsored" class="compare-link">{link.program}</a>'
                 secondary_html += '</div>'
-            
+
             return f'''
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -356,7 +356,7 @@ class AffiliateRouter:
     </a>
     {secondary_html}
 </div>'''
-        
+
         else:  # sidebar
             return f'''
 <div class="affiliate-module sidebar">
@@ -577,14 +577,14 @@ def get_tracking_js() -> str:
 // Price Tracking Module
 const PriceTracker = {
     tracks: JSON.parse(localStorage.getItem('shoeTracking') || '[]'),
-    
+
     addTrack: function(shoe, player) {
         const track = { shoe, player, added: new Date().toISOString() };
         this.tracks.push(track);
         localStorage.setItem('shoeTracking', JSON.stringify(this.tracks));
         this.showConfirmation(shoe);
     },
-    
+
     showConfirmation: function(shoe) {
         const toast = document.createElement('div');
         toast.className = 'track-toast';
@@ -593,7 +593,7 @@ const PriceTracker = {
             <small>We'll notify you of price drops</small>
         `;
         document.body.appendChild(toast);
-        
+
         setTimeout(() => toast.classList.add('show'), 100);
         setTimeout(() => {
             toast.classList.remove('show');
@@ -626,11 +626,11 @@ def should_insert_affiliate(photo_index: int) -> bool:
     return photo_index in AFFILIATE_POSITIONS
 
 
-def get_affiliate_module_for_position(photo_index: int, caption: str, 
+def get_affiliate_module_for_position(photo_index: int, caption: str,
                                       player_name: str) -> str:
     """Get appropriate affiliate module based on position"""
     router = AffiliateRouter()
-    
+
     if photo_index == 1:
         # Top of page - featured module
         return router.get_buy_button_html(caption, player_name, "featured")
@@ -645,13 +645,13 @@ def get_affiliate_module_for_position(photo_index: int, caption: str,
 if __name__ == '__main__':
     # Test the module
     router = AffiliateRouter()
-    
+
     test_cases = [
         ("A detailed view of the Nike LeBron 21 worn by LeBron James", "LeBron James"),
         ("Stephen Curry wears Curry Flow 10", "Stephen Curry"),
         ("Generic shoe photo at the game", "Unknown Player"),
     ]
-    
+
     for caption, player in test_cases:
         print(f"\n=== {player} ===")
         print(f"Caption: {caption}")
