@@ -80,7 +80,10 @@ class SiteGenerator:
         
         # Generate search index JSON
         self._generate_search_index()
-        
+
+        # Generate robots.txt
+        self._generate_robots_txt()
+
         print(f"Site generated in {self.output_dir}/", file=sys.stderr)
     
     def _write_file(self, path: str, content: str):
@@ -1530,7 +1533,15 @@ document.addEventListener('DOMContentLoaded', function() {
         
         self._write_file('search/players.json', json.dumps(index, indent=2, ensure_ascii=False))
         print(f"Generated search index: {len(all_players)} players", file=sys.stderr)
-    
+
+    def _generate_robots_txt(self):
+        """Generate robots.txt to block crawlers from data and search index"""
+        robots = '''User-agent: *
+Disallow: /data/
+Disallow: /search/players.json
+'''
+        self._write_file('robots.txt', robots)
+
     def _generate_player_page(self, player: Dict):
         """Generate individual player page with affiliate modules"""
         photos = self.archive.get_photos_by_player(player['slug'])
