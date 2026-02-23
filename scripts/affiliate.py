@@ -71,57 +71,60 @@ PLAYER_SIGNATURES = {
 # Affiliate program configuration
 # Real credentials for HoopsHype
 
-# Sovrn API Key (for GOAT, Foot Locker, Finish Line, Dick's)
-SOVRN_API_KEY = "530e01008149e736f5173d2766644aff"
-
-# Impact/StockX Partner ID
+# Impact/StockX tracking parameters
 STOCKX_PARTNER_ID = "2686854"
+STOCKX_CAMPAIGN_ID = "9060"
+STOCKX_AD_ID = "530344"
+
+# Sovrn API Key (for potential future use)
+SOVRN_API_KEY = "530e01008149e736f5173d2766644aff"
 
 AFFILIATE_PROGRAMS = {
     "stockx": {
         "name": "StockX",
-        "base_url": "https://stockx.pxf.io/c/{partner_id}/1192164/9498?subId1=nbasneakers&u=https://stockx.com/search?s=",
-        "partner_id": STOCKX_PARTNER_ID,
-        "commission": 0.08,  # 8%
+        "search_url": "https://stockx.com/search",
+        "tracking_params": {
+            "utm_source": "impact",
+            "utm_medium": "affiliate", 
+            "ir_campaignid": STOCKX_CAMPAIGN_ID,
+            "ir_adid": STOCKX_AD_ID,
+            "ir_partnerid": STOCKX_PARTNER_ID,
+        },
+        "commission": 0.08,
         "priority": 1,
-        "best_for": ["rare", "limited", "retro"],
         "network": "impact",
     },
     "goat": {
         "name": "GOAT",
-        "base_url": "https://redirect.viglink.com?key={api_key}&u=https://www.goat.com/search?query=",
-        "api_key": SOVRN_API_KEY,
+        "search_url": "https://www.goat.com/search",
         "commission": 0.07,
         "priority": 2,
-        "best_for": ["rare", "limited", "retro"],
         "network": "sovrn",
+        "note": "Sovrn requires manual link creation - linking direct for now",
     },
     "footlocker": {
         "name": "Foot Locker",
-        "base_url": "https://redirect.viglink.com?key={api_key}&u=https://www.footlocker.com/search?query=",
-        "api_key": SOVRN_API_KEY,
+        "search_url": "https://www.footlocker.com/search",
         "commission": 0.06,
         "priority": 3,
-        "best_for": ["general", "availability"],
         "network": "sovrn",
+        "note": "Sovrn requires manual link creation - linking direct for now",
     },
     "finishline": {
         "name": "Finish Line",
-        "base_url": "https://redirect.viglink.com?key={api_key}&u=https://www.finishline.com/store/search?query=",
-        "api_key": SOVRN_API_KEY,
+        "search_url": "https://www.finishline.com/store/search",
         "commission": 0.06,
         "priority": 4,
-        "best_for": ["general", "availability"],
         "network": "sovrn",
+        "note": "Sovrn requires manual link creation - linking direct for now",
     },
     "dickssporting": {
         "name": "Dick's Sporting Goods",
-        "base_url": "https://redirect.viglink.com?key={api_key}&u=https://www.dickssportinggoods.com/search/SearchDisplay?searchTerm=",
-        "api_key": SOVRN_API_KEY,
+        "search_url": "https://www.dickssportinggoods.com/search/SearchDisplay",
         "commission": 0.05,
         "priority": 5,
-        "best_for": ["general", "performance"],
         "network": "sovrn",
+        "note": "Sovrn requires manual link creation - linking direct for now",
     },
 }
 
@@ -257,16 +260,23 @@ class AffiliateRouter:
         for program_id, config in sorted_programs[:num_links]:
             # Build URL based on network type
             if config.get('network') == 'impact':
-                # StockX via Impact
-                url = config['base_url'].format(partner_id=config['partner_id'])
-                url += search_term
-            elif config.get('network') == 'sovrn':
-                # GOAT, Foot Locker, Finish Line, Dick's via Sovrn/VigLink
-                base = config['base_url'].format(api_key=config['api_key'])
-                url = base + search_term
+                # StockX via Impact - add tracking params to search URL
+                params = config['tracking_params'].copy()
+                params['s'] = shoe_name  # search query
+                url = config['search_url'] + '?' + urllib.parse.urlencode(params)
             else:
-                # Fallback for any other network
-                url = config['base_url'] + search_term
+                # Sovrn merchants - direct link (no tracking until we implement JS solution)
+                # Each merchant has different query param names
+                if program_id == 'goat':
+                    url = f"{config['search_url']}?query={search_term}"
+                elif program_id == 'footlocker':
+                    url = f"{config['search_url']}?query={search_term}"
+                elif program_id == 'finishline':
+                    url = f"{config['search_url']}?query={search_term}"
+                elif program_id == 'dickssporting':
+                    url = f"{config['search_url']}?searchTerm={search_term}"
+                else:
+                    url = f"{config['search_url']}?q={search_term}"
             
             links.append(AffiliateLink(
                 url=url,
@@ -345,11 +355,6 @@ class AffiliateRouter:
         Buy on {primary.program}
     </a>
     {secondary_html}
-    <div class="track-shoe">
-        <button class="track-btn" data-shoe="{primary.shoe_name}" data-player="{player_name}">
-            🔔 Track Price Drops
-        </button>
-    </div>
 </div>'''
         
         else:  # sidebar
