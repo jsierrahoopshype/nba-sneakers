@@ -772,6 +772,8 @@ a:hover { text-decoration: underline; }
     .site-nav { gap: 16px; }
     .site-nav a { font-size: 13px; }
 }
+
+img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 '''
         self._write_file('css/style.css', css)
     
@@ -779,6 +781,9 @@ a:hover { text-decoration: underline; }
         """Generate shared JavaScript"""
         # Lightbox functionality - no variable interpolation needed
         js = '''
+document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
+document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
+
 // Lightbox functionality
 document.addEventListener('DOMContentLoaded', function() {
     const photos = window.galleryPhotos || [];
@@ -1058,9 +1063,12 @@ a:hover { text-decoration: underline; }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
 @media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 '''
-        
+
         js = '''
+document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
+document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('DOMContentLoaded', function() {
     const photos = window.galleryPhotos || [];
     let currentIndex = 0;
