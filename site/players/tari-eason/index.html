@@ -138,9 +138,8 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-.track-btn { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
-.track-btn:hover { border-color: white; color: white; }
 @media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
 <body>
@@ -282,6 +281,8 @@ a:hover { text-decoration: underline; }
 
 <script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/27449948.jpg", "player_name": "Tari Eason", "headline": "NBA: Houston Rockets at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2025-10-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25715383.jpg", "player_name": "Tari Eason", "headline": "NBA: Houston Rockets at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2025-03-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25372519.jpg", "player_name": "Tari Eason", "headline": "NBA: Houston Rockets at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2025-02-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/22135237.jpg", "player_name": "Tari Eason", "headline": "NBA: Houston Rockets at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2023-12-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20418279.jpg", "player_name": "Tari Eason", "headline": "NBA: Houston Rockets at Charlotte Hornets", "photographer": "Jim Dedmon", "source": "Imagn Images", "photo_date": "2023-04-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20325140.jpg", "player_name": "Tari Eason", "headline": "NBA: Houston Rockets at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2023-03-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20081126.jpg", "player_name": "Tari Eason", "headline": "NBA: Houston Rockets at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2023-02-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20005795.jpg", "player_name": "Tari Eason", "headline": "NBA: Houston Rockets at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-02-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19926575.jpg", "player_name": "Tari Eason", "headline": "NBA: Houston Rockets at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19878554.jpg", "player_name": "Tari Eason", "headline": "NBA: Houston Rockets at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2023-01-28"}];</script>
 <script>
+document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
+document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('DOMContentLoaded', function() {
     const photos = window.galleryPhotos || [];
     let currentIndex = 0;
