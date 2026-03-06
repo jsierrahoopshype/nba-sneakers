@@ -80,7 +80,10 @@ class SiteGenerator:
         
         # Generate search index JSON
         self._generate_search_index()
-        
+
+        # Generate robots.txt
+        self._generate_robots_txt()
+
         print(f"Site generated in {self.output_dir}/", file=sys.stderr)
     
     def _write_file(self, path: str, content: str):
@@ -747,51 +750,6 @@ a:hover { text-decoration: underline; }
     text-decoration: underline;
 }
 .compare-link:hover { color: white; }
-.track-shoe {
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-}
-.track-btn {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.3);
-    color: rgba(255,255,255,0.8);
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 13px;
-    transition: all 0.2s;
-}
-.track-btn:hover {
-    border-color: white;
-    color: white;
-}
-
-/* Toast notifications */
-.track-toast {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: var(--primary);
-    color: white;
-    padding: 16px 20px;
-    border-radius: 8px;
-    box-shadow: var(--shadow-hover);
-    transform: translateY(100px);
-    opacity: 0;
-    transition: all 0.3s ease;
-    z-index: 9999;
-}
-.track-toast.show {
-    transform: translateY(0);
-    opacity: 1;
-}
-.track-toast small {
-    display: block;
-    font-size: 12px;
-    opacity: 0.7;
-    margin-top: 4px;
-}
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -817,6 +775,8 @@ a:hover { text-decoration: underline; }
     .site-nav { gap: 16px; }
     .site-nav a { font-size: 13px; }
 }
+
+img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 '''
         self._write_file('css/style.css', css)
     
@@ -824,6 +784,9 @@ a:hover { text-decoration: underline; }
         """Generate shared JavaScript"""
         # Lightbox functionality - no variable interpolation needed
         js = '''
+document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
+document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
+
 // Lightbox functionality
 document.addEventListener('DOMContentLoaded', function() {
     const photos = window.galleryPhotos || [];
@@ -963,33 +926,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Price Tracking
-const PriceTracker = {
-    tracks: JSON.parse(localStorage.getItem('shoeTracking') || '[]'),
-    addTrack: function(shoe, player) {
-        this.tracks.push({ shoe, player, added: new Date().toISOString() });
-        localStorage.setItem('shoeTracking', JSON.stringify(this.tracks));
-        this.showConfirmation(shoe);
-    },
-    showConfirmation: function(shoe) {
-        const toast = document.createElement('div');
-        toast.className = 'track-toast';
-        toast.innerHTML = '<span>🔔 Now tracking: ' + shoe + '</span><small>We\\'ll notify you of price drops</small>';
-        document.body.appendChild(toast);
-        setTimeout(() => toast.classList.add('show'), 100);
-        setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3000);
-    }
-};
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.track-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            PriceTracker.addTrack(this.dataset.shoe, this.dataset.player);
-            this.textContent = '✓ Tracking';
-            this.disabled = true;
-        });
-    });
-});
 '''
         self._write_file('js/gallery.js', js)
     
@@ -1129,12 +1065,13 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-.track-btn { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
-.track-btn:hover { border-color: white; color: white; }
 @media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 '''
-        
+
         js = '''
+document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
+document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('DOMContentLoaded', function() {
     const photos = window.galleryPhotos || [];
     let currentIndex = 0;
@@ -1596,7 +1533,15 @@ document.addEventListener('DOMContentLoaded', function() {
         
         self._write_file('search/players.json', json.dumps(index, indent=2, ensure_ascii=False))
         print(f"Generated search index: {len(all_players)} players", file=sys.stderr)
-    
+
+    def _generate_robots_txt(self):
+        """Generate robots.txt to block crawlers from data and search index"""
+        robots = '''User-agent: *
+Disallow: /data/
+Disallow: /search/players.json
+'''
+        self._write_file('robots.txt', robots)
+
     def _generate_player_page(self, player: Dict):
         """Generate individual player page with affiliate modules"""
         photos = self.archive.get_photos_by_player(player['slug'])
