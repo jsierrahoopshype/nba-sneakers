@@ -1093,7 +1093,8 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         photographer = escape(photo.get('photographer') or 'Imagn')
         source = escape(photo.get('source') or 'USA TODAY Sports')
         date = photo.get('photo_date', '')
-        thumb = escape(photo.get('thumbnail_url') or photo.get('image_url', ''))
+        thumb_url = photo.get('thumbnail_url') or (f"https://www.imagn.com/image/thumb/800-750/{imagn_id}.jpg" if imagn_id else '')
+        thumb = escape(thumb_url)
 
         try:
             date_obj = datetime.strptime(date, '%Y-%m-%d')
@@ -1485,7 +1486,7 @@ Disallow: /search/players.json
         caption = escape(photo.get('caption') or '')
         photographer = escape(photo.get('photographer') or 'Imagn')
         source = escape(photo.get('source') or 'USA TODAY Sports')
-        image_url = escape(photo.get('image_url', ''))
+        image_url = escape(photo.get('thumbnail_url') or f"https://www.imagn.com/image/thumb/800-750/{imagn_id}.jpg")
         date = photo.get('photo_date', '')
 
         try:
