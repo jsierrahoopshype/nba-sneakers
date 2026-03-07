@@ -249,7 +249,7 @@ class AffiliateRouter:
         
         # URL encode the search term
         import urllib.parse
-        search_term = urllib.parse.quote_plus(shoe_name)
+        search_term_encoded = urllib.parse.quote_plus(shoe_name)
         
         # Sort programs by priority
         sorted_programs = sorted(
@@ -264,19 +264,26 @@ class AffiliateRouter:
                 params = config['tracking_params'].copy()
                 params['s'] = shoe_name  # search query
                 url = config['search_url'] + '?' + urllib.parse.urlencode(params)
-            else:
-                # Sovrn merchants - direct link (no tracking until we implement JS solution)
-                # Each merchant has different query param names
+            elif config.get('network') == 'sovrn':
+                # Sovrn merchants - wrap destination URL with sovrn.co redirect
+                # Build the destination URL first
                 if program_id == 'goat':
-                    url = f"{config['search_url']}?query={search_term}"
+                    dest_url = f"https://www.goat.com/search?query={search_term_encoded}"
                 elif program_id == 'footlocker':
-                    url = f"{config['search_url']}?query={search_term}"
+                    dest_url = f"https://www.footlocker.com/search?query={search_term_encoded}"
                 elif program_id == 'finishline':
-                    url = f"{config['search_url']}?query={search_term}"
+                    dest_url = f"https://www.finishline.com/store/search?query={search_term_encoded}"
                 elif program_id == 'dickssporting':
-                    url = f"{config['search_url']}?searchTerm={search_term}"
+                    dest_url = f"https://www.dickssportinggoods.com/search/SearchDisplay?searchTerm={search_term_encoded}"
                 else:
-                    url = f"{config['search_url']}?q={search_term}"
+                    dest_url = f"{config['search_url']}?q={search_term_encoded}"
+                
+                # Wrap with Sovrn redirect
+                encoded_dest = urllib.parse.quote(dest_url, safe='')
+                url = f"https://sovrn.co?key={SOVRN_API_KEY}&u={encoded_dest}"
+            else:
+                # Fallback - direct link
+                url = f"{config['search_url']}?q={search_term_encoded}"
             
             links.append(AffiliateLink(
                 url=url,
