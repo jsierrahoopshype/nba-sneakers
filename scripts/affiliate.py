@@ -229,14 +229,6 @@ class AffiliateRouter:
 </div>'''
         
         elif position == "featured":
-            secondary_html = ""
-            if len(links) > 1:
-                secondary_html = '<div class="compare-prices">'
-                secondary_html += '<span class="compare-label">Compare prices:</span>'
-                for link in links[1:]:
-                    secondary_html += f'<a href="{link.url}" target="_blank" rel="noopener sponsored" class="compare-link">{link.program}</a>'
-                secondary_html += '</div>'
-            
             return f'''
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -250,7 +242,6 @@ class AffiliateRouter:
     <a href="{primary.url}" target="_blank" rel="noopener sponsored" class="buy-btn large">
         Buy on {primary.program}
     </a>
-    {secondary_html}
 </div>'''
         
         else:

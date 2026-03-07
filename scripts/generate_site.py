@@ -812,19 +812,31 @@ document.addEventListener('DOMContentLoaded', function() {
     var searchInput = document.getElementById('quick-search');
     var resultsDiv = document.getElementById('quick-results');
 
-    if (!searchInput || !resultsDiv) return;
+    if (!searchInput || !resultsDiv) {
+        console.log('[Search] Missing elements - searchInput:', !!searchInput, 'resultsDiv:', !!resultsDiv);
+        return;
+    }
 
     var players = [];
 
     // 1. Fetch player index on page load
-    fetch(BASE_URL + "/search/players.json")
-        .then(function(r) { return r.json(); })
-        .then(function(data) { players = data.players || []; })
-        .catch(function(e) { console.log('Could not load player index', e); });
+    var fetchUrl = BASE_URL + "/search/players.json";
+    console.log('[Search] Fetching player index from:', fetchUrl);
+    fetch(fetchUrl)
+        .then(function(r) {
+            console.log('[Search] Fetch response status:', r.status);
+            return r.json();
+        })
+        .then(function(data) {
+            players = data.players || [];
+            console.log('[Search] Loaded', players.length, 'players');
+        })
+        .catch(function(e) { console.log('[Search] Could not load player index', e); });
 
     // 2. Filter players as user types (minimum 2 characters)
     searchInput.addEventListener('input', function() {
         var query = this.value.toLowerCase().trim();
+        console.log('[Search] Input:', query, '| Players loaded:', players.length);
 
         if (query.length < 2) {
             resultsDiv.classList.remove('active');
@@ -835,6 +847,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var matches = players.filter(function(p) {
             return p.name.toLowerCase().includes(query);
         }).slice(0, 8);
+        console.log('[Search] Matches found:', matches.length);
 
         // 3. Show dropdown with matching player names and photo counts
         if (matches.length === 0) {
@@ -1072,6 +1085,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
 </footer>
 
 <script>{js}</script>
+<script src="{self.base_url}/js/gallery.js"></script>
 </body>
 </html>'''
     
@@ -1093,7 +1107,8 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         photographer = escape(photo.get('photographer') or 'Imagn')
         source = escape(photo.get('source') or 'USA TODAY Sports')
         date = photo.get('photo_date', '')
-        thumb = escape(photo.get('thumbnail_url') or photo.get('image_url', ''))
+        thumb_url = photo.get('thumbnail_url') or (f"https://www.imagn.com/image/thumb/800-750/{imagn_id}.jpg" if imagn_id else '')
+        thumb = escape(thumb_url)
 
         try:
             date_obj = datetime.strptime(date, '%Y-%m-%d')
@@ -1485,7 +1500,7 @@ Disallow: /search/players.json
         caption = escape(photo.get('caption') or '')
         photographer = escape(photo.get('photographer') or 'Imagn')
         source = escape(photo.get('source') or 'USA TODAY Sports')
-        image_url = escape(photo.get('image_url', ''))
+        image_url = escape(photo.get('thumbnail_url') or f"https://www.imagn.com/image/thumb/800-750/{imagn_id}.jpg")
         date = photo.get('photo_date', '')
 
         try:
