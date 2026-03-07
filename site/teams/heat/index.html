@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miami Heat | NBA Sneakers</title>
+<meta property="og:title" content="Miami Heat | NBA Sneakers">
+<style>
+:root {
+    --primary: #1a1a2e;
+    --primary-dark: #0d0d1a;
+    --accent: #ff6b00;
+    --accent-hover: #e55d00;
+    --bg: #f5f5f5;
+    --card-bg: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #555;
+    --text-muted: #888;
+    --border: #e0e0e0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-hover: 0 4px 16px rgba(0,0,0,0.15);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+.site-header { background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.site-logo { font-size: 22px; font-weight: 700; color: white; }
+.site-logo:hover { text-decoration: none; color: var(--accent); }
+.site-nav { display: flex; gap: 24px; }
+.site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
+.site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
+.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
+.hero h1 { font-size: 32px; margin-bottom: 8px; }
+.hero p { opacity: 0.8; font-size: 16px; }
+.stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+.stat-item { text-align: center; }
+.stat-value { font-size: 28px; font-weight: 700; }
+.stat-label { font-size: 12px; opacity: 0.7; text-transform: uppercase; }
+.section { padding: 32px 0; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.section-title { font-size: 20px; font-weight: 600; }
+.section-link { font-size: 14px; }
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
+.photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
+.photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo-card .meta { padding: 12px; }
+.photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+.photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
+.photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
+.list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
+.list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
+.list-item .name { font-weight: 500; color: var(--text); }
+.list-item .count { font-size: 13px; color: var(--text-muted); }
+.page-header { padding: 32px 0; background: var(--card-bg); border-bottom: 1px solid var(--border); }
+.page-header h1 { font-size: 28px; margin-bottom: 4px; }
+.page-header .subtitle { color: var(--text-secondary); }
+.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.breadcrumb a { color: var(--text-secondary); }
+.site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
+.weekly-hero { margin-bottom: 32px; }
+.section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
+.section-header .photo-count { font-size: 14px; color: var(--text-muted); font-weight: normal; }
+.section-header .section-note { font-size: 13px; color: var(--text-muted); }
+.view-more { text-align: center; margin-top: 24px; }
+.view-more a { display: inline-block; padding: 12px 24px; background: var(--primary); color: white; border-radius: 6px; font-size: 14px; font-weight: 500; }
+.view-more a:hover { text-decoration: none; opacity: 0.9; }
+.stats-section { background: var(--card-bg); border-radius: 12px; padding: 32px !important; margin-top: 32px; }
+.stats-section .stats-bar { margin-top: 0; }
+.brands-grid .brand-item { background: linear-gradient(135deg, var(--card-bg), #f8f9fa); }
+.search-box { position: relative; max-width: 500px; margin: 0 auto 24px; }
+.search-box input { width: 100%; padding: 16px 20px; font-size: 18px; border: 2px solid var(--border); border-radius: 12px; outline: none; transition: border-color 0.2s; }
+.search-box input:focus { border-color: var(--accent); }
+.search-box input::placeholder { color: var(--text-muted); }
+.search-results { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow-hover); max-height: 400px; overflow-y: auto; z-index: 100; }
+.search-result-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text); cursor: pointer; }
+.search-result-item:hover { background: var(--bg); text-decoration: none; }
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item.no-page { opacity: 0.6; cursor: default; }
+.search-result-item .name { font-weight: 500; }
+.search-result-item .count { font-size: 13px; color: var(--text-muted); }
+.no-results { padding: 16px; text-align: center; color: var(--text-muted); }
+.search-stats { display: flex; justify-content: center; gap: 32px; margin-bottom: 32px; font-size: 14px; color: var(--text-secondary); }
+.player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+.player-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; }
+.player-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.player-card .player-img { height: 120px; background-size: cover; background-position: center; background-color: var(--primary); }
+.player-card .player-info { padding: 12px; }
+.player-card .player-name { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+.player-card .player-count { font-size: 12px; color: var(--text-muted); }
+.alpha-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.alpha-item { padding: 8px 14px; background: var(--card-bg); border-radius: 6px; font-size: 14px; color: var(--text); box-shadow: var(--shadow); }
+.alpha-item:hover { text-decoration: none; box-shadow: var(--shadow-hover); }
+.alpha-item.disabled { opacity: 0.5; cursor: default; }
+.alpha-item span { color: var(--text-muted); font-size: 12px; }
+.header-search { position: relative; flex: 1; max-width: 400px; margin: 0 24px; }
+.header-search input { width: 100%; padding: 12px 20px; border: 2px solid var(--accent); border-radius: 25px; background: white; color: var(--text); font-size: 15px; font-weight: 500; }
+.header-search input::placeholder { color: #888; }
+.header-search input:focus { outline: none; box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.2); }
+.quick-results { position: absolute; top: 100%; left: 0; right: 0; background: white; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); display: none; max-height: 350px; overflow-y: auto; z-index: 1000; margin-top: 8px; }
+.quick-results.active { display: block; }
+.quick-result-item { display: flex; justify-content: space-between; padding: 12px 16px; color: var(--text); border-bottom: 1px solid var(--border); }
+.quick-result-item:hover { background: #fff5eb; text-decoration: none; }
+.quick-result-item .name { font-weight: 600; }
+.quick-result-item .count { color: var(--accent); font-size: 13px; font-weight: 500; background: #fff5eb; padding: 2px 8px; border-radius: 12px; }
+.affiliate-module { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: 12px; padding: 16px; margin: 16px 0; color: white; grid-column: 1 / -1; }
+.affiliate-module.inline { display: flex; align-items: center; justify-content: center; padding: 12px; }
+.affiliate-module.featured { text-align: center; padding: 24px; }
+.buy-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+.buy-btn:hover { background: var(--accent-hover); transform: translateY(-2px); text-decoration: none; color: white; }
+.buy-btn.large { padding: 16px 32px; font-size: 18px; }
+.badge-success { background: #28a745; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.badge-warning { background: #ffc107; color: #000; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.badge-info { background: #17a2b8; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.module-header { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; }
+.shoe-info { margin-bottom: 16px; }
+.shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
+.compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+        <div class="header-search">
+            <input type="text" id="quick-search" placeholder="Search players..." autocomplete="off">
+            <div id="quick-results" class="quick-results"></div>
+        </div>
+        <nav class="site-nav">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/">Players</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/">Teams</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/weekly/">Weekly</a>
+        </nav>
+    </div>
+</header>
+
+
+<div class="page-header">
+    <div class="container">
+        <div class="breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/">Home</a> / <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/">Teams</a> / Miami Heat</div>
+        <h1>Miami Heat</h1>
+        <p class="subtitle">806 shoe photos</p>
+    </div>
+</div>
+
+<main class="container">
+    <section class="section">
+        <div class="photo-grid" id="photo-grid">
+            <div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28422256/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28422256.jpg" alt="NBA: Miami Heat at Charlotte Hornets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ryan-kalkbrenner/" class="player-link">Ryan Kalkbrenner</a>
+        <div class="headline">NBA: Miami Heat at Charlotte Hornets</div>
+        <div class="credit">📷 Sam Sharpe · Imagn Images · Mar 06, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28422248/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28422248.jpg" alt="NBA: Miami Heat at Charlotte Hornets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
+        <div class="headline">NBA: Miami Heat at Charlotte Hornets</div>
+        <div class="credit">📷 Sam Sharpe · Imagn Images · Mar 06, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28213655/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28213655.jpg" alt="NBA: Miami Heat at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bam-adebayo/" class="player-link">Bam Adebayo</a>
+        <div class="headline">NBA: Miami Heat at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Feb 11, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28213518/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28213518.jpg" alt="NBA: Miami Heat at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/derik-queen/" class="player-link">Derik Queen</a>
+        <div class="headline">NBA: Miami Heat at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Feb 11, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28149873/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28149873.jpg" alt="NBA: Atlanta Hawks at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zaccharie-risacher/" class="player-link">Zaccharie Risacher</a>
+        <div class="headline">NBA: Atlanta Hawks at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Feb 03, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28048297/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28048297.jpg" alt="NBA: Miami Heat at Sacramento Kings" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/andrew-wiggins/" class="player-link">Andrew Wiggins</a>
+        <div class="headline">NBA: Miami Heat at Sacramento Kings</div>
+        <div class="credit">📷 Sergio Estrada · Imagn Images · Jan 20, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28042984/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28042984.jpg" alt="NBA: Miami Heat at Golden State Warriors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-richard/" class="player-link">Will Richard</a>
+        <div class="headline">NBA: Miami Heat at Golden State Warriors</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 19, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28042986/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28042986.jpg" alt="NBA: Miami Heat at Golden State Warriors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/al-horford/" class="player-link">Al Horford</a>
+        <div class="headline">NBA: Miami Heat at Golden State Warriors</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 19, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28042705/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28042705.jpg" alt="NBA: Miami Heat at Golden State Warriors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bam-adebayo/" class="player-link">Bam Adebayo</a>
+        <div class="headline">NBA: Miami Heat at Golden State Warriors</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 19, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28042708/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28042708.jpg" alt="NBA: Miami Heat at Golden State Warriors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/moses-moody/" class="player-link">Moses Moody</a>
+        <div class="headline">NBA: Miami Heat at Golden State Warriors</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 19, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28042202/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28042202.jpg" alt="NBA: Miami Heat at Golden State Warriors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/andrew-wiggins/" class="player-link">Andrew Wiggins</a>
+        <div class="headline">NBA: Miami Heat at Golden State Warriors</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 19, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28042198/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28042198.jpg" alt="NBA: Miami Heat at Golden State Warriors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/stephen-curry/" class="player-link">Stephen Curry</a>
+        <div class="headline">NBA: Miami Heat at Golden State Warriors</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 19, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28016940/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28016940.jpg" alt="NBA: Boston Celtics at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jordan-walsh/" class="player-link">Jordan Walsh</a>
+        <div class="headline">NBA: Boston Celtics at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Jan 15, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28016825/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28016825.jpg" alt="NBA: Boston Celtics at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/hugo-gonzalez/" class="player-link">Hugo Gonzalez</a>
+        <div class="headline">NBA: Boston Celtics at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Jan 15, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28016851/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28016851.jpg" alt="NBA: Boston Celtics at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/andrew-wiggins/" class="player-link">Andrew Wiggins</a>
+        <div class="headline">NBA: Boston Celtics at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Jan 15, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28016928/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28016928.jpg" alt="NBA: Boston Celtics at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/derrick-white/" class="player-link">Derrick White</a>
+        <div class="headline">NBA: Boston Celtics at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Jan 15, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27880257/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27880257.jpg" alt="NBA: Toronto Raptors at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/norman-powell/" class="player-link">Norman Powell</a>
+        <div class="headline">NBA: Toronto Raptors at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Dec 23, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27880302/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27880302.jpg" alt="NBA: Toronto Raptors at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/brandon-ingram/" class="player-link">Brandon Ingram</a>
+        <div class="headline">NBA: Toronto Raptors at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Dec 23, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27781339/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27781339.jpg" alt="NBA: Miami Heat at Orlando Magic" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bam-adebayo/" class="player-link">Bam Adebayo</a>
+        <div class="headline">NBA: Miami Heat at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Dec 09, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27781340/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27781340.jpg" alt="NBA: Miami Heat at Orlando Magic" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/andrew-wiggins/" class="player-link">Andrew Wiggins</a>
+        <div class="headline">NBA: Miami Heat at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Dec 09, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27781335/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27781335.jpg" alt="NBA: Miami Heat at Orlando Magic" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/desmond-bane/" class="player-link">Desmond Bane</a>
+        <div class="headline">NBA: Miami Heat at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Dec 09, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27781334/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27781334.jpg" alt="NBA: Miami Heat at Orlando Magic" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tyus-jones/" class="player-link">Tyus Jones</a>
+        <div class="headline">NBA: Miami Heat at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Dec 09, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27781342/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27781342.jpg" alt="NBA: Miami Heat at Orlando Magic" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/norman-powell/" class="player-link">Norman Powell</a>
+        <div class="headline">NBA: Miami Heat at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Dec 09, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27761950/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27761950.jpg" alt="NBA: Sacramento Kings at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/russell-westbrook/" class="player-link">Russell Westbrook</a>
+        <div class="headline">NBA: Sacramento Kings at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Dec 06, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27735007/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27735007.jpg" alt="NBA: Miami Heat at Dallas Mavericks" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cooper-flagg/" class="player-link">Cooper Flagg</a>
+        <div class="headline">NBA: Miami Heat at Dallas Mavericks</div>
+        <div class="credit">📷 Kevin Jairaj · Imagn Images · Dec 03, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27708279/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27708279.jpg" alt="NBA: Detroit Pistons at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pelle-larsson/" class="player-link">Pelle Larsson</a>
+        <div class="headline">NBA: Detroit Pistons at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Nov 29, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27708262/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27708262.jpg" alt="NBA: Detroit Pistons at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bam-adebayo/" class="player-link">Bam Adebayo</a>
+        <div class="headline">NBA: Detroit Pistons at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Nov 29, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27708261/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27708261.jpg" alt="NBA: Detroit Pistons at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cade-cunningham/" class="player-link">Cade Cunningham</a>
+        <div class="headline">NBA: Detroit Pistons at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Nov 29, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27708258/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27708258.jpg" alt="NBA: Detroit Pistons at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/norman-powell/" class="player-link">Norman Powell</a>
+        <div class="headline">NBA: Detroit Pistons at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Nov 29, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27688130/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27688130.jpg" alt="NBA: Milwaukee Bucks at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bobby-portis/" class="player-link">Bobby Portis</a>
+        <div class="headline">NBA: Milwaukee Bucks at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Nov 26, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27630594/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27630594.jpg" alt="NBA: Golden State Warriors at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trayce-jackson-davis/" class="player-link">Trayce Jackson-Davis</a>
+        <div class="headline">NBA: Golden State Warriors at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Nov 19, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27630593/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27630593.jpg" alt="NBA: Golden State Warriors at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/simone-fontecchio/" class="player-link">Simone Fontecchio</a>
+        <div class="headline">NBA: Golden State Warriors at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Nov 19, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27630515/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27630515.jpg" alt="NBA: Golden State Warriors at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/moses-moody/" class="player-link">Moses Moody</a>
+        <div class="headline">NBA: Golden State Warriors at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Nov 19, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27630507/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27630507.jpg" alt="NBA: Golden State Warriors at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pelle-larsson/" class="player-link">Pelle Larsson</a>
+        <div class="headline">NBA: Golden State Warriors at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Nov 19, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27630514/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27630514.jpg" alt="NBA: Golden State Warriors at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/andrew-wiggins/" class="player-link">Andrew Wiggins</a>
+        <div class="headline">NBA: Golden State Warriors at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Nov 19, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27628561/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27628561.jpg" alt="NBA: Golden State Warriors at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/stephen-curry/" class="player-link">Stephen Curry</a>
+        <div class="headline">NBA: Golden State Warriors at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Nov 19, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27557822/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27557822.jpg" alt="NBA: Cleveland Cavaliers at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nikola-jovic/" class="player-link">Nikola Jovic</a>
+        <div class="headline">NBA: Cleveland Cavaliers at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Nov 10, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27557821/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27557821.jpg" alt="NBA: Cleveland Cavaliers at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/sam-merrill/" class="player-link">Sam Merrill</a>
+        <div class="headline">NBA: Cleveland Cavaliers at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Nov 10, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27500633/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27500633.jpg" alt="NBA: Miami Heat at Los Angeles Clippers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/john-collins/" class="player-link">John Collins</a>
+        <div class="headline">NBA: Miami Heat at Los Angeles Clippers</div>
+        <div class="credit">📷 Kirby Lee · Imagn Images · Nov 03, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27500644/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27500644.jpg" alt="NBA: Miami Heat at Los Angeles Clippers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
+        <div class="headline">NBA: Miami Heat at Los Angeles Clippers</div>
+        <div class="credit">📷 Kirby Lee · Imagn Images · Nov 03, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27500660/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27500660.jpg" alt="NBA: Miami Heat at Los Angeles Clippers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
+        <div class="headline">NBA: Miami Heat at Los Angeles Clippers</div>
+        <div class="credit">📷 Kirby Lee · Imagn Images · Nov 03, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27459691/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27459691.jpg" alt="NBA: Miami Heat at San Antonio Spurs" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/davion-mitchell/" class="player-link">Davion Mitchell</a>
+        <div class="headline">NBA: Miami Heat at San Antonio Spurs</div>
+        <div class="credit">📷 Scott Wachter · Imagn Images · Oct 30, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27457052/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27457052.jpg" alt="NBA: Miami Heat at San Antonio Spurs" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/victor-wembanyama/" class="player-link">Victor Wembanyama</a>
+        <div class="headline">NBA: Miami Heat at San Antonio Spurs</div>
+        <div class="credit">📷 Scott Wachter · Imagn Images · Oct 30, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27457053/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27457053.jpg" alt="NBA: Miami Heat at San Antonio Spurs" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/victor-wembanyama/" class="player-link">Victor Wembanyama</a>
+        <div class="headline">NBA: Miami Heat at San Antonio Spurs</div>
+        <div class="credit">📷 Scott Wachter · Imagn Images · Oct 30, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27456313/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27456313.jpg" alt="NBA: Miami Heat at San Antonio Spurs" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dylan-harper/" class="player-link">Dylan Harper</a>
+        <div class="headline">NBA: Miami Heat at San Antonio Spurs</div>
+        <div class="credit">📷 Scott Wachter · Imagn Images · Oct 30, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27456293/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27456293.jpg" alt="NBA: Miami Heat at San Antonio Spurs" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pelle-larsson/" class="player-link">Pelle Larsson</a>
+        <div class="headline">NBA: Miami Heat at San Antonio Spurs</div>
+        <div class="credit">📷 Scott Wachter · Imagn Images · Oct 30, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25998301/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25998301.jpg" alt="NBA: Playoffs-Miami Heat at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jarrett-allen/" class="player-link">Jarrett Allen</a>
+        <div class="headline">NBA: Playoffs-Miami Heat at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Apr 23, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25998275/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25998275.jpg" alt="NBA: Playoffs-Miami Heat at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tyler-herro/" class="player-link">Tyler Herro</a>
+        <div class="headline">NBA: Playoffs-Miami Heat at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Apr 23, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25998300/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25998300.jpg" alt="NBA: Playoffs-Miami Heat at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/davion-mitchell/" class="player-link">Davion Mitchell</a>
+        <div class="headline">NBA: Playoffs-Miami Heat at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Apr 23, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25977299/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25977299.jpg" alt="NBA: Playoffs-Miami Heat at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deandre-hunter/" class="player-link">De&#x27;Andre Hunter</a>
+        <div class="headline">NBA: Playoffs-Miami Heat at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Apr 20, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25977305/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25977305.jpg" alt="NBA: Playoffs-Miami Heat at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bam-adebayo/" class="player-link">Bam Adebayo</a>
+        <div class="headline">NBA: Playoffs-Miami Heat at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Apr 20, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25977304/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25977304.jpg" alt="NBA: Playoffs-Miami Heat at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/donovan-mitchell/" class="player-link">Donovan Mitchell</a>
+        <div class="headline">NBA: Playoffs-Miami Heat at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Apr 20, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25948498/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25948498.jpg" alt="NBA: Play-In-Miami Heat at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dalen-terry/" class="player-link">Dalen Terry</a>
+        <div class="headline">NBA: Play-In-Miami Heat at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Apr 16, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25947206/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25947206.jpg" alt="NBA: Play-In-Miami Heat at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/matas-buzelis/" class="player-link">Matas Buzelis</a>
+        <div class="headline">NBA: Play-In-Miami Heat at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Apr 16, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25921510/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25921510.jpg" alt="NBA: Washington Wizards at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/keshad-johnson/" class="player-link">Keshad Johnson</a>
+        <div class="headline">NBA: Washington Wizards at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Apr 13, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25921219/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25921219.jpg" alt="NBA: Washington Wizards at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/keshad-johnson/" class="player-link">Keshad Johnson</a>
+        <div class="headline">NBA: Washington Wizards at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Apr 13, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25921508/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25921508.jpg" alt="NBA: Washington Wizards at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/colby-jones/" class="player-link">Colby Jones</a>
+        <div class="headline">NBA: Washington Wizards at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Apr 13, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25921220/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25921220.jpg" alt="NBA: Washington Wizards at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/colby-jones/" class="player-link">Colby Jones</a>
+        <div class="headline">NBA: Washington Wizards at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Apr 13, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25921197/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25921197.jpg" alt="NBA: Washington Wizards at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/terry-rozier/" class="player-link">Terry Rozier</a>
+        <div class="headline">NBA: Washington Wizards at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Apr 13, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25921193/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25921193.jpg" alt="NBA: Washington Wizards at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/justin-champagnie/" class="player-link">Justin Champagnie</a>
+        <div class="headline">NBA: Washington Wizards at Miami Heat</div>
+        <div class="credit">📷 Rhona Wise · Imagn Images · Apr 13, 2025</div>
+    </div>
+</div>
+        </div>
+        <button class='load-more' id='load-more'>Load More Photos</button>
+    </section>
+</main>
+
+
+<footer class="site-footer">
+    <div class="container">
+        Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
+    </div>
+</footer>
+
+<script>
+document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
+document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
+</script>
+<script src="https://jsierrahoopshype.github.io/nba-sneakers/js/gallery.js"></script>
+</body>
+</html>

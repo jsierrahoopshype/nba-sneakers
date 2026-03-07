@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oklahoma City Thunder | NBA Sneakers</title>
+<meta property="og:title" content="Oklahoma City Thunder | NBA Sneakers">
+<style>
+:root {
+    --primary: #1a1a2e;
+    --primary-dark: #0d0d1a;
+    --accent: #ff6b00;
+    --accent-hover: #e55d00;
+    --bg: #f5f5f5;
+    --card-bg: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #555;
+    --text-muted: #888;
+    --border: #e0e0e0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-hover: 0 4px 16px rgba(0,0,0,0.15);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+.site-header { background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.site-logo { font-size: 22px; font-weight: 700; color: white; }
+.site-logo:hover { text-decoration: none; color: var(--accent); }
+.site-nav { display: flex; gap: 24px; }
+.site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
+.site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
+.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
+.hero h1 { font-size: 32px; margin-bottom: 8px; }
+.hero p { opacity: 0.8; font-size: 16px; }
+.stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+.stat-item { text-align: center; }
+.stat-value { font-size: 28px; font-weight: 700; }
+.stat-label { font-size: 12px; opacity: 0.7; text-transform: uppercase; }
+.section { padding: 32px 0; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.section-title { font-size: 20px; font-weight: 600; }
+.section-link { font-size: 14px; }
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
+.photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
+.photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo-card .meta { padding: 12px; }
+.photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+.photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
+.photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
+.list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
+.list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
+.list-item .name { font-weight: 500; color: var(--text); }
+.list-item .count { font-size: 13px; color: var(--text-muted); }
+.page-header { padding: 32px 0; background: var(--card-bg); border-bottom: 1px solid var(--border); }
+.page-header h1 { font-size: 28px; margin-bottom: 4px; }
+.page-header .subtitle { color: var(--text-secondary); }
+.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.breadcrumb a { color: var(--text-secondary); }
+.site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
+.weekly-hero { margin-bottom: 32px; }
+.section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
+.section-header .photo-count { font-size: 14px; color: var(--text-muted); font-weight: normal; }
+.section-header .section-note { font-size: 13px; color: var(--text-muted); }
+.view-more { text-align: center; margin-top: 24px; }
+.view-more a { display: inline-block; padding: 12px 24px; background: var(--primary); color: white; border-radius: 6px; font-size: 14px; font-weight: 500; }
+.view-more a:hover { text-decoration: none; opacity: 0.9; }
+.stats-section { background: var(--card-bg); border-radius: 12px; padding: 32px !important; margin-top: 32px; }
+.stats-section .stats-bar { margin-top: 0; }
+.brands-grid .brand-item { background: linear-gradient(135deg, var(--card-bg), #f8f9fa); }
+.search-box { position: relative; max-width: 500px; margin: 0 auto 24px; }
+.search-box input { width: 100%; padding: 16px 20px; font-size: 18px; border: 2px solid var(--border); border-radius: 12px; outline: none; transition: border-color 0.2s; }
+.search-box input:focus { border-color: var(--accent); }
+.search-box input::placeholder { color: var(--text-muted); }
+.search-results { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow-hover); max-height: 400px; overflow-y: auto; z-index: 100; }
+.search-result-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text); cursor: pointer; }
+.search-result-item:hover { background: var(--bg); text-decoration: none; }
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item.no-page { opacity: 0.6; cursor: default; }
+.search-result-item .name { font-weight: 500; }
+.search-result-item .count { font-size: 13px; color: var(--text-muted); }
+.no-results { padding: 16px; text-align: center; color: var(--text-muted); }
+.search-stats { display: flex; justify-content: center; gap: 32px; margin-bottom: 32px; font-size: 14px; color: var(--text-secondary); }
+.player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+.player-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; }
+.player-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.player-card .player-img { height: 120px; background-size: cover; background-position: center; background-color: var(--primary); }
+.player-card .player-info { padding: 12px; }
+.player-card .player-name { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+.player-card .player-count { font-size: 12px; color: var(--text-muted); }
+.alpha-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.alpha-item { padding: 8px 14px; background: var(--card-bg); border-radius: 6px; font-size: 14px; color: var(--text); box-shadow: var(--shadow); }
+.alpha-item:hover { text-decoration: none; box-shadow: var(--shadow-hover); }
+.alpha-item.disabled { opacity: 0.5; cursor: default; }
+.alpha-item span { color: var(--text-muted); font-size: 12px; }
+.header-search { position: relative; flex: 1; max-width: 400px; margin: 0 24px; }
+.header-search input { width: 100%; padding: 12px 20px; border: 2px solid var(--accent); border-radius: 25px; background: white; color: var(--text); font-size: 15px; font-weight: 500; }
+.header-search input::placeholder { color: #888; }
+.header-search input:focus { outline: none; box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.2); }
+.quick-results { position: absolute; top: 100%; left: 0; right: 0; background: white; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); display: none; max-height: 350px; overflow-y: auto; z-index: 1000; margin-top: 8px; }
+.quick-results.active { display: block; }
+.quick-result-item { display: flex; justify-content: space-between; padding: 12px 16px; color: var(--text); border-bottom: 1px solid var(--border); }
+.quick-result-item:hover { background: #fff5eb; text-decoration: none; }
+.quick-result-item .name { font-weight: 600; }
+.quick-result-item .count { color: var(--accent); font-size: 13px; font-weight: 500; background: #fff5eb; padding: 2px 8px; border-radius: 12px; }
+.affiliate-module { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: 12px; padding: 16px; margin: 16px 0; color: white; grid-column: 1 / -1; }
+.affiliate-module.inline { display: flex; align-items: center; justify-content: center; padding: 12px; }
+.affiliate-module.featured { text-align: center; padding: 24px; }
+.buy-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+.buy-btn:hover { background: var(--accent-hover); transform: translateY(-2px); text-decoration: none; color: white; }
+.buy-btn.large { padding: 16px 32px; font-size: 18px; }
+.badge-success { background: #28a745; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.badge-warning { background: #ffc107; color: #000; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.badge-info { background: #17a2b8; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.module-header { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; }
+.shoe-info { margin-bottom: 16px; }
+.shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
+.compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+        <div class="header-search">
+            <input type="text" id="quick-search" placeholder="Search players..." autocomplete="off">
+            <div id="quick-results" class="quick-results"></div>
+        </div>
+        <nav class="site-nav">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/">Players</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/">Teams</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/weekly/">Weekly</a>
+        </nav>
+    </div>
+</header>
+
+
+<div class="page-header">
+    <div class="container">
+        <div class="breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/">Home</a> / <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/">Teams</a> / Oklahoma City Thunder</div>
+        <h1>Oklahoma City Thunder</h1>
+        <p class="subtitle">1061 shoe photos</p>
+    </div>
+</div>
+
+<main class="container">
+    <section class="section">
+        <div class="photo-grid" id="photo-grid">
+            <div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28396179/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28396179.jpg" alt="NBA: Oklahoma City Thunder at Dallas Mavericks" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chet-holmgren/" class="player-link">Chet Holmgren</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Mar 01, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28341016/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28341016.jpg" alt="NBA: Oklahoma City Thunder at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jaylin-williams/" class="player-link">Jaylin Williams</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 25, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28340905/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28340905.jpg" alt="NBA: Oklahoma City Thunder at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-duren/" class="player-link">Jalen Duren</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 25, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28339878/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28339878.jpg" alt="NBA: Oklahoma City Thunder at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cade-cunningham/" class="player-link">Cade Cunningham</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 25, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28329965/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28329965.jpg" alt="NBA: Oklahoma City Thunder at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trayce-jackson-davis/" class="player-link">Trayce Jackson Davis</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 24, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28329960/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28329960.jpg" alt="NBA: Oklahoma City Thunder at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 24, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28329968/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28329968.jpg" alt="NBA: Oklahoma City Thunder at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kenrich-williams/" class="player-link">Kenrich Williams</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 24, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28329958/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28329958.jpg" alt="NBA: Oklahoma City Thunder at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/isaiah-joe/" class="player-link">Isaiah Joe</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 24, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28329961/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28329961.jpg" alt="NBA: Oklahoma City Thunder at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jamal-shead/" class="player-link">Jamal Shead</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 24, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28329967/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28329967.jpg" alt="NBA: Oklahoma City Thunder at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/gradey-dick/" class="player-link">Gradey Dick</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 24, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28329964/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28329964.jpg" alt="NBA: Oklahoma City Thunder at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-wiggins/" class="player-link">Aaron Wiggins</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 24, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28329959/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28329959.jpg" alt="NBA: Oklahoma City Thunder at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cason-wallace/" class="player-link">Cason Wallace</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 24, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28329963/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28329963.jpg" alt="NBA: Oklahoma City Thunder at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jaylin-williams/" class="player-link">Jaylin Williams</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 24, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28329957/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28329957.jpg" alt="NBA: Oklahoma City Thunder at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/garrett-temple/" class="player-link">Garrett Temple</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 24, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28390149/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28390149.jpg" alt="NBA: Oklahoma City Thunder at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/luguentz-dort/" class="player-link">Luguentz Dort</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Toronto Raptors</div>
+        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 24, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28160719/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28160719.jpg" alt="NBA: Oklahoma City Thunder at San Antonio Spurs" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/victor-wembanyama/" class="player-link">Victor Wembanyama</a>
+        <div class="headline">NBA: Oklahoma City Thunder at San Antonio Spurs</div>
+        <div class="credit">📷 Scott Wachter · Imagn Images · Feb 04, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28160707/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28160707.jpg" alt="NBA: Oklahoma City Thunder at San Antonio Spurs" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/stephon-castle/" class="player-link">Stephon Castle</a>
+        <div class="headline">NBA: Oklahoma City Thunder at San Antonio Spurs</div>
+        <div class="credit">📷 Scott Wachter · Imagn Images · Feb 04, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28160723/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28160723.jpg" alt="NBA: Oklahoma City Thunder at San Antonio Spurs" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jaylin-williams/" class="player-link">Jaylin Williams</a>
+        <div class="headline">NBA: Oklahoma City Thunder at San Antonio Spurs</div>
+        <div class="credit">📷 Scott Wachter · Imagn Images · Feb 04, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28139438/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28139438.jpg" alt="NBA: Oklahoma City Thunder at Denver Nuggets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jaylin-williams/" class="player-link">Jaylin Williams</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 01, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28139426/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28139426.jpg" alt="NBA: Oklahoma City Thunder at Denver Nuggets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/luguentz-dort/" class="player-link">Luguentz Dort</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 01, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28139421/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28139421.jpg" alt="NBA: Oklahoma City Thunder at Denver Nuggets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-wiggins/" class="player-link">Aaron Wiggins</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 01, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28139423/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28139423.jpg" alt="NBA: Oklahoma City Thunder at Denver Nuggets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nikola-jokic/" class="player-link">Nikola Jokic</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 01, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28139427/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28139427.jpg" alt="NBA: Oklahoma City Thunder at Denver Nuggets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/isaiah-hartenstein/" class="player-link">Isaiah Hartenstein</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 01, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28056402/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28056402.jpg" alt="NBA: Oklahoma City Thunder at Milwaukee Bucks" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/shai-gilgeous-alexander/" class="player-link">Shai Gilgeous-Alexander</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Milwaukee Bucks</div>
+        <div class="credit">📷 Michael McLoone · Imagn Images · Jan 21, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28056404/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28056404.jpg" alt="NBA: Oklahoma City Thunder at Milwaukee Bucks" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/shai-gilgeous-alexander/" class="player-link">Shai Gilgeous-Alexander</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Milwaukee Bucks</div>
+        <div class="credit">📷 Michael McLoone · Imagn Images · Jan 21, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28056368/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28056368.jpg" alt="NBA: Oklahoma City Thunder at Milwaukee Bucks" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aj-green/" class="player-link">A.J. Green</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Milwaukee Bucks</div>
+        <div class="credit">📷 Michael McLoone · Imagn Images · Jan 21, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28056379/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28056379.jpg" alt="NBA: Oklahoma City Thunder at Milwaukee Bucks" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aj-green/" class="player-link">A.J. Green</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Milwaukee Bucks</div>
+        <div class="credit">📷 Michael McLoone · Imagn Images · Jan 21, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27950834/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27950834.jpg" alt="NBA: Oklahoma City Thunder at Phoenix Suns" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/shai-gilgeous-alexander/" class="player-link">Shai Gilgeous-Alexander</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Phoenix Suns</div>
+        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Jan 04, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27923130/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27923130.jpg" alt="NBA: Oklahoma City Thunder at Golden State Warriors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/luguentz-dort/" class="player-link">Luguentz Dort</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Golden State Warriors</div>
+        <div class="credit">📷 Darren Yamashita · Imagn Images · Jan 02, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27923126/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27923126.jpg" alt="NBA: Oklahoma City Thunder at Golden State Warriors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pat-spencer/" class="player-link">Pat Spencer</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Golden State Warriors</div>
+        <div class="credit">📷 Darren Yamashita · Imagn Images · Jan 02, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27921452/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27921452.jpg" alt="NBA: Oklahoma City Thunder at Golden State Warriors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chet-holmgren/" class="player-link">Chet Holmgren</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Golden State Warriors</div>
+        <div class="credit">📷 Darren Yamashita · Imagn Images · Jan 02, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27921453/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27921453.jpg" alt="NBA: Oklahoma City Thunder at Golden State Warriors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/shai-gilgeous-alexander/" class="player-link">Shai Gilgeous-Alexander</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Golden State Warriors</div>
+        <div class="credit">📷 Darren Yamashita · Imagn Images · Jan 02, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27921450/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27921450.jpg" alt="NBA: Oklahoma City Thunder at Golden State Warriors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-williams/" class="player-link">Jalen Williams</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Golden State Warriors</div>
+        <div class="credit">📷 Darren Yamashita · Imagn Images · Jan 02, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27902791/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27902791.jpg" alt="NBA: Atlanta Hawks at Oklahoma City Thunder" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-williams/" class="player-link">Jalen Williams</a>
+        <div class="headline">NBA: Atlanta Hawks at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Dec 29, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27888593/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27888593.jpg" alt="NBA: San Antonio Spurs at Oklahoma City Thunder" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-williams/" class="player-link">Jalen Williams</a>
+        <div class="headline">NBA: San Antonio Spurs at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Dec 25, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27884551/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27884551.jpg" alt="NBA: San Antonio Spurs at Oklahoma City Thunder" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-williams/" class="player-link">Jalen Williams</a>
+        <div class="headline">NBA: San Antonio Spurs at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Dec 25, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27888591/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27888591.jpg" alt="NBA: San Antonio Spurs at Oklahoma City Thunder" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-williams/" class="player-link">Jalen Williams</a>
+        <div class="headline">NBA: San Antonio Spurs at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Dec 25, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27880285/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27880285.jpg" alt="NBA: Oklahoma City Thunder at San Antonio Spurs" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/shai-gilgeous-alexander/" class="player-link">Shai Gilgeous-Alexander</a>
+        <div class="headline">NBA: Oklahoma City Thunder at San Antonio Spurs</div>
+        <div class="credit">📷 Scott Wachter · Imagn Images · Dec 23, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27879722/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27879722.jpg" alt="NBA: Oklahoma City Thunder at San Antonio Spurs" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/victor-wembanyama/" class="player-link">Victor Wembanyama</a>
+        <div class="headline">NBA: Oklahoma City Thunder at San Antonio Spurs</div>
+        <div class="credit">📷 Scott Wachter · Imagn Images · Dec 23, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27749480/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27749480.jpg" alt="NBA: Dallas Mavericks at Oklahoma City Thunder" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-williams/" class="player-link">Jalen Williams</a>
+        <div class="headline">NBA: Dallas Mavericks at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Dec 05, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27667488/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27667488.jpg" alt="NBA: Portland Trail Blazers at Oklahoma City Thunder" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/isaiah-joe/" class="player-link">Isaiah Joe</a>
+        <div class="headline">NBA: Portland Trail Blazers at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 23, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27667494/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27667494.jpg" alt="NBA: Portland Trail Blazers at Oklahoma City Thunder" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/isaiah-joe/" class="player-link">Isaiah Joe</a>
+        <div class="headline">NBA: Portland Trail Blazers at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 23, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27666950/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27666950.jpg" alt="NBA: Portland Trail Blazers at Oklahoma City Thunder" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jaylin-williams/" class="player-link">Jaylin Williams</a>
+        <div class="headline">NBA: Portland Trail Blazers at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 23, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27630450/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27630450.jpg" alt="NBA: Sacramento Kings at Oklahoma City Thunder" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/shai-gilgeous-alexander/" class="player-link">Shai Gilgeous-Alexander</a>
+        <div class="headline">NBA: Sacramento Kings at Oklahoma City Thunder</div>
+        <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 19, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27613851/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27613851.jpg" alt="NBA: Oklahoma City Thunder at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/shai-gilgeous-alexander/" class="player-link">Shai Gilgeous-Alexander</a>
+        <div class="headline">NBA: Oklahoma City Thunder at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Nov 17, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27613852/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27613852.jpg" alt="NBA: Oklahoma City Thunder at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/shai-gilgeous-alexander/" class="player-link">Shai Gilgeous-Alexander</a>
+        <div class="headline">NBA: Oklahoma City Thunder at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Nov 17, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27516770/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27516770.jpg" alt="NBA: Oklahoma City Thunder at Portland Trail Blazers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/shaedon-sharpe/" class="player-link">Shaedon Sharpe</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Portland Trail Blazers</div>
+        <div class="credit">📷 Jaime Valdez · Imagn Images · Nov 05, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27508618/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27508618.jpg" alt="NBA: Oklahoma City Thunder at Los Angeles Clippers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/shai-gilgeous-alexander/" class="player-link">Shai Gilgeous-Alexander</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Los Angeles Clippers</div>
+        <div class="credit">📷 Kirby Lee · Imagn Images · Nov 04, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27508673/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27508673.jpg" alt="NBA: Oklahoma City Thunder at Los Angeles Clippers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bogdan-bogdanovic/" class="player-link">Bogdan Bogdanovic</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Los Angeles Clippers</div>
+        <div class="credit">📷 Kirby Lee · Imagn Images · Nov 04, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27432911/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27432911.jpg" alt="NBA: Oklahoma City Thunder at Dallas Mavericks" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/shai-gilgeous-alexander/" class="player-link">Shai Gilgeous-Alexander</a>
+        <div class="headline">NBA: Oklahoma City Thunder at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Oct 27, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27210105/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27210105.jpg" alt="Syndication: The Oklahoman" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-williams/" class="player-link">Jalen Williams</a>
+        <div class="headline">Syndication: The Oklahoman</div>
+        <div class="credit">📷 DOUG HOKE/THEOKLAHOMAN · USA TODAY NETWORK via Imagn Images · Sep 30, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/26495222/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/26495222.jpg" alt="NBA: Finals-Oklahoma City Thunder at Indiana Pacers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tyrese-haliburton/" class="player-link">Tyrese Haliburton</a>
+        <div class="headline">NBA: Finals-Oklahoma City Thunder at Indiana Pacers</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Jun 19, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/26495220/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/26495220.jpg" alt="NBA: Finals-Oklahoma City Thunder at Indiana Pacers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chet-holmgren/" class="player-link">Chet Holmgren</a>
+        <div class="headline">NBA: Finals-Oklahoma City Thunder at Indiana Pacers</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Jun 19, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/26495289/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/26495289.jpg" alt="NBA: Finals-Oklahoma City Thunder at Indiana Pacers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/myles-turner/" class="player-link">Myles Turner</a>
+        <div class="headline">NBA: Finals-Oklahoma City Thunder at Indiana Pacers</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Jun 19, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/26443536/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/26443536.jpg" alt="NBA: Finals-Oklahoma City Thunder at Indiana Pacers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/myles-turner/" class="player-link">Myles Turner</a>
+        <div class="headline">NBA: Finals-Oklahoma City Thunder at Indiana Pacers</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Jun 13, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/26443535/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/26443535.jpg" alt="NBA: Finals-Oklahoma City Thunder at Indiana Pacers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kenrich-williams/" class="player-link">Kenrich Williams</a>
+        <div class="headline">NBA: Finals-Oklahoma City Thunder at Indiana Pacers</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Jun 13, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/26443516/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/26443516.jpg" alt="NBA: Finals-Oklahoma City Thunder at Indiana Pacers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chet-holmgren/" class="player-link">Chet Holmgren</a>
+        <div class="headline">NBA: Finals-Oklahoma City Thunder at Indiana Pacers</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Jun 13, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/26427983/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/26427983.jpg" alt="NBA: Finals-Oklahoma City Thunder at Indiana Pacers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/obi-toppin/" class="player-link">Obi Toppin</a>
+        <div class="headline">NBA: Finals-Oklahoma City Thunder at Indiana Pacers</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Jun 11, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/26427842/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/26427842.jpg" alt="NBA: Finals-Oklahoma City Thunder at Indiana Pacers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-williams/" class="player-link">Jalen Williams</a>
+        <div class="headline">NBA: Finals-Oklahoma City Thunder at Indiana Pacers</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Jun 11, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/26427841/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/26427841.jpg" alt="NBA: Finals-Oklahoma City Thunder at Indiana Pacers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-nesmith/" class="player-link">Aaron Nesmith</a>
+        <div class="headline">NBA: Finals-Oklahoma City Thunder at Indiana Pacers</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Jun 11, 2025</div>
+    </div>
+</div>
+        </div>
+        <button class='load-more' id='load-more'>Load More Photos</button>
+    </section>
+</main>
+
+
+<footer class="site-footer">
+    <div class="container">
+        Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
+    </div>
+</footer>
+
+<script>
+document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
+document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
+</script>
+<script src="https://jsierrahoopshype.github.io/nba-sneakers/js/gallery.js"></script>
+</body>
+</html>

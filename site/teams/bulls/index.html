@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chicago Bulls | NBA Sneakers</title>
+<meta property="og:title" content="Chicago Bulls | NBA Sneakers">
+<style>
+:root {
+    --primary: #1a1a2e;
+    --primary-dark: #0d0d1a;
+    --accent: #ff6b00;
+    --accent-hover: #e55d00;
+    --bg: #f5f5f5;
+    --card-bg: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #555;
+    --text-muted: #888;
+    --border: #e0e0e0;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-hover: 0 4px 16px rgba(0,0,0,0.15);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+.site-header { background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.site-logo { font-size: 22px; font-weight: 700; color: white; }
+.site-logo:hover { text-decoration: none; color: var(--accent); }
+.site-nav { display: flex; gap: 24px; }
+.site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
+.site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
+.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
+.hero h1 { font-size: 32px; margin-bottom: 8px; }
+.hero p { opacity: 0.8; font-size: 16px; }
+.stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+.stat-item { text-align: center; }
+.stat-value { font-size: 28px; font-weight: 700; }
+.stat-label { font-size: 12px; opacity: 0.7; text-transform: uppercase; }
+.section { padding: 32px 0; }
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.section-title { font-size: 20px; font-weight: 600; }
+.section-link { font-size: 14px; }
+.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
+.photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
+.photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo-card .meta { padding: 12px; }
+.photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+.photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
+.photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
+.list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
+.list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
+.list-item .name { font-weight: 500; color: var(--text); }
+.list-item .count { font-size: 13px; color: var(--text-muted); }
+.page-header { padding: 32px 0; background: var(--card-bg); border-bottom: 1px solid var(--border); }
+.page-header h1 { font-size: 28px; margin-bottom: 4px; }
+.page-header .subtitle { color: var(--text-secondary); }
+.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.breadcrumb a { color: var(--text-secondary); }
+.site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
+.weekly-hero { margin-bottom: 32px; }
+.section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
+.section-header .photo-count { font-size: 14px; color: var(--text-muted); font-weight: normal; }
+.section-header .section-note { font-size: 13px; color: var(--text-muted); }
+.view-more { text-align: center; margin-top: 24px; }
+.view-more a { display: inline-block; padding: 12px 24px; background: var(--primary); color: white; border-radius: 6px; font-size: 14px; font-weight: 500; }
+.view-more a:hover { text-decoration: none; opacity: 0.9; }
+.stats-section { background: var(--card-bg); border-radius: 12px; padding: 32px !important; margin-top: 32px; }
+.stats-section .stats-bar { margin-top: 0; }
+.brands-grid .brand-item { background: linear-gradient(135deg, var(--card-bg), #f8f9fa); }
+.search-box { position: relative; max-width: 500px; margin: 0 auto 24px; }
+.search-box input { width: 100%; padding: 16px 20px; font-size: 18px; border: 2px solid var(--border); border-radius: 12px; outline: none; transition: border-color 0.2s; }
+.search-box input:focus { border-color: var(--accent); }
+.search-box input::placeholder { color: var(--text-muted); }
+.search-results { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow-hover); max-height: 400px; overflow-y: auto; z-index: 100; }
+.search-result-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text); cursor: pointer; }
+.search-result-item:hover { background: var(--bg); text-decoration: none; }
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item.no-page { opacity: 0.6; cursor: default; }
+.search-result-item .name { font-weight: 500; }
+.search-result-item .count { font-size: 13px; color: var(--text-muted); }
+.no-results { padding: 16px; text-align: center; color: var(--text-muted); }
+.search-stats { display: flex; justify-content: center; gap: 32px; margin-bottom: 32px; font-size: 14px; color: var(--text-secondary); }
+.player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+.player-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; }
+.player-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.player-card .player-img { height: 120px; background-size: cover; background-position: center; background-color: var(--primary); }
+.player-card .player-info { padding: 12px; }
+.player-card .player-name { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+.player-card .player-count { font-size: 12px; color: var(--text-muted); }
+.alpha-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.alpha-item { padding: 8px 14px; background: var(--card-bg); border-radius: 6px; font-size: 14px; color: var(--text); box-shadow: var(--shadow); }
+.alpha-item:hover { text-decoration: none; box-shadow: var(--shadow-hover); }
+.alpha-item.disabled { opacity: 0.5; cursor: default; }
+.alpha-item span { color: var(--text-muted); font-size: 12px; }
+.header-search { position: relative; flex: 1; max-width: 400px; margin: 0 24px; }
+.header-search input { width: 100%; padding: 12px 20px; border: 2px solid var(--accent); border-radius: 25px; background: white; color: var(--text); font-size: 15px; font-weight: 500; }
+.header-search input::placeholder { color: #888; }
+.header-search input:focus { outline: none; box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.2); }
+.quick-results { position: absolute; top: 100%; left: 0; right: 0; background: white; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.2); display: none; max-height: 350px; overflow-y: auto; z-index: 1000; margin-top: 8px; }
+.quick-results.active { display: block; }
+.quick-result-item { display: flex; justify-content: space-between; padding: 12px 16px; color: var(--text); border-bottom: 1px solid var(--border); }
+.quick-result-item:hover { background: #fff5eb; text-decoration: none; }
+.quick-result-item .name { font-weight: 600; }
+.quick-result-item .count { color: var(--accent); font-size: 13px; font-weight: 500; background: #fff5eb; padding: 2px 8px; border-radius: 12px; }
+.affiliate-module { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: 12px; padding: 16px; margin: 16px 0; color: white; grid-column: 1 / -1; }
+.affiliate-module.inline { display: flex; align-items: center; justify-content: center; padding: 12px; }
+.affiliate-module.featured { text-align: center; padding: 24px; }
+.buy-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; }
+.buy-btn:hover { background: var(--accent-hover); transform: translateY(-2px); text-decoration: none; color: white; }
+.buy-btn.large { padding: 16px 32px; font-size: 18px; }
+.badge-success { background: #28a745; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.badge-warning { background: #ffc107; color: #000; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.badge-info { background: #17a2b8; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+.module-header { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; }
+.shoe-info { margin-bottom: 16px; }
+.shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
+.compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+        <div class="header-search">
+            <input type="text" id="quick-search" placeholder="Search players..." autocomplete="off">
+            <div id="quick-results" class="quick-results"></div>
+        </div>
+        <nav class="site-nav">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/">Players</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/">Teams</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/weekly/">Weekly</a>
+        </nav>
+    </div>
+</header>
+
+
+<div class="page-header">
+    <div class="container">
+        <div class="breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/">Home</a> / <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/">Teams</a> / Chicago Bulls</div>
+        <h1>Chicago Bulls</h1>
+        <p class="subtitle">1149 shoe photos</p>
+    </div>
+</div>
+
+<main class="container">
+    <section class="section">
+        <div class="photo-grid" id="photo-grid">
+            <div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28375680/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28375680.jpg" alt="NBA: Milwaukee Bucks at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/matas-buzelis/" class="player-link">Matas Buzelis</a>
+        <div class="headline">NBA: Milwaukee Bucks at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Mar 01, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28375658/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28375658.jpg" alt="NBA: Milwaukee Bucks at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mac-mcclung/" class="player-link">Mac McClung</a>
+        <div class="headline">NBA: Milwaukee Bucks at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Mar 01, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28375659/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28375659.jpg" alt="NBA: Milwaukee Bucks at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/yuki-kawamura/" class="player-link">Yuki Kawamura</a>
+        <div class="headline">NBA: Milwaukee Bucks at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Mar 01, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28185474/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28185474.jpg" alt="NBA: Denver Nuggets at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nikola-jokic/" class="player-link">Nikola Jokic</a>
+        <div class="headline">NBA: Denver Nuggets at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Feb 07, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28184215/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28184215.jpg" alt="NBA: Denver Nuggets at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/guerschon-yabusele/" class="player-link">Guerschon Yabusele</a>
+        <div class="headline">NBA: Denver Nuggets at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Feb 07, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28184183/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28184183.jpg" alt="NBA: Denver Nuggets at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lachlan-olbrich/" class="player-link">Lachlan Olbrich</a>
+        <div class="headline">NBA: Denver Nuggets at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Feb 07, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28167636/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28167636.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/guerschon-yabusele/" class="player-link">Guerschon Yabusele</a>
+        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28167616/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28167616.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jamal-shead/" class="player-link">Jamal Shead</a>
+        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28167628/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28167628.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jaden-ivey/" class="player-link">Jaden Ivey</a>
+        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28167631/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28167631.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mac-mcclung/" class="player-link">Mac McClung</a>
+        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28167614/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28167614.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-smith/" class="player-link">Jalen Smith</a>
+        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28167619/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28167619.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
+        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28167612/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28167612.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/matas-buzelis/" class="player-link">Matas Buzelis</a>
+        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28167621/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28167621.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/isaac-okoro/" class="player-link">Isaac Okoro</a>
+        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 05, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28065537/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28065537.jpg" alt="NBA: Chicago Bulls at Minnesota Timberwolves" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
+        <div class="headline">NBA: Chicago Bulls at Minnesota Timberwolves</div>
+        <div class="credit">📷 Jesse Johnson · Imagn Images · Jan 22, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28065534/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28065534.jpg" alt="NBA: Chicago Bulls at Minnesota Timberwolves" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/julius-randle/" class="player-link">Julius Randle</a>
+        <div class="headline">NBA: Chicago Bulls at Minnesota Timberwolves</div>
+        <div class="credit">📷 Jesse Johnson · Imagn Images · Jan 22, 2026</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27902683/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27902683.jpg" alt="NBA: Minnesota Timberwolves at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
+        <div class="headline">NBA: Minnesota Timberwolves at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Dec 29, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27891104/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27891104.jpg" alt="NBA: Milwaukee Bucks at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nikola-vucevic/" class="player-link">Nikola Vucevic</a>
+        <div class="headline">NBA: Milwaukee Bucks at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Dec 27, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27891108/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27891108.jpg" alt="NBA: Milwaukee Bucks at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-huerter/" class="player-link">Kevin Huerter</a>
+        <div class="headline">NBA: Milwaukee Bucks at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Dec 27, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27891106/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27891106.jpg" alt="NBA: Milwaukee Bucks at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ayo-dosunmu/" class="player-link">Ayo Dosunmu</a>
+        <div class="headline">NBA: Milwaukee Bucks at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Dec 27, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27891105/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27891105.jpg" alt="NBA: Milwaukee Bucks at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/julian-phillips/" class="player-link">Julian Phillips</a>
+        <div class="headline">NBA: Milwaukee Bucks at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Dec 27, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27887664/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27887664.jpg" alt="NBA: Philadelphia 76ers at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zach-collins/" class="player-link">Zach Collins</a>
+        <div class="headline">NBA: Philadelphia 76ers at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Dec 26, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27887659/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27887659.jpg" alt="NBA: Philadelphia 76ers at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
+        <div class="headline">NBA: Philadelphia 76ers at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Dec 26, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27819324/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27819324.jpg" alt="NBA: New Orleans Pelicans at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zion-williamson/" class="player-link">Zion Williamson</a>
+        <div class="headline">NBA: New Orleans Pelicans at Chicago Bulls</div>
+        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Dec 14, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27775098/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27775098.jpg" alt="NBA: Golden State Warriors at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-williams/" class="player-link">Patrick Williams</a>
+        <div class="headline">NBA: Golden State Warriors at Chicago Bulls</div>
+        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Dec 07, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27749965/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27749965.jpg" alt="NBA: Indiana Pacers at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/matas-buzelis/" class="player-link">Matas Buzelis</a>
+        <div class="headline">NBA: Indiana Pacers at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Dec 05, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27749890/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27749890.jpg" alt="NBA: Indiana Pacers at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
+        <div class="headline">NBA: Indiana Pacers at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Dec 05, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27749926/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27749926.jpg" alt="NBA: Indiana Pacers at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/coby-white/" class="player-link">Coby White</a>
+        <div class="headline">NBA: Indiana Pacers at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Dec 05, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27720299/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27720299.jpg" alt="NBA: Chicago Bulls at Orlando Magic" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/noah-penda/" class="player-link">Noah Penda</a>
+        <div class="headline">NBA: Chicago Bulls at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Dec 01, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27720298/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27720298.jpg" alt="NBA: Chicago Bulls at Orlando Magic" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/wendell-carter-jr/" class="player-link">Wendell Carter Jr</a>
+        <div class="headline">NBA: Chicago Bulls at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Dec 01, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27720297/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27720297.jpg" alt="NBA: Chicago Bulls at Orlando Magic" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/matas-buzelis/" class="player-link">Matas Buzelis</a>
+        <div class="headline">NBA: Chicago Bulls at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Dec 01, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27720296/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27720296.jpg" alt="NBA: Chicago Bulls at Orlando Magic" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/desmond-bane/" class="player-link">Desmond Bane</a>
+        <div class="headline">NBA: Chicago Bulls at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Dec 01, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27720301/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27720301.jpg" alt="NBA: Chicago Bulls at Orlando Magic" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nikola-vucevic/" class="player-link">Nikola Vucevic</a>
+        <div class="headline">NBA: Chicago Bulls at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Dec 01, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27698210/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27698210.jpg" alt="NBA: Chicago Bulls at Charlotte Hornets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ryan-kalkbrenner/" class="player-link">Ryan Kalkbrenner</a>
+        <div class="headline">NBA: Chicago Bulls at Charlotte Hornets</div>
+        <div class="credit">📷 Sam Sharpe · Imagn Images · Nov 28, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27697251/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27697251.jpg" alt="NBA: Chicago Bulls at Charlotte Hornets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nikola-vucevic/" class="player-link">Nikola Vucevic</a>
+        <div class="headline">NBA: Chicago Bulls at Charlotte Hornets</div>
+        <div class="credit">📷 Sam Sharpe · Imagn Images · Nov 28, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27674504/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27674504.jpg" alt="NBA: Chicago Bulls at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/derik-queen/" class="player-link">Derik Queen</a>
+        <div class="headline">NBA: Chicago Bulls at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Nov 24, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27673241/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27673241.jpg" alt="NBA: Chicago Bulls at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zion-williamson/" class="player-link">Zion Williamson</a>
+        <div class="headline">NBA: Chicago Bulls at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Nov 24, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27673612/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27673612.jpg" alt="NBA: Chicago Bulls at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/matas-buzelis/" class="player-link">Matas Buzelis</a>
+        <div class="headline">NBA: Chicago Bulls at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Nov 24, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27609563/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27609563.jpg" alt="NBA: Chicago Bulls at Utah Jazz" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/coby-white/" class="player-link">Coby White</a>
+        <div class="headline">NBA: Chicago Bulls at Utah Jazz</div>
+        <div class="credit">📷 Peter Creveling · Imagn Images · Nov 16, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27340537/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27340537.jpg" alt="NBA: Preseason-Minnesota Timberwolves at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rudy-gobert/" class="player-link">Rudy Gobert</a>
+        <div class="headline">NBA: Preseason-Minnesota Timberwolves at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Oct 16, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27340535/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27340535.jpg" alt="NBA: Preseason-Minnesota Timberwolves at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
+        <div class="headline">NBA: Preseason-Minnesota Timberwolves at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Oct 16, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25948498/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25948498.jpg" alt="NBA: Play-In-Miami Heat at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dalen-terry/" class="player-link">Dalen Terry</a>
+        <div class="headline">NBA: Play-In-Miami Heat at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Apr 16, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25947206/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25947206.jpg" alt="NBA: Play-In-Miami Heat at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/matas-buzelis/" class="player-link">Matas Buzelis</a>
+        <div class="headline">NBA: Play-In-Miami Heat at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Apr 16, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25906820/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25906820.jpg" alt="NBA: Washington Wizards at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-huerter/" class="player-link">Kevin Huerter</a>
+        <div class="headline">NBA: Washington Wizards at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Apr 11, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25906821/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25906821.jpg" alt="NBA: Washington Wizards at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/coby-white/" class="player-link">Coby White</a>
+        <div class="headline">NBA: Washington Wizards at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Apr 11, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25906826/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25906826.jpg" alt="NBA: Washington Wizards at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/matas-buzelis/" class="player-link">Matas Buzelis</a>
+        <div class="headline">NBA: Washington Wizards at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Apr 11, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25889637/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25889637.jpg" alt="NBA: Miami Heat at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
+        <div class="headline">NBA: Miami Heat at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Apr 09, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25880080/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25880080.jpg" alt="NBA: Chicago Bulls at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/sam-merrill/" class="player-link">Sam Merrill</a>
+        <div class="headline">NBA: Chicago Bulls at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Apr 08, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25880135/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25880135.jpg" alt="NBA: Chicago Bulls at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deandre-hunter/" class="player-link">De&#x27;Andre Hunter</a>
+        <div class="headline">NBA: Chicago Bulls at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Apr 08, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25880199/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25880199.jpg" alt="NBA: Chicago Bulls at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/matas-buzelis/" class="player-link">Matas Buzelis</a>
+        <div class="headline">NBA: Chicago Bulls at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Apr 08, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25848069/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25848069.jpg" alt="NBA: Portland Trail Blazers at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zach-collins/" class="player-link">Zach Collins</a>
+        <div class="headline">NBA: Portland Trail Blazers at Chicago Bulls</div>
+        <div class="credit">📷 Matt Marton · Imagn Images · Apr 04, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25848071/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25848071.jpg" alt="NBA: Portland Trail Blazers at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zach-collins/" class="player-link">Zach Collins</a>
+        <div class="headline">NBA: Portland Trail Blazers at Chicago Bulls</div>
+        <div class="credit">📷 Matt Marton · Imagn Images · Apr 04, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25805194/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25805194.jpg" alt="NBA: Dallas Mavericks at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/matas-buzelis/" class="player-link">Matas Buzelis</a>
+        <div class="headline">NBA: Dallas Mavericks at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Mar 29, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25804263/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25804263.jpg" alt="NBA: Dallas Mavericks at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-davis/" class="player-link">Anthony Davis</a>
+        <div class="headline">NBA: Dallas Mavericks at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Mar 29, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25759307/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25759307.jpg" alt="NBA: Chicago Bulls at Denver Nuggets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nikola-jokic/" class="player-link">Nikola Jokic</a>
+        <div class="headline">NBA: Chicago Bulls at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 24, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25759305/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25759305.jpg" alt="NBA: Chicago Bulls at Denver Nuggets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dalen-terry/" class="player-link">Dalen Terry</a>
+        <div class="headline">NBA: Chicago Bulls at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 24, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25486734/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25486734.jpg" alt="NBA: Phoenix Suns at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/matas-buzelis/" class="player-link">Matas Buzelis</a>
+        <div class="headline">NBA: Phoenix Suns at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Feb 22, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25392362/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25392362.jpg" alt="NBA: Detroit Pistons at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/julian-phillips/" class="player-link">Julian Phillips</a>
+        <div class="headline">NBA: Detroit Pistons at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Feb 11, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25392361/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25392361.jpg" alt="NBA: Detroit Pistons at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
+        <div class="headline">NBA: Detroit Pistons at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Feb 11, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25374632/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25374632.jpg" alt="NBA: Golden State Warriors at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jimmy-butler/" class="player-link">Jimmy Butler</a>
+        <div class="headline">NBA: Golden State Warriors at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Feb 08, 2025</div>
+    </div>
+</div>
+        </div>
+        <button class='load-more' id='load-more'>Load More Photos</button>
+    </section>
+</main>
+
+
+<footer class="site-footer">
+    <div class="container">
+        Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
+    </div>
+</footer>
+
+<script>
+document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
+document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
+</script>
+<script src="https://jsierrahoopshype.github.io/nba-sneakers/js/gallery.js"></script>
+</body>
+</html>

@@ -53,7 +53,7 @@ class SiteGenerator:
         print(f"Generating site from {len(self.archive.photos)} photos...", file=sys.stderr)
         
         # Create directories
-        for subdir in ['players', 'weekly', 'css', 'js', 'search', 'photos']:
+        for subdir in ['players', 'teams', 'weekly', 'css', 'js', 'search', 'photos']:
             os.makedirs(os.path.join(self.output_dir, subdir), exist_ok=True)
         
         # Generate pages
@@ -62,6 +62,7 @@ class SiteGenerator:
         self._generate_homepage()
         self._generate_search_page()
         self._generate_players_index()
+        self._generate_teams_index()
         self._generate_weekly_index()
         
         # Generate individual pages for all players
@@ -73,6 +74,12 @@ class SiteGenerator:
         
         print(f"Generated {players_generated} player timeline pages", file=sys.stderr)
         
+        # Generate team pages
+        teams = self._get_all_teams()
+        for team in teams:
+            self._generate_team_page(team)
+        print(f"Generated {len(teams)} team pages", file=sys.stderr)
+
         for week in self.archive.get_all_weeks():
             self._generate_weekly_page(week)
         
@@ -1028,7 +1035,18 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+.more-players { padding: 32px 0; }
+.more-players h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
+.more-players-row { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.more-players-row::-webkit-scrollbar { height: 6px; }
+.more-players-row::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.more-player-card { flex: 0 0 160px; scroll-snap-align: start; background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; }
+.more-player-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); text-decoration: none; }
+.more-player-card .mp-img { height: 100px; background-size: cover; background-position: center; background-color: var(--primary); }
+.more-player-card .mp-info { padding: 10px 12px; }
+.more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 '''
 
@@ -1073,6 +1091,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         </div>
         <nav class="site-nav">
             <a href="{self.base_url}/players/">Players</a>
+            <a href="{self.base_url}/teams/">Teams</a>
             <a href="{self.base_url}/weekly/">Weekly</a>
         </nav>
     </div>
@@ -1127,6 +1146,41 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
     </div>
 </div>'''
     
+    def _more_players_html(self, exclude_slug: str = '') -> str:
+        """Generate 'More Players to Explore' section with 8 random players (≥10 photos)"""
+        import random
+        all_players = self.archive.get_all_players()
+        candidates = [p for p in all_players if p['count'] >= 10 and p['slug'] != exclude_slug]
+        if not candidates:
+            return ''
+        selected = random.sample(candidates, min(8, len(candidates)))
+
+        cards = []
+        for p in selected:
+            photos = self.archive.get_photos_by_player(p['slug'])
+            bg_img = ''
+            if photos:
+                thumb = photos[0].get('thumbnail_url') or f"https://www.imagn.com/image/thumb/800-750/{photos[0].get('imagn_id', '')}.jpg"
+                bg_img = f' style="background-image:url({escape(thumb)})"'
+            cards.append(f'''<a href="{self.base_url}/players/{p['slug']}/" class="more-player-card">
+    <div class="mp-img"{bg_img}></div>
+    <div class="mp-info">
+        <div class="mp-name">{escape(p['name'])}</div>
+        <div class="mp-count">{p['count']} photos</div>
+    </div>
+</a>''')
+
+        return f'''
+<section class="more-players">
+    <div class="container">
+        <h2>More Players to Explore</h2>
+        <div class="more-players-row">
+            {"".join(cards)}
+        </div>
+    </div>
+</section>
+'''
+
     def _generate_homepage(self):
         """Generate homepage - Weekly gallery as hero, then navigation to deeper content"""
         stats = self.archive.get_stats()
@@ -1199,14 +1253,14 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         </div>
     </section>
     
-    <!-- BRAND HUBS -->
+    <!-- BROWSE BY TEAM -->
     <section class="section">
         <div class="section-header">
-            <h2 class="section-title">👟 Shop by Brand</h2>
-            <a href="{self.base_url}/brands/" class="section-link">View all →</a>
+            <h2 class="section-title">🏀 Browse by Team</h2>
+            <a href="{self.base_url}/teams/" class="section-link">View all →</a>
         </div>
-        <div class="list-grid brands-grid">
-            {"".join(f'<a href="{self.base_url}/brands/{b["slug"]}/" class="list-item brand-item"><span class="name">{escape(b["name"])}</span><span class="count">{b["count"]} photos</span></a>' for b in stats['top_brands'])}
+        <div class="list-grid">
+            {"".join(f'<a href="{self.base_url}/teams/{t["slug"]}/" class="list-item"><span class="name">{escape(t["name"])}</span><span class="count">{t["count"]} photos</span></a>' for t in self._get_all_teams()[:15])}
         </div>
     </section>
     
@@ -1286,6 +1340,121 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         html = self._base_template("Players", content)
         self._write_file('players/index.html', html)
     
+    # --- Teams ---
+
+    NBA_TEAMS = [
+        ('Atlanta Hawks', 'hawks', ['Hawks', 'Atlanta Hawks']),
+        ('Boston Celtics', 'celtics', ['Celtics', 'Boston Celtics']),
+        ('Brooklyn Nets', 'nets', ['Nets', 'Brooklyn Nets']),
+        ('Charlotte Hornets', 'hornets', ['Hornets', 'Charlotte Hornets']),
+        ('Chicago Bulls', 'bulls', ['Bulls', 'Chicago Bulls']),
+        ('Cleveland Cavaliers', 'cavaliers', ['Cavaliers', 'Cleveland Cavaliers', 'Cavs']),
+        ('Dallas Mavericks', 'mavericks', ['Mavericks', 'Dallas Mavericks', 'Mavs']),
+        ('Denver Nuggets', 'nuggets', ['Nuggets', 'Denver Nuggets']),
+        ('Detroit Pistons', 'pistons', ['Pistons', 'Detroit Pistons']),
+        ('Golden State Warriors', 'warriors', ['Warriors', 'Golden State Warriors']),
+        ('Houston Rockets', 'rockets', ['Rockets', 'Houston Rockets']),
+        ('Indiana Pacers', 'pacers', ['Pacers', 'Indiana Pacers']),
+        ('LA Clippers', 'clippers', ['Clippers', 'LA Clippers', 'Los Angeles Clippers']),
+        ('Los Angeles Lakers', 'lakers', ['Lakers', 'Los Angeles Lakers']),
+        ('Memphis Grizzlies', 'grizzlies', ['Grizzlies', 'Memphis Grizzlies', 'Memphis Grizzles']),
+        ('Miami Heat', 'heat', ['Heat', 'Miami Heat']),
+        ('Milwaukee Bucks', 'bucks', ['Bucks', 'Milwaukee Bucks']),
+        ('Minnesota Timberwolves', 'timberwolves', ['Timberwolves', 'Minnesota Timberwolves']),
+        ('New Orleans Pelicans', 'pelicans', ['Pelicans', 'New Orleans Pelicans']),
+        ('New York Knicks', 'knicks', ['Knicks', 'New York Knicks']),
+        ('Oklahoma City Thunder', 'thunder', ['Thunder', 'Oklahoma City Thunder', 'OKC Thunder']),
+        ('Orlando Magic', 'magic', ['Magic', 'Orlando Magic']),
+        ('Philadelphia 76ers', '76ers', ['76ers', 'Philadelphia 76ers', 'Sixers']),
+        ('Phoenix Suns', 'suns', ['Suns', 'Phoenix Suns']),
+        ('Portland Trail Blazers', 'trail-blazers', ['Trail Blazers', 'Portland Trail Blazers', 'Blazers']),
+        ('Sacramento Kings', 'kings', ['Kings', 'Sacramento Kings']),
+        ('San Antonio Spurs', 'spurs', ['Spurs', 'San Antonio Spurs']),
+        ('Toronto Raptors', 'raptors', ['Raptors', 'Toronto Raptors']),
+        ('Utah Jazz', 'jazz', ['Jazz', 'Utah Jazz']),
+        ('Washington Wizards', 'wizards', ['Wizards', 'Washington Wizards']),
+    ]
+
+    def _get_photos_for_team(self, search_terms: List[str]) -> List[Dict]:
+        """Get all photos where headline or caption contains any of the team's search terms"""
+        results = []
+        for photo in self.archive.photos.values():
+            text = f"{photo.get('headline', '')} {photo.get('caption', '')}".lower()
+            for term in search_terms:
+                if term.lower() in text:
+                    results.append(photo)
+                    break
+        results.sort(key=lambda p: p.get('photo_date', ''), reverse=True)
+        return results
+
+    def _get_all_teams(self) -> List[Dict]:
+        """Get all teams with photo counts, sorted by count descending"""
+        teams = []
+        for name, slug, search_terms in self.NBA_TEAMS:
+            count = len(self._get_photos_for_team(search_terms))
+            teams.append({'name': name, 'slug': slug, 'search_terms': search_terms, 'count': count})
+        teams.sort(key=lambda t: t['count'], reverse=True)
+        return teams
+
+    def _generate_teams_index(self):
+        """Generate teams listing page"""
+        teams = self._get_all_teams()
+
+        content = f'''
+<div class="page-header">
+    <div class="container">
+        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / Teams</div>
+        <h1>Teams</h1>
+        <p class="subtitle">Browse shoe photos by NBA team</p>
+    </div>
+</div>
+
+<main class="container">
+    <section class="section">
+        <div class="list-grid">
+            {"".join(f'<a href="{self.base_url}/teams/{t["slug"]}/" class="list-item"><span class="name">{escape(t["name"])}</span><span class="count">{t["count"]} photos</span></a>' for t in teams)}
+        </div>
+    </section>
+</main>
+'''
+        html = self._base_template("Teams", content)
+        self._write_file('teams/index.html', html)
+
+    def _generate_team_page(self, team: Dict):
+        """Generate individual team page"""
+        photos = self._get_photos_for_team(team['search_terms'])
+
+        photos_json = json.dumps([{
+            'id': p.get('imagn_id', ''),
+            'url': p.get('thumbnail_url', p.get('image_url', '')),
+            'full': p.get('image_url', ''),
+            'player': escape(p.get('player_name', '')),
+            'date': p.get('photo_date', ''),
+            'caption': escape(p.get('caption', '')[:200]),
+            'detail_url': f"{self.base_url}/photos/{p.get('imagn_id', '')}/",
+        } for p in photos], indent=None)
+
+        content = f'''
+<div class="page-header">
+    <div class="container">
+        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / <a href="{self.base_url}/teams/">Teams</a> / {escape(team["name"])}</div>
+        <h1>{escape(team["name"])}</h1>
+        <p class="subtitle">{len(photos)} shoe photos</p>
+    </div>
+</div>
+
+<main class="container">
+    <section class="section">
+        <div class="photo-grid" id="photo-grid">
+            {"".join(self._photo_card_html(p) for p in photos[:60])}
+        </div>
+        {"<button class='load-more' id='load-more'>Load More Photos</button>" if len(photos) > 60 else ""}
+    </section>
+</main>
+'''
+        html = self._base_template(team['name'], content, photos_json)
+        self._write_file(f"teams/{team['slug']}/index.html", html)
+
     def _generate_brands_index(self):
         """Generate brands listing page"""
         brands = self.archive.get_all_brands()
@@ -1559,6 +1728,8 @@ Disallow: /search/players.json
 </main>
 '''
 
+        content += self._more_players_html(exclude_slug=player_slug)
+
         seo_title = f"{photo.get('player_name') or 'NBA'} Sneakers - {date_fmt}"
 
         meta = {
@@ -1608,6 +1779,8 @@ Disallow: /search/players.json
     </section>
 </main>
 '''
+        content += self._more_players_html(exclude_slug=player['slug'])
+
         photos_json = json.dumps([{
             'image_url': p.get('image_url', ''),
             'player_name': p.get('player_name', ''),
@@ -1616,7 +1789,7 @@ Disallow: /search/players.json
             'source': p.get('source', ''),
             'photo_date': p.get('photo_date', '')
         } for p in photos], ensure_ascii=False)
-        
+
         og_image = photos[0].get('thumbnail_url') or photos[0].get('image_url', '') if photos else ''
         meta = {
             'description': f"Browse {len(photos)} sneaker photos of {player['name']} from NBA games.",
