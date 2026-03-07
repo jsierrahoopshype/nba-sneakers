@@ -1128,7 +1128,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         photographer = escape(photo.get('photographer') or 'Imagn')
         source = escape(photo.get('source') or 'USA TODAY Sports')
         date = photo.get('photo_date', '')
-        thumb_url = photo.get('thumbnail_url') or (f"https://www.imagn.com/image/thumb/800-750/{imagn_id}.jpg" if imagn_id else '')
+        thumb_url = photo.get('thumbnail_url') or (f"https://www.imagn.com/image/{imagn_id}.jpg" if imagn_id else '')
         thumb = escape(thumb_url)
 
         try:
@@ -1160,7 +1160,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             photos = self.archive.get_photos_by_player(p['slug'])
             bg_img = ''
             if photos:
-                thumb = photos[0].get('thumbnail_url') or f"https://www.imagn.com/image/thumb/800-750/{photos[0].get('imagn_id', '')}.jpg"
+                thumb = photos[0].get('thumbnail_url') or f"https://www.imagn.com/image/{photos[0].get('imagn_id', '')}.jpg"
                 bg_img = f' style="background-image:url({escape(thumb)})"'
             cards.append(f'''<a href="{self.base_url}/players/{p['slug']}/" class="more-player-card">
     <div class="mp-img"{bg_img}></div>
@@ -1671,7 +1671,7 @@ Disallow: /search/players.json
         caption = escape(photo.get('caption') or '')
         photographer = escape(photo.get('photographer') or 'Imagn')
         source = escape(photo.get('source') or 'USA TODAY Sports')
-        image_url = escape(photo.get('thumbnail_url') or f"https://www.imagn.com/image/thumb/800-750/{imagn_id}.jpg")
+        image_url = escape(photo.get('thumbnail_url') or f"https://www.imagn.com/image/{imagn_id}.jpg")
         date = photo.get('photo_date', '')
 
         try:
