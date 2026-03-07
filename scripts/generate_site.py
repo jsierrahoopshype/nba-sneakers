@@ -1128,7 +1128,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         photographer = escape(photo.get('photographer') or 'Imagn')
         source = escape(photo.get('source') or 'USA TODAY Sports')
         date = photo.get('photo_date', '')
-        thumb_url = photo.get('thumbnail_url') or (f"https://www.imagn.com/image/thumb/800-750/{imagn_id}.jpg" if imagn_id else '')
+        thumb_url = photo.get('thumbnail_url') or (f"https://www.imagn.com/image/{imagn_id}.jpg" if imagn_id else '')
         thumb = escape(thumb_url)
 
         try:
@@ -1160,7 +1160,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             photos = self.archive.get_photos_by_player(p['slug'])
             bg_img = ''
             if photos:
-                thumb = photos[0].get('thumbnail_url') or f"https://www.imagn.com/image/thumb/800-750/{photos[0].get('imagn_id', '')}.jpg"
+                thumb = photos[0].get('thumbnail_url') or f"https://www.imagn.com/image/{photos[0].get('imagn_id', '')}.jpg"
                 bg_img = f' style="background-image:url({escape(thumb)})"'
             cards.append(f'''<a href="{self.base_url}/players/{p['slug']}/" class="more-player-card">
     <div class="mp-img"{bg_img}></div>
@@ -1180,6 +1180,17 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
     </div>
 </section>
 '''
+
+    @staticmethod
+    def _week_label(iso_week: str) -> str:
+        """Convert ISO week like '2026-W06' to 'Week of Feb 9' format."""
+        try:
+            parts = iso_week.split('-W')
+            year, wk = int(parts[0]), int(parts[1])
+            monday = datetime.strptime(f'{year}-W{wk:02d}-1', '%G-W%V-%u')
+            return f"Week of {monday.strftime('%b %-d')}"
+        except Exception:
+            return iso_week
 
     def _generate_homepage(self):
         """Generate homepage - Weekly gallery as hero, then navigation to deeper content"""
@@ -1238,7 +1249,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         <div class="photo-grid">
             {"".join(self._photo_card_html(p) for p in hero_photos)}
         </div>
-        {f'<div class="view-more"><a href="{self.base_url}/weekly/{week}/">View all {len(weekly_photos)} photos from {week} →</a></div>' if len(weekly_photos) > 20 else ''}
+        {f'<div class="view-more"><a href="{self.base_url}/weekly/{week}/">View all {len(weekly_photos)} photos from {self._week_label(week)} →</a></div>' if len(weekly_photos) > 20 else ''}
     </section>
     
     <!-- PLAYER TIMELINES -->
@@ -1271,7 +1282,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             <a href="{self.base_url}/weekly/" class="section-link">View all →</a>
         </div>
         <div class="list-grid">
-            {"".join(f'<a href="{self.base_url}/weekly/{w["week"]}/" class="list-item"><span class="name">{w["week"]}</span><span class="count">{w["count"]} photos</span></a>' for w in stats['recent_weeks'][:6] if w['week'] != week)}
+            {"".join(f'<a href="{self.base_url}/weekly/{w["week"]}/" class="list-item"><span class="name">{self._week_label(w["week"])}</span><span class="count">{w["count"]} photos</span></a>' for w in stats['recent_weeks'][:6] if w['week'] != week)}
         </div>
     </section>
     
@@ -1495,7 +1506,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
 <main class="container">
     <section class="section">
         <div class="list-grid">
-            {"".join(f'<a href="{self.base_url}/weekly/{w["week"]}/" class="list-item"><span class="name">{w["week"]}</span><span class="count">{w["count"]} photos</span></a>' for w in weeks)}
+            {"".join(f'<a href="{self.base_url}/weekly/{w["week"]}/" class="list-item"><span class="name">{self._week_label(w["week"])}</span><span class="count">{w["count"]} photos</span></a>' for w in weeks)}
         </div>
     </section>
 </main>
@@ -1671,7 +1682,7 @@ Disallow: /search/players.json
         caption = escape(photo.get('caption') or '')
         photographer = escape(photo.get('photographer') or 'Imagn')
         source = escape(photo.get('source') or 'USA TODAY Sports')
-        image_url = escape(photo.get('thumbnail_url') or f"https://www.imagn.com/image/thumb/800-750/{imagn_id}.jpg")
+        image_url = escape(photo.get('thumbnail_url') or f"https://www.imagn.com/image/{imagn_id}.jpg")
         date = photo.get('photo_date', '')
 
         try:
@@ -1835,12 +1846,13 @@ Disallow: /search/players.json
     def _generate_weekly_page(self, week: Dict):
         """Generate weekly gallery page"""
         photos = self.archive.get_photos_by_week(week['week'])
-        
+        label = self._week_label(week['week'])
+
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / <a href="{self.base_url}/weekly/">Weekly</a> / {week['week']}</div>
-        <h1>Week of {week['week']}</h1>
+        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / <a href="{self.base_url}/weekly/">Weekly</a> / {label}</div>
+        <h1>{label}</h1>
         <p class="subtitle">{len(photos)} shoe photos</p>
     </div>
 </div>
@@ -1864,11 +1876,11 @@ Disallow: /search/players.json
         
         og_image = photos[0].get('thumbnail_url') or photos[0].get('image_url', '') if photos else ''
         meta = {
-            'description': f"{len(photos)} NBA sneaker photos from week {week['week']}.",
+            'description': f"{len(photos)} NBA sneaker photos from {label}.",
             'og_image': og_image,
             'canonical': f"{self.base_url}/weekly/{week['week']}/",
         }
-        html = self._base_template(f"Week {week['week']}", content, photos_json, meta=meta)
+        html = self._base_template(label, content, photos_json, meta=meta)
         self._write_file(f"weekly/{week['week']}/index.html", html)
     
     def _generate_embed_snippet(self):
