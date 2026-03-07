@@ -52,7 +52,7 @@ class SiteGenerator:
         print(f"Generating site from {len(self.archive.photos)} photos...", file=sys.stderr)
         
         # Create directories
-        for subdir in ['players', 'weekly', 'css', 'js', 'search']:
+        for subdir in ['players', 'weekly', 'css', 'js', 'search', 'photos']:
             os.makedirs(os.path.join(self.output_dir, subdir), exist_ok=True)
         
         # Generate pages
@@ -75,6 +75,14 @@ class SiteGenerator:
         for week in self.archive.get_all_weeks():
             self._generate_weekly_page(week)
         
+        # Generate individual photo pages
+        all_photos = sorted(self.archive.photos.values(), key=lambda p: p.get('photo_date', ''), reverse=True)
+        for idx, photo in enumerate(all_photos):
+            prev_photo = all_photos[idx - 1] if idx > 0 else None
+            next_photo = all_photos[idx + 1] if idx < len(all_photos) - 1 else None
+            self._generate_photo_page(photo, prev_photo, next_photo)
+        print(f"Generated {len(all_photos)} individual photo pages", file=sys.stderr)
+
         # Generate embeddable snippet for current week
         self._generate_embed_snippet()
         
@@ -286,6 +294,65 @@ a:hover { text-decoration: underline; }
 .player-link:hover {
     color: var(--accent);
     text-decoration: none;
+}
+
+/* Photo detail page */
+.photo-detail {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.photo-detail-img {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+}
+.photo-detail-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.photo-detail-info {
+    margin-bottom: 24px;
+}
+.photo-detail-info .headline {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+.photo-detail-info .credit {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+.photo-detail-actions {
+    margin-bottom: 24px;
+}
+.back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--primary);
+    color: white;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+}
+.back-btn:hover {
+    background: var(--primary-dark);
+    text-decoration: none;
+    color: white;
+}
+.photo-nav {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+.photo-nav-link {
+    font-size: 14px;
+    font-weight: 500;
+}
+.photo-nav-link.next {
+    margin-left: auto;
 }
 
 /* List grid (for player/brand lists) */
@@ -1008,6 +1075,18 @@ a:hover { text-decoration: underline; }
 .photo-card .credit { font-size: 11px; color: var(--text-muted); }
 .player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
 .player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
 .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
 .list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
@@ -1576,6 +1655,85 @@ Disallow: /data/
 Disallow: /search/players.json
 '''
         self._write_file('robots.txt', robots)
+
+    def _generate_photo_page(self, photo: Dict, prev_photo: Dict = None, next_photo: Dict = None):
+        """Generate individual photo detail page at /photos/{imagn_id}/index.html"""
+        imagn_id = photo.get('imagn_id', '')
+        if not imagn_id:
+            return
+
+        player = escape(photo.get('player_name') or 'NBA')
+        player_slug = photo.get('player_slug') or self._name_to_slug(photo.get('player_name') or '')
+        headline = escape(photo.get('headline') or '')
+        caption = escape(photo.get('caption') or '')
+        photographer = escape(photo.get('photographer') or 'Imagn')
+        source = escape(photo.get('source') or 'USA TODAY Sports')
+        image_url = escape(photo.get('image_url', ''))
+        date = photo.get('photo_date', '')
+
+        try:
+            date_obj = datetime.strptime(date, '%Y-%m-%d')
+            date_fmt = date_obj.strftime('%b %d, %Y')
+        except Exception:
+            date_fmt = date
+
+        # SEO meta description from caption
+        meta_desc = (photo.get('caption') or headline or '')[:160]
+
+        # Affiliate module
+        affiliate_html = ''
+        if self.affiliate:
+            affiliate_html = self.affiliate.get_buy_button_html(
+                photo.get('caption', ''), photo.get('player_name', ''), 'featured'
+            )
+
+        # Prev/Next navigation
+        nav_parts = []
+        if prev_photo:
+            prev_id = prev_photo.get('imagn_id', '')
+            prev_player = escape(prev_photo.get('player_name') or 'NBA')
+            nav_parts.append(f'<a href="{self.base_url}/photos/{prev_id}/" class="photo-nav-link prev">&laquo; {prev_player}</a>')
+        if next_photo:
+            next_id = next_photo.get('imagn_id', '')
+            next_player = escape(next_photo.get('player_name') or 'NBA')
+            nav_parts.append(f'<a href="{self.base_url}/photos/{next_id}/" class="photo-nav-link next">{next_player} &raquo;</a>')
+        nav_html = f'<div class="photo-nav">{"".join(nav_parts)}</div>' if nav_parts else ''
+
+        content = f'''
+<div class="page-header">
+    <div class="container">
+        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / <a href="{self.base_url}/players/{player_slug}/">{player}</a> / Photo</div>
+    </div>
+</div>
+
+<main class="container">
+    <section class="section photo-detail">
+        <div class="photo-detail-img">
+            <img src="{image_url}" alt="{headline}" loading="lazy">
+        </div>
+        <div class="photo-detail-info">
+            <a href="{self.base_url}/players/{player_slug}/" class="player-link">{player}</a>
+            <div class="headline">{headline}</div>
+            <div class="credit">📷 {photographer} · {source} · {date_fmt}</div>
+        </div>
+        {affiliate_html}
+        <div class="photo-detail-actions">
+            <a href="{self.base_url}/players/{player_slug}/" class="back-btn">&larr; Back to {player}</a>
+        </div>
+        {nav_html}
+    </section>
+</main>
+'''
+
+        seo_title = f"{photo.get('player_name') or 'NBA'} Sneakers - {date_fmt}"
+
+        # Use _base_template but inject meta description via a small wrapper
+        html = self._base_template(seo_title, content)
+        # Insert meta description after <title> tag
+        meta_tag = f'<meta name="description" content="{escape(meta_desc)}">'
+        html = html.replace('</title>', f'</title>\n{meta_tag}', 1)
+
+        self._write_file(f"photos/{imagn_id}/index.html", html)
 
     def _generate_player_page(self, player: Dict):
         """Generate individual player page with affiliate modules"""
