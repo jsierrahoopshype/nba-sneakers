@@ -1,0 +1,64 @@
+name: Full Re-fetch (One-time)
+
+on:
+  workflow_dispatch:  # Manual trigger only
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  refetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Full re-fetch from Imagn
+        env:
+          IMAGN_USERNAME: ${{ secrets.IMAGN_USERNAME }}
+          IMAGN_PASSWORD: ${{ secrets.IMAGN_PASSWORD }}
+          IMAGN_SESSION: ${{ secrets.IMAGN_SESSION }}
+        run: |
+          cd scripts
+          python fetch_imagn.py --clear-archive --days-back 0 --max-photos 25000
+
+      - name: Generate static site
+        run: |
+          cd scripts
+          python generate_site.py
+
+      - name: Commit changes
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "Full re-fetch with improved player name extraction"
+          git push
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './site'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
