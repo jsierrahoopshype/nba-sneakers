@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Serge Ibaka | NBA Sneakers</title>
+<meta name="description" content="Browse 29 sneaker photos of Serge Ibaka from NBA games.">
+<meta property="og:title" content="Serge Ibaka | NBA Sneakers">
+<meta property="og:description" content="Browse 29 sneaker photos of Serge Ibaka from NBA games.">
+<meta property="og:image" content="https://cdn.imagn.com/image/thumb/250-225/19434236.jpg">
+<link rel="canonical" href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/">
 <style>
 :root {
     --primary: #1a1a2e;
@@ -48,7 +53,7 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
 .photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -56,6 +61,20 @@ a:hover { text-decoration: underline; }
 .photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
 .photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
 .photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
 .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
 .list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
@@ -66,18 +85,6 @@ a:hover { text-decoration: underline; }
 .page-header .subtitle { color: var(--text-secondary); }
 .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
 .breadcrumb a { color: var(--text-secondary); }
-.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
-.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
-.lightbox .nav.prev { left: 16px; }
-.lightbox .nav.next { right: 16px; }
-.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
-.lightbox .lb-player { font-size: 18px; font-weight: 600; }
-.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
-.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
-.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -138,7 +145,7 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -185,135 +192,135 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     </a>
     <div class="compare-prices"><span class="compare-label">Compare prices:</span><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.goat.com%2Fsearch%3Fquery%3DSerge%2BIbaka%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">GOAT</a><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.footlocker.com%2Fsearch%3Fquery%3DSerge%2BIbaka%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">Foot Locker</a></div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19434236.jpg" alt="NBA: Atlanta Hawks at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19434236/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19434236.jpg" alt="NBA: Atlanta Hawks at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Atlanta Hawks at Milwaukee Bucks</div>
         <div class="credit">📷 Michael McLoone · Imagn Images · Nov 14, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19368516.jpg" alt="NBA: Oklahoma City Thunder at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19368516/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19368516.jpg" alt="NBA: Oklahoma City Thunder at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Oklahoma City Thunder at Milwaukee Bucks</div>
         <div class="credit">📷 Michael McLoone · Imagn Images · Nov 05, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19337044.jpg" alt="NBA: Detroit Pistons at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19337044/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19337044.jpg" alt="NBA: Detroit Pistons at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Detroit Pistons at Milwaukee Bucks</div>
         <div class="credit">📷 Michael McLoone · Imagn Images · Oct 31, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19221922.jpg" alt="NBA: Preseason-Brooklyn Nets at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19221922/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19221922.jpg" alt="NBA: Preseason-Brooklyn Nets at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Preseason-Brooklyn Nets at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Oct 12, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17960523.jpg" alt="NBA: Washington Wizards at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17960523/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17960523.jpg" alt="NBA: Washington Wizards at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Washington Wizards at Milwaukee Bucks</div>
         <div class="credit">📷 Michael McLoone · Imagn Images · Mar 24, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17951053.jpg" alt="NBA: Chicago Bulls at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17951053/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17951053.jpg" alt="NBA: Chicago Bulls at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Chicago Bulls at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Mar 22, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17794657.jpg" alt="NBA: Charlotte Hornets at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17794657/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17794657.jpg" alt="NBA: Charlotte Hornets at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Charlotte Hornets at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Feb 28, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17693467.jpg" alt="NBA: Indiana Pacers at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17693467/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17693467.jpg" alt="NBA: Indiana Pacers at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Indiana Pacers at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Feb 15, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17402053.jpg" alt="NBA: Los Angeles Clippers at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17402053/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17402053.jpg" alt="NBA: Los Angeles Clippers at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Los Angeles Clippers at Sacramento Kings</div>
         <div class="credit">📷 Sergio Estrada · Imagn Images · Dec 22, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17393295.jpg" alt="NBA: San Antonio Spurs at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17393295/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17393295.jpg" alt="NBA: San Antonio Spurs at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: San Antonio Spurs at Los Angeles Clippers</div>
         <div class="credit">📷 Gary A. Vasquez · Imagn Images · Dec 20, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17322469.jpg" alt="NBA: Boston Celtics at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17322469/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17322469.jpg" alt="NBA: Boston Celtics at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Boston Celtics at Los Angeles Clippers</div>
         <div class="credit">📷 Jayne Kamin-Oncea · Imagn Images · Dec 08, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17324646.jpg" alt="NBA: Los Angeles Clippers at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17324646/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17324646.jpg" alt="NBA: Los Angeles Clippers at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Los Angeles Clippers at Sacramento Kings</div>
         <div class="credit">📷 Darren Yamashita · Imagn Images · Dec 04, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17270152.jpg" alt="NBA: Sacramento Kings at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17270152/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17270152.jpg" alt="NBA: Sacramento Kings at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Sacramento Kings at Los Angeles Clippers</div>
         <div class="credit">📷 Richard Mackson · Imagn Images · Dec 01, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15441488.jpg" alt="NBA: Los Angeles Clippers at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15441488/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15441488.jpg" alt="NBA: Los Angeles Clippers at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Los Angeles Clippers at Sacramento Kings</div>
         <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 15, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14165166.jpg" alt="NBA: Toronto Raptors at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14165166/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14165166.jpg" alt="NBA: Toronto Raptors at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Toronto Raptors at Utah Jazz</div>
         <div class="credit">📷 Russell Isabella · Imagn Images · Mar 09, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14143396.jpg" alt="NBA: Toronto Raptors at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14143396/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14143396.jpg" alt="NBA: Toronto Raptors at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Toronto Raptors at Golden State Warriors</div>
         <div class="credit">📷 Stan Szeto · Imagn Images · Mar 05, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13936522.jpg" alt="NBA: Toronto Raptors at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13936522/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13936522.jpg" alt="NBA: Toronto Raptors at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Toronto Raptors at Atlanta Hawks</div>
         <div class="credit">📷 Dale Zanine · Imagn Images · Jan 20, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13821640.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13821640/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13821640.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Washington Wizards at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 20, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13739332.jpg" alt="NBA: Utah Jazz at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13739332/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13739332.jpg" alt="NBA: Utah Jazz at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Utah Jazz at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 01, 2019</div>
     </div>
@@ -325,72 +332,72 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13627095.jpg" alt="NBA: Sacramento Kings at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13627095/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13627095.jpg" alt="NBA: Sacramento Kings at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Sacramento Kings at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Nov 06, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12727434.jpg" alt="NBA: Playoffs-Toronto Raptors at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12727434/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12727434.jpg" alt="NBA: Playoffs-Toronto Raptors at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Playoffs-Toronto Raptors at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · May 17, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11928255.jpg" alt="NBA: Utah Jazz at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11928255/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11928255.jpg" alt="NBA: Utah Jazz at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Utah Jazz at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Jan 01, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11921209.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11921209/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11921209.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Dec 30, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11722193.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11722193/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11722193.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Washington Wizards at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Nov 23, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11689006.jpg" alt="NBA: Toronto Raptors at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11689006/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11689006.jpg" alt="NBA: Toronto Raptors at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Toronto Raptors at Chicago Bulls</div>
         <div class="credit">📷 David Banks · Imagn Images · Nov 17, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11498792.jpg" alt="NBA: Charlotte Hornets at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11498792/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11498792.jpg" alt="NBA: Charlotte Hornets at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Charlotte Hornets at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Oct 22, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11461380.jpg" alt="NBA: Cleveland Cavaliers at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11461380/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11461380.jpg" alt="NBA: Cleveland Cavaliers at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Cleveland Cavaliers at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Oct 17, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10662508.jpg" alt="NBA: Toronto Raptors at Orlando Magic" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10662508/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10662508.jpg" alt="NBA: Toronto Raptors at Orlando Magic" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Toronto Raptors at Orlando Magic</div>
         <div class="credit">📷 Reinhold Matay · Imagn Images · Feb 28, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9723766.jpg" alt="NBA: Washington Wizards at Orlando Magic" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9723766/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9723766.jpg" alt="NBA: Washington Wizards at Orlando Magic" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Serge Ibaka</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
         <div class="headline">NBA: Washington Wizards at Orlando Magic</div>
         <div class="credit">📷 Reinhold Matay · Imagn Images · Nov 25, 2016</div>
     </div>
@@ -400,66 +407,15 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </main>
 
 
-<div class="lightbox" id="lightbox">
-    <span class="close">&times;</span>
-    <span class="nav prev">&#10094;</span>
-    <span class="nav next">&#10095;</span>
-    <span class="counter"></span>
-    <img src="" alt="">
-    <div class="info">
-        <div class="lb-player"></div>
-        <div class="lb-headline"></div>
-        <div class="lb-credit"></div>
-    </div>
-</div>
-
 <footer class="site-footer">
     <div class="container">
         Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
     </div>
 </footer>
 
-<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/19434236.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Atlanta Hawks at Milwaukee Bucks", "photographer": "Michael McLoone", "source": "Imagn Images", "photo_date": "2022-11-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19368516.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Oklahoma City Thunder at Milwaukee Bucks", "photographer": "Michael McLoone", "source": "Imagn Images", "photo_date": "2022-11-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19337044.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Detroit Pistons at Milwaukee Bucks", "photographer": "Michael McLoone", "source": "Imagn Images", "photo_date": "2022-10-31"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19221922.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Preseason-Brooklyn Nets at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2022-10-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17960523.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Washington Wizards at Milwaukee Bucks", "photographer": "Michael McLoone", "source": "Imagn Images", "photo_date": "2022-03-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17951053.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Chicago Bulls at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2022-03-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17794657.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Charlotte Hornets at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2022-02-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17693467.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Indiana Pacers at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2022-02-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17402053.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Los Angeles Clippers at Sacramento Kings", "photographer": "Sergio Estrada", "source": "Imagn Images", "photo_date": "2021-12-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17393295.jpg", "player_name": "Serge Ibaka", "headline": "NBA: San Antonio Spurs at Los Angeles Clippers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2021-12-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17322469.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Boston Celtics at Los Angeles Clippers", "photographer": "Jayne Kamin-Oncea", "source": "Imagn Images", "photo_date": "2021-12-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17324646.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Los Angeles Clippers at Sacramento Kings", "photographer": "Darren Yamashita", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17270152.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Sacramento Kings at Los Angeles Clippers", "photographer": "Richard Mackson", "source": "Imagn Images", "photo_date": "2021-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15441488.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Los Angeles Clippers at Sacramento Kings", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2021-01-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14165166.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Toronto Raptors at Utah Jazz", "photographer": "Russell Isabella", "source": "Imagn Images", "photo_date": "2020-03-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14143396.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Toronto Raptors at Golden State Warriors", "photographer": "Stan Szeto", "source": "Imagn Images", "photo_date": "2020-03-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13936522.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Toronto Raptors at Atlanta Hawks", "photographer": "Dale Zanine", "source": "Imagn Images", "photo_date": "2020-01-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13821640.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Washington Wizards at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2019-12-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13739332.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Utah Jazz at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2019-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13627095.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Sacramento Kings at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2019-11-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12727434.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Playoffs-Toronto Raptors at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2019-05-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11928255.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Utah Jazz at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2019-01-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11921209.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Chicago Bulls at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2018-12-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11722193.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Washington Wizards at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2018-11-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11689006.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Toronto Raptors at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2018-11-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11498792.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Charlotte Hornets at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2018-10-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11461380.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Cleveland Cavaliers at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2018-10-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10662508.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Toronto Raptors at Orlando Magic", "photographer": "Reinhold Matay", "source": "Imagn Images", "photo_date": "2018-02-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9723766.jpg", "player_name": "Serge Ibaka", "headline": "NBA: Washington Wizards at Orlando Magic", "photographer": "Reinhold Matay", "source": "Imagn Images", "photo_date": "2016-11-25"}];</script>
 <script>
 document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
-document.addEventListener('DOMContentLoaded', function() {
-    const photos = window.galleryPhotos || [];
-    let currentIndex = 0;
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox || photos.length === 0) return;
-    const lbImg = lightbox.querySelector('img');
-    const lbPlayer = lightbox.querySelector('.lb-player');
-    const lbHeadline = lightbox.querySelector('.lb-headline');
-    const lbCredit = lightbox.querySelector('.lb-credit');
-    const counter = lightbox.querySelector('.counter');
-    function formatDate(dateStr) {
-        if (!dateStr) return '';
-        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-        catch(e) { return dateStr; }
-    }
-    function showPhoto() {
-        const p = photos[currentIndex];
-        lbImg.src = p.image_url;
-        lbPlayer.textContent = p.player_name || 'NBA';
-        lbHeadline.textContent = p.headline || '';
-        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
-        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
-    }
-    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
-    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
-    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
-    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
-    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
-    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
-    let touchStartX = 0;
-    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
-});
 </script>
 </body>
 </html>

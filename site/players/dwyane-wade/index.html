@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dwyane Wade | NBA Sneakers</title>
+<meta name="description" content="Browse 40 sneaker photos of Dwyane Wade from NBA games.">
+<meta property="og:title" content="Dwyane Wade | NBA Sneakers">
+<meta property="og:description" content="Browse 40 sneaker photos of Dwyane Wade from NBA games.">
+<meta property="og:image" content="https://cdn.imagn.com/image/thumb/250-225/12493392.jpg">
+<link rel="canonical" href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/">
 <style>
 :root {
     --primary: #1a1a2e;
@@ -48,7 +53,7 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
 .photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -56,6 +61,20 @@ a:hover { text-decoration: underline; }
 .photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
 .photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
 .photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
 .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
 .list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
@@ -66,18 +85,6 @@ a:hover { text-decoration: underline; }
 .page-header .subtitle { color: var(--text-secondary); }
 .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
 .breadcrumb a { color: var(--text-secondary); }
-.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
-.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
-.lightbox .nav.prev { left: 16px; }
-.lightbox .nav.next { right: 16px; }
-.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
-.lightbox .lb-player { font-size: 18px; font-weight: 600; }
-.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
-.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
-.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -138,7 +145,7 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -185,135 +192,135 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     </a>
     <div class="compare-prices"><span class="compare-label">Compare prices:</span><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.goat.com%2Fsearch%3Fquery%3DDwyane%2BWade%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">GOAT</a><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.footlocker.com%2Fsearch%3Fquery%3DDwyane%2BWade%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">Foot Locker</a></div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12493392.jpg" alt="NBA: Miami Heat at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12493392/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12493392.jpg" alt="NBA: Miami Heat at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Apr 07, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12493395.jpg" alt="NBA: Miami Heat at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12493395/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12493395.jpg" alt="NBA: Miami Heat at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Apr 07, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12483276.jpg" alt="NBA: Miami Heat at Minnesota Timberwolves" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12483276/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12483276.jpg" alt="NBA: Miami Heat at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Minnesota Timberwolves</div>
         <div class="credit">📷 Brad Rempel · Imagn Images · Apr 05, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12375704.jpg" alt="NBA: Miami Heat at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12375704/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12375704.jpg" alt="NBA: Miami Heat at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Mar 18, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12298361.jpg" alt="NBA: Miami Heat at Charlotte Hornets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12298361/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12298361.jpg" alt="NBA: Miami Heat at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Charlotte Hornets</div>
         <div class="credit">📷 Jeremy Brevard · Imagn Images · Mar 06, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12297845.jpg" alt="NBA: Miami Heat at Charlotte Hornets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12297845/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12297845.jpg" alt="NBA: Miami Heat at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Charlotte Hornets</div>
         <div class="credit">📷 Jeremy Brevard · Imagn Images · Mar 06, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12257858.jpg" alt="NBA: Miami Heat at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12257858/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12257858.jpg" alt="NBA: Miami Heat at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Feb 28, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12250375.jpg" alt="NBA: Miami Heat at Philadelphia 76ers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12250375/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12250375.jpg" alt="NBA: Miami Heat at Philadelphia 76ers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Philadelphia 76ers</div>
         <div class="credit">📷 Bill Streicher · Imagn Images · Feb 21, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12158171.jpg" alt="NBA: Miami Heat at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12158171/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12158171.jpg" alt="NBA: Miami Heat at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Dallas Mavericks</div>
         <div class="credit">📷 Kevin Jairaj · Imagn Images · Feb 13, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12158454.jpg" alt="NBA: Miami Heat at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12158454/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12158454.jpg" alt="NBA: Miami Heat at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Dallas Mavericks</div>
         <div class="credit">📷 Kevin Jairaj · Imagn Images · Feb 13, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12148257.jpg" alt="NBA: Miami Heat at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12148257/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12148257.jpg" alt="NBA: Miami Heat at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Denver Nuggets</div>
         <div class="credit">📷 Ron Chenoy · Imagn Images · Feb 11, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12143812.jpg" alt="NBA: Miami Heat at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12143812/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12143812.jpg" alt="NBA: Miami Heat at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Golden State Warriors</div>
         <div class="credit">📷 Kelley L Cox · Imagn Images · Feb 10, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12114826.jpg" alt="NBA: Miami Heat at Portland Trail Blazers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12114826/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12114826.jpg" alt="NBA: Miami Heat at Portland Trail Blazers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Portland Trail Blazers</div>
         <div class="credit">📷 Craig Mitchelldyer · Imagn Images · Feb 05, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12028314.jpg" alt="NBA: Miami Heat at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12028314/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12028314.jpg" alt="NBA: Miami Heat at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Chicago Bulls</div>
         <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Jan 19, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12020112.jpg" alt="NBA: Miami Heat at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12020112/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12020112.jpg" alt="NBA: Miami Heat at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 18, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12020110.jpg" alt="NBA: Miami Heat at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12020110/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12020110.jpg" alt="NBA: Miami Heat at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 18, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12004269.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12004269/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12004269.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Jan 15, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11952785.jpg" alt="NBA: Miami Heat at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11952785/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11952785.jpg" alt="NBA: Miami Heat at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Atlanta Hawks</div>
         <div class="credit">📷 Dale Zanine · Imagn Images · Jan 06, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11894009.jpg" alt="NBA: Miami Heat at Orlando Magic" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11894009/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11894009.jpg" alt="NBA: Miami Heat at Orlando Magic" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Orlando Magic</div>
         <div class="credit">📷 Kim Klement · Imagn Images · Dec 23, 2018</div>
     </div>
@@ -325,149 +332,149 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11836212.jpg" alt="NBA: Miami Heat at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11836212/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11836212.jpg" alt="NBA: Miami Heat at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Utah Jazz</div>
         <div class="credit">📷 Jeffrey Swinger · Imagn Images · Dec 12, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11835979.jpg" alt="NBA: Miami Heat at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11835979/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11835979.jpg" alt="NBA: Miami Heat at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Utah Jazz</div>
         <div class="credit">📷 Jeffrey Swinger · Imagn Images · Dec 12, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11835980.jpg" alt="NBA: Miami Heat at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11835980/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11835980.jpg" alt="NBA: Miami Heat at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Utah Jazz</div>
         <div class="credit">📷 Jeffrey Swinger · Imagn Images · Dec 12, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11836213.jpg" alt="NBA: Miami Heat at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11836213/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11836213.jpg" alt="NBA: Miami Heat at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Utah Jazz</div>
         <div class="credit">📷 Jeffrey Swinger · Imagn Images · Dec 12, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11836173.jpg" alt="NBA: Miami Heat at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11836173/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11836173.jpg" alt="NBA: Miami Heat at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Utah Jazz</div>
         <div class="credit">📷 Jeffrey Swinger · Imagn Images · Dec 12, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11807577.jpg" alt="NBA: Miami Heat at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11807577/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11807577.jpg" alt="NBA: Miami Heat at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Phoenix Suns</div>
         <div class="credit">📷 Jennifer Stewart · Imagn Images · Dec 07, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11807576.jpg" alt="NBA: Miami Heat at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11807576/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11807576.jpg" alt="NBA: Miami Heat at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Phoenix Suns</div>
         <div class="credit">📷 Jennifer Stewart · Imagn Images · Dec 07, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11807578.jpg" alt="NBA: Miami Heat at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11807578/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11807578.jpg" alt="NBA: Miami Heat at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Phoenix Suns</div>
         <div class="credit">📷 Jennifer Stewart · Imagn Images · Dec 07, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11591644.jpg" alt="NBA: Miami Heat at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11591644/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11591644.jpg" alt="NBA: Miami Heat at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Atlanta Hawks</div>
         <div class="credit">📷 Brett Davis · Imagn Images · Nov 03, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11559126.jpg" alt="NBA: Miami Heat at Charlotte Hornets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11559126/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11559126.jpg" alt="NBA: Miami Heat at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Charlotte Hornets</div>
         <div class="credit">📷 Jeremy Brevard · Imagn Images · Oct 30, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11469046.jpg" alt="NBA: Miami Heat at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11469046/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11469046.jpg" alt="NBA: Miami Heat at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Washington Wizards</div>
         <div class="credit">📷 Geoff Burke · Imagn Images · Oct 18, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10684371.jpg" alt="NBA: Miami Heat at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10684371/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10684371.jpg" alt="NBA: Miami Heat at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Washington Wizards</div>
         <div class="credit">📷 Geoff Burke · Imagn Images · Mar 06, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10650088.jpg" alt="NBA: Miami Heat at New Orleans Pelicans" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10650088/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10650088.jpg" alt="NBA: Miami Heat at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at New Orleans Pelicans</div>
         <div class="credit">📷 Chuck Cook · Imagn Images · Feb 23, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10577404.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10577404/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10577404.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Cleveland Cavaliers at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 30, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10143341.jpg" alt="NBA: Finals-Golden State Warriors at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10143341/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10143341.jpg" alt="NBA: Finals-Golden State Warriors at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Finals-Golden State Warriors at Cleveland Cavaliers</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Jun 09, 2017</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9740153.jpg" alt="NBA: Chicago Bulls at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9740153/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9740153.jpg" alt="NBA: Chicago Bulls at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Chicago Bulls at Detroit Pistons</div>
         <div class="credit">📷 Aaron Doster · Imagn Images · Dec 06, 2016</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9740063.jpg" alt="NBA: Chicago Bulls at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9740063/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9740063.jpg" alt="NBA: Chicago Bulls at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Chicago Bulls at Detroit Pistons</div>
         <div class="credit">📷 Aaron Doster · Imagn Images · Dec 06, 2016</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9740055.jpg" alt="NBA: Chicago Bulls at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9740055/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9740055.jpg" alt="NBA: Chicago Bulls at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Chicago Bulls at Detroit Pistons</div>
         <div class="credit">📷 Aaron Doster · Imagn Images · Dec 06, 2016</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9157992.jpg" alt="NBA: Miami Heat at Philadelphia 76ers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9157992/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9157992.jpg" alt="NBA: Miami Heat at Philadelphia 76ers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Philadelphia 76ers</div>
         <div class="credit">📷 Bill Streicher · Imagn Images · Mar 04, 2016</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9056181.jpg" alt="NBA: Miami Heat at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9056181/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9056181.jpg" alt="NBA: Miami Heat at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Jan 11, 2016</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9594516.jpg" alt="NBA: Miami Heat at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9594516/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9594516.jpg" alt="NBA: Miami Heat at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Dwyane Wade</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="player-link">Dwyane Wade</a>
         <div class="headline">NBA: Miami Heat at Phoenix Suns</div>
         <div class="credit">📷 Mark J. Rebilas · Imagn Images · Jan 08, 2016</div>
     </div>
@@ -477,66 +484,15 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </main>
 
 
-<div class="lightbox" id="lightbox">
-    <span class="close">&times;</span>
-    <span class="nav prev">&#10094;</span>
-    <span class="nav next">&#10095;</span>
-    <span class="counter"></span>
-    <img src="" alt="">
-    <div class="info">
-        <div class="lb-player"></div>
-        <div class="lb-headline"></div>
-        <div class="lb-credit"></div>
-    </div>
-</div>
-
 <footer class="site-footer">
     <div class="container">
         Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
     </div>
 </footer>
 
-<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/12493392.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2019-04-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12493395.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2019-04-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12483276.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Minnesota Timberwolves", "photographer": "Brad Rempel", "source": "Imagn Images", "photo_date": "2019-04-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12375704.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2019-03-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12298361.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Charlotte Hornets", "photographer": "Jeremy Brevard", "source": "Imagn Images", "photo_date": "2019-03-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12297845.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Charlotte Hornets", "photographer": "Jeremy Brevard", "source": "Imagn Images", "photo_date": "2019-03-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12257858.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-02-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12250375.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Philadelphia 76ers", "photographer": "Bill Streicher", "source": "Imagn Images", "photo_date": "2019-02-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12158171.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Dallas Mavericks", "photographer": "Kevin Jairaj", "source": "Imagn Images", "photo_date": "2019-02-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12158454.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Dallas Mavericks", "photographer": "Kevin Jairaj", "source": "Imagn Images", "photo_date": "2019-02-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12148257.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Denver Nuggets", "photographer": "Ron Chenoy", "source": "Imagn Images", "photo_date": "2019-02-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12143812.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2019-02-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12114826.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Portland Trail Blazers", "photographer": "Craig Mitchelldyer", "source": "Imagn Images", "photo_date": "2019-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12028314.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Chicago Bulls", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "photo_date": "2019-01-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12020112.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-01-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12020110.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-01-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12004269.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2019-01-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11952785.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Atlanta Hawks", "photographer": "Dale Zanine", "source": "Imagn Images", "photo_date": "2019-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11894009.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Orlando Magic", "photographer": "Kim Klement", "source": "Imagn Images", "photo_date": "2018-12-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11836212.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Utah Jazz", "photographer": "Jeffrey Swinger", "source": "Imagn Images", "photo_date": "2018-12-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11835979.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Utah Jazz", "photographer": "Jeffrey Swinger", "source": "Imagn Images", "photo_date": "2018-12-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11835980.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Utah Jazz", "photographer": "Jeffrey Swinger", "source": "Imagn Images", "photo_date": "2018-12-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11836213.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Utah Jazz", "photographer": "Jeffrey Swinger", "source": "Imagn Images", "photo_date": "2018-12-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11836173.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Utah Jazz", "photographer": "Jeffrey Swinger", "source": "Imagn Images", "photo_date": "2018-12-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11807577.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Phoenix Suns", "photographer": "Jennifer Stewart", "source": "Imagn Images", "photo_date": "2018-12-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11807576.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Phoenix Suns", "photographer": "Jennifer Stewart", "source": "Imagn Images", "photo_date": "2018-12-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11807578.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Phoenix Suns", "photographer": "Jennifer Stewart", "source": "Imagn Images", "photo_date": "2018-12-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11591644.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Atlanta Hawks", "photographer": "Brett Davis", "source": "Imagn Images", "photo_date": "2018-11-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11559126.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Charlotte Hornets", "photographer": "Jeremy Brevard", "source": "Imagn Images", "photo_date": "2018-10-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11469046.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Washington Wizards", "photographer": "Geoff Burke", "source": "Imagn Images", "photo_date": "2018-10-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10684371.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Washington Wizards", "photographer": "Geoff Burke", "source": "Imagn Images", "photo_date": "2018-03-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10650088.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at New Orleans Pelicans", "photographer": "Chuck Cook", "source": "Imagn Images", "photo_date": "2018-02-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10577404.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Cleveland Cavaliers at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-01-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10143341.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Finals-Golden State Warriors at Cleveland Cavaliers", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-06-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9740153.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Chicago Bulls at Detroit Pistons", "photographer": "Aaron Doster", "source": "Imagn Images", "photo_date": "2016-12-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9740063.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Chicago Bulls at Detroit Pistons", "photographer": "Aaron Doster", "source": "Imagn Images", "photo_date": "2016-12-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9740055.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Chicago Bulls at Detroit Pistons", "photographer": "Aaron Doster", "source": "Imagn Images", "photo_date": "2016-12-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9157992.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Philadelphia 76ers", "photographer": "Bill Streicher", "source": "Imagn Images", "photo_date": "2016-03-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9056181.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2016-01-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9594516.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Miami Heat at Phoenix Suns", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "photo_date": "2016-01-08"}];</script>
 <script>
 document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
-document.addEventListener('DOMContentLoaded', function() {
-    const photos = window.galleryPhotos || [];
-    let currentIndex = 0;
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox || photos.length === 0) return;
-    const lbImg = lightbox.querySelector('img');
-    const lbPlayer = lightbox.querySelector('.lb-player');
-    const lbHeadline = lightbox.querySelector('.lb-headline');
-    const lbCredit = lightbox.querySelector('.lb-credit');
-    const counter = lightbox.querySelector('.counter');
-    function formatDate(dateStr) {
-        if (!dateStr) return '';
-        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-        catch(e) { return dateStr; }
-    }
-    function showPhoto() {
-        const p = photos[currentIndex];
-        lbImg.src = p.image_url;
-        lbPlayer.textContent = p.player_name || 'NBA';
-        lbHeadline.textContent = p.headline || '';
-        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
-        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
-    }
-    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
-    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
-    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
-    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
-    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
-    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
-    let touchStartX = 0;
-    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
-});
 </script>
 </body>
 </html>

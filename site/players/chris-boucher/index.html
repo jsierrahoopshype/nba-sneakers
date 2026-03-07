@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chris Boucher | NBA Sneakers</title>
+<meta name="description" content="Browse 72 sneaker photos of Chris Boucher from NBA games.">
+<meta property="og:title" content="Chris Boucher | NBA Sneakers">
+<meta property="og:description" content="Browse 72 sneaker photos of Chris Boucher from NBA games.">
+<meta property="og:image" content="https://cdn.imagn.com/image/thumb/250-225/27766223.jpg">
+<link rel="canonical" href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/">
 <style>
 :root {
     --primary: #1a1a2e;
@@ -48,7 +53,7 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
 .photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -56,6 +61,20 @@ a:hover { text-decoration: underline; }
 .photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
 .photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
 .photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
 .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
 .list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
@@ -66,18 +85,6 @@ a:hover { text-decoration: underline; }
 .page-header .subtitle { color: var(--text-secondary); }
 .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
 .breadcrumb a { color: var(--text-secondary); }
-.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
-.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
-.lightbox .nav.prev { left: 16px; }
-.lightbox .nav.next { right: 16px; }
-.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
-.lightbox .lb-player { font-size: 18px; font-weight: 600; }
-.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
-.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
-.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -138,7 +145,7 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -185,135 +192,135 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     </a>
     <div class="compare-prices"><span class="compare-label">Compare prices:</span><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.goat.com%2Fsearch%3Fquery%3DChris%2BBoucher%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">GOAT</a><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.footlocker.com%2Fsearch%3Fquery%3DChris%2BBoucher%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">Foot Locker</a></div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27766223.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27766223/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27766223.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Boston Celtics at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 07, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27294701.jpg" alt="NBA: Preseason-Boston Celtics at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27294701/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27294701.jpg" alt="NBA: Preseason-Boston Celtics at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Preseason-Boston Celtics at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Oct 10, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25540350.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25540350/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25540350.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Boston Celtics at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 25, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25494656.jpg" alt="NBA: Phoenix Suns at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25494656/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25494656.jpg" alt="NBA: Phoenix Suns at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Phoenix Suns at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 23, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25348353.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25348353/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25348353.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 05, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25326098.jpg" alt="NBA: Los Angeles Clippers at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25326098/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25326098.jpg" alt="NBA: Los Angeles Clippers at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Los Angeles Clippers at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 02, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25330968.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25330968/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25330968.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 31, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25242317.jpg" alt="NBA: Orlando Magic at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25242317/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25242317.jpg" alt="NBA: Orlando Magic at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Orlando Magic at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Jan 21, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25182289.jpg" alt="NBA: Golden State Warriors at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25182289/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25182289.jpg" alt="NBA: Golden State Warriors at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Golden State Warriors at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 13, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25157006.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25157006/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25157006.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 06, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25125516.jpg" alt="NBA: Orlando Magic at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25125516/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25125516.jpg" alt="NBA: Orlando Magic at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Orlando Magic at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 03, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25097099.jpg" alt="NBA: Brooklyn Nets at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25097099/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25097099.jpg" alt="NBA: Brooklyn Nets at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Brooklyn Nets at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Jan 01, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25080796.jpg" alt="NBA: Atlanta Hawks at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25080796/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25080796.jpg" alt="NBA: Atlanta Hawks at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Atlanta Hawks at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Dec 29, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25030937.jpg" alt="NBA: Brooklyn Nets at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25030937/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25030937.jpg" alt="NBA: Brooklyn Nets at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Brooklyn Nets at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Dec 19, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24951540.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24951540/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24951540.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 09, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24953141.jpg" alt="NBA: Dallas Mavericks at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24953141/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24953141.jpg" alt="NBA: Dallas Mavericks at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Dallas Mavericks at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Dec 07, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24903699.jpg" alt="NBA: Indiana Pacers at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24903699/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24903699.jpg" alt="NBA: Indiana Pacers at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Indiana Pacers at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 03, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24890118.jpg" alt="NBA: Miami Heat at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24890118/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24890118.jpg" alt="NBA: Miami Heat at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Miami Heat at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Dec 01, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24845356.jpg" alt="NBA: Toronto Raptors at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24845356/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24845356.jpg" alt="NBA: Toronto Raptors at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Toronto Raptors at Cleveland Cavaliers</div>
         <div class="credit">📷 Ken Blaze · Imagn Images · Nov 24, 2024</div>
     </div>
@@ -325,212 +332,212 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24818436.jpg" alt="NBA: Indiana Pacers at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24818436/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24818436.jpg" alt="NBA: Indiana Pacers at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Indiana Pacers at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Nov 18, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24663493.jpg" alt="NBA: Sacramento Kings at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24663493/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24663493.jpg" alt="NBA: Sacramento Kings at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Sacramento Kings at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Nov 02, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24612546.jpg" alt="NBA: Denver Nuggets at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24612546/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24612546.jpg" alt="NBA: Denver Nuggets at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Denver Nuggets at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Oct 28, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24568116.jpg" alt="NBA: Cleveland Cavaliers at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24568116/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24568116.jpg" alt="NBA: Cleveland Cavaliers at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Cleveland Cavaliers at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Oct 23, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24577340.jpg" alt="NBA: Cleveland Cavaliers at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24577340/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24577340.jpg" alt="NBA: Cleveland Cavaliers at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Cleveland Cavaliers at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Oct 23, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22702171.jpg" alt="NBA: New Orleans Pelicans at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22702171/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22702171.jpg" alt="NBA: New Orleans Pelicans at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: New Orleans Pelicans at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Mar 05, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22382578.jpg" alt="NBA: Los Angeles Clippers at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22382578/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22382578.jpg" alt="NBA: Los Angeles Clippers at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Los Angeles Clippers at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Jan 26, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22159950.jpg" alt="NBA: Charlotte Hornets at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22159950/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22159950.jpg" alt="NBA: Charlotte Hornets at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Charlotte Hornets at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Dec 18, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22011767.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22011767/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22011767.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Dec 01, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21996657.jpg" alt="NBA: Phoenix Suns at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21996657/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21996657.jpg" alt="NBA: Phoenix Suns at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Phoenix Suns at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Nov 29, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21966295.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21966295/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21966295.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Nov 24, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21793313.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21793313/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21793313.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Nov 01, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21694087.jpg" alt="NBA: Preseason-Washington Wizards at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21694087/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21694087.jpg" alt="NBA: Preseason-Washington Wizards at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Preseason-Washington Wizards at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Oct 20, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20337699.jpg" alt="NBA: Miami Heat at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20337699/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20337699.jpg" alt="NBA: Miami Heat at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Miami Heat at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Mar 28, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20326206.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20326206/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20326206.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Washington Wizards at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Mar 26, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20329384.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20329384/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20329384.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Mar 24, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20163505.jpg" alt="NBA: Toronto Raptors at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20163505/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20163505.jpg" alt="NBA: Toronto Raptors at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Toronto Raptors at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 06, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20098020.jpg" alt="NBA: Toronto Raptors at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20098020/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20098020.jpg" alt="NBA: Toronto Raptors at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Toronto Raptors at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Feb 26, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20072030.jpg" alt="NBA: New Orleans Pelicans at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20072030/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20072030.jpg" alt="NBA: New Orleans Pelicans at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: New Orleans Pelicans at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 23, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19995972.jpg" alt="NBA: Orlando Magic at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19995972/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19995972.jpg" alt="NBA: Orlando Magic at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Orlando Magic at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 14, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19964874.jpg" alt="NBA: Utah Jazz at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19964874/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19964874.jpg" alt="NBA: Utah Jazz at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Utah Jazz at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 10, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19859981.jpg" alt="NBA: Toronto Raptors at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19859981/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19859981.jpg" alt="NBA: Toronto Raptors at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Toronto Raptors at Sacramento Kings</div>
         <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 25, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19841772.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19841772/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19841772.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Jan 22, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19833238.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19833238/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19833238.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Boston Celtics at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 21, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19724310.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19724310/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19724310.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 04, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19685533.jpg" alt="NBA: Los Angeles Clippers at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19685533/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19685533.jpg" alt="NBA: Los Angeles Clippers at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Los Angeles Clippers at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 27, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19650228.jpg" alt="NBA: Golden State Warriors at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19650228/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19650228.jpg" alt="NBA: Golden State Warriors at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Golden State Warriors at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 18, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19380727.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19380727/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19380727.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Nov 06, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18041590.jpg" alt="NBA: Philadelphia 76ers at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/18041590/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18041590.jpg" alt="NBA: Philadelphia 76ers at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Philadelphia 76ers at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Apr 07, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18016728.jpg" alt="NBA: Miami Heat at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/18016728/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18016728.jpg" alt="NBA: Miami Heat at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Miami Heat at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Apr 03, 2022</div>
     </div>
@@ -542,163 +549,163 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17993881.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17993881/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17993881.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Mar 30, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17993873.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17993873/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17993873.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Mar 30, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17984082.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17984082/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17984082.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Boston Celtics at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Mar 28, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17979604.jpg" alt="NBA: Indiana Pacers at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17979604/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17979604.jpg" alt="NBA: Indiana Pacers at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Indiana Pacers at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Mar 26, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17946608.jpg" alt="NBA: Los Angeles Lakers at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17946608/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17946608.jpg" alt="NBA: Los Angeles Lakers at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Los Angeles Lakers at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Mar 18, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17898336.jpg" alt="NBA: Toronto Raptors at Los Angeles Lakers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17898336/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17898336.jpg" alt="NBA: Toronto Raptors at Los Angeles Lakers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Toronto Raptors at Los Angeles Lakers</div>
         <div class="credit">📷 Gary A. Vasquez · Imagn Images · Mar 14, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17899768.jpg" alt="NBA: Toronto Raptors at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17899768/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17899768.jpg" alt="NBA: Toronto Raptors at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Toronto Raptors at Denver Nuggets</div>
         <div class="credit">📷 John Leyba · Imagn Images · Mar 12, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17899770.jpg" alt="NBA: Toronto Raptors at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17899770/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17899770.jpg" alt="NBA: Toronto Raptors at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Toronto Raptors at Denver Nuggets</div>
         <div class="credit">📷 John Leyba · Imagn Images · Mar 12, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17821728.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17821728/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17821728.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Mar 03, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17532361.jpg" alt="NBA: Toronto Raptors at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17532361/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17532361.jpg" alt="NBA: Toronto Raptors at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Toronto Raptors at Dallas Mavericks</div>
         <div class="credit">📷 Kevin Jairaj · Imagn Images · Jan 19, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17496902.jpg" alt="NBA: New Orleans Pelicans at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17496902/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17496902.jpg" alt="NBA: New Orleans Pelicans at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: New Orleans Pelicans at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 09, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17479719.jpg" alt="NBA: New Orleans Pelicans at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17479719/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17479719.jpg" alt="NBA: New Orleans Pelicans at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: New Orleans Pelicans at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 09, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17413594.jpg" alt="NBA: Toronto Raptors at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17413594/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17413594.jpg" alt="NBA: Toronto Raptors at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Toronto Raptors at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Dec 26, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17161854.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17161854/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17161854.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Nov 13, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14112892.jpg" alt="NBA: Charlotte Hornets at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14112892/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14112892.jpg" alt="NBA: Charlotte Hornets at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Charlotte Hornets at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 28, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14113084.jpg" alt="NBA: Charlotte Hornets at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14113084/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14113084.jpg" alt="NBA: Charlotte Hornets at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Charlotte Hornets at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 28, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13989764.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13989764/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13989764.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 02, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13968729.jpg" alt="NBA: Atlanta Hawks at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13968729/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13968729.jpg" alt="NBA: Atlanta Hawks at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Atlanta Hawks at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 28, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13901740.jpg" alt="NBA: San Antonio Spurs at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13901740/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13901740.jpg" alt="NBA: San Antonio Spurs at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: San Antonio Spurs at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 12, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13713120.jpg" alt="NBA: Philadelphia 76ers at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13713120/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13713120.jpg" alt="NBA: Philadelphia 76ers at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Philadelphia 76ers at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Nov 25, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13685465.jpg" alt="NBA: Charlotte Hornets at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13685465/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13685465.jpg" alt="NBA: Charlotte Hornets at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Charlotte Hornets at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Nov 18, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12329625.jpg" alt="NBA: Toronto Raptors at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12329625/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12329625.jpg" alt="NBA: Toronto Raptors at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: Toronto Raptors at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Mar 11, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12237941.jpg" alt="NBA: San Antonio Spurs at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12237941/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12237941.jpg" alt="NBA: San Antonio Spurs at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Boucher</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
         <div class="headline">NBA: San Antonio Spurs at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 22, 2019</div>
     </div>
@@ -708,66 +715,15 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </main>
 
 
-<div class="lightbox" id="lightbox">
-    <span class="close">&times;</span>
-    <span class="nav prev">&#10094;</span>
-    <span class="nav next">&#10095;</span>
-    <span class="counter"></span>
-    <img src="" alt="">
-    <div class="info">
-        <div class="lb-player"></div>
-        <div class="lb-headline"></div>
-        <div class="lb-credit"></div>
-    </div>
-</div>
-
 <footer class="site-footer">
     <div class="container">
         Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
     </div>
 </footer>
 
-<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/27766223.jpg", "player_name": "Chris Boucher", "headline": "NBA: Boston Celtics at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2025-12-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/27294701.jpg", "player_name": "Chris Boucher", "headline": "NBA: Preseason-Boston Celtics at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2025-10-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25540350.jpg", "player_name": "Chris Boucher", "headline": "NBA: Boston Celtics at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2025-02-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25494656.jpg", "player_name": "Chris Boucher", "headline": "NBA: Phoenix Suns at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2025-02-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25348353.jpg", "player_name": "Chris Boucher", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2025-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25326098.jpg", "player_name": "Chris Boucher", "headline": "NBA: Los Angeles Clippers at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2025-02-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25330968.jpg", "player_name": "Chris Boucher", "headline": "NBA: Chicago Bulls at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2025-01-31"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25242317.jpg", "player_name": "Chris Boucher", "headline": "NBA: Orlando Magic at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2025-01-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25182289.jpg", "player_name": "Chris Boucher", "headline": "NBA: Golden State Warriors at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2025-01-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25157006.jpg", "player_name": "Chris Boucher", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2025-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25125516.jpg", "player_name": "Chris Boucher", "headline": "NBA: Orlando Magic at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2025-01-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25097099.jpg", "player_name": "Chris Boucher", "headline": "NBA: Brooklyn Nets at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2025-01-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25080796.jpg", "player_name": "Chris Boucher", "headline": "NBA: Atlanta Hawks at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2024-12-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25030937.jpg", "player_name": "Chris Boucher", "headline": "NBA: Brooklyn Nets at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2024-12-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24951540.jpg", "player_name": "Chris Boucher", "headline": "NBA: New York Knicks at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2024-12-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24953141.jpg", "player_name": "Chris Boucher", "headline": "NBA: Dallas Mavericks at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2024-12-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24903699.jpg", "player_name": "Chris Boucher", "headline": "NBA: Indiana Pacers at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2024-12-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24890118.jpg", "player_name": "Chris Boucher", "headline": "NBA: Miami Heat at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2024-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24845356.jpg", "player_name": "Chris Boucher", "headline": "NBA: Toronto Raptors at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2024-11-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24818436.jpg", "player_name": "Chris Boucher", "headline": "NBA: Indiana Pacers at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2024-11-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24663493.jpg", "player_name": "Chris Boucher", "headline": "NBA: Sacramento Kings at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2024-11-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24612546.jpg", "player_name": "Chris Boucher", "headline": "NBA: Denver Nuggets at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2024-10-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24568116.jpg", "player_name": "Chris Boucher", "headline": "NBA: Cleveland Cavaliers at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2024-10-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24577340.jpg", "player_name": "Chris Boucher", "headline": "NBA: Cleveland Cavaliers at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2024-10-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/22702171.jpg", "player_name": "Chris Boucher", "headline": "NBA: New Orleans Pelicans at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2024-03-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/22382578.jpg", "player_name": "Chris Boucher", "headline": "NBA: Los Angeles Clippers at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2024-01-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/22159950.jpg", "player_name": "Chris Boucher", "headline": "NBA: Charlotte Hornets at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2023-12-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/22011767.jpg", "player_name": "Chris Boucher", "headline": "NBA: New York Knicks at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2023-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/21996657.jpg", "player_name": "Chris Boucher", "headline": "NBA: Phoenix Suns at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-11-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/21966295.jpg", "player_name": "Chris Boucher", "headline": "NBA: Chicago Bulls at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-11-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/21793313.jpg", "player_name": "Chris Boucher", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-11-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/21694087.jpg", "player_name": "Chris Boucher", "headline": "NBA: Preseason-Washington Wizards at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-10-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20337699.jpg", "player_name": "Chris Boucher", "headline": "NBA: Miami Heat at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-03-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20326206.jpg", "player_name": "Chris Boucher", "headline": "NBA: Washington Wizards at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2023-03-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20329384.jpg", "player_name": "Chris Boucher", "headline": "NBA: Detroit Pistons at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2023-03-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20163505.jpg", "player_name": "Chris Boucher", "headline": "NBA: Toronto Raptors at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2023-03-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20098020.jpg", "player_name": "Chris Boucher", "headline": "NBA: Toronto Raptors at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2023-02-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20072030.jpg", "player_name": "Chris Boucher", "headline": "NBA: New Orleans Pelicans at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-02-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19995972.jpg", "player_name": "Chris Boucher", "headline": "NBA: Orlando Magic at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-02-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19964874.jpg", "player_name": "Chris Boucher", "headline": "NBA: Utah Jazz at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2023-02-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19859981.jpg", "player_name": "Chris Boucher", "headline": "NBA: Toronto Raptors at Sacramento Kings", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2023-01-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19841772.jpg", "player_name": "Chris Boucher", "headline": "NBA: New York Knicks at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2023-01-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19833238.jpg", "player_name": "Chris Boucher", "headline": "NBA: Boston Celtics at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2023-01-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19724310.jpg", "player_name": "Chris Boucher", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19685533.jpg", "player_name": "Chris Boucher", "headline": "NBA: Los Angeles Clippers at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2022-12-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19650228.jpg", "player_name": "Chris Boucher", "headline": "NBA: Golden State Warriors at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2022-12-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19380727.jpg", "player_name": "Chris Boucher", "headline": "NBA: Chicago Bulls at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2022-11-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/18041590.jpg", "player_name": "Chris Boucher", "headline": "NBA: Philadelphia 76ers at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2022-04-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/18016728.jpg", "player_name": "Chris Boucher", "headline": "NBA: Miami Heat at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2022-04-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17993881.jpg", "player_name": "Chris Boucher", "headline": "NBA: Minnesota Timberwolves at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2022-03-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17993873.jpg", "player_name": "Chris Boucher", "headline": "NBA: Minnesota Timberwolves at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2022-03-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17984082.jpg", "player_name": "Chris Boucher", "headline": "NBA: Boston Celtics at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2022-03-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17979604.jpg", "player_name": "Chris Boucher", "headline": "NBA: Indiana Pacers at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2022-03-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17946608.jpg", "player_name": "Chris Boucher", "headline": "NBA: Los Angeles Lakers at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2022-03-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17898336.jpg", "player_name": "Chris Boucher", "headline": "NBA: Toronto Raptors at Los Angeles Lakers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2022-03-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17899768.jpg", "player_name": "Chris Boucher", "headline": "NBA: Toronto Raptors at Denver Nuggets", "photographer": "John Leyba", "source": "Imagn Images", "photo_date": "2022-03-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17899770.jpg", "player_name": "Chris Boucher", "headline": "NBA: Toronto Raptors at Denver Nuggets", "photographer": "John Leyba", "source": "Imagn Images", "photo_date": "2022-03-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17821728.jpg", "player_name": "Chris Boucher", "headline": "NBA: Detroit Pistons at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2022-03-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17532361.jpg", "player_name": "Chris Boucher", "headline": "NBA: Toronto Raptors at Dallas Mavericks", "photographer": "Kevin Jairaj", "source": "Imagn Images", "photo_date": "2022-01-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17496902.jpg", "player_name": "Chris Boucher", "headline": "NBA: New Orleans Pelicans at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2022-01-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17479719.jpg", "player_name": "Chris Boucher", "headline": "NBA: New Orleans Pelicans at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2022-01-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17413594.jpg", "player_name": "Chris Boucher", "headline": "NBA: Toronto Raptors at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2021-12-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17161854.jpg", "player_name": "Chris Boucher", "headline": "NBA: Detroit Pistons at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2021-11-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14112892.jpg", "player_name": "Chris Boucher", "headline": "NBA: Charlotte Hornets at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2020-02-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14113084.jpg", "player_name": "Chris Boucher", "headline": "NBA: Charlotte Hornets at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2020-02-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13989764.jpg", "player_name": "Chris Boucher", "headline": "NBA: Chicago Bulls at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2020-02-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13968729.jpg", "player_name": "Chris Boucher", "headline": "NBA: Atlanta Hawks at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2020-01-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13901740.jpg", "player_name": "Chris Boucher", "headline": "NBA: San Antonio Spurs at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2020-01-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13713120.jpg", "player_name": "Chris Boucher", "headline": "NBA: Philadelphia 76ers at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2019-11-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13685465.jpg", "player_name": "Chris Boucher", "headline": "NBA: Charlotte Hornets at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2019-11-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12329625.jpg", "player_name": "Chris Boucher", "headline": "NBA: Toronto Raptors at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2019-03-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12237941.jpg", "player_name": "Chris Boucher", "headline": "NBA: San Antonio Spurs at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2019-02-22"}];</script>
 <script>
 document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
-document.addEventListener('DOMContentLoaded', function() {
-    const photos = window.galleryPhotos || [];
-    let currentIndex = 0;
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox || photos.length === 0) return;
-    const lbImg = lightbox.querySelector('img');
-    const lbPlayer = lightbox.querySelector('.lb-player');
-    const lbHeadline = lightbox.querySelector('.lb-headline');
-    const lbCredit = lightbox.querySelector('.lb-credit');
-    const counter = lightbox.querySelector('.counter');
-    function formatDate(dateStr) {
-        if (!dateStr) return '';
-        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-        catch(e) { return dateStr; }
-    }
-    function showPhoto() {
-        const p = photos[currentIndex];
-        lbImg.src = p.image_url;
-        lbPlayer.textContent = p.player_name || 'NBA';
-        lbHeadline.textContent = p.headline || '';
-        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
-        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
-    }
-    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
-    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
-    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
-    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
-    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
-    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
-    let touchStartX = 0;
-    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
-});
 </script>
 </body>
 </html>

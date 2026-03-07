@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jae Crowder | NBA Sneakers</title>
+<meta name="description" content="Browse 63 sneaker photos of Jae Crowder from NBA games.">
+<meta property="og:title" content="Jae Crowder | NBA Sneakers">
+<meta property="og:description" content="Browse 63 sneaker photos of Jae Crowder from NBA games.">
+<meta property="og:image" content="https://cdn.imagn.com/image/thumb/250-225/24866572.jpg">
+<link rel="canonical" href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/">
 <style>
 :root {
     --primary: #1a1a2e;
@@ -48,7 +53,7 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
 .photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -56,6 +61,20 @@ a:hover { text-decoration: underline; }
 .photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
 .photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
 .photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
 .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
 .list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
@@ -66,18 +85,6 @@ a:hover { text-decoration: underline; }
 .page-header .subtitle { color: var(--text-secondary); }
 .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
 .breadcrumb a { color: var(--text-secondary); }
-.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
-.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
-.lightbox .nav.prev { left: 16px; }
-.lightbox .nav.next { right: 16px; }
-.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
-.lightbox .lb-player { font-size: 18px; font-weight: 600; }
-.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
-.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
-.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -138,7 +145,7 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -185,135 +192,135 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     </a>
     <div class="compare-prices"><span class="compare-label">Compare prices:</span><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.goat.com%2Fsearch%3Fquery%3DJae%2BCrowder%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">GOAT</a><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.footlocker.com%2Fsearch%3Fquery%3DJae%2BCrowder%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">Foot Locker</a></div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24866572.jpg" alt="NBA: Sacramento Kings at Minnesota Timberwolves" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24866572/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24866572.jpg" alt="NBA: Sacramento Kings at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Sacramento Kings at Minnesota Timberwolves</div>
         <div class="credit">📷 Brad Rempel · Imagn Images · Nov 27, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22316005.jpg" alt="NBA: Milwaukee Bucks at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22316005/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22316005.jpg" alt="NBA: Milwaukee Bucks at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Milwaukee Bucks at Cleveland Cavaliers</div>
         <div class="credit">📷 Ken Blaze · Imagn Images · Jan 17, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21836944.jpg" alt="NBA: Milwaukee Bucks at Brooklyn Nets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21836944/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21836944.jpg" alt="NBA: Milwaukee Bucks at Brooklyn Nets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Milwaukee Bucks at Brooklyn Nets</div>
         <div class="credit">📷 John Jones · Imagn Images · Nov 06, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20428728.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20428728/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20428728.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Apr 09, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20169461.jpg" alt="NBA: Milwaukee Bucks at Orlando Magic" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20169461/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20169461.jpg" alt="NBA: Milwaukee Bucks at Orlando Magic" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Milwaukee Bucks at Orlando Magic</div>
         <div class="credit">📷 Mike Watters · Imagn Images · Mar 07, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17940400.jpg" alt="NBA: Phoenix Suns at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17940400/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17940400.jpg" alt="NBA: Phoenix Suns at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Phoenix Suns at Sacramento Kings</div>
         <div class="credit">📷 Cary Edmondson · Imagn Images · Mar 20, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17614272.jpg" alt="NBA: Phoenix Suns at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17614272/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17614272.jpg" alt="NBA: Phoenix Suns at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Phoenix Suns at Atlanta Hawks</div>
         <div class="credit">📷 Dale Zanine · Imagn Images · Feb 03, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17516857.jpg" alt="NBA: Phoenix Suns at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17516857/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17516857.jpg" alt="NBA: Phoenix Suns at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Phoenix Suns at Detroit Pistons</div>
         <div class="credit">📷 Raj Mehta · Imagn Images · Jan 16, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17398567.jpg" alt="NBA: Phoenix Suns at Los Angeles Lakers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17398567/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17398567.jpg" alt="NBA: Phoenix Suns at Los Angeles Lakers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Phoenix Suns at Los Angeles Lakers</div>
         <div class="credit">📷 Gary A. Vasquez · Imagn Images · Dec 21, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17223653.jpg" alt="NBA: Phoenix Suns at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17223653/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17223653.jpg" alt="NBA: Phoenix Suns at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Phoenix Suns at Cleveland Cavaliers</div>
         <div class="credit">📷 Ken Blaze · Imagn Images · Nov 24, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15828360.jpg" alt="NBA: Phoenix Suns at Charlotte Hornets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15828360/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15828360.jpg" alt="NBA: Phoenix Suns at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Phoenix Suns at Charlotte Hornets</div>
         <div class="credit">📷 Nell Redmond · Imagn Images · Mar 28, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15363739.jpg" alt="NBA: Phoenix Suns at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15363739/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15363739.jpg" alt="NBA: Phoenix Suns at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Phoenix Suns at Sacramento Kings</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Dec 26, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14954344.jpg" alt="NBA: Playoffs-Boston Celtics at Miami Heat" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14954344/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14954344.jpg" alt="NBA: Playoffs-Boston Celtics at Miami Heat" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Playoffs-Boston Celtics at Miami Heat</div>
         <div class="credit">📷 Kim Klement · Imagn Images · Sep 19, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14869344.jpg" alt="NBA: Playoffs-Miami Heat at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14869344/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14869344.jpg" alt="NBA: Playoffs-Miami Heat at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Playoffs-Miami Heat at Milwaukee Bucks</div>
         <div class="credit">📷 Kim Klement · Imagn Images · Sep 02, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14763528.jpg" alt="NBA: Playoffs-Miami Heat at Indiana Pacers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14763528/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14763528.jpg" alt="NBA: Playoffs-Miami Heat at Indiana Pacers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Playoffs-Miami Heat at Indiana Pacers</div>
         <div class="credit">📷 Mike Ehrmann · Pool Photo · Aug 18, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14092605.jpg" alt="NBA: Miami Heat at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14092605/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14092605.jpg" alt="NBA: Miami Heat at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Miami Heat at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Feb 24, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14025025.jpg" alt="NBA: Miami Heat at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14025025/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14025025.jpg" alt="NBA: Miami Heat at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Miami Heat at Golden State Warriors</div>
         <div class="credit">📷 Kelley L Cox · Imagn Images · Feb 10, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13950956.jpg" alt="NBA: Memphis Grizzlies at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13950956/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13950956.jpg" alt="NBA: Memphis Grizzlies at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Memphis Grizzlies at Detroit Pistons</div>
         <div class="credit">📷 Tim Fuller · Imagn Images · Jan 24, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13865732.jpg" alt="NBA: Memphis Grizzlies at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13865732/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13865732.jpg" alt="NBA: Memphis Grizzlies at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Memphis Grizzlies at Sacramento Kings</div>
         <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 02, 2020</div>
     </div>
@@ -325,212 +332,212 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13749619.jpg" alt="NBA: Memphis Grizzlies at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13749619/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13749619.jpg" alt="NBA: Memphis Grizzlies at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Memphis Grizzlies at Chicago Bulls</div>
         <div class="credit">📷 Mike Dinovo · Imagn Images · Dec 04, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13581592.jpg" alt="NBA: Brooklyn Nets at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13581592/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13581592.jpg" alt="NBA: Brooklyn Nets at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Brooklyn Nets at Memphis Grizzlies</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Oct 27, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12535475.jpg" alt="NBA: Playoffs-Utah Jazz at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12535475/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12535475.jpg" alt="NBA: Playoffs-Utah Jazz at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Playoffs-Utah Jazz at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Apr 14, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12496211.jpg" alt="NBA: Utah Jazz at Los Angeles Lakers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12496211/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12496211.jpg" alt="NBA: Utah Jazz at Los Angeles Lakers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Los Angeles Lakers</div>
         <div class="credit">📷 Gary A. Vasquez · Imagn Images · Apr 07, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12455720.jpg" alt="NBA: Charlotte Hornets at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12455720/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12455720.jpg" alt="NBA: Charlotte Hornets at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Charlotte Hornets at Utah Jazz</div>
         <div class="credit">📷 Chris Nicoll · Imagn Images · Apr 01, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12441078.jpg" alt="NBA: Washington Wizards at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12441078/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12441078.jpg" alt="NBA: Washington Wizards at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Washington Wizards at Utah Jazz</div>
         <div class="credit">📷 Russell Isabella · Imagn Images · Mar 29, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12425817.jpg" alt="NBA: Los Angeles Lakers at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12425817/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12425817.jpg" alt="NBA: Los Angeles Lakers at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Los Angeles Lakers at Utah Jazz</div>
         <div class="credit">📷 Jeffrey Swinger · Imagn Images · Mar 27, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12416212.jpg" alt="NBA: Phoenix Suns at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12416212/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12416212.jpg" alt="NBA: Phoenix Suns at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Phoenix Suns at Utah Jazz</div>
         <div class="credit">📷 Russell Isabella · Imagn Images · Mar 25, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12405622.jpg" alt="NBA: Utah Jazz at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12405622/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12405622.jpg" alt="NBA: Utah Jazz at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Chicago Bulls</div>
         <div class="credit">📷 Mike Dinovo · Imagn Images · Mar 23, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12285615.jpg" alt="NBA: New Orleans Pelicans at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12285615/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12285615.jpg" alt="NBA: New Orleans Pelicans at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: New Orleans Pelicans at Utah Jazz</div>
         <div class="credit">📷 Russell Isabella · Imagn Images · Mar 04, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12251629.jpg" alt="NBA: Los Angeles Clippers at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12251629/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12251629.jpg" alt="NBA: Los Angeles Clippers at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Los Angeles Clippers at Utah Jazz</div>
         <div class="credit">📷 Russell Isabella · Imagn Images · Feb 27, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12153527.jpg" alt="NBA: Utah Jazz at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12153527/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12153527.jpg" alt="NBA: Utah Jazz at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Feb 12, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12134740.jpg" alt="NBA: San Antonio Spurs at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12134740/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12134740.jpg" alt="NBA: San Antonio Spurs at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: San Antonio Spurs at Utah Jazz</div>
         <div class="credit">📷 Rob Gray · Imagn Images · Feb 09, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12120990.jpg" alt="NBA: Phoenix Suns at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12120990/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12120990.jpg" alt="NBA: Phoenix Suns at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Phoenix Suns at Utah Jazz</div>
         <div class="credit">📷 Russell Isabella · Imagn Images · Feb 06, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12058351.jpg" alt="NBA: Minnesota Timberwolves at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12058351/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12058351.jpg" alt="NBA: Minnesota Timberwolves at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Minnesota Timberwolves at Utah Jazz</div>
         <div class="credit">📷 Russell Isabella · Imagn Images · Jan 25, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12021601.jpg" alt="NBA: Cleveland Cavaliers at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12021601/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12021601.jpg" alt="NBA: Cleveland Cavaliers at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Cleveland Cavaliers at Utah Jazz</div>
         <div class="credit">📷 Chris Nicoll · Imagn Images · Jan 18, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12009956.jpg" alt="NBA: Utah Jazz at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12009956/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12009956.jpg" alt="NBA: Utah Jazz at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Los Angeles Clippers</div>
         <div class="credit">📷 Kirby Lee · Imagn Images · Jan 16, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11981686.jpg" alt="NBA: Los Angeles Lakers at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11981686/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11981686.jpg" alt="NBA: Los Angeles Lakers at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Los Angeles Lakers at Utah Jazz</div>
         <div class="credit">📷 Russell Isabella · Imagn Images · Jan 11, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11970314.jpg" alt="NBA: Orlando Magic at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11970314/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11970314.jpg" alt="NBA: Orlando Magic at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Orlando Magic at Utah Jazz</div>
         <div class="credit">📷 Chris Nicoll · Imagn Images · Jan 09, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11958849.jpg" alt="NBA: Utah Jazz at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11958849/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11958849.jpg" alt="NBA: Utah Jazz at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Jan 07, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11948492.jpg" alt="NBA: Utah Jazz at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11948492/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11948492.jpg" alt="NBA: Utah Jazz at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Detroit Pistons</div>
         <div class="credit">📷 Raj Mehta · Imagn Images · Jan 05, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11939739.jpg" alt="NBA: Utah Jazz at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11939739/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11939739.jpg" alt="NBA: Utah Jazz at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Cleveland Cavaliers</div>
         <div class="credit">📷 Ken Blaze · Imagn Images · Jan 04, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11928236.jpg" alt="NBA: Utah Jazz at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11928236/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11928236.jpg" alt="NBA: Utah Jazz at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Jan 01, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11864250.jpg" alt="NBA: Utah Jazz at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11864250/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11864250.jpg" alt="NBA: Utah Jazz at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Dec 17, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11848919.jpg" alt="NBA: Utah Jazz at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11848919/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11848919.jpg" alt="NBA: Utah Jazz at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Dec 10, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11801786.jpg" alt="NBA: Houston Rockets at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11801786/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11801786.jpg" alt="NBA: Houston Rockets at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Houston Rockets at Utah Jazz</div>
         <div class="credit">📷 Russell Isabella · Imagn Images · Dec 06, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11790503.jpg" alt="NBA: San Antonio Spurs at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11790503/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11790503.jpg" alt="NBA: San Antonio Spurs at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: San Antonio Spurs at Utah Jazz</div>
         <div class="credit">📷 Russell Isabella · Imagn Images · Dec 04, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11711921.jpg" alt="NBA: Sacramento Kings at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11711921/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11711921.jpg" alt="NBA: Sacramento Kings at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Sacramento Kings at Utah Jazz</div>
         <div class="credit">📷 Jeffrey Swinger · Imagn Images · Nov 21, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11665053.jpg" alt="NBA: Utah Jazz at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11665053/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11665053.jpg" alt="NBA: Utah Jazz at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Nov 14, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11633579.jpg" alt="NBA: Boston Celtics at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11633579/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11633579.jpg" alt="NBA: Boston Celtics at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Boston Celtics at Utah Jazz</div>
         <div class="credit">📷 Russell Isabella · Imagn Images · Nov 09, 2018</div>
     </div>
@@ -542,100 +549,100 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11619295.jpg" alt="NBA: Dallas Mavericks at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11619295/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11619295.jpg" alt="NBA: Dallas Mavericks at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Dallas Mavericks at Utah Jazz</div>
         <div class="credit">📷 Russell Isabella · Imagn Images · Nov 07, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11592758.jpg" alt="NBA: Utah Jazz at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11592758/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11592758.jpg" alt="NBA: Utah Jazz at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Denver Nuggets</div>
         <div class="credit">📷 Ron Chenoy · Imagn Images · Nov 03, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11592821.jpg" alt="NBA: Utah Jazz at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11592821/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11592821.jpg" alt="NBA: Utah Jazz at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Denver Nuggets</div>
         <div class="credit">📷 Ron Chenoy · Imagn Images · Nov 03, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11566542.jpg" alt="NBA: Utah Jazz at Minnesota Timberwolves" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11566542/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11566542.jpg" alt="NBA: Utah Jazz at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Minnesota Timberwolves</div>
         <div class="credit">📷 Brace Hemmelgarn · Imagn Images · Oct 31, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11547279.jpg" alt="NBA: Utah Jazz at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11547279/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11547279.jpg" alt="NBA: Utah Jazz at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Dallas Mavericks</div>
         <div class="credit">📷 Kevin Jairaj · Imagn Images · Oct 28, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11461986.jpg" alt="NBA: Utah Jazz at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11461986/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11461986.jpg" alt="NBA: Utah Jazz at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Sacramento Kings</div>
         <div class="credit">📷 Sergio Estrada · Imagn Images · Oct 17, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10735254.jpg" alt="NBA: Utah Jazz at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10735254/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10735254.jpg" alt="NBA: Utah Jazz at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Golden State Warriors</div>
         <div class="credit">📷 Kelley L Cox · Imagn Images · Mar 25, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10727870.jpg" alt="NBA: Utah Jazz at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10727870/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10727870.jpg" alt="NBA: Utah Jazz at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Mar 22, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10676406.jpg" alt="NBA: Utah Jazz at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10676406/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10676406.jpg" alt="NBA: Utah Jazz at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Sacramento Kings</div>
         <div class="credit">📷 Ed Szczepanski · Imagn Images · Mar 03, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10676407.jpg" alt="NBA: Utah Jazz at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10676407/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10676407.jpg" alt="NBA: Utah Jazz at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Utah Jazz at Sacramento Kings</div>
         <div class="credit">📷 Ed Szczepanski · Imagn Images · Mar 03, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10671072.jpg" alt="NBA: Minnesota Timberwolves at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10671072/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10671072.jpg" alt="NBA: Minnesota Timberwolves at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Minnesota Timberwolves at Utah Jazz</div>
         <div class="credit">📷 Russell Isabella · Imagn Images · Mar 02, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10671071.jpg" alt="NBA: Minnesota Timberwolves at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10671071/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10671071.jpg" alt="NBA: Minnesota Timberwolves at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Minnesota Timberwolves at Utah Jazz</div>
         <div class="credit">📷 Russell Isabella · Imagn Images · Mar 02, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10650057.jpg" alt="NBA: Portland Trail Blazers at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10650057/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10650057.jpg" alt="NBA: Portland Trail Blazers at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: Portland Trail Blazers at Utah Jazz</div>
         <div class="credit">📷 Chris Nicoll · Imagn Images · Feb 23, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10608075.jpg" alt="NBA: San Antonio Spurs at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10608075/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10608075.jpg" alt="NBA: San Antonio Spurs at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Jae Crowder</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
         <div class="headline">NBA: San Antonio Spurs at Utah Jazz</div>
         <div class="credit">📷 Chris Nicoll · Imagn Images · Feb 12, 2018</div>
     </div>
@@ -645,66 +652,15 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </main>
 
 
-<div class="lightbox" id="lightbox">
-    <span class="close">&times;</span>
-    <span class="nav prev">&#10094;</span>
-    <span class="nav next">&#10095;</span>
-    <span class="counter"></span>
-    <img src="" alt="">
-    <div class="info">
-        <div class="lb-player"></div>
-        <div class="lb-headline"></div>
-        <div class="lb-credit"></div>
-    </div>
-</div>
-
 <footer class="site-footer">
     <div class="container">
         Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
     </div>
 </footer>
 
-<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/24866572.jpg", "player_name": "Jae Crowder", "headline": "NBA: Sacramento Kings at Minnesota Timberwolves", "photographer": "Brad Rempel", "source": "Imagn Images", "photo_date": "2024-11-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/22316005.jpg", "player_name": "Jae Crowder", "headline": "NBA: Milwaukee Bucks at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2024-01-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/21836944.jpg", "player_name": "Jae Crowder", "headline": "NBA: Milwaukee Bucks at Brooklyn Nets", "photographer": "John Jones", "source": "Imagn Images", "photo_date": "2023-11-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20428728.jpg", "player_name": "Jae Crowder", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2023-04-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20169461.jpg", "player_name": "Jae Crowder", "headline": "NBA: Milwaukee Bucks at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2023-03-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17940400.jpg", "player_name": "Jae Crowder", "headline": "NBA: Phoenix Suns at Sacramento Kings", "photographer": "Cary Edmondson", "source": "Imagn Images", "photo_date": "2022-03-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17614272.jpg", "player_name": "Jae Crowder", "headline": "NBA: Phoenix Suns at Atlanta Hawks", "photographer": "Dale Zanine", "source": "Imagn Images", "photo_date": "2022-02-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17516857.jpg", "player_name": "Jae Crowder", "headline": "NBA: Phoenix Suns at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2022-01-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17398567.jpg", "player_name": "Jae Crowder", "headline": "NBA: Phoenix Suns at Los Angeles Lakers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2021-12-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17223653.jpg", "player_name": "Jae Crowder", "headline": "NBA: Phoenix Suns at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2021-11-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15828360.jpg", "player_name": "Jae Crowder", "headline": "NBA: Phoenix Suns at Charlotte Hornets", "photographer": "Nell Redmond", "source": "Imagn Images", "photo_date": "2021-03-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15363739.jpg", "player_name": "Jae Crowder", "headline": "NBA: Phoenix Suns at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2020-12-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14954344.jpg", "player_name": "Jae Crowder", "headline": "NBA: Playoffs-Boston Celtics at Miami Heat", "photographer": "Kim Klement", "source": "Imagn Images", "photo_date": "2020-09-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14869344.jpg", "player_name": "Jae Crowder", "headline": "NBA: Playoffs-Miami Heat at Milwaukee Bucks", "photographer": "Kim Klement", "source": "Imagn Images", "photo_date": "2020-09-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14763528.jpg", "player_name": "Jae Crowder", "headline": "NBA: Playoffs-Miami Heat at Indiana Pacers", "photographer": "Mike Ehrmann", "source": "Pool Photo", "photo_date": "2020-08-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14092605.jpg", "player_name": "Jae Crowder", "headline": "NBA: Miami Heat at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2020-02-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14025025.jpg", "player_name": "Jae Crowder", "headline": "NBA: Miami Heat at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2020-02-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13950956.jpg", "player_name": "Jae Crowder", "headline": "NBA: Memphis Grizzlies at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2020-01-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13865732.jpg", "player_name": "Jae Crowder", "headline": "NBA: Memphis Grizzlies at Sacramento Kings", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2020-01-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13749619.jpg", "player_name": "Jae Crowder", "headline": "NBA: Memphis Grizzlies at Chicago Bulls", "photographer": "Mike Dinovo", "source": "Imagn Images", "photo_date": "2019-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13581592.jpg", "player_name": "Jae Crowder", "headline": "NBA: Brooklyn Nets at Memphis Grizzlies", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2019-10-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12535475.jpg", "player_name": "Jae Crowder", "headline": "NBA: Playoffs-Utah Jazz at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-04-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12496211.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Los Angeles Lakers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2019-04-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12455720.jpg", "player_name": "Jae Crowder", "headline": "NBA: Charlotte Hornets at Utah Jazz", "photographer": "Chris Nicoll", "source": "Imagn Images", "photo_date": "2019-04-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12441078.jpg", "player_name": "Jae Crowder", "headline": "NBA: Washington Wizards at Utah Jazz", "photographer": "Russell Isabella", "source": "Imagn Images", "photo_date": "2019-03-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12425817.jpg", "player_name": "Jae Crowder", "headline": "NBA: Los Angeles Lakers at Utah Jazz", "photographer": "Jeffrey Swinger", "source": "Imagn Images", "photo_date": "2019-03-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12416212.jpg", "player_name": "Jae Crowder", "headline": "NBA: Phoenix Suns at Utah Jazz", "photographer": "Russell Isabella", "source": "Imagn Images", "photo_date": "2019-03-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12405622.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Chicago Bulls", "photographer": "Mike Dinovo", "source": "Imagn Images", "photo_date": "2019-03-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12285615.jpg", "player_name": "Jae Crowder", "headline": "NBA: New Orleans Pelicans at Utah Jazz", "photographer": "Russell Isabella", "source": "Imagn Images", "photo_date": "2019-03-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12251629.jpg", "player_name": "Jae Crowder", "headline": "NBA: Los Angeles Clippers at Utah Jazz", "photographer": "Russell Isabella", "source": "Imagn Images", "photo_date": "2019-02-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12153527.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-02-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12134740.jpg", "player_name": "Jae Crowder", "headline": "NBA: San Antonio Spurs at Utah Jazz", "photographer": "Rob Gray", "source": "Imagn Images", "photo_date": "2019-02-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12120990.jpg", "player_name": "Jae Crowder", "headline": "NBA: Phoenix Suns at Utah Jazz", "photographer": "Russell Isabella", "source": "Imagn Images", "photo_date": "2019-02-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12058351.jpg", "player_name": "Jae Crowder", "headline": "NBA: Minnesota Timberwolves at Utah Jazz", "photographer": "Russell Isabella", "source": "Imagn Images", "photo_date": "2019-01-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12021601.jpg", "player_name": "Jae Crowder", "headline": "NBA: Cleveland Cavaliers at Utah Jazz", "photographer": "Chris Nicoll", "source": "Imagn Images", "photo_date": "2019-01-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12009956.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Los Angeles Clippers", "photographer": "Kirby Lee", "source": "Imagn Images", "photo_date": "2019-01-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11981686.jpg", "player_name": "Jae Crowder", "headline": "NBA: Los Angeles Lakers at Utah Jazz", "photographer": "Russell Isabella", "source": "Imagn Images", "photo_date": "2019-01-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11970314.jpg", "player_name": "Jae Crowder", "headline": "NBA: Orlando Magic at Utah Jazz", "photographer": "Chris Nicoll", "source": "Imagn Images", "photo_date": "2019-01-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11958849.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2019-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11948492.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2019-01-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11939739.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2019-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11928236.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2019-01-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11864250.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-12-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11848919.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2018-12-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11801786.jpg", "player_name": "Jae Crowder", "headline": "NBA: Houston Rockets at Utah Jazz", "photographer": "Russell Isabella", "source": "Imagn Images", "photo_date": "2018-12-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11790503.jpg", "player_name": "Jae Crowder", "headline": "NBA: San Antonio Spurs at Utah Jazz", "photographer": "Russell Isabella", "source": "Imagn Images", "photo_date": "2018-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11711921.jpg", "player_name": "Jae Crowder", "headline": "NBA: Sacramento Kings at Utah Jazz", "photographer": "Jeffrey Swinger", "source": "Imagn Images", "photo_date": "2018-11-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11665053.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2018-11-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11633579.jpg", "player_name": "Jae Crowder", "headline": "NBA: Boston Celtics at Utah Jazz", "photographer": "Russell Isabella", "source": "Imagn Images", "photo_date": "2018-11-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11619295.jpg", "player_name": "Jae Crowder", "headline": "NBA: Dallas Mavericks at Utah Jazz", "photographer": "Russell Isabella", "source": "Imagn Images", "photo_date": "2018-11-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11592758.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Denver Nuggets", "photographer": "Ron Chenoy", "source": "Imagn Images", "photo_date": "2018-11-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11592821.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Denver Nuggets", "photographer": "Ron Chenoy", "source": "Imagn Images", "photo_date": "2018-11-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11566542.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Minnesota Timberwolves", "photographer": "Brace Hemmelgarn", "source": "Imagn Images", "photo_date": "2018-10-31"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11547279.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Dallas Mavericks", "photographer": "Kevin Jairaj", "source": "Imagn Images", "photo_date": "2018-10-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11461986.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Sacramento Kings", "photographer": "Sergio Estrada", "source": "Imagn Images", "photo_date": "2018-10-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10735254.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2018-03-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10727870.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2018-03-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10676406.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Sacramento Kings", "photographer": "Ed Szczepanski", "source": "Imagn Images", "photo_date": "2018-03-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10676407.jpg", "player_name": "Jae Crowder", "headline": "NBA: Utah Jazz at Sacramento Kings", "photographer": "Ed Szczepanski", "source": "Imagn Images", "photo_date": "2018-03-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10671072.jpg", "player_name": "Jae Crowder", "headline": "NBA: Minnesota Timberwolves at Utah Jazz", "photographer": "Russell Isabella", "source": "Imagn Images", "photo_date": "2018-03-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10671071.jpg", "player_name": "Jae Crowder", "headline": "NBA: Minnesota Timberwolves at Utah Jazz", "photographer": "Russell Isabella", "source": "Imagn Images", "photo_date": "2018-03-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10650057.jpg", "player_name": "Jae Crowder", "headline": "NBA: Portland Trail Blazers at Utah Jazz", "photographer": "Chris Nicoll", "source": "Imagn Images", "photo_date": "2018-02-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10608075.jpg", "player_name": "Jae Crowder", "headline": "NBA: San Antonio Spurs at Utah Jazz", "photographer": "Chris Nicoll", "source": "Imagn Images", "photo_date": "2018-02-12"}];</script>
 <script>
 document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
-document.addEventListener('DOMContentLoaded', function() {
-    const photos = window.galleryPhotos || [];
-    let currentIndex = 0;
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox || photos.length === 0) return;
-    const lbImg = lightbox.querySelector('img');
-    const lbPlayer = lightbox.querySelector('.lb-player');
-    const lbHeadline = lightbox.querySelector('.lb-headline');
-    const lbCredit = lightbox.querySelector('.lb-credit');
-    const counter = lightbox.querySelector('.counter');
-    function formatDate(dateStr) {
-        if (!dateStr) return '';
-        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-        catch(e) { return dateStr; }
-    }
-    function showPhoto() {
-        const p = photos[currentIndex];
-        lbImg.src = p.image_url;
-        lbPlayer.textContent = p.player_name || 'NBA';
-        lbHeadline.textContent = p.headline || '';
-        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
-        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
-    }
-    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
-    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
-    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
-    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
-    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
-    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
-    let touchStartX = 0;
-    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
-});
 </script>
 </body>
 </html>

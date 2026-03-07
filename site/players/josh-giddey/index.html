@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Josh Giddey | NBA Sneakers</title>
+<meta name="description" content="Browse 30 sneaker photos of Josh Giddey from NBA games.">
+<meta property="og:title" content="Josh Giddey | NBA Sneakers">
+<meta property="og:description" content="Browse 30 sneaker photos of Josh Giddey from NBA games.">
+<meta property="og:image" content="https://cdn.imagn.com/image/thumb/250-225/27887659.jpg">
+<link rel="canonical" href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/">
 <style>
 :root {
     --primary: #1a1a2e;
@@ -48,7 +53,7 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
 .photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -56,6 +61,20 @@ a:hover { text-decoration: underline; }
 .photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
 .photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
 .photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
 .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
 .list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
@@ -66,18 +85,6 @@ a:hover { text-decoration: underline; }
 .page-header .subtitle { color: var(--text-secondary); }
 .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
 .breadcrumb a { color: var(--text-secondary); }
-.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
-.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
-.lightbox .nav.prev { left: 16px; }
-.lightbox .nav.next { right: 16px; }
-.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
-.lightbox .lb-player { font-size: 18px; font-weight: 600; }
-.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
-.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
-.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -138,7 +145,7 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -185,135 +192,135 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     </a>
     <div class="compare-prices"><span class="compare-label">Compare prices:</span><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.goat.com%2Fsearch%3Fquery%3DJosh%2BGiddey%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">GOAT</a><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.footlocker.com%2Fsearch%3Fquery%3DJosh%2BGiddey%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">Foot Locker</a></div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27887659.jpg" alt="NBA: Philadelphia 76ers at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27887659/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27887659.jpg" alt="NBA: Philadelphia 76ers at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Philadelphia 76ers at Chicago Bulls</div>
         <div class="credit">📷 David Banks · Imagn Images · Dec 26, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27749890.jpg" alt="NBA: Indiana Pacers at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27749890/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27749890.jpg" alt="NBA: Indiana Pacers at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Indiana Pacers at Chicago Bulls</div>
         <div class="credit">📷 David Banks · Imagn Images · Dec 05, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25889637.jpg" alt="NBA: Miami Heat at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25889637/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25889637.jpg" alt="NBA: Miami Heat at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Miami Heat at Chicago Bulls</div>
         <div class="credit">📷 David Banks · Imagn Images · Apr 09, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25392361.jpg" alt="NBA: Detroit Pistons at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25392361/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25392361.jpg" alt="NBA: Detroit Pistons at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Detroit Pistons at Chicago Bulls</div>
         <div class="credit">📷 David Banks · Imagn Images · Feb 11, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25330904.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25330904/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25330904.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 31, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25255026.jpg" alt="NBA: Chicago Bulls at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25255026/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25255026.jpg" alt="NBA: Chicago Bulls at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Chicago Bulls at Golden State Warriors</div>
         <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 23, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24866215.jpg" alt="NBA: Chicago Bulls at Orlando Magic" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24866215/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24866215.jpg" alt="NBA: Chicago Bulls at Orlando Magic" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Chicago Bulls at Orlando Magic</div>
         <div class="credit">📷 Mike Watters · Imagn Images · Nov 27, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24629709.jpg" alt="NBA: Orlando Magic at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24629709/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24629709.jpg" alt="NBA: Orlando Magic at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Orlando Magic at Chicago Bulls</div>
         <div class="credit">📷 David Banks · Imagn Images · Oct 30, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22857858.jpg" alt="NBA: Oklahoma City Thunder at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22857858/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22857858.jpg" alt="NBA: Oklahoma City Thunder at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Oklahoma City Thunder at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Mar 24, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22401732.jpg" alt="NBA: Minnesota Timberwolves at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22401732/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22401732.jpg" alt="NBA: Minnesota Timberwolves at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Minnesota Timberwolves at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 29, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22181603.jpg" alt="NBA: New York Knicks at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22181603/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22181603.jpg" alt="NBA: New York Knicks at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: New York Knicks at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Dec 27, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21939662.jpg" alt="NBA: Oklahoma City Thunder at Portland Trail Blazers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21939662/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21939662.jpg" alt="NBA: Oklahoma City Thunder at Portland Trail Blazers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Oklahoma City Thunder at Portland Trail Blazers</div>
         <div class="credit">📷 Jaime Valdez · Imagn Images · Nov 19, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21852594.jpg" alt="NBA: Cleveland Cavaliers at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21852594/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21852594.jpg" alt="NBA: Cleveland Cavaliers at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Cleveland Cavaliers at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 08, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21836997.jpg" alt="NBA: Atlanta Hawks at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21836997/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21836997.jpg" alt="NBA: Atlanta Hawks at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Atlanta Hawks at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 06, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21670989.jpg" alt="NBA: Preseason-Milwaukee Bucks at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21670989/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21670989.jpg" alt="NBA: Preseason-Milwaukee Bucks at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Preseason-Milwaukee Bucks at Oklahoma City Thunder</div>
         <div class="credit">📷 Rob Ferguson · Imagn Images · Oct 17, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20170219.jpg" alt="NBA: Golden State Warriors at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20170219/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20170219.jpg" alt="NBA: Golden State Warriors at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Golden State Warriors at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Mar 07, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20005958.jpg" alt="NBA: Houston Rockets at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20005958/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20005958.jpg" alt="NBA: Houston Rockets at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Houston Rockets at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Feb 15, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19937161.jpg" alt="NBA: Oklahoma City Thunder at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19937161/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19937161.jpg" alt="NBA: Oklahoma City Thunder at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Oklahoma City Thunder at Golden State Warriors</div>
         <div class="credit">📷 Kelley L Cox · Imagn Images · Feb 06, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19891344.jpg" alt="NBA: Golden State Warriors at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19891344/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19891344.jpg" alt="NBA: Golden State Warriors at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Golden State Warriors at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 30, 2023</div>
     </div>
@@ -325,79 +332,79 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19859934.jpg" alt="NBA: Atlanta Hawks at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19859934/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19859934.jpg" alt="NBA: Atlanta Hawks at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Atlanta Hawks at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 25, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19738597.jpg" alt="NBA: Washington Wizards at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19738597/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19738597.jpg" alt="NBA: Washington Wizards at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Washington Wizards at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 06, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19676060.jpg" alt="NBA: New Orleans Pelicans at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19676060/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19676060.jpg" alt="NBA: New Orleans Pelicans at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: New Orleans Pelicans at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Dec 23, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19667027.jpg" alt="NBA: Portland Trail Blazers at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19667027/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19667027.jpg" alt="NBA: Portland Trail Blazers at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Portland Trail Blazers at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Dec 21, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19637849.jpg" alt="NBA: Minnesota Timberwolves at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19637849/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19637849.jpg" alt="NBA: Minnesota Timberwolves at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Minnesota Timberwolves at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Dec 16, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19483139.jpg" alt="NBA: New York Knicks at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19483139/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19483139.jpg" alt="NBA: New York Knicks at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: New York Knicks at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 21, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19483136.jpg" alt="NBA: New York Knicks at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19483136/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19483136.jpg" alt="NBA: New York Knicks at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: New York Knicks at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 21, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19354415.jpg" alt="NBA: Denver Nuggets at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19354415/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19354415.jpg" alt="NBA: Denver Nuggets at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Denver Nuggets at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 03, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17686370.jpg" alt="NBA: Oklahoma City Thunder at New York Knicks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17686370/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17686370.jpg" alt="NBA: Oklahoma City Thunder at New York Knicks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Oklahoma City Thunder at New York Knicks</div>
         <div class="credit">📷 Andy Marlin · Imagn Images · Feb 14, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17135265.jpg" alt="NBA: Oklahoma City Thunder at New Orleans Pelicans" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17135265/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17135265.jpg" alt="NBA: Oklahoma City Thunder at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Oklahoma City Thunder at New Orleans Pelicans</div>
         <div class="credit">📷 Stephen Lew · Imagn Images · Nov 10, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/16974136.jpg" alt="NBA: Preseason-Denver Nuggets at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/16974136/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/16974136.jpg" alt="NBA: Preseason-Denver Nuggets at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Josh Giddey</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
         <div class="headline">NBA: Preseason-Denver Nuggets at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Oct 14, 2021</div>
     </div>
@@ -407,66 +414,15 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </main>
 
 
-<div class="lightbox" id="lightbox">
-    <span class="close">&times;</span>
-    <span class="nav prev">&#10094;</span>
-    <span class="nav next">&#10095;</span>
-    <span class="counter"></span>
-    <img src="" alt="">
-    <div class="info">
-        <div class="lb-player"></div>
-        <div class="lb-headline"></div>
-        <div class="lb-credit"></div>
-    </div>
-</div>
-
 <footer class="site-footer">
     <div class="container">
         Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
     </div>
 </footer>
 
-<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/27887659.jpg", "player_name": "Josh Giddey", "headline": "NBA: Philadelphia 76ers at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2025-12-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/27749890.jpg", "player_name": "Josh Giddey", "headline": "NBA: Indiana Pacers at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2025-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25889637.jpg", "player_name": "Josh Giddey", "headline": "NBA: Miami Heat at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2025-04-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25392361.jpg", "player_name": "Josh Giddey", "headline": "NBA: Detroit Pistons at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2025-02-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25330904.jpg", "player_name": "Josh Giddey", "headline": "NBA: Chicago Bulls at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2025-01-31"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25255026.jpg", "player_name": "Josh Giddey", "headline": "NBA: Chicago Bulls at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2025-01-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24866215.jpg", "player_name": "Josh Giddey", "headline": "NBA: Chicago Bulls at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2024-11-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24629709.jpg", "player_name": "Josh Giddey", "headline": "NBA: Orlando Magic at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2024-10-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/22857858.jpg", "player_name": "Josh Giddey", "headline": "NBA: Oklahoma City Thunder at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2024-03-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/22401732.jpg", "player_name": "Josh Giddey", "headline": "NBA: Minnesota Timberwolves at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2024-01-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/22181603.jpg", "player_name": "Josh Giddey", "headline": "NBA: New York Knicks at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-12-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/21939662.jpg", "player_name": "Josh Giddey", "headline": "NBA: Oklahoma City Thunder at Portland Trail Blazers", "photographer": "Jaime Valdez", "source": "Imagn Images", "photo_date": "2023-11-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/21852594.jpg", "player_name": "Josh Giddey", "headline": "NBA: Cleveland Cavaliers at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-11-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/21836997.jpg", "player_name": "Josh Giddey", "headline": "NBA: Atlanta Hawks at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-11-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/21670989.jpg", "player_name": "Josh Giddey", "headline": "NBA: Preseason-Milwaukee Bucks at Oklahoma City Thunder", "photographer": "Rob Ferguson", "source": "Imagn Images", "photo_date": "2023-10-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20170219.jpg", "player_name": "Josh Giddey", "headline": "NBA: Golden State Warriors at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-03-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20005958.jpg", "player_name": "Josh Giddey", "headline": "NBA: Houston Rockets at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-02-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19937161.jpg", "player_name": "Josh Giddey", "headline": "NBA: Oklahoma City Thunder at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2023-02-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19891344.jpg", "player_name": "Josh Giddey", "headline": "NBA: Golden State Warriors at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-01-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19859934.jpg", "player_name": "Josh Giddey", "headline": "NBA: Atlanta Hawks at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-01-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19738597.jpg", "player_name": "Josh Giddey", "headline": "NBA: Washington Wizards at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19676060.jpg", "player_name": "Josh Giddey", "headline": "NBA: New Orleans Pelicans at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2022-12-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19667027.jpg", "player_name": "Josh Giddey", "headline": "NBA: Portland Trail Blazers at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2022-12-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19637849.jpg", "player_name": "Josh Giddey", "headline": "NBA: Minnesota Timberwolves at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2022-12-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19483139.jpg", "player_name": "Josh Giddey", "headline": "NBA: New York Knicks at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2022-11-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19483136.jpg", "player_name": "Josh Giddey", "headline": "NBA: New York Knicks at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2022-11-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19354415.jpg", "player_name": "Josh Giddey", "headline": "NBA: Denver Nuggets at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2022-11-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17686370.jpg", "player_name": "Josh Giddey", "headline": "NBA: Oklahoma City Thunder at New York Knicks", "photographer": "Andy Marlin", "source": "Imagn Images", "photo_date": "2022-02-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17135265.jpg", "player_name": "Josh Giddey", "headline": "NBA: Oklahoma City Thunder at New Orleans Pelicans", "photographer": "Stephen Lew", "source": "Imagn Images", "photo_date": "2021-11-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/16974136.jpg", "player_name": "Josh Giddey", "headline": "NBA: Preseason-Denver Nuggets at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2021-10-14"}];</script>
 <script>
 document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
-document.addEventListener('DOMContentLoaded', function() {
-    const photos = window.galleryPhotos || [];
-    let currentIndex = 0;
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox || photos.length === 0) return;
-    const lbImg = lightbox.querySelector('img');
-    const lbPlayer = lightbox.querySelector('.lb-player');
-    const lbHeadline = lightbox.querySelector('.lb-headline');
-    const lbCredit = lightbox.querySelector('.lb-credit');
-    const counter = lightbox.querySelector('.counter');
-    function formatDate(dateStr) {
-        if (!dateStr) return '';
-        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-        catch(e) { return dateStr; }
-    }
-    function showPhoto() {
-        const p = photos[currentIndex];
-        lbImg.src = p.image_url;
-        lbPlayer.textContent = p.player_name || 'NBA';
-        lbHeadline.textContent = p.headline || '';
-        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
-        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
-    }
-    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
-    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
-    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
-    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
-    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
-    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
-    let touchStartX = 0;
-    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
-});
 </script>
 </body>
 </html>

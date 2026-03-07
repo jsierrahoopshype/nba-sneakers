@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reggie Jackson | NBA Sneakers</title>
+<meta name="description" content="Browse 61 sneaker photos of Reggie Jackson from NBA games.">
+<meta property="og:title" content="Reggie Jackson | NBA Sneakers">
+<meta property="og:description" content="Browse 61 sneaker photos of Reggie Jackson from NBA games.">
+<meta property="og:image" content="https://cdn.imagn.com/image/thumb/250-225/22207869.jpg">
+<link rel="canonical" href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/">
 <style>
 :root {
     --primary: #1a1a2e;
@@ -48,7 +53,7 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
 .photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -56,6 +61,20 @@ a:hover { text-decoration: underline; }
 .photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
 .photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
 .photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
 .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
 .list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
@@ -66,18 +85,6 @@ a:hover { text-decoration: underline; }
 .page-header .subtitle { color: var(--text-secondary); }
 .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
 .breadcrumb a { color: var(--text-secondary); }
-.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
-.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
-.lightbox .nav.prev { left: 16px; }
-.lightbox .nav.next { right: 16px; }
-.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
-.lightbox .lb-player { font-size: 18px; font-weight: 600; }
-.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
-.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
-.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -138,7 +145,7 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -185,135 +192,135 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     </a>
     <div class="compare-prices"><span class="compare-label">Compare prices:</span><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.goat.com%2Fsearch%3Fquery%3DReggie%2BJackson%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">GOAT</a><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.footlocker.com%2Fsearch%3Fquery%3DReggie%2BJackson%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">Foot Locker</a></div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22207869.jpg" alt="NBA: Charlotte Hornets at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22207869/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22207869.jpg" alt="NBA: Charlotte Hornets at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Charlotte Hornets at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 01, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21956404.jpg" alt="NBA: Denver Nuggets at Orlando Magic" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21956404/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21956404.jpg" alt="NBA: Denver Nuggets at Orlando Magic" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Denver Nuggets at Orlando Magic</div>
         <div class="credit">📷 Mike Watters · Imagn Images · Nov 22, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21938723.jpg" alt="NBA: Denver Nuggets at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21938723/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21938723.jpg" alt="NBA: Denver Nuggets at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Denver Nuggets at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Nov 19, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20827971.jpg" alt="NBA: Finals-Miami Heat at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20827971/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20827971.jpg" alt="NBA: Finals-Miami Heat at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Finals-Miami Heat at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jun 04, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20100180.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20100180/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20100180.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 26, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19831021.jpg" alt="NBA: Los Angeles Clippers at San Antonio Spurs" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19831021/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19831021.jpg" alt="NBA: Los Angeles Clippers at San Antonio Spurs" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Los Angeles Clippers at San Antonio Spurs</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Jan 20, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19685912.jpg" alt="NBA: Los Angeles Clippers at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19685912/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19685912.jpg" alt="NBA: Los Angeles Clippers at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Los Angeles Clippers at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 27, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19534961.jpg" alt="NBA: Los Angeles Clippers at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19534961/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19534961.jpg" alt="NBA: Los Angeles Clippers at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Los Angeles Clippers at Utah Jazz</div>
         <div class="credit">📷 Rob Gray · Imagn Images · Nov 30, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18054678.jpg" alt="NBA: Sacramento Kings at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/18054678/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18054678.jpg" alt="NBA: Sacramento Kings at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Sacramento Kings at Los Angeles Clippers</div>
         <div class="credit">📷 Jayne Kamin-Oncea · Imagn Images · Apr 09, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17968630.jpg" alt="NBA: Philadelphia 76ers at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17968630/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17968630.jpg" alt="NBA: Philadelphia 76ers at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Philadelphia 76ers at Los Angeles Clippers</div>
         <div class="credit">📷 Gary A. Vasquez · Imagn Images · Mar 25, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17951585.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17951585/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17951585.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 22, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17864317.jpg" alt="NBA: Washington Wizards at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17864317/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17864317.jpg" alt="NBA: Washington Wizards at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Washington Wizards at Los Angeles Clippers</div>
         <div class="credit">📷 Gary A. Vasquez · Imagn Images · Mar 09, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17659349.jpg" alt="NBA: Los Angeles Clippers at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17659349/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17659349.jpg" alt="NBA: Los Angeles Clippers at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Los Angeles Clippers at Dallas Mavericks</div>
         <div class="credit">📷 Kevin Jairaj · Imagn Images · Feb 10, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17532272.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17532272/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17532272.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 19, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17474276.jpg" alt="NBA: Memphis Grizzlies at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17474276/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17474276.jpg" alt="NBA: Memphis Grizzlies at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Memphis Grizzlies at Los Angeles Clippers</div>
         <div class="credit">📷 Gary A. Vasquez · Imagn Images · Jan 08, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17308977.jpg" alt="NBA: Los Angeles Clippers at Portland Trail Blazers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17308977/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17308977.jpg" alt="NBA: Los Angeles Clippers at Portland Trail Blazers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Los Angeles Clippers at Portland Trail Blazers</div>
         <div class="credit">📷 Jaime Valdez · Imagn Images · Dec 06, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17000149.jpg" alt="NBA: Los Angeles Clippers at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17000149/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17000149.jpg" alt="NBA: Los Angeles Clippers at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Los Angeles Clippers at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Oct 21, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15580275.jpg" alt="NBA: Miami Heat at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15580275/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15580275.jpg" alt="NBA: Miami Heat at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Miami Heat at Los Angeles Clippers</div>
         <div class="credit">📷 Kirby Lee · Imagn Images · Feb 15, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14017402.jpg" alt="NBA: Denver Nuggets at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14017402/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14017402.jpg" alt="NBA: Denver Nuggets at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Denver Nuggets at Detroit Pistons</div>
         <div class="credit">📷 Tim Fuller · Imagn Images · Feb 02, 2020</div>
     </div>
@@ -325,212 +332,212 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13965236.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13965236/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13965236.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Cleveland Cavaliers at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 27, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13950953.jpg" alt="NBA: Memphis Grizzlies at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13950953/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13950953.jpg" alt="NBA: Memphis Grizzlies at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Memphis Grizzlies at Detroit Pistons</div>
         <div class="credit">📷 Tim Fuller · Imagn Images · Jan 24, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13889490.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13889490/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13889490.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Cleveland Cavaliers at Detroit Pistons</div>
         <div class="credit">📷 Tim Fuller · Imagn Images · Jan 09, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12572801.jpg" alt="NBA: Playoffs-Milwaukee Bucks at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12572801/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12572801.jpg" alt="NBA: Playoffs-Milwaukee Bucks at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Playoffs-Milwaukee Bucks at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Apr 22, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12550672.jpg" alt="NBA: Playoffs-Detroit Pistons at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12550672/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12550672.jpg" alt="NBA: Playoffs-Detroit Pistons at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Playoffs-Detroit Pistons at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 17, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12505818.jpg" alt="NBA: Memphis Grizzlies at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12505818/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12505818.jpg" alt="NBA: Memphis Grizzlies at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Memphis Grizzlies at Detroit Pistons</div>
         <div class="credit">📷 Raj Mehta · Imagn Images · Apr 09, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12465361.jpg" alt="NBA: Indiana Pacers at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12465361/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12465361.jpg" alt="NBA: Indiana Pacers at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Indiana Pacers at Detroit Pistons</div>
         <div class="credit">📷 Tim Fuller · Imagn Images · Apr 03, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12371232.jpg" alt="NBA: Toronto Raptors at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12371232/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12371232.jpg" alt="NBA: Toronto Raptors at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Toronto Raptors at Detroit Pistons</div>
         <div class="credit">📷 Raj Mehta · Imagn Images · Mar 17, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12310304.jpg" alt="NBA: Detroit Pistons at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12310304/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12310304.jpg" alt="NBA: Detroit Pistons at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Detroit Pistons at Chicago Bulls</div>
         <div class="credit">📷 David Banks · Imagn Images · Mar 08, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12279643.jpg" alt="NBA: Toronto Raptors at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12279643/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12279643.jpg" alt="NBA: Toronto Raptors at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Toronto Raptors at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Mar 03, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12273295.jpg" alt="NBA: Detroit Pistons at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12273295/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12273295.jpg" alt="NBA: Detroit Pistons at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Detroit Pistons at Cleveland Cavaliers</div>
         <div class="credit">📷 Ken Blaze · Imagn Images · Mar 02, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12236816.jpg" alt="NBA: Indiana Pacers at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12236816/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12236816.jpg" alt="NBA: Indiana Pacers at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Indiana Pacers at Detroit Pistons</div>
         <div class="credit">📷 Raj Mehta · Imagn Images · Feb 25, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12215530.jpg" alt="NBA: Detroit Pistons at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12215530/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12215530.jpg" alt="NBA: Detroit Pistons at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Detroit Pistons at Atlanta Hawks</div>
         <div class="credit">📷 Dale Zanine · Imagn Images · Feb 22, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12108977.jpg" alt="NBA: Denver Nuggets at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12108977/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12108977.jpg" alt="NBA: Denver Nuggets at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Denver Nuggets at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 04, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12098736.jpg" alt="NBA: Los Angeles Clippers at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12098736/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12098736.jpg" alt="NBA: Los Angeles Clippers at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Los Angeles Clippers at Detroit Pistons</div>
         <div class="credit">📷 Tim Fuller · Imagn Images · Feb 02, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12076968.jpg" alt="NBA: Milwaukee Bucks at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12076968/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12076968.jpg" alt="NBA: Milwaukee Bucks at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Milwaukee Bucks at Detroit Pistons</div>
         <div class="credit">📷 Raj Mehta · Imagn Images · Jan 29, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12058299.jpg" alt="NBA: Detroit Pistons at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12058299/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12058299.jpg" alt="NBA: Detroit Pistons at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Detroit Pistons at Dallas Mavericks</div>
         <div class="credit">📷 Kevin Jairaj · Imagn Images · Jan 25, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12019997.jpg" alt="NBA: Miami Heat at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12019997/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12019997.jpg" alt="NBA: Miami Heat at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Miami Heat at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 18, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12009514.jpg" alt="NBA: Orlando Magic at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12009514/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12009514.jpg" alt="NBA: Orlando Magic at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Orlando Magic at Detroit Pistons</div>
         <div class="credit">📷 Raj Mehta · Imagn Images · Jan 16, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11958561.jpg" alt="NBA: San Antonio Spurs at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11958561/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11958561.jpg" alt="NBA: San Antonio Spurs at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: San Antonio Spurs at Detroit Pistons</div>
         <div class="credit">📷 Tim Fuller · Imagn Images · Jan 07, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11932186.jpg" alt="NBA: Detroit Pistons at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11932186/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11932186.jpg" alt="NBA: Detroit Pistons at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Detroit Pistons at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Jan 02, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11876285.jpg" alt="NBA: Detroit Pistons at Minnesota Timberwolves" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11876285/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11876285.jpg" alt="NBA: Detroit Pistons at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Detroit Pistons at Minnesota Timberwolves</div>
         <div class="credit">📷 Brace Hemmelgarn · Imagn Images · Dec 19, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11863713.jpg" alt="NBA: Milwaukee Bucks at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11863713/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11863713.jpg" alt="NBA: Milwaukee Bucks at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Milwaukee Bucks at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 17, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11818815.jpg" alt="NBA: New Orleans Pelicans at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11818815/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11818815.jpg" alt="NBA: New Orleans Pelicans at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: New Orleans Pelicans at Detroit Pistons</div>
         <div class="credit">📷 Tim Fuller · Imagn Images · Dec 09, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11805739.jpg" alt="NBA: Philadelphia 76ers at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11805739/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11805739.jpg" alt="NBA: Philadelphia 76ers at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Philadelphia 76ers at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 07, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11784198.jpg" alt="NBA: Oklahoma City Thunder at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11784198/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11784198.jpg" alt="NBA: Oklahoma City Thunder at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Oklahoma City Thunder at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 03, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11784191.jpg" alt="NBA: Oklahoma City Thunder at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11784191/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11784191.jpg" alt="NBA: Oklahoma City Thunder at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Oklahoma City Thunder at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 03, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11772170.jpg" alt="NBA: Golden State Warriors at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11772170/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11772170.jpg" alt="NBA: Golden State Warriors at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Golden State Warriors at Detroit Pistons</div>
         <div class="credit">📷 Raj Mehta · Imagn Images · Dec 01, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11732833.jpg" alt="NBA: Phoenix Suns at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11732833/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11732833.jpg" alt="NBA: Phoenix Suns at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Phoenix Suns at Detroit Pistons</div>
         <div class="credit">📷 Raj Mehta · Imagn Images · Nov 25, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11711808.jpg" alt="NBA: Detroit Pistons at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11711808/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11711808.jpg" alt="NBA: Detroit Pistons at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Detroit Pistons at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Nov 21, 2018</div>
     </div>
@@ -542,86 +549,86 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11711803.jpg" alt="NBA: Detroit Pistons at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11711803/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11711803.jpg" alt="NBA: Detroit Pistons at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Detroit Pistons at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Nov 21, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11699861.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11699861/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11699861.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Cleveland Cavaliers at Detroit Pistons</div>
         <div class="credit">📷 Tim Fuller · Imagn Images · Nov 19, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11649839.jpg" alt="NBA: Charlotte Hornets at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11649839/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11649839.jpg" alt="NBA: Charlotte Hornets at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Charlotte Hornets at Detroit Pistons</div>
         <div class="credit">📷 Raj Mehta · Imagn Images · Nov 11, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11630750.jpg" alt="NBA: Detroit Pistons at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11630750/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11630750.jpg" alt="NBA: Detroit Pistons at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Detroit Pistons at Atlanta Hawks</div>
         <div class="credit">📷 Brett Davis · Imagn Images · Nov 09, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11630754.jpg" alt="NBA: Detroit Pistons at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11630754/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11630754.jpg" alt="NBA: Detroit Pistons at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Detroit Pistons at Atlanta Hawks</div>
         <div class="credit">📷 Brett Davis · Imagn Images · Nov 09, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11617915.jpg" alt="NBA: Detroit Pistons at Orlando Magic" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11617915/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11617915.jpg" alt="NBA: Detroit Pistons at Orlando Magic" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Detroit Pistons at Orlando Magic</div>
         <div class="credit">📷 Kim Klement · Imagn Images · Nov 07, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11604206.jpg" alt="NBA: Miami Heat at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11604206/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11604206.jpg" alt="NBA: Miami Heat at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Miami Heat at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Nov 05, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11504142.jpg" alt="NBA: Philadelphia 76ers at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11504142/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11504142.jpg" alt="NBA: Philadelphia 76ers at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Philadelphia 76ers at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Oct 23, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11504098.jpg" alt="NBA: Philadelphia 76ers at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11504098/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11504098.jpg" alt="NBA: Philadelphia 76ers at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Philadelphia 76ers at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Oct 23, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11485022.jpg" alt="NBA: Detroit Pistons at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11485022/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11485022.jpg" alt="NBA: Detroit Pistons at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Detroit Pistons at Chicago Bulls</div>
         <div class="credit">📷 David Banks · Imagn Images · Oct 20, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11460983.jpg" alt="NBA: Brooklyn Nets at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11460983/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11460983.jpg" alt="NBA: Brooklyn Nets at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Brooklyn Nets at Detroit Pistons</div>
         <div class="credit">📷 Tim Fuller · Imagn Images · Oct 17, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11413994.jpg" alt="NBA: Preseason-Washington Wizards at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11413994/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11413994.jpg" alt="NBA: Preseason-Washington Wizards at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Reggie Jackson</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-jackson/" class="player-link">Reggie Jackson</a>
         <div class="headline">NBA: Preseason-Washington Wizards at Detroit Pistons</div>
         <div class="credit">📷 Raj Mehta · Imagn Images · Oct 10, 2018</div>
     </div>
@@ -631,66 +638,15 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </main>
 
 
-<div class="lightbox" id="lightbox">
-    <span class="close">&times;</span>
-    <span class="nav prev">&#10094;</span>
-    <span class="nav next">&#10095;</span>
-    <span class="counter"></span>
-    <img src="" alt="">
-    <div class="info">
-        <div class="lb-player"></div>
-        <div class="lb-headline"></div>
-        <div class="lb-credit"></div>
-    </div>
-</div>
-
 <footer class="site-footer">
     <div class="container">
         Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
     </div>
 </footer>
 
-<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/22207869.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Charlotte Hornets at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2024-01-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/21956404.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Denver Nuggets at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2023-11-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/21938723.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Denver Nuggets at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2023-11-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20827971.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Finals-Miami Heat at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2023-06-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20100180.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2023-02-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19831021.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Los Angeles Clippers at San Antonio Spurs", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19685912.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Los Angeles Clippers at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2022-12-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19534961.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Los Angeles Clippers at Utah Jazz", "photographer": "Rob Gray", "source": "Imagn Images", "photo_date": "2022-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/18054678.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Sacramento Kings at Los Angeles Clippers", "photographer": "Jayne Kamin-Oncea", "source": "Imagn Images", "photo_date": "2022-04-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17968630.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Philadelphia 76ers at Los Angeles Clippers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2022-03-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17951585.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2022-03-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17864317.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Washington Wizards at Los Angeles Clippers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2022-03-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17659349.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Los Angeles Clippers at Dallas Mavericks", "photographer": "Kevin Jairaj", "source": "Imagn Images", "photo_date": "2022-02-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17532272.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2022-01-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17474276.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Memphis Grizzlies at Los Angeles Clippers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2022-01-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17308977.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Los Angeles Clippers at Portland Trail Blazers", "photographer": "Jaime Valdez", "source": "Imagn Images", "photo_date": "2021-12-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17000149.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Los Angeles Clippers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-10-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15580275.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Miami Heat at Los Angeles Clippers", "photographer": "Kirby Lee", "source": "Imagn Images", "photo_date": "2021-02-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14017402.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Denver Nuggets at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2020-02-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13965236.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Cleveland Cavaliers at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2020-01-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13950953.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Memphis Grizzlies at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2020-01-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13889490.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Cleveland Cavaliers at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2020-01-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12572801.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Playoffs-Milwaukee Bucks at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-04-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12550672.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Playoffs-Detroit Pistons at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2019-04-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12505818.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Memphis Grizzlies at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2019-04-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12465361.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Indiana Pacers at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2019-04-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12371232.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Toronto Raptors at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2019-03-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12310304.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Detroit Pistons at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2019-03-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12279643.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Toronto Raptors at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-03-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12273295.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Detroit Pistons at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2019-03-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12236816.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Indiana Pacers at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2019-02-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12215530.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Detroit Pistons at Atlanta Hawks", "photographer": "Dale Zanine", "source": "Imagn Images", "photo_date": "2019-02-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12108977.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Denver Nuggets at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12098736.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Los Angeles Clippers at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2019-02-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12076968.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Milwaukee Bucks at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2019-01-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12058299.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Detroit Pistons at Dallas Mavericks", "photographer": "Kevin Jairaj", "source": "Imagn Images", "photo_date": "2019-01-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12019997.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Miami Heat at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-01-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12009514.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Orlando Magic at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2019-01-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11958561.jpg", "player_name": "Reggie Jackson", "headline": "NBA: San Antonio Spurs at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2019-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11932186.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Detroit Pistons at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2019-01-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11876285.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Detroit Pistons at Minnesota Timberwolves", "photographer": "Brace Hemmelgarn", "source": "Imagn Images", "photo_date": "2018-12-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11863713.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Milwaukee Bucks at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-12-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11818815.jpg", "player_name": "Reggie Jackson", "headline": "NBA: New Orleans Pelicans at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2018-12-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11805739.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Philadelphia 76ers at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-12-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11784198.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Oklahoma City Thunder at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-12-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11784191.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Oklahoma City Thunder at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-12-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11772170.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Golden State Warriors at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2018-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11732833.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Phoenix Suns at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2018-11-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11711808.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Detroit Pistons at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-11-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11711803.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Detroit Pistons at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-11-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11699861.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Cleveland Cavaliers at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2018-11-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11649839.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Charlotte Hornets at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2018-11-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11630750.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Detroit Pistons at Atlanta Hawks", "photographer": "Brett Davis", "source": "Imagn Images", "photo_date": "2018-11-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11630754.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Detroit Pistons at Atlanta Hawks", "photographer": "Brett Davis", "source": "Imagn Images", "photo_date": "2018-11-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11617915.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Detroit Pistons at Orlando Magic", "photographer": "Kim Klement", "source": "Imagn Images", "photo_date": "2018-11-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11604206.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Miami Heat at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-11-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11504142.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Philadelphia 76ers at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-10-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11504098.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Philadelphia 76ers at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-10-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11485022.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Detroit Pistons at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2018-10-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11460983.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Brooklyn Nets at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2018-10-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11413994.jpg", "player_name": "Reggie Jackson", "headline": "NBA: Preseason-Washington Wizards at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2018-10-10"}];</script>
 <script>
 document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
-document.addEventListener('DOMContentLoaded', function() {
-    const photos = window.galleryPhotos || [];
-    let currentIndex = 0;
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox || photos.length === 0) return;
-    const lbImg = lightbox.querySelector('img');
-    const lbPlayer = lightbox.querySelector('.lb-player');
-    const lbHeadline = lightbox.querySelector('.lb-headline');
-    const lbCredit = lightbox.querySelector('.lb-credit');
-    const counter = lightbox.querySelector('.counter');
-    function formatDate(dateStr) {
-        if (!dateStr) return '';
-        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-        catch(e) { return dateStr; }
-    }
-    function showPhoto() {
-        const p = photos[currentIndex];
-        lbImg.src = p.image_url;
-        lbPlayer.textContent = p.player_name || 'NBA';
-        lbHeadline.textContent = p.headline || '';
-        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
-        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
-    }
-    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
-    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
-    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
-    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
-    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
-    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
-    let touchStartX = 0;
-    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
-});
 </script>
 </body>
 </html>

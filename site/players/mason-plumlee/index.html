@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mason Plumlee | NBA Sneakers</title>
+<meta name="description" content="Browse 37 sneaker photos of Mason Plumlee from NBA games.">
+<meta property="og:title" content="Mason Plumlee | NBA Sneakers">
+<meta property="og:description" content="Browse 37 sneaker photos of Mason Plumlee from NBA games.">
+<meta property="og:image" content="https://cdn.imagn.com/image/thumb/250-225/27769454.jpg">
+<link rel="canonical" href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/">
 <style>
 :root {
     --primary: #1a1a2e;
@@ -48,7 +53,7 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
 .photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -56,6 +61,20 @@ a:hover { text-decoration: underline; }
 .photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
 .photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
 .photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
 .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
 .list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
@@ -66,18 +85,6 @@ a:hover { text-decoration: underline; }
 .page-header .subtitle { color: var(--text-secondary); }
 .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
 .breadcrumb a { color: var(--text-secondary); }
-.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
-.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
-.lightbox .nav.prev { left: 16px; }
-.lightbox .nav.next { right: 16px; }
-.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
-.lightbox .lb-player { font-size: 18px; font-weight: 600; }
-.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
-.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
-.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -138,7 +145,7 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -185,135 +192,135 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     </a>
     <div class="compare-prices"><span class="compare-label">Compare prices:</span><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.goat.com%2Fsearch%3Fquery%3DMason%2BPlumlee%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">GOAT</a><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.footlocker.com%2Fsearch%3Fquery%3DMason%2BPlumlee%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">Foot Locker</a></div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27769454.jpg" alt="NBA: Denver Nuggets at Charlotte Hornets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27769454/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27769454.jpg" alt="NBA: Denver Nuggets at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Denver Nuggets at Charlotte Hornets</div>
         <div class="credit">📷 Sam Sharpe · Imagn Images · Dec 07, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25135034.jpg" alt="NBA: Phoenix Suns at Charlotte Hornets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25135034/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25135034.jpg" alt="NBA: Phoenix Suns at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Phoenix Suns at Charlotte Hornets</div>
         <div class="credit">📷 Sam Sharpe · Imagn Images · Jan 07, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24757252.jpg" alt="NBA: Phoenix Suns at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24757252/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24757252.jpg" alt="NBA: Phoenix Suns at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Phoenix Suns at Sacramento Kings</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Nov 13, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22379438.jpg" alt="NBA: Los Angeles Clippers at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22379438/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22379438.jpg" alt="NBA: Los Angeles Clippers at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Los Angeles Clippers at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Jan 26, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20129941.jpg" alt="NBA: Los Angeles Clippers at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20129941/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20129941.jpg" alt="NBA: Los Angeles Clippers at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Los Angeles Clippers at Golden State Warriors</div>
         <div class="credit">📷 Kelley L Cox · Imagn Images · Mar 02, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19763611.jpg" alt="NBA: Charlotte Hornets at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19763611/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19763611.jpg" alt="NBA: Charlotte Hornets at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Charlotte Hornets at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Jan 10, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19725616.jpg" alt="NBA: Memphis Grizzlies at Charlotte Hornets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19725616/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19725616.jpg" alt="NBA: Memphis Grizzlies at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Memphis Grizzlies at Charlotte Hornets</div>
         <div class="credit">📷 Sam Sharpe · Imagn Images · Jan 04, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19668423.jpg" alt="NBA: Charlotte Hornets at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19668423/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19668423.jpg" alt="NBA: Charlotte Hornets at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Charlotte Hornets at Los Angeles Clippers</div>
         <div class="credit">📷 Richard Mackson · Imagn Images · Dec 21, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19446869.jpg" alt="NBA: Indiana Pacers at Charlotte Hornets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19446869/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19446869.jpg" alt="NBA: Indiana Pacers at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Indiana Pacers at Charlotte Hornets</div>
         <div class="credit">📷 Sam Sharpe · Imagn Images · Nov 16, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19435208.jpg" alt="NBA: Charlotte Hornets at Orlando Magic" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19435208/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19435208.jpg" alt="NBA: Charlotte Hornets at Orlando Magic" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Charlotte Hornets at Orlando Magic</div>
         <div class="credit">📷 Mike Watters · Imagn Images · Nov 14, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17812318.jpg" alt="NBA: Charlotte Hornets at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17812318/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17812318.jpg" alt="NBA: Charlotte Hornets at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Charlotte Hornets at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Mar 02, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17664612.jpg" alt="NBA: Charlotte Hornets at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17664612/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17664612.jpg" alt="NBA: Charlotte Hornets at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Charlotte Hornets at Detroit Pistons</div>
         <div class="credit">📷 Raj Mehta · Imagn Images · Feb 11, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17408460.jpg" alt="NBA: Charlotte Hornets at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17408460/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17408460.jpg" alt="NBA: Charlotte Hornets at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Charlotte Hornets at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Dec 23, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15618901.jpg" alt="NBA: Detroit Pistons at Orlando Magic" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15618901/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15618901.jpg" alt="NBA: Detroit Pistons at Orlando Magic" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Detroit Pistons at Orlando Magic</div>
         <div class="credit">📷 Reinhold Matay · Imagn Images · Feb 23, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15507677.jpg" alt="NBA: Detroit Pistons at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15507677/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15507677.jpg" alt="NBA: Detroit Pistons at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Detroit Pistons at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Jan 30, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14088901.jpg" alt="NBA: Minnesota Timberwolves at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14088901/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14088901.jpg" alt="NBA: Minnesota Timberwolves at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Minnesota Timberwolves at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 23, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13880940.jpg" alt="NBA: Denver Nuggets at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13880940/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13880940.jpg" alt="NBA: Denver Nuggets at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Denver Nuggets at Atlanta Hawks</div>
         <div class="credit">📷 Brett Davis · Imagn Images · Jan 06, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13800978.jpg" alt="NBA: New York Knicks at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13800978/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13800978.jpg" alt="NBA: New York Knicks at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: New York Knicks at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Dec 15, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13732928.jpg" alt="NBA: Denver Nuggets at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13732928/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13732928.jpg" alt="NBA: Denver Nuggets at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Denver Nuggets at Sacramento Kings</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Nov 30, 2019</div>
     </div>
@@ -325,128 +332,128 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13709732.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13709732/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13709732.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Phoenix Suns at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 24, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13682351.jpg" alt="NBA: Denver Nuggets at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13682351/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13682351.jpg" alt="NBA: Denver Nuggets at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Denver Nuggets at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Nov 17, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13682352.jpg" alt="NBA: Denver Nuggets at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13682352/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13682352.jpg" alt="NBA: Denver Nuggets at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Denver Nuggets at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Nov 17, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13591423.jpg" alt="NBA: Dallas Mavericks at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13591423/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13591423.jpg" alt="NBA: Dallas Mavericks at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Dallas Mavericks at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Oct 29, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13529842.jpg" alt="NBA: Preseason-Portland Trail Blazers at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13529842/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13529842.jpg" alt="NBA: Preseason-Portland Trail Blazers at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Preseason-Portland Trail Blazers at Denver Nuggets</div>
         <div class="credit">📷 Michael Ciaglo · Imagn Images · Oct 17, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12663181.jpg" alt="NBA: Playoffs-Portland Trail Blazers at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12663181/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12663181.jpg" alt="NBA: Playoffs-Portland Trail Blazers at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Playoffs-Portland Trail Blazers at Denver Nuggets</div>
         <div class="credit">📷 Ron Chenoy · Imagn Images · May 07, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12604056.jpg" alt="NBA: Playoffs-San Antonio Spurs at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12604056/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12604056.jpg" alt="NBA: Playoffs-San Antonio Spurs at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Playoffs-San Antonio Spurs at Denver Nuggets</div>
         <div class="credit">📷 Ron Chenoy · Imagn Images · Apr 27, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12158884.jpg" alt="NBA: Sacramento Kings at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12158884/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12158884.jpg" alt="NBA: Sacramento Kings at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Sacramento Kings at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 13, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12157275.jpg" alt="NBA: Sacramento Kings at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12157275/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12157275.jpg" alt="NBA: Sacramento Kings at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Sacramento Kings at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 13, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12108976.jpg" alt="NBA: Denver Nuggets at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12108976/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12108976.jpg" alt="NBA: Denver Nuggets at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Denver Nuggets at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 04, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12028646.jpg" alt="NBA: Cleveland Cavaliers at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12028646/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12028646.jpg" alt="NBA: Cleveland Cavaliers at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Cleveland Cavaliers at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 19, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12027654.jpg" alt="NBA: Cleveland Cavaliers at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12027654/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12027654.jpg" alt="NBA: Cleveland Cavaliers at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Cleveland Cavaliers at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 19, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10792029.jpg" alt="NBA: Denver Nuggets at Minnesota Timberwolves" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10792029/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10792029.jpg" alt="NBA: Denver Nuggets at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Denver Nuggets at Minnesota Timberwolves</div>
         <div class="credit">📷 Brad Rempel · Imagn Images · Apr 11, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10769235.jpg" alt="NBA: Minnesota Timberwolves at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10769235/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10769235.jpg" alt="NBA: Minnesota Timberwolves at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Minnesota Timberwolves at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 05, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10729621.jpg" alt="NBA: Denver Nuggets at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10729621/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10729621.jpg" alt="NBA: Denver Nuggets at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Denver Nuggets at Washington Wizards</div>
         <div class="credit">📷 Brad Mills · Imagn Images · Mar 23, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10675612.jpg" alt="NBA: Denver Nuggets at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10675612/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10675612.jpg" alt="NBA: Denver Nuggets at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Denver Nuggets at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Mar 03, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10670023.jpg" alt="NBA: Denver Nuggets at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10670023/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10670023.jpg" alt="NBA: Denver Nuggets at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Denver Nuggets at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Mar 02, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10574612.jpg" alt="NBA: Chicago Bulls at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10574612/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10574612.jpg" alt="NBA: Chicago Bulls at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Mason Plumlee</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
         <div class="headline">NBA: Chicago Bulls at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 30, 2017</div>
     </div>
@@ -456,66 +463,15 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </main>
 
 
-<div class="lightbox" id="lightbox">
-    <span class="close">&times;</span>
-    <span class="nav prev">&#10094;</span>
-    <span class="nav next">&#10095;</span>
-    <span class="counter"></span>
-    <img src="" alt="">
-    <div class="info">
-        <div class="lb-player"></div>
-        <div class="lb-headline"></div>
-        <div class="lb-credit"></div>
-    </div>
-</div>
-
 <footer class="site-footer">
     <div class="container">
         Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
     </div>
 </footer>
 
-<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/27769454.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Denver Nuggets at Charlotte Hornets", "photographer": "Sam Sharpe", "source": "Imagn Images", "photo_date": "2025-12-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25135034.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Phoenix Suns at Charlotte Hornets", "photographer": "Sam Sharpe", "source": "Imagn Images", "photo_date": "2025-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24757252.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Phoenix Suns at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2024-11-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/22379438.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Los Angeles Clippers at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2024-01-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20129941.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Los Angeles Clippers at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2023-03-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19763611.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Charlotte Hornets at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2023-01-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19725616.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Memphis Grizzlies at Charlotte Hornets", "photographer": "Sam Sharpe", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19668423.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Charlotte Hornets at Los Angeles Clippers", "photographer": "Richard Mackson", "source": "Imagn Images", "photo_date": "2022-12-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19446869.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Indiana Pacers at Charlotte Hornets", "photographer": "Sam Sharpe", "source": "Imagn Images", "photo_date": "2022-11-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19435208.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Charlotte Hornets at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2022-11-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17812318.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Charlotte Hornets at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2022-03-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17664612.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Charlotte Hornets at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2022-02-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17408460.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Charlotte Hornets at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2021-12-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15618901.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Detroit Pistons at Orlando Magic", "photographer": "Reinhold Matay", "source": "Imagn Images", "photo_date": "2021-02-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15507677.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Detroit Pistons at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-01-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14088901.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Minnesota Timberwolves at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2020-02-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13880940.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Denver Nuggets at Atlanta Hawks", "photographer": "Brett Davis", "source": "Imagn Images", "photo_date": "2020-01-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13800978.jpg", "player_name": "Mason Plumlee", "headline": "NBA: New York Knicks at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-12-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13732928.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Denver Nuggets at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13709732.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Phoenix Suns at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-11-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13682351.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Denver Nuggets at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2019-11-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13682352.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Denver Nuggets at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2019-11-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13591423.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Dallas Mavericks at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-10-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13529842.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Preseason-Portland Trail Blazers at Denver Nuggets", "photographer": "Michael Ciaglo", "source": "Imagn Images", "photo_date": "2019-10-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12663181.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Playoffs-Portland Trail Blazers at Denver Nuggets", "photographer": "Ron Chenoy", "source": "Imagn Images", "photo_date": "2019-05-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12604056.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Playoffs-San Antonio Spurs at Denver Nuggets", "photographer": "Ron Chenoy", "source": "Imagn Images", "photo_date": "2019-04-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12158884.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Sacramento Kings at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-02-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12157275.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Sacramento Kings at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-02-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12108976.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Denver Nuggets at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12028646.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Cleveland Cavaliers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-01-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12027654.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Cleveland Cavaliers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-01-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10792029.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Denver Nuggets at Minnesota Timberwolves", "photographer": "Brad Rempel", "source": "Imagn Images", "photo_date": "2018-04-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10769235.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Minnesota Timberwolves at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2018-04-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10729621.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Denver Nuggets at Washington Wizards", "photographer": "Brad Mills", "source": "Imagn Images", "photo_date": "2018-03-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10675612.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Denver Nuggets at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2018-03-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10670023.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Denver Nuggets at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2018-03-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10574612.jpg", "player_name": "Mason Plumlee", "headline": "NBA: Chicago Bulls at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2017-11-30"}];</script>
 <script>
 document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
-document.addEventListener('DOMContentLoaded', function() {
-    const photos = window.galleryPhotos || [];
-    let currentIndex = 0;
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox || photos.length === 0) return;
-    const lbImg = lightbox.querySelector('img');
-    const lbPlayer = lightbox.querySelector('.lb-player');
-    const lbHeadline = lightbox.querySelector('.lb-headline');
-    const lbCredit = lightbox.querySelector('.lb-credit');
-    const counter = lightbox.querySelector('.counter');
-    function formatDate(dateStr) {
-        if (!dateStr) return '';
-        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-        catch(e) { return dateStr; }
-    }
-    function showPhoto() {
-        const p = photos[currentIndex];
-        lbImg.src = p.image_url;
-        lbPlayer.textContent = p.player_name || 'NBA';
-        lbHeadline.textContent = p.headline || '';
-        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
-        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
-    }
-    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
-    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
-    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
-    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
-    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
-    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
-    let touchStartX = 0;
-    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
-});
 </script>
 </body>
 </html>

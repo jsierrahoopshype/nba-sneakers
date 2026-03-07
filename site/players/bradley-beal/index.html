@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bradley Beal | NBA Sneakers</title>
+<meta name="description" content="Browse 72 sneaker photos of Bradley Beal from NBA games.">
+<meta property="og:title" content="Bradley Beal | NBA Sneakers">
+<meta property="og:description" content="Browse 72 sneaker photos of Bradley Beal from NBA games.">
+<meta property="og:image" content="https://cdn.imagn.com/image/thumb/250-225/27500660.jpg">
+<link rel="canonical" href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/">
 <style>
 :root {
     --primary: #1a1a2e;
@@ -48,7 +53,7 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
 .photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -56,6 +61,20 @@ a:hover { text-decoration: underline; }
 .photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
 .photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
 .photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
 .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
 .list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
@@ -66,18 +85,6 @@ a:hover { text-decoration: underline; }
 .page-header .subtitle { color: var(--text-secondary); }
 .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
 .breadcrumb a { color: var(--text-secondary); }
-.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
-.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
-.lightbox .nav.prev { left: 16px; }
-.lightbox .nav.next { right: 16px; }
-.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
-.lightbox .lb-player { font-size: 18px; font-weight: 600; }
-.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
-.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
-.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -138,7 +145,7 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -185,135 +192,135 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     </a>
     <div class="compare-prices"><span class="compare-label">Compare prices:</span><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.goat.com%2Fsearch%3Fquery%3DBradley%2BBeal%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">GOAT</a><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.footlocker.com%2Fsearch%3Fquery%3DBradley%2BBeal%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">Foot Locker</a></div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27500660.jpg" alt="NBA: Miami Heat at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27500660/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27500660.jpg" alt="NBA: Miami Heat at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Miami Heat at Los Angeles Clippers</div>
         <div class="credit">📷 Kirby Lee · Imagn Images · Nov 03, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24919178.jpg" alt="NBA: Phoenix Suns at New Orleans Pelicans" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24919178/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24919178.jpg" alt="NBA: Phoenix Suns at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Phoenix Suns at New Orleans Pelicans</div>
         <div class="credit">📷 Stephen Lew · Imagn Images · Dec 05, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20256833.jpg" alt="NBA: Washington Wizards at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20256833/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20256833.jpg" alt="NBA: Washington Wizards at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Cleveland Cavaliers</div>
         <div class="credit">📷 Ken Blaze · Imagn Images · Mar 17, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19999124.jpg" alt="NBA: Washington Wizards at Portland Trail Blazers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19999124/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19999124.jpg" alt="NBA: Washington Wizards at Portland Trail Blazers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Portland Trail Blazers</div>
         <div class="credit">📷 Troy Wayrynen · Imagn Images · Feb 14, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19950444.jpg" alt="NBA: Charlotte Hornets at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19950444/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19950444.jpg" alt="NBA: Charlotte Hornets at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Charlotte Hornets at Washington Wizards</div>
         <div class="credit">📷 Geoff Burke · Imagn Images · Feb 08, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19892075.jpg" alt="NBA: Washington Wizards at New Orleans Pelicans" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19892075/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19892075.jpg" alt="NBA: Washington Wizards at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at New Orleans Pelicans</div>
         <div class="credit">📷 Stephen Lew · Imagn Images · Jan 28, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19853638.jpg" alt="NBA: Washington Wizards at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19853638/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19853638.jpg" alt="NBA: Washington Wizards at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Jan 24, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19517157.jpg" alt="NBA: Washington Wizards at Boston Celtics" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19517157/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19517157.jpg" alt="NBA: Washington Wizards at Boston Celtics" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Boston Celtics</div>
         <div class="credit">📷 Winslow Townson · Imagn Images · Nov 27, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19516383.jpg" alt="NBA: Washington Wizards at Boston Celtics" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19516383/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19516383.jpg" alt="NBA: Washington Wizards at Boston Celtics" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Boston Celtics</div>
         <div class="credit">📷 Winslow Townson · Imagn Images · Nov 27, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17481126.jpg" alt="NBA: Washington Wizards at Orlando Magic" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17481126/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17481126.jpg" alt="NBA: Washington Wizards at Orlando Magic" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Orlando Magic</div>
         <div class="credit">📷 Mike Watters · Imagn Images · Jan 09, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17383077.jpg" alt="NBA: Washington Wizards at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17383077/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17383077.jpg" alt="NBA: Washington Wizards at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Utah Jazz</div>
         <div class="credit">📷 Rob Gray · Imagn Images · Dec 18, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17364779.jpg" alt="NBA: Washington Wizards at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17364779/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17364779.jpg" alt="NBA: Washington Wizards at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Sacramento Kings</div>
         <div class="credit">📷 Sergio Estrada · Imagn Images · Dec 15, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17354540.jpg" alt="NBA: Washington Wizards at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17354540/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17354540.jpg" alt="NBA: Washington Wizards at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Denver Nuggets</div>
         <div class="credit">📷 Ron Chenoy · Imagn Images · Dec 13, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17354539.jpg" alt="NBA: Washington Wizards at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17354539/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17354539.jpg" alt="NBA: Washington Wizards at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Denver Nuggets</div>
         <div class="credit">📷 Ron Chenoy · Imagn Images · Dec 13, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17253708.jpg" alt="NBA: Washington Wizards at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17253708/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17253708.jpg" alt="NBA: Washington Wizards at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 26, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17225829.jpg" alt="NBA: Washington Wizards at New Orleans Pelicans" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17225829/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17225829.jpg" alt="NBA: Washington Wizards at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at New Orleans Pelicans</div>
         <div class="credit">📷 Stephen Lew · Imagn Images · Nov 24, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17097440.jpg" alt="NBA: Toronto Raptors at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17097440/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17097440.jpg" alt="NBA: Toronto Raptors at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Toronto Raptors at Washington Wizards</div>
         <div class="credit">📷 Geoff Burke · Imagn Images · Nov 03, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17097430.jpg" alt="NBA: Toronto Raptors at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17097430/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17097430.jpg" alt="NBA: Toronto Raptors at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Toronto Raptors at Washington Wizards</div>
         <div class="credit">📷 Geoff Burke · Imagn Images · Nov 03, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17076306.jpg" alt="NBA: Boston Celtics at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17076306/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17076306.jpg" alt="NBA: Boston Celtics at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Boston Celtics at Washington Wizards</div>
         <div class="credit">📷 Geoff Burke · Imagn Images · Oct 30, 2021</div>
     </div>
@@ -325,212 +332,212 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15898456.jpg" alt="NBA: Washington Wizards at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15898456/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15898456.jpg" alt="NBA: Washington Wizards at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Sacramento Kings</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Apr 14, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15872493.jpg" alt="NBA: Washington Wizards at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15872493/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15872493.jpg" alt="NBA: Washington Wizards at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Golden State Warriors</div>
         <div class="credit">📷 Darren Yamashita · Imagn Images · Apr 09, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15632452.jpg" alt="NBA: Washington Wizards at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15632452/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15632452.jpg" alt="NBA: Washington Wizards at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 25, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14133701.jpg" alt="NBA: Washington Wizards at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14133701/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14133701.jpg" alt="NBA: Washington Wizards at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Sacramento Kings</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Mar 03, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14132019.jpg" alt="NBA: Washington Wizards at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14132019/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14132019.jpg" alt="NBA: Washington Wizards at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Sacramento Kings</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Mar 03, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14113495.jpg" alt="NBA: Washington Wizards at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14113495/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14113495.jpg" alt="NBA: Washington Wizards at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Utah Jazz</div>
         <div class="credit">📷 Russell Isabella · Imagn Images · Feb 28, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14077547.jpg" alt="NBA: Cleveland Cavaliers at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14077547/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14077547.jpg" alt="NBA: Cleveland Cavaliers at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Cleveland Cavaliers at Washington Wizards</div>
         <div class="credit">📷 Geoff Burke · Imagn Images · Feb 21, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13962582.jpg" alt="NBA: Washington Wizards at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13962582/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13962582.jpg" alt="NBA: Washington Wizards at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Atlanta Hawks</div>
         <div class="credit">📷 Dale Zanine · Imagn Images · Jan 26, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13947526.jpg" alt="NBA: Washington Wizards at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13947526/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13947526.jpg" alt="NBA: Washington Wizards at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Jan 23, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13947532.jpg" alt="NBA: Washington Wizards at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13947532/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13947532.jpg" alt="NBA: Washington Wizards at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Jan 23, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13935356.jpg" alt="NBA: Detroit Pistons at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13935356/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13935356.jpg" alt="NBA: Detroit Pistons at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Detroit Pistons at Washington Wizards</div>
         <div class="credit">📷 Tommy Gilligan · Imagn Images · Jan 20, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13861484.jpg" alt="NBA: Orlando Magic at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13861484/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13861484.jpg" alt="NBA: Orlando Magic at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Orlando Magic at Washington Wizards</div>
         <div class="credit">📷 Brad Mills · Imagn Images · Jan 01, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13839504.jpg" alt="NBA: Washington Wizards at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13839504/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13839504.jpg" alt="NBA: Washington Wizards at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Detroit Pistons</div>
         <div class="credit">📷 Tim Fuller · Imagn Images · Dec 26, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13821641.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13821641/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13821641.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 20, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13803586.jpg" alt="NBA: Washington Wizards at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13803586/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13803586.jpg" alt="NBA: Washington Wizards at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 16, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13796357.jpg" alt="NBA: Washington Wizards at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13796357/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13796357.jpg" alt="NBA: Washington Wizards at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Dec 14, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13754054.jpg" alt="NBA: Philadelphia 76ers at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13754054/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13754054.jpg" alt="NBA: Philadelphia 76ers at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Philadelphia 76ers at Washington Wizards</div>
         <div class="credit">📷 Geoff Burke · Imagn Images · Dec 05, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13716663.jpg" alt="NBA: Washington Wizards at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13716663/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13716663.jpg" alt="NBA: Washington Wizards at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 26, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13698365.jpg" alt="NBA: Charlotte Hornets at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13698365/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13698365.jpg" alt="NBA: Charlotte Hornets at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Charlotte Hornets at Washington Wizards</div>
         <div class="credit">📷 Amber Searls · Imagn Images · Nov 22, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13691824.jpg" alt="NBA: San Antonio Spurs at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13691824/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13691824.jpg" alt="NBA: San Antonio Spurs at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: San Antonio Spurs at Washington Wizards</div>
         <div class="credit">📷 Geoff Burke · Imagn Images · Nov 20, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13682464.jpg" alt="NBA: Washington Wizards at Orlando Magic" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13682464/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13682464.jpg" alt="NBA: Washington Wizards at Orlando Magic" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Orlando Magic</div>
         <div class="credit">📷 Reinhold Matay · Imagn Images · Nov 17, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13682459.jpg" alt="NBA: Washington Wizards at Orlando Magic" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13682459/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13682459.jpg" alt="NBA: Washington Wizards at Orlando Magic" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Orlando Magic</div>
         <div class="credit">📷 Reinhold Matay · Imagn Images · Nov 17, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13612577.jpg" alt="NBA: Minnesota Timberwolves at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13612577/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13612577.jpg" alt="NBA: Minnesota Timberwolves at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Minnesota Timberwolves at Washington Wizards</div>
         <div class="credit">📷 Geoff Burke · Imagn Images · Nov 02, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13560184.jpg" alt="NBA: Washington Wizards at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13560184/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13560184.jpg" alt="NBA: Washington Wizards at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Dallas Mavericks</div>
         <div class="credit">📷 Kevin Jairaj · Imagn Images · Oct 23, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12452252.jpg" alt="NBA: Washington Wizards at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12452252/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12452252.jpg" alt="NBA: Washington Wizards at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 31, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12181180.jpg" alt="NBA: All Star Game" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12181180/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12181180.jpg" alt="NBA: All Star Game" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: All Star Game</div>
         <div class="credit">📷 Bob Donnan · Imagn Images · Feb 17, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12158787.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12158787/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12158787.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 13, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12137605.jpg" alt="NBA: Washington Wizards at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12137605/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12137605.jpg" alt="NBA: Washington Wizards at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Chicago Bulls</div>
         <div class="credit">📷 David Banks · Imagn Images · Feb 09, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12120591.jpg" alt="NBA: Washington Wizards at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12120591/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12120591.jpg" alt="NBA: Washington Wizards at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Feb 06, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12076703.jpg" alt="NBA: Washington Wizards at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12076703/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12076703.jpg" alt="NBA: Washington Wizards at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Jan 29, 2019</div>
     </div>
@@ -542,163 +549,163 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11900563.jpg" alt="NBA: Washington Wizards at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11900563/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11900563.jpg" alt="NBA: Washington Wizards at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Detroit Pistons</div>
         <div class="credit">📷 Raj Mehta · Imagn Images · Dec 26, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11876878.jpg" alt="NBA: Washington Wizards at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11876878/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11876878.jpg" alt="NBA: Washington Wizards at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Dec 19, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11795611.jpg" alt="NBA: Washington Wizards at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11795611/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11795611.jpg" alt="NBA: Washington Wizards at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Atlanta Hawks</div>
         <div class="credit">📷 Brett Davis · Imagn Images · Dec 05, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11771306.jpg" alt="NBA: Brooklyn Nets at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11771306/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11771306.jpg" alt="NBA: Brooklyn Nets at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Brooklyn Nets at Washington Wizards</div>
         <div class="credit">📷 Amber Searls · Imagn Images · Dec 01, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11771310.jpg" alt="NBA: Brooklyn Nets at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11771310/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11771310.jpg" alt="NBA: Brooklyn Nets at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Brooklyn Nets at Washington Wizards</div>
         <div class="credit">📷 Amber Searls · Imagn Images · Dec 01, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11771320.jpg" alt="NBA: Brooklyn Nets at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11771320/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11771320.jpg" alt="NBA: Brooklyn Nets at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Brooklyn Nets at Washington Wizards</div>
         <div class="credit">📷 Amber Searls · Imagn Images · Dec 01, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11739410.jpg" alt="NBA: Houston Rockets at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11739410/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11739410.jpg" alt="NBA: Houston Rockets at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Houston Rockets at Washington Wizards</div>
         <div class="credit">📷 Geoff Burke · Imagn Images · Nov 26, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11613578.jpg" alt="NBA: Washington Wizards at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11613578/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11613578.jpg" alt="NBA: Washington Wizards at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Dallas Mavericks</div>
         <div class="credit">📷 Kevin Jairaj · Imagn Images · Nov 06, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11559780.jpg" alt="NBA: Washington Wizards at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11559780/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11559780.jpg" alt="NBA: Washington Wizards at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Oct 30, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11547625.jpg" alt="NBA: Washington Wizards at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11547625/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11547625.jpg" alt="NBA: Washington Wizards at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Los Angeles Clippers</div>
         <div class="credit">📷 Orlando Ramirez · Imagn Images · Oct 28, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11526168.jpg" alt="NBA: Washington Wizards at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11526168/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11526168.jpg" alt="NBA: Washington Wizards at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Sacramento Kings</div>
         <div class="credit">📷 Kelley L Cox · Imagn Images · Oct 26, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11414004.jpg" alt="NBA: Preseason-Washington Wizards at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11414004/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11414004.jpg" alt="NBA: Preseason-Washington Wizards at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Preseason-Washington Wizards at Detroit Pistons</div>
         <div class="credit">📷 Raj Mehta · Imagn Images · Oct 10, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10792983.jpg" alt="NBA: Playoffs-Washington Wizards at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10792983/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10792983.jpg" alt="NBA: Playoffs-Washington Wizards at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Playoffs-Washington Wizards at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Apr 14, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10771128.jpg" alt="NBA: Atlanta Hawks at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10771128/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10771128.jpg" alt="NBA: Atlanta Hawks at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Atlanta Hawks at Washington Wizards</div>
         <div class="credit">📷 Geoff Burke · Imagn Images · Apr 06, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10757558.jpg" alt="NBA: Washington Wizards at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10757558/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10757558.jpg" alt="NBA: Washington Wizards at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Chicago Bulls</div>
         <div class="credit">📷 David Banks · Imagn Images · Apr 01, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10741917.jpg" alt="NBA: San Antonio Spurs at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10741917/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10741917.jpg" alt="NBA: San Antonio Spurs at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: San Antonio Spurs at Washington Wizards</div>
         <div class="credit">📷 Brad Mills · Imagn Images · Mar 27, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10729626.jpg" alt="NBA: Denver Nuggets at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10729626/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10729626.jpg" alt="NBA: Denver Nuggets at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Denver Nuggets at Washington Wizards</div>
         <div class="credit">📷 Brad Mills · Imagn Images · Mar 23, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10679653.jpg" alt="NBA: Indiana Pacers at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10679653/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10679653.jpg" alt="NBA: Indiana Pacers at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Indiana Pacers at Washington Wizards</div>
         <div class="credit">📷 Geoff Burke · Imagn Images · Mar 04, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10670516.jpg" alt="NBA: Toronto Raptors at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10670516/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10670516.jpg" alt="NBA: Toronto Raptors at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Toronto Raptors at Washington Wizards</div>
         <div class="credit">📷 Brad Mills · Imagn Images · Mar 02, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10660599.jpg" alt="NBA: Washington Wizards at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10660599/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10660599.jpg" alt="NBA: Washington Wizards at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Feb 27, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10657316.jpg" alt="NBA: Philadelphia 76ers at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10657316/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10657316.jpg" alt="NBA: Philadelphia 76ers at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Philadelphia 76ers at Washington Wizards</div>
         <div class="credit">📷 Brad Mills · Imagn Images · Feb 25, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10649078.jpg" alt="NBA: Charlotte Hornets at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10649078/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10649078.jpg" alt="NBA: Charlotte Hornets at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Charlotte Hornets at Washington Wizards</div>
         <div class="credit">📷 Brad Mills · Imagn Images · Feb 23, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10645571.jpg" alt="NBA: Washington Wizards at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10645571/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10645571.jpg" alt="NBA: Washington Wizards at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Bradley Beal</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
         <div class="headline">NBA: Washington Wizards at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Feb 22, 2018</div>
     </div>
@@ -708,66 +715,15 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </main>
 
 
-<div class="lightbox" id="lightbox">
-    <span class="close">&times;</span>
-    <span class="nav prev">&#10094;</span>
-    <span class="nav next">&#10095;</span>
-    <span class="counter"></span>
-    <img src="" alt="">
-    <div class="info">
-        <div class="lb-player"></div>
-        <div class="lb-headline"></div>
-        <div class="lb-credit"></div>
-    </div>
-</div>
-
 <footer class="site-footer">
     <div class="container">
         Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
     </div>
 </footer>
 
-<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/27500660.jpg", "player_name": "Bradley Beal", "headline": "NBA: Miami Heat at Los Angeles Clippers", "photographer": "Kirby Lee", "source": "Imagn Images", "photo_date": "2025-11-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24919178.jpg", "player_name": "Bradley Beal", "headline": "NBA: Phoenix Suns at New Orleans Pelicans", "photographer": "Stephen Lew", "source": "Imagn Images", "photo_date": "2024-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20256833.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2023-03-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19999124.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Portland Trail Blazers", "photographer": "Troy Wayrynen", "source": "Imagn Images", "photo_date": "2023-02-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19950444.jpg", "player_name": "Bradley Beal", "headline": "NBA: Charlotte Hornets at Washington Wizards", "photographer": "Geoff Burke", "source": "Imagn Images", "photo_date": "2023-02-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19892075.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at New Orleans Pelicans", "photographer": "Stephen Lew", "source": "Imagn Images", "photo_date": "2023-01-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19853638.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-01-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19517157.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Boston Celtics", "photographer": "Winslow Townson", "source": "Imagn Images", "photo_date": "2022-11-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19516383.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Boston Celtics", "photographer": "Winslow Townson", "source": "Imagn Images", "photo_date": "2022-11-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17481126.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2022-01-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17383077.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Utah Jazz", "photographer": "Rob Gray", "source": "Imagn Images", "photo_date": "2021-12-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17364779.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Sacramento Kings", "photographer": "Sergio Estrada", "source": "Imagn Images", "photo_date": "2021-12-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17354540.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Denver Nuggets", "photographer": "Ron Chenoy", "source": "Imagn Images", "photo_date": "2021-12-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17354539.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Denver Nuggets", "photographer": "Ron Chenoy", "source": "Imagn Images", "photo_date": "2021-12-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17253708.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2021-11-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17225829.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at New Orleans Pelicans", "photographer": "Stephen Lew", "source": "Imagn Images", "photo_date": "2021-11-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17097440.jpg", "player_name": "Bradley Beal", "headline": "NBA: Toronto Raptors at Washington Wizards", "photographer": "Geoff Burke", "source": "Imagn Images", "photo_date": "2021-11-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17097430.jpg", "player_name": "Bradley Beal", "headline": "NBA: Toronto Raptors at Washington Wizards", "photographer": "Geoff Burke", "source": "Imagn Images", "photo_date": "2021-11-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17076306.jpg", "player_name": "Bradley Beal", "headline": "NBA: Boston Celtics at Washington Wizards", "photographer": "Geoff Burke", "source": "Imagn Images", "photo_date": "2021-10-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15898456.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-04-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15872493.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Golden State Warriors", "photographer": "Darren Yamashita", "source": "Imagn Images", "photo_date": "2021-04-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15632452.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2021-02-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14133701.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2020-03-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14132019.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2020-03-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14113495.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Utah Jazz", "photographer": "Russell Isabella", "source": "Imagn Images", "photo_date": "2020-02-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14077547.jpg", "player_name": "Bradley Beal", "headline": "NBA: Cleveland Cavaliers at Washington Wizards", "photographer": "Geoff Burke", "source": "Imagn Images", "photo_date": "2020-02-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13962582.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Atlanta Hawks", "photographer": "Dale Zanine", "source": "Imagn Images", "photo_date": "2020-01-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13947526.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2020-01-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13947532.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2020-01-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13935356.jpg", "player_name": "Bradley Beal", "headline": "NBA: Detroit Pistons at Washington Wizards", "photographer": "Tommy Gilligan", "source": "Imagn Images", "photo_date": "2020-01-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13861484.jpg", "player_name": "Bradley Beal", "headline": "NBA: Orlando Magic at Washington Wizards", "photographer": "Brad Mills", "source": "Imagn Images", "photo_date": "2020-01-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13839504.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2019-12-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13821641.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2019-12-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13803586.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-12-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13796357.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2019-12-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13754054.jpg", "player_name": "Bradley Beal", "headline": "NBA: Philadelphia 76ers at Washington Wizards", "photographer": "Geoff Burke", "source": "Imagn Images", "photo_date": "2019-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13716663.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-11-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13698365.jpg", "player_name": "Bradley Beal", "headline": "NBA: Charlotte Hornets at Washington Wizards", "photographer": "Amber Searls", "source": "Imagn Images", "photo_date": "2019-11-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13691824.jpg", "player_name": "Bradley Beal", "headline": "NBA: San Antonio Spurs at Washington Wizards", "photographer": "Geoff Burke", "source": "Imagn Images", "photo_date": "2019-11-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13682464.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Orlando Magic", "photographer": "Reinhold Matay", "source": "Imagn Images", "photo_date": "2019-11-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13682459.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Orlando Magic", "photographer": "Reinhold Matay", "source": "Imagn Images", "photo_date": "2019-11-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13612577.jpg", "player_name": "Bradley Beal", "headline": "NBA: Minnesota Timberwolves at Washington Wizards", "photographer": "Geoff Burke", "source": "Imagn Images", "photo_date": "2019-11-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13560184.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Dallas Mavericks", "photographer": "Kevin Jairaj", "source": "Imagn Images", "photo_date": "2019-10-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12452252.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-03-31"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12181180.jpg", "player_name": "Bradley Beal", "headline": "NBA: All Star Game", "photographer": "Bob Donnan", "source": "Imagn Images", "photo_date": "2019-02-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12158787.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2019-02-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12137605.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2019-02-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12120591.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2019-02-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12076703.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2019-01-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11900563.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2018-12-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11876878.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-12-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11795611.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Atlanta Hawks", "photographer": "Brett Davis", "source": "Imagn Images", "photo_date": "2018-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11771306.jpg", "player_name": "Bradley Beal", "headline": "NBA: Brooklyn Nets at Washington Wizards", "photographer": "Amber Searls", "source": "Imagn Images", "photo_date": "2018-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11771310.jpg", "player_name": "Bradley Beal", "headline": "NBA: Brooklyn Nets at Washington Wizards", "photographer": "Amber Searls", "source": "Imagn Images", "photo_date": "2018-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11771320.jpg", "player_name": "Bradley Beal", "headline": "NBA: Brooklyn Nets at Washington Wizards", "photographer": "Amber Searls", "source": "Imagn Images", "photo_date": "2018-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11739410.jpg", "player_name": "Bradley Beal", "headline": "NBA: Houston Rockets at Washington Wizards", "photographer": "Geoff Burke", "source": "Imagn Images", "photo_date": "2018-11-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11613578.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Dallas Mavericks", "photographer": "Kevin Jairaj", "source": "Imagn Images", "photo_date": "2018-11-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11559780.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2018-10-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11547625.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Los Angeles Clippers", "photographer": "Orlando Ramirez", "source": "Imagn Images", "photo_date": "2018-10-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11526168.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Sacramento Kings", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2018-10-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11414004.jpg", "player_name": "Bradley Beal", "headline": "NBA: Preseason-Washington Wizards at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2018-10-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10792983.jpg", "player_name": "Bradley Beal", "headline": "NBA: Playoffs-Washington Wizards at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2018-04-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10771128.jpg", "player_name": "Bradley Beal", "headline": "NBA: Atlanta Hawks at Washington Wizards", "photographer": "Geoff Burke", "source": "Imagn Images", "photo_date": "2018-04-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10757558.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2018-04-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10741917.jpg", "player_name": "Bradley Beal", "headline": "NBA: San Antonio Spurs at Washington Wizards", "photographer": "Brad Mills", "source": "Imagn Images", "photo_date": "2018-03-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10729626.jpg", "player_name": "Bradley Beal", "headline": "NBA: Denver Nuggets at Washington Wizards", "photographer": "Brad Mills", "source": "Imagn Images", "photo_date": "2018-03-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10679653.jpg", "player_name": "Bradley Beal", "headline": "NBA: Indiana Pacers at Washington Wizards", "photographer": "Geoff Burke", "source": "Imagn Images", "photo_date": "2018-03-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10670516.jpg", "player_name": "Bradley Beal", "headline": "NBA: Toronto Raptors at Washington Wizards", "photographer": "Brad Mills", "source": "Imagn Images", "photo_date": "2018-03-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10660599.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2018-02-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10657316.jpg", "player_name": "Bradley Beal", "headline": "NBA: Philadelphia 76ers at Washington Wizards", "photographer": "Brad Mills", "source": "Imagn Images", "photo_date": "2018-02-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10649078.jpg", "player_name": "Bradley Beal", "headline": "NBA: Charlotte Hornets at Washington Wizards", "photographer": "Brad Mills", "source": "Imagn Images", "photo_date": "2018-02-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10645571.jpg", "player_name": "Bradley Beal", "headline": "NBA: Washington Wizards at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2018-02-22"}];</script>
 <script>
 document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
-document.addEventListener('DOMContentLoaded', function() {
-    const photos = window.galleryPhotos || [];
-    let currentIndex = 0;
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox || photos.length === 0) return;
-    const lbImg = lightbox.querySelector('img');
-    const lbPlayer = lightbox.querySelector('.lb-player');
-    const lbHeadline = lightbox.querySelector('.lb-headline');
-    const lbCredit = lightbox.querySelector('.lb-credit');
-    const counter = lightbox.querySelector('.counter');
-    function formatDate(dateStr) {
-        if (!dateStr) return '';
-        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-        catch(e) { return dateStr; }
-    }
-    function showPhoto() {
-        const p = photos[currentIndex];
-        lbImg.src = p.image_url;
-        lbPlayer.textContent = p.player_name || 'NBA';
-        lbHeadline.textContent = p.headline || '';
-        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
-        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
-    }
-    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
-    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
-    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
-    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
-    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
-    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
-    let touchStartX = 0;
-    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
-});
 </script>
 </body>
 </html>

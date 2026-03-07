@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>P.J. Tucker | NBA Sneakers</title>
+<meta name="description" content="Browse 42 sneaker photos of P.J. Tucker from NBA games.">
+<meta property="og:title" content="P.J. Tucker | NBA Sneakers">
+<meta property="og:description" content="Browse 42 sneaker photos of P.J. Tucker from NBA games.">
+<meta property="og:image" content="https://cdn.imagn.com/image/thumb/250-225/21742116.jpg">
+<link rel="canonical" href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/">
 <style>
 :root {
     --primary: #1a1a2e;
@@ -48,7 +53,7 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
 .photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -56,6 +61,20 @@ a:hover { text-decoration: underline; }
 .photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
 .photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
 .photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
 .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
 .list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
@@ -66,18 +85,6 @@ a:hover { text-decoration: underline; }
 .page-header .subtitle { color: var(--text-secondary); }
 .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
 .breadcrumb a { color: var(--text-secondary); }
-.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
-.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
-.lightbox .nav.prev { left: 16px; }
-.lightbox .nav.next { right: 16px; }
-.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
-.lightbox .lb-player { font-size: 18px; font-weight: 600; }
-.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
-.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
-.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -138,7 +145,7 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -185,135 +192,135 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     </a>
     <div class="compare-prices"><span class="compare-label">Compare prices:</span><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.goat.com%2Fsearch%3Fquery%3DP.J.%2BTucker%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">GOAT</a><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.footlocker.com%2Fsearch%3Fquery%3DP.J.%2BTucker%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">Foot Locker</a></div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21742116.jpg" alt="NBA: Philadelphia 76ers at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21742116/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21742116.jpg" alt="NBA: Philadelphia 76ers at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Philadelphia 76ers at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Oct 26, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19823644.jpg" alt="NBA: Philadelphia 76ers at Portland Trail Blazers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19823644/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19823644.jpg" alt="NBA: Philadelphia 76ers at Portland Trail Blazers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Philadelphia 76ers at Portland Trail Blazers</div>
         <div class="credit">📷 Jaime Valdez · Imagn Images · Jan 19, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19570803.jpg" alt="NBA: Philadelphia 76ers at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19570803/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19570803.jpg" alt="NBA: Philadelphia 76ers at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Philadelphia 76ers at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Dec 05, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19534518.jpg" alt="NBA: Philadelphia 76ers at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19534518/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19534518.jpg" alt="NBA: Philadelphia 76ers at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Philadelphia 76ers at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Nov 30, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19501993.jpg" alt="NBA: Philadelphia 76ers at Orlando Magic" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19501993/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19501993.jpg" alt="NBA: Philadelphia 76ers at Orlando Magic" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Philadelphia 76ers at Orlando Magic</div>
         <div class="credit">📷 Mike Watters · Imagn Images · Nov 25, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19493568.jpg" alt="NBA: Philadelphia 76ers at Charlotte Hornets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19493568/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19493568.jpg" alt="NBA: Philadelphia 76ers at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Philadelphia 76ers at Charlotte Hornets</div>
         <div class="credit">📷 Sam Sharpe · Imagn Images · Nov 23, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19303840.jpg" alt="NBA: Philadelphia 76ers at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19303840/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19303840.jpg" alt="NBA: Philadelphia 76ers at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Philadelphia 76ers at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Oct 26, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19212350.jpg" alt="NBA: Preseason-Philadelphia 76ers at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19212350/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19212350.jpg" alt="NBA: Preseason-Philadelphia 76ers at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Preseason-Philadelphia 76ers at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Oct 10, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17812784.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17812784/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17812784.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Miami Heat at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Mar 02, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17812783.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17812783/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17812783.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Miami Heat at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Mar 02, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17625469.jpg" alt="NBA: Miami Heat at Charlotte Hornets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17625469/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17625469.jpg" alt="NBA: Miami Heat at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Miami Heat at Charlotte Hornets</div>
         <div class="credit">📷 Sam Sharpe · Imagn Images · Feb 05, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17615733.jpg" alt="NBA: Miami Heat at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17615733/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17615733.jpg" alt="NBA: Miami Heat at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Miami Heat at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 01, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17495682.jpg" alt="NBA: Miami Heat at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17495682/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17495682.jpg" alt="NBA: Miami Heat at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Miami Heat at Atlanta Hawks</div>
         <div class="credit">📷 Jason Getz · Imagn Images · Jan 12, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17493935.jpg" alt="NBA: Miami Heat at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17493935/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17493935.jpg" alt="NBA: Miami Heat at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Miami Heat at Atlanta Hawks</div>
         <div class="credit">📷 Jason Getz · Imagn Images · Jan 12, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17459216.jpg" alt="NBA: Miami Heat at Portland Trail Blazers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17459216/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17459216.jpg" alt="NBA: Miami Heat at Portland Trail Blazers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Miami Heat at Portland Trail Blazers</div>
         <div class="credit">📷 Troy Wayrynen · Imagn Images · Jan 05, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17353677.jpg" alt="NBA: Miami Heat at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17353677/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17353677.jpg" alt="NBA: Miami Heat at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Miami Heat at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Dec 13, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17294534.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17294534/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17294534.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Miami Heat at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Dec 04, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17122962.jpg" alt="NBA: Miami Heat at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17122962/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17122962.jpg" alt="NBA: Miami Heat at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Miami Heat at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 08, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15709888.jpg" alt="NBA: Houston Rockets at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15709888/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15709888.jpg" alt="NBA: Houston Rockets at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Houston Rockets at Sacramento Kings</div>
         <div class="credit">📷 Sergio Estrada · Imagn Images · Mar 11, 2021</div>
     </div>
@@ -325,163 +332,163 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14870430.jpg" alt="NBA: Playoffs-Oklahoma City Thunder at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14870430/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14870430.jpg" alt="NBA: Playoffs-Oklahoma City Thunder at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Playoffs-Oklahoma City Thunder at Houston Rockets</div>
         <div class="credit">📷 Kim Klement · Imagn Images · Sep 02, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14142749.jpg" alt="NBA: Los Angeles Clippers at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14142749/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14142749.jpg" alt="NBA: Los Angeles Clippers at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Los Angeles Clippers at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Mar 05, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14142751.jpg" alt="NBA: Los Angeles Clippers at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14142751/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14142751.jpg" alt="NBA: Los Angeles Clippers at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Los Angeles Clippers at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Mar 05, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14142755.jpg" alt="NBA: Los Angeles Clippers at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14142755/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14142755.jpg" alt="NBA: Los Angeles Clippers at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Los Angeles Clippers at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Mar 05, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14084484.jpg" alt="NBA: Houston Rockets at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14084484/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14084484.jpg" alt="NBA: Houston Rockets at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Houston Rockets at Utah Jazz</div>
         <div class="credit">📷 Chris Nicoll · Imagn Images · Feb 22, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14099107.jpg" alt="NBA: Houston Rockets at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14099107/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14099107.jpg" alt="NBA: Houston Rockets at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Houston Rockets at Golden State Warriors</div>
         <div class="credit">📷 Darren Yamashita · Imagn Images · Feb 20, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14027733.jpg" alt="NBA: Boston Celtics at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14027733/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14027733.jpg" alt="NBA: Boston Celtics at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Boston Celtics at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Feb 11, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14021541.jpg" alt="NBA: Utah Jazz at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14021541/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14021541.jpg" alt="NBA: Utah Jazz at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Utah Jazz at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Feb 09, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13989335.jpg" alt="NBA: New Orleans Pelicans at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13989335/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13989335.jpg" alt="NBA: New Orleans Pelicans at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: New Orleans Pelicans at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Feb 02, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13989334.jpg" alt="NBA: New Orleans Pelicans at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13989334/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13989334.jpg" alt="NBA: New Orleans Pelicans at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: New Orleans Pelicans at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Feb 02, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13989333.jpg" alt="NBA: New Orleans Pelicans at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13989333/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13989333.jpg" alt="NBA: New Orleans Pelicans at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: New Orleans Pelicans at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Feb 02, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13980939.jpg" alt="NBA: Dallas Mavericks at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13980939/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13980939.jpg" alt="NBA: Dallas Mavericks at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Dallas Mavericks at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Jan 31, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13980949.jpg" alt="NBA: Dallas Mavericks at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13980949/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13980949.jpg" alt="NBA: Dallas Mavericks at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Dallas Mavericks at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Jan 31, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13980943.jpg" alt="NBA: Dallas Mavericks at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13980943/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13980943.jpg" alt="NBA: Dallas Mavericks at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Dallas Mavericks at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Jan 31, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13961634.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13961634/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13961634.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Houston Rockets at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 26, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13960027.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13960027/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13960027.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Houston Rockets at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 26, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12481646.jpg" alt="NBA: New York Knicks at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12481646/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12481646.jpg" alt="NBA: New York Knicks at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: New York Knicks at Houston Rockets</div>
         <div class="credit">📷 Erik Williams · Imagn Images · Apr 05, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12094281.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12094281/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12094281.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Houston Rockets at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 01, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12094280.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12094280/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12094280.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Houston Rockets at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 01, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11661031.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11661031/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11661031.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Houston Rockets at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 13, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11097306.jpg" alt="NBA: Playoffs-Houston Rockets at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11097306/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11097306.jpg" alt="NBA: Playoffs-Houston Rockets at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Playoffs-Houston Rockets at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · May 26, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10846668.jpg" alt="NBA: Playoffs-Houston Rockets at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10846668/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10846668.jpg" alt="NBA: Playoffs-Houston Rockets at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Playoffs-Houston Rockets at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · May 20, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10657373.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10657373/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10657373.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">P.J. Tucker</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">P.J. Tucker</a>
         <div class="headline">NBA: Houston Rockets at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 25, 2018</div>
     </div>
@@ -491,66 +498,15 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </main>
 
 
-<div class="lightbox" id="lightbox">
-    <span class="close">&times;</span>
-    <span class="nav prev">&#10094;</span>
-    <span class="nav next">&#10095;</span>
-    <span class="counter"></span>
-    <img src="" alt="">
-    <div class="info">
-        <div class="lb-player"></div>
-        <div class="lb-headline"></div>
-        <div class="lb-credit"></div>
-    </div>
-</div>
-
 <footer class="site-footer">
     <div class="container">
         Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
     </div>
 </footer>
 
-<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/21742116.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Philadelphia 76ers at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2023-10-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19823644.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Philadelphia 76ers at Portland Trail Blazers", "photographer": "Jaime Valdez", "source": "Imagn Images", "photo_date": "2023-01-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19570803.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Philadelphia 76ers at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2022-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19534518.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Philadelphia 76ers at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2022-11-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19501993.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Philadelphia 76ers at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2022-11-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19493568.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Philadelphia 76ers at Charlotte Hornets", "photographer": "Sam Sharpe", "source": "Imagn Images", "photo_date": "2022-11-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19303840.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Philadelphia 76ers at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2022-10-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19212350.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Preseason-Philadelphia 76ers at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2022-10-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17812784.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Miami Heat at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2022-03-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17812783.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Miami Heat at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2022-03-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17625469.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Miami Heat at Charlotte Hornets", "photographer": "Sam Sharpe", "source": "Imagn Images", "photo_date": "2022-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17615733.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Miami Heat at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2022-02-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17495682.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Miami Heat at Atlanta Hawks", "photographer": "Jason Getz", "source": "Imagn Images", "photo_date": "2022-01-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17493935.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Miami Heat at Atlanta Hawks", "photographer": "Jason Getz", "source": "Imagn Images", "photo_date": "2022-01-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17459216.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Miami Heat at Portland Trail Blazers", "photographer": "Troy Wayrynen", "source": "Imagn Images", "photo_date": "2022-01-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17353677.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Miami Heat at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2021-12-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17294534.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Miami Heat at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2021-12-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17122962.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Miami Heat at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2021-11-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15709888.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Houston Rockets at Sacramento Kings", "photographer": "Sergio Estrada", "source": "Imagn Images", "photo_date": "2021-03-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14870430.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Playoffs-Oklahoma City Thunder at Houston Rockets", "photographer": "Kim Klement", "source": "Imagn Images", "photo_date": "2020-09-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14142749.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Los Angeles Clippers at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2020-03-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14142751.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Los Angeles Clippers at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2020-03-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14142755.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Los Angeles Clippers at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2020-03-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14084484.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Houston Rockets at Utah Jazz", "photographer": "Chris Nicoll", "source": "Imagn Images", "photo_date": "2020-02-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14099107.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Houston Rockets at Golden State Warriors", "photographer": "Darren Yamashita", "source": "Imagn Images", "photo_date": "2020-02-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14027733.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Boston Celtics at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2020-02-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14021541.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Utah Jazz at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2020-02-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13989335.jpg", "player_name": "P.J. Tucker", "headline": "NBA: New Orleans Pelicans at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2020-02-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13989334.jpg", "player_name": "P.J. Tucker", "headline": "NBA: New Orleans Pelicans at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2020-02-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13989333.jpg", "player_name": "P.J. Tucker", "headline": "NBA: New Orleans Pelicans at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2020-02-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13980939.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Dallas Mavericks at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2020-01-31"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13980949.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Dallas Mavericks at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2020-01-31"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13980943.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Dallas Mavericks at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2020-01-31"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13961634.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Houston Rockets at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2020-01-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13960027.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Houston Rockets at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2020-01-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12481646.jpg", "player_name": "P.J. Tucker", "headline": "NBA: New York Knicks at Houston Rockets", "photographer": "Erik Williams", "source": "Imagn Images", "photo_date": "2019-04-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12094281.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Houston Rockets at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-02-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12094280.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Houston Rockets at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-02-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11661031.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Houston Rockets at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2018-11-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11097306.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Playoffs-Houston Rockets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2018-05-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10846668.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Playoffs-Houston Rockets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2018-05-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10657373.jpg", "player_name": "P.J. Tucker", "headline": "NBA: Houston Rockets at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2018-02-25"}];</script>
 <script>
 document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
-document.addEventListener('DOMContentLoaded', function() {
-    const photos = window.galleryPhotos || [];
-    let currentIndex = 0;
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox || photos.length === 0) return;
-    const lbImg = lightbox.querySelector('img');
-    const lbPlayer = lightbox.querySelector('.lb-player');
-    const lbHeadline = lightbox.querySelector('.lb-headline');
-    const lbCredit = lightbox.querySelector('.lb-credit');
-    const counter = lightbox.querySelector('.counter');
-    function formatDate(dateStr) {
-        if (!dateStr) return '';
-        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-        catch(e) { return dateStr; }
-    }
-    function showPhoto() {
-        const p = photos[currentIndex];
-        lbImg.src = p.image_url;
-        lbPlayer.textContent = p.player_name || 'NBA';
-        lbHeadline.textContent = p.headline || '';
-        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
-        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
-    }
-    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
-    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
-    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
-    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
-    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
-    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
-    let touchStartX = 0;
-    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
-});
 </script>
 </body>
 </html>

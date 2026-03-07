@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Patrick Beverley | NBA Sneakers</title>
+<meta name="description" content="Browse 33 sneaker photos of Patrick Beverley from NBA games.">
+<meta property="og:title" content="Patrick Beverley | NBA Sneakers">
+<meta property="og:description" content="Browse 33 sneaker photos of Patrick Beverley from NBA games.">
+<meta property="og:image" content="https://cdn.imagn.com/image/thumb/250-225/23025420.jpg">
+<link rel="canonical" href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/">
 <style>
 :root {
     --primary: #1a1a2e;
@@ -48,7 +53,7 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
 .photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -56,6 +61,20 @@ a:hover { text-decoration: underline; }
 .photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
 .photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
 .photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
 .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
 .list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
@@ -66,18 +85,6 @@ a:hover { text-decoration: underline; }
 .page-header .subtitle { color: var(--text-secondary); }
 .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
 .breadcrumb a { color: var(--text-secondary); }
-.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
-.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
-.lightbox .nav.prev { left: 16px; }
-.lightbox .nav.next { right: 16px; }
-.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
-.lightbox .lb-player { font-size: 18px; font-weight: 600; }
-.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
-.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
-.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -138,7 +145,7 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -185,135 +192,135 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     </a>
     <div class="compare-prices"><span class="compare-label">Compare prices:</span><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.goat.com%2Fsearch%3Fquery%3DPatrick%2BBeverley%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">GOAT</a><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.footlocker.com%2Fsearch%3Fquery%3DPatrick%2BBeverley%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">Foot Locker</a></div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/23025420.jpg" alt="NBA: Milwaukee Bucks at Orlando Magic" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/23025420/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/23025420.jpg" alt="NBA: Milwaukee Bucks at Orlando Magic" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Milwaukee Bucks at Orlando Magic</div>
         <div class="credit">📷 Mike Watters · Imagn Images · Apr 14, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/23025418.jpg" alt="NBA: Milwaukee Bucks at Orlando Magic" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/23025418/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/23025418.jpg" alt="NBA: Milwaukee Bucks at Orlando Magic" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Milwaukee Bucks at Orlando Magic</div>
         <div class="credit">📷 Mike Watters · Imagn Images · Apr 14, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20299125.jpg" alt="NBA: Philadelphia 76ers at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20299125/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20299125.jpg" alt="NBA: Philadelphia 76ers at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Philadelphia 76ers at Chicago Bulls</div>
         <div class="credit">📷 David Banks · Imagn Images · Mar 22, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20265672.jpg" alt="NBA: Miami Heat at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20265672/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20265672.jpg" alt="NBA: Miami Heat at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Miami Heat at Chicago Bulls</div>
         <div class="credit">📷 David Banks · Imagn Images · Mar 18, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19924090.jpg" alt="NBA: Los Angeles Lakers at New Orleans Pelicans" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19924090/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19924090.jpg" alt="NBA: Los Angeles Lakers at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Los Angeles Lakers at New Orleans Pelicans</div>
         <div class="credit">📷 Stephen Lew · Imagn Images · Feb 04, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19234924.jpg" alt="NBA: Preseason-Los Angeles Lakers at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19234924/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19234924.jpg" alt="NBA: Preseason-Los Angeles Lakers at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Preseason-Los Angeles Lakers at Sacramento Kings</div>
         <div class="credit">📷 Kelley L Cox · Imagn Images · Oct 14, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17945159.jpg" alt="NBA: Minnesota Timberwolves at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17945159/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17945159.jpg" alt="NBA: Minnesota Timberwolves at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Minnesota Timberwolves at Dallas Mavericks</div>
         <div class="credit">📷 Kevin Jairaj · Imagn Images · Mar 21, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17944808.jpg" alt="NBA: Minnesota Timberwolves at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17944808/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17944808.jpg" alt="NBA: Minnesota Timberwolves at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Minnesota Timberwolves at Dallas Mavericks</div>
         <div class="credit">📷 Kevin Jairaj · Imagn Images · Mar 21, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17614409.jpg" alt="NBA: Minnesota Timberwolves at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17614409/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17614409.jpg" alt="NBA: Minnesota Timberwolves at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Minnesota Timberwolves at Detroit Pistons</div>
         <div class="credit">📷 Raj Mehta · Imagn Images · Feb 03, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17445804.jpg" alt="NBA: Minnesota Timberwolves at Los Angeles Lakers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17445804/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17445804.jpg" alt="NBA: Minnesota Timberwolves at Los Angeles Lakers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Minnesota Timberwolves at Los Angeles Lakers</div>
         <div class="credit">📷 Gary A. Vasquez · Imagn Images · Jan 02, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17213091.jpg" alt="NBA: Minnesota Timberwolves at New Orleans Pelicans" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17213091/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17213091.jpg" alt="NBA: Minnesota Timberwolves at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Minnesota Timberwolves at New Orleans Pelicans</div>
         <div class="credit">📷 Chuck Cook · Imagn Images · Nov 22, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14003257.jpg" alt="NBA: Miami Heat at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14003257/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14003257.jpg" alt="NBA: Miami Heat at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Miami Heat at Los Angeles Clippers</div>
         <div class="credit">📷 Kirby Lee · Imagn Images · Feb 05, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13902189.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13902189/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13902189.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 12, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13847654.jpg" alt="NBA: Utah Jazz at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13847654/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13847654.jpg" alt="NBA: Utah Jazz at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Utah Jazz at Los Angeles Clippers</div>
         <div class="credit">📷 Gary A. Vasquez · Imagn Images · Dec 28, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13853176.jpg" alt="NBA: Los Angeles Clippers at San Antonio Spurs" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13853176/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13853176.jpg" alt="NBA: Los Angeles Clippers at San Antonio Spurs" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Los Angeles Clippers at San Antonio Spurs</div>
         <div class="credit">📷 Scott Wachter · Imagn Images · Dec 21, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13759045.jpg" alt="NBA: Los Angeles Clippers at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13759045/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13759045.jpg" alt="NBA: Los Angeles Clippers at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Los Angeles Clippers at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Dec 06, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13716503.jpg" alt="NBA: Los Angeles Clippers at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13716503/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13716503.jpg" alt="NBA: Los Angeles Clippers at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Los Angeles Clippers at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Nov 26, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13662600.jpg" alt="NBA: Los Angeles Clippers at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13662600/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13662600.jpg" alt="NBA: Los Angeles Clippers at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Los Angeles Clippers at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Nov 13, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13596458.jpg" alt="NBA: Los Angeles Clippers at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13596458/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13596458.jpg" alt="NBA: Los Angeles Clippers at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Los Angeles Clippers at Utah Jazz</div>
         <div class="credit">📷 Russell Isabella · Imagn Images · Oct 30, 2019</div>
     </div>
@@ -325,100 +332,100 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12584927.jpg" alt="NBA: Playoffs-Los Angeles Clippers at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12584927/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12584927.jpg" alt="NBA: Playoffs-Los Angeles Clippers at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Playoffs-Los Angeles Clippers at Golden State Warriors</div>
         <div class="credit">📷 Kelley L Cox · Imagn Images · Apr 24, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12569112.jpg" alt="NBA: Playoffs-Golden State Warriors at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12569112/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12569112.jpg" alt="NBA: Playoffs-Golden State Warriors at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Playoffs-Golden State Warriors at Los Angeles Clippers</div>
         <div class="credit">📷 Gary A. Vasquez · Imagn Images · Apr 21, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12398942.jpg" alt="NBA: Los Angeles Clippers at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12398942/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12398942.jpg" alt="NBA: Los Angeles Clippers at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Los Angeles Clippers at Cleveland Cavaliers</div>
         <div class="credit">📷 Ken Blaze · Imagn Images · Mar 22, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12265678.jpg" alt="NBA: Los Angeles Clippers at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12265678/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12265678.jpg" alt="NBA: Los Angeles Clippers at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Los Angeles Clippers at Sacramento Kings</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Mar 01, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12251634.jpg" alt="NBA: Los Angeles Clippers at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12251634/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12251634.jpg" alt="NBA: Los Angeles Clippers at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Los Angeles Clippers at Utah Jazz</div>
         <div class="credit">📷 Russell Isabella · Imagn Images · Feb 27, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12230396.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12230396/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12230396.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 24, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11975384.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11975384/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11975384.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 10, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12016158.jpg" alt="NBA: Los Angeles Clippers at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12016158/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12016158.jpg" alt="NBA: Los Angeles Clippers at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Los Angeles Clippers at Phoenix Suns</div>
         <div class="credit">📷 Jennifer Stewart · Imagn Images · Jan 04, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11855147.jpg" alt="NBA: Los Angeles Clippers at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11855147/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11855147.jpg" alt="NBA: Los Angeles Clippers at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Los Angeles Clippers at Oklahoma City Thunder</div>
         <div class="credit">📷 Rob Ferguson · Imagn Images · Dec 15, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11901654.jpg" alt="NBA: Los Angeles Clippers at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11901654/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11901654.jpg" alt="NBA: Los Angeles Clippers at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Los Angeles Clippers at Phoenix Suns</div>
         <div class="credit">📷 Jennifer Stewart · Imagn Images · Dec 10, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11901659.jpg" alt="NBA: Los Angeles Clippers at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11901659/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11901659.jpg" alt="NBA: Los Angeles Clippers at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Los Angeles Clippers at Phoenix Suns</div>
         <div class="credit">📷 Jennifer Stewart · Imagn Images · Dec 10, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11795823.jpg" alt="NBA: Los Angeles Clippers at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11795823/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11795823.jpg" alt="NBA: Los Angeles Clippers at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Los Angeles Clippers at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Dec 05, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11779392.jpg" alt="NBA: Los Angeles Clippers at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11779392/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11779392.jpg" alt="NBA: Los Angeles Clippers at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Los Angeles Clippers at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Dec 02, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11547624.jpg" alt="NBA: Washington Wizards at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11547624/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11547624.jpg" alt="NBA: Washington Wizards at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Patrick Beverley</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="player-link">Patrick Beverley</a>
         <div class="headline">NBA: Washington Wizards at Los Angeles Clippers</div>
         <div class="credit">📷 Orlando Ramirez · Imagn Images · Oct 28, 2018</div>
     </div>
@@ -428,66 +435,15 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </main>
 
 
-<div class="lightbox" id="lightbox">
-    <span class="close">&times;</span>
-    <span class="nav prev">&#10094;</span>
-    <span class="nav next">&#10095;</span>
-    <span class="counter"></span>
-    <img src="" alt="">
-    <div class="info">
-        <div class="lb-player"></div>
-        <div class="lb-headline"></div>
-        <div class="lb-credit"></div>
-    </div>
-</div>
-
 <footer class="site-footer">
     <div class="container">
         Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
     </div>
 </footer>
 
-<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/23025420.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Milwaukee Bucks at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2024-04-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/23025418.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Milwaukee Bucks at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2024-04-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20299125.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Philadelphia 76ers at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2023-03-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20265672.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Miami Heat at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2023-03-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19924090.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Los Angeles Lakers at New Orleans Pelicans", "photographer": "Stephen Lew", "source": "Imagn Images", "photo_date": "2023-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19234924.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Preseason-Los Angeles Lakers at Sacramento Kings", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2022-10-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17945159.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Minnesota Timberwolves at Dallas Mavericks", "photographer": "Kevin Jairaj", "source": "Imagn Images", "photo_date": "2022-03-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17944808.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Minnesota Timberwolves at Dallas Mavericks", "photographer": "Kevin Jairaj", "source": "Imagn Images", "photo_date": "2022-03-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17614409.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Minnesota Timberwolves at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2022-02-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17445804.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Minnesota Timberwolves at Los Angeles Lakers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2022-01-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17213091.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Minnesota Timberwolves at New Orleans Pelicans", "photographer": "Chuck Cook", "source": "Imagn Images", "photo_date": "2021-11-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14003257.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Miami Heat at Los Angeles Clippers", "photographer": "Kirby Lee", "source": "Imagn Images", "photo_date": "2020-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13902189.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2020-01-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13847654.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Utah Jazz at Los Angeles Clippers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2019-12-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13853176.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Los Angeles Clippers at San Antonio Spurs", "photographer": "Scott Wachter", "source": "Imagn Images", "photo_date": "2019-12-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13759045.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Los Angeles Clippers at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2019-12-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13716503.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Los Angeles Clippers at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2019-11-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13662600.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Los Angeles Clippers at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-11-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13596458.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Los Angeles Clippers at Utah Jazz", "photographer": "Russell Isabella", "source": "Imagn Images", "photo_date": "2019-10-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12584927.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Playoffs-Los Angeles Clippers at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2019-04-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12569112.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Playoffs-Golden State Warriors at Los Angeles Clippers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2019-04-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12398942.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Los Angeles Clippers at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2019-03-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12265678.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Los Angeles Clippers at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-03-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12251634.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Los Angeles Clippers at Utah Jazz", "photographer": "Russell Isabella", "source": "Imagn Images", "photo_date": "2019-02-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12230396.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-02-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11975384.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-01-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12016158.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Los Angeles Clippers at Phoenix Suns", "photographer": "Jennifer Stewart", "source": "Imagn Images", "photo_date": "2019-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11855147.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Los Angeles Clippers at Oklahoma City Thunder", "photographer": "Rob Ferguson", "source": "Imagn Images", "photo_date": "2018-12-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11901654.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Los Angeles Clippers at Phoenix Suns", "photographer": "Jennifer Stewart", "source": "Imagn Images", "photo_date": "2018-12-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11901659.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Los Angeles Clippers at Phoenix Suns", "photographer": "Jennifer Stewart", "source": "Imagn Images", "photo_date": "2018-12-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11795823.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Los Angeles Clippers at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2018-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11779392.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Los Angeles Clippers at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2018-12-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11547624.jpg", "player_name": "Patrick Beverley", "headline": "NBA: Washington Wizards at Los Angeles Clippers", "photographer": "Orlando Ramirez", "source": "Imagn Images", "photo_date": "2018-10-28"}];</script>
 <script>
 document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
-document.addEventListener('DOMContentLoaded', function() {
-    const photos = window.galleryPhotos || [];
-    let currentIndex = 0;
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox || photos.length === 0) return;
-    const lbImg = lightbox.querySelector('img');
-    const lbPlayer = lightbox.querySelector('.lb-player');
-    const lbHeadline = lightbox.querySelector('.lb-headline');
-    const lbCredit = lightbox.querySelector('.lb-credit');
-    const counter = lightbox.querySelector('.counter');
-    function formatDate(dateStr) {
-        if (!dateStr) return '';
-        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-        catch(e) { return dateStr; }
-    }
-    function showPhoto() {
-        const p = photos[currentIndex];
-        lbImg.src = p.image_url;
-        lbPlayer.textContent = p.player_name || 'NBA';
-        lbHeadline.textContent = p.headline || '';
-        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
-        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
-    }
-    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
-    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
-    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
-    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
-    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
-    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
-    let touchStartX = 0;
-    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
-});
 </script>
 </body>
 </html>

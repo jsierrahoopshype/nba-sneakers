@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chris Paul | NBA Sneakers</title>
+<meta name="description" content="Browse 120 sneaker photos of Chris Paul from NBA games.">
+<meta property="og:title" content="Chris Paul | NBA Sneakers">
+<meta property="og:description" content="Browse 120 sneaker photos of Chris Paul from NBA games.">
+<meta property="og:image" content="https://cdn.imagn.com/image/thumb/250-225/27500644.jpg">
+<link rel="canonical" href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/">
 <style>
 :root {
     --primary: #1a1a2e;
@@ -48,7 +53,7 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
 .photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -56,6 +61,20 @@ a:hover { text-decoration: underline; }
 .photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
 .photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
 .photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
 .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
 .list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
@@ -66,18 +85,6 @@ a:hover { text-decoration: underline; }
 .page-header .subtitle { color: var(--text-secondary); }
 .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
 .breadcrumb a { color: var(--text-secondary); }
-.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
-.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
-.lightbox .nav.prev { left: 16px; }
-.lightbox .nav.next { right: 16px; }
-.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
-.lightbox .lb-player { font-size: 18px; font-weight: 600; }
-.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
-.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
-.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -138,7 +145,7 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -185,135 +192,135 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     </a>
     <div class="compare-prices"><span class="compare-label">Compare prices:</span><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.goat.com%2Fsearch%3Fquery%3DChris%2BPaul%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">GOAT</a><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.footlocker.com%2Fsearch%3Fquery%3DChris%2BPaul%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">Foot Locker</a></div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27500644.jpg" alt="NBA: Miami Heat at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27500644/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27500644.jpg" alt="NBA: Miami Heat at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Miami Heat at Los Angeles Clippers</div>
         <div class="credit">📷 Kirby Lee · Imagn Images · Nov 03, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25883030.jpg" alt="NBA: San Antonio Spurs at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25883030/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25883030.jpg" alt="NBA: San Antonio Spurs at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: San Antonio Spurs at Los Angeles Clippers</div>
         <div class="credit">📷 Kirby Lee · Imagn Images · Apr 08, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25783390.jpg" alt="NBA: San Antonio Spurs at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25783390/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25783390.jpg" alt="NBA: San Antonio Spurs at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: San Antonio Spurs at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Mar 27, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25629837.jpg" alt="NBA: San Antonio Spurs at Minnesota Timberwolves" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25629837/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25629837.jpg" alt="NBA: San Antonio Spurs at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: San Antonio Spurs at Minnesota Timberwolves</div>
         <div class="credit">📷 Jesse Johnson · Imagn Images · Mar 09, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25513134.jpg" alt="NBA: San Antonio Spurs at New Orleans Pelicans" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25513134/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25513134.jpg" alt="NBA: San Antonio Spurs at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: San Antonio Spurs at New Orleans Pelicans</div>
         <div class="credit">📷 Stephen Lew · Imagn Images · Feb 25, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25366788.jpg" alt="NBA: San Antonio Spurs at Charlotte Hornets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25366788/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25366788.jpg" alt="NBA: San Antonio Spurs at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: San Antonio Spurs at Charlotte Hornets</div>
         <div class="credit">📷 Jim Dedmon · Imagn Images · Feb 07, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25350915.jpg" alt="NBA: San Antonio Spurs at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25350915/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25350915.jpg" alt="NBA: San Antonio Spurs at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: San Antonio Spurs at Atlanta Hawks</div>
         <div class="credit">📷 Brett Davis · Imagn Images · Feb 05, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25082917.jpg" alt="NBA: San Antonio Spurs at Minnesota Timberwolves" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25082917/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25082917.jpg" alt="NBA: San Antonio Spurs at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: San Antonio Spurs at Minnesota Timberwolves</div>
         <div class="credit">📷 Jesse Johnson · Imagn Images · Dec 29, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24920793.jpg" alt="NBA: Chicago Bulls at San Antonio Spurs" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24920793/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24920793.jpg" alt="NBA: Chicago Bulls at San Antonio Spurs" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Chicago Bulls at San Antonio Spurs</div>
         <div class="credit">📷 Scott Wachter · Imagn Images · Dec 05, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24890331.jpg" alt="NBA: San Antonio Spurs at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24890331/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24890331.jpg" alt="NBA: San Antonio Spurs at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: San Antonio Spurs at Sacramento Kings</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Dec 01, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22719897.jpg" alt="NBA: Chicago Bulls at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22719897/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22719897.jpg" alt="NBA: Chicago Bulls at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Chicago Bulls at Golden State Warriors</div>
         <div class="credit">📷 Kelley L Cox · Imagn Images · Mar 07, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21969083.jpg" alt="NBA: San Antonio Spurs at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21969083/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21969083.jpg" alt="NBA: San Antonio Spurs at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: San Antonio Spurs at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Nov 24, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21969072.jpg" alt="NBA: San Antonio Spurs at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21969072/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21969072.jpg" alt="NBA: San Antonio Spurs at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: San Antonio Spurs at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Nov 24, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25063632.jpg" alt="NBA: Golden State Warriors at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25063632/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25063632.jpg" alt="NBA: Golden State Warriors at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Golden State Warriors at Phoenix Suns</div>
         <div class="credit">📷 Mark J. Rebilas · USA TODAY Sports · Nov 22, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21795523.jpg" alt="NBA: Sacramento Kings at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21795523/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21795523.jpg" alt="NBA: Sacramento Kings at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Sacramento Kings at Golden State Warriors</div>
         <div class="credit">📷 Cary Edmondson · Imagn Images · Nov 01, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20381296.jpg" alt="NBA: Phoenix Suns at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20381296/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20381296.jpg" alt="NBA: Phoenix Suns at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Apr 02, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20332651.jpg" alt="NBA: Phoenix Suns at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20332651/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20332651.jpg" alt="NBA: Phoenix Suns at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Utah Jazz</div>
         <div class="credit">📷 Rob Gray · Imagn Images · Mar 27, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20272216.jpg" alt="NBA: Phoenix Suns at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20272216/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20272216.jpg" alt="NBA: Phoenix Suns at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Mar 19, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20154786.jpg" alt="NBA: Phoenix Suns at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20154786/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20154786.jpg" alt="NBA: Phoenix Suns at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Mar 05, 2023</div>
     </div>
@@ -325,212 +332,212 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19916160.jpg" alt="NBA: Phoenix Suns at Boston Celtics" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19916160/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19916160.jpg" alt="NBA: Phoenix Suns at Boston Celtics" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Boston Celtics</div>
         <div class="credit">📷 Winslow Townson · Imagn Images · Feb 03, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19702264.jpg" alt="NBA: Phoenix Suns at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19702264/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19702264.jpg" alt="NBA: Phoenix Suns at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Dec 30, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19680300.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19680300/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19680300.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Dec 25, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19607520.jpg" alt="NBA: Phoenix Suns at New Orleans Pelicans" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19607520/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19607520.jpg" alt="NBA: Phoenix Suns at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at New Orleans Pelicans</div>
         <div class="credit">📷 Andrew Wevers · Imagn Images · Dec 11, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19273759.jpg" alt="NBA: Phoenix Suns at Portland Trail Blazers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19273759/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19273759.jpg" alt="NBA: Phoenix Suns at Portland Trail Blazers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Portland Trail Blazers</div>
         <div class="credit">📷 Troy Wayrynen · Imagn Images · Oct 21, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18137366.jpg" alt="NBA: Playoffs-Phoenix Suns at New Orleans Pelicans" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/18137366/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18137366.jpg" alt="NBA: Playoffs-Phoenix Suns at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Playoffs-Phoenix Suns at New Orleans Pelicans</div>
         <div class="credit">📷 Chuck Cook · Imagn Images · Apr 22, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18048526.jpg" alt="NBA: Phoenix Suns at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/18048526/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18048526.jpg" alt="NBA: Phoenix Suns at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Utah Jazz</div>
         <div class="credit">📷 Rob Gray · Imagn Images · Apr 08, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17962521.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17962521/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17962521.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 24, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17962564.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17962564/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17962564.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 24, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17637933.jpg" alt="NBA: Phoenix Suns at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17637933/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17637933.jpg" alt="NBA: Phoenix Suns at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Chicago Bulls</div>
         <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Feb 07, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17550234.jpg" alt="NBA: Indiana Pacers at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17550234/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17550234.jpg" alt="NBA: Indiana Pacers at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Indiana Pacers at Phoenix Suns</div>
         <div class="credit">📷 Mark J. Rebilas · Imagn Images · Jan 22, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17516850.jpg" alt="NBA: Phoenix Suns at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17516850/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17516850.jpg" alt="NBA: Phoenix Suns at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Detroit Pistons</div>
         <div class="credit">📷 Raj Mehta · Imagn Images · Jan 16, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17445292.jpg" alt="NBA: Phoenix Suns at Charlotte Hornets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17445292/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17445292.jpg" alt="NBA: Phoenix Suns at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Charlotte Hornets</div>
         <div class="credit">📷 Jim Dedmon · Imagn Images · Jan 02, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17398568.jpg" alt="NBA: Phoenix Suns at Los Angeles Lakers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17398568/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17398568.jpg" alt="NBA: Phoenix Suns at Los Angeles Lakers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Los Angeles Lakers</div>
         <div class="credit">📷 Gary A. Vasquez · Imagn Images · Dec 21, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17354485.jpg" alt="NBA: Phoenix Suns at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17354485/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17354485.jpg" alt="NBA: Phoenix Suns at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Los Angeles Clippers</div>
         <div class="credit">📷 Kirby Lee · Imagn Images · Dec 13, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17143789.jpg" alt="NBA: Portland Trail Blazers at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17143789/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17143789.jpg" alt="NBA: Portland Trail Blazers at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Portland Trail Blazers at Phoenix Suns</div>
         <div class="credit">📷 Mark J. Rebilas · Imagn Images · Nov 10, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17093129.jpg" alt="NBA: Sacramento Kings at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17093129/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17093129.jpg" alt="NBA: Sacramento Kings at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Sacramento Kings at Phoenix Suns</div>
         <div class="credit">📷 Mark J. Rebilas · Imagn Images · Oct 27, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17008656.jpg" alt="NBA: Phoenix Suns at Los Angeles Lakers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17008656/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17008656.jpg" alt="NBA: Phoenix Suns at Los Angeles Lakers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Los Angeles Lakers</div>
         <div class="credit">📷 Kirby Lee · Imagn Images · Oct 22, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/16904129.jpg" alt="NBA: Preseason-Los Angeles Lakers at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/16904129/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/16904129.jpg" alt="NBA: Preseason-Los Angeles Lakers at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Preseason-Los Angeles Lakers at Phoenix Suns</div>
         <div class="credit">📷 Mark J. Rebilas · Imagn Images · Oct 06, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/16893644.jpg" alt="NBA: Preseason-Phoenix Suns at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/16893644/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/16893644.jpg" alt="NBA: Preseason-Phoenix Suns at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Preseason-Phoenix Suns at Sacramento Kings</div>
         <div class="credit">📷 Cary Edmondson · Imagn Images · Oct 04, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/16320725.jpg" alt="NBA: Playoffs-Phoenix Suns at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/16320725/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/16320725.jpg" alt="NBA: Playoffs-Phoenix Suns at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Playoffs-Phoenix Suns at Los Angeles Clippers</div>
         <div class="credit">📷 Jayne Kamin-Oncea · Imagn Images · Jun 26, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/16064858.jpg" alt="NBA: Phoenix Suns at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/16064858/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/16064858.jpg" alt="NBA: Phoenix Suns at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · May 11, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15526923.jpg" alt="NBA: Phoenix Suns at New Orleans Pelicans" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15526923/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15526923.jpg" alt="NBA: Phoenix Suns at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at New Orleans Pelicans</div>
         <div class="credit">📷 Stephen Lew · Imagn Images · Feb 03, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15363750.jpg" alt="NBA: Phoenix Suns at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15363750/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15363750.jpg" alt="NBA: Phoenix Suns at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Sacramento Kings</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Dec 26, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15360319.jpg" alt="NBA: Dallas Mavericks at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15360319/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15360319.jpg" alt="NBA: Dallas Mavericks at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Dallas Mavericks at Phoenix Suns</div>
         <div class="credit">📷 Mark J. Rebilas · Imagn Images · Dec 23, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14870217.jpg" alt="NBA: Playoffs-Oklahoma City Thunder at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14870217/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14870217.jpg" alt="NBA: Playoffs-Oklahoma City Thunder at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Playoffs-Oklahoma City Thunder at Houston Rockets</div>
         <div class="credit">📷 Kim Klement · Imagn Images · Sep 02, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14820034.jpg" alt="NBA: Playoffs-Houston Rockets at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14820034/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14820034.jpg" alt="NBA: Playoffs-Houston Rockets at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Playoffs-Houston Rockets at Oklahoma City Thunder</div>
         <div class="credit">📷 Kim Klement · Imagn Images · Aug 24, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14742895.jpg" alt="NBA: Oklahoma City Thunder at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14742895/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14742895.jpg" alt="NBA: Oklahoma City Thunder at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Oklahoma City Thunder at Los Angeles Clippers</div>
         <div class="credit">📷 Mike Ehrmann · Pool Photo · Aug 14, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14742893.jpg" alt="NBA: Oklahoma City Thunder at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14742893/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14742893.jpg" alt="NBA: Oklahoma City Thunder at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Oklahoma City Thunder at Los Angeles Clippers</div>
         <div class="credit">📷 Mike Ehrmann · Pool Photo · Aug 14, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14719087.jpg" alt="NBA: Washington Wizards at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14719087/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14719087.jpg" alt="NBA: Washington Wizards at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Washington Wizards at Oklahoma City Thunder</div>
         <div class="credit">📷 Kim Klement · Imagn Images · Aug 09, 2020</div>
     </div>
@@ -542,352 +549,352 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14711726.jpg" alt="NBA: Oklahoma City Thunder at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14711726/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14711726.jpg" alt="NBA: Oklahoma City Thunder at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Oklahoma City Thunder at Memphis Grizzlies</div>
         <div class="credit">📷 Kim Klement · Imagn Images · Aug 07, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14682669.jpg" alt="NBA: Denver Nuggets at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14682669/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14682669.jpg" alt="NBA: Denver Nuggets at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Denver Nuggets at Oklahoma City Thunder</div>
         <div class="credit">📷 Kim Klement · Imagn Images · Aug 03, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14077924.jpg" alt="NBA: Denver Nuggets at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14077924/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14077924.jpg" alt="NBA: Denver Nuggets at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Denver Nuggets at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Feb 21, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14053546.jpg" alt="NBA: All Star Game-Team Lebron at Team Giannis" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14053546/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14053546.jpg" alt="NBA: All Star Game-Team Lebron at Team Giannis" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: All Star Game-Team Lebron at Team Giannis</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Feb 16, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14028835.jpg" alt="NBA: San Antonio Spurs at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14028835/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14028835.jpg" alt="NBA: San Antonio Spurs at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: San Antonio Spurs at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Feb 11, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14002992.jpg" alt="NBA: Cleveland Cavaliers at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14002992/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14002992.jpg" alt="NBA: Cleveland Cavaliers at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Cleveland Cavaliers at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Feb 05, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13951527.jpg" alt="NBA: Atlanta Hawks at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13951527/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13951527.jpg" alt="NBA: Atlanta Hawks at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Atlanta Hawks at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 24, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13914437.jpg" alt="NBA: Toronto Raptors at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13914437/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13914437.jpg" alt="NBA: Toronto Raptors at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Toronto Raptors at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 15, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13851744.jpg" alt="NBA: Oklahoma City Thunder at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13851744/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13851744.jpg" alt="NBA: Oklahoma City Thunder at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Oklahoma City Thunder at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Dec 29, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13685522.jpg" alt="NBA: Oklahoma City Thunder at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13685522/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13685522.jpg" alt="NBA: Oklahoma City Thunder at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Oklahoma City Thunder at Los Angeles Clippers</div>
         <div class="credit">📷 Kelvin Kuo · Imagn Images · Nov 18, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13667609.jpg" alt="NBA: Oklahoma City Thunder at San Antonio Spurs" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13667609/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13667609.jpg" alt="NBA: Oklahoma City Thunder at San Antonio Spurs" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Oklahoma City Thunder at San Antonio Spurs</div>
         <div class="credit">📷 Scott Wachter · Imagn Images · Nov 07, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13667440.jpg" alt="NBA: Oklahoma City Thunder at San Antonio Spurs" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13667440/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13667440.jpg" alt="NBA: Oklahoma City Thunder at San Antonio Spurs" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Oklahoma City Thunder at San Antonio Spurs</div>
         <div class="credit">📷 Scott Wachter · Imagn Images · Nov 07, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13667436.jpg" alt="NBA: Oklahoma City Thunder at San Antonio Spurs" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13667436/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13667436.jpg" alt="NBA: Oklahoma City Thunder at San Antonio Spurs" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Oklahoma City Thunder at San Antonio Spurs</div>
         <div class="credit">📷 Scott Wachter · Imagn Images · Nov 07, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13623486.jpg" alt="NBA: Orlando Magic at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13623486/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13623486.jpg" alt="NBA: Orlando Magic at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Orlando Magic at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 05, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13610942.jpg" alt="NBA: New Orleans Pelicans at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13610942/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13610942.jpg" alt="NBA: New Orleans Pelicans at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: New Orleans Pelicans at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 02, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13584830.jpg" alt="NBA: Oklahoma City Thunder at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13584830/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13584830.jpg" alt="NBA: Oklahoma City Thunder at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Oklahoma City Thunder at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Oct 28, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13569287.jpg" alt="NBA: Washington Wizards at Oklahoma City Thunder" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13569287/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13569287.jpg" alt="NBA: Washington Wizards at Oklahoma City Thunder" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Washington Wizards at Oklahoma City Thunder</div>
         <div class="credit">📷 Alonzo Adams · Imagn Images · Oct 25, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12658789.jpg" alt="NBA: Playoffs-Golden State Warriors at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12658789/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12658789.jpg" alt="NBA: Playoffs-Golden State Warriors at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Playoffs-Golden State Warriors at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · May 06, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12646940.jpg" alt="NBA: Playoffs-Golden State Warriors at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12646940/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12646940.jpg" alt="NBA: Playoffs-Golden State Warriors at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Playoffs-Golden State Warriors at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · May 04, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12663449.jpg" alt="NBA: Playoffs-Houston Rockets at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12663449/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12663449.jpg" alt="NBA: Playoffs-Houston Rockets at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Playoffs-Houston Rockets at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Apr 30, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12663470.jpg" alt="NBA: Playoffs-Houston Rockets at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12663470/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12663470.jpg" alt="NBA: Playoffs-Houston Rockets at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Playoffs-Houston Rockets at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Apr 30, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12663454.jpg" alt="NBA: Playoffs-Houston Rockets at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12663454/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12663454.jpg" alt="NBA: Playoffs-Houston Rockets at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Playoffs-Houston Rockets at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Apr 30, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12663360.jpg" alt="NBA: Playoffs-Houston Rockets at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12663360/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12663360.jpg" alt="NBA: Playoffs-Houston Rockets at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Playoffs-Houston Rockets at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Apr 30, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12535482.jpg" alt="NBA: Playoffs-Utah Jazz at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12535482/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12535482.jpg" alt="NBA: Playoffs-Utah Jazz at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Playoffs-Utah Jazz at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Apr 14, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12495719.jpg" alt="NBA: Phoenix Suns at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12495719/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12495719.jpg" alt="NBA: Phoenix Suns at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Phoenix Suns at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Apr 07, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12461475.jpg" alt="NBA: Houston Rockets at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12461475/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12461475.jpg" alt="NBA: Houston Rockets at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Houston Rockets at Sacramento Kings</div>
         <div class="credit">📷 Cary Edmondson · Imagn Images · Apr 02, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12433548.jpg" alt="NBA: Denver Nuggets at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12433548/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12433548.jpg" alt="NBA: Denver Nuggets at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Denver Nuggets at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Mar 28, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12420288.jpg" alt="NBA: Houston Rockets at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12420288/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12420288.jpg" alt="NBA: Houston Rockets at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Houston Rockets at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Mar 26, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12380678.jpg" alt="NBA: Houston Rockets at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12380678/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12380678.jpg" alt="NBA: Houston Rockets at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Houston Rockets at Atlanta Hawks</div>
         <div class="credit">📷 Jason Getz · Imagn Images · Mar 19, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12341349.jpg" alt="NBA: Golden State Warriors at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12341349/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12341349.jpg" alt="NBA: Golden State Warriors at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Golden State Warriors at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Mar 13, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12341355.jpg" alt="NBA: Golden State Warriors at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12341355/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12341355.jpg" alt="NBA: Golden State Warriors at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Golden State Warriors at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Mar 13, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12329981.jpg" alt="NBA: Charlotte Hornets at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12329981/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12329981.jpg" alt="NBA: Charlotte Hornets at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Charlotte Hornets at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Mar 11, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12329977.jpg" alt="NBA: Charlotte Hornets at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12329977/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12329977.jpg" alt="NBA: Charlotte Hornets at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Charlotte Hornets at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Mar 11, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12325194.jpg" alt="NBA: Houston Rockets at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12325194/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12325194.jpg" alt="NBA: Houston Rockets at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Houston Rockets at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Mar 10, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12257855.jpg" alt="NBA: Miami Heat at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12257855/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12257855.jpg" alt="NBA: Miami Heat at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Miami Heat at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Feb 28, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12250144.jpg" alt="NBA: Houston Rockets at Charlotte Hornets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12250144/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12250144.jpg" alt="NBA: Houston Rockets at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Houston Rockets at Charlotte Hornets</div>
         <div class="credit">📷 Sam Sharpe · Imagn Images · Feb 27, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12237075.jpg" alt="NBA: Atlanta Hawks at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12237075/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12237075.jpg" alt="NBA: Atlanta Hawks at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Atlanta Hawks at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Feb 25, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12148097.jpg" alt="NBA: Dallas Mavericks at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12148097/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12148097.jpg" alt="NBA: Dallas Mavericks at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Dallas Mavericks at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Feb 11, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12138254.jpg" alt="NBA: Oklahoma City Thunder at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12138254/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12138254.jpg" alt="NBA: Oklahoma City Thunder at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Oklahoma City Thunder at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Feb 09, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12092758.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12092758/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12092758.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Houston Rockets at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 01, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11906558.jpg" alt="NBA: Boston Celtics at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11906558/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11906558.jpg" alt="NBA: Boston Celtics at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Boston Celtics at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Dec 27, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11876875.jpg" alt="NBA: Washington Wizards at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11876875/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11876875.jpg" alt="NBA: Washington Wizards at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Washington Wizards at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Dec 19, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11864252.jpg" alt="NBA: Utah Jazz at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11864252/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11864252.jpg" alt="NBA: Utah Jazz at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Utah Jazz at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Dec 17, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11813056.jpg" alt="NBA: Houston Rockets at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11813056/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11813056.jpg" alt="NBA: Houston Rockets at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Houston Rockets at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Dec 08, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11784507.jpg" alt="NBA: Houston Rockets at Minnesota Timberwolves" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11784507/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11784507.jpg" alt="NBA: Houston Rockets at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Houston Rockets at Minnesota Timberwolves</div>
         <div class="credit">📷 Brad Rempel · Imagn Images · Dec 03, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11720952.jpg" alt="NBA: Houston Rockets at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11720952/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11720952.jpg" alt="NBA: Houston Rockets at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Houston Rockets at Detroit Pistons</div>
         <div class="credit">📷 Tim Fuller · Imagn Images · Nov 23, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11711801.jpg" alt="NBA: Detroit Pistons at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11711801/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11711801.jpg" alt="NBA: Detroit Pistons at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Detroit Pistons at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Nov 21, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11672836.jpg" alt="NBA: Golden State Warriors at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11672836/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11672836.jpg" alt="NBA: Golden State Warriors at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Golden State Warriors at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Nov 15, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11660136.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11660136/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11660136.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Houston Rockets at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 13, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11643454.jpg" alt="NBA: Houston Rockets at San Antonio Spurs" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11643454/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11643454.jpg" alt="NBA: Houston Rockets at San Antonio Spurs" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Houston Rockets at San Antonio Spurs</div>
         <div class="credit">📷 John Glaser · Imagn Images · Nov 10, 2018</div>
     </div>
@@ -899,149 +906,149 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11590431.jpg" alt="NBA: Houston Rockets at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11590431/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11590431.jpg" alt="NBA: Houston Rockets at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Houston Rockets at Chicago Bulls</div>
         <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Nov 03, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11559706.jpg" alt="NBA: Portland Trail Blazers at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11559706/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11559706.jpg" alt="NBA: Portland Trail Blazers at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Portland Trail Blazers at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Oct 30, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11428267.jpg" alt="NBA: Preseason-Houston Rockets at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11428267/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11428267.jpg" alt="NBA: Preseason-Houston Rockets at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Preseason-Houston Rockets at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Oct 12, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11374712.jpg" alt="NBA: Preseason-Indiana Pacers at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11374712/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11374712.jpg" alt="NBA: Preseason-Indiana Pacers at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Preseason-Indiana Pacers at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Oct 04, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10852195.jpg" alt="NBA: Playoffs-Golden State Warriors at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10852195/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10852195.jpg" alt="NBA: Playoffs-Golden State Warriors at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Playoffs-Golden State Warriors at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · May 24, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10846671.jpg" alt="NBA: Playoffs-Houston Rockets at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10846671/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10846671.jpg" alt="NBA: Playoffs-Houston Rockets at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Playoffs-Houston Rockets at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · May 20, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10836797.jpg" alt="NBA: Playoffs-Golden State Warriors at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10836797/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10836797.jpg" alt="NBA: Playoffs-Golden State Warriors at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Playoffs-Golden State Warriors at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · May 14, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10817529.jpg" alt="NBA: Playoffs-Utah Jazz at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10817529/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10817529.jpg" alt="NBA: Playoffs-Utah Jazz at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Playoffs-Utah Jazz at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · May 02, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10812482.jpg" alt="NBA: Playoffs-Utah Jazz at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10812482/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10812482.jpg" alt="NBA: Playoffs-Utah Jazz at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Playoffs-Utah Jazz at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Apr 29, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10803181.jpg" alt="NBA: Playoffs-Houston Rockets at Minnesota Timberwolves" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10803181/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10803181.jpg" alt="NBA: Playoffs-Houston Rockets at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Playoffs-Houston Rockets at Minnesota Timberwolves</div>
         <div class="credit">📷 Brad Rempel · Imagn Images · Apr 23, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10788306.jpg" alt="NBA: Playoffs-Minnesota Timberwolves at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10788306/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10788306.jpg" alt="NBA: Playoffs-Minnesota Timberwolves at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Playoffs-Minnesota Timberwolves at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Apr 15, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10769040.jpg" alt="NBA: Portland Trail Blazers at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10769040/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10769040.jpg" alt="NBA: Portland Trail Blazers at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Portland Trail Blazers at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Apr 05, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10742023.jpg" alt="NBA: Chicago Bulls at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10742023/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10742023.jpg" alt="NBA: Chicago Bulls at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Chicago Bulls at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Mar 27, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10718672.jpg" alt="NBA: Houston Rockets at Minnesota Timberwolves" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10718672/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10718672.jpg" alt="NBA: Houston Rockets at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Houston Rockets at Minnesota Timberwolves</div>
         <div class="credit">📷 Brad Rempel · Imagn Images · Mar 18, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10708961.jpg" alt="NBA: Los Angeles Clippers at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10708961/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10708961.jpg" alt="NBA: Los Angeles Clippers at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Los Angeles Clippers at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Mar 15, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10686389.jpg" alt="NBA: Houston Rockets at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10686389/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10686389.jpg" alt="NBA: Houston Rockets at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Houston Rockets at Milwaukee Bucks</div>
         <div class="credit">📷 Benny Sieu · Imagn Images · Mar 07, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10659167.jpg" alt="NBA: Houston Rockets at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10659167/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10659167.jpg" alt="NBA: Houston Rockets at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Houston Rockets at Utah Jazz</div>
         <div class="credit">📷 Russell Isabella · Imagn Images · Feb 26, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10657379.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10657379/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10657379.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Houston Rockets at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 25, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10649461.jpg" alt="NBA: Minnesota Timberwolves at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10649461/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10649461.jpg" alt="NBA: Minnesota Timberwolves at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Minnesota Timberwolves at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Feb 23, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10649453.jpg" alt="NBA: Minnesota Timberwolves at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10649453/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10649453.jpg" alt="NBA: Minnesota Timberwolves at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Minnesota Timberwolves at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Feb 23, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10610468.jpg" alt="NBA: Houston Rockets at Minnesota Timberwolves" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10610468/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10610468.jpg" alt="NBA: Houston Rockets at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Chris Paul</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
         <div class="headline">NBA: Houston Rockets at Minnesota Timberwolves</div>
         <div class="credit">📷 Jesse Johnson · Imagn Images · Feb 13, 2018</div>
     </div>
@@ -1051,66 +1058,15 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </main>
 
 
-<div class="lightbox" id="lightbox">
-    <span class="close">&times;</span>
-    <span class="nav prev">&#10094;</span>
-    <span class="nav next">&#10095;</span>
-    <span class="counter"></span>
-    <img src="" alt="">
-    <div class="info">
-        <div class="lb-player"></div>
-        <div class="lb-headline"></div>
-        <div class="lb-credit"></div>
-    </div>
-</div>
-
 <footer class="site-footer">
     <div class="container">
         Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
     </div>
 </footer>
 
-<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/27500644.jpg", "player_name": "Chris Paul", "headline": "NBA: Miami Heat at Los Angeles Clippers", "photographer": "Kirby Lee", "source": "Imagn Images", "photo_date": "2025-11-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25883030.jpg", "player_name": "Chris Paul", "headline": "NBA: San Antonio Spurs at Los Angeles Clippers", "photographer": "Kirby Lee", "source": "Imagn Images", "photo_date": "2025-04-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25783390.jpg", "player_name": "Chris Paul", "headline": "NBA: San Antonio Spurs at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2025-03-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25629837.jpg", "player_name": "Chris Paul", "headline": "NBA: San Antonio Spurs at Minnesota Timberwolves", "photographer": "Jesse Johnson", "source": "Imagn Images", "photo_date": "2025-03-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25513134.jpg", "player_name": "Chris Paul", "headline": "NBA: San Antonio Spurs at New Orleans Pelicans", "photographer": "Stephen Lew", "source": "Imagn Images", "photo_date": "2025-02-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25366788.jpg", "player_name": "Chris Paul", "headline": "NBA: San Antonio Spurs at Charlotte Hornets", "photographer": "Jim Dedmon", "source": "Imagn Images", "photo_date": "2025-02-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25350915.jpg", "player_name": "Chris Paul", "headline": "NBA: San Antonio Spurs at Atlanta Hawks", "photographer": "Brett Davis", "source": "Imagn Images", "photo_date": "2025-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25082917.jpg", "player_name": "Chris Paul", "headline": "NBA: San Antonio Spurs at Minnesota Timberwolves", "photographer": "Jesse Johnson", "source": "Imagn Images", "photo_date": "2024-12-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24920793.jpg", "player_name": "Chris Paul", "headline": "NBA: Chicago Bulls at San Antonio Spurs", "photographer": "Scott Wachter", "source": "Imagn Images", "photo_date": "2024-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24890331.jpg", "player_name": "Chris Paul", "headline": "NBA: San Antonio Spurs at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2024-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/22719897.jpg", "player_name": "Chris Paul", "headline": "NBA: Chicago Bulls at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2024-03-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/21969083.jpg", "player_name": "Chris Paul", "headline": "NBA: San Antonio Spurs at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2023-11-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/21969072.jpg", "player_name": "Chris Paul", "headline": "NBA: San Antonio Spurs at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2023-11-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25063632.jpg", "player_name": "Chris Paul", "headline": "NBA: Golden State Warriors at Phoenix Suns", "photographer": "Mark J. Rebilas", "source": "USA TODAY Sports", "photo_date": "2023-11-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/21795523.jpg", "player_name": "Chris Paul", "headline": "NBA: Sacramento Kings at Golden State Warriors", "photographer": "Cary Edmondson", "source": "Imagn Images", "photo_date": "2023-11-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20381296.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-04-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20332651.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Utah Jazz", "photographer": "Rob Gray", "source": "Imagn Images", "photo_date": "2023-03-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20272216.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2023-03-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20154786.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-03-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19916160.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Boston Celtics", "photographer": "Winslow Townson", "source": "Imagn Images", "photo_date": "2023-02-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19702264.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2022-12-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19680300.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2022-12-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19607520.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at New Orleans Pelicans", "photographer": "Andrew Wevers", "source": "Imagn Images", "photo_date": "2022-12-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19273759.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Portland Trail Blazers", "photographer": "Troy Wayrynen", "source": "Imagn Images", "photo_date": "2022-10-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/18137366.jpg", "player_name": "Chris Paul", "headline": "NBA: Playoffs-Phoenix Suns at New Orleans Pelicans", "photographer": "Chuck Cook", "source": "Imagn Images", "photo_date": "2022-04-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/18048526.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Utah Jazz", "photographer": "Rob Gray", "source": "Imagn Images", "photo_date": "2022-04-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17962521.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2022-03-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17962564.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2022-03-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17637933.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Chicago Bulls", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "photo_date": "2022-02-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17550234.jpg", "player_name": "Chris Paul", "headline": "NBA: Indiana Pacers at Phoenix Suns", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "photo_date": "2022-01-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17516850.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2022-01-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17445292.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Charlotte Hornets", "photographer": "Jim Dedmon", "source": "Imagn Images", "photo_date": "2022-01-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17398568.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Los Angeles Lakers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2021-12-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17354485.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Los Angeles Clippers", "photographer": "Kirby Lee", "source": "Imagn Images", "photo_date": "2021-12-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17143789.jpg", "player_name": "Chris Paul", "headline": "NBA: Portland Trail Blazers at Phoenix Suns", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "photo_date": "2021-11-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17093129.jpg", "player_name": "Chris Paul", "headline": "NBA: Sacramento Kings at Phoenix Suns", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "photo_date": "2021-10-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17008656.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Los Angeles Lakers", "photographer": "Kirby Lee", "source": "Imagn Images", "photo_date": "2021-10-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/16904129.jpg", "player_name": "Chris Paul", "headline": "NBA: Preseason-Los Angeles Lakers at Phoenix Suns", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "photo_date": "2021-10-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/16893644.jpg", "player_name": "Chris Paul", "headline": "NBA: Preseason-Phoenix Suns at Sacramento Kings", "photographer": "Cary Edmondson", "source": "Imagn Images", "photo_date": "2021-10-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/16320725.jpg", "player_name": "Chris Paul", "headline": "NBA: Playoffs-Phoenix Suns at Los Angeles Clippers", "photographer": "Jayne Kamin-Oncea", "source": "Imagn Images", "photo_date": "2021-06-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/16064858.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-05-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15526923.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at New Orleans Pelicans", "photographer": "Stephen Lew", "source": "Imagn Images", "photo_date": "2021-02-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15363750.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2020-12-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15360319.jpg", "player_name": "Chris Paul", "headline": "NBA: Dallas Mavericks at Phoenix Suns", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "photo_date": "2020-12-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14870217.jpg", "player_name": "Chris Paul", "headline": "NBA: Playoffs-Oklahoma City Thunder at Houston Rockets", "photographer": "Kim Klement", "source": "Imagn Images", "photo_date": "2020-09-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14820034.jpg", "player_name": "Chris Paul", "headline": "NBA: Playoffs-Houston Rockets at Oklahoma City Thunder", "photographer": "Kim Klement", "source": "Imagn Images", "photo_date": "2020-08-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14742895.jpg", "player_name": "Chris Paul", "headline": "NBA: Oklahoma City Thunder at Los Angeles Clippers", "photographer": "Mike Ehrmann", "source": "Pool Photo", "photo_date": "2020-08-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14742893.jpg", "player_name": "Chris Paul", "headline": "NBA: Oklahoma City Thunder at Los Angeles Clippers", "photographer": "Mike Ehrmann", "source": "Pool Photo", "photo_date": "2020-08-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14719087.jpg", "player_name": "Chris Paul", "headline": "NBA: Washington Wizards at Oklahoma City Thunder", "photographer": "Kim Klement", "source": "Imagn Images", "photo_date": "2020-08-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14711726.jpg", "player_name": "Chris Paul", "headline": "NBA: Oklahoma City Thunder at Memphis Grizzlies", "photographer": "Kim Klement", "source": "Imagn Images", "photo_date": "2020-08-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14682669.jpg", "player_name": "Chris Paul", "headline": "NBA: Denver Nuggets at Oklahoma City Thunder", "photographer": "Kim Klement", "source": "Imagn Images", "photo_date": "2020-08-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14077924.jpg", "player_name": "Chris Paul", "headline": "NBA: Denver Nuggets at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2020-02-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14053546.jpg", "player_name": "Chris Paul", "headline": "NBA: All Star Game-Team Lebron at Team Giannis", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2020-02-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14028835.jpg", "player_name": "Chris Paul", "headline": "NBA: San Antonio Spurs at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2020-02-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14002992.jpg", "player_name": "Chris Paul", "headline": "NBA: Cleveland Cavaliers at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2020-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13951527.jpg", "player_name": "Chris Paul", "headline": "NBA: Atlanta Hawks at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2020-01-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13914437.jpg", "player_name": "Chris Paul", "headline": "NBA: Toronto Raptors at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2020-01-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13851744.jpg", "player_name": "Chris Paul", "headline": "NBA: Oklahoma City Thunder at Toronto Raptors", "photographer": "Dan Hamilton", "source": "Imagn Images", "photo_date": "2019-12-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13685522.jpg", "player_name": "Chris Paul", "headline": "NBA: Oklahoma City Thunder at Los Angeles Clippers", "photographer": "Kelvin Kuo", "source": "Imagn Images", "photo_date": "2019-11-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13667609.jpg", "player_name": "Chris Paul", "headline": "NBA: Oklahoma City Thunder at San Antonio Spurs", "photographer": "Scott Wachter", "source": "Imagn Images", "photo_date": "2019-11-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13667440.jpg", "player_name": "Chris Paul", "headline": "NBA: Oklahoma City Thunder at San Antonio Spurs", "photographer": "Scott Wachter", "source": "Imagn Images", "photo_date": "2019-11-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13667436.jpg", "player_name": "Chris Paul", "headline": "NBA: Oklahoma City Thunder at San Antonio Spurs", "photographer": "Scott Wachter", "source": "Imagn Images", "photo_date": "2019-11-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13623486.jpg", "player_name": "Chris Paul", "headline": "NBA: Orlando Magic at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2019-11-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13610942.jpg", "player_name": "Chris Paul", "headline": "NBA: New Orleans Pelicans at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2019-11-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13584830.jpg", "player_name": "Chris Paul", "headline": "NBA: Oklahoma City Thunder at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-10-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13569287.jpg", "player_name": "Chris Paul", "headline": "NBA: Washington Wizards at Oklahoma City Thunder", "photographer": "Alonzo Adams", "source": "Imagn Images", "photo_date": "2019-10-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12658789.jpg", "player_name": "Chris Paul", "headline": "NBA: Playoffs-Golden State Warriors at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-05-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12646940.jpg", "player_name": "Chris Paul", "headline": "NBA: Playoffs-Golden State Warriors at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-05-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12663449.jpg", "player_name": "Chris Paul", "headline": "NBA: Playoffs-Houston Rockets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-04-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12663470.jpg", "player_name": "Chris Paul", "headline": "NBA: Playoffs-Houston Rockets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-04-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12663454.jpg", "player_name": "Chris Paul", "headline": "NBA: Playoffs-Houston Rockets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-04-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12663360.jpg", "player_name": "Chris Paul", "headline": "NBA: Playoffs-Houston Rockets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-04-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12535482.jpg", "player_name": "Chris Paul", "headline": "NBA: Playoffs-Utah Jazz at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-04-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12495719.jpg", "player_name": "Chris Paul", "headline": "NBA: Phoenix Suns at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-04-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12461475.jpg", "player_name": "Chris Paul", "headline": "NBA: Houston Rockets at Sacramento Kings", "photographer": "Cary Edmondson", "source": "Imagn Images", "photo_date": "2019-04-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12433548.jpg", "player_name": "Chris Paul", "headline": "NBA: Denver Nuggets at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-03-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12420288.jpg", "player_name": "Chris Paul", "headline": "NBA: Houston Rockets at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2019-03-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12380678.jpg", "player_name": "Chris Paul", "headline": "NBA: Houston Rockets at Atlanta Hawks", "photographer": "Jason Getz", "source": "Imagn Images", "photo_date": "2019-03-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12341349.jpg", "player_name": "Chris Paul", "headline": "NBA: Golden State Warriors at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-03-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12341355.jpg", "player_name": "Chris Paul", "headline": "NBA: Golden State Warriors at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-03-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12329981.jpg", "player_name": "Chris Paul", "headline": "NBA: Charlotte Hornets at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-03-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12329977.jpg", "player_name": "Chris Paul", "headline": "NBA: Charlotte Hornets at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-03-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12325194.jpg", "player_name": "Chris Paul", "headline": "NBA: Houston Rockets at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2019-03-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12257855.jpg", "player_name": "Chris Paul", "headline": "NBA: Miami Heat at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-02-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12250144.jpg", "player_name": "Chris Paul", "headline": "NBA: Houston Rockets at Charlotte Hornets", "photographer": "Sam Sharpe", "source": "Imagn Images", "photo_date": "2019-02-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12237075.jpg", "player_name": "Chris Paul", "headline": "NBA: Atlanta Hawks at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-02-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12148097.jpg", "player_name": "Chris Paul", "headline": "NBA: Dallas Mavericks at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-02-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12138254.jpg", "player_name": "Chris Paul", "headline": "NBA: Oklahoma City Thunder at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2019-02-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12092758.jpg", "player_name": "Chris Paul", "headline": "NBA: Houston Rockets at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-02-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11906558.jpg", "player_name": "Chris Paul", "headline": "NBA: Boston Celtics at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-12-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11876875.jpg", "player_name": "Chris Paul", "headline": "NBA: Washington Wizards at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-12-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11864252.jpg", "player_name": "Chris Paul", "headline": "NBA: Utah Jazz at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-12-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11813056.jpg", "player_name": "Chris Paul", "headline": "NBA: Houston Rockets at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2018-12-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11784507.jpg", "player_name": "Chris Paul", "headline": "NBA: Houston Rockets at Minnesota Timberwolves", "photographer": "Brad Rempel", "source": "Imagn Images", "photo_date": "2018-12-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11720952.jpg", "player_name": "Chris Paul", "headline": "NBA: Houston Rockets at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2018-11-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11711801.jpg", "player_name": "Chris Paul", "headline": "NBA: Detroit Pistons at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-11-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11672836.jpg", "player_name": "Chris Paul", "headline": "NBA: Golden State Warriors at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-11-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11660136.jpg", "player_name": "Chris Paul", "headline": "NBA: Houston Rockets at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2018-11-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11643454.jpg", "player_name": "Chris Paul", "headline": "NBA: Houston Rockets at San Antonio Spurs", "photographer": "John Glaser", "source": "Imagn Images", "photo_date": "2018-11-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11590431.jpg", "player_name": "Chris Paul", "headline": "NBA: Houston Rockets at Chicago Bulls", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "photo_date": "2018-11-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11559706.jpg", "player_name": "Chris Paul", "headline": "NBA: Portland Trail Blazers at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-10-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11428267.jpg", "player_name": "Chris Paul", "headline": "NBA: Preseason-Houston Rockets at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2018-10-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11374712.jpg", "player_name": "Chris Paul", "headline": "NBA: Preseason-Indiana Pacers at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-10-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10852195.jpg", "player_name": "Chris Paul", "headline": "NBA: Playoffs-Golden State Warriors at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-05-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10846671.jpg", "player_name": "Chris Paul", "headline": "NBA: Playoffs-Houston Rockets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2018-05-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10836797.jpg", "player_name": "Chris Paul", "headline": "NBA: Playoffs-Golden State Warriors at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-05-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10817529.jpg", "player_name": "Chris Paul", "headline": "NBA: Playoffs-Utah Jazz at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-05-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10812482.jpg", "player_name": "Chris Paul", "headline": "NBA: Playoffs-Utah Jazz at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-04-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10803181.jpg", "player_name": "Chris Paul", "headline": "NBA: Playoffs-Houston Rockets at Minnesota Timberwolves", "photographer": "Brad Rempel", "source": "Imagn Images", "photo_date": "2018-04-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10788306.jpg", "player_name": "Chris Paul", "headline": "NBA: Playoffs-Minnesota Timberwolves at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-04-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10769040.jpg", "player_name": "Chris Paul", "headline": "NBA: Portland Trail Blazers at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-04-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10742023.jpg", "player_name": "Chris Paul", "headline": "NBA: Chicago Bulls at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-03-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10718672.jpg", "player_name": "Chris Paul", "headline": "NBA: Houston Rockets at Minnesota Timberwolves", "photographer": "Brad Rempel", "source": "Imagn Images", "photo_date": "2018-03-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10708961.jpg", "player_name": "Chris Paul", "headline": "NBA: Los Angeles Clippers at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-03-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10686389.jpg", "player_name": "Chris Paul", "headline": "NBA: Houston Rockets at Milwaukee Bucks", "photographer": "Benny Sieu", "source": "Imagn Images", "photo_date": "2018-03-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10659167.jpg", "player_name": "Chris Paul", "headline": "NBA: Houston Rockets at Utah Jazz", "photographer": "Russell Isabella", "source": "Imagn Images", "photo_date": "2018-02-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10657379.jpg", "player_name": "Chris Paul", "headline": "NBA: Houston Rockets at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2018-02-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10649461.jpg", "player_name": "Chris Paul", "headline": "NBA: Minnesota Timberwolves at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-02-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10649453.jpg", "player_name": "Chris Paul", "headline": "NBA: Minnesota Timberwolves at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-02-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10610468.jpg", "player_name": "Chris Paul", "headline": "NBA: Houston Rockets at Minnesota Timberwolves", "photographer": "Jesse Johnson", "source": "Imagn Images", "photo_date": "2018-02-13"}];</script>
 <script>
 document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
-document.addEventListener('DOMContentLoaded', function() {
-    const photos = window.galleryPhotos || [];
-    let currentIndex = 0;
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox || photos.length === 0) return;
-    const lbImg = lightbox.querySelector('img');
-    const lbPlayer = lightbox.querySelector('.lb-player');
-    const lbHeadline = lightbox.querySelector('.lb-headline');
-    const lbCredit = lightbox.querySelector('.lb-credit');
-    const counter = lightbox.querySelector('.counter');
-    function formatDate(dateStr) {
-        if (!dateStr) return '';
-        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-        catch(e) { return dateStr; }
-    }
-    function showPhoto() {
-        const p = photos[currentIndex];
-        lbImg.src = p.image_url;
-        lbPlayer.textContent = p.player_name || 'NBA';
-        lbHeadline.textContent = p.headline || '';
-        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
-        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
-    }
-    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
-    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
-    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
-    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
-    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
-    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
-    let touchStartX = 0;
-    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
-});
 </script>
 </body>
 </html>

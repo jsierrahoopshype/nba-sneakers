@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Will Barton | NBA Sneakers</title>
+<meta name="description" content="Browse 35 sneaker photos of Will Barton from NBA games.">
+<meta property="og:title" content="Will Barton | NBA Sneakers">
+<meta property="og:description" content="Browse 35 sneaker photos of Will Barton from NBA games.">
+<meta property="og:image" content="https://cdn.imagn.com/image/thumb/250-225/20326212.jpg">
+<link rel="canonical" href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/">
 <style>
 :root {
     --primary: #1a1a2e;
@@ -48,7 +53,7 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
 .photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -56,6 +61,20 @@ a:hover { text-decoration: underline; }
 .photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
 .photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
 .photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
 .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
 .list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
@@ -66,18 +85,6 @@ a:hover { text-decoration: underline; }
 .page-header .subtitle { color: var(--text-secondary); }
 .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
 .breadcrumb a { color: var(--text-secondary); }
-.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
-.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
-.lightbox .nav.prev { left: 16px; }
-.lightbox .nav.next { right: 16px; }
-.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
-.lightbox .lb-player { font-size: 18px; font-weight: 600; }
-.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
-.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
-.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -138,7 +145,7 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -185,135 +192,135 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     </a>
     <div class="compare-prices"><span class="compare-label">Compare prices:</span><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.goat.com%2Fsearch%3Fquery%3DWill%2BBarton%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">GOAT</a><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.footlocker.com%2Fsearch%3Fquery%3DWill%2BBarton%2Bbasketball%2Bshoes" target="_blank" rel="noopener sponsored" class="compare-link">Foot Locker</a></div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20326212.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20326212/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20326212.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Washington Wizards at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Mar 26, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20230985.jpg" alt="NBA: Denver Nuggets at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20230985/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20230985.jpg" alt="NBA: Denver Nuggets at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Denver Nuggets at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Mar 14, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17951586.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17951586/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17951586.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 22, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17845390.jpg" alt="NBA: New Orleans Pelicans at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17845390/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17845390.jpg" alt="NBA: New Orleans Pelicans at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: New Orleans Pelicans at Denver Nuggets</div>
         <div class="credit">📷 Ron Chenoy · Imagn Images · Mar 06, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17830338.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17830338/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17830338.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Houston Rockets at Denver Nuggets</div>
         <div class="credit">📷 Ron Chenoy · Imagn Images · Mar 04, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17513942.jpg" alt="NBA: Los Angeles Lakers at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17513942/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17513942.jpg" alt="NBA: Los Angeles Lakers at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Los Angeles Lakers at Denver Nuggets</div>
         <div class="credit">📷 Ron Chenoy · Imagn Images · Jan 15, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17414146.jpg" alt="NBA: Denver Nuggets at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17414146/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17414146.jpg" alt="NBA: Denver Nuggets at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Denver Nuggets at Los Angeles Clippers</div>
         <div class="credit">📷 Gary A. Vasquez · Imagn Images · Dec 26, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17195958.jpg" alt="NBA: Chicago Bulls at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17195958/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17195958.jpg" alt="NBA: Chicago Bulls at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Chicago Bulls at Denver Nuggets</div>
         <div class="credit">📷 Ron Chenoy · Imagn Images · Nov 19, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17028688.jpg" alt="NBA: Cleveland Cavaliers at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17028688/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17028688.jpg" alt="NBA: Cleveland Cavaliers at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Cleveland Cavaliers at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Oct 25, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15886993.jpg" alt="NBA: Denver Nuggets at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15886993/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15886993.jpg" alt="NBA: Denver Nuggets at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Denver Nuggets at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Apr 12, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15726665.jpg" alt="NBA: Dallas Mavericks at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15726665/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15726665.jpg" alt="NBA: Dallas Mavericks at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Dallas Mavericks at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 13, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15631713.jpg" alt="NBA: Washington Wizards at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15631713/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15631713.jpg" alt="NBA: Washington Wizards at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Washington Wizards at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 25, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15549129.jpg" alt="NBA: Milwaukee Bucks at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15549129/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15549129.jpg" alt="NBA: Milwaukee Bucks at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Milwaukee Bucks at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 08, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15376157.jpg" alt="NBA: Denver Nuggets at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15376157/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15376157.jpg" alt="NBA: Denver Nuggets at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Denver Nuggets at Sacramento Kings</div>
         <div class="credit">📷 Kelley L Cox · Imagn Images · Dec 29, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14173333.jpg" alt="NBA: Denver Nuggets at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14173333/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14173333.jpg" alt="NBA: Denver Nuggets at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Denver Nuggets at Dallas Mavericks</div>
         <div class="credit">📷 Kevin Jairaj · Imagn Images · Mar 11, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13977113.jpg" alt="NBA: Utah Jazz at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13977113/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13977113.jpg" alt="NBA: Utah Jazz at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Utah Jazz at Denver Nuggets</div>
         <div class="credit">📷 Ron Chenoy · Imagn Images · Jan 30, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13944351.jpg" alt="NBA: Denver Nuggets at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13944351/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13944351.jpg" alt="NBA: Denver Nuggets at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Denver Nuggets at Houston Rockets</div>
         <div class="credit">📷 Thomas Shea · Imagn Images · Jan 22, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13699392.jpg" alt="NBA: Boston Celtics at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13699392/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13699392.jpg" alt="NBA: Boston Celtics at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Boston Celtics at Denver Nuggets</div>
         <div class="credit">📷 Ron Chenoy · Imagn Images · Nov 22, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13666695.jpg" alt="NBA: Brooklyn Nets at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13666695/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13666695.jpg" alt="NBA: Brooklyn Nets at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Brooklyn Nets at Denver Nuggets</div>
         <div class="credit">📷 Ron Chenoy · Imagn Images · Nov 14, 2019</div>
     </div>
@@ -325,114 +332,114 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13570402.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13570402/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13570402.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Phoenix Suns at Denver Nuggets</div>
         <div class="credit">📷 Michael Ciaglo · Imagn Images · Oct 25, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13558842.jpg" alt="NBA: Denver Nuggets at Portland Trail Blazers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13558842/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13558842.jpg" alt="NBA: Denver Nuggets at Portland Trail Blazers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Denver Nuggets at Portland Trail Blazers</div>
         <div class="credit">📷 Jaime Valdez · Imagn Images · Oct 23, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12613884.jpg" alt="NBA: Playoffs-Portland Trail Blazers at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12613884/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12613884.jpg" alt="NBA: Playoffs-Portland Trail Blazers at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Playoffs-Portland Trail Blazers at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 29, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12579208.jpg" alt="NBA: Playoffs-San Antonio Spurs at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12579208/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12579208.jpg" alt="NBA: Playoffs-San Antonio Spurs at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Playoffs-San Antonio Spurs at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 23, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12452250.jpg" alt="NBA: Washington Wizards at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12452250/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12452250.jpg" alt="NBA: Washington Wizards at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Washington Wizards at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 31, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12421117.jpg" alt="NBA: Detroit Pistons at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12421117/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12421117.jpg" alt="NBA: Detroit Pistons at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Detroit Pistons at Denver Nuggets</div>
         <div class="credit">📷 Ron Chenoy · Imagn Images · Mar 26, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12348996.jpg" alt="NBA: Dallas Mavericks at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12348996/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12348996.jpg" alt="NBA: Dallas Mavericks at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Dallas Mavericks at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 14, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12047396.jpg" alt="NBA: Denver Nuggets at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12047396/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12047396.jpg" alt="NBA: Denver Nuggets at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Denver Nuggets at Utah Jazz</div>
         <div class="credit">📷 Chris Nicoll · Imagn Images · Jan 23, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11928241.jpg" alt="NBA: New York Knicks at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11928241/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11928241.jpg" alt="NBA: New York Knicks at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: New York Knicks at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 01, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11870396.jpg" alt="NBA: Dallas Mavericks at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11870396/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11870396.jpg" alt="NBA: Dallas Mavericks at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Dallas Mavericks at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Dec 18, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11745664.jpg" alt="NBA: Los Angeles Lakers at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11745664/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11745664.jpg" alt="NBA: Los Angeles Lakers at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Los Angeles Lakers at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 27, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10792036.jpg" alt="NBA: Denver Nuggets at Minnesota Timberwolves" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10792036/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10792036.jpg" alt="NBA: Denver Nuggets at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Denver Nuggets at Minnesota Timberwolves</div>
         <div class="credit">📷 Brad Rempel · Imagn Images · Apr 11, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10696357.jpg" alt="NBA: Sacramento Kings at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10696357/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10696357.jpg" alt="NBA: Sacramento Kings at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Sacramento Kings at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 11, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10686624.jpg" alt="NBA: Cleveland Cavaliers at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10686624/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10686624.jpg" alt="NBA: Cleveland Cavaliers at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Cleveland Cavaliers at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 07, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10683708.jpg" alt="NBA: Denver Nuggets at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10683708/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10683708.jpg" alt="NBA: Denver Nuggets at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Denver Nuggets at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Mar 06, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9785808.jpg" alt="NBA: Philadelphia 76ers at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9785808/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9785808.jpg" alt="NBA: Philadelphia 76ers at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Will Barton</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="player-link">Will Barton</a>
         <div class="headline">NBA: Philadelphia 76ers at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Dec 30, 2016</div>
     </div>
@@ -442,66 +449,15 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </main>
 
 
-<div class="lightbox" id="lightbox">
-    <span class="close">&times;</span>
-    <span class="nav prev">&#10094;</span>
-    <span class="nav next">&#10095;</span>
-    <span class="counter"></span>
-    <img src="" alt="">
-    <div class="info">
-        <div class="lb-player"></div>
-        <div class="lb-headline"></div>
-        <div class="lb-credit"></div>
-    </div>
-</div>
-
 <footer class="site-footer">
     <div class="container">
         Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
     </div>
 </footer>
 
-<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/20326212.jpg", "player_name": "Will Barton", "headline": "NBA: Washington Wizards at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2023-03-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20230985.jpg", "player_name": "Will Barton", "headline": "NBA: Denver Nuggets at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2023-03-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17951586.jpg", "player_name": "Will Barton", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2022-03-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17845390.jpg", "player_name": "Will Barton", "headline": "NBA: New Orleans Pelicans at Denver Nuggets", "photographer": "Ron Chenoy", "source": "Imagn Images", "photo_date": "2022-03-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17830338.jpg", "player_name": "Will Barton", "headline": "NBA: Houston Rockets at Denver Nuggets", "photographer": "Ron Chenoy", "source": "Imagn Images", "photo_date": "2022-03-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17513942.jpg", "player_name": "Will Barton", "headline": "NBA: Los Angeles Lakers at Denver Nuggets", "photographer": "Ron Chenoy", "source": "Imagn Images", "photo_date": "2022-01-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17414146.jpg", "player_name": "Will Barton", "headline": "NBA: Denver Nuggets at Los Angeles Clippers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2021-12-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17195958.jpg", "player_name": "Will Barton", "headline": "NBA: Chicago Bulls at Denver Nuggets", "photographer": "Ron Chenoy", "source": "Imagn Images", "photo_date": "2021-11-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17028688.jpg", "player_name": "Will Barton", "headline": "NBA: Cleveland Cavaliers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2021-10-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15886993.jpg", "player_name": "Will Barton", "headline": "NBA: Denver Nuggets at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-04-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15726665.jpg", "player_name": "Will Barton", "headline": "NBA: Dallas Mavericks at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2021-03-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15631713.jpg", "player_name": "Will Barton", "headline": "NBA: Washington Wizards at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2021-02-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15549129.jpg", "player_name": "Will Barton", "headline": "NBA: Milwaukee Bucks at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2021-02-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15376157.jpg", "player_name": "Will Barton", "headline": "NBA: Denver Nuggets at Sacramento Kings", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2020-12-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14173333.jpg", "player_name": "Will Barton", "headline": "NBA: Denver Nuggets at Dallas Mavericks", "photographer": "Kevin Jairaj", "source": "Imagn Images", "photo_date": "2020-03-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13977113.jpg", "player_name": "Will Barton", "headline": "NBA: Utah Jazz at Denver Nuggets", "photographer": "Ron Chenoy", "source": "Imagn Images", "photo_date": "2020-01-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13944351.jpg", "player_name": "Will Barton", "headline": "NBA: Denver Nuggets at Houston Rockets", "photographer": "Thomas Shea", "source": "Imagn Images", "photo_date": "2020-01-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13699392.jpg", "player_name": "Will Barton", "headline": "NBA: Boston Celtics at Denver Nuggets", "photographer": "Ron Chenoy", "source": "Imagn Images", "photo_date": "2019-11-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13666695.jpg", "player_name": "Will Barton", "headline": "NBA: Brooklyn Nets at Denver Nuggets", "photographer": "Ron Chenoy", "source": "Imagn Images", "photo_date": "2019-11-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13570402.jpg", "player_name": "Will Barton", "headline": "NBA: Phoenix Suns at Denver Nuggets", "photographer": "Michael Ciaglo", "source": "Imagn Images", "photo_date": "2019-10-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13558842.jpg", "player_name": "Will Barton", "headline": "NBA: Denver Nuggets at Portland Trail Blazers", "photographer": "Jaime Valdez", "source": "Imagn Images", "photo_date": "2019-10-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12613884.jpg", "player_name": "Will Barton", "headline": "NBA: Playoffs-Portland Trail Blazers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-04-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12579208.jpg", "player_name": "Will Barton", "headline": "NBA: Playoffs-San Antonio Spurs at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-04-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12452250.jpg", "player_name": "Will Barton", "headline": "NBA: Washington Wizards at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-03-31"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12421117.jpg", "player_name": "Will Barton", "headline": "NBA: Detroit Pistons at Denver Nuggets", "photographer": "Ron Chenoy", "source": "Imagn Images", "photo_date": "2019-03-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12348996.jpg", "player_name": "Will Barton", "headline": "NBA: Dallas Mavericks at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-03-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12047396.jpg", "player_name": "Will Barton", "headline": "NBA: Denver Nuggets at Utah Jazz", "photographer": "Chris Nicoll", "source": "Imagn Images", "photo_date": "2019-01-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11928241.jpg", "player_name": "Will Barton", "headline": "NBA: New York Knicks at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2019-01-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11870396.jpg", "player_name": "Will Barton", "headline": "NBA: Dallas Mavericks at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2018-12-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11745664.jpg", "player_name": "Will Barton", "headline": "NBA: Los Angeles Lakers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2018-11-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10792036.jpg", "player_name": "Will Barton", "headline": "NBA: Denver Nuggets at Minnesota Timberwolves", "photographer": "Brad Rempel", "source": "Imagn Images", "photo_date": "2018-04-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10696357.jpg", "player_name": "Will Barton", "headline": "NBA: Sacramento Kings at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2018-03-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10686624.jpg", "player_name": "Will Barton", "headline": "NBA: Cleveland Cavaliers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2018-03-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10683708.jpg", "player_name": "Will Barton", "headline": "NBA: Denver Nuggets at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2018-03-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9785808.jpg", "player_name": "Will Barton", "headline": "NBA: Philadelphia 76ers at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2016-12-30"}];</script>
 <script>
 document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
-document.addEventListener('DOMContentLoaded', function() {
-    const photos = window.galleryPhotos || [];
-    let currentIndex = 0;
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox || photos.length === 0) return;
-    const lbImg = lightbox.querySelector('img');
-    const lbPlayer = lightbox.querySelector('.lb-player');
-    const lbHeadline = lightbox.querySelector('.lb-headline');
-    const lbCredit = lightbox.querySelector('.lb-credit');
-    const counter = lightbox.querySelector('.counter');
-    function formatDate(dateStr) {
-        if (!dateStr) return '';
-        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-        catch(e) { return dateStr; }
-    }
-    function showPhoto() {
-        const p = photos[currentIndex];
-        lbImg.src = p.image_url;
-        lbPlayer.textContent = p.player_name || 'NBA';
-        lbHeadline.textContent = p.headline || '';
-        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
-        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
-    }
-    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
-    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
-    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
-    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
-    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
-    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
-    let touchStartX = 0;
-    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
-});
 </script>
 </body>
 </html>

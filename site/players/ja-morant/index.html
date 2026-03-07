@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ja Morant | NBA Sneakers</title>
+<meta name="description" content="Browse 83 sneaker photos of Ja Morant from NBA games.">
+<meta property="og:title" content="Ja Morant | NBA Sneakers">
+<meta property="og:description" content="Browse 83 sneaker photos of Ja Morant from NBA games.">
+<meta property="og:image" content="https://cdn.imagn.com/image/thumb/250-225/27831621.jpg">
+<link rel="canonical" href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/">
 <style>
 :root {
     --primary: #1a1a2e;
@@ -48,7 +53,7 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
 .photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -56,6 +61,20 @@ a:hover { text-decoration: underline; }
 .photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
 .photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
 .photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
 .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
 .list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
@@ -66,18 +85,6 @@ a:hover { text-decoration: underline; }
 .page-header .subtitle { color: var(--text-secondary); }
 .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
 .breadcrumb a { color: var(--text-secondary); }
-.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
-.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
-.lightbox .nav.prev { left: 16px; }
-.lightbox .nav.next { right: 16px; }
-.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
-.lightbox .lb-player { font-size: 18px; font-weight: 600; }
-.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
-.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
-.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -138,7 +145,7 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -185,135 +192,135 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     </a>
     <div class="compare-prices"><span class="compare-label">Compare prices:</span><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.goat.com%2Fsearch%3Fquery%3DNike%2BJa" target="_blank" rel="noopener sponsored" class="compare-link">GOAT</a><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.footlocker.com%2Fsearch%3Fquery%3DNike%2BJa" target="_blank" rel="noopener sponsored" class="compare-link">Foot Locker</a></div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27831621.jpg" alt="NBA: Utah Jazz at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27831621/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27831621.jpg" alt="NBA: Utah Jazz at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Utah Jazz at Memphis Grizzlies</div>
         <div class="credit">📷 Matthew Smith · Imagn Images · Dec 12, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27831616.jpg" alt="NBA: Utah Jazz at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27831616/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27831616.jpg" alt="NBA: Utah Jazz at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Utah Jazz at Memphis Grizzlies</div>
         <div class="credit">📷 Matthew Smith · Imagn Images · Dec 12, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27531406.jpg" alt="NBA: Dallas Mavericks at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27531406/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27531406.jpg" alt="NBA: Dallas Mavericks at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Dallas Mavericks at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Nov 07, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27433658.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27433658/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27433658.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Golden State Warriors</div>
         <div class="credit">📷 Cary Edmondson · Imagn Images · Oct 27, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25946556.jpg" alt="NBA: Play-In-Memphis Grizzlies at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25946556/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25946556.jpg" alt="NBA: Play-In-Memphis Grizzlies at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Play-In-Memphis Grizzlies at Golden State Warriors</div>
         <div class="credit">📷 Cary Edmondson · Imagn Images · Apr 15, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25628375.jpg" alt="NBA: Memphis Grizzlies at New Orleans Pelicans" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25628375/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25628375.jpg" alt="NBA: Memphis Grizzlies at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at New Orleans Pelicans</div>
         <div class="credit">📷 Stephen Lew · Imagn Images · Mar 09, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25496064.jpg" alt="NBA: Memphis Grizzlies at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25496064/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25496064.jpg" alt="NBA: Memphis Grizzlies at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Cleveland Cavaliers</div>
         <div class="credit">📷 Ken Blaze · Imagn Images · Feb 23, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24874892.jpg" alt="NBA: New Orleans Pelicans at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24874892/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24874892.jpg" alt="NBA: New Orleans Pelicans at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: New Orleans Pelicans at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Nov 29, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24598018.jpg" alt="NBA: Orlando Magic at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24598018/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24598018.jpg" alt="NBA: Orlando Magic at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Orlando Magic at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Oct 26, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22211025.jpg" alt="NBA: San Antonio Spurs at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22211025/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22211025.jpg" alt="NBA: San Antonio Spurs at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: San Antonio Spurs at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Jan 02, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22167926.jpg" alt="NBA: Memphis Grizzlies at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22167926/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22167926.jpg" alt="NBA: Memphis Grizzlies at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Atlanta Hawks</div>
         <div class="credit">📷 Dale Zanine · Imagn Images · Dec 23, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22255045.jpg" alt="NBA: Indiana Pacers at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22255045/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22255045.jpg" alt="NBA: Indiana Pacers at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Indiana Pacers at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Dec 21, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22156026.jpg" alt="NBA: Indiana Pacers at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22156026/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22156026.jpg" alt="NBA: Indiana Pacers at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Indiana Pacers at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Dec 21, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22160031.jpg" alt="NBA: Memphis Grizzlies at New Orleans Pelicans" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22160031/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22160031.jpg" alt="NBA: Memphis Grizzlies at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at New Orleans Pelicans</div>
         <div class="credit">📷 Matthew Hinton · Imagn Images · Dec 19, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22160029.jpg" alt="NBA: Memphis Grizzlies at New Orleans Pelicans" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22160029/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22160029.jpg" alt="NBA: Memphis Grizzlies at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at New Orleans Pelicans</div>
         <div class="credit">📷 Matthew Hinton · Imagn Images · Dec 19, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20544079.jpg" alt="NBA: Playoffs-Los Angeles Lakers at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20544079/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20544079.jpg" alt="NBA: Playoffs-Los Angeles Lakers at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Playoffs-Los Angeles Lakers at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Apr 26, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20377681.jpg" alt="NBA: Memphis Grizzlies at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20377681/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20377681.jpg" alt="NBA: Memphis Grizzlies at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Chicago Bulls</div>
         <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Apr 02, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20298617.jpg" alt="NBA: Houston Rockets at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20298617/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20298617.jpg" alt="NBA: Houston Rockets at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Houston Rockets at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Mar 22, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20139954.jpg" alt="NBA: Memphis Grizzlies at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20139954/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20139954.jpg" alt="NBA: Memphis Grizzlies at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Denver Nuggets</div>
         <div class="credit">📷 Ron Chenoy · Imagn Images · Mar 03, 2023</div>
     </div>
@@ -325,212 +332,212 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20120926.jpg" alt="NBA: Memphis Grizzlies at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20120926/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20120926.jpg" alt="NBA: Memphis Grizzlies at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Mar 01, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20110488.jpg" alt="NBA: Los Angeles Lakers at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20110488/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20110488.jpg" alt="NBA: Los Angeles Lakers at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Los Angeles Lakers at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Feb 28, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20092103.jpg" alt="NBA: Denver Nuggets at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20092103/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20092103.jpg" alt="NBA: Denver Nuggets at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Denver Nuggets at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Feb 25, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20003460.jpg" alt="NBA: Utah Jazz at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20003460/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20003460.jpg" alt="NBA: Utah Jazz at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Utah Jazz at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Feb 15, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20003458.jpg" alt="NBA: Utah Jazz at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20003458/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20003458.jpg" alt="NBA: Utah Jazz at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Utah Jazz at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Feb 15, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20108219.jpg" alt="NBA: Memphis Grizzlies at Boston Celtics" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20108219/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20108219.jpg" alt="NBA: Memphis Grizzlies at Boston Celtics" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Boston Celtics</div>
         <div class="credit">📷 Winslow Townson · Imagn Images · Feb 12, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19886817.jpg" alt="NBA: Indiana Pacers at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19886817/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19886817.jpg" alt="NBA: Indiana Pacers at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Indiana Pacers at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Jan 29, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19842089.jpg" alt="NBA: Memphis Grizzlies at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19842089/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19842089.jpg" alt="NBA: Memphis Grizzlies at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Phoenix Suns</div>
         <div class="credit">📷 Mark J. Rebilas · Imagn Images · Jan 22, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19725614.jpg" alt="NBA: Memphis Grizzlies at Charlotte Hornets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19725614/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19725614.jpg" alt="NBA: Memphis Grizzlies at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Charlotte Hornets</div>
         <div class="credit">📷 Sam Sharpe · Imagn Images · Jan 04, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19684678.jpg" alt="NBA: Phoenix Suns at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19684678/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19684678.jpg" alt="NBA: Phoenix Suns at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Phoenix Suns at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Dec 27, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19679956.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19679956/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19679956.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Golden State Warriors</div>
         <div class="credit">📷 Darren Yamashita · Imagn Images · Dec 25, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19718387.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19718387/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19718387.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Golden State Warriors</div>
         <div class="credit">📷 Darren Yamashita · Imagn Images · Dec 25, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19718384.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19718384/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19718384.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Golden State Warriors</div>
         <div class="credit">📷 Darren Yamashita · Imagn Images · Dec 25, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19718388.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19718388/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19718388.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Golden State Warriors</div>
         <div class="credit">📷 Darren Yamashita · Imagn Images · Dec 25, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19718375.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19718375/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19718375.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Golden State Warriors</div>
         <div class="credit">📷 Darren Yamashita · Imagn Images · Dec 25, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19679953.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19679953/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19679953.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Golden State Warriors</div>
         <div class="credit">📷 Darren Yamashita · Imagn Images · Dec 25, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19596579.jpg" alt="NBA: Detroit Pistons at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19596579/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19596579.jpg" alt="NBA: Detroit Pistons at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Detroit Pistons at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Dec 09, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19583666.jpg" alt="NBA: Oklahoma City Thunder at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19583666/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19583666.jpg" alt="NBA: Oklahoma City Thunder at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Oklahoma City Thunder at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Dec 07, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19547199.jpg" alt="NBA: Philadelphia 76ers at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19547199/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19547199.jpg" alt="NBA: Philadelphia 76ers at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Philadelphia 76ers at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Dec 02, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19501978.jpg" alt="NBA: New Orleans Pelicans at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19501978/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19501978.jpg" alt="NBA: New Orleans Pelicans at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: New Orleans Pelicans at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Nov 25, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19487759.jpg" alt="NBA: Sacramento Kings at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19487759/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19487759.jpg" alt="NBA: Sacramento Kings at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Sacramento Kings at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Nov 22, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19457723.jpg" alt="NBA: Oklahoma City Thunder at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19457723/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19457723.jpg" alt="NBA: Oklahoma City Thunder at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Oklahoma City Thunder at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Nov 18, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19358632.jpg" alt="NBA: Charlotte Hornets at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19358632/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19358632.jpg" alt="NBA: Charlotte Hornets at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Charlotte Hornets at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Nov 04, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19310630.jpg" alt="NBA: Brooklyn Nets at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19310630/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19310630.jpg" alt="NBA: Brooklyn Nets at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Brooklyn Nets at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Oct 24, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19282074.jpg" alt="NBA: Memphis Grizzlies at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19282074/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19282074.jpg" alt="NBA: Memphis Grizzlies at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Dallas Mavericks</div>
         <div class="credit">📷 Kevin Jairaj · Imagn Images · Oct 22, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19227168.jpg" alt="NBA: Preseason-Memphis Grizzlies at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19227168/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19227168.jpg" alt="NBA: Preseason-Memphis Grizzlies at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Preseason-Memphis Grizzlies at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Oct 13, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19171675.jpg" alt="NBA: Memphis Grizzlies-Media Day" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19171675/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19171675.jpg" alt="NBA: Memphis Grizzlies-Media Day" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies-Media Day</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Oct 03, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19171673.jpg" alt="NBA: Memphis Grizzlies-Media Day" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19171673/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19171673.jpg" alt="NBA: Memphis Grizzlies-Media Day" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies-Media Day</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Oct 03, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17926756.jpg" alt="NBA: Memphis Grizzlies at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17926756/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17926756.jpg" alt="NBA: Memphis Grizzlies at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Atlanta Hawks</div>
         <div class="credit">📷 Dale Zanine · Imagn Images · Mar 18, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17776201.jpg" alt="NBA: Memphis Grizzlies at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17776201/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17776201.jpg" alt="NBA: Memphis Grizzlies at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Chicago Bulls</div>
         <div class="credit">📷 David Banks · Imagn Images · Feb 26, 2022</div>
     </div>
@@ -542,240 +549,240 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17658607.jpg" alt="NBA: Memphis Grizzlies at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17658607/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17658607.jpg" alt="NBA: Memphis Grizzlies at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Detroit Pistons</div>
         <div class="credit">📷 Raj Mehta · Imagn Images · Feb 10, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17625430.jpg" alt="NBA: Memphis Grizzlies at Orlando Magic" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17625430/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17625430.jpg" alt="NBA: Memphis Grizzlies at Orlando Magic" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Orlando Magic</div>
         <div class="credit">📷 Mike Watters · Imagn Images · Feb 05, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17586996.jpg" alt="NBA: Washington Wizards at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17586996/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17586996.jpg" alt="NBA: Washington Wizards at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Washington Wizards at Memphis Grizzlies</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Jan 29, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17585460.jpg" alt="NBA: Washington Wizards at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17585460/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17585460.jpg" alt="NBA: Washington Wizards at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Washington Wizards at Memphis Grizzlies</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Jan 29, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17544703.jpg" alt="NBA: Memphis Grizzlies at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17544703/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17544703.jpg" alt="NBA: Memphis Grizzlies at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Denver Nuggets</div>
         <div class="credit">📷 Ron Chenoy · Imagn Images · Jan 21, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17531895.jpg" alt="NBA: Memphis Grizzlies at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17531895/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17531895.jpg" alt="NBA: Memphis Grizzlies at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Jan 19, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17481745.jpg" alt="NBA: Memphis Grizzlies at Los Angeles Lakers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17481745/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17481745.jpg" alt="NBA: Memphis Grizzlies at Los Angeles Lakers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Los Angeles Lakers</div>
         <div class="credit">📷 Gary A. Vasquez · Imagn Images · Jan 09, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17391811.jpg" alt="NBA: Oklahoma City Thunder at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17391811/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17391811.jpg" alt="NBA: Oklahoma City Thunder at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Oklahoma City Thunder at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Dec 20, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17391808.jpg" alt="NBA: Oklahoma City Thunder at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17391808/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17391808.jpg" alt="NBA: Oklahoma City Thunder at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Oklahoma City Thunder at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Dec 20, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17274876.jpg" alt="NBA: Oklahoma City Thunder at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17274876/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17274876.jpg" alt="NBA: Oklahoma City Thunder at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Oklahoma City Thunder at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Dec 02, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17129409.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17129409/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17129409.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Oct 28, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/16095941.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/16095941/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/16095941.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · May 16, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15613630.jpg" alt="NBA: Memphis Grizzlies at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15613630/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15613630.jpg" alt="NBA: Memphis Grizzlies at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Feb 22, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15576772.jpg" alt="NBA: Memphis Grizzlies at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15576772/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15576772.jpg" alt="NBA: Memphis Grizzlies at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Sacramento Kings</div>
         <div class="credit">📷 Cary Edmondson · Imagn Images · Feb 14, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15444693.jpg" alt="NBA: Philadelphia 76ers at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15444693/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15444693.jpg" alt="NBA: Philadelphia 76ers at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Philadelphia 76ers at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Jan 16, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15444691.jpg" alt="NBA: Philadelphia 76ers at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15444691/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15444691.jpg" alt="NBA: Philadelphia 76ers at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Philadelphia 76ers at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Jan 16, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14719417.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14719417/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14719417.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
         <div class="credit">📷 Kevin C. Cox · Pool Photo · Aug 09, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14719395.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14719395/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14719395.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
         <div class="credit">📷 Kevin C. Cox · Pool Photo · Aug 09, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14719392.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14719392/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14719392.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
         <div class="credit">📷 Kevin C. Cox · Pool Photo · Aug 09, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14719394.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14719394/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14719394.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
         <div class="credit">📷 Kevin C. Cox · Pool Photo · Aug 09, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14719418.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14719418/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14719418.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
         <div class="credit">📷 Kevin C. Cox · Pool Photo · Aug 09, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14128357.jpg" alt="NBA: Memphis Grizzlies at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14128357/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14128357.jpg" alt="NBA: Memphis Grizzlies at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Atlanta Hawks</div>
         <div class="credit">📷 Dale Zanine · Imagn Images · Mar 02, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14073087.jpg" alt="NBA: Memphis Grizzlies at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14073087/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14073087.jpg" alt="NBA: Memphis Grizzlies at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Sacramento Kings</div>
         <div class="credit">📷 Sergio Estrada · Imagn Images · Feb 20, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14033465.jpg" alt="NBA: Portland Trail Blazers at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14033465/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14033465.jpg" alt="NBA: Portland Trail Blazers at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Portland Trail Blazers at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Feb 12, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14001597.jpg" alt="NBA: Memphis Grizzlies at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14001597/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14001597.jpg" alt="NBA: Memphis Grizzlies at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Feb 05, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13883546.jpg" alt="NBA: Minnesota Timberwolves at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13883546/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13883546.jpg" alt="NBA: Minnesota Timberwolves at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Minnesota Timberwolves at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Jan 07, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13833979.jpg" alt="NBA: San Antonio Spurs at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13833979/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13833979.jpg" alt="NBA: San Antonio Spurs at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: San Antonio Spurs at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Dec 23, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13820650.jpg" alt="NBA: Memphis Grizzlies at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13820650/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13820650.jpg" alt="NBA: Memphis Grizzlies at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Cleveland Cavaliers</div>
         <div class="credit">📷 Ken Blaze · Imagn Images · Dec 20, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13803857.jpg" alt="NBA: Miami Heat at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13803857/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13803857.jpg" alt="NBA: Miami Heat at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Miami Heat at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Dec 16, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13782939.jpg" alt="NBA: Memphis Grizzlies at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13782939/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13782939.jpg" alt="NBA: Memphis Grizzlies at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Phoenix Suns</div>
         <div class="credit">📷 Mark J. Rebilas · Imagn Images · Dec 11, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13711507.jpg" alt="NBA: Memphis Grizzlies at Indiana Pacers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13711507/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13711507.jpg" alt="NBA: Memphis Grizzlies at Indiana Pacers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Memphis Grizzlies at Indiana Pacers</div>
         <div class="credit">📷 Trevor Ruszkowski · Imagn Images · Nov 25, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13688647.jpg" alt="NBA: Golden State Warriors at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13688647/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13688647.jpg" alt="NBA: Golden State Warriors at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Golden State Warriors at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Nov 19, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13620076.jpg" alt="NBA: Houston Rockets at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13620076/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13620076.jpg" alt="NBA: Houston Rockets at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Houston Rockets at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Nov 04, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13581598.jpg" alt="NBA: Brooklyn Nets at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13581598/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13581598.jpg" alt="NBA: Brooklyn Nets at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Ja Morant</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="player-link">Ja Morant</a>
         <div class="headline">NBA: Brooklyn Nets at Memphis Grizzlies</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Oct 27, 2019</div>
     </div>
@@ -785,66 +792,15 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </main>
 
 
-<div class="lightbox" id="lightbox">
-    <span class="close">&times;</span>
-    <span class="nav prev">&#10094;</span>
-    <span class="nav next">&#10095;</span>
-    <span class="counter"></span>
-    <img src="" alt="">
-    <div class="info">
-        <div class="lb-player"></div>
-        <div class="lb-headline"></div>
-        <div class="lb-credit"></div>
-    </div>
-</div>
-
 <footer class="site-footer">
     <div class="container">
         Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
     </div>
 </footer>
 
-<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/27831621.jpg", "player_name": "Ja Morant", "headline": "NBA: Utah Jazz at Memphis Grizzlies", "photographer": "Matthew Smith", "source": "Imagn Images", "photo_date": "2025-12-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/27831616.jpg", "player_name": "Ja Morant", "headline": "NBA: Utah Jazz at Memphis Grizzlies", "photographer": "Matthew Smith", "source": "Imagn Images", "photo_date": "2025-12-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/27531406.jpg", "player_name": "Ja Morant", "headline": "NBA: Dallas Mavericks at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2025-11-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/27433658.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Golden State Warriors", "photographer": "Cary Edmondson", "source": "Imagn Images", "photo_date": "2025-10-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25946556.jpg", "player_name": "Ja Morant", "headline": "NBA: Play-In-Memphis Grizzlies at Golden State Warriors", "photographer": "Cary Edmondson", "source": "Imagn Images", "photo_date": "2025-04-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25628375.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at New Orleans Pelicans", "photographer": "Stephen Lew", "source": "Imagn Images", "photo_date": "2025-03-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25496064.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2025-02-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24874892.jpg", "player_name": "Ja Morant", "headline": "NBA: New Orleans Pelicans at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2024-11-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24598018.jpg", "player_name": "Ja Morant", "headline": "NBA: Orlando Magic at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2024-10-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/22211025.jpg", "player_name": "Ja Morant", "headline": "NBA: San Antonio Spurs at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2024-01-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/22167926.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Atlanta Hawks", "photographer": "Dale Zanine", "source": "Imagn Images", "photo_date": "2023-12-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/22255045.jpg", "player_name": "Ja Morant", "headline": "NBA: Indiana Pacers at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2023-12-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/22156026.jpg", "player_name": "Ja Morant", "headline": "NBA: Indiana Pacers at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2023-12-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/22160031.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at New Orleans Pelicans", "photographer": "Matthew Hinton", "source": "Imagn Images", "photo_date": "2023-12-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/22160029.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at New Orleans Pelicans", "photographer": "Matthew Hinton", "source": "Imagn Images", "photo_date": "2023-12-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20544079.jpg", "player_name": "Ja Morant", "headline": "NBA: Playoffs-Los Angeles Lakers at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2023-04-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20377681.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Chicago Bulls", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "photo_date": "2023-04-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20298617.jpg", "player_name": "Ja Morant", "headline": "NBA: Houston Rockets at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2023-03-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20139954.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Denver Nuggets", "photographer": "Ron Chenoy", "source": "Imagn Images", "photo_date": "2023-03-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20120926.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2023-03-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20110488.jpg", "player_name": "Ja Morant", "headline": "NBA: Los Angeles Lakers at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2023-02-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20092103.jpg", "player_name": "Ja Morant", "headline": "NBA: Denver Nuggets at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2023-02-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20003460.jpg", "player_name": "Ja Morant", "headline": "NBA: Utah Jazz at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2023-02-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20003458.jpg", "player_name": "Ja Morant", "headline": "NBA: Utah Jazz at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2023-02-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20108219.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Boston Celtics", "photographer": "Winslow Townson", "source": "Imagn Images", "photo_date": "2023-02-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19886817.jpg", "player_name": "Ja Morant", "headline": "NBA: Indiana Pacers at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2023-01-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19842089.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Phoenix Suns", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "photo_date": "2023-01-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19725614.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Charlotte Hornets", "photographer": "Sam Sharpe", "source": "Imagn Images", "photo_date": "2023-01-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19684678.jpg", "player_name": "Ja Morant", "headline": "NBA: Phoenix Suns at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2022-12-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19679956.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Golden State Warriors", "photographer": "Darren Yamashita", "source": "Imagn Images", "photo_date": "2022-12-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19718387.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Golden State Warriors", "photographer": "Darren Yamashita", "source": "Imagn Images", "photo_date": "2022-12-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19718384.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Golden State Warriors", "photographer": "Darren Yamashita", "source": "Imagn Images", "photo_date": "2022-12-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19718388.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Golden State Warriors", "photographer": "Darren Yamashita", "source": "Imagn Images", "photo_date": "2022-12-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19718375.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Golden State Warriors", "photographer": "Darren Yamashita", "source": "Imagn Images", "photo_date": "2022-12-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19679953.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Golden State Warriors", "photographer": "Darren Yamashita", "source": "Imagn Images", "photo_date": "2022-12-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19596579.jpg", "player_name": "Ja Morant", "headline": "NBA: Detroit Pistons at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2022-12-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19583666.jpg", "player_name": "Ja Morant", "headline": "NBA: Oklahoma City Thunder at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2022-12-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19547199.jpg", "player_name": "Ja Morant", "headline": "NBA: Philadelphia 76ers at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2022-12-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19501978.jpg", "player_name": "Ja Morant", "headline": "NBA: New Orleans Pelicans at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2022-11-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19487759.jpg", "player_name": "Ja Morant", "headline": "NBA: Sacramento Kings at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2022-11-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19457723.jpg", "player_name": "Ja Morant", "headline": "NBA: Oklahoma City Thunder at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2022-11-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19358632.jpg", "player_name": "Ja Morant", "headline": "NBA: Charlotte Hornets at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2022-11-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19310630.jpg", "player_name": "Ja Morant", "headline": "NBA: Brooklyn Nets at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2022-10-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19282074.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Dallas Mavericks", "photographer": "Kevin Jairaj", "source": "Imagn Images", "photo_date": "2022-10-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19227168.jpg", "player_name": "Ja Morant", "headline": "NBA: Preseason-Memphis Grizzlies at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2022-10-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19171675.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies-Media Day", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2022-10-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19171673.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies-Media Day", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2022-10-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17926756.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Atlanta Hawks", "photographer": "Dale Zanine", "source": "Imagn Images", "photo_date": "2022-03-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17776201.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Chicago Bulls", "photographer": "David Banks", "source": "Imagn Images", "photo_date": "2022-02-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17658607.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Detroit Pistons", "photographer": "Raj Mehta", "source": "Imagn Images", "photo_date": "2022-02-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17625430.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Orlando Magic", "photographer": "Mike Watters", "source": "Imagn Images", "photo_date": "2022-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17586996.jpg", "player_name": "Ja Morant", "headline": "NBA: Washington Wizards at Memphis Grizzlies", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2022-01-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17585460.jpg", "player_name": "Ja Morant", "headline": "NBA: Washington Wizards at Memphis Grizzlies", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2022-01-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17544703.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Denver Nuggets", "photographer": "Ron Chenoy", "source": "Imagn Images", "photo_date": "2022-01-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17531895.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2022-01-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17481745.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Los Angeles Lakers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2022-01-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17391811.jpg", "player_name": "Ja Morant", "headline": "NBA: Oklahoma City Thunder at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2021-12-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17391808.jpg", "player_name": "Ja Morant", "headline": "NBA: Oklahoma City Thunder at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2021-12-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17274876.jpg", "player_name": "Ja Morant", "headline": "NBA: Oklahoma City Thunder at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2021-12-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17129409.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-10-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/16095941.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-05-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15613630.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2021-02-22"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15576772.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Sacramento Kings", "photographer": "Cary Edmondson", "source": "Imagn Images", "photo_date": "2021-02-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15444693.jpg", "player_name": "Ja Morant", "headline": "NBA: Philadelphia 76ers at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2021-01-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15444691.jpg", "player_name": "Ja Morant", "headline": "NBA: Philadelphia 76ers at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2021-01-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14719417.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "photographer": "Kevin C. Cox", "source": "Pool Photo", "photo_date": "2020-08-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14719395.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "photographer": "Kevin C. Cox", "source": "Pool Photo", "photo_date": "2020-08-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14719392.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "photographer": "Kevin C. Cox", "source": "Pool Photo", "photo_date": "2020-08-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14719394.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "photographer": "Kevin C. Cox", "source": "Pool Photo", "photo_date": "2020-08-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14719418.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "photographer": "Kevin C. Cox", "source": "Pool Photo", "photo_date": "2020-08-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14128357.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Atlanta Hawks", "photographer": "Dale Zanine", "source": "Imagn Images", "photo_date": "2020-03-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14073087.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Sacramento Kings", "photographer": "Sergio Estrada", "source": "Imagn Images", "photo_date": "2020-02-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14033465.jpg", "player_name": "Ja Morant", "headline": "NBA: Portland Trail Blazers at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2020-02-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/14001597.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2020-02-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13883546.jpg", "player_name": "Ja Morant", "headline": "NBA: Minnesota Timberwolves at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2020-01-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13833979.jpg", "player_name": "Ja Morant", "headline": "NBA: San Antonio Spurs at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2019-12-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13820650.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2019-12-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13803857.jpg", "player_name": "Ja Morant", "headline": "NBA: Miami Heat at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2019-12-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13782939.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Phoenix Suns", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "photo_date": "2019-12-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13711507.jpg", "player_name": "Ja Morant", "headline": "NBA: Memphis Grizzlies at Indiana Pacers", "photographer": "Trevor Ruszkowski", "source": "Imagn Images", "photo_date": "2019-11-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13688647.jpg", "player_name": "Ja Morant", "headline": "NBA: Golden State Warriors at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2019-11-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13620076.jpg", "player_name": "Ja Morant", "headline": "NBA: Houston Rockets at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2019-11-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13581598.jpg", "player_name": "Ja Morant", "headline": "NBA: Brooklyn Nets at Memphis Grizzlies", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2019-10-27"}];</script>
 <script>
 document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
-document.addEventListener('DOMContentLoaded', function() {
-    const photos = window.galleryPhotos || [];
-    let currentIndex = 0;
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox || photos.length === 0) return;
-    const lbImg = lightbox.querySelector('img');
-    const lbPlayer = lightbox.querySelector('.lb-player');
-    const lbHeadline = lightbox.querySelector('.lb-headline');
-    const lbCredit = lightbox.querySelector('.lb-credit');
-    const counter = lightbox.querySelector('.counter');
-    function formatDate(dateStr) {
-        if (!dateStr) return '';
-        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-        catch(e) { return dateStr; }
-    }
-    function showPhoto() {
-        const p = photos[currentIndex];
-        lbImg.src = p.image_url;
-        lbPlayer.textContent = p.player_name || 'NBA';
-        lbHeadline.textContent = p.headline || '';
-        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
-        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
-    }
-    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
-    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
-    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
-    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
-    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
-    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
-    let touchStartX = 0;
-    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
-});
 </script>
 </body>
 </html>

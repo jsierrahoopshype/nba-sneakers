@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kyrie Irving | NBA Sneakers</title>
+<meta name="description" content="Browse 106 sneaker photos of Kyrie Irving from NBA games.">
+<meta property="og:title" content="Kyrie Irving | NBA Sneakers">
+<meta property="og:description" content="Browse 106 sneaker photos of Kyrie Irving from NBA games.">
+<meta property="og:image" content="https://cdn.imagn.com/image/thumb/250-225/25311466.jpg">
+<link rel="canonical" href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/">
 <style>
 :root {
     --primary: #1a1a2e;
@@ -48,7 +53,7 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
 .photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -56,6 +61,20 @@ a:hover { text-decoration: underline; }
 .photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
 .photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
 .photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
 .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
 .list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
@@ -66,18 +85,6 @@ a:hover { text-decoration: underline; }
 .page-header .subtitle { color: var(--text-secondary); }
 .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
 .breadcrumb a { color: var(--text-secondary); }
-.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
-.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
-.lightbox .nav.prev { left: 16px; }
-.lightbox .nav.next { right: 16px; }
-.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
-.lightbox .lb-player { font-size: 18px; font-weight: 600; }
-.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
-.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
-.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -138,7 +145,7 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -185,135 +192,135 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     </a>
     <div class="compare-prices"><span class="compare-label">Compare prices:</span><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.goat.com%2Fsearch%3Fquery%3DAnta%2BAnta%2BKai" target="_blank" rel="noopener sponsored" class="compare-link">GOAT</a><a href="https://sovrn.co?key=530e01008149e736f5173d2766644aff&u=https%3A%2F%2Fwww.footlocker.com%2Fsearch%3Fquery%3DAnta%2BAnta%2BKai" target="_blank" rel="noopener sponsored" class="compare-link">Foot Locker</a></div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25311466.jpg" alt="NBA: Dallas Mavericks at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25311466/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25311466.jpg" alt="NBA: Dallas Mavericks at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Dallas Mavericks at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 31, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25214144.jpg" alt="NBA: Oklahoma City Thunder at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25214144/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25214144.jpg" alt="NBA: Oklahoma City Thunder at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Oklahoma City Thunder at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Jan 17, 2025</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24953106.jpg" alt="NBA: Dallas Mavericks at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24953106/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24953106.jpg" alt="NBA: Dallas Mavericks at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Dallas Mavericks at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Dec 07, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24845729.jpg" alt="NBA: Dallas Mavericks at Miami Heat" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24845729/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24845729.jpg" alt="NBA: Dallas Mavericks at Miami Heat" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Dallas Mavericks at Miami Heat</div>
         <div class="credit">📷 Rhona Wise · Imagn Images · Nov 24, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24845730.jpg" alt="NBA: Dallas Mavericks at Miami Heat" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24845730/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24845730.jpg" alt="NBA: Dallas Mavericks at Miami Heat" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Dallas Mavericks at Miami Heat</div>
         <div class="credit">📷 Rhona Wise · Imagn Images · Nov 24, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24612738.jpg" alt="NBA: Utah Jazz at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24612738/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24612738.jpg" alt="NBA: Utah Jazz at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Utah Jazz at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Oct 28, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24626107.jpg" alt="NBA: Dallas Mavericks at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24626107/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24626107.jpg" alt="NBA: Dallas Mavericks at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Dallas Mavericks at Phoenix Suns</div>
         <div class="credit">📷 Mark J. Rebilas · Imagn Images · Oct 26, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24589296.jpg" alt="NBA: San Antonio Spurs at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24589296/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24589296.jpg" alt="NBA: San Antonio Spurs at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: San Antonio Spurs at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Oct 24, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24369328.jpg" alt="NBA: Dallas Mavericks-Media Day" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24369328/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24369328.jpg" alt="NBA: Dallas Mavericks-Media Day" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Dallas Mavericks-Media Day</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Sep 30, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/23512307.jpg" alt="NBA: Finals-Dallas Mavericks at Boston Celtics" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/23512307/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/23512307.jpg" alt="NBA: Finals-Dallas Mavericks at Boston Celtics" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Finals-Dallas Mavericks at Boston Celtics</div>
         <div class="credit">📷 Peter Casey · Imagn Images · Jun 09, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22832575.jpg" alt="NBA: Utah Jazz at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22832575/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22832575.jpg" alt="NBA: Utah Jazz at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Utah Jazz at Dallas Mavericks</div>
         <div class="credit">📷 Kevin Jairaj · Imagn Images · Mar 21, 2024</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21939296.jpg" alt="NBA: Sacramento Kings at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21939296/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21939296.jpg" alt="NBA: Sacramento Kings at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Sacramento Kings at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Nov 19, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21868394.jpg" alt="NBA: Los Angeles Clippers at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21868394/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21868394.jpg" alt="NBA: Los Angeles Clippers at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Los Angeles Clippers at Dallas Mavericks</div>
         <div class="credit">📷 Kevin Jairaj · Imagn Images · Nov 10, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21829983.jpg" alt="NBA: Charlotte Hornets at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21829983/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21829983.jpg" alt="NBA: Charlotte Hornets at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Charlotte Hornets at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Nov 05, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21829970.jpg" alt="NBA: Charlotte Hornets at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21829970/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21829970.jpg" alt="NBA: Charlotte Hornets at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Charlotte Hornets at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Nov 05, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20379421.jpg" alt="NBA: Dallas Mavericks at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20379421/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20379421.jpg" alt="NBA: Dallas Mavericks at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Dallas Mavericks at Atlanta Hawks</div>
         <div class="credit">📷 Dale Zanine · Imagn Images · Apr 02, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20313444.jpg" alt="NBA: Charlotte Hornets at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20313444/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20313444.jpg" alt="NBA: Charlotte Hornets at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Charlotte Hornets at Dallas Mavericks</div>
         <div class="credit">📷 Kevin Jairaj · Imagn Images · Mar 24, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20279673.jpg" alt="NBA: Dallas Mavericks at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20279673/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20279673.jpg" alt="NBA: Dallas Mavericks at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Dallas Mavericks at Memphis Grizzlies</div>
         <div class="credit">📷 Petre Thomas · Imagn Images · Mar 20, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20258207.jpg" alt="NBA: Dallas Mavericks at Los Angeles Lakers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20258207/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20258207.jpg" alt="NBA: Dallas Mavericks at Los Angeles Lakers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Dallas Mavericks at Los Angeles Lakers</div>
         <div class="credit">📷 Gary A. Vasquez · Imagn Images · Mar 17, 2023</div>
     </div>
@@ -325,212 +332,212 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20176224.jpg" alt="NBA: Dallas Mavericks at New Orleans Pelicans" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20176224/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20176224.jpg" alt="NBA: Dallas Mavericks at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Dallas Mavericks at New Orleans Pelicans</div>
         <div class="credit">📷 Stephen Lew · Imagn Images · Mar 08, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20154926.jpg" alt="NBA: Phoenix Suns at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20154926/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20154926.jpg" alt="NBA: Phoenix Suns at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Phoenix Suns at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Mar 05, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20081506.jpg" alt="NBA: San Antonio Spurs at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20081506/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20081506.jpg" alt="NBA: San Antonio Spurs at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: San Antonio Spurs at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Feb 23, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19991631.jpg" alt="NBA: Minnesota Timberwolves at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19991631/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19991631.jpg" alt="NBA: Minnesota Timberwolves at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Minnesota Timberwolves at Dallas Mavericks</div>
         <div class="credit">📷 Kevin Jairaj · Imagn Images · Feb 13, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19978967.jpg" alt="NBA: Dallas Mavericks at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19978967/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19978967.jpg" alt="NBA: Dallas Mavericks at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Dallas Mavericks at Sacramento Kings</div>
         <div class="credit">📷 Darren Yamashita · Imagn Images · Feb 11, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19952334.jpg" alt="NBA: Dallas Mavericks at Los Angeles Clippers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19952334/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19952334.jpg" alt="NBA: Dallas Mavericks at Los Angeles Clippers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Dallas Mavericks at Los Angeles Clippers</div>
         <div class="credit">📷 Gary A. Vasquez · Imagn Images · Feb 08, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19830440.jpg" alt="NBA: Brooklyn Nets at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19830440/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19830440.jpg" alt="NBA: Brooklyn Nets at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Utah Jazz</div>
         <div class="credit">📷 Rob Gray · Imagn Images · Jan 20, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19822551.jpg" alt="NBA: Brooklyn Nets at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19822551/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19822551.jpg" alt="NBA: Brooklyn Nets at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Phoenix Suns</div>
         <div class="credit">📷 Mark J. Rebilas · Imagn Images · Jan 19, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19822519.jpg" alt="NBA: Brooklyn Nets at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19822519/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19822519.jpg" alt="NBA: Brooklyn Nets at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Phoenix Suns</div>
         <div class="credit">📷 Mark J. Rebilas · Imagn Images · Jan 19, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19913592.jpg" alt="NBA: Brooklyn Nets at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19913592/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19913592.jpg" alt="NBA: Brooklyn Nets at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Phoenix Suns</div>
         <div class="credit">📷 Mark J. Rebilas · Imagn Images · Jan 19, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19751964.jpg" alt="NBA: Brooklyn Nets at Miami Heat" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19751964/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19751964.jpg" alt="NBA: Brooklyn Nets at Miami Heat" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Miami Heat</div>
         <div class="credit">📷 Michael Laughlin · Imagn Images · Jan 08, 2023</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19690986.jpg" alt="NBA: Brooklyn Nets at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19690986/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19690986.jpg" alt="NBA: Brooklyn Nets at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Atlanta Hawks</div>
         <div class="credit">📷 Brett Davis · Imagn Images · Dec 28, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19681857.jpg" alt="NBA: Brooklyn Nets at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19681857/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19681857.jpg" alt="NBA: Brooklyn Nets at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Cleveland Cavaliers</div>
         <div class="credit">📷 Ken Blaze · Imagn Images · Dec 26, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19649104.jpg" alt="NBA: Brooklyn Nets at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19649104/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19649104.jpg" alt="NBA: Brooklyn Nets at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 18, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18010732.jpg" alt="NBA: Brooklyn Nets at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/18010732/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18010732.jpg" alt="NBA: Brooklyn Nets at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Atlanta Hawks</div>
         <div class="credit">📷 Dale Zanine · Imagn Images · Apr 02, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17903243.jpg" alt="NBA: Brooklyn Nets at Orlando Magic" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17903243/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17903243.jpg" alt="NBA: Brooklyn Nets at Orlando Magic" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Orlando Magic</div>
         <div class="credit">📷 Kim Klement · Imagn Images · Mar 15, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17902381.jpg" alt="NBA: Brooklyn Nets at Orlando Magic" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17902381/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17902381.jpg" alt="NBA: Brooklyn Nets at Orlando Magic" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Orlando Magic</div>
         <div class="credit">📷 Kim Klement · Imagn Images · Mar 15, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17620738.jpg" alt="NBA: Brooklyn Nets at Utah Jazz" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17620738/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17620738.jpg" alt="NBA: Brooklyn Nets at Utah Jazz" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Utah Jazz</div>
         <div class="credit">📷 Rob Gray · Imagn Images · Feb 04, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17555165.jpg" alt="NBA: Brooklyn Nets at Minnesota Timberwolves" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17555165/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17555165.jpg" alt="NBA: Brooklyn Nets at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Minnesota Timberwolves</div>
         <div class="credit">📷 Brace Hemmelgarn · Imagn Images · Jan 23, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17554774.jpg" alt="NBA: Brooklyn Nets at Minnesota Timberwolves" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17554774/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17554774.jpg" alt="NBA: Brooklyn Nets at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Minnesota Timberwolves</div>
         <div class="credit">📷 Brace Hemmelgarn · Imagn Images · Jan 23, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17521274.jpg" alt="NBA: Brooklyn Nets at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17521274/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17521274.jpg" alt="NBA: Brooklyn Nets at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Cleveland Cavaliers</div>
         <div class="credit">📷 Ken Blaze · Imagn Images · Jan 17, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17486300.jpg" alt="NBA: Brooklyn Nets at Portland Trail Blazers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17486300/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17486300.jpg" alt="NBA: Brooklyn Nets at Portland Trail Blazers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Portland Trail Blazers</div>
         <div class="credit">📷 Troy Wayrynen · Imagn Images · Jan 10, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17486325.jpg" alt="NBA: Brooklyn Nets at Portland Trail Blazers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17486325/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17486325.jpg" alt="NBA: Brooklyn Nets at Portland Trail Blazers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Portland Trail Blazers</div>
         <div class="credit">📷 Troy Wayrynen · Imagn Images · Jan 10, 2022</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15892601.jpg" alt="NBA: Brooklyn Nets at Sacramento Kings" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15892601/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15892601.jpg" alt="NBA: Brooklyn Nets at Sacramento Kings" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Sacramento Kings</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Feb 15, 2021</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13957500.jpg" alt="NBA: Brooklyn Nets at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13957500/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13957500.jpg" alt="NBA: Brooklyn Nets at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Detroit Pistons</div>
         <div class="credit">📷 Tim Fuller · Imagn Images · Jan 25, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13966656.jpg" alt="NBA: Brooklyn Nets at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13966656/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13966656.jpg" alt="NBA: Brooklyn Nets at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Detroit Pistons</div>
         <div class="credit">📷 Tim Fuller · Imagn Images · Jan 25, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13909272.jpg" alt="NBA: Utah Jazz at Brooklyn Nets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13909272/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13909272.jpg" alt="NBA: Utah Jazz at Brooklyn Nets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Utah Jazz at Brooklyn Nets</div>
         <div class="credit">📷 Andy Marlin · Imagn Images · Jan 14, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13901613.jpg" alt="NBA: Atlanta Hawks at Brooklyn Nets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13901613/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13901613.jpg" alt="NBA: Atlanta Hawks at Brooklyn Nets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Atlanta Hawks at Brooklyn Nets</div>
         <div class="credit">📷 Vincent Carchietta · Imagn Images · Jan 12, 2020</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13666691.jpg" alt="NBA: Brooklyn Nets at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13666691/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13666691.jpg" alt="NBA: Brooklyn Nets at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Denver Nuggets</div>
         <div class="credit">📷 Ron Chenoy · Imagn Images · Nov 14, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13652847.jpg" alt="NBA: Brooklyn Nets at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13652847/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13652847.jpg" alt="NBA: Brooklyn Nets at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Phoenix Suns</div>
         <div class="credit">📷 Jennifer Stewart · Imagn Images · Nov 10, 2019</div>
     </div>
@@ -542,352 +549,352 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13612031.jpg" alt="NBA: Brooklyn Nets at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13612031/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13612031.jpg" alt="NBA: Brooklyn Nets at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Nov 02, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13612061.jpg" alt="NBA: Brooklyn Nets at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13612061/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13612061.jpg" alt="NBA: Brooklyn Nets at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Nov 02, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13581599.jpg" alt="NBA: Brooklyn Nets at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13581599/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13581599.jpg" alt="NBA: Brooklyn Nets at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Brooklyn Nets at Memphis Grizzlies</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Oct 27, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12670092.jpg" alt="NBA: Playoffs-Boston Celtics at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12670092/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12670092.jpg" alt="NBA: Playoffs-Boston Celtics at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Playoffs-Boston Celtics at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · May 08, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12619885.jpg" alt="NBA: Playoffs-Boston Celtics at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12619885/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12619885.jpg" alt="NBA: Playoffs-Boston Celtics at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Playoffs-Boston Celtics at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 30, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12606767.jpg" alt="NBA: Playoffs-Boston Celtics at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12606767/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12606767.jpg" alt="NBA: Playoffs-Boston Celtics at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Playoffs-Boston Celtics at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 28, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12404630.jpg" alt="NBA: Boston Celtics at Charlotte Hornets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12404630/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12404630.jpg" alt="NBA: Boston Celtics at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Charlotte Hornets</div>
         <div class="credit">📷 Jeremy Brevard · Imagn Images · Mar 23, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12320257.jpg" alt="NBA: Boston Celtics at Los Angeles Lakers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12320257/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12320257.jpg" alt="NBA: Boston Celtics at Los Angeles Lakers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Los Angeles Lakers</div>
         <div class="credit">📷 Gary A. Vasquez · Imagn Images · Mar 09, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12293104.jpg" alt="NBA: Boston Celtics at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12293104/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12293104.jpg" alt="NBA: Boston Celtics at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Mar 05, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12244039.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12244039/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12244039.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 26, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12244040.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12244040/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12244040.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 26, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12224379.jpg" alt="NBA: Boston Celtics at Chicago Bulls" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12224379/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12224379.jpg" alt="NBA: Boston Celtics at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Chicago Bulls</div>
         <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Feb 23, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12208362.jpg" alt="NBA: Boston Celtics at Milwaukee Bucks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12208362/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12208362.jpg" alt="NBA: Boston Celtics at Milwaukee Bucks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Feb 21, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12181618.jpg" alt="NBA: All Star Game" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12181618/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12181618.jpg" alt="NBA: All Star Game" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: All Star Game</div>
         <div class="credit">📷 Bob Donnan · Imagn Images · Feb 17, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12027970.jpg" alt="NBA: Boston Celtics at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12027970/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12027970.jpg" alt="NBA: Boston Celtics at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Atlanta Hawks</div>
         <div class="credit">📷 Brett Davis · Imagn Images · Jan 19, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12027971.jpg" alt="NBA: Boston Celtics at Atlanta Hawks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12027971/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12027971.jpg" alt="NBA: Boston Celtics at Atlanta Hawks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Atlanta Hawks</div>
         <div class="credit">📷 Brett Davis · Imagn Images · Jan 19, 2019</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11916292.jpg" alt="NBA: Boston Celtics at Memphis Grizzlies" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11916292/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11916292.jpg" alt="NBA: Boston Celtics at Memphis Grizzlies" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Dec 29, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11906566.jpg" alt="NBA: Boston Celtics at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11906566/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11906566.jpg" alt="NBA: Boston Celtics at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Dec 27, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11906560.jpg" alt="NBA: Boston Celtics at Houston Rockets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11906560/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11906560.jpg" alt="NBA: Boston Celtics at Houston Rockets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Dec 27, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11852554.jpg" alt="NBA: Boston Celtics at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11852554/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11852554.jpg" alt="NBA: Boston Celtics at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Detroit Pistons</div>
         <div class="credit">📷 Tim Fuller · Imagn Images · Dec 15, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11835625.jpg" alt="NBA: Boston Celtics at Washington Wizards" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11835625/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11835625.jpg" alt="NBA: Boston Celtics at Washington Wizards" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Washington Wizards</div>
         <div class="credit">📷 Geoff Burke · Imagn Images · Dec 12, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11729539.jpg" alt="NBA: Boston Celtics at Dallas Mavericks" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11729539/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11729539.jpg" alt="NBA: Boston Celtics at Dallas Mavericks" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Dallas Mavericks</div>
         <div class="credit">📷 Shane Roper · Imagn Images · Nov 24, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11651597.jpg" alt="NBA: Boston Celtics at Portland Trail Blazers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11651597/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11651597.jpg" alt="NBA: Boston Celtics at Portland Trail Blazers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Portland Trail Blazers</div>
         <div class="credit">📷 Steve Dykes · Imagn Images · Nov 11, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11624403.jpg" alt="NBA: Boston Celtics at Phoenix Suns" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11624403/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11624403.jpg" alt="NBA: Boston Celtics at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Phoenix Suns</div>
         <div class="credit">📷 Jennifer Stewart · Imagn Images · Nov 08, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11604606.jpg" alt="NBA: Boston Celtics at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11604606/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11604606.jpg" alt="NBA: Boston Celtics at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 05, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11587315.jpg" alt="NBA: Boston Celtics at Indiana Pacers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11587315/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11587315.jpg" alt="NBA: Boston Celtics at Indiana Pacers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Indiana Pacers</div>
         <div class="credit">📷 Trevor Ruszkowski · Imagn Images · Nov 03, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11538115.jpg" alt="NBA: Boston Celtics at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11538115/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11538115.jpg" alt="NBA: Boston Celtics at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Oct 27, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11335480.jpg" alt="NBA: Preseason-Boston Celtics at Charlotte Hornets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11335480/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11335480.jpg" alt="NBA: Preseason-Boston Celtics at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Preseason-Boston Celtics at Charlotte Hornets</div>
         <div class="credit">📷 Jeremy Brevard · Imagn Images · Sep 28, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11335489.jpg" alt="NBA: Preseason-Boston Celtics at Charlotte Hornets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11335489/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11335489.jpg" alt="NBA: Preseason-Boston Celtics at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Preseason-Boston Celtics at Charlotte Hornets</div>
         <div class="credit">📷 Jeremy Brevard · Imagn Images · Sep 28, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11335103.jpg" alt="NBA: Preseason-Boston Celtics at Charlotte Hornets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11335103/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11335103.jpg" alt="NBA: Preseason-Boston Celtics at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Preseason-Boston Celtics at Charlotte Hornets</div>
         <div class="credit">📷 Jeremy Brevard · Imagn Images · Sep 28, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10689133.jpg" alt="NBA: Boston Celtics at Minnesota Timberwolves" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10689133/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10689133.jpg" alt="NBA: Boston Celtics at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Minnesota Timberwolves</div>
         <div class="credit">📷 Brad Rempel · Imagn Images · Mar 08, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10648789.jpg" alt="NBA: Boston Celtics at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10648789/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10648789.jpg" alt="NBA: Boston Celtics at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 23, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10576022.jpg" alt="NBA: Boston Celtics at Denver Nuggets" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10576022/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10576022.jpg" alt="NBA: Boston Celtics at Denver Nuggets" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 29, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10561681.jpg" alt="NBA: Boston Celtics at Los Angeles Lakers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10561681/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10561681.jpg" alt="NBA: Boston Celtics at Los Angeles Lakers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Los Angeles Lakers</div>
         <div class="credit">📷 Gary A. Vasquez · Imagn Images · Jan 23, 2018</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10476842.jpg" alt="NBA: Denver Nuggets at Boston Celtics" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10476842/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10476842.jpg" alt="NBA: Denver Nuggets at Boston Celtics" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Denver Nuggets at Boston Celtics</div>
         <div class="credit">📷 Winslow Townson · Imagn Images · Dec 13, 2017</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10472599.jpg" alt="NBA: Boston Celtics at Detroit Pistons" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10472599/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10472599.jpg" alt="NBA: Boston Celtics at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Boston Celtics at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 10, 2017</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10123578.jpg" alt="NBA: Finals-Cleveland Cavaliers at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10123578/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10123578.jpg" alt="NBA: Finals-Cleveland Cavaliers at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Finals-Cleveland Cavaliers at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Jun 04, 2017</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10014289.jpg" alt="NBA: Playoffs-Indiana Pacers at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10014289/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10014289.jpg" alt="NBA: Playoffs-Indiana Pacers at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Playoffs-Indiana Pacers at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Apr 15, 2017</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9716601.jpg" alt="NBA: Los Angeles Clippers at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9716601/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9716601.jpg" alt="NBA: Los Angeles Clippers at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Los Angeles Clippers at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Dec 01, 2016</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9632889.jpg" alt="NBA: New York Knicks at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9632889/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9632889.jpg" alt="NBA: New York Knicks at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: New York Knicks at Cleveland Cavaliers</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Oct 25, 2016</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9616740.jpg" alt="NBA: Preseason-Washington Wizards at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9616740/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9616740.jpg" alt="NBA: Preseason-Washington Wizards at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Preseason-Washington Wizards at Cleveland Cavaliers</div>
         <div class="credit">📷 Aaron Doster · Imagn Images · Oct 18, 2016</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9604580.jpg" alt="NBA: Preseason-Toronto Raptors at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9604580/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9604580.jpg" alt="NBA: Preseason-Toronto Raptors at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Preseason-Toronto Raptors at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Oct 13, 2016</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9596821.jpg" alt="NBA: Preseason-Philadelphia 76ers at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9596821/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9596821.jpg" alt="NBA: Preseason-Philadelphia 76ers at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Preseason-Philadelphia 76ers at Cleveland Cavaliers</div>
         <div class="credit">📷 Aaron Doster · Imagn Images · Oct 08, 2016</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9601595.jpg" alt="NBA: Preseason-Philadelphia 76ers at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9601595/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9601595.jpg" alt="NBA: Preseason-Philadelphia 76ers at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Preseason-Philadelphia 76ers at Cleveland Cavaliers</div>
         <div class="credit">📷 Aaron Doster · Imagn Images · Oct 08, 2016</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9601594.jpg" alt="NBA: Preseason-Philadelphia 76ers at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9601594/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9601594.jpg" alt="NBA: Preseason-Philadelphia 76ers at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Preseason-Philadelphia 76ers at Cleveland Cavaliers</div>
         <div class="credit">📷 Aaron Doster · Imagn Images · Oct 08, 2016</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9188946.jpg" alt="NBA: Dallas Mavericks at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9188946/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9188946.jpg" alt="NBA: Dallas Mavericks at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Dallas Mavericks at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Mar 16, 2016</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9103715.jpg" alt="NBA: Sacramento Kings at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9103715/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9103715.jpg" alt="NBA: Sacramento Kings at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Sacramento Kings at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Feb 08, 2016</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9076516.jpg" alt="NBA: Minnesota Timberwolves at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9076516/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9076516.jpg" alt="NBA: Minnesota Timberwolves at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Minnesota Timberwolves at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Jan 25, 2016</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9027168.jpg" alt="NBA: Cleveland Cavaliers at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9027168/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9027168.jpg" alt="NBA: Cleveland Cavaliers at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Cleveland Cavaliers at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Dec 25, 2015</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9027167.jpg" alt="NBA: Cleveland Cavaliers at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9027167/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9027167.jpg" alt="NBA: Cleveland Cavaliers at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Cleveland Cavaliers at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Dec 25, 2015</div>
     </div>
@@ -899,51 +906,51 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <span class="badge-info">★ Latest Model</span>
     </a>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9027166.jpg" alt="NBA: Cleveland Cavaliers at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9027166/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9027166.jpg" alt="NBA: Cleveland Cavaliers at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Cleveland Cavaliers at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Dec 25, 2015</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/8677784.jpg" alt="NBA: Playoffs-Cleveland Cavaliers at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/8677784/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/8677784.jpg" alt="NBA: Playoffs-Cleveland Cavaliers at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Playoffs-Cleveland Cavaliers at Golden State Warriors</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Jun 04, 2015</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/8501681.jpg" alt="NBA: Chicago Bulls at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/8501681/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/8501681.jpg" alt="NBA: Chicago Bulls at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Chicago Bulls at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Apr 05, 2015</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/8495096.jpg" alt="NBA: Miami Heat at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/8495096/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/8495096.jpg" alt="NBA: Miami Heat at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Miami Heat at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Apr 02, 2015</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/7805664.jpg" alt="NBA: Cleveland Cavaliers at Golden State Warriors" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/7805664/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/7805664.jpg" alt="NBA: Cleveland Cavaliers at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Cleveland Cavaliers at Golden State Warriors</div>
         <div class="credit">📷 Kelley L Cox · Imagn Images · Mar 14, 2014</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/7679554.jpg" alt="NBA: Golden State Warriors at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/7679554/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/7679554.jpg" alt="NBA: Golden State Warriors at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: Golden State Warriors at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Dec 29, 2013</div>
     </div>
 </div><div class="photo-card">
-    <div class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/7609671.jpg" alt="NBA: New York Knicks at Cleveland Cavaliers" loading="lazy"></div>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/7609671/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/7609671.jpg" alt="NBA: New York Knicks at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <div class="player">Kyrie Irving</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
         <div class="headline">NBA: New York Knicks at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Dec 10, 2013</div>
     </div>
@@ -953,66 +960,15 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </main>
 
 
-<div class="lightbox" id="lightbox">
-    <span class="close">&times;</span>
-    <span class="nav prev">&#10094;</span>
-    <span class="nav next">&#10095;</span>
-    <span class="counter"></span>
-    <img src="" alt="">
-    <div class="info">
-        <div class="lb-player"></div>
-        <div class="lb-headline"></div>
-        <div class="lb-credit"></div>
-    </div>
-</div>
-
 <footer class="site-footer">
     <div class="container">
         Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
     </div>
 </footer>
 
-<script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/25311466.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Dallas Mavericks at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2025-01-31"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/25214144.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Oklahoma City Thunder at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2025-01-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24953106.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Dallas Mavericks at Toronto Raptors", "photographer": "Nick Turchiaro", "source": "Imagn Images", "photo_date": "2024-12-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24845729.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Dallas Mavericks at Miami Heat", "photographer": "Rhona Wise", "source": "Imagn Images", "photo_date": "2024-11-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24845730.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Dallas Mavericks at Miami Heat", "photographer": "Rhona Wise", "source": "Imagn Images", "photo_date": "2024-11-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24612738.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Utah Jazz at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2024-10-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24626107.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Dallas Mavericks at Phoenix Suns", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "photo_date": "2024-10-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24589296.jpg", "player_name": "Kyrie Irving", "headline": "NBA: San Antonio Spurs at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2024-10-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/24369328.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Dallas Mavericks-Media Day", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2024-09-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/23512307.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Finals-Dallas Mavericks at Boston Celtics", "photographer": "Peter Casey", "source": "Imagn Images", "photo_date": "2024-06-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/22832575.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Utah Jazz at Dallas Mavericks", "photographer": "Kevin Jairaj", "source": "Imagn Images", "photo_date": "2024-03-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/21939296.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Sacramento Kings at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-11-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/21868394.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Los Angeles Clippers at Dallas Mavericks", "photographer": "Kevin Jairaj", "source": "Imagn Images", "photo_date": "2023-11-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/21829983.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Charlotte Hornets at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-11-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/21829970.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Charlotte Hornets at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-11-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20379421.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Dallas Mavericks at Atlanta Hawks", "photographer": "Dale Zanine", "source": "Imagn Images", "photo_date": "2023-04-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20313444.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Charlotte Hornets at Dallas Mavericks", "photographer": "Kevin Jairaj", "source": "Imagn Images", "photo_date": "2023-03-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20279673.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Dallas Mavericks at Memphis Grizzlies", "photographer": "Petre Thomas", "source": "Imagn Images", "photo_date": "2023-03-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20258207.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Dallas Mavericks at Los Angeles Lakers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2023-03-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20176224.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Dallas Mavericks at New Orleans Pelicans", "photographer": "Stephen Lew", "source": "Imagn Images", "photo_date": "2023-03-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20154926.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Phoenix Suns at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-03-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/20081506.jpg", "player_name": "Kyrie Irving", "headline": "NBA: San Antonio Spurs at Dallas Mavericks", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2023-02-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19991631.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Minnesota Timberwolves at Dallas Mavericks", "photographer": "Kevin Jairaj", "source": "Imagn Images", "photo_date": "2023-02-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19978967.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Dallas Mavericks at Sacramento Kings", "photographer": "Darren Yamashita", "source": "Imagn Images", "photo_date": "2023-02-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19952334.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Dallas Mavericks at Los Angeles Clippers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2023-02-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19830440.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Utah Jazz", "photographer": "Rob Gray", "source": "Imagn Images", "photo_date": "2023-01-20"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19822551.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Phoenix Suns", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "photo_date": "2023-01-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19822519.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Phoenix Suns", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "photo_date": "2023-01-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19913592.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Phoenix Suns", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "photo_date": "2023-01-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19751964.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Miami Heat", "photographer": "Michael Laughlin", "source": "Imagn Images", "photo_date": "2023-01-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19690986.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Atlanta Hawks", "photographer": "Brett Davis", "source": "Imagn Images", "photo_date": "2022-12-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19681857.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2022-12-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/19649104.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2022-12-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/18010732.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Atlanta Hawks", "photographer": "Dale Zanine", "source": "Imagn Images", "photo_date": "2022-04-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17903243.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Orlando Magic", "photographer": "Kim Klement", "source": "Imagn Images", "photo_date": "2022-03-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17902381.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Orlando Magic", "photographer": "Kim Klement", "source": "Imagn Images", "photo_date": "2022-03-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17620738.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Utah Jazz", "photographer": "Rob Gray", "source": "Imagn Images", "photo_date": "2022-02-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17555165.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Minnesota Timberwolves", "photographer": "Brace Hemmelgarn", "source": "Imagn Images", "photo_date": "2022-01-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17554774.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Minnesota Timberwolves", "photographer": "Brace Hemmelgarn", "source": "Imagn Images", "photo_date": "2022-01-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17521274.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Cleveland Cavaliers", "photographer": "Ken Blaze", "source": "Imagn Images", "photo_date": "2022-01-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17486300.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Portland Trail Blazers", "photographer": "Troy Wayrynen", "source": "Imagn Images", "photo_date": "2022-01-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/17486325.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Portland Trail Blazers", "photographer": "Troy Wayrynen", "source": "Imagn Images", "photo_date": "2022-01-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/15892601.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Sacramento Kings", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2021-02-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13957500.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2020-01-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13966656.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2020-01-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13909272.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Utah Jazz at Brooklyn Nets", "photographer": "Andy Marlin", "source": "Imagn Images", "photo_date": "2020-01-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13901613.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Atlanta Hawks at Brooklyn Nets", "photographer": "Vincent Carchietta", "source": "Imagn Images", "photo_date": "2020-01-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13666691.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Denver Nuggets", "photographer": "Ron Chenoy", "source": "Imagn Images", "photo_date": "2019-11-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13652847.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Phoenix Suns", "photographer": "Jennifer Stewart", "source": "Imagn Images", "photo_date": "2019-11-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13612031.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-11-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13612061.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2019-11-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/13581599.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Brooklyn Nets at Memphis Grizzlies", "photographer": "Jerome Miron", "source": "Imagn Images", "photo_date": "2019-10-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12670092.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Playoffs-Boston Celtics at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2019-05-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12619885.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Playoffs-Boston Celtics at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2019-04-30"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12606767.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Playoffs-Boston Celtics at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2019-04-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12404630.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Charlotte Hornets", "photographer": "Jeremy Brevard", "source": "Imagn Images", "photo_date": "2019-03-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12320257.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Los Angeles Lakers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2019-03-09"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12293104.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2019-03-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12244039.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2019-02-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12244040.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Toronto Raptors", "photographer": "John E. Sokolowski", "source": "Imagn Images", "photo_date": "2019-02-26"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12224379.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Chicago Bulls", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "photo_date": "2019-02-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12208362.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Milwaukee Bucks", "photographer": "Jeff Hanisch", "source": "Imagn Images", "photo_date": "2019-02-21"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12181618.jpg", "player_name": "Kyrie Irving", "headline": "NBA: All Star Game", "photographer": "Bob Donnan", "source": "Imagn Images", "photo_date": "2019-02-17"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12027970.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Atlanta Hawks", "photographer": "Brett Davis", "source": "Imagn Images", "photo_date": "2019-01-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/12027971.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Atlanta Hawks", "photographer": "Brett Davis", "source": "Imagn Images", "photo_date": "2019-01-19"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11916292.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Memphis Grizzlies", "photographer": "Justin Ford", "source": "Imagn Images", "photo_date": "2018-12-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11906566.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-12-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11906560.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Houston Rockets", "photographer": "Troy Taormina", "source": "Imagn Images", "photo_date": "2018-12-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11852554.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Detroit Pistons", "photographer": "Tim Fuller", "source": "Imagn Images", "photo_date": "2018-12-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11835625.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Washington Wizards", "photographer": "Geoff Burke", "source": "Imagn Images", "photo_date": "2018-12-12"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11729539.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Dallas Mavericks", "photographer": "Shane Roper", "source": "Imagn Images", "photo_date": "2018-11-24"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11651597.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Portland Trail Blazers", "photographer": "Steve Dykes", "source": "Imagn Images", "photo_date": "2018-11-11"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11624403.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Phoenix Suns", "photographer": "Jennifer Stewart", "source": "Imagn Images", "photo_date": "2018-11-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11604606.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2018-11-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11587315.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Indiana Pacers", "photographer": "Trevor Ruszkowski", "source": "Imagn Images", "photo_date": "2018-11-03"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11538115.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-10-27"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11335480.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Preseason-Boston Celtics at Charlotte Hornets", "photographer": "Jeremy Brevard", "source": "Imagn Images", "photo_date": "2018-09-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11335489.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Preseason-Boston Celtics at Charlotte Hornets", "photographer": "Jeremy Brevard", "source": "Imagn Images", "photo_date": "2018-09-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/11335103.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Preseason-Boston Celtics at Charlotte Hornets", "photographer": "Jeremy Brevard", "source": "Imagn Images", "photo_date": "2018-09-28"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10689133.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Minnesota Timberwolves", "photographer": "Brad Rempel", "source": "Imagn Images", "photo_date": "2018-03-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10648789.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2018-02-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10576022.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Denver Nuggets", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "photo_date": "2018-01-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10561681.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Los Angeles Lakers", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "photo_date": "2018-01-23"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10476842.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Denver Nuggets at Boston Celtics", "photographer": "Winslow Townson", "source": "Imagn Images", "photo_date": "2017-12-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10472599.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Boston Celtics at Detroit Pistons", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2017-12-10"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10123578.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Finals-Cleveland Cavaliers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2017-06-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/10014289.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Playoffs-Indiana Pacers at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2017-04-15"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9716601.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Los Angeles Clippers at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2016-12-01"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9632889.jpg", "player_name": "Kyrie Irving", "headline": "NBA: New York Knicks at Cleveland Cavaliers", "photographer": "Rick Osentoski", "source": "Imagn Images", "photo_date": "2016-10-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9616740.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Preseason-Washington Wizards at Cleveland Cavaliers", "photographer": "Aaron Doster", "source": "Imagn Images", "photo_date": "2016-10-18"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9604580.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Preseason-Toronto Raptors at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2016-10-13"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9596821.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Preseason-Philadelphia 76ers at Cleveland Cavaliers", "photographer": "Aaron Doster", "source": "Imagn Images", "photo_date": "2016-10-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9601595.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Preseason-Philadelphia 76ers at Cleveland Cavaliers", "photographer": "Aaron Doster", "source": "Imagn Images", "photo_date": "2016-10-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9601594.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Preseason-Philadelphia 76ers at Cleveland Cavaliers", "photographer": "Aaron Doster", "source": "Imagn Images", "photo_date": "2016-10-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9188946.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Dallas Mavericks at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2016-03-16"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9103715.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Sacramento Kings at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2016-02-08"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9076516.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Minnesota Timberwolves at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2016-01-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9027168.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Cleveland Cavaliers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2015-12-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9027167.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Cleveland Cavaliers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2015-12-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9027166.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Cleveland Cavaliers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2015-12-25"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/8677784.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Playoffs-Cleveland Cavaliers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2015-06-04"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/8501681.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Chicago Bulls at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2015-04-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/8495096.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Miami Heat at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2015-04-02"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/7805664.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Cleveland Cavaliers at Golden State Warriors", "photographer": "Kelley L Cox", "source": "Imagn Images", "photo_date": "2014-03-14"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/7679554.jpg", "player_name": "Kyrie Irving", "headline": "NBA: Golden State Warriors at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2013-12-29"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/7609671.jpg", "player_name": "Kyrie Irving", "headline": "NBA: New York Knicks at Cleveland Cavaliers", "photographer": "David Richard", "source": "Imagn Images", "photo_date": "2013-12-10"}];</script>
 <script>
 document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
-document.addEventListener('DOMContentLoaded', function() {
-    const photos = window.galleryPhotos || [];
-    let currentIndex = 0;
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox || photos.length === 0) return;
-    const lbImg = lightbox.querySelector('img');
-    const lbPlayer = lightbox.querySelector('.lb-player');
-    const lbHeadline = lightbox.querySelector('.lb-headline');
-    const lbCredit = lightbox.querySelector('.lb-credit');
-    const counter = lightbox.querySelector('.counter');
-    function formatDate(dateStr) {
-        if (!dateStr) return '';
-        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-        catch(e) { return dateStr; }
-    }
-    function showPhoto() {
-        const p = photos[currentIndex];
-        lbImg.src = p.image_url;
-        lbPlayer.textContent = p.player_name || 'NBA';
-        lbHeadline.textContent = p.headline || '';
-        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
-        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
-    }
-    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
-    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
-    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
-    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
-    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
-    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
-    let touchStartX = 0;
-    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
-});
 </script>
 </body>
 </html>
