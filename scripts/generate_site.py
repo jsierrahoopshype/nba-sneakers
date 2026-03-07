@@ -1,3 +1,4 @@
+# Last updated: 2026-03-07 - force rebuild
 #!/usr/bin/env python3
 """
 Static Site Generator for NBA Shoe Gallery
