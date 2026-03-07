@@ -275,6 +275,18 @@ a:hover { text-decoration: underline; }
     font-size: 11px;
     color: var(--text-muted);
 }
+.player-link {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 2px;
+    color: var(--text);
+    text-decoration: none;
+    display: block;
+}
+.player-link:hover {
+    color: var(--accent);
+    text-decoration: none;
+}
 
 /* List grid (for player/brand lists) */
 .list-grid {
@@ -994,6 +1006,8 @@ a:hover { text-decoration: underline; }
 .photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
 .photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
 .photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
 .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
 .list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
@@ -1172,25 +1186,35 @@ document.addEventListener('DOMContentLoaded', function() {
 </body>
 </html>'''
     
+    def _name_to_slug(self, name: str) -> str:
+        """Convert a player name to a URL-safe slug"""
+        import re
+        slug = name.lower().strip()
+        slug = re.sub(r'[^a-z0-9\s-]', '', slug)
+        slug = re.sub(r'[\s_]+', '-', slug)
+        slug = re.sub(r'-+', '-', slug)
+        return slug.strip('-')
+
     def _photo_card_html(self, photo: Dict, idx: int = None) -> str:
         """Generate HTML for a single photo card"""
         player = escape(photo.get('player_name') or 'NBA')
+        player_slug = photo.get('player_slug') or self._name_to_slug(photo.get('player_name') or '')
         headline = escape((photo.get('headline') or '')[:100])
         photographer = escape(photo.get('photographer') or 'Imagn')
         source = escape(photo.get('source') or 'USA TODAY Sports')
         date = photo.get('photo_date', '')
         thumb = escape(photo.get('thumbnail_url') or photo.get('image_url', ''))
-        
+
         try:
             date_obj = datetime.strptime(date, '%Y-%m-%d')
             date_fmt = date_obj.strftime('%b %d, %Y')
         except:
             date_fmt = date
-        
+
         return f'''<div class="photo-card">
     <div class="img-wrap"><img src="{thumb}" alt="{headline}" loading="lazy"></div>
     <div class="meta">
-        <div class="player">{player}</div>
+        <a href="{self.base_url}/players/{player_slug}/" class="player-link">{player}</a>
         <div class="headline">{headline}</div>
         <div class="credit">📷 {photographer} · {source} · {date_fmt}</div>
     </div>
