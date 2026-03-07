@@ -872,8 +872,11 @@ document.addEventListener('DOMContentLoaded', function() {
 '''
         self._write_file('js/gallery.js', js)
     
-    def _base_template(self, title: str, content: str, photos_json: str = None) -> str:
-        """Wrap content in base HTML template"""
+    def _base_template(self, title: str, content: str, photos_json: str = None, meta: Dict = None) -> str:
+        """Wrap content in base HTML template
+
+        meta dict supports: description, og_image, canonical
+        """
         css = '''
 :root {
     --primary: #1a1a2e;
@@ -1019,12 +1022,29 @@ document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 
 document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 '''
         
+        meta = meta or {}
+        full_title = f"{escape(title)} | {self.site_title}"
+        meta_desc = escape(meta.get('description', ''))
+        og_image = escape(meta.get('og_image', ''))
+        canonical = escape(meta.get('canonical', ''))
+
+        meta_tags = ''
+        if meta_desc:
+            meta_tags += f'\n<meta name="description" content="{meta_desc}">'
+        meta_tags += f'\n<meta property="og:title" content="{full_title}">'
+        if meta_desc:
+            meta_tags += f'\n<meta property="og:description" content="{meta_desc}">'
+        if og_image:
+            meta_tags += f'\n<meta property="og:image" content="{og_image}">'
+        if canonical:
+            meta_tags += f'\n<link rel="canonical" href="{canonical}">'
+
         return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{escape(title)} | {self.site_title}</title>
+<title>{full_title}</title>{meta_tags}
 <style>{css}</style>
 </head>
 <body>
@@ -1212,7 +1232,13 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             'photo_date': p.get('photo_date', '')
         } for p in hero_photos], ensure_ascii=False)
         
-        html = self._base_template("NBA Sneakers", content, photos_json)
+        og_image = hero_photos[0].get('thumbnail_url') or hero_photos[0].get('image_url', '') if hero_photos else ''
+        meta = {
+            'description': 'Daily NBA sneaker photos from every game. Browse by player, team, and week.',
+            'og_image': og_image,
+            'canonical': f"{self.base_url}/",
+        }
+        html = self._base_template("NBA Sneakers", content, photos_json, meta=meta)
         self._write_file('index.html', html)
     
     def _generate_players_index(self):
@@ -1518,11 +1544,12 @@ Disallow: /search/players.json
 
         seo_title = f"{photo.get('player_name') or 'NBA'} Sneakers - {date_fmt}"
 
-        # Use _base_template but inject meta description via a small wrapper
-        html = self._base_template(seo_title, content)
-        # Insert meta description after <title> tag
-        meta_tag = f'<meta name="description" content="{escape(meta_desc)}">'
-        html = html.replace('</title>', f'</title>\n{meta_tag}', 1)
+        meta = {
+            'description': meta_desc,
+            'og_image': photo.get('thumbnail_url') or photo.get('image_url', ''),
+            'canonical': f"{self.base_url}/photos/{imagn_id}/",
+        }
+        html = self._base_template(seo_title, content, meta=meta)
 
         self._write_file(f"photos/{imagn_id}/index.html", html)
 
@@ -1573,7 +1600,13 @@ Disallow: /search/players.json
             'photo_date': p.get('photo_date', '')
         } for p in photos], ensure_ascii=False)
         
-        html = self._base_template(player['name'], content, photos_json)
+        og_image = photos[0].get('thumbnail_url') or photos[0].get('image_url', '') if photos else ''
+        meta = {
+            'description': f"Browse {len(photos)} sneaker photos of {player['name']} from NBA games.",
+            'og_image': og_image,
+            'canonical': f"{self.base_url}/players/{player['slug']}/",
+        }
+        html = self._base_template(player['name'], content, photos_json, meta=meta)
         self._write_file(f"players/{player['slug']}/index.html", html)
     
     def _generate_brand_page(self, brand: Dict):
@@ -1639,7 +1672,13 @@ Disallow: /search/players.json
             'photo_date': p.get('photo_date', '')
         } for p in photos], ensure_ascii=False)
         
-        html = self._base_template(f"Week {week['week']}", content, photos_json)
+        og_image = photos[0].get('thumbnail_url') or photos[0].get('image_url', '') if photos else ''
+        meta = {
+            'description': f"{len(photos)} NBA sneaker photos from week {week['week']}.",
+            'og_image': og_image,
+            'canonical': f"{self.base_url}/weekly/{week['week']}/",
+        }
+        html = self._base_template(f"Week {week['week']}", content, photos_json, meta=meta)
         self._write_file(f"weekly/{week['week']}/index.html", html)
     
     def _generate_embed_snippet(self):
