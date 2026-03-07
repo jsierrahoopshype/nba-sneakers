@@ -145,7 +145,18 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+.more-players { padding: 32px 0; }
+.more-players h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
+.more-players-row { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.more-players-row::-webkit-scrollbar { height: 6px; }
+.more-players-row::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.more-player-card { flex: 0 0 160px; scroll-snap-align: start; background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; }
+.more-player-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); text-decoration: none; }
+.more-player-card .mp-img { height: 100px; background-size: cover; background-position: center; background-color: var(--primary); }
+.more-player-card .mp-info { padding: 10px 12px; }
+.more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -160,6 +171,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         </div>
         <nav class="site-nav">
             <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/">Players</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/">Teams</a>
             <a href="https://jsierrahoopshype.github.io/nba-sneakers/weekly/">Weekly</a>
         </nav>
     </div>
@@ -330,22 +342,22 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <section class="section">
         <div class="section-header">
             <h2 class="section-title">🏀 Player Timelines</h2>
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/" class="section-link">View all 1084 players →</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/" class="section-link">View all 1083 players →</a>
         </div>
         <p class="section-desc">See every shoe photo for your favorite players</p>
         <div class="list-grid">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lebron-james/" class="list-item"><span class="name">LeBron James</span><span class="count">302 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/stephen-curry/" class="list-item"><span class="name">Stephen Curry</span><span class="count">285 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/luka-doncic/" class="list-item"><span class="name">Luka Doncic</span><span class="count">283 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/donovan-mitchell/" class="list-item"><span class="name">Donovan Mitchell</span><span class="count">197 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/james-harden/" class="list-item"><span class="name">James Harden</span><span class="count">189 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/giannis-antetokounmpo/" class="list-item"><span class="name">Giannis Antetokounmpo</span><span class="count">187 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="list-item"><span class="name">Kevin Durant</span><span class="count">183 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/russell-westbrook/" class="list-item"><span class="name">Russell Westbrook</span><span class="count">179 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nikola-jokic/" class="list-item"><span class="name">Nikola Jokic</span><span class="count">177 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/draymond-green/" class="list-item"><span class="name">Draymond Green</span><span class="count">131 photos</span></a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lebron-james/" class="list-item"><span class="name">LeBron James</span><span class="count">303 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/stephen-curry/" class="list-item"><span class="name">Stephen Curry</span><span class="count">285 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/luka-doncic/" class="list-item"><span class="name">Luka Doncic</span><span class="count">283 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/donovan-mitchell/" class="list-item"><span class="name">Donovan Mitchell</span><span class="count">197 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/james-harden/" class="list-item"><span class="name">James Harden</span><span class="count">189 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/giannis-antetokounmpo/" class="list-item"><span class="name">Giannis Antetokounmpo</span><span class="count">187 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="list-item"><span class="name">Kevin Durant</span><span class="count">183 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/russell-westbrook/" class="list-item"><span class="name">Russell Westbrook</span><span class="count">179 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nikola-jokic/" class="list-item"><span class="name">Nikola Jokic</span><span class="count">177 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/draymond-green/" class="list-item"><span class="name">Draymond Green</span><span class="count">131 photos</span></a>
         </div>
     </section>
     
-    <!-- BRAND HUBS -->
+    <!-- BROWSE BY TEAM -->
     <section class="section">
         <div class="section-header">
-            <h2 class="section-title">👟 Shop by Brand</h2>
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/brands/" class="section-link">View all →</a>
+            <h2 class="section-title">🏀 Browse by Team</h2>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/" class="section-link">View all →</a>
         </div>
-        <div class="list-grid brands-grid">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/brands/other/" class="list-item brand-item"><span class="name">Other</span><span class="count">15058 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/brands/anta/" class="list-item brand-item"><span class="name">Anta</span><span class="count">1358 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/brands/nike/" class="list-item brand-item"><span class="name">Nike</span><span class="count">876 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/brands/jordan/" class="list-item brand-item"><span class="name">Jordan Brand</span><span class="count">173 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/brands/peak/" class="list-item brand-item"><span class="name">Peak</span><span class="count">153 photos</span></a>
+        <div class="list-grid">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/raptors/" class="list-item"><span class="name">Toronto Raptors</span><span class="count">2167 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/cavaliers/" class="list-item"><span class="name">Cleveland Cavaliers</span><span class="count">2124 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/warriors/" class="list-item"><span class="name">Golden State Warriors</span><span class="count">2107 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/nuggets/" class="list-item"><span class="name">Denver Nuggets</span><span class="count">1945 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/pistons/" class="list-item"><span class="name">Detroit Pistons</span><span class="count">1630 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/mavericks/" class="list-item"><span class="name">Dallas Mavericks</span><span class="count">1583 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/kings/" class="list-item"><span class="name">Sacramento Kings</span><span class="count">1543 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/nets/" class="list-item"><span class="name">Brooklyn Nets</span><span class="count">1455 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/bucks/" class="list-item"><span class="name">Milwaukee Bucks</span><span class="count">1403 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/magic/" class="list-item"><span class="name">Orlando Magic</span><span class="count">1363 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/hawks/" class="list-item"><span class="name">Atlanta Hawks</span><span class="count">1308 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/jazz/" class="list-item"><span class="name">Utah Jazz</span><span class="count">1213 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/bulls/" class="list-item"><span class="name">Chicago Bulls</span><span class="count">1149 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/pelicans/" class="list-item"><span class="name">New Orleans Pelicans</span><span class="count">1103 photos</span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/lakers/" class="list-item"><span class="name">Los Angeles Lakers</span><span class="count">1082 photos</span></a>
         </div>
     </section>
     
@@ -368,7 +380,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
                 <div class="stat-label">Total Photos</div>
             </div>
             <div class="stat-item">
-                <div class="stat-value">1084</div>
+                <div class="stat-value">1083</div>
                 <div class="stat-label">Players</div>
             </div>
             <div class="stat-item">

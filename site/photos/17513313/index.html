@@ -145,7 +145,18 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+.more-players { padding: 32px 0; }
+.more-players h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
+.more-players-row { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.more-players-row::-webkit-scrollbar { height: 6px; }
+.more-players-row::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.more-player-card { flex: 0 0 160px; scroll-snap-align: start; background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; }
+.more-player-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); text-decoration: none; }
+.more-player-card .mp-img { height: 100px; background-size: cover; background-position: center; background-color: var(--primary); }
+.more-player-card .mp-info { padding: 10px 12px; }
+.more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -160,6 +171,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         </div>
         <nav class="site-nav">
             <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/">Players</a>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/">Teams</a>
             <a href="https://jsierrahoopshype.github.io/nba-sneakers/weekly/">Weekly</a>
         </nav>
     </div>
@@ -202,6 +214,63 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="photo-nav"><a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17513311/" class="photo-nav-link prev">&laquo; Lou Williams</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17513929/" class="photo-nav-link next">Trevor Ariza &raquo;</a></div>
     </section>
 </main>
+
+<section class="more-players">
+    <div class="container">
+        <h2>More Players to Explore</h2>
+        <div class="more-players-row">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/24866572.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Jae Crowder</div>
+        <div class="mp-count">63 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/isaiah-joe/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28329958.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Isaiah Joe</div>
+        <div class="mp-count">16 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jordan-bell/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/13821017.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Jordan Bell</div>
+        <div class="mp-count">22 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-knox-ii/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/21620365.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Kevin Knox II</div>
+        <div class="mp-count">13 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/wendell-carter-jr/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28378300.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Wendell Carter Jr</div>
+        <div class="mp-count">57 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rudy-gay/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/19967267.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Rudy Gay</div>
+        <div class="mp-count">35 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/derrick-white/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28122202.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Derrick White</div>
+        <div class="mp-count">15 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patty-mills/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25212352.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Patty Mills</div>
+        <div class="mp-count">26 photos</div>
+    </div>
+</a>
+        </div>
+    </div>
+</section>
 
 
 <footer class="site-footer">
