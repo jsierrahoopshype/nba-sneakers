@@ -25,7 +25,7 @@ from archive import PhotoArchive
 
 # Try to import affiliate module
 try:
-    from affiliate import AffiliateRouter, get_affiliate_css, get_tracking_js, AFFILIATE_POSITIONS
+    from affiliate import AffiliateRouter, AFFILIATE_POSITIONS
     HAS_AFFILIATE = True
 except ImportError:
     HAS_AFFILIATE = False
@@ -52,7 +52,7 @@ class SiteGenerator:
         print(f"Generating site from {len(self.archive.photos)} photos...", file=sys.stderr)
         
         # Create directories
-        for subdir in ['players', 'weekly', 'css', 'js', 'search']:
+        for subdir in ['players', 'weekly', 'css', 'js', 'search', 'photos']:
             os.makedirs(os.path.join(self.output_dir, subdir), exist_ok=True)
         
         # Generate pages
@@ -75,6 +75,14 @@ class SiteGenerator:
         for week in self.archive.get_all_weeks():
             self._generate_weekly_page(week)
         
+        # Generate individual photo pages
+        all_photos = sorted(self.archive.photos.values(), key=lambda p: p.get('photo_date', ''), reverse=True)
+        for idx, photo in enumerate(all_photos):
+            prev_photo = all_photos[idx - 1] if idx > 0 else None
+            next_photo = all_photos[idx + 1] if idx < len(all_photos) - 1 else None
+            self._generate_photo_page(photo, prev_photo, next_photo)
+        print(f"Generated {len(all_photos)} individual photo pages", file=sys.stderr)
+
         # Generate embeddable snippet for current week
         self._generate_embed_snippet()
         
@@ -275,6 +283,77 @@ a:hover { text-decoration: underline; }
     font-size: 11px;
     color: var(--text-muted);
 }
+.player-link {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 2px;
+    color: var(--text);
+    text-decoration: none;
+    display: block;
+}
+.player-link:hover {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+/* Photo detail page */
+.photo-detail {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.photo-detail-img {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+}
+.photo-detail-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.photo-detail-info {
+    margin-bottom: 24px;
+}
+.photo-detail-info .headline {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+.photo-detail-info .credit {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+.photo-detail-actions {
+    margin-bottom: 24px;
+}
+.back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--primary);
+    color: white;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+}
+.back-btn:hover {
+    background: var(--primary-dark);
+    text-decoration: none;
+    color: white;
+}
+.photo-nav {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+.photo-nav-link {
+    font-size: 14px;
+    font-weight: 500;
+}
+.photo-nav-link.next {
+    margin-left: auto;
+}
 
 /* List grid (for player/brand lists) */
 .list-grid {
@@ -326,68 +405,6 @@ a:hover { text-decoration: underline; }
     margin-bottom: 8px;
 }
 .breadcrumb a { color: var(--text-secondary); }
-
-/* Lightbox */
-.lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.95);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-.lightbox.active { display: flex; }
-.lightbox img {
-    max-width: 90vw;
-    max-height: 70vh;
-    object-fit: contain;
-}
-.lightbox .close {
-    position: absolute;
-    top: 16px; right: 16px;
-    color: white;
-    font-size: 32px;
-    cursor: pointer;
-    background: rgba(0,0,0,0.5);
-    width: 48px; height: 48px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.lightbox .nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: white;
-    font-size: 40px;
-    cursor: pointer;
-    padding: 16px;
-    background: rgba(0,0,0,0.3);
-    border-radius: 4px;
-}
-.lightbox .nav.prev { left: 16px; }
-.lightbox .nav.next { right: 16px; }
-.lightbox .info {
-    color: white;
-    text-align: center;
-    padding: 16px;
-    max-width: 90vw;
-}
-.lightbox .lb-player { font-size: 18px; font-weight: 600; }
-.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
-.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
-.lightbox .counter {
-    position: absolute;
-    top: 16px; left: 16px;
-    color: white;
-    background: rgba(0,0,0,0.5);
-    padding: 8px 12px;
-    border-radius: 4px;
-    font-size: 14px;
-}
 
 /* Footer */
 .site-footer {
@@ -769,7 +786,6 @@ a:hover { text-decoration: underline; }
     .stats-bar { gap: 20px; }
     .stat-value { font-size: 22px; }
     .photo-grid { gap: 12px; }
-    .lightbox .nav { font-size: 28px; padding: 10px; }
     .affiliate-module.featured { padding: 16px; }
     .buy-btn.large { padding: 12px 20px; font-size: 16px; }
     .site-nav { gap: 16px; }
@@ -782,93 +798,9 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     
     def _generate_js(self):
         """Generate shared JavaScript"""
-        # Lightbox functionality - no variable interpolation needed
         js = '''
 document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
-
-// Lightbox functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const photos = window.galleryPhotos || [];
-    let currentIndex = 0;
-    
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox || photos.length === 0) return;
-    
-    const lbImg = lightbox.querySelector('img');
-    const lbPlayer = lightbox.querySelector('.lb-player');
-    const lbHeadline = lightbox.querySelector('.lb-headline');
-    const lbCredit = lightbox.querySelector('.lb-credit');
-    const counter = lightbox.querySelector('.counter');
-    
-    function formatDate(dateStr) {
-        if (!dateStr) return '';
-        try {
-            const d = new Date(dateStr + 'T00:00:00');
-            return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-        } catch(e) { return dateStr; }
-    }
-    
-    function showPhoto() {
-        const p = photos[currentIndex];
-        lbImg.src = p.image_url;
-        lbPlayer.textContent = p.player_name || 'NBA';
-        lbHeadline.textContent = p.headline || '';
-        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
-        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
-    }
-    
-    function openLightbox(index) {
-        currentIndex = index;
-        showPhoto();
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-    
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-    
-    function nextPhoto() {
-        currentIndex = (currentIndex + 1) % photos.length;
-        showPhoto();
-    }
-    
-    function prevPhoto() {
-        currentIndex = (currentIndex - 1 + photos.length) % photos.length;
-        showPhoto();
-    }
-    
-    // Bind click events to photo cards
-    document.querySelectorAll('.photo-card').forEach(function(card, i) {
-        card.addEventListener('click', function() {
-            openLightbox(i);
-        });
-    });
-    
-    // Lightbox controls
-    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
-    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
-    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
-    
-    // Keyboard nav
-    document.addEventListener('keydown', function(e) {
-        if (!lightbox.classList.contains('active')) return;
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowRight') nextPhoto();
-        if (e.key === 'ArrowLeft') prevPhoto();
-    });
-    
-    // Touch swipe
-    let touchStartX = 0;
-    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-    lightbox.addEventListener('touchend', function(e) {
-        const diff = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); }
-    });
-});
 '''
         
         # Header search and tracking - needs variable interpolation
@@ -876,52 +808,63 @@ document.addEventListener('DOMContentLoaded', function() {
         js += '''
 // Header Quick Search
 document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('quick-search');
-    const resultsDiv = document.getElementById('quick-results');
-    
+    var BASE_URL = "''' + base_url + '''";
+    var searchInput = document.getElementById('quick-search');
+    var resultsDiv = document.getElementById('quick-results');
+
     if (!searchInput || !resultsDiv) return;
-    
-    let players = [];
-    fetch("''' + base_url + '''/search/players.json")
-        .then(r => r.json())
-        .then(data => { players = data.players || []; })
-        .catch(e => console.log('Could not load player index'));
-    
+
+    var players = [];
+
+    // 1. Fetch player index on page load
+    fetch(BASE_URL + "/search/players.json")
+        .then(function(r) { return r.json(); })
+        .then(function(data) { players = data.players || []; })
+        .catch(function(e) { console.log('Could not load player index', e); });
+
+    // 2. Filter players as user types (minimum 2 characters)
     searchInput.addEventListener('input', function() {
-        const query = this.value.toLowerCase().trim();
-        
+        var query = this.value.toLowerCase().trim();
+
         if (query.length < 2) {
             resultsDiv.classList.remove('active');
+            resultsDiv.innerHTML = '';
             return;
         }
-        
-        const matches = players.filter(p => 
-            p.name.toLowerCase().includes(query)
-        ).slice(0, 8);
-        
+
+        var matches = players.filter(function(p) {
+            return p.name.toLowerCase().includes(query);
+        }).slice(0, 8);
+
+        // 3. Show dropdown with matching player names and photo counts
         if (matches.length === 0) {
             resultsDiv.innerHTML = '<div class="quick-result-item"><span class="name">No players found</span></div>';
         } else {
-            resultsDiv.innerHTML = matches.map(p => 
-                `<a href="''' + base_url + '''/players/${p.slug}/" class="quick-result-item">
-                    <span class="name">${p.name}</span>
-                    <span class="count">${p.count} photos</span>
-                </a>`
-            ).join('');
+            resultsDiv.innerHTML = matches.map(function(p) {
+                return '<a href="' + BASE_URL + '/players/' + p.slug + '/" class="quick-result-item">'
+                    + '<span class="name">' + p.name + '</span>'
+                    + '<span class="count">' + p.count + ' photo' + (p.count !== 1 ? 's' : '') + '</span>'
+                    + '</a>';
+            }).join('');
         }
         resultsDiv.classList.add('active');
     });
-    
+
+    // 4. Navigate to player page on click (handled by <a> href) or Enter key
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            var firstLink = resultsDiv.querySelector('a');
+            if (firstLink) {
+                window.location.href = firstLink.href;
+            }
+        }
+    });
+
+    // 5. Close dropdown when clicking outside
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.header-search')) {
             resultsDiv.classList.remove('active');
-        }
-    });
-    
-    searchInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-            const firstLink = resultsDiv.querySelector('a');
-            if (firstLink) window.location.href = firstLink.href;
+            resultsDiv.innerHTML = '';
         }
     });
 });
@@ -929,8 +872,11 @@ document.addEventListener('DOMContentLoaded', function() {
 '''
         self._write_file('js/gallery.js', js)
     
-    def _base_template(self, title: str, content: str, photos_json: str = "[]") -> str:
-        """Wrap content in base HTML template"""
+    def _base_template(self, title: str, content: str, photos_json: str = None, meta: Dict = None) -> str:
+        """Wrap content in base HTML template
+
+        meta dict supports: description, og_image, canonical
+        """
         css = '''
 :root {
     --primary: #1a1a2e;
@@ -975,7 +921,7 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
 .photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -983,6 +929,20 @@ a:hover { text-decoration: underline; }
 .photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
 .photo-card .headline { font-size: 13px; color: var(--text-secondary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 8px; }
 .photo-card .credit { font-size: 11px; color: var(--text-muted); }
+.player-link { font-weight: 600; font-size: 14px; margin-bottom: 2px; color: var(--text); text-decoration: none; display: block; }
+.player-link:hover { color: var(--accent); text-decoration: none; }
+.photo-detail { max-width: 800px; margin: 0 auto; }
+.photo-detail-img { border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 20px; }
+.photo-detail-img img { width: 100%; height: auto; display: block; }
+.photo-detail-info { margin-bottom: 24px; }
+.photo-detail-info .headline { font-size: 16px; color: var(--text-secondary); margin-bottom: 8px; }
+.photo-detail-info .credit { font-size: 13px; color: var(--text-muted); }
+.photo-detail-actions { margin-bottom: 24px; }
+.back-btn { display: inline-block; padding: 10px 20px; background: var(--primary); color: white; border-radius: 8px; font-weight: 500; font-size: 14px; }
+.back-btn:hover { background: var(--primary-dark); text-decoration: none; color: white; }
+.photo-nav { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--border); }
+.photo-nav-link { font-size: 14px; font-weight: 500; }
+.photo-nav-link.next { margin-left: auto; }
 .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .list-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--card-bg); border-radius: 8px; box-shadow: var(--shadow); transition: box-shadow 0.2s; }
 .list-item:hover { box-shadow: var(--shadow-hover); text-decoration: none; }
@@ -993,18 +953,6 @@ a:hover { text-decoration: underline; }
 .page-header .subtitle { color: var(--text-secondary); }
 .breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
 .breadcrumb a { color: var(--text-secondary); }
-.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
-.lightbox.active { display: flex; }
-.lightbox img { max-width: 90vw; max-height: 70vh; object-fit: contain; }
-.lightbox .close { position: absolute; top: 16px; right: 16px; color: white; font-size: 32px; cursor: pointer; background: rgba(0,0,0,0.5); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.lightbox .nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 40px; cursor: pointer; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 4px; }
-.lightbox .nav.prev { left: 16px; }
-.lightbox .nav.next { right: 16px; }
-.lightbox .info { color: white; text-align: center; padding: 16px; max-width: 90vw; }
-.lightbox .lb-player { font-size: 18px; font-weight: 600; }
-.lightbox .lb-headline { font-size: 14px; color: #ccc; margin-top: 4px; }
-.lightbox .lb-credit { font-size: 12px; color: #999; margin-top: 8px; }
-.lightbox .counter { position: absolute; top: 16px; left: 16px; color: white; background: rgba(0,0,0,0.5); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -1065,58 +1013,38 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 '''
 
         js = '''
 document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
-document.addEventListener('DOMContentLoaded', function() {
-    const photos = window.galleryPhotos || [];
-    let currentIndex = 0;
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox || photos.length === 0) return;
-    const lbImg = lightbox.querySelector('img');
-    const lbPlayer = lightbox.querySelector('.lb-player');
-    const lbHeadline = lightbox.querySelector('.lb-headline');
-    const lbCredit = lightbox.querySelector('.lb-credit');
-    const counter = lightbox.querySelector('.counter');
-    function formatDate(dateStr) {
-        if (!dateStr) return '';
-        try { const d = new Date(dateStr + 'T00:00:00'); return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
-        catch(e) { return dateStr; }
-    }
-    function showPhoto() {
-        const p = photos[currentIndex];
-        lbImg.src = p.image_url;
-        lbPlayer.textContent = p.player_name || 'NBA';
-        lbHeadline.textContent = p.headline || '';
-        lbCredit.textContent = '📷 ' + (p.photographer || 'Imagn') + ' · ' + (p.source || 'USA TODAY Sports') + ' · ' + formatDate(p.photo_date);
-        counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
-    }
-    function openLightbox(index) { currentIndex = index; showPhoto(); lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
-    function nextPhoto() { currentIndex = (currentIndex + 1) % photos.length; showPhoto(); }
-    function prevPhoto() { currentIndex = (currentIndex - 1 + photos.length) % photos.length; showPhoto(); }
-    document.querySelectorAll('.photo-card').forEach(function(card, i) { card.addEventListener('click', function() { openLightbox(i); }); });
-    lightbox.querySelector('.close').addEventListener('click', closeLightbox);
-    lightbox.querySelector('.next').addEventListener('click', function(e) { e.stopPropagation(); nextPhoto(); });
-    lightbox.querySelector('.prev').addEventListener('click', function(e) { e.stopPropagation(); prevPhoto(); });
-    lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', function(e) { if (!lightbox.classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextPhoto(); if (e.key === 'ArrowLeft') prevPhoto(); });
-    let touchStartX = 0;
-    lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-    lightbox.addEventListener('touchend', function(e) { const diff = e.changedTouches[0].clientX - touchStartX; if (Math.abs(diff) > 50) { diff > 0 ? prevPhoto() : nextPhoto(); } });
-});
 '''
         
+        meta = meta or {}
+        full_title = f"{escape(title)} | {self.site_title}"
+        meta_desc = escape(meta.get('description', ''))
+        og_image = escape(meta.get('og_image', ''))
+        canonical = escape(meta.get('canonical', ''))
+
+        meta_tags = ''
+        if meta_desc:
+            meta_tags += f'\n<meta name="description" content="{meta_desc}">'
+        meta_tags += f'\n<meta property="og:title" content="{full_title}">'
+        if meta_desc:
+            meta_tags += f'\n<meta property="og:description" content="{meta_desc}">'
+        if og_image:
+            meta_tags += f'\n<meta property="og:image" content="{og_image}">'
+        if canonical:
+            meta_tags += f'\n<link rel="canonical" href="{canonical}">'
+
         return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{escape(title)} | {self.site_title}</title>
+<title>{full_title}</title>{meta_tags}
 <style>{css}</style>
 </head>
 <body>
@@ -1137,49 +1065,46 @@ document.addEventListener('DOMContentLoaded', function() {
 
 {content}
 
-<div class="lightbox" id="lightbox">
-    <span class="close">&times;</span>
-    <span class="nav prev">&#10094;</span>
-    <span class="nav next">&#10095;</span>
-    <span class="counter"></span>
-    <img src="" alt="">
-    <div class="info">
-        <div class="lb-player"></div>
-        <div class="lb-headline"></div>
-        <div class="lb-credit"></div>
-    </div>
-</div>
-
 <footer class="site-footer">
     <div class="container">
         Photos © USA TODAY Sports / Imagn Images · Built for HoopsHype
     </div>
 </footer>
 
-<script>window.galleryPhotos = {photos_json};</script>
 <script>{js}</script>
 </body>
 </html>'''
     
+    def _name_to_slug(self, name: str) -> str:
+        """Convert a player name to a URL-safe slug"""
+        import re
+        slug = name.lower().strip()
+        slug = re.sub(r'[^a-z0-9\s-]', '', slug)
+        slug = re.sub(r'[\s_]+', '-', slug)
+        slug = re.sub(r'-+', '-', slug)
+        return slug.strip('-')
+
     def _photo_card_html(self, photo: Dict, idx: int = None) -> str:
         """Generate HTML for a single photo card"""
         player = escape(photo.get('player_name') or 'NBA')
+        player_slug = photo.get('player_slug') or self._name_to_slug(photo.get('player_name') or '')
+        imagn_id = escape(photo.get('imagn_id') or '')
         headline = escape((photo.get('headline') or '')[:100])
         photographer = escape(photo.get('photographer') or 'Imagn')
         source = escape(photo.get('source') or 'USA TODAY Sports')
         date = photo.get('photo_date', '')
         thumb = escape(photo.get('thumbnail_url') or photo.get('image_url', ''))
-        
+
         try:
             date_obj = datetime.strptime(date, '%Y-%m-%d')
             date_fmt = date_obj.strftime('%b %d, %Y')
         except:
             date_fmt = date
-        
+
         return f'''<div class="photo-card">
-    <div class="img-wrap"><img src="{thumb}" alt="{headline}" loading="lazy"></div>
+    <a href="{self.base_url}/photos/{imagn_id}/" class="img-wrap"><img src="{thumb}" alt="{headline}" loading="lazy"></a>
     <div class="meta">
-        <div class="player">{player}</div>
+        <a href="{self.base_url}/players/{player_slug}/" class="player-link">{player}</a>
         <div class="headline">{headline}</div>
         <div class="credit">📷 {photographer} · {source} · {date_fmt}</div>
     </div>
@@ -1307,7 +1232,13 @@ document.addEventListener('DOMContentLoaded', function() {
             'photo_date': p.get('photo_date', '')
         } for p in hero_photos], ensure_ascii=False)
         
-        html = self._base_template("NBA Sneakers", content, photos_json)
+        og_image = hero_photos[0].get('thumbnail_url') or hero_photos[0].get('image_url', '') if hero_photos else ''
+        meta = {
+            'description': 'Daily NBA sneaker photos from every game. Browse by player, team, and week.',
+            'og_image': og_image,
+            'canonical': f"{self.base_url}/",
+        }
+        html = self._base_template("NBA Sneakers", content, photos_json, meta=meta)
         self._write_file('index.html', html)
     
     def _generate_players_index(self):
@@ -1542,6 +1473,86 @@ Disallow: /search/players.json
 '''
         self._write_file('robots.txt', robots)
 
+    def _generate_photo_page(self, photo: Dict, prev_photo: Dict = None, next_photo: Dict = None):
+        """Generate individual photo detail page at /photos/{imagn_id}/index.html"""
+        imagn_id = photo.get('imagn_id', '')
+        if not imagn_id:
+            return
+
+        player = escape(photo.get('player_name') or 'NBA')
+        player_slug = photo.get('player_slug') or self._name_to_slug(photo.get('player_name') or '')
+        headline = escape(photo.get('headline') or '')
+        caption = escape(photo.get('caption') or '')
+        photographer = escape(photo.get('photographer') or 'Imagn')
+        source = escape(photo.get('source') or 'USA TODAY Sports')
+        image_url = escape(photo.get('image_url', ''))
+        date = photo.get('photo_date', '')
+
+        try:
+            date_obj = datetime.strptime(date, '%Y-%m-%d')
+            date_fmt = date_obj.strftime('%b %d, %Y')
+        except Exception:
+            date_fmt = date
+
+        # SEO meta description from caption
+        meta_desc = (photo.get('caption') or headline or '')[:160]
+
+        # Affiliate module
+        affiliate_html = ''
+        if self.affiliate:
+            affiliate_html = self.affiliate.get_buy_button_html(
+                photo.get('caption', ''), photo.get('player_name', ''), 'featured'
+            )
+
+        # Prev/Next navigation
+        nav_parts = []
+        if prev_photo:
+            prev_id = prev_photo.get('imagn_id', '')
+            prev_player = escape(prev_photo.get('player_name') or 'NBA')
+            nav_parts.append(f'<a href="{self.base_url}/photos/{prev_id}/" class="photo-nav-link prev">&laquo; {prev_player}</a>')
+        if next_photo:
+            next_id = next_photo.get('imagn_id', '')
+            next_player = escape(next_photo.get('player_name') or 'NBA')
+            nav_parts.append(f'<a href="{self.base_url}/photos/{next_id}/" class="photo-nav-link next">{next_player} &raquo;</a>')
+        nav_html = f'<div class="photo-nav">{"".join(nav_parts)}</div>' if nav_parts else ''
+
+        content = f'''
+<div class="page-header">
+    <div class="container">
+        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / <a href="{self.base_url}/players/{player_slug}/">{player}</a> / Photo</div>
+    </div>
+</div>
+
+<main class="container">
+    <section class="section photo-detail">
+        <div class="photo-detail-img">
+            <img src="{image_url}" alt="{headline}" loading="lazy">
+        </div>
+        <div class="photo-detail-info">
+            <a href="{self.base_url}/players/{player_slug}/" class="player-link">{player}</a>
+            <div class="headline">{headline}</div>
+            <div class="credit">📷 {photographer} · {source} · {date_fmt}</div>
+        </div>
+        {affiliate_html}
+        <div class="photo-detail-actions">
+            <a href="{self.base_url}/players/{player_slug}/" class="back-btn">&larr; Back to {player}</a>
+        </div>
+        {nav_html}
+    </section>
+</main>
+'''
+
+        seo_title = f"{photo.get('player_name') or 'NBA'} Sneakers - {date_fmt}"
+
+        meta = {
+            'description': meta_desc,
+            'og_image': photo.get('thumbnail_url') or photo.get('image_url', ''),
+            'canonical': f"{self.base_url}/photos/{imagn_id}/",
+        }
+        html = self._base_template(seo_title, content, meta=meta)
+
+        self._write_file(f"photos/{imagn_id}/index.html", html)
+
     def _generate_player_page(self, player: Dict):
         """Generate individual player page with affiliate modules"""
         photos = self.archive.get_photos_by_player(player['slug'])
@@ -1589,7 +1600,13 @@ Disallow: /search/players.json
             'photo_date': p.get('photo_date', '')
         } for p in photos], ensure_ascii=False)
         
-        html = self._base_template(player['name'], content, photos_json)
+        og_image = photos[0].get('thumbnail_url') or photos[0].get('image_url', '') if photos else ''
+        meta = {
+            'description': f"Browse {len(photos)} sneaker photos of {player['name']} from NBA games.",
+            'og_image': og_image,
+            'canonical': f"{self.base_url}/players/{player['slug']}/",
+        }
+        html = self._base_template(player['name'], content, photos_json, meta=meta)
         self._write_file(f"players/{player['slug']}/index.html", html)
     
     def _generate_brand_page(self, brand: Dict):
@@ -1655,7 +1672,13 @@ Disallow: /search/players.json
             'photo_date': p.get('photo_date', '')
         } for p in photos], ensure_ascii=False)
         
-        html = self._base_template(f"Week {week['week']}", content, photos_json)
+        og_image = photos[0].get('thumbnail_url') or photos[0].get('image_url', '') if photos else ''
+        meta = {
+            'description': f"{len(photos)} NBA sneaker photos from week {week['week']}.",
+            'og_image': og_image,
+            'canonical': f"{self.base_url}/weekly/{week['week']}/",
+        }
+        html = self._base_template(f"Week {week['week']}", content, photos_json, meta=meta)
         self._write_file(f"weekly/{week['week']}/index.html", html)
     
     def _generate_embed_snippet(self):
