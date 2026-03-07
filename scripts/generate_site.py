@@ -1028,7 +1028,18 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+.more-players { padding: 32px 0; }
+.more-players h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
+.more-players-row { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.more-players-row::-webkit-scrollbar { height: 6px; }
+.more-players-row::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.more-player-card { flex: 0 0 160px; scroll-snap-align: start; background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; }
+.more-player-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); text-decoration: none; }
+.more-player-card .mp-img { height: 100px; background-size: cover; background-position: center; background-color: var(--primary); }
+.more-player-card .mp-info { padding: 10px 12px; }
+.more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 '''
 
@@ -1127,6 +1138,41 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
     </div>
 </div>'''
     
+    def _more_players_html(self, exclude_slug: str = '') -> str:
+        """Generate 'More Players to Explore' section with 8 random players (≥10 photos)"""
+        import random
+        all_players = self.archive.get_all_players()
+        candidates = [p for p in all_players if p['count'] >= 10 and p['slug'] != exclude_slug]
+        if not candidates:
+            return ''
+        selected = random.sample(candidates, min(8, len(candidates)))
+
+        cards = []
+        for p in selected:
+            photos = self.archive.get_photos_by_player(p['slug'])
+            bg_img = ''
+            if photos:
+                thumb = photos[0].get('thumbnail_url') or f"https://www.imagn.com/image/thumb/800-750/{photos[0].get('imagn_id', '')}.jpg"
+                bg_img = f' style="background-image:url({escape(thumb)})"'
+            cards.append(f'''<a href="{self.base_url}/players/{p['slug']}/" class="more-player-card">
+    <div class="mp-img"{bg_img}></div>
+    <div class="mp-info">
+        <div class="mp-name">{escape(p['name'])}</div>
+        <div class="mp-count">{p['count']} photos</div>
+    </div>
+</a>''')
+
+        return f'''
+<section class="more-players">
+    <div class="container">
+        <h2>More Players to Explore</h2>
+        <div class="more-players-row">
+            {"".join(cards)}
+        </div>
+    </div>
+</section>
+'''
+
     def _generate_homepage(self):
         """Generate homepage - Weekly gallery as hero, then navigation to deeper content"""
         stats = self.archive.get_stats()
@@ -1559,6 +1605,8 @@ Disallow: /search/players.json
 </main>
 '''
 
+        content += self._more_players_html(exclude_slug=player_slug)
+
         seo_title = f"{photo.get('player_name') or 'NBA'} Sneakers - {date_fmt}"
 
         meta = {
@@ -1608,6 +1656,8 @@ Disallow: /search/players.json
     </section>
 </main>
 '''
+        content += self._more_players_html(exclude_slug=player['slug'])
+
         photos_json = json.dumps([{
             'image_url': p.get('image_url', ''),
             'player_name': p.get('player_name', ''),
@@ -1616,7 +1666,7 @@ Disallow: /search/players.json
             'source': p.get('source', ''),
             'photo_date': p.get('photo_date', '')
         } for p in photos], ensure_ascii=False)
-        
+
         og_image = photos[0].get('thumbnail_url') or photos[0].get('image_url', '') if photos else ''
         meta = {
             'description': f"Browse {len(photos)} sneaker photos of {player['name']} from NBA games.",
