@@ -25,7 +25,7 @@ from archive import PhotoArchive
 
 # Try to import affiliate module
 try:
-    from affiliate import AffiliateRouter, get_affiliate_css, get_tracking_js, AFFILIATE_POSITIONS
+    from affiliate import AffiliateRouter, AFFILIATE_POSITIONS
     HAS_AFFILIATE = True
 except ImportError:
     HAS_AFFILIATE = False
