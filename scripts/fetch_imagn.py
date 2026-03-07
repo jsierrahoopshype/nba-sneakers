@@ -267,9 +267,9 @@ class ImagnFetcher:
             if not player_name or len(player_name.strip()) < 3:
                 return None
             
-            # Build image URLs from the ID
-            thumbnail_url = img.get('thumbnail_url') or f"https://cdn.imagn.com/image/thumb/250-225/{img_id}.jpg"
-            hover_url = img.get('hover_url') or f"https://cdn.imagn.com/image/thumb/450-425/{img_id}.jpg"
+            # Build image URLs from the ID (all use 800-750 for best quality)
+            thumbnail_url = img.get('thumbnail_url') or f"https://cdn.imagn.com/image/thumb/800-750/{img_id}.jpg"
+            hover_url = img.get('hover_url') or f"https://cdn.imagn.com/image/thumb/800-750/{img_id}.jpg"
             image_url = f"https://cdn.imagn.com/image/thumb/800-750/{img_id}.jpg"
             
             # Parse date
