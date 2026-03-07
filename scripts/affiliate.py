@@ -101,7 +101,7 @@ AFFILIATE_PROGRAMS = {
 
 class ShoeIdentifier:
     """Identifies shoes from photo captions and metadata"""
-
+    
     SHOE_PATTERNS = [
         (r'Nike\s+(LeBron\s*\d+)', 'Nike', 'LeBron'),
         (r'Nike\s+(KD\s*\d+)', 'Nike', 'KD'),
@@ -117,19 +117,19 @@ class ShoeIdentifier:
         (r'Puma\s+(MB\.?\s*\d+)', 'Puma', 'MB'),
         (r'Anta\s+(Kai\s*\d*)', 'Anta', 'Kai'),
     ]
-
+    
     def identify_shoe(self, caption: str, player_name: str) -> Tuple[Optional[str], str]:
         if not caption:
             return self._get_player_signature(player_name), "latest_model"
-
+        
         for pattern, brand, line in self.SHOE_PATTERNS:
             match = re.search(pattern, caption, re.IGNORECASE)
             if match:
                 shoe_name = match.group(1).strip()
                 return f"{brand} {shoe_name}", "exact_match"
-
+        
         return self._get_player_signature(player_name), "latest_model"
-
+    
     def _get_player_signature(self, player_name: str) -> Optional[str]:
         if player_name in PLAYER_SIGNATURES:
             sigs = PLAYER_SIGNATURES[player_name]
@@ -140,28 +140,28 @@ class ShoeIdentifier:
 
 class AffiliateRouter:
     """Routes to best affiliate program based on shoe and context"""
-
+    
     def __init__(self):
         self.identifier = ShoeIdentifier()
-
-    def get_affiliate_links(self, caption: str, player_name: str,
+    
+    def get_affiliate_links(self, caption: str, player_name: str, 
                            num_links: int = 3) -> List[AffiliateLink]:
         import urllib.parse
-
+        
         shoe_name, confidence = self.identifier.identify_shoe(caption, player_name)
-
+        
         if not shoe_name:
             shoe_name = f"{player_name} basketball shoes"
             confidence = "latest_model"
-
+        
         links = []
         search_term_encoded = urllib.parse.quote_plus(shoe_name)
-
+        
         sorted_programs = sorted(
             AFFILIATE_PROGRAMS.items(),
             key=lambda x: x[1]['priority']
         )
-
+        
         for program_id, config in sorted_programs[:num_links]:
             if config.get('network') == 'impact':
                 params = config['tracking_params'].copy()
@@ -178,12 +178,12 @@ class AffiliateRouter:
                     dest_url = f"https://www.dickssportinggoods.com/search/SearchDisplay?searchTerm={search_term_encoded}"
                 else:
                     dest_url = f"{config['search_url']}?q={search_term_encoded}"
-
+                
                 encoded_dest = urllib.parse.quote(dest_url, safe='')
                 url = f"https://sovrn.co?key={SOVRN_API_KEY}&u={encoded_dest}"
             else:
                 url = f"{config['search_url']}?q={search_term_encoded}"
-
+            
             links.append(AffiliateLink(
                 url=url,
                 program=config['name'],
@@ -192,32 +192,32 @@ class AffiliateRouter:
                 player_name=player_name,
                 commission_rate=config['commission']
             ))
-
+        
         return links
-
+    
     def get_best_link(self, caption: str, player_name: str) -> AffiliateLink:
         links = self.get_affiliate_links(caption, player_name, num_links=1)
         return links[0] if links else None
-
-    def get_buy_button_html(self, caption: str, player_name: str,
+    
+    def get_buy_button_html(self, caption: str, player_name: str, 
                            position: str = "inline") -> str:
         links = self.get_affiliate_links(caption, player_name, num_links=3)
-
+        
         if not links:
             return ""
-
+        
         primary = links[0]
-
+        
         confidence_badges = {
             "exact_match": ("✓ Exact Match", "badge-success"),
             "closest_match": ("≈ Closest Match", "badge-warning"),
             "latest_model": ("★ Latest Model", "badge-info"),
         }
         badge_text, badge_class = confidence_badges.get(
-            primary.confidence,
+            primary.confidence, 
             ("Shop Now", "badge-default")
         )
-
+        
         if position == "inline":
             return f'''
 <div class="affiliate-module inline">
@@ -227,7 +227,7 @@ class AffiliateRouter:
         <span class="{badge_class}">{badge_text}</span>
     </a>
 </div>'''
-
+        
         elif position == "featured":
             secondary_html = ""
             if len(links) > 1:
@@ -236,7 +236,7 @@ class AffiliateRouter:
                 for link in links[1:]:
                     secondary_html += f'<a href="{link.url}" target="_blank" rel="noopener sponsored" class="compare-link">{link.program}</a>'
                 secondary_html += '</div>'
-
+            
             return f'''
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -252,7 +252,7 @@ class AffiliateRouter:
     </a>
     {secondary_html}
 </div>'''
-
+        
         else:
             return f'''
 <div class="affiliate-module sidebar">
@@ -266,12 +266,10 @@ class AffiliateRouter:
 
 AFFILIATE_POSITIONS = [1, 20, 50, 100, 200, 500]
 
-
 def should_insert_affiliate(photo_index: int) -> bool:
     return photo_index in AFFILIATE_POSITIONS
 
-
-def get_affiliate_module_for_position(photo_index: int, caption: str,
+def get_affiliate_module_for_position(photo_index: int, caption: str, 
                                       player_name: str) -> str:
     router = AffiliateRouter()
     if photo_index == 1:

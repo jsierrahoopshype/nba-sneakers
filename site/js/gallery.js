@@ -1,4 +1,7 @@
 
+document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
+document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
+
 // Lightbox functionality
 document.addEventListener('DOMContentLoaded', function() {
     const photos = window.galleryPhotos || [];
@@ -134,30 +137,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Price Tracking
-const PriceTracker = {
-    tracks: JSON.parse(localStorage.getItem('shoeTracking') || '[]'),
-    addTrack: function(shoe, player) {
-        this.tracks.push({ shoe, player, added: new Date().toISOString() });
-        localStorage.setItem('shoeTracking', JSON.stringify(this.tracks));
-        this.showConfirmation(shoe);
-    },
-    showConfirmation: function(shoe) {
-        const toast = document.createElement('div');
-        toast.className = 'track-toast';
-        toast.innerHTML = '<span>🔔 Now tracking: ' + shoe + '</span><small>We\'ll notify you of price drops</small>';
-        document.body.appendChild(toast);
-        setTimeout(() => toast.classList.add('show'), 100);
-        setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3000);
-    }
-};
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.track-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            PriceTracker.addTrack(this.dataset.shoe, this.dataset.player);
-            this.textContent = '✓ Tracking';
-            this.disabled = true;
-        });
-    });
-});

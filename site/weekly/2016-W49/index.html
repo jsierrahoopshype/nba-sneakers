@@ -138,9 +138,8 @@ a:hover { text-decoration: underline; }
 .shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
 .compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
-.track-btn { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; }
-.track-btn:hover { border-color: white; color: white; }
 @media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .lightbox .nav { font-size: 28px; padding: 10px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } }
+img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
 <body>
@@ -268,6 +267,8 @@ a:hover { text-decoration: underline; }
 
 <script>window.galleryPhotos = [{"image_url": "https://cdn.imagn.com/image/thumb/800-750/9762635.jpg", "player_name": "Jeff Green", "headline": "NBA: Boston Celtics at Orlando Magic", "photographer": "Kim Klement", "source": "Imagn Images", "photo_date": "2016-12-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9770531.jpg", "player_name": "Eric Bledsoe", "headline": "NBA: Indiana Pacers at Phoenix Suns", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "photo_date": "2016-12-07"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9740153.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Chicago Bulls at Detroit Pistons", "photographer": "Aaron Doster", "source": "Imagn Images", "photo_date": "2016-12-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9740063.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Chicago Bulls at Detroit Pistons", "photographer": "Aaron Doster", "source": "Imagn Images", "photo_date": "2016-12-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9740055.jpg", "player_name": "Dwyane Wade", "headline": "NBA: Chicago Bulls at Detroit Pistons", "photographer": "Aaron Doster", "source": "Imagn Images", "photo_date": "2016-12-06"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9739799.jpg", "player_name": "Kevin Durant", "headline": "NBA: Indiana Pacers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2016-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9739798.jpg", "player_name": "Kevin Durant", "headline": "NBA: Indiana Pacers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2016-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9739797.jpg", "player_name": "Kevin Durant", "headline": "NBA: Indiana Pacers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2016-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9739786.jpg", "player_name": "Kevin Durant", "headline": "NBA: Indiana Pacers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2016-12-05"}, {"image_url": "https://cdn.imagn.com/image/thumb/800-750/9739783.jpg", "player_name": "Kevin Durant", "headline": "NBA: Indiana Pacers at Golden State Warriors", "photographer": "Kyle Terada", "source": "Imagn Images", "photo_date": "2016-12-05"}];</script>
 <script>
+document.addEventListener('contextmenu', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
+document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') { e.preventDefault(); } });
 document.addEventListener('DOMContentLoaded', function() {
     const photos = window.galleryPhotos || [];
     let currentIndex = 0;
