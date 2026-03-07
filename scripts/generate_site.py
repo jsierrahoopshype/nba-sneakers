@@ -1,3 +1,4 @@
+# Last updated: 2026-03-07 - force rebuild
 #!/usr/bin/env python3
 """
 Static Site Generator for NBA Shoe Gallery
@@ -252,6 +253,7 @@ a:hover { text-decoration: underline; }
     box-shadow: var(--shadow-hover);
 }
 .photo-card .img-wrap {
+    display: block;
     position: relative;
     padding-top: 66.67%;
     background: #f0f0f0;
@@ -936,7 +938,7 @@ a:hover { text-decoration: underline; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
-.photo-card .img-wrap { position: relative; padding-top: 66.67%; background: #f0f0f0; }
+.photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
 .photo-card img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
 .photo-card .meta { padding: 12px; }
 .photo-card .player { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
