@@ -502,6 +502,10 @@ def main():
                         help='Show what reparse would change without modifying the archive')
     parser.add_argument('--days-back', type=int, default=7,
                         help='Number of days to look back (default: 7, 0 for no limit)')
+    parser.add_argument('--max-photos', type=int, default=20000,
+                        help='Maximum number of photos to fetch (default: 20000)')
+    parser.add_argument('--clear-archive', action='store_true',
+                        help='Clear the archive before fetching (for full re-fetch)')
     args = parser.parse_args()
 
     # Initialize archive - use path relative to repo root
@@ -528,6 +532,12 @@ def main():
     session_id = os.environ.get('IMAGN_SESSION', '')
 
     archive = PhotoArchive(archive_path)
+
+    if args.clear_archive:
+        print(f"Clearing archive ({len(archive.photos)} photos)...", file=sys.stderr)
+        archive.photos = {}
+        archive.save()
+
     print(f"Archive loaded: {len(archive.photos)} existing photos", file=sys.stderr)
 
     # Fetch new photos
@@ -548,7 +558,7 @@ def main():
     else:
         print("Warning: No credentials provided", file=sys.stderr)
 
-    photos = fetcher.fetch_nba_shoes(days_back=args.days_back)
+    photos = fetcher.fetch_nba_shoes(days_back=args.days_back, max_photos=args.max_photos)
     print(f"Fetched {len(photos)} photos from Imagn", file=sys.stderr)
 
     # Add to archive
