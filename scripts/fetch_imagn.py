@@ -104,7 +104,7 @@ class ImagnFetcher:
         try:
             resp = self.session.get(f"{self.BASE_URL}/login", timeout=30)
             soup = BeautifulSoup(resp.text, 'html.parser')
-            
+
             # Find CSRF token
             csrf = None
             for inp in soup.find_all('input', {'type': 'hidden'}):
@@ -112,7 +112,7 @@ class ImagnFetcher:
                 if 'csrf' in name or 'token' in name:
                     csrf = inp.get('value')
                     break
-            
+
             payload = {
                 'email': username,
                 'username': username,
@@ -121,20 +121,45 @@ class ImagnFetcher:
             if csrf:
                 payload['_token'] = csrf
                 payload['csrf_token'] = csrf
-            
+
             resp = self.session.post(
                 f"{self.BASE_URL}/login",
                 data=payload,
                 allow_redirects=True,
                 timeout=30
             )
-            
+
             self.logged_in = 'logout' in resp.text.lower() or '/dashboard' in resp.url
             return self.logged_in
-            
+
         except Exception as e:
             print(f"Login error: {e}", file=sys.stderr)
             return False
+
+    def _login(self) -> Optional[str]:
+        """Re-authenticate using IMAGN_USERNAME/IMAGN_PASSWORD env vars.
+
+        Posts credentials to the login endpoint, extracts the new sessionid
+        cookie, and returns it. Returns None on failure.
+        """
+        username = os.environ.get('IMAGN_USERNAME', '')
+        password = os.environ.get('IMAGN_PASSWORD', '')
+        if not username or not password:
+            print("Cannot re-authenticate: IMAGN_USERNAME/IMAGN_PASSWORD not set",
+                  file=sys.stderr)
+            return None
+
+        print("Session expired, re-authenticating...", file=sys.stderr)
+        if self.login(username, password):
+            session_cookie = self.session.cookies.get('sessionid')
+            if session_cookie:
+                print("Re-authentication successful", file=sys.stderr)
+                return session_cookie
+            print("Re-authentication succeeded but no sessionid cookie found",
+                  file=sys.stderr)
+        else:
+            print("Re-authentication failed", file=sys.stderr)
+        return None
     
     def fetch_nba_shoes(self, days_back: int = 365, max_photos: int = 20000) -> List[Dict]:
         """Fetch NBA shoe photos using Imagn API with pagination.
@@ -196,16 +221,27 @@ class ImagnFetcher:
             try:
                 print(f"Fetching page {page}...", file=sys.stderr)
                 resp = self.session.get(search_url, params=params, timeout=60)
-                
+
+                # Re-authenticate on 400/401 and retry once
+                if resp.status_code in (400, 401):
+                    print(f"Got {resp.status_code} on page {page}, attempting re-auth...",
+                          file=sys.stderr)
+                    new_cookie = self._login()
+                    if new_cookie:
+                        resp = self.session.get(search_url, params=params, timeout=60)
+                    else:
+                        print("Re-auth failed, stopping fetch", file=sys.stderr)
+                        break
+
                 if resp.status_code == 200:
                     try:
                         data = resp.json()
                         all_images = data.get('allImages', [])
-                        
+
                         if not all_images:
                             print(f"  No more results at page {page}", file=sys.stderr)
                             break
-                        
+
                         new_count = 0
                         for img in all_images:
                             photo = self._parse_api_image(img)
@@ -213,20 +249,20 @@ class ImagnFetcher:
                                 seen_ids.add(photo['imagn_id'])
                                 photos.append(photo)
                                 new_count += 1
-                        
+
                         print(f"  Page {page}: {len(all_images)} images, {new_count} new (total: {len(photos)})", file=sys.stderr)
-                        
+
                         # Small delay to be respectful to the server
                         import time
                         time.sleep(0.2)  # 200ms between requests
-                                
+
                     except json.JSONDecodeError as e:
                         print(f"JSON parse error on page {page}: {e}", file=sys.stderr)
                         break
                 else:
                     print(f"API returned status {resp.status_code} on page {page}", file=sys.stderr)
                     break
-                    
+
             except Exception as e:
                 print(f"Error fetching page {page}: {e}", file=sys.stderr)
                 break
