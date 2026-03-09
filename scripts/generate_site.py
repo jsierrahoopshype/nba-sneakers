@@ -1230,6 +1230,20 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         else:
             date_range = "Latest"
         
+        # Build hero photo grid with affiliate modules at key positions
+        hero_html_parts = []
+        affiliate_positions = [1, 20, 50, 100, 200]
+        for idx, photo in enumerate(hero_photos):
+            position = idx + 1
+            if self.affiliate and position in affiliate_positions:
+                module_type = "featured" if position == 1 else "inline"
+                caption = photo.get('caption', '')
+                player_name = photo.get('player_name', 'NBA')
+                module_html = self.affiliate.get_buy_button_html(caption, player_name, module_type)
+                hero_html_parts.append(module_html)
+            hero_html_parts.append(self._photo_card_html(photo))
+        hero_grid_html = "".join(hero_html_parts)
+
         content = f'''
 <section class="hero">
     <div class="container">
@@ -1246,7 +1260,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             <span class="photo-count">{len(hero_photos)} photos</span>
         </div>
         <div class="photo-grid">
-            {"".join(self._photo_card_html(p) for p in hero_photos)}
+            {hero_grid_html}
         </div>
         {f'<div class="view-more"><a href="{self.base_url}/weekly/{week}/">View all {len(weekly_photos)} photos from {self._week_label(week)} →</a></div>' if len(weekly_photos) > 20 else ''}
     </section>
