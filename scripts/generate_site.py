@@ -1398,15 +1398,78 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         ('Washington Wizards', 'wizards', ['Wizards', 'Washington Wizards']),
     ]
 
-    def _get_photos_for_team(self, search_terms: List[str]) -> List[Dict]:
-        """Get all photos where headline or caption contains any of the team's search terms"""
-        results = []
-        for photo in self.archive.photos.values():
-            text = f"{photo.get('headline', '')} {photo.get('caption', '')}".lower()
+    _POSITION_WORDS = {'guard', 'forward', 'center', 'wing', 'point'}
+
+    def _photo_belongs_to_team(self, photo: Dict, search_terms: List[str]) -> bool:
+        """Check if a photo belongs to a team by parsing caption for 'TeamName position PlayerName' pattern.
+
+        Only assigns the photo to the team that appears directly before a position word
+        and player name, so 'Detroit Pistons guard Javonte Green' matches Detroit only,
+        even if 'Miami Heat' appears elsewhere in the headline.
+        """
+        caption = photo.get('caption', '')
+        player_name = photo.get('player_name', '')
+
+        # Try caption-based attribution: look for "{team} {position} {player}"
+        if caption and player_name:
+            caption_lower = caption.lower()
             for term in search_terms:
-                if term.lower() in text:
-                    results.append(photo)
-                    break
+                term_lower = term.lower()
+                # Find all occurrences of this team term in the caption
+                start = 0
+                while True:
+                    idx = caption_lower.find(term_lower, start)
+                    if idx == -1:
+                        break
+                    # Check if a position word follows the team name
+                    after_team = caption_lower[idx + len(term_lower):].lstrip(' ,')
+                    for pos_word in self._POSITION_WORDS:
+                        if after_team.startswith(pos_word):
+                            # Check if the player name follows the position word
+                            after_pos = after_team[len(pos_word):].lstrip()
+                            if player_name.lower() in after_pos[:len(player_name) + 10].lower():
+                                return True
+                    start = idx + 1
+
+        # Fallback: if no "{team} position player" pattern was found for ANY team,
+        # use simple matching (covers photos without standard caption format)
+        text = f"{photo.get('headline', '')} {caption}".lower()
+        has_position_pattern = False
+        for _, _, terms in self.NBA_TEAMS:
+            for term in terms:
+                term_lower = term.lower()
+                if term_lower in text:
+                    cap_lower = caption.lower() if caption else ''
+                    idx = 0
+                    while True:
+                        idx = cap_lower.find(term_lower, idx)
+                        if idx == -1:
+                            break
+                        after = cap_lower[idx + len(term_lower):].lstrip(' ,')
+                        if any(after.startswith(pw) for pw in self._POSITION_WORDS):
+                            has_position_pattern = True
+                            break
+                        idx += 1
+                    if has_position_pattern:
+                        break
+            if has_position_pattern:
+                break
+
+        if has_position_pattern:
+            # The caption has structured team+position patterns but none matched
+            # this team with this player — don't include it
+            return False
+
+        # No structured pattern found at all — fall back to simple term matching
+        for term in search_terms:
+            if term.lower() in text:
+                return True
+        return False
+
+    def _get_photos_for_team(self, search_terms: List[str]) -> List[Dict]:
+        """Get photos that belong to this team, using caption parsing to avoid duplicates."""
+        results = [p for p in self.archive.photos.values()
+                   if self._photo_belongs_to_team(p, search_terms)]
         results.sort(key=lambda p: p.get('photo_date', ''), reverse=True)
         return results
 
