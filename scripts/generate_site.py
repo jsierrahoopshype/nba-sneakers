@@ -908,7 +908,7 @@ document.addEventListener('DOMContentLoaded', function() {
             card.innerHTML = '<a href="' + baseUrl + '/photos/' + p.id + '/" class="img-wrap"><img src="' + p.thumb + '" alt="' + p.headline + '" loading="lazy"></a>'
                 + '<div class="meta"><a href="' + baseUrl + '/players/' + p.playerSlug + '/" class="player-link">' + p.player + '</a>'
                 + '<div class="headline">' + p.headline + '</div>'
-                + '<div class="credit">\uD83D\uDCF7 ' + p.photographer + ' \u00B7 ' + p.source + ' \u00B7 ' + fmtDate(p.date) + '</div></div>';
+                + '<div class="credit">\U0001F4F7 ' + p.photographer + ' \u00b7 ' + p.source + ' \u00b7 ' + fmtDate(p.date) + '</div></div>';
             grid.appendChild(card);
         }
         loaded = end;
