@@ -191,16 +191,6 @@ a:hover { text-decoration: underline; }
     border-bottom-color: var(--accent);
 }
 
-/* Hero */
-.hero {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: white;
-    padding: 48px 0;
-    text-align: center;
-}
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
-
 /* Stats bar */
 .stats-bar {
     display: flex;
@@ -784,7 +774,6 @@ a:hover { text-decoration: underline; }
     .header-search input {
         padding: 10px 16px;
     }
-    .hero h1 { font-size: 24px; }
     .stats-bar { gap: 20px; }
     .stat-value { font-size: 22px; }
     .photo-grid { gap: 12px; }
@@ -929,9 +918,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -1042,7 +1028,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 '''
 
@@ -1212,25 +1198,8 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         
         # Show up to 20 in the main gallery
         hero_photos = weekly_photos[:20]
-        
-        # Date range for display
-        if hero_photos:
-            dates = [p.get('photo_date', '') for p in hero_photos if p.get('photo_date')]
-            if dates:
-                from_date = min(dates)
-                to_date = max(dates)
-                try:
-                    from_fmt = datetime.strptime(from_date, '%Y-%m-%d').strftime('%b %d')
-                    to_fmt = datetime.strptime(to_date, '%Y-%m-%d').strftime('%b %d, %Y')
-                    date_range = f"{from_fmt} – {to_fmt}"
-                except:
-                    date_range = week
-            else:
-                date_range = week
-        else:
-            date_range = "Latest"
-        
-        # Build hero photo grid with affiliate modules at key positions
+
+        # Build photo grid with affiliate modules at key positions
         hero_html_parts = []
         affiliate_positions = [1, 20, 50, 100, 200]
         for idx, photo in enumerate(hero_photos):
@@ -1245,16 +1214,9 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         hero_grid_html = "".join(hero_html_parts)
 
         content = f'''
-<section class="hero">
-    <div class="container">
-        <h1>NBA Sneakers</h1>
-        <p>The best shoe photos from around the league · {date_range}</p>
-    </div>
-</section>
-
 <main class="container">
-    <!-- WEEKLY GALLERY (Hero Content) -->
-    <section class="section weekly-hero">
+    <!-- WEEKLY GALLERY -->
+    <section class="section weekly-hero" style="margin-top: 24px;">
         <div class="section-header">
             <h2 class="section-title">📸 Latest Kicks</h2>
             <span class="photo-count">{len(hero_photos)} photos</span>
