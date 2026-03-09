@@ -102,34 +102,83 @@ class ImagnFetcher:
     def login(self, username: str, password: str) -> bool:
         """Login to Imagn (may fail due to CAPTCHA)"""
         try:
-            resp = self.session.get(f"{self.BASE_URL}/login", timeout=30)
+            login_url = f"{self.BASE_URL}/login"
+            print(f"[login] GET {login_url}", file=sys.stderr)
+            resp = self.session.get(login_url, timeout=30)
+            print(f"[login] Login page status: {resp.status_code}, url: {resp.url}", file=sys.stderr)
             soup = BeautifulSoup(resp.text, 'html.parser')
 
-            # Find CSRF token
-            csrf = None
-            for inp in soup.find_all('input', {'type': 'hidden'}):
-                name = inp.get('name', '').lower()
-                if 'csrf' in name or 'token' in name:
-                    csrf = inp.get('value')
-                    break
+            # Find the login form and discover its action URL and fields
+            form = soup.find('form', attrs={'method': re.compile(r'post', re.I)})
+            if not form:
+                # Fallback: look for any form with a password field
+                for f in soup.find_all('form'):
+                    if f.find('input', {'type': 'password'}):
+                        form = f
+                        break
 
-            payload = {
-                'email': username,
-                'username': username,
-                'password': password,
-            }
-            if csrf:
-                payload['_token'] = csrf
-                payload['csrf_token'] = csrf
+            action_url = login_url
+            if form and form.get('action'):
+                action_url = urljoin(resp.url, form['action'])
+            print(f"[login] Form action URL: {action_url}", file=sys.stderr)
 
+            # Collect all hidden fields (CSRF tokens, etc.)
+            payload = {}
+            scope = form if form else soup
+            for inp in scope.find_all('input', {'type': 'hidden'}):
+                name = inp.get('name')
+                if name:
+                    payload[name] = inp.get('value', '')
+                    print(f"[login] Hidden field: {name}={payload[name][:40]}", file=sys.stderr)
+
+            # Find the email/username field name from the form
+            email_field = None
+            for inp in scope.find_all('input'):
+                input_type = (inp.get('type') or '').lower()
+                input_name = inp.get('name', '')
+                if input_type in ('email', 'text') and input_name:
+                    if any(k in input_name.lower() for k in ('email', 'user', 'login', 'name')):
+                        email_field = input_name
+                        break
+            if not email_field:
+                # Fallback: first text/email input
+                for inp in scope.find_all('input', {'type': re.compile(r'^(email|text)$', re.I)}):
+                    if inp.get('name'):
+                        email_field = inp['name']
+                        break
+            email_field = email_field or 'email'
+            print(f"[login] Username field: {email_field}", file=sys.stderr)
+
+            # Find the password field name
+            password_field = 'password'
+            pw_input = scope.find('input', {'type': 'password'})
+            if pw_input and pw_input.get('name'):
+                password_field = pw_input['name']
+            print(f"[login] Password field: {password_field}", file=sys.stderr)
+
+            payload[email_field] = username
+            payload[password_field] = password
+
+            print(f"[login] POST {action_url} with fields: {list(payload.keys())}", file=sys.stderr)
             resp = self.session.post(
-                f"{self.BASE_URL}/login",
+                action_url,
                 data=payload,
                 allow_redirects=True,
                 timeout=30
             )
+            print(f"[login] Response status: {resp.status_code}, url: {resp.url}", file=sys.stderr)
+
+            # Check for error messages in the response
+            resp_soup = BeautifulSoup(resp.text, 'html.parser')
+            for cls in ('error', 'alert-danger', 'alert-error', 'login-error', 'form-error'):
+                err = resp_soup.find(class_=re.compile(cls, re.I))
+                if err and err.get_text(strip=True):
+                    print(f"[login] Error message on page: {err.get_text(strip=True)[:200]}", file=sys.stderr)
 
             self.logged_in = 'logout' in resp.text.lower() or '/dashboard' in resp.url
+            print(f"[login] logged_in={self.logged_in}", file=sys.stderr)
+            if not self.logged_in:
+                print(f"[login] Cookies: {list(self.session.cookies.keys())}", file=sys.stderr)
             return self.logged_in
 
         except Exception as e:
@@ -139,7 +188,7 @@ class ImagnFetcher:
     def _login(self) -> Optional[str]:
         """Re-authenticate using IMAGN_USERNAME/IMAGN_PASSWORD env vars.
 
-        Posts credentials to the login endpoint, extracts the new sessionid
+        Posts credentials to the login endpoint, extracts the new session
         cookie, and returns it. Returns None on failure.
         """
         username = os.environ.get('IMAGN_USERNAME', '')
@@ -151,14 +200,20 @@ class ImagnFetcher:
 
         print("Session expired, re-authenticating...", file=sys.stderr)
         if self.login(username, password):
-            session_cookie = self.session.cookies.get('sessionid')
-            if session_cookie:
-                print("Re-authentication successful", file=sys.stderr)
-                return session_cookie
-            print("Re-authentication succeeded but no sessionid cookie found",
+            # Look for any session-like cookie (sessionid, PHPSESSID, etc.)
+            session_cookie = None
+            for name in ('sessionid', 'PHPSESSID', 'session', 'sid', 'connect.sid'):
+                session_cookie = self.session.cookies.get(name)
+                if session_cookie:
+                    print(f"Re-authentication successful (cookie: {name})", file=sys.stderr)
+                    return session_cookie
+            # If no known session cookie, return a truthy sentinel — the
+            # requests.Session already holds all cookies so fetches will work.
+            print(f"[_login] Re-auth succeeded, cookies: {list(self.session.cookies.keys())}",
                   file=sys.stderr)
+            return 'authenticated'
         else:
-            print("Re-authentication failed", file=sys.stderr)
+            print("Re-authentication failed (see [login] messages above)", file=sys.stderr)
         return None
     
     def fetch_nba_shoes(self, days_back: int = 365, max_photos: int = 20000) -> List[Dict]:
