@@ -874,8 +874,65 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 '''
+        # Infinite scroll logic
+        js += '''
+// Infinite Scroll
+document.addEventListener('DOMContentLoaded', function() {
+    var data = window.__SCROLL_PHOTOS;
+    if (!data || !data.photos || !data.photos.length) return;
+    var grid = document.getElementById('photo-grid');
+    if (!grid) return;
+    var photos = data.photos;
+    var baseUrl = data.baseUrl || '';
+    var batch = 24;
+    var loaded = 0;
+
+    // Create sentinel element
+    var sentinel = document.createElement('div');
+    sentinel.className = 'scroll-sentinel';
+    sentinel.innerHTML = '<div class="scroll-spinner"></div>';
+    grid.parentNode.insertBefore(sentinel, grid.nextSibling);
+
+    function fmtDate(d) {
+        try { return new Date(d + 'T00:00:00').toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'}); }
+        catch(e) { return d; }
+    }
+
+    function loadBatch() {
+        var end = Math.min(loaded + batch, photos.length);
+        if (loaded >= photos.length) return;
+        for (var i = loaded; i < end; i++) {
+            var p = photos[i];
+            var card = document.createElement('div');
+            card.className = 'photo-card';
+            card.innerHTML = '<a href="' + baseUrl + '/photos/' + p.id + '/" class="img-wrap"><img src="' + p.thumb + '" alt="' + p.headline + '" loading="lazy"></a>'
+                + '<div class="meta"><a href="' + baseUrl + '/players/' + p.playerSlug + '/" class="player-link">' + p.player + '</a>'
+                + '<div class="headline">' + p.headline + '</div>'
+                + '<div class="credit">\uD83D\uDCF7 ' + p.photographer + ' \u00B7 ' + p.source + ' \u00B7 ' + fmtDate(p.date) + '</div></div>';
+            grid.appendChild(card);
+        }
+        loaded = end;
+        if (loaded >= photos.length) {
+            sentinel.innerHTML = '<div class="scroll-done">All photos loaded</div>';
+            sentinel.className = 'scroll-done';
+            if (observer) observer.disconnect();
+        }
+    }
+
+    var observer = null;
+    if ('IntersectionObserver' in window) {
+        observer = new IntersectionObserver(function(entries) {
+            if (entries[0].isIntersecting) { loadBatch(); }
+        }, { rootMargin: '200px' });
+        observer.observe(sentinel);
+    } else {
+        // Fallback: load all at once
+        while (loaded < photos.length) { loadBatch(); }
+    }
+});
+'''
         self._write_file('js/gallery.js', js)
-    
+
     def _base_template(self, title: str, content: str, photos_json: str = None, meta: Dict = None, breadcrumb: str = '') -> str:
         """Wrap content in base HTML template
 
@@ -927,6 +984,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -1131,6 +1192,28 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
     </div>
 </div>'''
     
+    def _scroll_photos_script(self, photos: list) -> str:
+        """Generate a <script> tag setting window.__SCROLL_PHOTOS for infinite scroll."""
+        if not photos:
+            return ''
+        items = []
+        for p in photos:
+            imagn_id = p.get('imagn_id') or ''
+            player_name = p.get('player_name') or 'NBA'
+            player_slug = p.get('player_slug') or self._name_to_slug(player_name)
+            items.append({
+                'id': escape(imagn_id),
+                'thumb': escape(p.get('thumbnail_url') or f"https://www.imagn.com/image/{imagn_id}.jpg"),
+                'headline': escape((p.get('headline') or '')[:100]),
+                'player': escape(player_name),
+                'playerSlug': player_slug,
+                'photographer': escape(p.get('photographer') or 'Imagn'),
+                'source': escape(p.get('source') or 'USA TODAY Sports'),
+                'date': p.get('photo_date', ''),
+            })
+        data = json.dumps({'baseUrl': self.base_url, 'photos': items}, ensure_ascii=False)
+        return f'<script>window.__SCROLL_PHOTOS={data};</script>'
+
     def _more_players_html(self, exclude_slug: str = '') -> str:
         """Generate 'More Players to Explore' section with 8 random players (≥10 photos)"""
         import random
@@ -1196,8 +1279,10 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         if not weekly_photos:
             weekly_photos = self.archive.get_all_photos()[:20]
         
-        # Show up to 20 in the main gallery
-        hero_photos = weekly_photos[:20]
+        # Show initial batch in the grid, rest via infinite scroll
+        initial_count = 24
+        hero_photos = weekly_photos[:initial_count]
+        remaining_photos = weekly_photos[initial_count:]
 
         # Build photo grid with affiliate modules at key positions
         hero_html_parts = []
@@ -1212,19 +1297,20 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
                 hero_html_parts.append(module_html)
             hero_html_parts.append(self._photo_card_html(photo))
         hero_grid_html = "".join(hero_html_parts)
+        scroll_script = self._scroll_photos_script(remaining_photos)
 
         content = f'''
+{scroll_script}
 <main class="container">
     <!-- WEEKLY GALLERY -->
     <section class="section weekly-hero" style="margin-top: 24px;">
         <div class="section-header">
             <h2 class="section-title">📸 Latest Kicks</h2>
-            <span class="photo-count">{len(hero_photos)} photos</span>
+            <span class="photo-count">{len(weekly_photos)} photos</span>
         </div>
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             {hero_grid_html}
         </div>
-        {f'<div class="view-more"><a href="{self.base_url}/weekly/{week}/">View all {len(weekly_photos)} photos from {self._week_label(week)} →</a></div>' if len(weekly_photos) > 20 else ''}
     </section>
     
     <!-- PLAYER TIMELINES -->
@@ -1506,11 +1592,16 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         """Generate individual team page with affiliate modules"""
         photos = self._get_photos_for_team(team['search_terms'])
 
+        # Show initial batch, rest via infinite scroll
+        initial_count = 24
+        initial_photos = photos[:initial_count]
+        remaining_photos = photos[initial_count:]
+
         # Build photo grid with affiliate modules inserted at key positions
         photo_html_parts = []
         affiliate_positions = [1, 20, 50, 100, 200]
 
-        for idx, photo in enumerate(photos[:60]):
+        for idx, photo in enumerate(initial_photos):
             position = idx + 1  # 1-indexed
 
             # Insert affiliate module at designated positions
@@ -1523,6 +1614,8 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
 
             photo_html_parts.append(self._photo_card_html(photo))
 
+        scroll_script = self._scroll_photos_script(remaining_photos)
+
         photos_json = json.dumps([{
             'id': p.get('imagn_id', ''),
             'url': p.get('thumbnail_url', p.get('image_url', '')),
@@ -1534,6 +1627,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         } for p in photos], indent=None)
 
         content = f'''
+{scroll_script}
 <div class="page-header">
     <div class="container">
         <h1>{escape(team["name"])}</h1>
@@ -1546,7 +1640,6 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         <div class="photo-grid" id="photo-grid">
             {"".join(photo_html_parts)}
         </div>
-        {"<button class='load-more' id='load-more'>Load More Photos</button>" if len(photos) > 60 else ""}
     </section>
 </main>
 '''
@@ -1835,25 +1928,33 @@ Disallow: /search/players.json
     def _generate_player_page(self, player: Dict):
         """Generate individual player page with affiliate modules"""
         photos = self.archive.get_photos_by_player(player['slug'])
-        
+
+        # Show initial batch, rest via infinite scroll
+        initial_count = 24
+        initial_photos = photos[:initial_count]
+        remaining_photos = photos[initial_count:]
+
         # Build photo grid with affiliate modules inserted at key positions
         photo_html_parts = []
         affiliate_positions = [1, 20, 50, 100, 200, 500]
-        
-        for idx, photo in enumerate(photos):
+
+        for idx, photo in enumerate(initial_photos):
             position = idx + 1  # 1-indexed
-            
+
             # Insert affiliate module at designated positions
             if self.affiliate and position in affiliate_positions:
                 module_type = "featured" if position == 1 else "inline"
                 caption = photo.get('caption', '')
                 module_html = self.affiliate.get_buy_button_html(caption, player['name'], module_type)
                 photo_html_parts.append(module_html)
-            
+
             # Add photo card
             photo_html_parts.append(self._photo_card_html(photo, idx))
-        
+
+        scroll_script = self._scroll_photos_script(remaining_photos)
+
         content = f'''
+{scroll_script}
 <div class="page-header">
     <div class="container">
         <h1>{escape(player['name'])}</h1>
@@ -1863,7 +1964,7 @@ Disallow: /search/players.json
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             {"".join(photo_html_parts)}
         </div>
     </section>
@@ -1926,7 +2027,14 @@ Disallow: /search/players.json
         photos = self.archive.get_photos_by_week(week['week'])
         label = self._week_label(week['week'])
 
+        # Show initial batch, rest via infinite scroll
+        initial_count = 24
+        initial_photos = photos[:initial_count]
+        remaining_photos = photos[initial_count:]
+        scroll_script = self._scroll_photos_script(remaining_photos)
+
         content = f'''
+{scroll_script}
 <div class="page-header">
     <div class="container">
         <h1>{label}</h1>
@@ -1936,8 +2044,8 @@ Disallow: /search/players.json
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
-            {"".join(self._photo_card_html(p) for p in photos)}
+        <div class="photo-grid" id="photo-grid">
+            {"".join(self._photo_card_html(p) for p in initial_photos)}
         </div>
     </section>
 </main>
