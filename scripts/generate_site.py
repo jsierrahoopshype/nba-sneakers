@@ -1428,9 +1428,61 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         html = self._base_template("Teams", content, breadcrumb='Teams')
         self._write_file('teams/index.html', html)
 
+    def _more_teams_html(self, exclude_slug: str = '') -> str:
+        """Generate 'More Teams to Explore' section with 8 random teams (with photos)"""
+        import random
+        all_teams = self._get_all_teams()
+        candidates = [t for t in all_teams if t['count'] >= 1 and t['slug'] != exclude_slug]
+        if not candidates:
+            return ''
+        selected = random.sample(candidates, min(8, len(candidates)))
+
+        cards = []
+        for t in selected:
+            photos = self._get_photos_for_team(t['search_terms'])
+            bg_img = ''
+            if photos:
+                thumb = photos[0].get('thumbnail_url') or f"https://www.imagn.com/image/{photos[0].get('imagn_id', '')}.jpg"
+                bg_img = f' style="background-image:url({escape(thumb)})"'
+            cards.append(f'''<a href="{self.base_url}/teams/{t['slug']}/" class="more-player-card">
+    <div class="mp-img"{bg_img}></div>
+    <div class="mp-info">
+        <div class="mp-name">{escape(t['name'])}</div>
+        <div class="mp-count">{t['count']} photos</div>
+    </div>
+</a>''')
+
+        return f'''
+<section class="more-players">
+    <div class="container">
+        <h2>More Teams to Explore</h2>
+        <div class="more-players-row">
+            {"".join(cards)}
+        </div>
+    </div>
+</section>
+'''
+
     def _generate_team_page(self, team: Dict):
-        """Generate individual team page"""
+        """Generate individual team page with affiliate modules"""
         photos = self._get_photos_for_team(team['search_terms'])
+
+        # Build photo grid with affiliate modules inserted at key positions
+        photo_html_parts = []
+        affiliate_positions = [1, 20, 50, 100, 200]
+
+        for idx, photo in enumerate(photos[:60]):
+            position = idx + 1  # 1-indexed
+
+            # Insert affiliate module at designated positions
+            if self.affiliate and position in affiliate_positions:
+                module_type = "featured" if position == 1 else "inline"
+                caption = photo.get('caption', '')
+                search_name = f"{team['name']} basketball shoes" if position <= 20 else f"{team['name']} sneakers"
+                module_html = self.affiliate.get_buy_button_html(caption, search_name, module_type)
+                photo_html_parts.append(module_html)
+
+            photo_html_parts.append(self._photo_card_html(photo))
 
         photos_json = json.dumps([{
             'id': p.get('imagn_id', ''),
@@ -1453,12 +1505,14 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
 <main class="container">
     <section class="section">
         <div class="photo-grid" id="photo-grid">
-            {"".join(self._photo_card_html(p) for p in photos[:60])}
+            {"".join(photo_html_parts)}
         </div>
         {"<button class='load-more' id='load-more'>Load More Photos</button>" if len(photos) > 60 else ""}
     </section>
 </main>
 '''
+        content += self._more_teams_html(exclude_slug=team['slug'])
+
         html = self._base_template(team['name'], content, photos_json, breadcrumb=f'<a href="{self.base_url}/teams/">Teams</a> / {escape(team["name"])}')
         self._write_file(f"teams/{team['slug']}/index.html", html)
 
