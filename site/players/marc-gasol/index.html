@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "11854567", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11854567.jpg", "headline": "NBA: Houston Rockets at Memphis Grizzlies", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-12-15"}, {"id": "11825463", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11825463.jpg", "headline": "NBA: Memphis Grizzlies at Denver Nuggets", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Ron Chenoy", "source": "Imagn Images", "date": "2018-12-10"}, {"id": "11795816", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11795816.jpg", "headline": "NBA: Los Angeles Clippers at Memphis Grizzlies", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-12-05"}, {"id": "11655949", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11655949.jpg", "headline": "NBA: Utah Jazz at Memphis Grizzlies", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-11-12"}, {"id": "11643259", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11643259.jpg", "headline": "NBA: Philadelphia 76ers at Memphis Grizzlies", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-11-10"}, {"id": "11538879", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11538879.jpg", "headline": "NBA: Phoenix Suns at Memphis Grizzlies", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-10-27"}, {"id": "11475292", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11475292.jpg", "headline": "NBA: Atlanta Hawks at Memphis Grizzlies", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-10-19"}, {"id": "11428161", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11428161.jpg", "headline": "NBA: Preseason-Houston Rockets at Memphis Grizzlies", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-10-12"}, {"id": "11381979", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381979.jpg", "headline": "NBA: Preseason-Atlanta Hawks at Memphis Grizzlies", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "10776560", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10776560.jpg", "headline": "NBA: Detroit Pistons at Memphis Grizzlies", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-04-08"}, {"id": "10744122", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10744122.jpg", "headline": "NBA: Portland Trail Blazers at Memphis Grizzlies", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-03-28"}, {"id": "10738933", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10738933.jpg", "headline": "NBA: Memphis Grizzlies at Minnesota Timberwolves", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Jesse Johnson", "source": "Imagn Images", "date": "2018-03-26"}, {"id": "10715263", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10715263.jpg", "headline": "NBA: Denver Nuggets at Memphis Grizzlies", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-03-17"}, {"id": "10669854", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10669854.jpg", "headline": "NBA: Denver Nuggets at Memphis Grizzlies", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-03-02"}, {"id": "10648943", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10648943.jpg", "headline": "NBA: Cleveland Cavaliers at Memphis Grizzlies", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-02-23"}, {"id": "10467804", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10467804.jpg", "headline": "NBA: Toronto Raptors at Memphis Grizzlies", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2017-12-08"}, {"id": "8366686", "thumb": "https://cdn.imagn.com/image/thumb/250-225/8366686.jpg", "headline": "NBA: Memphis Grizzlies at Utah Jazz", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Russell Isabella", "source": "Imagn Images", "date": "2015-02-04"}, {"id": "8303186", "thumb": "https://cdn.imagn.com/image/thumb/250-225/8303186.jpg", "headline": "NBA: San Antonio Spurs at Memphis Grizzlies", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2014-12-30"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Marc Gasol</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,132 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Cleveland Cavaliers at Memphis Grizzlies</div>
         <div class="credit">📷 Justin Ford · Imagn Images · Dec 26, 2018</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11854567/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11854567.jpg" alt="NBA: Houston Rockets at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: Houston Rockets at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Dec 15, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11825463/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11825463.jpg" alt="NBA: Memphis Grizzlies at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: Memphis Grizzlies at Denver Nuggets</div>
-        <div class="credit">📷 Ron Chenoy · Imagn Images · Dec 10, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11795816/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11795816.jpg" alt="NBA: Los Angeles Clippers at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: Los Angeles Clippers at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Dec 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11655949/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11655949.jpg" alt="NBA: Utah Jazz at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: Utah Jazz at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Nov 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11643259/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11643259.jpg" alt="NBA: Philadelphia 76ers at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: Philadelphia 76ers at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Nov 10, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11538879/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11538879.jpg" alt="NBA: Phoenix Suns at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: Phoenix Suns at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Oct 27, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11475292/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11475292.jpg" alt="NBA: Atlanta Hawks at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: Atlanta Hawks at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Oct 19, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11428161/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11428161.jpg" alt="NBA: Preseason-Houston Rockets at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: Preseason-Houston Rockets at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Oct 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381979/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381979.jpg" alt="NBA: Preseason-Atlanta Hawks at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: Preseason-Atlanta Hawks at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10776560/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10776560.jpg" alt="NBA: Detroit Pistons at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: Detroit Pistons at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Apr 08, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10744122/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10744122.jpg" alt="NBA: Portland Trail Blazers at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: Portland Trail Blazers at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Mar 28, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10738933/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10738933.jpg" alt="NBA: Memphis Grizzlies at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: Memphis Grizzlies at Minnesota Timberwolves</div>
-        <div class="credit">📷 Jesse Johnson · Imagn Images · Mar 26, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10715263/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10715263.jpg" alt="NBA: Denver Nuggets at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: Denver Nuggets at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Mar 17, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10669854/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10669854.jpg" alt="NBA: Denver Nuggets at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: Denver Nuggets at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Mar 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10648943/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10648943.jpg" alt="NBA: Cleveland Cavaliers at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Feb 23, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10467804/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10467804.jpg" alt="NBA: Toronto Raptors at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: Toronto Raptors at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Dec 08, 2017</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/8366686/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/8366686.jpg" alt="NBA: Memphis Grizzlies at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: Memphis Grizzlies at Utah Jazz</div>
-        <div class="credit">📷 Russell Isabella · Imagn Images · Feb 04, 2015</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/8303186/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/8303186.jpg" alt="NBA: San Antonio Spurs at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: San Antonio Spurs at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Dec 30, 2014</div>
-    </div>
 </div>
         </div>
     </section>
@@ -517,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/james-johnson/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/24818458.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mikal-bridges/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28174335.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">James Johnson</div>
-        <div class="mp-count">19 photos</div>
+        <div class="mp-name">Mikal Bridges</div>
+        <div class="mp-count">32 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dillon-brooks/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27890695.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/wesley-matthews/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22101404.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Dillon Brooks</div>
-        <div class="mp-count">31 photos</div>
+        <div class="mp-name">Wesley Matthews</div>
+        <div class="mp-count">42 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cj-miles/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/12223793.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tyus-jones/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28348328.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">C.J. Miles</div>
+        <div class="mp-name">Tyus Jones</div>
+        <div class="mp-count">35 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lou-williams/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17993380.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Lou Williams</div>
+        <div class="mp-count">44 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jamison-battle/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28108551.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Jamison Battle</div>
         <div class="mp-count">10 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27831621.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/john-henson/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/14135854.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Ja Morant</div>
-        <div class="mp-count">85 photos</div>
+        <div class="mp-name">John Henson</div>
+        <div class="mp-count">14 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/brandon-ingram/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28393862.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/guerschon-yabusele/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28184215.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Brandon Ingram</div>
-        <div class="mp-count">45 photos</div>
+        <div class="mp-name">Guerschon Yabusele</div>
+        <div class="mp-count">10 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jeremy-sochan/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27407669.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-green/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28288059.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Jeremy Sochan</div>
-        <div class="mp-count">16 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/omari-spellman/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/13919385.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Omari Spellman</div>
-        <div class="mp-count">18 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jevon-carter/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28378301.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Jevon Carter</div>
-        <div class="mp-count">28 photos</div>
+        <div class="mp-name">Jalen Green</div>
+        <div class="mp-count">15 photos</div>
     </div>
 </a>
         </div>

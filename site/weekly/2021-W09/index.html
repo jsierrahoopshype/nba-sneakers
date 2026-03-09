@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "15694655", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15694655.jpg", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "player": "Dennis Schroder", "playerSlug": "dennis-schroder", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-03-03"}, {"id": "15694667", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15694667.jpg", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "player": "Dennis Schroder", "playerSlug": "dennis-schroder", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-03-03"}, {"id": "15694657", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15694657.jpg", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "player": "Kentavious Caldwell-Pope", "playerSlug": "kentavious-caldwell-pope", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-03-03"}, {"id": "15694665", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15694665.jpg", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "player": "Kostas Antetokounmpo", "playerSlug": "kostas-antetokounmpo", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-03-03"}, {"id": "15694638", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15694638.jpg", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "player": "Jared Dudley", "playerSlug": "jared-dudley", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-03-03"}, {"id": "15694649", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15694649.jpg", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "player": "Alfonzo McKinnie", "playerSlug": "alfonzo-mckinnie", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-03-03"}, {"id": "15694644", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15694644.jpg", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "player": "Alfonzo McKinnie", "playerSlug": "alfonzo-mckinnie", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-03-03"}, {"id": "15694637", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15694637.jpg", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "player": "Kostas Antetokounmpo", "playerSlug": "kostas-antetokounmpo", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-03-03"}, {"id": "15694647", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15694647.jpg", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "player": "Kostas Antetokounmpo", "playerSlug": "kostas-antetokounmpo", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-03-03"}, {"id": "15694646", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15694646.jpg", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "player": "Kostas Antetokounmpo", "playerSlug": "kostas-antetokounmpo", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-03-03"}, {"id": "15694650", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15694650.jpg", "headline": "NBA: Los Angeles Lakers at Sacramento Kings", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-03-03"}, {"id": "15673879", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15673879.jpg", "headline": "NBA: Chicago Bulls at New Orleans Pelicans", "player": "Steven Adams", "playerSlug": "steven-adams", "photographer": "Stephen Lew", "source": "Imagn Images", "date": "2021-03-03"}, {"id": "15673849", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15673849.jpg", "headline": "NBA: Chicago Bulls at New Orleans Pelicans", "player": "Tomas Satoransky", "playerSlug": "tomas-satoransky", "photographer": "Stephen Lew", "source": "Imagn Images", "date": "2021-03-03"}, {"id": "15661281", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15661281.jpg", "headline": "NBA: Utah Jazz at New Orleans Pelicans", "player": "Zion Williamson", "playerSlug": "zion-williamson", "photographer": "Stephen Lew", "source": "Imagn Images", "date": "2021-03-01"}, {"id": "15661246", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15661246.jpg", "headline": "NBA: Utah Jazz at New Orleans Pelicans", "player": "Sindarius Thornwell", "playerSlug": "sindarius-thornwell", "photographer": "Stephen Lew", "source": "Imagn Images", "date": "2021-03-01"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Week of Mar 1</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             <div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15673139/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15673139.jpg" alt="NBA: Miami Heat at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
@@ -361,111 +363,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/wesley-matthews/" class="player-link">Wesley Matthews</a>
         <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
         <div class="credit">📷 Kyle Terada · Imagn Images · Mar 03, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15694655/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15694655.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dennis-schroder/" class="player-link">Dennis Schroder</a>
-        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 03, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15694667/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15694667.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dennis-schroder/" class="player-link">Dennis Schroder</a>
-        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 03, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15694657/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15694657.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kentavious-caldwell-pope/" class="player-link">Kentavious Caldwell-Pope</a>
-        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 03, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15694665/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15694665.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kostas-antetokounmpo/" class="player-link">Kostas Antetokounmpo</a>
-        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 03, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15694638/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15694638.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jared-dudley/" class="player-link">Jared Dudley</a>
-        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 03, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15694649/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15694649.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/alfonzo-mckinnie/" class="player-link">Alfonzo McKinnie</a>
-        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 03, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15694644/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15694644.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/alfonzo-mckinnie/" class="player-link">Alfonzo McKinnie</a>
-        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 03, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15694637/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15694637.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kostas-antetokounmpo/" class="player-link">Kostas Antetokounmpo</a>
-        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 03, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15694647/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15694647.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kostas-antetokounmpo/" class="player-link">Kostas Antetokounmpo</a>
-        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 03, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15694646/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15694646.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kostas-antetokounmpo/" class="player-link">Kostas Antetokounmpo</a>
-        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 03, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15694650/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15694650.jpg" alt="NBA: Los Angeles Lakers at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Lakers at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 03, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15673879/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15673879.jpg" alt="NBA: Chicago Bulls at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/steven-adams/" class="player-link">Steven Adams</a>
-        <div class="headline">NBA: Chicago Bulls at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Mar 03, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15673849/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15673849.jpg" alt="NBA: Chicago Bulls at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tomas-satoransky/" class="player-link">Tomas Satoransky</a>
-        <div class="headline">NBA: Chicago Bulls at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Mar 03, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15661281/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15661281.jpg" alt="NBA: Utah Jazz at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zion-williamson/" class="player-link">Zion Williamson</a>
-        <div class="headline">NBA: Utah Jazz at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Mar 01, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15661246/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15661246.jpg" alt="NBA: Utah Jazz at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/sindarius-thornwell/" class="player-link">Sindarius Thornwell</a>
-        <div class="headline">NBA: Utah Jazz at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Mar 01, 2021</div>
     </div>
 </div>
         </div>

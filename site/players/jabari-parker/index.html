@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "11900566", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11900566.jpg", "headline": "NBA: Minnesota Timberwolves at Chicago Bulls", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Mike Dinovo", "source": "Imagn Images", "date": "2018-12-26"}, {"id": "11824677", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11824677.jpg", "headline": "NBA: Sacramento Kings at Chicago Bulls", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2018-12-10"}, {"id": "11751694", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11751694.jpg", "headline": "NBA: Chicago Bulls at Milwaukee Bucks", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-11-28"}, {"id": "11720367", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11720367.jpg", "headline": "NBA: Miami Heat at Chicago Bulls", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2018-11-23"}, {"id": "11641888", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11641888.jpg", "headline": "NBA: Cleveland Cavaliers at Chicago Bulls", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "David Banks", "source": "Imagn Images", "date": "2018-11-10"}, {"id": "11618961", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11618961.jpg", "headline": "NBA: Chicago Bulls at New Orleans Pelicans", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Stephen Lew", "source": "Imagn Images", "date": "2018-11-07"}, {"id": "11552400", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11552400.jpg", "headline": "NBA: Golden State Warriors at Chicago Bulls", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Mike Dinovo", "source": "Imagn Images", "date": "2018-10-29"}, {"id": "11539136", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11539136.jpg", "headline": "NBA: Chicago Bulls at Atlanta Hawks", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Jason Getz", "source": "Imagn Images", "date": "2018-10-27"}, {"id": "11510118", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11510118.jpg", "headline": "NBA: Charlotte Hornets at Chicago Bulls", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Mike Dinovo", "source": "Imagn Images", "date": "2018-10-24"}, {"id": "11499260", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11499260.jpg", "headline": "NBA: Chicago Bulls at Dallas Mavericks", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Kevin Jairaj", "source": "Imagn Images", "date": "2018-10-22"}, {"id": "10806161", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10806161.jpg", "headline": "NBA: Playoffs-Boston Celtics at Milwaukee Bucks", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-04-26"}, {"id": "10796993", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10796993.jpg", "headline": "NBA: Playoffs-Boston Celtics at Milwaukee Bucks", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-04-20"}, {"id": "10778883", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10778883.jpg", "headline": "NBA: Orlando Magic at Milwaukee Bucks", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-04-09"}, {"id": "10768797", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10768797.jpg", "headline": "NBA: Brooklyn Nets at Milwaukee Bucks", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-04-05"}, {"id": "10763925", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10763925.jpg", "headline": "NBA: Boston Celtics at Milwaukee Bucks", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-04-03"}, {"id": "10758882", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10758882.jpg", "headline": "NBA: Milwaukee Bucks at Denver Nuggets", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-04-01"}, {"id": "10729586", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10729586.jpg", "headline": "NBA: Milwaukee Bucks at Chicago Bulls", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "David Banks", "source": "Imagn Images", "date": "2018-03-23"}, {"id": "10720688", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10720688.jpg", "headline": "NBA: Milwaukee Bucks at Cleveland Cavaliers", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2018-03-19"}, {"id": "10715090", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10715090.jpg", "headline": "NBA: Atlanta Hawks at Milwaukee Bucks", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-03-17"}, {"id": "10697890", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10697890.jpg", "headline": "NBA: Milwaukee Bucks at Memphis Grizzlies", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-03-12"}, {"id": "10691712", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10691712.jpg", "headline": "NBA: New York Knicks at Milwaukee Bucks", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Benny Sieu", "source": "Imagn Images", "date": "2018-03-09"}, {"id": "10691710", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10691710.jpg", "headline": "NBA: New York Knicks at Milwaukee Bucks", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Benny Sieu", "source": "Imagn Images", "date": "2018-03-09"}, {"id": "10680433", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10680433.jpg", "headline": "NBA: Philadelphia 76ers at Milwaukee Bucks", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Benny Sieu", "source": "Imagn Images", "date": "2018-03-04"}, {"id": "10670682", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10670682.jpg", "headline": "NBA: Indiana Pacers at Milwaukee Bucks", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Benny Sieu", "source": "Imagn Images", "date": "2018-03-02"}, {"id": "10660606", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10660606.jpg", "headline": "NBA: Washington Wizards at Milwaukee Bucks", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-02-27"}, {"id": "10673991", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10673991.jpg", "headline": "NBA: New Orleans Pelicans at Milwaukee Bucks", "player": "Jabari Parker", "playerSlug": "jabari-parker", "photographer": "Benny Sieu", "source": "Imagn Images", "date": "2018-02-25"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Jabari Parker</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,195 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Indiana Pacers at Chicago Bulls</div>
         <div class="credit">📷 David Banks · Imagn Images · Jan 04, 2019</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11900566/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11900566.jpg" alt="NBA: Minnesota Timberwolves at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Chicago Bulls</div>
-        <div class="credit">📷 Mike Dinovo · Imagn Images · Dec 26, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11824677/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11824677.jpg" alt="NBA: Sacramento Kings at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Sacramento Kings at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Dec 10, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11751694/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11751694.jpg" alt="NBA: Chicago Bulls at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Chicago Bulls at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Nov 28, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11720367/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11720367.jpg" alt="NBA: Miami Heat at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Miami Heat at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Nov 23, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11641888/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11641888.jpg" alt="NBA: Cleveland Cavaliers at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Nov 10, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11618961/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11618961.jpg" alt="NBA: Chicago Bulls at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Chicago Bulls at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Nov 07, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11552400/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11552400.jpg" alt="NBA: Golden State Warriors at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Golden State Warriors at Chicago Bulls</div>
-        <div class="credit">📷 Mike Dinovo · Imagn Images · Oct 29, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11539136/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11539136.jpg" alt="NBA: Chicago Bulls at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Chicago Bulls at Atlanta Hawks</div>
-        <div class="credit">📷 Jason Getz · Imagn Images · Oct 27, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11510118/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11510118.jpg" alt="NBA: Charlotte Hornets at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Charlotte Hornets at Chicago Bulls</div>
-        <div class="credit">📷 Mike Dinovo · Imagn Images · Oct 24, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11499260/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11499260.jpg" alt="NBA: Chicago Bulls at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Chicago Bulls at Dallas Mavericks</div>
-        <div class="credit">📷 Kevin Jairaj · Imagn Images · Oct 22, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10806161/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10806161.jpg" alt="NBA: Playoffs-Boston Celtics at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Playoffs-Boston Celtics at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 26, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10796993/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10796993.jpg" alt="NBA: Playoffs-Boston Celtics at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Playoffs-Boston Celtics at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 20, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10778883/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10778883.jpg" alt="NBA: Orlando Magic at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Orlando Magic at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 09, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10768797/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10768797.jpg" alt="NBA: Brooklyn Nets at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Brooklyn Nets at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10763925/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10763925.jpg" alt="NBA: Boston Celtics at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Boston Celtics at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 03, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10758882/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10758882.jpg" alt="NBA: Milwaukee Bucks at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Milwaukee Bucks at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10729586/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10729586.jpg" alt="NBA: Milwaukee Bucks at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Milwaukee Bucks at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Mar 23, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10720688/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10720688.jpg" alt="NBA: Milwaukee Bucks at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Milwaukee Bucks at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Mar 19, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10715090/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10715090.jpg" alt="NBA: Atlanta Hawks at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Atlanta Hawks at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Mar 17, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10697890/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10697890.jpg" alt="NBA: Milwaukee Bucks at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Milwaukee Bucks at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Mar 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10691712/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10691712.jpg" alt="NBA: New York Knicks at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: New York Knicks at Milwaukee Bucks</div>
-        <div class="credit">📷 Benny Sieu · Imagn Images · Mar 09, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10691710/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10691710.jpg" alt="NBA: New York Knicks at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: New York Knicks at Milwaukee Bucks</div>
-        <div class="credit">📷 Benny Sieu · Imagn Images · Mar 09, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10680433/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10680433.jpg" alt="NBA: Philadelphia 76ers at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Philadelphia 76ers at Milwaukee Bucks</div>
-        <div class="credit">📷 Benny Sieu · Imagn Images · Mar 04, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10670682/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10670682.jpg" alt="NBA: Indiana Pacers at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Indiana Pacers at Milwaukee Bucks</div>
-        <div class="credit">📷 Benny Sieu · Imagn Images · Mar 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10660606/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10660606.jpg" alt="NBA: Washington Wizards at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: Washington Wizards at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Feb 27, 2018</div>
-    </div>
-</div>
-<div class="affiliate-module inline">
-    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Jabari+Parker+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop Jabari Parker basketball shoes</span>
-        <span class="badge-info">★ Latest Model</span>
-    </a>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10673991/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10673991.jpg" alt="NBA: New Orleans Pelicans at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jabari-parker/" class="player-link">Jabari Parker</a>
-        <div class="headline">NBA: New Orleans Pelicans at Milwaukee Bucks</div>
-        <div class="credit">📷 Benny Sieu · Imagn Images · Feb 25, 2018</div>
-    </div>
 </div>
         </div>
     </section>
@@ -580,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/talen-horton-tucker/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25004007.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/austin-rivers/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/19769901.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Talen Horton-Tucker</div>
-        <div class="mp-count">20 photos</div>
+        <div class="mp-name">Austin Rivers</div>
+        <div class="mp-count">35 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lamarcus-aldridge/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17521218.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27891788.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">LaMarcus Aldridge</div>
-        <div class="mp-count">25 photos</div>
+        <div class="mp-name">Bruce Brown</div>
+        <div class="mp-count">63 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ayo-dosunmu/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28394318.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/evan-mobley/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27598080.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Ayo Dosunmu</div>
-        <div class="mp-count">34 photos</div>
+        <div class="mp-name">Evan Mobley</div>
+        <div class="mp-count">51 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/caleb-martin/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27720588.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/14719545.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Caleb Martin</div>
-        <div class="mp-count">21 photos</div>
+        <div class="mp-name">Marc Gasol</div>
+        <div class="mp-count">42 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/keita-bates-diop/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20429365.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ty-jerome/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25715669.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Keita Bates-Diop</div>
-        <div class="mp-count">15 photos</div>
+        <div class="mp-name">Ty Jerome</div>
+        <div class="mp-count">11 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/langston-galloway/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/15363740.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jeremy-lin/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/12662370.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Langston Galloway</div>
-        <div class="mp-count">106 photos</div>
+        <div class="mp-name">Jeremy Lin</div>
+        <div class="mp-count">16 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/torrey-craig/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25890075.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rudy-gobert/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28374885.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Torrey Craig</div>
-        <div class="mp-count">39 photos</div>
+        <div class="mp-name">Rudy Gobert</div>
+        <div class="mp-count">85 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/isaiah-thomas/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17861556.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bobby-portis/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27688130.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Isaiah Thomas</div>
-        <div class="mp-count">38 photos</div>
+        <div class="mp-name">Bobby Portis</div>
+        <div class="mp-count">43 photos</div>
     </div>
 </a>
         </div>

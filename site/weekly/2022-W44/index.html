@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "19353867", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19353867.jpg", "headline": "NBA: Golden State Warriors at Orlando Magic", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Mike Watters", "source": "Imagn Images", "date": "2022-11-03"}, {"id": "19354419", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19354419.jpg", "headline": "NBA: Denver Nuggets at Oklahoma City Thunder", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2022-11-03"}, {"id": "19354416", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19354416.jpg", "headline": "NBA: Denver Nuggets at Oklahoma City Thunder", "player": "Jeff Green", "playerSlug": "jeff-green", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2022-11-03"}, {"id": "19354415", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19354415.jpg", "headline": "NBA: Denver Nuggets at Oklahoma City Thunder", "player": "Josh Giddey", "playerSlug": "josh-giddey", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2022-11-03"}, {"id": "19348908", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19348908.jpg", "headline": "NBA: Utah Jazz at Dallas Mavericks", "player": "Jordan Clarkson", "playerSlug": "jordan-clarkson", "photographer": "Kevin Jairaj", "source": "Imagn Images", "date": "2022-11-02"}, {"id": "19348906", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19348906.jpg", "headline": "NBA: Utah Jazz at Dallas Mavericks", "player": "Christian Wood", "playerSlug": "christian-wood", "photographer": "Kevin Jairaj", "source": "Imagn Images", "date": "2022-11-02"}, {"id": "19348631", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19348631.jpg", "headline": "NBA: Detroit Pistons at Milwaukee Bucks", "player": "Giannis Antetokounmpo", "playerSlug": "giannis-antetokounmpo", "photographer": "Benny Sieu", "source": "Imagn Images", "date": "2022-11-02"}, {"id": "19348649", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19348649.jpg", "headline": "NBA: Charlotte Hornets at Chicago Bulls", "player": "Nikola Vucevic", "playerSlug": "nikola-vucevic", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2022-11-02"}, {"id": "19347444", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19347444.jpg", "headline": "NBA: Boston Celtics at Cleveland Cavaliers", "player": "Marcus Smart", "playerSlug": "marcus-smart", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2022-11-02"}, {"id": "19347445", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19347445.jpg", "headline": "NBA: Boston Celtics at Cleveland Cavaliers", "player": "Grant Williams", "playerSlug": "grant-williams", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2022-11-02"}, {"id": "19347450", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19347450.jpg", "headline": "NBA: Boston Celtics at Cleveland Cavaliers", "player": "Jayson Tatum", "playerSlug": "jayson-tatum", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2022-11-02"}, {"id": "19347453", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19347453.jpg", "headline": "NBA: Boston Celtics at Cleveland Cavaliers", "player": "Darius Garland", "playerSlug": "darius-garland", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2022-11-02"}, {"id": "19348466", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19348466.jpg", "headline": "NBA: Toronto Raptors at San Antonio Spurs", "player": "Pascal Siakam", "playerSlug": "pascal-siakam", "photographer": "Scott Wachter", "source": "Imagn Images", "date": "2022-11-02"}, {"id": "19347528", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19347528.jpg", "headline": "NBA: Charlotte Hornets at Chicago Bulls", "player": "Gordon Hayward", "playerSlug": "gordon-hayward", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2022-11-02"}, {"id": "19347527", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19347527.jpg", "headline": "NBA: Charlotte Hornets at Chicago Bulls", "player": "Zach LaVine", "playerSlug": "zach-lavine", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2022-11-02"}, {"id": "19347059", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19347059.jpg", "headline": "NBA: Utah Jazz at Dallas Mavericks", "player": "Luka Doncic", "playerSlug": "luka-doncic", "photographer": "Kevin Jairaj", "source": "Imagn Images", "date": "2022-11-02"}, {"id": "19342808", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19342808.jpg", "headline": "NBA: Orlando Magic at Oklahoma City Thunder", "player": "Bol Bol", "playerSlug": "bol-bol", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2022-11-01"}, {"id": "19337963", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19337963.jpg", "headline": "NBA: Atlanta Hawks at Toronto Raptors", "player": "Dejounte Murray", "playerSlug": "dejounte-murray", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2022-10-31"}, {"id": "19337872", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19337872.jpg", "headline": "NBA: Atlanta Hawks at Toronto Raptors", "player": "Pascal Siakam", "playerSlug": "pascal-siakam", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2022-10-31"}, {"id": "19338058", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19338058.jpg", "headline": "NBA: Atlanta Hawks at Toronto Raptors", "player": "Clint Capela", "playerSlug": "clint-capela", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2022-10-31"}, {"id": "19338011", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19338011.jpg", "headline": "NBA: Atlanta Hawks at Toronto Raptors", "player": "Justin Holiday", "playerSlug": "justin-holiday", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2022-10-31"}, {"id": "19337834", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19337834.jpg", "headline": "NBA: Sacramento Kings at Charlotte Hornets", "player": "Davion Mitchell", "playerSlug": "davion-mitchell", "photographer": "Sam Sharpe", "source": "Imagn Images", "date": "2022-10-31"}, {"id": "19337832", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19337832.jpg", "headline": "NBA: Sacramento Kings at Charlotte Hornets", "player": "Richaun Holmes", "playerSlug": "richaun-holmes", "photographer": "Sam Sharpe", "source": "Imagn Images", "date": "2022-10-31"}, {"id": "19338131", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19338131.jpg", "headline": "NBA: Atlanta Hawks at Toronto Raptors", "player": "Pascal Siakam", "playerSlug": "pascal-siakam", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2022-10-31"}, {"id": "19337044", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19337044.jpg", "headline": "NBA: Detroit Pistons at Milwaukee Bucks", "player": "Serge Ibaka", "playerSlug": "serge-ibaka", "photographer": "Michael McLoone", "source": "Imagn Images", "date": "2022-10-31"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Week of Oct 31</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             <div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19380724/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19380724.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
@@ -361,181 +363,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/klay-thompson/" class="player-link">Klay Thompson</a>
         <div class="headline">NBA: Golden State Warriors at Orlando Magic</div>
         <div class="credit">📷 Mike Watters · Imagn Images · Nov 03, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19353867/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19353867.jpg" alt="NBA: Golden State Warriors at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Golden State Warriors at Orlando Magic</div>
-        <div class="credit">📷 Mike Watters · Imagn Images · Nov 03, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19354419/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19354419.jpg" alt="NBA: Denver Nuggets at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Denver Nuggets at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 03, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19354416/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19354416.jpg" alt="NBA: Denver Nuggets at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jeff-green/" class="player-link">Jeff Green</a>
-        <div class="headline">NBA: Denver Nuggets at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 03, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19354415/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19354415.jpg" alt="NBA: Denver Nuggets at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
-        <div class="headline">NBA: Denver Nuggets at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 03, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19348908/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19348908.jpg" alt="NBA: Utah Jazz at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jordan-clarkson/" class="player-link">Jordan Clarkson</a>
-        <div class="headline">NBA: Utah Jazz at Dallas Mavericks</div>
-        <div class="credit">📷 Kevin Jairaj · Imagn Images · Nov 02, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19348906/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19348906.jpg" alt="NBA: Utah Jazz at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/christian-wood/" class="player-link">Christian Wood</a>
-        <div class="headline">NBA: Utah Jazz at Dallas Mavericks</div>
-        <div class="credit">📷 Kevin Jairaj · Imagn Images · Nov 02, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19348631/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19348631.jpg" alt="NBA: Detroit Pistons at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/giannis-antetokounmpo/" class="player-link">Giannis Antetokounmpo</a>
-        <div class="headline">NBA: Detroit Pistons at Milwaukee Bucks</div>
-        <div class="credit">📷 Benny Sieu · Imagn Images · Nov 02, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19348649/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19348649.jpg" alt="NBA: Charlotte Hornets at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nikola-vucevic/" class="player-link">Nikola Vucevic</a>
-        <div class="headline">NBA: Charlotte Hornets at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Nov 02, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19347444/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19347444.jpg" alt="NBA: Boston Celtics at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marcus-smart/" class="player-link">Marcus Smart</a>
-        <div class="headline">NBA: Boston Celtics at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Nov 02, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19347445/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19347445.jpg" alt="NBA: Boston Celtics at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/grant-williams/" class="player-link">Grant Williams</a>
-        <div class="headline">NBA: Boston Celtics at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Nov 02, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19347450/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19347450.jpg" alt="NBA: Boston Celtics at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jayson-tatum/" class="player-link">Jayson Tatum</a>
-        <div class="headline">NBA: Boston Celtics at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Nov 02, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19347453/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19347453.jpg" alt="NBA: Boston Celtics at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/darius-garland/" class="player-link">Darius Garland</a>
-        <div class="headline">NBA: Boston Celtics at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Nov 02, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19348466/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19348466.jpg" alt="NBA: Toronto Raptors at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pascal-siakam/" class="player-link">Pascal Siakam</a>
-        <div class="headline">NBA: Toronto Raptors at San Antonio Spurs</div>
-        <div class="credit">📷 Scott Wachter · Imagn Images · Nov 02, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19347528/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19347528.jpg" alt="NBA: Charlotte Hornets at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/gordon-hayward/" class="player-link">Gordon Hayward</a>
-        <div class="headline">NBA: Charlotte Hornets at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Nov 02, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19347527/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19347527.jpg" alt="NBA: Charlotte Hornets at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zach-lavine/" class="player-link">Zach LaVine</a>
-        <div class="headline">NBA: Charlotte Hornets at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Nov 02, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19347059/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19347059.jpg" alt="NBA: Utah Jazz at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/luka-doncic/" class="player-link">Luka Doncic</a>
-        <div class="headline">NBA: Utah Jazz at Dallas Mavericks</div>
-        <div class="credit">📷 Kevin Jairaj · Imagn Images · Nov 02, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19342808/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19342808.jpg" alt="NBA: Orlando Magic at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bol-bol/" class="player-link">Bol Bol</a>
-        <div class="headline">NBA: Orlando Magic at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 01, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19337963/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19337963.jpg" alt="NBA: Atlanta Hawks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dejounte-murray/" class="player-link">Dejounte Murray</a>
-        <div class="headline">NBA: Atlanta Hawks at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Oct 31, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19337872/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19337872.jpg" alt="NBA: Atlanta Hawks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pascal-siakam/" class="player-link">Pascal Siakam</a>
-        <div class="headline">NBA: Atlanta Hawks at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Oct 31, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19338058/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19338058.jpg" alt="NBA: Atlanta Hawks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/clint-capela/" class="player-link">Clint Capela</a>
-        <div class="headline">NBA: Atlanta Hawks at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Oct 31, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19338011/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19338011.jpg" alt="NBA: Atlanta Hawks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/justin-holiday/" class="player-link">Justin Holiday</a>
-        <div class="headline">NBA: Atlanta Hawks at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Oct 31, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19337834/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19337834.jpg" alt="NBA: Sacramento Kings at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/davion-mitchell/" class="player-link">Davion Mitchell</a>
-        <div class="headline">NBA: Sacramento Kings at Charlotte Hornets</div>
-        <div class="credit">📷 Sam Sharpe · Imagn Images · Oct 31, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19337832/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19337832.jpg" alt="NBA: Sacramento Kings at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/richaun-holmes/" class="player-link">Richaun Holmes</a>
-        <div class="headline">NBA: Sacramento Kings at Charlotte Hornets</div>
-        <div class="credit">📷 Sam Sharpe · Imagn Images · Oct 31, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19338131/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19338131.jpg" alt="NBA: Atlanta Hawks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pascal-siakam/" class="player-link">Pascal Siakam</a>
-        <div class="headline">NBA: Atlanta Hawks at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Oct 31, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19337044/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19337044.jpg" alt="NBA: Detroit Pistons at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="player-link">Serge Ibaka</a>
-        <div class="headline">NBA: Detroit Pistons at Milwaukee Bucks</div>
-        <div class="credit">📷 Michael McLoone · Imagn Images · Oct 31, 2022</div>
     </div>
 </div>
         </div>

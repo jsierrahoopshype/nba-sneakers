@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "17664615", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17664615.jpg", "headline": "NBA: Charlotte Hornets at Detroit Pistons", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Raj Mehta", "source": "Imagn Images", "date": "2022-02-11"}, {"id": "17579243", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17579243.jpg", "headline": "NBA: Los Angeles Lakers at Charlotte Hornets", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Jim Dedmon", "source": "Imagn Images", "date": "2022-01-28"}, {"id": "17474547", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17474547.jpg", "headline": "NBA: Milwaukee Bucks at Charlotte Hornets", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Jim Dedmon", "source": "Imagn Images", "date": "2022-01-08"}, {"id": "17195312", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17195312.jpg", "headline": "NBA: Indiana Pacers at Charlotte Hornets", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Jim Dedmon", "source": "Imagn Images", "date": "2021-11-19"}, {"id": "17004872", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17004872.jpg", "headline": "NBA: Charlotte Hornets at Cleveland Cavaliers", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2021-10-22"}, {"id": "15638711", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15638711.jpg", "headline": "NBA: Charlotte Hornets at Golden State Warriors", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-02-26"}, {"id": "14165197", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14165197.jpg", "headline": "NBA: Charlotte Hornets at Atlanta Hawks", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Jason Getz", "source": "Imagn Images", "date": "2020-03-09"}, {"id": "14123771", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14123771.jpg", "headline": "NBA: Milwaukee Bucks at Charlotte Hornets", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Jim Dedmon", "source": "Imagn Images", "date": "2020-03-01"}, {"id": "14113090", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14113090.jpg", "headline": "NBA: Charlotte Hornets at Toronto Raptors", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2020-02-28"}, {"id": "14113083", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14113083.jpg", "headline": "NBA: Charlotte Hornets at Toronto Raptors", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2020-02-28"}, {"id": "14102796", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14102796.jpg", "headline": "NBA: New York Knicks at Charlotte Hornets", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Sam Sharpe", "source": "Imagn Images", "date": "2020-02-26"}, {"id": "14072792", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14072792.jpg", "headline": "NBA: Charlotte Hornets at Chicago Bulls", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2020-02-20"}, {"id": "13880201", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13880201.jpg", "headline": "NBA: Indiana Pacers at Charlotte Hornets", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Jeremy Brevard", "source": "Imagn Images", "date": "2020-01-06"}, {"id": "13813773", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13813773.jpg", "headline": "NBA: Charlotte Hornets at Cleveland Cavaliers", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "David Richard", "source": "Imagn Images", "date": "2019-12-18"}, {"id": "13728803", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13728803.jpg", "headline": "NBA: Charlotte Hornets at Detroit Pistons", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Raj Mehta", "source": "Imagn Images", "date": "2019-11-29"}, {"id": "13669947", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13669947.jpg", "headline": "NBA: Detroit Pistons at Charlotte Hornets", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Jeremy Brevard", "source": "Imagn Images", "date": "2019-11-15"}, {"id": "13567286", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13567286.jpg", "headline": "NBA: Minnesota Timberwolves at Charlotte Hornets", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Jeremy Brevard", "source": "Imagn Images", "date": "2019-10-25"}, {"id": "13524032", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13524032.jpg", "headline": "NBA: Preseason-Detroit Pistons at Charlotte Hornets", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Jeremy Brevard", "source": "Imagn Images", "date": "2019-10-16"}, {"id": "12511889", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12511889.jpg", "headline": "NBA: Orlando Magic at Charlotte Hornets", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Sam Sharpe", "source": "Imagn Images", "date": "2019-04-10"}, {"id": "12505295", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12505295.jpg", "headline": "NBA: Charlotte Hornets at Cleveland Cavaliers", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "David Richard", "source": "Imagn Images", "date": "2019-04-09"}, {"id": "12214517", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12214517.jpg", "headline": "NBA: Washington Wizards at Charlotte Hornets", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Jeremy Brevard", "source": "Imagn Images", "date": "2019-02-22"}, {"id": "12164316", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12164316.jpg", "headline": "NBA: Charlotte Hornets at Orlando Magic", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2019-02-14"}, {"id": "12120870", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12120870.jpg", "headline": "NBA: Charlotte Hornets at Dallas Mavericks", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2019-02-06"}, {"id": "12071686", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12071686.jpg", "headline": "NBA: New York Knicks at Charlotte Hornets", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Sam Sharpe", "source": "Imagn Images", "date": "2019-01-28"}, {"id": "11660192", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11660192.jpg", "headline": "NBA: Charlotte Hornets at Cleveland Cavaliers", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2018-11-13"}, {"id": "11649838", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11649838.jpg", "headline": "NBA: Charlotte Hornets at Detroit Pistons", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Raj Mehta", "source": "Imagn Images", "date": "2018-11-11"}, {"id": "11559115", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11559115.jpg", "headline": "NBA: Miami Heat at Charlotte Hornets", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Jeremy Brevard", "source": "Imagn Images", "date": "2018-10-30"}, {"id": "11524028", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11524028.jpg", "headline": "NBA: Chicago Bulls at Charlotte Hornets", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Jeremy Brevard", "source": "Imagn Images", "date": "2018-10-26"}, {"id": "11427398", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11427398.jpg", "headline": "NBA: Preseason-Charlotte Hornets at Dallas Mavericks", "player": "Miles Bridges", "playerSlug": "miles-bridges", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2018-10-12"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Miles Bridges</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,216 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Charlotte Hornets at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Feb 28, 2022</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17664615/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17664615.jpg" alt="NBA: Charlotte Hornets at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Charlotte Hornets at Detroit Pistons</div>
-        <div class="credit">📷 Raj Mehta · Imagn Images · Feb 11, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17579243/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17579243.jpg" alt="NBA: Los Angeles Lakers at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Los Angeles Lakers at Charlotte Hornets</div>
-        <div class="credit">📷 Jim Dedmon · Imagn Images · Jan 28, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17474547/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17474547.jpg" alt="NBA: Milwaukee Bucks at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Milwaukee Bucks at Charlotte Hornets</div>
-        <div class="credit">📷 Jim Dedmon · Imagn Images · Jan 08, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17195312/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17195312.jpg" alt="NBA: Indiana Pacers at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Indiana Pacers at Charlotte Hornets</div>
-        <div class="credit">📷 Jim Dedmon · Imagn Images · Nov 19, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17004872/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17004872.jpg" alt="NBA: Charlotte Hornets at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Charlotte Hornets at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Oct 22, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15638711/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15638711.jpg" alt="NBA: Charlotte Hornets at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Charlotte Hornets at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Feb 26, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14165197/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14165197.jpg" alt="NBA: Charlotte Hornets at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Charlotte Hornets at Atlanta Hawks</div>
-        <div class="credit">📷 Jason Getz · Imagn Images · Mar 09, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14123771/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14123771.jpg" alt="NBA: Milwaukee Bucks at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Milwaukee Bucks at Charlotte Hornets</div>
-        <div class="credit">📷 Jim Dedmon · Imagn Images · Mar 01, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14113090/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14113090.jpg" alt="NBA: Charlotte Hornets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Charlotte Hornets at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 28, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14113083/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14113083.jpg" alt="NBA: Charlotte Hornets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Charlotte Hornets at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 28, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14102796/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14102796.jpg" alt="NBA: New York Knicks at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: New York Knicks at Charlotte Hornets</div>
-        <div class="credit">📷 Sam Sharpe · Imagn Images · Feb 26, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14072792/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14072792.jpg" alt="NBA: Charlotte Hornets at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Charlotte Hornets at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Feb 20, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13880201/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13880201.jpg" alt="NBA: Indiana Pacers at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Indiana Pacers at Charlotte Hornets</div>
-        <div class="credit">📷 Jeremy Brevard · Imagn Images · Jan 06, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13813773/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13813773.jpg" alt="NBA: Charlotte Hornets at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Charlotte Hornets at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Dec 18, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13728803/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13728803.jpg" alt="NBA: Charlotte Hornets at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Charlotte Hornets at Detroit Pistons</div>
-        <div class="credit">📷 Raj Mehta · Imagn Images · Nov 29, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13669947/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13669947.jpg" alt="NBA: Detroit Pistons at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Detroit Pistons at Charlotte Hornets</div>
-        <div class="credit">📷 Jeremy Brevard · Imagn Images · Nov 15, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13567286/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13567286.jpg" alt="NBA: Minnesota Timberwolves at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Charlotte Hornets</div>
-        <div class="credit">📷 Jeremy Brevard · Imagn Images · Oct 25, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13524032/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13524032.jpg" alt="NBA: Preseason-Detroit Pistons at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Preseason-Detroit Pistons at Charlotte Hornets</div>
-        <div class="credit">📷 Jeremy Brevard · Imagn Images · Oct 16, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12511889/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12511889.jpg" alt="NBA: Orlando Magic at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Orlando Magic at Charlotte Hornets</div>
-        <div class="credit">📷 Sam Sharpe · Imagn Images · Apr 10, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12505295/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12505295.jpg" alt="NBA: Charlotte Hornets at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Charlotte Hornets at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Apr 09, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12214517/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12214517.jpg" alt="NBA: Washington Wizards at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Washington Wizards at Charlotte Hornets</div>
-        <div class="credit">📷 Jeremy Brevard · Imagn Images · Feb 22, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12164316/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12164316.jpg" alt="NBA: Charlotte Hornets at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Charlotte Hornets at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Feb 14, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12120870/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12120870.jpg" alt="NBA: Charlotte Hornets at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Charlotte Hornets at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Feb 06, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12071686/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12071686.jpg" alt="NBA: New York Knicks at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: New York Knicks at Charlotte Hornets</div>
-        <div class="credit">📷 Sam Sharpe · Imagn Images · Jan 28, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11660192/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11660192.jpg" alt="NBA: Charlotte Hornets at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Charlotte Hornets at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Nov 13, 2018</div>
-    </div>
-</div>
-<div class="affiliate-module inline">
-    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Miles+Bridges+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop Miles Bridges basketball shoes</span>
-        <span class="badge-info">★ Latest Model</span>
-    </a>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11649838/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11649838.jpg" alt="NBA: Charlotte Hornets at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Charlotte Hornets at Detroit Pistons</div>
-        <div class="credit">📷 Raj Mehta · Imagn Images · Nov 11, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11559115/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11559115.jpg" alt="NBA: Miami Heat at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Miami Heat at Charlotte Hornets</div>
-        <div class="credit">📷 Jeremy Brevard · Imagn Images · Oct 30, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11524028/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11524028.jpg" alt="NBA: Chicago Bulls at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Chicago Bulls at Charlotte Hornets</div>
-        <div class="credit">📷 Jeremy Brevard · Imagn Images · Oct 26, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11427398/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11427398.jpg" alt="NBA: Preseason-Charlotte Hornets at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Preseason-Charlotte Hornets at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Oct 12, 2018</div>
-    </div>
 </div>
         </div>
     </section>
@@ -601,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/garrett-temple/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28329957.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lauri-markkanen/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28185034.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Garrett Temple</div>
-        <div class="mp-count">24 photos</div>
+        <div class="mp-name">Lauri Markkanen</div>
+        <div class="mp-count">62 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/gabe-vincent/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/23027100.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/taurean-prince/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25883176.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Gabe Vincent</div>
-        <div class="mp-count">10 photos</div>
+        <div class="mp-name">Taurean Prince</div>
+        <div class="mp-count">46 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kenrich-williams/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28329968.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dyson-daniels/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/24811773.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Kenrich Williams</div>
-        <div class="mp-count">25 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-brunson/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28174336.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Jalen Brunson</div>
-        <div class="mp-count">30 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-knox/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/12481560.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Kevin Knox</div>
-        <div class="mp-count">11 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dean-wade/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27644964.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Dean Wade</div>
-        <div class="mp-count">13 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/james-ennis-iii/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/15619148.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">James Ennis III</div>
+        <div class="mp-name">Dyson Daniels</div>
         <div class="mp-count">12 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/emmanuel-mudiay/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/14113497.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kelly-olynyk/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25684957.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Emmanuel Mudiay</div>
-        <div class="mp-count">13 photos</div>
+        <div class="mp-name">Kelly Olynyk</div>
+        <div class="mp-count">24 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/justin-holiday/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22485417.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Justin Holiday</div>
+        <div class="mp-count">42 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marcus-smart/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28051438.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Marcus Smart</div>
+        <div class="mp-count">28 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deandre-hunter/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27750946.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">De&#x27;Andre Hunter</div>
+        <div class="mp-count">38 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-nesmith/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/26427841.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Aaron Nesmith</div>
+        <div class="mp-count">15 photos</div>
     </div>
 </a>
         </div>

@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "15943619", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15943619.jpg", "headline": "NBA: Minnesota Timberwolves at Sacramento Kings", "player": "Maurice Harkless", "playerSlug": "maurice-harkless", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2021-04-21"}, {"id": "15943620", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15943620.jpg", "headline": "NBA: Minnesota Timberwolves at Sacramento Kings", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2021-04-21"}, {"id": "15942690", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15942690.jpg", "headline": "NBA: Detroit Pistons at Dallas Mavericks", "player": "Luka Doncic", "playerSlug": "luka-doncic", "photographer": "Kevin Jairaj", "source": "Imagn Images", "date": "2021-04-21"}, {"id": "15942689", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15942689.jpg", "headline": "NBA: Detroit Pistons at Dallas Mavericks", "player": "Willie Cauley-Stein", "playerSlug": "willie-cauley-stein", "photographer": "Kevin Jairaj", "source": "Imagn Images", "date": "2021-04-21"}, {"id": "15942569", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15942569.jpg", "headline": "NBA: Miami Heat at San Antonio Spurs", "player": "Rudy Gay", "playerSlug": "rudy-gay", "photographer": "Scott Wachter", "source": "Imagn Images", "date": "2021-04-21"}, {"id": "15942570", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15942570.jpg", "headline": "NBA: Miami Heat at San Antonio Spurs", "player": "Dejounte Murray", "playerSlug": "dejounte-murray", "photographer": "Scott Wachter", "source": "Imagn Images", "date": "2021-04-21"}, {"id": "15937503", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15937503.jpg", "headline": "NBA: Minnesota Timberwolves at Sacramento Kings", "player": "Jaden McDaniels", "playerSlug": "jaden-mcdaniels", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-04-20"}, {"id": "15937497", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15937497.jpg", "headline": "NBA: Minnesota Timberwolves at Sacramento Kings", "player": "D&#x27;Angelo Russell", "playerSlug": "dangelo-russell", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-04-20"}, {"id": "15937502", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15937502.jpg", "headline": "NBA: Minnesota Timberwolves at Sacramento Kings", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-04-20"}, {"id": "15937498", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15937498.jpg", "headline": "NBA: Minnesota Timberwolves at Sacramento Kings", "player": "Harrison Barnes", "playerSlug": "harrison-barnes", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-04-20"}, {"id": "15937501", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15937501.jpg", "headline": "NBA: Minnesota Timberwolves at Sacramento Kings", "player": "Terence Davis", "playerSlug": "terence-davis", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-04-20"}, {"id": "15937500", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15937500.jpg", "headline": "NBA: Minnesota Timberwolves at Sacramento Kings", "player": "Naz Reid", "playerSlug": "naz-reid", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-04-20"}, {"id": "15937499", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15937499.jpg", "headline": "NBA: Minnesota Timberwolves at Sacramento Kings", "player": "Josh Okogie", "playerSlug": "josh-okogie", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-04-20"}, {"id": "15935311", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15935311.jpg", "headline": "NBA: Brooklyn Nets at New Orleans Pelicans", "player": "Jeff Green", "playerSlug": "jeff-green", "photographer": "Stephen Lew", "source": "Imagn Images", "date": "2021-04-20"}, {"id": "15935095", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15935095.jpg", "headline": "NBA: Brooklyn Nets at New Orleans Pelicans", "player": "Alize Johnson", "playerSlug": "alize-johnson", "photographer": "Stephen Lew", "source": "Imagn Images", "date": "2021-04-20"}, {"id": "15935100", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15935100.jpg", "headline": "NBA: Brooklyn Nets at New Orleans Pelicans", "player": "Blake Griffin", "playerSlug": "blake-griffin", "photographer": "Stephen Lew", "source": "Imagn Images", "date": "2021-04-20"}, {"id": "15935101", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15935101.jpg", "headline": "NBA: Brooklyn Nets at New Orleans Pelicans", "player": "Naji Marshall", "playerSlug": "naji-marshall", "photographer": "Stephen Lew", "source": "Imagn Images", "date": "2021-04-20"}, {"id": "15935038", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15935038.jpg", "headline": "NBA: Brooklyn Nets at New Orleans Pelicans", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Stephen Lew", "source": "Imagn Images", "date": "2021-04-20"}, {"id": "15935035", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15935035.jpg", "headline": "NBA: Brooklyn Nets at New Orleans Pelicans", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Stephen Lew", "source": "Imagn Images", "date": "2021-04-20"}, {"id": "15930432", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15930432.jpg", "headline": "NBA: Houston Rockets at Miami Heat", "player": "Armoni Brooks", "playerSlug": "armoni-brooks", "photographer": "Rhona Wise", "source": "Imagn Images", "date": "2021-04-19"}, {"id": "15930538", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15930538.jpg", "headline": "NBA: Houston Rockets at Miami Heat", "player": "Christian Wood", "playerSlug": "christian-wood", "photographer": "Rhona Wise", "source": "Imagn Images", "date": "2021-04-19"}, {"id": "15930792", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15930792.jpg", "headline": "NBA: Memphis Grizzlies at Denver Nuggets", "player": "Grayson Allen", "playerSlug": "grayson-allen", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2021-04-19"}, {"id": "15929447", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15929447.jpg", "headline": "NBA: Cleveland Cavaliers at Detroit Pistons", "player": "Tyler Cook", "playerSlug": "tyler-cook", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2021-04-19"}, {"id": "15930724", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15930724.jpg", "headline": "NBA: Memphis Grizzlies at Denver Nuggets", "player": "De&#x27;Anthony Melton", "playerSlug": "deanthony-melton", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2021-04-19"}, {"id": "15929133", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15929133.jpg", "headline": "NBA: Cleveland Cavaliers at Detroit Pistons", "player": "Saben Lee", "playerSlug": "saben-lee", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2021-04-19"}, {"id": "15929134", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15929134.jpg", "headline": "NBA: Cleveland Cavaliers at Detroit Pistons", "player": "Jahlil Okafor", "playerSlug": "jahlil-okafor", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2021-04-19"}, {"id": "15929137", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15929137.jpg", "headline": "NBA: Cleveland Cavaliers at Detroit Pistons", "player": "Darius Garland", "playerSlug": "darius-garland", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2021-04-19"}, {"id": "15929519", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15929519.jpg", "headline": "NBA: Memphis Grizzlies at Denver Nuggets", "player": "Kyle Anderson", "playerSlug": "kyle-anderson", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2021-04-19"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Week of Apr 19</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             <div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15967443/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15967443.jpg" alt="NBA: Sacramento Kings at Golden State Warriors" loading="lazy"></a>
     <div class="meta">
@@ -361,202 +363,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deaaron-fox/" class="player-link">De&#x27;Aaron Fox</a>
         <div class="headline">NBA: Minnesota Timberwolves at Sacramento Kings</div>
         <div class="credit">📷 Kelley L Cox · Imagn Images · Apr 21, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15943619/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15943619.jpg" alt="NBA: Minnesota Timberwolves at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/maurice-harkless/" class="player-link">Maurice Harkless</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Sacramento Kings</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Apr 21, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15943620/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15943620.jpg" alt="NBA: Minnesota Timberwolves at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Sacramento Kings</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Apr 21, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15942690/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15942690.jpg" alt="NBA: Detroit Pistons at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/luka-doncic/" class="player-link">Luka Doncic</a>
-        <div class="headline">NBA: Detroit Pistons at Dallas Mavericks</div>
-        <div class="credit">📷 Kevin Jairaj · Imagn Images · Apr 21, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15942689/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15942689.jpg" alt="NBA: Detroit Pistons at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/willie-cauley-stein/" class="player-link">Willie Cauley-Stein</a>
-        <div class="headline">NBA: Detroit Pistons at Dallas Mavericks</div>
-        <div class="credit">📷 Kevin Jairaj · Imagn Images · Apr 21, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15942569/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15942569.jpg" alt="NBA: Miami Heat at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rudy-gay/" class="player-link">Rudy Gay</a>
-        <div class="headline">NBA: Miami Heat at San Antonio Spurs</div>
-        <div class="credit">📷 Scott Wachter · Imagn Images · Apr 21, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15942570/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15942570.jpg" alt="NBA: Miami Heat at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dejounte-murray/" class="player-link">Dejounte Murray</a>
-        <div class="headline">NBA: Miami Heat at San Antonio Spurs</div>
-        <div class="credit">📷 Scott Wachter · Imagn Images · Apr 21, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15937503/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15937503.jpg" alt="NBA: Minnesota Timberwolves at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jaden-mcdaniels/" class="player-link">Jaden McDaniels</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 20, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15937497/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15937497.jpg" alt="NBA: Minnesota Timberwolves at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dangelo-russell/" class="player-link">D&#x27;Angelo Russell</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 20, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15937502/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15937502.jpg" alt="NBA: Minnesota Timberwolves at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 20, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15937498/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15937498.jpg" alt="NBA: Minnesota Timberwolves at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/harrison-barnes/" class="player-link">Harrison Barnes</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 20, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15937501/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15937501.jpg" alt="NBA: Minnesota Timberwolves at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/terence-davis/" class="player-link">Terence Davis</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 20, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15937500/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15937500.jpg" alt="NBA: Minnesota Timberwolves at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/naz-reid/" class="player-link">Naz Reid</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 20, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15937499/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15937499.jpg" alt="NBA: Minnesota Timberwolves at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-okogie/" class="player-link">Josh Okogie</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 20, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15935311/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15935311.jpg" alt="NBA: Brooklyn Nets at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jeff-green/" class="player-link">Jeff Green</a>
-        <div class="headline">NBA: Brooklyn Nets at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Apr 20, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15935095/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15935095.jpg" alt="NBA: Brooklyn Nets at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/alize-johnson/" class="player-link">Alize Johnson</a>
-        <div class="headline">NBA: Brooklyn Nets at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Apr 20, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15935100/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15935100.jpg" alt="NBA: Brooklyn Nets at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/blake-griffin/" class="player-link">Blake Griffin</a>
-        <div class="headline">NBA: Brooklyn Nets at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Apr 20, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15935101/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15935101.jpg" alt="NBA: Brooklyn Nets at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/naji-marshall/" class="player-link">Naji Marshall</a>
-        <div class="headline">NBA: Brooklyn Nets at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Apr 20, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15935038/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15935038.jpg" alt="NBA: Brooklyn Nets at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Brooklyn Nets at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Apr 20, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15935035/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15935035.jpg" alt="NBA: Brooklyn Nets at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Brooklyn Nets at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Apr 20, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15930432/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15930432.jpg" alt="NBA: Houston Rockets at Miami Heat" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/armoni-brooks/" class="player-link">Armoni Brooks</a>
-        <div class="headline">NBA: Houston Rockets at Miami Heat</div>
-        <div class="credit">📷 Rhona Wise · Imagn Images · Apr 19, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15930538/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15930538.jpg" alt="NBA: Houston Rockets at Miami Heat" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/christian-wood/" class="player-link">Christian Wood</a>
-        <div class="headline">NBA: Houston Rockets at Miami Heat</div>
-        <div class="credit">📷 Rhona Wise · Imagn Images · Apr 19, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15930792/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15930792.jpg" alt="NBA: Memphis Grizzlies at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/grayson-allen/" class="player-link">Grayson Allen</a>
-        <div class="headline">NBA: Memphis Grizzlies at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 19, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15929447/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15929447.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tyler-cook/" class="player-link">Tyler Cook</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Apr 19, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15930724/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15930724.jpg" alt="NBA: Memphis Grizzlies at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deanthony-melton/" class="player-link">De&#x27;Anthony Melton</a>
-        <div class="headline">NBA: Memphis Grizzlies at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 19, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15929133/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15929133.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/saben-lee/" class="player-link">Saben Lee</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Apr 19, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15929134/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15929134.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jahlil-okafor/" class="player-link">Jahlil Okafor</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Apr 19, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15929137/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15929137.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/darius-garland/" class="player-link">Darius Garland</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Apr 19, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15929519/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15929519.jpg" alt="NBA: Memphis Grizzlies at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-anderson/" class="player-link">Kyle Anderson</a>
-        <div class="headline">NBA: Memphis Grizzlies at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 19, 2021</div>
     </div>
 </div>
         </div>

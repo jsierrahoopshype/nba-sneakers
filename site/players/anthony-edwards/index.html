@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "25480802", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25480802.jpg", "headline": "NBA: Minnesota Timberwolves at Houston Rockets", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Troy Taormina", "source": "Imagn Images", "date": "2025-02-21"}, {"id": "25384692", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25384692.jpg", "headline": "NBA: Minnesota Timberwolves at Cleveland Cavaliers", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "David Richard", "source": "Imagn Images", "date": "2025-02-10"}, {"id": "25224403", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25224403.jpg", "headline": "NBA: Cleveland Cavaliers at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Matt Krohn", "source": "Imagn Images", "date": "2025-01-18"}, {"id": "25197857", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25197857.jpg", "headline": "NBA: Golden State Warriors at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Jesse Johnson", "source": "Imagn Images", "date": "2025-01-15"}, {"id": "25197856", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25197856.jpg", "headline": "NBA: Golden State Warriors at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Jesse Johnson", "source": "Imagn Images", "date": "2025-01-15"}, {"id": "25135228", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25135228.jpg", "headline": "NBA: Minnesota Timberwolves at New Orleans Pelicans", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Matthew Hinton", "source": "Imagn Images", "date": "2025-01-07"}, {"id": "25082916", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25082916.jpg", "headline": "NBA: San Antonio Spurs at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Jesse Johnson", "source": "Imagn Images", "date": "2024-12-29"}, {"id": "25045557", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25045557.jpg", "headline": "NBA: Golden State Warriors at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Jesse Johnson", "source": "Imagn Images", "date": "2024-12-21"}, {"id": "24732835", "thumb": "https://cdn.imagn.com/image/thumb/250-225/24732835.jpg", "headline": "NBA: Miami Heat at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Jesse Johnson", "source": "Imagn Images", "date": "2024-11-10"}, {"id": "24659020", "thumb": "https://cdn.imagn.com/image/thumb/250-225/24659020.jpg", "headline": "NBA: Minnesota Timberwolves at San Antonio Spurs", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Scott Wachter", "source": "Imagn Images", "date": "2024-11-02"}, {"id": "24598338", "thumb": "https://cdn.imagn.com/image/thumb/250-225/24598338.jpg", "headline": "NBA: Toronto Raptors at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Jesse Johnson", "source": "Imagn Images", "date": "2024-10-26"}, {"id": "22901691", "thumb": "https://cdn.imagn.com/image/thumb/250-225/22901691.jpg", "headline": "NBA: Minnesota Timberwolves at Denver Nuggets", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Ron Chenoy", "source": "Imagn Images", "date": "2024-03-29"}, {"id": "22899066", "thumb": "https://cdn.imagn.com/image/thumb/250-225/22899066.jpg", "headline": "NBA: Minnesota Timberwolves at Denver Nuggets", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Ron Chenoy", "source": "Imagn Images", "date": "2024-03-29"}, {"id": "22857034", "thumb": "https://cdn.imagn.com/image/thumb/250-225/22857034.jpg", "headline": "NBA: Golden State Warriors at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Brad Rempel", "source": "Imagn Images", "date": "2024-03-24"}, {"id": "22841877", "thumb": "https://cdn.imagn.com/image/thumb/250-225/22841877.jpg", "headline": "NBA: Cleveland Cavaliers at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Jesse Johnson", "source": "Imagn Images", "date": "2024-03-22"}, {"id": "22686274", "thumb": "https://cdn.imagn.com/image/thumb/250-225/22686274.jpg", "headline": "NBA: Los Angeles Clippers at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Matt Krohn", "source": "Imagn Images", "date": "2024-03-03"}, {"id": "22600748", "thumb": "https://cdn.imagn.com/image/thumb/250-225/22600748.jpg", "headline": "NBA: Milwaukee Bucks at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Matt Krohn", "source": "Imagn Images", "date": "2024-02-23"}, {"id": "22508829", "thumb": "https://cdn.imagn.com/image/thumb/250-225/22508829.jpg", "headline": "NBA: Minnesota Timberwolves at Los Angeles Clippers", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2024-02-12"}, {"id": "22325460", "thumb": "https://cdn.imagn.com/image/thumb/250-225/22325460.jpg", "headline": "NBA: Memphis Grizzlies at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Brad Rempel", "source": "Imagn Images", "date": "2024-01-18"}, {"id": "21945750", "thumb": "https://cdn.imagn.com/image/thumb/250-225/21945750.jpg", "headline": "NBA: New York Knicks at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Jesse Johnson", "source": "Imagn Images", "date": "2023-11-20"}, {"id": "21930116", "thumb": "https://cdn.imagn.com/image/thumb/250-225/21930116.jpg", "headline": "NBA: Minnesota Timberwolves at New Orleans Pelicans", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Stephen Lew", "source": "Imagn Images", "date": "2023-11-18"}, {"id": "23173585", "thumb": "https://cdn.imagn.com/image/thumb/250-225/23173585.jpg", "headline": "NBA: Minnesota Timberwolves at Phoenix Suns", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "date": "2023-11-15"}, {"id": "21851424", "thumb": "https://cdn.imagn.com/image/thumb/250-225/21851424.jpg", "headline": "NBA: New Orleans Pelicans at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Brad Rempel", "source": "Imagn Images", "date": "2023-11-08"}, {"id": "20500829", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20500829.jpg", "headline": "NBA: Playoffs-Minnesota Timberwolves at Denver Nuggets", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2023-04-19"}, {"id": "20332829", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20332829.jpg", "headline": "NBA: Minnesota Timberwolves at Sacramento Kings", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Cary Edmondson", "source": "Imagn Images", "date": "2023-03-27"}, {"id": "20224639", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20224639.jpg", "headline": "NBA: Minnesota Timberwolves at Atlanta Hawks", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Dale Zanine", "source": "Imagn Images", "date": "2023-03-13"}, {"id": "19930623", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19930623.jpg", "headline": "NBA: Denver Nuggets at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Brace Hemmelgarn", "source": "Imagn Images", "date": "2023-02-05"}, {"id": "19835632", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19835632.jpg", "headline": "NBA: Houston Rockets at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Brace Hemmelgarn", "source": "Imagn Images", "date": "2023-01-21"}, {"id": "19821267", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19821267.jpg", "headline": "NBA: Toronto Raptors at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Matt Krohn", "source": "Imagn Images", "date": "2023-01-19"}, {"id": "19394114", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19394114.jpg", "headline": "NBA: Phoenix Suns at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Matt Krohn", "source": "Imagn Images", "date": "2022-11-09"}, {"id": "18004741", "thumb": "https://cdn.imagn.com/image/thumb/250-225/18004741.jpg", "headline": "NBA: Minnesota Timberwolves at Denver Nuggets", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2022-04-01"}, {"id": "17993874", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17993874.jpg", "headline": "NBA: Minnesota Timberwolves at Toronto Raptors", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2022-03-30"}, {"id": "17644566", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17644566.jpg", "headline": "NBA: Minnesota Timberwolves at Sacramento Kings", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Sergio Estrada", "source": "Imagn Images", "date": "2022-02-08"}, {"id": "17614416", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17614416.jpg", "headline": "NBA: Minnesota Timberwolves at Detroit Pistons", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Raj Mehta", "source": "Imagn Images", "date": "2022-02-03"}, {"id": "17582717", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17582717.jpg", "headline": "NBA: Minnesota Timberwolves at Phoenix Suns", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "date": "2022-01-28"}, {"id": "17582716", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17582716.jpg", "headline": "NBA: Minnesota Timberwolves at Phoenix Suns", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "date": "2022-01-28"}, {"id": "17554786", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17554786.jpg", "headline": "NBA: Brooklyn Nets at Minnesota Timberwolves", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Brace Hemmelgarn", "source": "Imagn Images", "date": "2022-01-23"}, {"id": "17530450", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17530450.jpg", "headline": "NBA: Minnesota Timberwolves at Atlanta Hawks", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Dale Zanine", "source": "Imagn Images", "date": "2022-01-19"}, {"id": "17445798", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17445798.jpg", "headline": "NBA: Minnesota Timberwolves at Los Angeles Lakers", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2022-01-02"}, {"id": "17437723", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17437723.jpg", "headline": "NBA: Minnesota Timberwolves at Utah Jazz", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Ron Chenoy", "source": "Imagn Images", "date": "2021-12-31"}, {"id": "17135030", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17135030.jpg", "headline": "NBA: Minnesota Timberwolves at Golden State Warriors", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-11-10"}, {"id": "17041134", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17041134.jpg", "headline": "NBA: Minnesota Timberwolves at Milwaukee Bucks", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2021-10-27"}, {"id": "16062791", "thumb": "https://cdn.imagn.com/image/thumb/250-225/16062791.jpg", "headline": "NBA: Minnesota Timberwolves at Detroit Pistons", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2021-05-11"}, {"id": "15943620", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15943620.jpg", "headline": "NBA: Minnesota Timberwolves at Sacramento Kings", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2021-04-21"}, {"id": "15937502", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15937502.jpg", "headline": "NBA: Minnesota Timberwolves at Sacramento Kings", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-04-20"}, {"id": "15741589", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15741589.jpg", "headline": "NBA: Minnesota Timberwolves at Los Angeles Lakers", "player": "Anthony Edwards", "playerSlug": "anthony-edwards", "photographer": "Kirby Lee", "source": "Imagn Images", "date": "2021-03-16"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Anthony Edwards</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,335 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Oklahoma City Thunder at Minnesota Timberwolves</div>
         <div class="credit">📷 Jesse Johnson · Imagn Images · Feb 23, 2025</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25480802/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25480802.jpg" alt="NBA: Minnesota Timberwolves at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · Feb 21, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25384692/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25384692.jpg" alt="NBA: Minnesota Timberwolves at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Feb 10, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25224403/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25224403.jpg" alt="NBA: Cleveland Cavaliers at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Minnesota Timberwolves</div>
-        <div class="credit">📷 Matt Krohn · Imagn Images · Jan 18, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25197857/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25197857.jpg" alt="NBA: Golden State Warriors at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Golden State Warriors at Minnesota Timberwolves</div>
-        <div class="credit">📷 Jesse Johnson · Imagn Images · Jan 15, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25197856/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25197856.jpg" alt="NBA: Golden State Warriors at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Golden State Warriors at Minnesota Timberwolves</div>
-        <div class="credit">📷 Jesse Johnson · Imagn Images · Jan 15, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25135228/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25135228.jpg" alt="NBA: Minnesota Timberwolves at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at New Orleans Pelicans</div>
-        <div class="credit">📷 Matthew Hinton · Imagn Images · Jan 07, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25082916/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25082916.jpg" alt="NBA: San Antonio Spurs at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: San Antonio Spurs at Minnesota Timberwolves</div>
-        <div class="credit">📷 Jesse Johnson · Imagn Images · Dec 29, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25045557/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25045557.jpg" alt="NBA: Golden State Warriors at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Golden State Warriors at Minnesota Timberwolves</div>
-        <div class="credit">📷 Jesse Johnson · Imagn Images · Dec 21, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24732835/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24732835.jpg" alt="NBA: Miami Heat at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Miami Heat at Minnesota Timberwolves</div>
-        <div class="credit">📷 Jesse Johnson · Imagn Images · Nov 10, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24659020/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24659020.jpg" alt="NBA: Minnesota Timberwolves at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at San Antonio Spurs</div>
-        <div class="credit">📷 Scott Wachter · Imagn Images · Nov 02, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24598338/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24598338.jpg" alt="NBA: Toronto Raptors at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Toronto Raptors at Minnesota Timberwolves</div>
-        <div class="credit">📷 Jesse Johnson · Imagn Images · Oct 26, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22901691/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22901691.jpg" alt="NBA: Minnesota Timberwolves at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Denver Nuggets</div>
-        <div class="credit">📷 Ron Chenoy · Imagn Images · Mar 29, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22899066/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22899066.jpg" alt="NBA: Minnesota Timberwolves at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Denver Nuggets</div>
-        <div class="credit">📷 Ron Chenoy · Imagn Images · Mar 29, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22857034/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22857034.jpg" alt="NBA: Golden State Warriors at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Golden State Warriors at Minnesota Timberwolves</div>
-        <div class="credit">📷 Brad Rempel · Imagn Images · Mar 24, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22841877/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22841877.jpg" alt="NBA: Cleveland Cavaliers at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Minnesota Timberwolves</div>
-        <div class="credit">📷 Jesse Johnson · Imagn Images · Mar 22, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22686274/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22686274.jpg" alt="NBA: Los Angeles Clippers at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Los Angeles Clippers at Minnesota Timberwolves</div>
-        <div class="credit">📷 Matt Krohn · Imagn Images · Mar 03, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22600748/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22600748.jpg" alt="NBA: Milwaukee Bucks at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Milwaukee Bucks at Minnesota Timberwolves</div>
-        <div class="credit">📷 Matt Krohn · Imagn Images · Feb 23, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22508829/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22508829.jpg" alt="NBA: Minnesota Timberwolves at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Los Angeles Clippers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Feb 12, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22325460/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22325460.jpg" alt="NBA: Memphis Grizzlies at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Memphis Grizzlies at Minnesota Timberwolves</div>
-        <div class="credit">📷 Brad Rempel · Imagn Images · Jan 18, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21945750/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21945750.jpg" alt="NBA: New York Knicks at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: New York Knicks at Minnesota Timberwolves</div>
-        <div class="credit">📷 Jesse Johnson · Imagn Images · Nov 20, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21930116/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21930116.jpg" alt="NBA: Minnesota Timberwolves at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Nov 18, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/23173585/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/23173585.jpg" alt="NBA: Minnesota Timberwolves at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Nov 15, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21851424/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21851424.jpg" alt="NBA: New Orleans Pelicans at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: New Orleans Pelicans at Minnesota Timberwolves</div>
-        <div class="credit">📷 Brad Rempel · Imagn Images · Nov 08, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20500829/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20500829.jpg" alt="NBA: Playoffs-Minnesota Timberwolves at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Playoffs-Minnesota Timberwolves at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 19, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20332829/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20332829.jpg" alt="NBA: Minnesota Timberwolves at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Sacramento Kings</div>
-        <div class="credit">📷 Cary Edmondson · Imagn Images · Mar 27, 2023</div>
-    </div>
-</div>
-<div class="affiliate-module inline">
-    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Adidas+AE" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop Adidas AE</span>
-        <span class="badge-info">★ Latest Model</span>
-    </a>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20224639/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20224639.jpg" alt="NBA: Minnesota Timberwolves at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Atlanta Hawks</div>
-        <div class="credit">📷 Dale Zanine · Imagn Images · Mar 13, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19930623/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19930623.jpg" alt="NBA: Denver Nuggets at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Denver Nuggets at Minnesota Timberwolves</div>
-        <div class="credit">📷 Brace Hemmelgarn · Imagn Images · Feb 05, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19835632/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19835632.jpg" alt="NBA: Houston Rockets at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Houston Rockets at Minnesota Timberwolves</div>
-        <div class="credit">📷 Brace Hemmelgarn · Imagn Images · Jan 21, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19821267/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19821267.jpg" alt="NBA: Toronto Raptors at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Toronto Raptors at Minnesota Timberwolves</div>
-        <div class="credit">📷 Matt Krohn · Imagn Images · Jan 19, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19394114/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19394114.jpg" alt="NBA: Phoenix Suns at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Phoenix Suns at Minnesota Timberwolves</div>
-        <div class="credit">📷 Matt Krohn · Imagn Images · Nov 09, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/18004741/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18004741.jpg" alt="NBA: Minnesota Timberwolves at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 01, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17993874/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17993874.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Mar 30, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17644566/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17644566.jpg" alt="NBA: Minnesota Timberwolves at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Sacramento Kings</div>
-        <div class="credit">📷 Sergio Estrada · Imagn Images · Feb 08, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17614416/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17614416.jpg" alt="NBA: Minnesota Timberwolves at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Detroit Pistons</div>
-        <div class="credit">📷 Raj Mehta · Imagn Images · Feb 03, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17582717/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17582717.jpg" alt="NBA: Minnesota Timberwolves at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Jan 28, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17582716/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17582716.jpg" alt="NBA: Minnesota Timberwolves at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Jan 28, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17554786/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17554786.jpg" alt="NBA: Brooklyn Nets at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Brooklyn Nets at Minnesota Timberwolves</div>
-        <div class="credit">📷 Brace Hemmelgarn · Imagn Images · Jan 23, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17530450/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17530450.jpg" alt="NBA: Minnesota Timberwolves at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Atlanta Hawks</div>
-        <div class="credit">📷 Dale Zanine · Imagn Images · Jan 19, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17445798/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17445798.jpg" alt="NBA: Minnesota Timberwolves at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Los Angeles Lakers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Jan 02, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17437723/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17437723.jpg" alt="NBA: Minnesota Timberwolves at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Utah Jazz</div>
-        <div class="credit">📷 Ron Chenoy · Imagn Images · Dec 31, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17135030/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17135030.jpg" alt="NBA: Minnesota Timberwolves at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 10, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17041134/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17041134.jpg" alt="NBA: Minnesota Timberwolves at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Oct 27, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/16062791/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/16062791.jpg" alt="NBA: Minnesota Timberwolves at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · May 11, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15943620/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15943620.jpg" alt="NBA: Minnesota Timberwolves at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Sacramento Kings</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Apr 21, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15937502/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15937502.jpg" alt="NBA: Minnesota Timberwolves at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 20, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15741589/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15741589.jpg" alt="NBA: Minnesota Timberwolves at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Los Angeles Lakers</div>
-        <div class="credit">📷 Kirby Lee · Imagn Images · Mar 16, 2021</div>
-    </div>
 </div>
         </div>
     </section>
@@ -720,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/evan-mobley/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27598080.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/justin-jackson/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/14084245.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Evan Mobley</div>
-        <div class="mp-count">51 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trevor-ariza/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17946940.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Trevor Ariza</div>
-        <div class="mp-count">21 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jaylin-williams/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28341016.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Jaylin Williams</div>
-        <div class="mp-count">20 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-suggs/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27588850.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Jalen Suggs</div>
-        <div class="mp-count">19 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/alex-len/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25066471.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Alex Len</div>
-        <div class="mp-count">20 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/goga-bitadze/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27638579.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Goga Bitadze</div>
+        <div class="mp-name">Justin Jackson</div>
         <div class="mp-count">26 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/naji-marshall/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28029940.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/danuel-house-jr/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20332794.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Naji Marshall</div>
-        <div class="mp-count">27 photos</div>
+        <div class="mp-name">Danuel House Jr</div>
+        <div class="mp-count">23 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/gerald-green/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/12608433.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Gerald Green</div>
+        <div class="mp-count">18 photos</div>
     </div>
 </a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/gary-harris/" class="more-player-card">
     <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27733120.jpg)"></div>
     <div class="mp-info">
         <div class="mp-name">Gary Harris</div>
         <div class="mp-count">70 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/daniel-theis/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/21998367.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Daniel Theis</div>
+        <div class="mp-count">25 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chimezie-metu/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20099402.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Chimezie Metu</div>
+        <div class="mp-count">18 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/shaun-livingston/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/12120321.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Shaun Livingston</div>
+        <div class="mp-count">10 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deni-avdija/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27294093.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Deni Avdija</div>
+        <div class="mp-count">15 photos</div>
     </div>
 </a>
         </div>

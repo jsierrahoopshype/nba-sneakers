@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "11381348", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381348.jpg", "headline": "NBA: Preseason-Melbourne United at Toronto Raptors", "player": "Deng Adel", "playerSlug": "deng-adel", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11381366", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381366.jpg", "headline": "NBA: Preseason-Melbourne United at Toronto Raptors", "player": "Daniel Trist", "playerSlug": "daniel-trist", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11381367", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381367.jpg", "headline": "NBA: Preseason-Melbourne United at Toronto Raptors", "player": "Lorenzo Brown", "playerSlug": "lorenzo-brown", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11381806", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381806.jpg", "headline": "NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves", "player": "Karl-Anthony Towns", "playerSlug": "karl-anthony-towns", "photographer": "Brad Rempel", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11381879", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381879.jpg", "headline": "NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves", "player": "Andrew Wiggins", "playerSlug": "andrew-wiggins", "photographer": "Brad Rempel", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11381979", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381979.jpg", "headline": "NBA: Preseason-Atlanta Hawks at Memphis Grizzlies", "player": "Marc Gasol", "playerSlug": "marc-gasol", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11381835", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381835.jpg", "headline": "NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves", "player": "Jeff Teague", "playerSlug": "jeff-teague", "photographer": "Brad Rempel", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11381883", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381883.jpg", "headline": "NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves", "player": "Anthony Tolliver", "playerSlug": "anthony-tolliver", "photographer": "Brad Rempel", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11381973", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381973.jpg", "headline": "NBA: Preseason-Atlanta Hawks at Memphis Grizzlies", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11381718", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381718.jpg", "headline": "NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Brad Rempel", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11381980", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381980.jpg", "headline": "NBA: Preseason-Atlanta Hawks at Memphis Grizzlies", "player": "John Collins", "playerSlug": "john-collins", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11385010", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11385010.jpg", "headline": "NBA: Preseason-Sacramento Kings at Golden State Warriors", "player": "Kevin Durant", "playerSlug": "kevin-durant", "photographer": "Joe Nicholson", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11381888", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381888.jpg", "headline": "NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves", "player": "Nerlens Noel", "playerSlug": "nerlens-noel", "photographer": "Brad Rempel", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11381935", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381935.jpg", "headline": "NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves", "player": "Hamidou Diallo", "playerSlug": "hamidou-diallo", "photographer": "Brad Rempel", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11381971", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381971.jpg", "headline": "NBA: Preseason-Atlanta Hawks at Memphis Grizzlies", "player": "Garrett Temple", "playerSlug": "garrett-temple", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11381982", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381982.jpg", "headline": "NBA: Preseason-Atlanta Hawks at Memphis Grizzlies", "player": "JaMychal Green", "playerSlug": "jamychal-green", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11381964", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381964.jpg", "headline": "NBA: Preseason-Atlanta Hawks at Memphis Grizzlies", "player": "Omari Spellman", "playerSlug": "omari-spellman", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11381863", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381863.jpg", "headline": "NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves", "player": "Keita Bates-Diop", "playerSlug": "keita-bates-diop", "photographer": "Brad Rempel", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11381733", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381733.jpg", "headline": "NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves", "player": "Paul George", "playerSlug": "paul-george", "photographer": "Brad Rempel", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "11374716", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11374716.jpg", "headline": "NBA: Preseason-Indiana Pacers at Houston Rockets", "player": "Carmelo Anthony", "playerSlug": "carmelo-anthony", "photographer": "Troy Taormina", "source": "Imagn Images", "date": "2018-10-04"}, {"id": "11374711", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11374711.jpg", "headline": "NBA: Preseason-Indiana Pacers at Houston Rockets", "player": "Victor Oladipo", "playerSlug": "victor-oladipo", "photographer": "Troy Taormina", "source": "Imagn Images", "date": "2018-10-04"}, {"id": "11374714", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11374714.jpg", "headline": "NBA: Preseason-Indiana Pacers at Houston Rockets", "player": "PJ Tucker", "playerSlug": "pj-tucker", "photographer": "Troy Taormina", "source": "Imagn Images", "date": "2018-10-04"}, {"id": "11374708", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11374708.jpg", "headline": "NBA: Preseason-Indiana Pacers at Houston Rockets", "player": "Vincent Edwards", "playerSlug": "vincent-edwards", "photographer": "Troy Taormina", "source": "Imagn Images", "date": "2018-10-04"}, {"id": "11374712", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11374712.jpg", "headline": "NBA: Preseason-Indiana Pacers at Houston Rockets", "player": "Chris Paul", "playerSlug": "chris-paul", "photographer": "Troy Taormina", "source": "Imagn Images", "date": "2018-10-04"}, {"id": "11374710", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11374710.jpg", "headline": "NBA: Preseason-Indiana Pacers at Houston Rockets", "player": "James Harden", "playerSlug": "james-harden", "photographer": "Troy Taormina", "source": "Imagn Images", "date": "2018-10-04"}, {"id": "11374713", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11374713.jpg", "headline": "NBA: Preseason-Indiana Pacers at Houston Rockets", "player": "James Harden", "playerSlug": "james-harden", "photographer": "Troy Taormina", "source": "Imagn Images", "date": "2018-10-04"}, {"id": "11368485", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11368485.jpg", "headline": "NBA: Preseason-Minnesota Timberwolves at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kelvin Kuo", "source": "Imagn Images", "date": "2018-10-03"}, {"id": "11364268", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11364268.jpg", "headline": "NBA: Preseason-Denver Nuggets at Los Angeles Lakers", "player": "Malik Beasley", "playerSlug": "malik-beasley", "photographer": "Jayne Kamin-Oncea", "source": "Imagn Images", "date": "2018-10-02"}, {"id": "11364267", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11364267.jpg", "headline": "NBA: Preseason-Denver Nuggets at Los Angeles Lakers", "player": "Lance Stephenson", "playerSlug": "lance-stephenson", "photographer": "Jayne Kamin-Oncea", "source": "Imagn Images", "date": "2018-10-02"}, {"id": "11364264", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11364264.jpg", "headline": "NBA: Preseason-Denver Nuggets at Los Angeles Lakers", "player": "Kentavious Caldwell-Pope", "playerSlug": "kentavious-caldwell-pope", "photographer": "Jayne Kamin-Oncea", "source": "Imagn Images", "date": "2018-10-02"}, {"id": "11364266", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11364266.jpg", "headline": "NBA: Preseason-Denver Nuggets at Los Angeles Lakers", "player": "Rajon Rondo", "playerSlug": "rajon-rondo", "photographer": "Jayne Kamin-Oncea", "source": "Imagn Images", "date": "2018-10-02"}, {"id": "11364265", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11364265.jpg", "headline": "NBA: Preseason-Denver Nuggets at Los Angeles Lakers", "player": "LeBron James", "playerSlug": "lebron-james", "photographer": "Jayne Kamin-Oncea", "source": "Imagn Images", "date": "2018-10-02"}, {"id": "11363979", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11363979.jpg", "headline": "NBA: Preseason-Toronto Raptors at Utah Jazz", "player": "Thabo Sefolosha", "playerSlug": "thabo-sefolosha", "photographer": "Russell Isabella", "source": "Imagn Images", "date": "2018-10-02"}, {"id": "11363977", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11363977.jpg", "headline": "NBA: Preseason-Toronto Raptors at Utah Jazz", "player": "Derrick Favors", "playerSlug": "derrick-favors", "photographer": "Russell Isabella", "source": "Imagn Images", "date": "2018-10-02"}, {"id": "11363978", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11363978.jpg", "headline": "NBA: Preseason-Toronto Raptors at Utah Jazz", "player": "Greg Monroe", "playerSlug": "greg-monroe", "photographer": "Russell Isabella", "source": "Imagn Images", "date": "2018-10-02"}, {"id": "11363975", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11363975.jpg", "headline": "NBA: Preseason-Toronto Raptors at Utah Jazz", "player": "Rudy Gobert", "playerSlug": "rudy-gobert", "photographer": "Russell Isabella", "source": "Imagn Images", "date": "2018-10-02"}, {"id": "11363976", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11363976.jpg", "headline": "NBA: Preseason-Toronto Raptors at Utah Jazz", "player": "Ekpe Udoh", "playerSlug": "ekpe-udoh", "photographer": "Russell Isabella", "source": "Imagn Images", "date": "2018-10-02"}, {"id": "11363973", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11363973.jpg", "headline": "NBA: Preseason-Toronto Raptors at Utah Jazz", "player": "Fred VanVleet", "playerSlug": "fred-vanvleet", "photographer": "Russell Isabella", "source": "Imagn Images", "date": "2018-10-02"}, {"id": "11363974", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11363974.jpg", "headline": "NBA: Preseason-Toronto Raptors at Utah Jazz", "player": "Kawhi Leonard", "playerSlug": "kawhi-leonard", "photographer": "Russell Isabella", "source": "Imagn Images", "date": "2018-10-02"}, {"id": "11358540", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11358540.jpg", "headline": "NBA: Preseason-Orlando Magic at Philadelphia 76ers", "player": "Amir Johnson", "playerSlug": "amir-johnson", "photographer": "Bill Streicher", "source": "Imagn Images", "date": "2018-10-01"}, {"id": "11358543", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11358543.jpg", "headline": "NBA: Preseason-New Orleans Pelicans at Atlanta Hawks", "player": "Kevin Huerter", "playerSlug": "kevin-huerter", "photographer": "Dale Zanine", "source": "Imagn Images", "date": "2018-10-01"}, {"id": "11358545", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11358545.jpg", "headline": "NBA: Preseason-New Orleans Pelicans at Atlanta Hawks", "player": "Julius Randle", "playerSlug": "julius-randle", "photographer": "Dale Zanine", "source": "Imagn Images", "date": "2018-10-01"}, {"id": "11358674", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11358674.jpg", "headline": "NBA: Preseason-Sacramento Kings at Phoenix Suns", "player": "Skal Labissiere", "playerSlug": "skal-labissiere", "photographer": "Joe Camporeale", "source": "Imagn Images", "date": "2018-10-01"}, {"id": "11358676", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11358676.jpg", "headline": "NBA: Preseason-Sacramento Kings at Phoenix Suns", "player": "Deandre Ayton", "playerSlug": "deandre-ayton", "photographer": "Joe Camporeale", "source": "Imagn Images", "date": "2018-10-01"}, {"id": "11358544", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11358544.jpg", "headline": "NBA: Preseason-New Orleans Pelicans at Atlanta Hawks", "player": "Kent Bazemore", "playerSlug": "kent-bazemore", "photographer": "Dale Zanine", "source": "Imagn Images", "date": "2018-10-01"}, {"id": "11358673", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11358673.jpg", "headline": "NBA: Preseason-Sacramento Kings at Phoenix Suns", "player": "Frank Mason III", "playerSlug": "frank-mason-iii", "photographer": "Joe Camporeale", "source": "Imagn Images", "date": "2018-10-01"}, {"id": "11358675", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11358675.jpg", "headline": "NBA: Preseason-Sacramento Kings at Phoenix Suns", "player": "Harry Giles", "playerSlug": "harry-giles", "photographer": "Joe Camporeale", "source": "Imagn Images", "date": "2018-10-01"}, {"id": "11358679", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11358679.jpg", "headline": "NBA: Preseason-Sacramento Kings at Phoenix Suns", "player": "Mikal Bridges", "playerSlug": "mikal-bridges", "photographer": "Joe Camporeale", "source": "Imagn Images", "date": "2018-10-01"}, {"id": "11358678", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11358678.jpg", "headline": "NBA: Preseason-Sacramento Kings at Phoenix Suns", "player": "Marvin Bagley III", "playerSlug": "marvin-bagley-iii", "photographer": "Joe Camporeale", "source": "Imagn Images", "date": "2018-10-01"}, {"id": "11358672", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11358672.jpg", "headline": "NBA: Preseason-Sacramento Kings at Phoenix Suns", "player": "Willie Cauley-Stein", "playerSlug": "willie-cauley-stein", "photographer": "Joe Camporeale", "source": "Imagn Images", "date": "2018-10-01"}, {"id": "11358677", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11358677.jpg", "headline": "NBA: Preseason-Sacramento Kings at Phoenix Suns", "player": "Trevor Ariza", "playerSlug": "trevor-ariza", "photographer": "Joe Camporeale", "source": "Imagn Images", "date": "2018-10-01"}, {"id": "11358539", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11358539.jpg", "headline": "NBA: Preseason-Orlando Magic at Philadelphia 76ers", "player": "Mohamed Bamba", "playerSlug": "mohamed-bamba", "photographer": "Bill Streicher", "source": "Imagn Images", "date": "2018-10-01"}, {"id": "11358541", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11358541.jpg", "headline": "NBA: Preseason-Orlando Magic at Philadelphia 76ers", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Bill Streicher", "source": "Imagn Images", "date": "2018-10-01"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Week of Oct 1</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             <div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11399453/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11399453.jpg" alt="NBA: Preseason-Utah Jazz at Portland Trail Blazers" loading="lazy"></a>
     <div class="meta">
@@ -361,377 +363,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/greg-monroe/" class="player-link">Greg Monroe</a>
         <div class="headline">NBA: Preseason-Melbourne United at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381348/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381348.jpg" alt="NBA: Preseason-Melbourne United at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deng-adel/" class="player-link">Deng Adel</a>
-        <div class="headline">NBA: Preseason-Melbourne United at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381366/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381366.jpg" alt="NBA: Preseason-Melbourne United at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/daniel-trist/" class="player-link">Daniel Trist</a>
-        <div class="headline">NBA: Preseason-Melbourne United at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381367/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381367.jpg" alt="NBA: Preseason-Melbourne United at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lorenzo-brown/" class="player-link">Lorenzo Brown</a>
-        <div class="headline">NBA: Preseason-Melbourne United at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381806/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381806.jpg" alt="NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/karl-anthony-towns/" class="player-link">Karl-Anthony Towns</a>
-        <div class="headline">NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves</div>
-        <div class="credit">📷 Brad Rempel · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381879/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381879.jpg" alt="NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/andrew-wiggins/" class="player-link">Andrew Wiggins</a>
-        <div class="headline">NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves</div>
-        <div class="credit">📷 Brad Rempel · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381979/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381979.jpg" alt="NBA: Preseason-Atlanta Hawks at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="player-link">Marc Gasol</a>
-        <div class="headline">NBA: Preseason-Atlanta Hawks at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381835/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381835.jpg" alt="NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jeff-teague/" class="player-link">Jeff Teague</a>
-        <div class="headline">NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves</div>
-        <div class="credit">📷 Brad Rempel · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381883/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381883.jpg" alt="NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-tolliver/" class="player-link">Anthony Tolliver</a>
-        <div class="headline">NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves</div>
-        <div class="credit">📷 Brad Rempel · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381973/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381973.jpg" alt="NBA: Preseason-Atlanta Hawks at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Preseason-Atlanta Hawks at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381718/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381718.jpg" alt="NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves</div>
-        <div class="credit">📷 Brad Rempel · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381980/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381980.jpg" alt="NBA: Preseason-Atlanta Hawks at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/john-collins/" class="player-link">John Collins</a>
-        <div class="headline">NBA: Preseason-Atlanta Hawks at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11385010/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11385010.jpg" alt="NBA: Preseason-Sacramento Kings at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
-        <div class="headline">NBA: Preseason-Sacramento Kings at Golden State Warriors</div>
-        <div class="credit">📷 Joe Nicholson · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381888/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381888.jpg" alt="NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nerlens-noel/" class="player-link">Nerlens Noel</a>
-        <div class="headline">NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves</div>
-        <div class="credit">📷 Brad Rempel · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381935/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381935.jpg" alt="NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/hamidou-diallo/" class="player-link">Hamidou Diallo</a>
-        <div class="headline">NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves</div>
-        <div class="credit">📷 Brad Rempel · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381971/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381971.jpg" alt="NBA: Preseason-Atlanta Hawks at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/garrett-temple/" class="player-link">Garrett Temple</a>
-        <div class="headline">NBA: Preseason-Atlanta Hawks at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381982/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381982.jpg" alt="NBA: Preseason-Atlanta Hawks at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jamychal-green/" class="player-link">JaMychal Green</a>
-        <div class="headline">NBA: Preseason-Atlanta Hawks at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381964/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381964.jpg" alt="NBA: Preseason-Atlanta Hawks at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/omari-spellman/" class="player-link">Omari Spellman</a>
-        <div class="headline">NBA: Preseason-Atlanta Hawks at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381863/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381863.jpg" alt="NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/keita-bates-diop/" class="player-link">Keita Bates-Diop</a>
-        <div class="headline">NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves</div>
-        <div class="credit">📷 Brad Rempel · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381733/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381733.jpg" alt="NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/paul-george/" class="player-link">Paul George</a>
-        <div class="headline">NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves</div>
-        <div class="credit">📷 Brad Rempel · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11374716/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11374716.jpg" alt="NBA: Preseason-Indiana Pacers at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/carmelo-anthony/" class="player-link">Carmelo Anthony</a>
-        <div class="headline">NBA: Preseason-Indiana Pacers at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · Oct 04, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11374711/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11374711.jpg" alt="NBA: Preseason-Indiana Pacers at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/victor-oladipo/" class="player-link">Victor Oladipo</a>
-        <div class="headline">NBA: Preseason-Indiana Pacers at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · Oct 04, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11374714/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11374714.jpg" alt="NBA: Preseason-Indiana Pacers at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-tucker/" class="player-link">PJ Tucker</a>
-        <div class="headline">NBA: Preseason-Indiana Pacers at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · Oct 04, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11374708/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11374708.jpg" alt="NBA: Preseason-Indiana Pacers at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/vincent-edwards/" class="player-link">Vincent Edwards</a>
-        <div class="headline">NBA: Preseason-Indiana Pacers at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · Oct 04, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11374712/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11374712.jpg" alt="NBA: Preseason-Indiana Pacers at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
-        <div class="headline">NBA: Preseason-Indiana Pacers at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · Oct 04, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11374710/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11374710.jpg" alt="NBA: Preseason-Indiana Pacers at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/james-harden/" class="player-link">James Harden</a>
-        <div class="headline">NBA: Preseason-Indiana Pacers at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · Oct 04, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11374713/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11374713.jpg" alt="NBA: Preseason-Indiana Pacers at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/james-harden/" class="player-link">James Harden</a>
-        <div class="headline">NBA: Preseason-Indiana Pacers at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · Oct 04, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11368485/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11368485.jpg" alt="NBA: Preseason-Minnesota Timberwolves at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Preseason-Minnesota Timberwolves at Los Angeles Clippers</div>
-        <div class="credit">📷 Kelvin Kuo · Imagn Images · Oct 03, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11364268/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11364268.jpg" alt="NBA: Preseason-Denver Nuggets at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/malik-beasley/" class="player-link">Malik Beasley</a>
-        <div class="headline">NBA: Preseason-Denver Nuggets at Los Angeles Lakers</div>
-        <div class="credit">📷 Jayne Kamin-Oncea · Imagn Images · Oct 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11364267/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11364267.jpg" alt="NBA: Preseason-Denver Nuggets at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lance-stephenson/" class="player-link">Lance Stephenson</a>
-        <div class="headline">NBA: Preseason-Denver Nuggets at Los Angeles Lakers</div>
-        <div class="credit">📷 Jayne Kamin-Oncea · Imagn Images · Oct 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11364264/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11364264.jpg" alt="NBA: Preseason-Denver Nuggets at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kentavious-caldwell-pope/" class="player-link">Kentavious Caldwell-Pope</a>
-        <div class="headline">NBA: Preseason-Denver Nuggets at Los Angeles Lakers</div>
-        <div class="credit">📷 Jayne Kamin-Oncea · Imagn Images · Oct 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11364266/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11364266.jpg" alt="NBA: Preseason-Denver Nuggets at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rajon-rondo/" class="player-link">Rajon Rondo</a>
-        <div class="headline">NBA: Preseason-Denver Nuggets at Los Angeles Lakers</div>
-        <div class="credit">📷 Jayne Kamin-Oncea · Imagn Images · Oct 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11364265/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11364265.jpg" alt="NBA: Preseason-Denver Nuggets at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lebron-james/" class="player-link">LeBron James</a>
-        <div class="headline">NBA: Preseason-Denver Nuggets at Los Angeles Lakers</div>
-        <div class="credit">📷 Jayne Kamin-Oncea · Imagn Images · Oct 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11363979/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11363979.jpg" alt="NBA: Preseason-Toronto Raptors at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/thabo-sefolosha/" class="player-link">Thabo Sefolosha</a>
-        <div class="headline">NBA: Preseason-Toronto Raptors at Utah Jazz</div>
-        <div class="credit">📷 Russell Isabella · Imagn Images · Oct 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11363977/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11363977.jpg" alt="NBA: Preseason-Toronto Raptors at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/derrick-favors/" class="player-link">Derrick Favors</a>
-        <div class="headline">NBA: Preseason-Toronto Raptors at Utah Jazz</div>
-        <div class="credit">📷 Russell Isabella · Imagn Images · Oct 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11363978/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11363978.jpg" alt="NBA: Preseason-Toronto Raptors at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/greg-monroe/" class="player-link">Greg Monroe</a>
-        <div class="headline">NBA: Preseason-Toronto Raptors at Utah Jazz</div>
-        <div class="credit">📷 Russell Isabella · Imagn Images · Oct 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11363975/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11363975.jpg" alt="NBA: Preseason-Toronto Raptors at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rudy-gobert/" class="player-link">Rudy Gobert</a>
-        <div class="headline">NBA: Preseason-Toronto Raptors at Utah Jazz</div>
-        <div class="credit">📷 Russell Isabella · Imagn Images · Oct 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11363976/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11363976.jpg" alt="NBA: Preseason-Toronto Raptors at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ekpe-udoh/" class="player-link">Ekpe Udoh</a>
-        <div class="headline">NBA: Preseason-Toronto Raptors at Utah Jazz</div>
-        <div class="credit">📷 Russell Isabella · Imagn Images · Oct 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11363973/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11363973.jpg" alt="NBA: Preseason-Toronto Raptors at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/fred-vanvleet/" class="player-link">Fred VanVleet</a>
-        <div class="headline">NBA: Preseason-Toronto Raptors at Utah Jazz</div>
-        <div class="credit">📷 Russell Isabella · Imagn Images · Oct 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11363974/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11363974.jpg" alt="NBA: Preseason-Toronto Raptors at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kawhi-leonard/" class="player-link">Kawhi Leonard</a>
-        <div class="headline">NBA: Preseason-Toronto Raptors at Utah Jazz</div>
-        <div class="credit">📷 Russell Isabella · Imagn Images · Oct 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11358540/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11358540.jpg" alt="NBA: Preseason-Orlando Magic at Philadelphia 76ers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/amir-johnson/" class="player-link">Amir Johnson</a>
-        <div class="headline">NBA: Preseason-Orlando Magic at Philadelphia 76ers</div>
-        <div class="credit">📷 Bill Streicher · Imagn Images · Oct 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11358543/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11358543.jpg" alt="NBA: Preseason-New Orleans Pelicans at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-huerter/" class="player-link">Kevin Huerter</a>
-        <div class="headline">NBA: Preseason-New Orleans Pelicans at Atlanta Hawks</div>
-        <div class="credit">📷 Dale Zanine · Imagn Images · Oct 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11358545/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11358545.jpg" alt="NBA: Preseason-New Orleans Pelicans at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/julius-randle/" class="player-link">Julius Randle</a>
-        <div class="headline">NBA: Preseason-New Orleans Pelicans at Atlanta Hawks</div>
-        <div class="credit">📷 Dale Zanine · Imagn Images · Oct 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11358674/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11358674.jpg" alt="NBA: Preseason-Sacramento Kings at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/skal-labissiere/" class="player-link">Skal Labissiere</a>
-        <div class="headline">NBA: Preseason-Sacramento Kings at Phoenix Suns</div>
-        <div class="credit">📷 Joe Camporeale · Imagn Images · Oct 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11358676/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11358676.jpg" alt="NBA: Preseason-Sacramento Kings at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deandre-ayton/" class="player-link">Deandre Ayton</a>
-        <div class="headline">NBA: Preseason-Sacramento Kings at Phoenix Suns</div>
-        <div class="credit">📷 Joe Camporeale · Imagn Images · Oct 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11358544/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11358544.jpg" alt="NBA: Preseason-New Orleans Pelicans at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kent-bazemore/" class="player-link">Kent Bazemore</a>
-        <div class="headline">NBA: Preseason-New Orleans Pelicans at Atlanta Hawks</div>
-        <div class="credit">📷 Dale Zanine · Imagn Images · Oct 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11358673/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11358673.jpg" alt="NBA: Preseason-Sacramento Kings at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/frank-mason-iii/" class="player-link">Frank Mason III</a>
-        <div class="headline">NBA: Preseason-Sacramento Kings at Phoenix Suns</div>
-        <div class="credit">📷 Joe Camporeale · Imagn Images · Oct 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11358675/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11358675.jpg" alt="NBA: Preseason-Sacramento Kings at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/harry-giles/" class="player-link">Harry Giles</a>
-        <div class="headline">NBA: Preseason-Sacramento Kings at Phoenix Suns</div>
-        <div class="credit">📷 Joe Camporeale · Imagn Images · Oct 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11358679/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11358679.jpg" alt="NBA: Preseason-Sacramento Kings at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mikal-bridges/" class="player-link">Mikal Bridges</a>
-        <div class="headline">NBA: Preseason-Sacramento Kings at Phoenix Suns</div>
-        <div class="credit">📷 Joe Camporeale · Imagn Images · Oct 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11358678/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11358678.jpg" alt="NBA: Preseason-Sacramento Kings at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marvin-bagley-iii/" class="player-link">Marvin Bagley III</a>
-        <div class="headline">NBA: Preseason-Sacramento Kings at Phoenix Suns</div>
-        <div class="credit">📷 Joe Camporeale · Imagn Images · Oct 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11358672/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11358672.jpg" alt="NBA: Preseason-Sacramento Kings at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/willie-cauley-stein/" class="player-link">Willie Cauley-Stein</a>
-        <div class="headline">NBA: Preseason-Sacramento Kings at Phoenix Suns</div>
-        <div class="credit">📷 Joe Camporeale · Imagn Images · Oct 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11358677/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11358677.jpg" alt="NBA: Preseason-Sacramento Kings at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trevor-ariza/" class="player-link">Trevor Ariza</a>
-        <div class="headline">NBA: Preseason-Sacramento Kings at Phoenix Suns</div>
-        <div class="credit">📷 Joe Camporeale · Imagn Images · Oct 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11358539/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11358539.jpg" alt="NBA: Preseason-Orlando Magic at Philadelphia 76ers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mohamed-bamba/" class="player-link">Mohamed Bamba</a>
-        <div class="headline">NBA: Preseason-Orlando Magic at Philadelphia 76ers</div>
-        <div class="credit">📷 Bill Streicher · Imagn Images · Oct 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11358541/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11358541.jpg" alt="NBA: Preseason-Orlando Magic at Philadelphia 76ers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Preseason-Orlando Magic at Philadelphia 76ers</div>
-        <div class="credit">📷 Bill Streicher · Imagn Images · Oct 01, 2018</div>
     </div>
 </div>
         </div>

@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "13803780", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13803780.jpg", "headline": "NBA: Dallas Mavericks at Milwaukee Bucks", "player": "Donte DiVincenzo", "playerSlug": "donte-divincenzo", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-12-16"}, {"id": "13759058", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13759058.jpg", "headline": "NBA: Los Angeles Clippers at Milwaukee Bucks", "player": "Donte DiVincenzo", "playerSlug": "donte-divincenzo", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-12-06"}, {"id": "13728635", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13728635.jpg", "headline": "NBA: Milwaukee Bucks at Cleveland Cavaliers", "player": "Donte DiVincenzo", "playerSlug": "donte-divincenzo", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2019-11-29"}, {"id": "13712531", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13712531.jpg", "headline": "NBA: Utah Jazz at Milwaukee Bucks", "player": "Donte DiVincenzo", "playerSlug": "donte-divincenzo", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-11-25"}, {"id": "13694904", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13694904.jpg", "headline": "NBA: Portland Trail Blazers at Milwaukee Bucks", "player": "Donte DiVincenzo", "playerSlug": "donte-divincenzo", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-11-21"}, {"id": "13489929", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13489929.jpg", "headline": "NBA: Preseason-Utah Jazz at Milwaukee Bucks", "player": "Donte DiVincenzo", "playerSlug": "donte-divincenzo", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-10-09"}, {"id": "12305108", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12305108.jpg", "headline": "NBA: Indiana Pacers at Milwaukee Bucks", "player": "Donte DiVincenzo", "playerSlug": "donte-divincenzo", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-03-07"}, {"id": "11751699", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11751699.jpg", "headline": "NBA: Chicago Bulls at Milwaukee Bucks", "player": "Donte DiVincenzo", "playerSlug": "donte-divincenzo", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-11-28"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Donte DiVincenzo</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,62 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Milwaukee Bucks at New York Knicks</div>
         <div class="credit">📷 Vincent Carchietta · Imagn Images · Dec 21, 2019</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13803780/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13803780.jpg" alt="NBA: Dallas Mavericks at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/donte-divincenzo/" class="player-link">Donte DiVincenzo</a>
-        <div class="headline">NBA: Dallas Mavericks at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Dec 16, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13759058/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13759058.jpg" alt="NBA: Los Angeles Clippers at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/donte-divincenzo/" class="player-link">Donte DiVincenzo</a>
-        <div class="headline">NBA: Los Angeles Clippers at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Dec 06, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13728635/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13728635.jpg" alt="NBA: Milwaukee Bucks at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/donte-divincenzo/" class="player-link">Donte DiVincenzo</a>
-        <div class="headline">NBA: Milwaukee Bucks at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Nov 29, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13712531/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13712531.jpg" alt="NBA: Utah Jazz at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/donte-divincenzo/" class="player-link">Donte DiVincenzo</a>
-        <div class="headline">NBA: Utah Jazz at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Nov 25, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13694904/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13694904.jpg" alt="NBA: Portland Trail Blazers at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/donte-divincenzo/" class="player-link">Donte DiVincenzo</a>
-        <div class="headline">NBA: Portland Trail Blazers at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Nov 21, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13489929/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13489929.jpg" alt="NBA: Preseason-Utah Jazz at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/donte-divincenzo/" class="player-link">Donte DiVincenzo</a>
-        <div class="headline">NBA: Preseason-Utah Jazz at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Oct 09, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12305108/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12305108.jpg" alt="NBA: Indiana Pacers at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/donte-divincenzo/" class="player-link">Donte DiVincenzo</a>
-        <div class="headline">NBA: Indiana Pacers at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Mar 07, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11751699/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11751699.jpg" alt="NBA: Chicago Bulls at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/donte-divincenzo/" class="player-link">Donte DiVincenzo</a>
-        <div class="headline">NBA: Chicago Bulls at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Nov 28, 2018</div>
-    </div>
 </div>
         </div>
     </section>
@@ -447,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dante-exum/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22665935.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/thon-maker/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/14154695.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Dante Exum</div>
-        <div class="mp-count">15 photos</div>
+        <div class="mp-name">Thon Maker</div>
+        <div class="mp-count">22 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/royce-oneale/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27887418.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/georges-niang/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25881684.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Royce O&#x27;Neale</div>
-        <div class="mp-count">71 photos</div>
+        <div class="mp-name">Georges Niang</div>
+        <div class="mp-count">30 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/amir-coffey/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25342424.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-anderson/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25921173.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Amir Coffey</div>
-        <div class="mp-count">20 photos</div>
+        <div class="mp-name">Kyle Anderson</div>
+        <div class="mp-count">34 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jordan-nwora/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22966439.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jr-smith/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/14949246.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Jordan Nwora</div>
-        <div class="mp-count">17 photos</div>
+        <div class="mp-name">J.R. Smith</div>
+        <div class="mp-count">29 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/moses-moody/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28042708.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rui-hachimura/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25842188.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Moses Moody</div>
-        <div class="mp-count">16 photos</div>
+        <div class="mp-name">Rui Hachimura</div>
+        <div class="mp-count">37 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28033864.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27500660.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Khris Middleton</div>
-        <div class="mp-count">60 photos</div>
+        <div class="mp-name">Bradley Beal</div>
+        <div class="mp-count">76 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/glenn-robinson-iii/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/15416463.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kawhi-leonard/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28145471.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Glenn Robinson III</div>
-        <div class="mp-count">28 photos</div>
+        <div class="mp-name">Kawhi Leonard</div>
+        <div class="mp-count">91 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/andre-iguodala/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/19718366.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ben-simmons/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25984285.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Andre Iguodala</div>
-        <div class="mp-count">42 photos</div>
+        <div class="mp-name">Ben Simmons</div>
+        <div class="mp-count">59 photos</div>
     </div>
 </a>
         </div>

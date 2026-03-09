@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "17149243", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17149243.jpg", "headline": "NBA: Detroit Pistons at Cleveland Cavaliers", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2021-11-12"}, {"id": "14948344", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14948344.jpg", "headline": "NBA: Playoffs-Denver Nuggets at Los Angeles Lakers", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Kim Klement", "source": "Imagn Images", "date": "2020-09-18"}, {"id": "14914218", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14914218.jpg", "headline": "NBA: Playoffs-Denver Nuggets at Los Angeles Clippers", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Kim Klement", "source": "Imagn Images", "date": "2020-09-11"}, {"id": "14741245", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14741245.jpg", "headline": "NBA: Denver Nuggets at Toronto Raptors", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Mike Ehrmann", "source": "Pool Photo", "date": "2020-08-14"}, {"id": "14156032", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14156032.jpg", "headline": "NBA: Denver Nuggets at Cleveland Cavaliers", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2020-03-07"}, {"id": "14088742", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14088742.jpg", "headline": "NBA: Minnesota Timberwolves at Denver Nuggets", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2020-02-23"}, {"id": "14077695", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14077695.jpg", "headline": "NBA: Denver Nuggets at Oklahoma City Thunder", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2020-02-21"}, {"id": "14016571", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14016571.jpg", "headline": "NBA: Denver Nuggets at Phoenix Suns", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Jennifer Stewart", "source": "Imagn Images", "date": "2020-02-08"}, {"id": "13961618", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13961618.jpg", "headline": "NBA: Houston Rockets at Denver Nuggets", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2020-01-26"}, {"id": "13902188", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13902188.jpg", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2020-01-12"}, {"id": "13901576", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13901576.jpg", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2020-01-12"}, {"id": "13886554", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13886554.jpg", "headline": "NBA: Denver Nuggets at Dallas Mavericks", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2020-01-08"}, {"id": "13880943", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13880943.jpg", "headline": "NBA: Denver Nuggets at Atlanta Hawks", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Brett Davis", "source": "Imagn Images", "date": "2020-01-06"}, {"id": "13852273", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13852273.jpg", "headline": "NBA: Sacramento Kings at Denver Nuggets", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2019-12-29"}, {"id": "13821436", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13821436.jpg", "headline": "NBA: Minnesota Timberwolves at Denver Nuggets", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2019-12-20"}, {"id": "13800974", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13800974.jpg", "headline": "NBA: New York Knicks at Denver Nuggets", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2019-12-15"}, {"id": "13732930", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13732930.jpg", "headline": "NBA: Denver Nuggets at Sacramento Kings", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2019-11-30"}, {"id": "13709727", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13709727.jpg", "headline": "NBA: Phoenix Suns at Denver Nuggets", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2019-11-24"}, {"id": "13699394", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13699394.jpg", "headline": "NBA: Boston Celtics at Denver Nuggets", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Ron Chenoy", "source": "Imagn Images", "date": "2019-11-22"}, {"id": "13623966", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13623966.jpg", "headline": "NBA: Miami Heat at Denver Nuggets", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Ron Chenoy", "source": "Imagn Images", "date": "2019-11-05"}, {"id": "13611850", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13611850.jpg", "headline": "NBA: Denver Nuggets at Orlando Magic", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2019-11-02"}, {"id": "13611849", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13611849.jpg", "headline": "NBA: Denver Nuggets at Orlando Magic", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2019-11-02"}, {"id": "13611852", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13611852.jpg", "headline": "NBA: Denver Nuggets at Orlando Magic", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2019-11-02"}, {"id": "13591425", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13591425.jpg", "headline": "NBA: Dallas Mavericks at Denver Nuggets", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2019-10-29"}, {"id": "13591422", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13591422.jpg", "headline": "NBA: Dallas Mavericks at Denver Nuggets", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2019-10-29"}, {"id": "13570401", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13570401.jpg", "headline": "NBA: Phoenix Suns at Denver Nuggets", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Michael Ciaglo", "source": "Imagn Images", "date": "2019-10-25"}, {"id": "12561853", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12561853.jpg", "headline": "NBA: Playoffs-Portland Trail Blazers at Oklahoma City Thunder", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2019-04-19"}, {"id": "12511609", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12511609.jpg", "headline": "NBA: Oklahoma City Thunder at Milwaukee Bucks", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-04-10"}, {"id": "12243320", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12243320.jpg", "headline": "NBA: Oklahoma City Thunder at Denver Nuggets", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2019-02-26"}, {"id": "12114335", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12114335.jpg", "headline": "NBA: Orlando Magic at Oklahoma City Thunder", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2019-02-05"}, {"id": "12004326", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12004326.jpg", "headline": "NBA: Oklahoma City Thunder at Atlanta Hawks", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Brett Davis", "source": "Imagn Images", "date": "2019-01-15"}, {"id": "11920340", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11920340.jpg", "headline": "NBA: Oklahoma City Thunder at Dallas Mavericks", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2018-12-30"}, {"id": "11864273", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11864273.jpg", "headline": "NBA: Chicago Bulls at Oklahoma City Thunder", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2018-12-17"}, {"id": "11855143", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11855143.jpg", "headline": "NBA: Los Angeles Clippers at Oklahoma City Thunder", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Rob Ferguson", "source": "Imagn Images", "date": "2018-12-15"}, {"id": "11848126", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11848126.jpg", "headline": "NBA: Oklahoma City Thunder at Denver Nuggets", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-12-14"}, {"id": "11806251", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11806251.jpg", "headline": "NBA: Oklahoma City Thunder at Chicago Bulls", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "David Banks", "source": "Imagn Images", "date": "2018-12-07"}, {"id": "11752034", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11752034.jpg", "headline": "NBA: Cleveland Cavaliers at Oklahoma City Thunder", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Rob Ferguson", "source": "Imagn Images", "date": "2018-11-28"}, {"id": "11641220", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11641220.jpg", "headline": "NBA: Oklahoma City Thunder at Dallas Mavericks", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2018-11-10"}, {"id": "11381718", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381718.jpg", "headline": "NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves", "player": "Jerami Grant", "playerSlug": "jerami-grant", "photographer": "Brad Rempel", "source": "Imagn Images", "date": "2018-10-05"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Jerami Grant</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,286 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Washington Wizards at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 08, 2021</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17149243/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17149243.jpg" alt="NBA: Detroit Pistons at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Detroit Pistons at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Nov 12, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14948344/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14948344.jpg" alt="NBA: Playoffs-Denver Nuggets at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Playoffs-Denver Nuggets at Los Angeles Lakers</div>
-        <div class="credit">📷 Kim Klement · Imagn Images · Sep 18, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14914218/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14914218.jpg" alt="NBA: Playoffs-Denver Nuggets at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Playoffs-Denver Nuggets at Los Angeles Clippers</div>
-        <div class="credit">📷 Kim Klement · Imagn Images · Sep 11, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14741245/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14741245.jpg" alt="NBA: Denver Nuggets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Denver Nuggets at Toronto Raptors</div>
-        <div class="credit">📷 Mike Ehrmann · Pool Photo · Aug 14, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14156032/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14156032.jpg" alt="NBA: Denver Nuggets at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Denver Nuggets at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Mar 07, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14088742/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14088742.jpg" alt="NBA: Minnesota Timberwolves at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 23, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14077695/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14077695.jpg" alt="NBA: Denver Nuggets at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Denver Nuggets at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Feb 21, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14016571/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14016571.jpg" alt="NBA: Denver Nuggets at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Denver Nuggets at Phoenix Suns</div>
-        <div class="credit">📷 Jennifer Stewart · Imagn Images · Feb 08, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13961618/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13961618.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Houston Rockets at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 26, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13902188/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13902188.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 12, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13901576/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13901576.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 12, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13886554/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13886554.jpg" alt="NBA: Denver Nuggets at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Denver Nuggets at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 08, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13880943/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13880943.jpg" alt="NBA: Denver Nuggets at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Denver Nuggets at Atlanta Hawks</div>
-        <div class="credit">📷 Brett Davis · Imagn Images · Jan 06, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13852273/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13852273.jpg" alt="NBA: Sacramento Kings at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Sacramento Kings at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Dec 29, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13821436/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13821436.jpg" alt="NBA: Minnesota Timberwolves at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Dec 20, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13800974/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13800974.jpg" alt="NBA: New York Knicks at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: New York Knicks at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Dec 15, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13732930/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13732930.jpg" alt="NBA: Denver Nuggets at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Denver Nuggets at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 30, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13709727/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13709727.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Phoenix Suns at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 24, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13699394/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13699394.jpg" alt="NBA: Boston Celtics at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Boston Celtics at Denver Nuggets</div>
-        <div class="credit">📷 Ron Chenoy · Imagn Images · Nov 22, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13623966/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13623966.jpg" alt="NBA: Miami Heat at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Miami Heat at Denver Nuggets</div>
-        <div class="credit">📷 Ron Chenoy · Imagn Images · Nov 05, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13611850/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13611850.jpg" alt="NBA: Denver Nuggets at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Denver Nuggets at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Nov 02, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13611849/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13611849.jpg" alt="NBA: Denver Nuggets at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Denver Nuggets at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Nov 02, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13611852/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13611852.jpg" alt="NBA: Denver Nuggets at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Denver Nuggets at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Nov 02, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13591425/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13591425.jpg" alt="NBA: Dallas Mavericks at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Dallas Mavericks at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Oct 29, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13591422/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13591422.jpg" alt="NBA: Dallas Mavericks at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Dallas Mavericks at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Oct 29, 2019</div>
-    </div>
-</div>
-<div class="affiliate-module inline">
-    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Jerami+Grant+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop Jerami Grant basketball shoes</span>
-        <span class="badge-info">★ Latest Model</span>
-    </a>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13570401/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13570401.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Phoenix Suns at Denver Nuggets</div>
-        <div class="credit">📷 Michael Ciaglo · Imagn Images · Oct 25, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12561853/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12561853.jpg" alt="NBA: Playoffs-Portland Trail Blazers at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Playoffs-Portland Trail Blazers at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Apr 19, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12511609/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12511609.jpg" alt="NBA: Oklahoma City Thunder at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 10, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12243320/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12243320.jpg" alt="NBA: Oklahoma City Thunder at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 26, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12114335/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12114335.jpg" alt="NBA: Orlando Magic at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Orlando Magic at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Feb 05, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12004326/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12004326.jpg" alt="NBA: Oklahoma City Thunder at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Atlanta Hawks</div>
-        <div class="credit">📷 Brett Davis · Imagn Images · Jan 15, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11920340/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11920340.jpg" alt="NBA: Oklahoma City Thunder at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Dec 30, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11864273/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11864273.jpg" alt="NBA: Chicago Bulls at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Chicago Bulls at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Dec 17, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11855143/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11855143.jpg" alt="NBA: Los Angeles Clippers at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Los Angeles Clippers at Oklahoma City Thunder</div>
-        <div class="credit">📷 Rob Ferguson · Imagn Images · Dec 15, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11848126/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11848126.jpg" alt="NBA: Oklahoma City Thunder at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Dec 14, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11806251/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11806251.jpg" alt="NBA: Oklahoma City Thunder at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Dec 07, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11752034/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11752034.jpg" alt="NBA: Cleveland Cavaliers at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Oklahoma City Thunder</div>
-        <div class="credit">📷 Rob Ferguson · Imagn Images · Nov 28, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11641220/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11641220.jpg" alt="NBA: Oklahoma City Thunder at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Nov 10, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381718/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381718.jpg" alt="NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jerami-grant/" class="player-link">Jerami Grant</a>
-        <div class="headline">NBA: Preseason-Oklahoma City Thunder at Minnesota Timberwolves</div>
-        <div class="credit">📷 Brad Rempel · Imagn Images · Oct 05, 2018</div>
-    </div>
 </div>
         </div>
     </section>
@@ -671,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bones-hyland/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28155808.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ben-mclemore/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/18046854.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Bones Hyland</div>
-        <div class="mp-count">10 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deandre-bembry/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17812788.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">DeAndre&#x27; Bembry</div>
+        <div class="mp-name">Ben McLemore</div>
         <div class="mp-count">27 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/meyers-leonard/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/13986673.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trevor-ariza/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17946940.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Meyers Leonard</div>
-        <div class="mp-count">22 photos</div>
+        <div class="mp-name">Trevor Ariza</div>
+        <div class="mp-count">21 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/12493392.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/duncan-robinson/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28410088.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Dwyane Wade</div>
-        <div class="mp-count">46 photos</div>
+        <div class="mp-name">Duncan Robinson</div>
+        <div class="mp-count">13 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/alex-len/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25066471.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/larry-nance-jr/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28092707.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Alex Len</div>
-        <div class="mp-count">20 photos</div>
+        <div class="mp-name">Larry Nance Jr</div>
+        <div class="mp-count">59 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/darius-bazley/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20272215.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20326212.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Darius Bazley</div>
-        <div class="mp-count">26 photos</div>
+        <div class="mp-name">Will Barton</div>
+        <div class="mp-count">36 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/taj-gibson/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25402953.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-korver/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/13918757.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Taj Gibson</div>
-        <div class="mp-count">31 photos</div>
+        <div class="mp-name">Kyle Korver</div>
+        <div class="mp-count">28 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jakob-poeltl/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28340973.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ja-morant/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27831621.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Jakob Poeltl</div>
-        <div class="mp-count">29 photos</div>
+        <div class="mp-name">Ja Morant</div>
+        <div class="mp-count">85 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tony-snell/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17184205.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Tony Snell</div>
+        <div class="mp-count">21 photos</div>
     </div>
 </a>
         </div>

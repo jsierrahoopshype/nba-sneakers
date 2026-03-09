@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "19662608", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19662608.jpg", "headline": "NBA: Memphis Grizzlies at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2022-12-20"}, {"id": "19650894", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19650894.jpg", "headline": "NBA: Charlotte Hornets at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2022-12-18"}, {"id": "19578688", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19578688.jpg", "headline": "NBA: Dallas Mavericks at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2022-12-06"}, {"id": "19535881", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19535881.jpg", "headline": "NBA: Houston Rockets at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2022-11-30"}, {"id": "19354419", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19354419.jpg", "headline": "NBA: Denver Nuggets at Oklahoma City Thunder", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2022-11-03"}, {"id": "18015275", "thumb": "https://cdn.imagn.com/image/thumb/250-225/18015275.jpg", "headline": "NBA: Denver Nuggets at Los Angeles Lakers", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2022-04-03"}, {"id": "18004737", "thumb": "https://cdn.imagn.com/image/thumb/250-225/18004737.jpg", "headline": "NBA: Minnesota Timberwolves at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2022-04-01"}, {"id": "17973907", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17973907.jpg", "headline": "NBA: Oklahoma City Thunder at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Ron Chenoy", "source": "Imagn Images", "date": "2022-03-26"}, {"id": "17951103", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17951103.jpg", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2022-03-22"}, {"id": "17924516", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17924516.jpg", "headline": "NBA: Denver Nuggets at Cleveland Cavaliers", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2022-03-18"}, {"id": "17862983", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17862983.jpg", "headline": "NBA: Denver Nuggets at Sacramento Kings", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2022-03-09"}, {"id": "17845389", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17845389.jpg", "headline": "NBA: New Orleans Pelicans at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Ron Chenoy", "source": "Imagn Images", "date": "2022-03-06"}, {"id": "17703395", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17703395.jpg", "headline": "NBA: Denver Nuggets at Golden State Warriors", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2022-02-16"}, {"id": "17687066", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17687066.jpg", "headline": "NBA: Orlando Magic at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2022-02-14"}, {"id": "17675875", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17675875.jpg", "headline": "NBA: Denver Nuggets at Toronto Raptors", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2022-02-12"}, {"id": "17591787", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17591787.jpg", "headline": "NBA: Denver Nuggets at Milwaukee Bucks", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2022-01-30"}, {"id": "17532821", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17532821.jpg", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2022-01-19"}, {"id": "17491385", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17491385.jpg", "headline": "NBA: Denver Nuggets at Los Angeles Clippers", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2022-01-11"}, {"id": "17449405", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17449405.jpg", "headline": "NBA: Denver Nuggets at Dallas Mavericks", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2022-01-03"}, {"id": "17354538", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17354538.jpg", "headline": "NBA: Washington Wizards at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Ron Chenoy", "source": "Imagn Images", "date": "2021-12-13"}, {"id": "17238954", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17238954.jpg", "headline": "NBA: Milwaukee Bucks at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Ron Chenoy", "source": "Imagn Images", "date": "2021-11-26"}, {"id": "17151766", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17151766.jpg", "headline": "NBA: Atlanta Hawks at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2021-11-12"}, {"id": "17122961", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17122961.jpg", "headline": "NBA: Miami Heat at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2021-11-08"}, {"id": "17112435", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17112435.jpg", "headline": "NBA: Houston Rockets at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2021-11-06"}, {"id": "17107794", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17107794.jpg", "headline": "NBA: Houston Rockets at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2021-11-06"}, {"id": "17055543", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17055543.jpg", "headline": "NBA: Dallas Mavericks at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2021-10-29"}, {"id": "16903542", "thumb": "https://cdn.imagn.com/image/thumb/250-225/16903542.jpg", "headline": "NBA: Preseason-Denver Nuggets at Golden State Warriors", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-10-06"}, {"id": "15987781", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15987781.jpg", "headline": "NBA: Toronto Raptors at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2021-04-29"}, {"id": "15970378", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15970378.jpg", "headline": "NBA: Memphis Grizzlies at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2021-04-26"}, {"id": "15956057", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15956057.jpg", "headline": "NBA: Denver Nuggets at Golden State Warriors", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2021-04-23"}, {"id": "15898720", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15898720.jpg", "headline": "NBA: Miami Heat at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2021-04-14"}, {"id": "15848146", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15848146.jpg", "headline": "NBA: Orlando Magic at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2021-04-04"}, {"id": "15848137", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15848137.jpg", "headline": "NBA: Orlando Magic at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2021-04-04"}, {"id": "15422089", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15422089.jpg", "headline": "NBA: Milwaukee Bucks at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2021-01-11"}, {"id": "15388940", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15388940.jpg", "headline": "NBA: Oklahoma City Thunder at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2021-01-02"}, {"id": "14160137", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14160137.jpg", "headline": "NBA: Orlando Magic at Houston Rockets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Erik Williams", "source": "Imagn Images", "date": "2020-03-08"}, {"id": "14144051", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14144051.jpg", "headline": "NBA: Orlando Magic at San Antonio Spurs", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Scott Wachter", "source": "Imagn Images", "date": "2020-02-29"}, {"id": "14144080", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14144080.jpg", "headline": "NBA: Orlando Magic at San Antonio Spurs", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Scott Wachter", "source": "Imagn Images", "date": "2020-02-29"}, {"id": "14102863", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14102863.jpg", "headline": "NBA: Orlando Magic at Atlanta Hawks", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Brett Davis", "source": "Imagn Images", "date": "2020-02-26"}, {"id": "14014370", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14014370.jpg", "headline": "NBA: Milwaukee Bucks at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2020-02-08"}, {"id": "13928892", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13928892.jpg", "headline": "NBA: Orlando Magic at Golden State Warriors", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Darren Yamashita", "source": "Imagn Images", "date": "2020-01-18"}, {"id": "13914947", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13914947.jpg", "headline": "NBA: Orlando Magic at Los Angeles Lakers", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Kelvin Kuo", "source": "Imagn Images", "date": "2020-01-15"}, {"id": "13868137", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13868137.jpg", "headline": "NBA: Miami Heat at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2020-01-03"}, {"id": "13833758", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13833758.jpg", "headline": "NBA: Chicago Bulls at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2019-12-23"}, {"id": "13758453", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13758453.jpg", "headline": "NBA: Orlando Magic at Cleveland Cavaliers", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2019-12-06"}, {"id": "13623485", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13623485.jpg", "headline": "NBA: Orlando Magic at Oklahoma City Thunder", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2019-11-05"}, {"id": "13623479", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13623479.jpg", "headline": "NBA: Orlando Magic at Oklahoma City Thunder", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2019-11-05"}, {"id": "13611845", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13611845.jpg", "headline": "NBA: Denver Nuggets at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2019-11-02"}, {"id": "12569484", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12569484.jpg", "headline": "NBA: Playoffs-Toronto Raptors at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2019-04-21"}, {"id": "12561451", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12561451.jpg", "headline": "NBA: Playoffs-Toronto Raptors at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2019-04-19"}, {"id": "12545009", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12545009.jpg", "headline": "NBA: Playoffs-Orlando Magic at Toronto Raptors", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2019-04-16"}, {"id": "12562342", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12562342.jpg", "headline": "NBA: Playoffs-Orlando Magic at Toronto Raptors", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2019-04-16"}, {"id": "12482578", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12482578.jpg", "headline": "NBA: Atlanta Hawks at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2019-04-05"}, {"id": "12466437", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12466437.jpg", "headline": "NBA: New York Knicks at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2019-04-03"}, {"id": "12456960", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12456960.jpg", "headline": "NBA: Orlando Magic at Toronto Raptors", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2019-04-01"}, {"id": "12455499", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12455499.jpg", "headline": "NBA: Orlando Magic at Detroit Pistons", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2019-03-28"}, {"id": "12310514", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12310514.jpg", "headline": "NBA: Dallas Mavericks at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2019-03-08"}, {"id": "12143658", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12143658.jpg", "headline": "NBA: Orlando Magic at Atlanta Hawks", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Dale Zanine", "source": "Imagn Images", "date": "2019-02-10"}, {"id": "12137882", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12137882.jpg", "headline": "NBA: Orlando Magic at Milwaukee Bucks", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-02-09"}, {"id": "12009467", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12009467.jpg", "headline": "NBA: Orlando Magic at Detroit Pistons", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Raj Mehta", "source": "Imagn Images", "date": "2019-01-16"}, {"id": "11970313", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11970313.jpg", "headline": "NBA: Orlando Magic at Utah Jazz", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Chris Nicoll", "source": "Imagn Images", "date": "2019-01-09"}, {"id": "11959064", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11959064.jpg", "headline": "NBA: Orlando Magic at Sacramento Kings", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Sergio Estrada", "source": "Imagn Images", "date": "2019-01-07"}, {"id": "11825249", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11825249.jpg", "headline": "NBA: Orlando Magic at Dallas Mavericks", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2018-12-10"}, {"id": "11795633", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11795633.jpg", "headline": "NBA: Denver Nuggets at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2018-12-05"}, {"id": "11795639", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11795639.jpg", "headline": "NBA: Denver Nuggets at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2018-12-05"}, {"id": "11763040", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11763040.jpg", "headline": "NBA: Orlando Magic at Phoenix Suns", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "date": "2018-11-30"}, {"id": "11720529", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11720529.jpg", "headline": "NBA: Orlando Magic at Denver Nuggets", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-11-23"}, {"id": "11665852", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11665852.jpg", "headline": "NBA: Philadelphia 76ers at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2018-11-14"}, {"id": "11617740", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11617740.jpg", "headline": "NBA: Detroit Pistons at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Kim Klement", "source": "Imagn Images", "date": "2018-11-07"}, {"id": "11461369", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11461369.jpg", "headline": "NBA: Miami Heat at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2018-10-17"}, {"id": "11358541", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11358541.jpg", "headline": "NBA: Preseason-Orlando Magic at Philadelphia 76ers", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Bill Streicher", "source": "Imagn Images", "date": "2018-10-01"}, {"id": "10778876", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10778876.jpg", "headline": "NBA: Orlando Magic at Milwaukee Bucks", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-04-09"}, {"id": "10758024", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10758024.jpg", "headline": "NBA: Orlando Magic at Atlanta Hawks", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Dale Zanine", "source": "Imagn Images", "date": "2018-04-01"}, {"id": "10722924", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10722924.jpg", "headline": "NBA: Toronto Raptors at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2018-03-20"}, {"id": "10662376", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10662376.jpg", "headline": "NBA: Toronto Raptors at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2018-02-28"}, {"id": "10662514", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10662514.jpg", "headline": "NBA: Toronto Raptors at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2018-02-28"}, {"id": "10662374", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10662374.jpg", "headline": "NBA: Toronto Raptors at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2018-02-28"}, {"id": "10644457", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10644457.jpg", "headline": "NBA: New York Knicks at Orlando Magic", "player": "Aaron Gordon", "playerSlug": "aaron-gordon", "photographer": "Kim Klement", "source": "Imagn Images", "date": "2018-02-22"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Aaron Gordon</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,566 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Phoenix Suns at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 11, 2023</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19662608/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19662608.jpg" alt="NBA: Memphis Grizzlies at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Memphis Grizzlies at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Dec 20, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19650894/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19650894.jpg" alt="NBA: Charlotte Hornets at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Charlotte Hornets at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Dec 18, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19578688/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19578688.jpg" alt="NBA: Dallas Mavericks at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Dallas Mavericks at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Dec 06, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19535881/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19535881.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Houston Rockets at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 30, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19354419/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19354419.jpg" alt="NBA: Denver Nuggets at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Denver Nuggets at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 03, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/18015275/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18015275.jpg" alt="NBA: Denver Nuggets at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Denver Nuggets at Los Angeles Lakers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Apr 03, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/18004737/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18004737.jpg" alt="NBA: Minnesota Timberwolves at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 01, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17973907/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17973907.jpg" alt="NBA: Oklahoma City Thunder at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Denver Nuggets</div>
-        <div class="credit">📷 Ron Chenoy · Imagn Images · Mar 26, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17951103/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17951103.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 22, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17924516/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17924516.jpg" alt="NBA: Denver Nuggets at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Denver Nuggets at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Mar 18, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17862983/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17862983.jpg" alt="NBA: Denver Nuggets at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Denver Nuggets at Sacramento Kings</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Mar 09, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17845389/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17845389.jpg" alt="NBA: New Orleans Pelicans at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: New Orleans Pelicans at Denver Nuggets</div>
-        <div class="credit">📷 Ron Chenoy · Imagn Images · Mar 06, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17703395/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17703395.jpg" alt="NBA: Denver Nuggets at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Denver Nuggets at Golden State Warriors</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Feb 16, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17687066/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17687066.jpg" alt="NBA: Orlando Magic at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 14, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17675875/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17675875.jpg" alt="NBA: Denver Nuggets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Denver Nuggets at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 12, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17591787/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17591787.jpg" alt="NBA: Denver Nuggets at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Denver Nuggets at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Jan 30, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17532821/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17532821.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 19, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17491385/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17491385.jpg" alt="NBA: Denver Nuggets at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Denver Nuggets at Los Angeles Clippers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Jan 11, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17449405/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17449405.jpg" alt="NBA: Denver Nuggets at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Denver Nuggets at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 03, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17354538/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17354538.jpg" alt="NBA: Washington Wizards at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Washington Wizards at Denver Nuggets</div>
-        <div class="credit">📷 Ron Chenoy · Imagn Images · Dec 13, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17238954/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17238954.jpg" alt="NBA: Milwaukee Bucks at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Milwaukee Bucks at Denver Nuggets</div>
-        <div class="credit">📷 Ron Chenoy · Imagn Images · Nov 26, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17151766/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17151766.jpg" alt="NBA: Atlanta Hawks at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Atlanta Hawks at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 12, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17122961/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17122961.jpg" alt="NBA: Miami Heat at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Miami Heat at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 08, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17112435/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17112435.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Houston Rockets at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 06, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17107794/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17107794.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Houston Rockets at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 06, 2021</div>
-    </div>
-</div>
-<div class="affiliate-module inline">
-    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Aaron+Gordon+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop Aaron Gordon basketball shoes</span>
-        <span class="badge-info">★ Latest Model</span>
-    </a>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17055543/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17055543.jpg" alt="NBA: Dallas Mavericks at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Dallas Mavericks at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Oct 29, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/16903542/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/16903542.jpg" alt="NBA: Preseason-Denver Nuggets at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Preseason-Denver Nuggets at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Oct 06, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15987781/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15987781.jpg" alt="NBA: Toronto Raptors at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Toronto Raptors at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 29, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15970378/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15970378.jpg" alt="NBA: Memphis Grizzlies at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Memphis Grizzlies at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 26, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15956057/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15956057.jpg" alt="NBA: Denver Nuggets at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Denver Nuggets at Golden State Warriors</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Apr 23, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15898720/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15898720.jpg" alt="NBA: Miami Heat at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Miami Heat at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 14, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15848146/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15848146.jpg" alt="NBA: Orlando Magic at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 04, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15848137/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15848137.jpg" alt="NBA: Orlando Magic at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 04, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15422089/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15422089.jpg" alt="NBA: Milwaukee Bucks at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Milwaukee Bucks at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Jan 11, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15388940/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15388940.jpg" alt="NBA: Oklahoma City Thunder at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Jan 02, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14160137/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14160137.jpg" alt="NBA: Orlando Magic at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Houston Rockets</div>
-        <div class="credit">📷 Erik Williams · Imagn Images · Mar 08, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14144051/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14144051.jpg" alt="NBA: Orlando Magic at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at San Antonio Spurs</div>
-        <div class="credit">📷 Scott Wachter · Imagn Images · Feb 29, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14144080/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14144080.jpg" alt="NBA: Orlando Magic at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at San Antonio Spurs</div>
-        <div class="credit">📷 Scott Wachter · Imagn Images · Feb 29, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14102863/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14102863.jpg" alt="NBA: Orlando Magic at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Atlanta Hawks</div>
-        <div class="credit">📷 Brett Davis · Imagn Images · Feb 26, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14014370/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14014370.jpg" alt="NBA: Milwaukee Bucks at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Milwaukee Bucks at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Feb 08, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13928892/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13928892.jpg" alt="NBA: Orlando Magic at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Golden State Warriors</div>
-        <div class="credit">📷 Darren Yamashita · Imagn Images · Jan 18, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13914947/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13914947.jpg" alt="NBA: Orlando Magic at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Los Angeles Lakers</div>
-        <div class="credit">📷 Kelvin Kuo · Imagn Images · Jan 15, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13868137/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13868137.jpg" alt="NBA: Miami Heat at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Miami Heat at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Jan 03, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13833758/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13833758.jpg" alt="NBA: Chicago Bulls at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Chicago Bulls at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Dec 23, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13758453/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13758453.jpg" alt="NBA: Orlando Magic at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Dec 06, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13623485/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13623485.jpg" alt="NBA: Orlando Magic at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 05, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13623479/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13623479.jpg" alt="NBA: Orlando Magic at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 05, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13611845/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13611845.jpg" alt="NBA: Denver Nuggets at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Denver Nuggets at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Nov 02, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12569484/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12569484.jpg" alt="NBA: Playoffs-Toronto Raptors at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Playoffs-Toronto Raptors at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Apr 21, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12561451/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12561451.jpg" alt="NBA: Playoffs-Toronto Raptors at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Playoffs-Toronto Raptors at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Apr 19, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12545009/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12545009.jpg" alt="NBA: Playoffs-Orlando Magic at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Playoffs-Orlando Magic at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Apr 16, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12562342/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12562342.jpg" alt="NBA: Playoffs-Orlando Magic at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Playoffs-Orlando Magic at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Apr 16, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12482578/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12482578.jpg" alt="NBA: Atlanta Hawks at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Atlanta Hawks at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Apr 05, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12466437/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12466437.jpg" alt="NBA: New York Knicks at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: New York Knicks at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Apr 03, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12456960/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12456960.jpg" alt="NBA: Orlando Magic at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Apr 01, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12455499/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12455499.jpg" alt="NBA: Orlando Magic at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Mar 28, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12310514/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12310514.jpg" alt="NBA: Dallas Mavericks at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Dallas Mavericks at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Mar 08, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12143658/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12143658.jpg" alt="NBA: Orlando Magic at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Atlanta Hawks</div>
-        <div class="credit">📷 Dale Zanine · Imagn Images · Feb 10, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12137882/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12137882.jpg" alt="NBA: Orlando Magic at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Feb 09, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12009467/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12009467.jpg" alt="NBA: Orlando Magic at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Detroit Pistons</div>
-        <div class="credit">📷 Raj Mehta · Imagn Images · Jan 16, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11970313/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11970313.jpg" alt="NBA: Orlando Magic at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Utah Jazz</div>
-        <div class="credit">📷 Chris Nicoll · Imagn Images · Jan 09, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11959064/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11959064.jpg" alt="NBA: Orlando Magic at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Sacramento Kings</div>
-        <div class="credit">📷 Sergio Estrada · Imagn Images · Jan 07, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11825249/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11825249.jpg" alt="NBA: Orlando Magic at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Dec 10, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11795633/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11795633.jpg" alt="NBA: Denver Nuggets at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Denver Nuggets at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Dec 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11795639/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11795639.jpg" alt="NBA: Denver Nuggets at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Denver Nuggets at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Dec 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11763040/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11763040.jpg" alt="NBA: Orlando Magic at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Nov 30, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11720529/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11720529.jpg" alt="NBA: Orlando Magic at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 23, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11665852/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11665852.jpg" alt="NBA: Philadelphia 76ers at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Philadelphia 76ers at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Nov 14, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11617740/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11617740.jpg" alt="NBA: Detroit Pistons at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Detroit Pistons at Orlando Magic</div>
-        <div class="credit">📷 Kim Klement · Imagn Images · Nov 07, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11461369/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11461369.jpg" alt="NBA: Miami Heat at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Miami Heat at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Oct 17, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11358541/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11358541.jpg" alt="NBA: Preseason-Orlando Magic at Philadelphia 76ers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Preseason-Orlando Magic at Philadelphia 76ers</div>
-        <div class="credit">📷 Bill Streicher · Imagn Images · Oct 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10778876/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10778876.jpg" alt="NBA: Orlando Magic at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 09, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10758024/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10758024.jpg" alt="NBA: Orlando Magic at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Orlando Magic at Atlanta Hawks</div>
-        <div class="credit">📷 Dale Zanine · Imagn Images · Apr 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10722924/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10722924.jpg" alt="NBA: Toronto Raptors at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Toronto Raptors at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Mar 20, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10662376/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10662376.jpg" alt="NBA: Toronto Raptors at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Toronto Raptors at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Feb 28, 2018</div>
-    </div>
-</div>
-<div class="affiliate-module inline">
-    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Aaron+Gordon+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop Aaron Gordon basketball shoes</span>
-        <span class="badge-info">★ Latest Model</span>
-    </a>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10662514/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10662514.jpg" alt="NBA: Toronto Raptors at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Toronto Raptors at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Feb 28, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10662374/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10662374.jpg" alt="NBA: Toronto Raptors at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: Toronto Raptors at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Feb 28, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10644457/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10644457.jpg" alt="NBA: New York Knicks at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-gordon/" class="player-link">Aaron Gordon</a>
-        <div class="headline">NBA: New York Knicks at Orlando Magic</div>
-        <div class="credit">📷 Kim Klement · Imagn Images · Feb 22, 2018</div>
-    </div>
 </div>
         </div>
     </section>
@@ -951,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25786935.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/maurice-harkless/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17100849.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Trey Lyles</div>
-        <div class="mp-count">65 photos</div>
+        <div class="mp-name">Maurice Harkless</div>
+        <div class="mp-count">19 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/coby-white/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27749926.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pj-washington/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27426592.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Coby White</div>
+        <div class="mp-name">PJ Washington</div>
+        <div class="mp-count">25 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jakob-poeltl/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28340973.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Jakob Poeltl</div>
+        <div class="mp-count">29 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cam-reddish/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22173759.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Cam Reddish</div>
+        <div class="mp-count">23 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/obi-toppin/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/26427983.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Obi Toppin</div>
+        <div class="mp-count">25 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dirk-nowitzki/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/12483213.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Dirk Nowitzki</div>
+        <div class="mp-count">20 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/victor-oladipo/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20337849.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Victor Oladipo</div>
         <div class="mp-count">22 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27500644.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/keegan-murray/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25909789.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Chris Paul</div>
-        <div class="mp-count">124 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-richardson/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20338826.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Josh Richardson</div>
-        <div class="mp-count">25 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/matthew-dellavedova/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/14135852.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Matthew Dellavedova</div>
-        <div class="mp-count">13 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rodney-hood/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17896972.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Rodney Hood</div>
-        <div class="mp-count">25 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/greg-monroe/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/11859022.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Greg Monroe</div>
-        <div class="mp-count">11 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marvin-williams/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/13968778.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Marvin Williams</div>
-        <div class="mp-count">14 photos</div>
+        <div class="mp-name">Keegan Murray</div>
+        <div class="mp-count">24 photos</div>
     </div>
 </a>
         </div>

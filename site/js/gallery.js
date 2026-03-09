@@ -78,3 +78,58 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+// Infinite Scroll
+document.addEventListener('DOMContentLoaded', function() {
+    var data = window.__SCROLL_PHOTOS;
+    if (!data || !data.photos || !data.photos.length) return;
+    var grid = document.getElementById('photo-grid');
+    if (!grid) return;
+    var photos = data.photos;
+    var baseUrl = data.baseUrl || '';
+    var batch = 24;
+    var loaded = 0;
+
+    // Create sentinel element
+    var sentinel = document.createElement('div');
+    sentinel.className = 'scroll-sentinel';
+    sentinel.innerHTML = '<div class="scroll-spinner"></div>';
+    grid.parentNode.insertBefore(sentinel, grid.nextSibling);
+
+    function fmtDate(d) {
+        try { return new Date(d + 'T00:00:00').toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'}); }
+        catch(e) { return d; }
+    }
+
+    function loadBatch() {
+        var end = Math.min(loaded + batch, photos.length);
+        if (loaded >= photos.length) return;
+        for (var i = loaded; i < end; i++) {
+            var p = photos[i];
+            var card = document.createElement('div');
+            card.className = 'photo-card';
+            card.innerHTML = '<a href="' + baseUrl + '/photos/' + p.id + '/" class="img-wrap"><img src="' + p.thumb + '" alt="' + p.headline + '" loading="lazy"></a>'
+                + '<div class="meta"><a href="' + baseUrl + '/players/' + p.playerSlug + '/" class="player-link">' + p.player + '</a>'
+                + '<div class="headline">' + p.headline + '</div>'
+                + '<div class="credit">📷 ' + p.photographer + ' · ' + p.source + ' · ' + fmtDate(p.date) + '</div></div>';
+            grid.appendChild(card);
+        }
+        loaded = end;
+        if (loaded >= photos.length) {
+            sentinel.innerHTML = '<div class="scroll-done">All photos loaded</div>';
+            sentinel.className = 'scroll-done';
+            if (observer) observer.disconnect();
+        }
+    }
+
+    var observer = null;
+    if ('IntersectionObserver' in window) {
+        observer = new IntersectionObserver(function(entries) {
+            if (entries[0].isIntersecting) { loadBatch(); }
+        }, { rootMargin: '200px' });
+        observer.observe(sentinel);
+    } else {
+        // Fallback: load all at once
+        while (loaded < photos.length) { loadBatch(); }
+    }
+});

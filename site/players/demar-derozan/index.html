@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "22086520", "thumb": "https://cdn.imagn.com/image/thumb/250-225/22086520.jpg", "headline": "NBA: Chicago Bulls at Milwaukee Bucks", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2023-12-11"}, {"id": "22023567", "thumb": "https://cdn.imagn.com/image/thumb/250-225/22023567.jpg", "headline": "NBA: New Orleans Pelicans at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2023-12-02"}, {"id": "21946035", "thumb": "https://cdn.imagn.com/image/thumb/250-225/21946035.jpg", "headline": "NBA: Miami Heat at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2023-11-20"}, {"id": "21931171", "thumb": "https://cdn.imagn.com/image/thumb/250-225/21931171.jpg", "headline": "NBA: Miami Heat at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "David Banks", "source": "Imagn Images", "date": "2023-11-18"}, {"id": "21887265", "thumb": "https://cdn.imagn.com/image/thumb/250-225/21887265.jpg", "headline": "NBA: Detroit Pistons at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2023-11-12"}, {"id": "21735037", "thumb": "https://cdn.imagn.com/image/thumb/250-225/21735037.jpg", "headline": "NBA: Oklahoma City Thunder at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2023-10-25"}, {"id": "21686898", "thumb": "https://cdn.imagn.com/image/thumb/250-225/21686898.jpg", "headline": "NBA: Preseason-Minnesota Timberwolves at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2023-10-19"}, {"id": "21684259", "thumb": "https://cdn.imagn.com/image/thumb/250-225/21684259.jpg", "headline": "NBA: Preseason-Minnesota Timberwolves at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2023-10-19"}, {"id": "21633253", "thumb": "https://cdn.imagn.com/image/thumb/250-225/21633253.jpg", "headline": "NBA: Preseason-Denver Nuggets at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "David Banks", "source": "Imagn Images", "date": "2023-10-12"}, {"id": "21554843", "thumb": "https://cdn.imagn.com/image/thumb/250-225/21554843.jpg", "headline": "NBA: Chicago Bulls-Media Day", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "David Banks", "source": "Imagn Images", "date": "2023-10-02"}, {"id": "20332510", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20332510.jpg", "headline": "NBA: Chicago Bulls at Los Angeles Clippers", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2023-03-27"}, {"id": "20257993", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20257993.jpg", "headline": "NBA: Minnesota Timberwolves at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2023-03-17"}, {"id": "20139013", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20139013.jpg", "headline": "NBA: Phoenix Suns at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2023-03-03"}, {"id": "20110517", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20110517.jpg", "headline": "NBA: Chicago Bulls at Toronto Raptors", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2023-02-28"}, {"id": "20096930", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20096930.jpg", "headline": "NBA: Washington Wizards at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "David Banks", "source": "Imagn Images", "date": "2023-02-26"}, {"id": "20080706", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20080706.jpg", "headline": "NBA: Brooklyn Nets at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2023-02-24"}, {"id": "19991337", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19991337.jpg", "headline": "NBA: Orlando Magic at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2023-02-13"}, {"id": "19974741", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19974741.jpg", "headline": "NBA: Chicago Bulls at Cleveland Cavaliers", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2023-02-11"}, {"id": "19925753", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19925753.jpg", "headline": "NBA: Portland Trail Blazers at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "David Banks", "source": "Imagn Images", "date": "2023-02-04"}, {"id": "19910698", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19910698.jpg", "headline": "NBA: Charlotte Hornets at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2023-02-02"}, {"id": "19879184", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19879184.jpg", "headline": "NBA: Chicago Bulls at Orlando Magic", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Mike Watters", "source": "Imagn Images", "date": "2023-01-28"}, {"id": "19714026", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19714026.jpg", "headline": "NBA: Chicago Bulls at Cleveland Cavaliers", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2023-01-02"}, {"id": "19702326", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19702326.jpg", "headline": "NBA: Detroit Pistons at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "David Banks", "source": "Imagn Images", "date": "2022-12-30"}, {"id": "19691604", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19691604.jpg", "headline": "NBA: Milwaukee Bucks at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2022-12-28"}, {"id": "19681388", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19681388.jpg", "headline": "NBA: Houston Rockets at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2022-12-26"}, {"id": "19626437", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19626437.jpg", "headline": "NBA: New York Knicks at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2022-12-14"}, {"id": "19583882", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19583882.jpg", "headline": "NBA: Washington Wizards at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2022-12-07"}, {"id": "19549949", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19549949.jpg", "headline": "NBA: Chicago Bulls at Golden State Warriors", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2022-12-02"}, {"id": "19381616", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19381616.jpg", "headline": "NBA: Toronto Raptors at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "David Banks", "source": "Imagn Images", "date": "2022-11-07"}, {"id": "19380722", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19380722.jpg", "headline": "NBA: Chicago Bulls at Toronto Raptors", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2022-11-06"}, {"id": "19282914", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19282914.jpg", "headline": "NBA: Cleveland Cavaliers at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "David Banks", "source": "Imagn Images", "date": "2022-10-22"}, {"id": "18164943", "thumb": "https://cdn.imagn.com/image/thumb/250-225/18164943.jpg", "headline": "NBA: Chicago Bulls at Milwaukee Bucks", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2022-04-27"}, {"id": "18144095", "thumb": "https://cdn.imagn.com/image/thumb/250-225/18144095.jpg", "headline": "NBA: Playoffs-Milwaukee Bucks at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "David Banks", "source": "Imagn Images", "date": "2022-04-24"}, {"id": "18108171", "thumb": "https://cdn.imagn.com/image/thumb/250-225/18108171.jpg", "headline": "NBA: Playoffs-Chicago Bulls at Milwaukee Bucks", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2022-04-17"}, {"id": "18047714", "thumb": "https://cdn.imagn.com/image/thumb/250-225/18047714.jpg", "headline": "NBA: Charlotte Hornets at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2022-04-08"}, {"id": "18028084", "thumb": "https://cdn.imagn.com/image/thumb/250-225/18028084.jpg", "headline": "NBA: Milwaukee Bucks at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2022-04-05"}, {"id": "17984067", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17984067.jpg", "headline": "NBA: Chicago Bulls at New York Knicks", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Andy Marlin", "source": "Imagn Images", "date": "2022-03-28"}, {"id": "17951063", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17951063.jpg", "headline": "NBA: Chicago Bulls at Milwaukee Bucks", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2022-03-22"}, {"id": "17945115", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17945115.jpg", "headline": "NBA: Toronto Raptors at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "David Banks", "source": "Imagn Images", "date": "2022-03-21"}, {"id": "17886189", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17886189.jpg", "headline": "NBA: Cleveland Cavaliers at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "David Banks", "source": "Imagn Images", "date": "2022-03-12"}, {"id": "17861885", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17861885.jpg", "headline": "NBA: Chicago Bulls at Detroit Pistons", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2022-03-09"}, {"id": "17830327", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17830327.jpg", "headline": "NBA: Milwaukee Bucks at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2022-03-04"}, {"id": "17820313", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17820313.jpg", "headline": "NBA: Chicago Bulls at Atlanta Hawks", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Dale Zanine", "source": "Imagn Images", "date": "2022-03-03"}, {"id": "17690957", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17690957.jpg", "headline": "NBA: San Antonio Spurs at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "David Banks", "source": "Imagn Images", "date": "2022-02-14"}, {"id": "17638098", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17638098.jpg", "headline": "NBA: Phoenix Suns at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2022-02-07"}, {"id": "17631012", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17631012.jpg", "headline": "NBA: Philadelphia 76ers at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2022-02-06"}, {"id": "17570643", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17570643.jpg", "headline": "NBA: Toronto Raptors at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2022-01-26"}, {"id": "17532247", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17532247.jpg", "headline": "NBA: Cleveland Cavaliers at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2022-01-19"}, {"id": "17469118", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17469118.jpg", "headline": "NBA: Washington Wizards at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "David Banks", "source": "Imagn Images", "date": "2022-01-07"}, {"id": "17449450", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17449450.jpg", "headline": "NBA: Orlando Magic at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2022-01-03"}, {"id": "17258254", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17258254.jpg", "headline": "NBA: Charlotte Hornets at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "David Banks", "source": "Imagn Images", "date": "2021-11-29"}, {"id": "17195961", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17195961.jpg", "headline": "NBA: Chicago Bulls at Denver Nuggets", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Ron Chenoy", "source": "Imagn Images", "date": "2021-11-19"}, {"id": "17184168", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17184168.jpg", "headline": "NBA: Chicago Bulls at Portland Trail Blazers", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Jaime Valdez", "source": "Imagn Images", "date": "2021-11-17"}, {"id": "17028652", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17028652.jpg", "headline": "NBA: Chicago Bulls at Toronto Raptors", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2021-10-25"}, {"id": "16897300", "thumb": "https://cdn.imagn.com/image/thumb/250-225/16897300.jpg", "headline": "NBA: Preseason-Cleveland Cavaliers at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2021-10-05"}, {"id": "16046033", "thumb": "https://cdn.imagn.com/image/thumb/250-225/16046033.jpg", "headline": "NBA: San Antonio Spurs at Sacramento Kings", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2021-05-07"}, {"id": "15886024", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15886024.jpg", "headline": "NBA: San Antonio Spurs at Orlando Magic", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Mike Watters", "source": "Imagn Images", "date": "2021-04-12"}, {"id": "15433923", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15433923.jpg", "headline": "NBA: Houston Rockets at San Antonio Spurs", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Scott Wachter", "source": "Imagn Images", "date": "2021-01-14"}, {"id": "15431389", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15431389.jpg", "headline": "NBA: Toronto Raptors at San Antonio Spurs", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Scott Wachter", "source": "Imagn Images", "date": "2020-12-26"}, {"id": "14160576", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14160576.jpg", "headline": "NBA: San Antonio Spurs at Cleveland Cavaliers", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2020-03-08"}, {"id": "14161283", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14161283.jpg", "headline": "NBA: San Antonio Spurs at Cleveland Cavaliers", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2020-03-08"}, {"id": "14078548", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14078548.jpg", "headline": "NBA: San Antonio Spurs at Utah Jazz", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Jeffrey Swinger", "source": "Imagn Images", "date": "2020-02-21"}, {"id": "13964862", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13964862.jpg", "headline": "NBA: San Antonio Spurs at Chicago Bulls", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Mike Dinovo", "source": "Imagn Images", "date": "2020-01-27"}, {"id": "13901733", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13901733.jpg", "headline": "NBA: San Antonio Spurs at Toronto Raptors", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2020-01-12"}, {"id": "13901731", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13901731.jpg", "headline": "NBA: San Antonio Spurs at Toronto Raptors", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2020-01-12"}, {"id": "13900751", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13900751.jpg", "headline": "NBA: San Antonio Spurs at Toronto Raptors", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2020-01-12"}, {"id": "13873939", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13873939.jpg", "headline": "NBA: San Antonio Spurs at Milwaukee Bucks", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Benny Sieu", "source": "Imagn Images", "date": "2020-01-04"}, {"id": "13911850", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13911850.jpg", "headline": "NBA: Detroit Pistons at San Antonio Spurs", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Scott Wachter", "source": "Imagn Images", "date": "2019-12-28"}, {"id": "13911537", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13911537.jpg", "headline": "NBA: Detroit Pistons at San Antonio Spurs", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Scott Wachter", "source": "Imagn Images", "date": "2019-12-28"}, {"id": "13839613", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13839613.jpg", "headline": "NBA: San Antonio Spurs at Dallas Mavericks", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Kevin Jairaj", "source": "Imagn Images", "date": "2019-12-26"}, {"id": "13793022", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13793022.jpg", "headline": "NBA: San Antonio Spurs at Phoenix Suns", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Orlando Ramirez", "source": "Imagn Images", "date": "2019-12-14"}, {"id": "13739087", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13739087.jpg", "headline": "NBA: San Antonio Spurs at Detroit Pistons", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Raj Mehta", "source": "Imagn Images", "date": "2019-12-01"}, {"id": "13704655", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13704655.jpg", "headline": "NBA: San Antonio Spurs at New York Knicks", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Vincent Carchietta", "source": "Imagn Images", "date": "2019-11-23"}, {"id": "13623159", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13623159.jpg", "headline": "NBA: San Antonio Spurs at Atlanta Hawks", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Brett Davis", "source": "Imagn Images", "date": "2019-11-05"}, {"id": "13610070", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13610070.jpg", "headline": "NBA: San Antonio Spurs at Golden State Warriors", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Cary Edmondson", "source": "Imagn Images", "date": "2019-11-01"}, {"id": "13600387", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13600387.jpg", "headline": "NBA: San Antonio Spurs at Los Angeles Clippers", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2019-10-31"}, {"id": "12543842", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12543842.jpg", "headline": "NBA: Playoffs-San Antonio Spurs at Denver Nuggets", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2019-04-16"}, {"id": "12494373", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12494373.jpg", "headline": "NBA: San Antonio Spurs at Cleveland Cavaliers", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "David Richard", "source": "Imagn Images", "date": "2019-04-07"}, {"id": "12420260", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12420260.jpg", "headline": "NBA: San Antonio Spurs at Charlotte Hornets", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Sam Sharpe", "source": "Imagn Images", "date": "2019-03-26"}, {"id": "12299020", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12299020.jpg", "headline": "NBA: San Antonio Spurs at Atlanta Hawks", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Brett Davis", "source": "Imagn Images", "date": "2019-03-06"}, {"id": "12109609", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12109609.jpg", "headline": "NBA: San Antonio Spurs at Sacramento Kings", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Sergio Estrada", "source": "Imagn Images", "date": "2019-02-04"}, {"id": "12009869", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12009869.jpg", "headline": "NBA: San Antonio Spurs at Dallas Mavericks", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2019-01-16"}, {"id": "11969675", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11969675.jpg", "headline": "NBA: San Antonio Spurs at Memphis Grizzlies", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2019-01-09"}, {"id": "11891183", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11891183.jpg", "headline": "NBA: San Antonio Spurs at Houston Rockets", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Troy Taormina", "source": "Imagn Images", "date": "2018-12-22"}, {"id": "11891181", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11891181.jpg", "headline": "NBA: San Antonio Spurs at Houston Rockets", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Troy Taormina", "source": "Imagn Images", "date": "2018-12-22"}, {"id": "11886679", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11886679.jpg", "headline": "NBA: Minnesota Timberwolves at San Antonio Spurs", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Soobum Im", "source": "Imagn Images", "date": "2018-12-21"}, {"id": "11721365", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11721365.jpg", "headline": "NBA: San Antonio Spurs at Indiana Pacers", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Trevor Ruszkowski", "source": "Imagn Images", "date": "2018-11-23"}, {"id": "11566769", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11566769.jpg", "headline": "NBA: San Antonio Spurs at Phoenix Suns", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "date": "2018-10-31"}, {"id": "11509549", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11509549.jpg", "headline": "NBA: Indiana Pacers at San Antonio Spurs", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Soobum Im", "source": "Imagn Images", "date": "2018-10-24"}, {"id": "11499518", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11499518.jpg", "headline": "NBA: San Antonio Spurs at Los Angeles Lakers", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2018-10-22"}, {"id": "11487528", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11487528.jpg", "headline": "NBA: San Antonio Spurs at Portland Trail Blazers", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Steve Dykes", "source": "Imagn Images", "date": "2018-10-20"}, {"id": "10824738", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10824738.jpg", "headline": "NBA: Playoffs-Toronto Raptors at Cleveland Cavaliers", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "David Richard", "source": "Imagn Images", "date": "2018-05-07"}, {"id": "10791606", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10791606.jpg", "headline": "NBA: Playoffs-Washington Wizards at Toronto Raptors", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2018-04-17"}, {"id": "10766061", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10766061.jpg", "headline": "NBA: Boston Celtics at Toronto Raptors", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2018-04-04"}, {"id": "10763735", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10763735.jpg", "headline": "NBA: Toronto Raptors at Cleveland Cavaliers", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "David Richard", "source": "Imagn Images", "date": "2018-04-03"}, {"id": "10754427", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10754427.jpg", "headline": "NBA: Toronto Raptors at Boston Celtics", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Winslow Townson", "source": "Imagn Images", "date": "2018-03-31"}, {"id": "10712733", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10712733.jpg", "headline": "NBA: Dallas Mavericks at Toronto Raptors", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2018-03-16"}, {"id": "10691461", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10691461.jpg", "headline": "NBA: Houston Rockets at Toronto Raptors", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2018-03-09"}, {"id": "10686417", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10686417.jpg", "headline": "NBA: Toronto Raptors at Detroit Pistons", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2018-03-07"}, {"id": "10670508", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10670508.jpg", "headline": "NBA: Toronto Raptors at Washington Wizards", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Brad Mills", "source": "Imagn Images", "date": "2018-03-02"}, {"id": "10649818", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10649818.jpg", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2018-02-23"}, {"id": "9713711", "thumb": "https://cdn.imagn.com/image/thumb/250-225/9713711.jpg", "headline": "NBA: Toronto Raptors at Milwaukee Bucks", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2016-11-25"}, {"id": "9713849", "thumb": "https://cdn.imagn.com/image/thumb/250-225/9713849.jpg", "headline": "NBA: Toronto Raptors at Milwaukee Bucks", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2016-11-25"}, {"id": "8228825", "thumb": "https://cdn.imagn.com/image/thumb/250-225/8228825.jpg", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "player": "Demar DeRozan", "playerSlug": "demar-derozan", "photographer": "Tom Szczerbowski", "source": "Imagn Images", "date": "2014-11-21"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Demar DeRozan</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,748 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Cleveland Cavaliers at Chicago Bulls</div>
         <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Dec 23, 2023</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22086520/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22086520.jpg" alt="NBA: Chicago Bulls at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Chicago Bulls at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Dec 11, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22023567/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22023567.jpg" alt="NBA: New Orleans Pelicans at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: New Orleans Pelicans at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Dec 02, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21946035/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21946035.jpg" alt="NBA: Miami Heat at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Miami Heat at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Nov 20, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21931171/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21931171.jpg" alt="NBA: Miami Heat at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Miami Heat at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Nov 18, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21887265/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21887265.jpg" alt="NBA: Detroit Pistons at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Detroit Pistons at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Nov 12, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21735037/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21735037.jpg" alt="NBA: Oklahoma City Thunder at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Oct 25, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21686898/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21686898.jpg" alt="NBA: Preseason-Minnesota Timberwolves at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Preseason-Minnesota Timberwolves at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Oct 19, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21684259/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21684259.jpg" alt="NBA: Preseason-Minnesota Timberwolves at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Preseason-Minnesota Timberwolves at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Oct 19, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21633253/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21633253.jpg" alt="NBA: Preseason-Denver Nuggets at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Preseason-Denver Nuggets at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Oct 12, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21554843/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21554843.jpg" alt="NBA: Chicago Bulls-Media Day" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Chicago Bulls-Media Day</div>
-        <div class="credit">📷 David Banks · Imagn Images · Oct 02, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20332510/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20332510.jpg" alt="NBA: Chicago Bulls at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Chicago Bulls at Los Angeles Clippers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Mar 27, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20257993/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20257993.jpg" alt="NBA: Minnesota Timberwolves at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Mar 17, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20139013/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20139013.jpg" alt="NBA: Phoenix Suns at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Phoenix Suns at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Mar 03, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20110517/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20110517.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 28, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20096930/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20096930.jpg" alt="NBA: Washington Wizards at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Washington Wizards at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Feb 26, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20080706/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20080706.jpg" alt="NBA: Brooklyn Nets at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Brooklyn Nets at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Feb 24, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19991337/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19991337.jpg" alt="NBA: Orlando Magic at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Orlando Magic at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Feb 13, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19974741/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19974741.jpg" alt="NBA: Chicago Bulls at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Chicago Bulls at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Feb 11, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19925753/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19925753.jpg" alt="NBA: Portland Trail Blazers at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Portland Trail Blazers at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Feb 04, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19910698/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19910698.jpg" alt="NBA: Charlotte Hornets at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Charlotte Hornets at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Feb 02, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19879184/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19879184.jpg" alt="NBA: Chicago Bulls at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Chicago Bulls at Orlando Magic</div>
-        <div class="credit">📷 Mike Watters · Imagn Images · Jan 28, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19714026/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19714026.jpg" alt="NBA: Chicago Bulls at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Chicago Bulls at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Jan 02, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19702326/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19702326.jpg" alt="NBA: Detroit Pistons at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Detroit Pistons at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Dec 30, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19691604/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19691604.jpg" alt="NBA: Milwaukee Bucks at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Milwaukee Bucks at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Dec 28, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19681388/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19681388.jpg" alt="NBA: Houston Rockets at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Houston Rockets at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Dec 26, 2022</div>
-    </div>
-</div>
-<div class="affiliate-module inline">
-    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Demar+DeRozan+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop Demar DeRozan basketball shoes</span>
-        <span class="badge-info">★ Latest Model</span>
-    </a>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19626437/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19626437.jpg" alt="NBA: New York Knicks at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: New York Knicks at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Dec 14, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19583882/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19583882.jpg" alt="NBA: Washington Wizards at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Washington Wizards at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Dec 07, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19549949/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19549949.jpg" alt="NBA: Chicago Bulls at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Chicago Bulls at Golden State Warriors</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Dec 02, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19381616/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19381616.jpg" alt="NBA: Toronto Raptors at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Toronto Raptors at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Nov 07, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19380722/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19380722.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Nov 06, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19282914/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19282914.jpg" alt="NBA: Cleveland Cavaliers at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Oct 22, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/18164943/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18164943.jpg" alt="NBA: Chicago Bulls at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Chicago Bulls at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 27, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/18144095/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18144095.jpg" alt="NBA: Playoffs-Milwaukee Bucks at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Playoffs-Milwaukee Bucks at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Apr 24, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/18108171/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18108171.jpg" alt="NBA: Playoffs-Chicago Bulls at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Playoffs-Chicago Bulls at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 17, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/18047714/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18047714.jpg" alt="NBA: Charlotte Hornets at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Charlotte Hornets at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Apr 08, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/18028084/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18028084.jpg" alt="NBA: Milwaukee Bucks at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Milwaukee Bucks at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Apr 05, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17984067/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17984067.jpg" alt="NBA: Chicago Bulls at New York Knicks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Chicago Bulls at New York Knicks</div>
-        <div class="credit">📷 Andy Marlin · Imagn Images · Mar 28, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17951063/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17951063.jpg" alt="NBA: Chicago Bulls at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Chicago Bulls at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Mar 22, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17945115/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17945115.jpg" alt="NBA: Toronto Raptors at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Toronto Raptors at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Mar 21, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17886189/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17886189.jpg" alt="NBA: Cleveland Cavaliers at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Mar 12, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17861885/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17861885.jpg" alt="NBA: Chicago Bulls at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Chicago Bulls at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Mar 09, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17830327/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17830327.jpg" alt="NBA: Milwaukee Bucks at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Milwaukee Bucks at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Mar 04, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17820313/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17820313.jpg" alt="NBA: Chicago Bulls at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Chicago Bulls at Atlanta Hawks</div>
-        <div class="credit">📷 Dale Zanine · Imagn Images · Mar 03, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17690957/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17690957.jpg" alt="NBA: San Antonio Spurs at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Feb 14, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17638098/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17638098.jpg" alt="NBA: Phoenix Suns at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Phoenix Suns at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Feb 07, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17631012/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17631012.jpg" alt="NBA: Philadelphia 76ers at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Philadelphia 76ers at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Feb 06, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17570643/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17570643.jpg" alt="NBA: Toronto Raptors at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Toronto Raptors at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Jan 26, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17532247/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17532247.jpg" alt="NBA: Cleveland Cavaliers at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Jan 19, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17469118/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17469118.jpg" alt="NBA: Washington Wizards at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Washington Wizards at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Jan 07, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17449450/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17449450.jpg" alt="NBA: Orlando Magic at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Orlando Magic at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Jan 03, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17258254/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17258254.jpg" alt="NBA: Charlotte Hornets at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Charlotte Hornets at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Nov 29, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17195961/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17195961.jpg" alt="NBA: Chicago Bulls at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Chicago Bulls at Denver Nuggets</div>
-        <div class="credit">📷 Ron Chenoy · Imagn Images · Nov 19, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17184168/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17184168.jpg" alt="NBA: Chicago Bulls at Portland Trail Blazers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Chicago Bulls at Portland Trail Blazers</div>
-        <div class="credit">📷 Jaime Valdez · Imagn Images · Nov 17, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17028652/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17028652.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Oct 25, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/16897300/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/16897300.jpg" alt="NBA: Preseason-Cleveland Cavaliers at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Preseason-Cleveland Cavaliers at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Oct 05, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/16046033/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/16046033.jpg" alt="NBA: San Antonio Spurs at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Sacramento Kings</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · May 07, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15886024/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15886024.jpg" alt="NBA: San Antonio Spurs at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Orlando Magic</div>
-        <div class="credit">📷 Mike Watters · Imagn Images · Apr 12, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15433923/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15433923.jpg" alt="NBA: Houston Rockets at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Houston Rockets at San Antonio Spurs</div>
-        <div class="credit">📷 Scott Wachter · Imagn Images · Jan 14, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15431389/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15431389.jpg" alt="NBA: Toronto Raptors at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Toronto Raptors at San Antonio Spurs</div>
-        <div class="credit">📷 Scott Wachter · Imagn Images · Dec 26, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14160576/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14160576.jpg" alt="NBA: San Antonio Spurs at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Mar 08, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14161283/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14161283.jpg" alt="NBA: San Antonio Spurs at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Mar 08, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14078548/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14078548.jpg" alt="NBA: San Antonio Spurs at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Utah Jazz</div>
-        <div class="credit">📷 Jeffrey Swinger · Imagn Images · Feb 21, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13964862/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13964862.jpg" alt="NBA: San Antonio Spurs at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Chicago Bulls</div>
-        <div class="credit">📷 Mike Dinovo · Imagn Images · Jan 27, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13901733/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13901733.jpg" alt="NBA: San Antonio Spurs at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 12, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13901731/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13901731.jpg" alt="NBA: San Antonio Spurs at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 12, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13900751/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13900751.jpg" alt="NBA: San Antonio Spurs at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 12, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13873939/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13873939.jpg" alt="NBA: San Antonio Spurs at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Milwaukee Bucks</div>
-        <div class="credit">📷 Benny Sieu · Imagn Images · Jan 04, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13911850/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13911850.jpg" alt="NBA: Detroit Pistons at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Detroit Pistons at San Antonio Spurs</div>
-        <div class="credit">📷 Scott Wachter · Imagn Images · Dec 28, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13911537/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13911537.jpg" alt="NBA: Detroit Pistons at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Detroit Pistons at San Antonio Spurs</div>
-        <div class="credit">📷 Scott Wachter · Imagn Images · Dec 28, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13839613/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13839613.jpg" alt="NBA: San Antonio Spurs at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Dallas Mavericks</div>
-        <div class="credit">📷 Kevin Jairaj · Imagn Images · Dec 26, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13793022/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13793022.jpg" alt="NBA: San Antonio Spurs at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Phoenix Suns</div>
-        <div class="credit">📷 Orlando Ramirez · Imagn Images · Dec 14, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13739087/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13739087.jpg" alt="NBA: San Antonio Spurs at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Detroit Pistons</div>
-        <div class="credit">📷 Raj Mehta · Imagn Images · Dec 01, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13704655/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13704655.jpg" alt="NBA: San Antonio Spurs at New York Knicks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at New York Knicks</div>
-        <div class="credit">📷 Vincent Carchietta · Imagn Images · Nov 23, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13623159/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13623159.jpg" alt="NBA: San Antonio Spurs at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Atlanta Hawks</div>
-        <div class="credit">📷 Brett Davis · Imagn Images · Nov 05, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13610070/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13610070.jpg" alt="NBA: San Antonio Spurs at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Golden State Warriors</div>
-        <div class="credit">📷 Cary Edmondson · Imagn Images · Nov 01, 2019</div>
-    </div>
-</div>
-<div class="affiliate-module inline">
-    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Demar+DeRozan+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop Demar DeRozan basketball shoes</span>
-        <span class="badge-info">★ Latest Model</span>
-    </a>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13600387/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13600387.jpg" alt="NBA: San Antonio Spurs at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Los Angeles Clippers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Oct 31, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12543842/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12543842.jpg" alt="NBA: Playoffs-San Antonio Spurs at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Playoffs-San Antonio Spurs at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 16, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12494373/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12494373.jpg" alt="NBA: San Antonio Spurs at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Apr 07, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12420260/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12420260.jpg" alt="NBA: San Antonio Spurs at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Charlotte Hornets</div>
-        <div class="credit">📷 Sam Sharpe · Imagn Images · Mar 26, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12299020/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12299020.jpg" alt="NBA: San Antonio Spurs at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Atlanta Hawks</div>
-        <div class="credit">📷 Brett Davis · Imagn Images · Mar 06, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12109609/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12109609.jpg" alt="NBA: San Antonio Spurs at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Sacramento Kings</div>
-        <div class="credit">📷 Sergio Estrada · Imagn Images · Feb 04, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12009869/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12009869.jpg" alt="NBA: San Antonio Spurs at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 16, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11969675/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11969675.jpg" alt="NBA: San Antonio Spurs at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Jan 09, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11891183/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11891183.jpg" alt="NBA: San Antonio Spurs at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · Dec 22, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11891181/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11891181.jpg" alt="NBA: San Antonio Spurs at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · Dec 22, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11886679/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11886679.jpg" alt="NBA: Minnesota Timberwolves at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Minnesota Timberwolves at San Antonio Spurs</div>
-        <div class="credit">📷 Soobum Im · Imagn Images · Dec 21, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11721365/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11721365.jpg" alt="NBA: San Antonio Spurs at Indiana Pacers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Indiana Pacers</div>
-        <div class="credit">📷 Trevor Ruszkowski · Imagn Images · Nov 23, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11566769/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11566769.jpg" alt="NBA: San Antonio Spurs at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Oct 31, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11509549/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11509549.jpg" alt="NBA: Indiana Pacers at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Indiana Pacers at San Antonio Spurs</div>
-        <div class="credit">📷 Soobum Im · Imagn Images · Oct 24, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11499518/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11499518.jpg" alt="NBA: San Antonio Spurs at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Los Angeles Lakers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Oct 22, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11487528/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11487528.jpg" alt="NBA: San Antonio Spurs at Portland Trail Blazers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: San Antonio Spurs at Portland Trail Blazers</div>
-        <div class="credit">📷 Steve Dykes · Imagn Images · Oct 20, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10824738/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10824738.jpg" alt="NBA: Playoffs-Toronto Raptors at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Playoffs-Toronto Raptors at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · May 07, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10791606/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10791606.jpg" alt="NBA: Playoffs-Washington Wizards at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Playoffs-Washington Wizards at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Apr 17, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10766061/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10766061.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Boston Celtics at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Apr 04, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10763735/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10763735.jpg" alt="NBA: Toronto Raptors at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Toronto Raptors at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Apr 03, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10754427/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10754427.jpg" alt="NBA: Toronto Raptors at Boston Celtics" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Toronto Raptors at Boston Celtics</div>
-        <div class="credit">📷 Winslow Townson · Imagn Images · Mar 31, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10712733/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10712733.jpg" alt="NBA: Dallas Mavericks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Dallas Mavericks at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Mar 16, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10691461/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10691461.jpg" alt="NBA: Houston Rockets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Houston Rockets at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Mar 09, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10686417/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10686417.jpg" alt="NBA: Toronto Raptors at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Toronto Raptors at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Mar 07, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10670508/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10670508.jpg" alt="NBA: Toronto Raptors at Washington Wizards" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Toronto Raptors at Washington Wizards</div>
-        <div class="credit">📷 Brad Mills · Imagn Images · Mar 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10649818/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10649818.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 23, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9713711/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9713711.jpg" alt="NBA: Toronto Raptors at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Toronto Raptors at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Nov 25, 2016</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9713849/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9713849.jpg" alt="NBA: Toronto Raptors at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Toronto Raptors at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Nov 25, 2016</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/8228825/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/8228825.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demar-derozan/" class="player-link">Demar DeRozan</a>
-        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
-        <div class="credit">📷 Tom Szczerbowski · Imagn Images · Nov 21, 2014</div>
-    </div>
 </div>
         </div>
     </section>
@@ -1133,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/javale-mcgee/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22822685.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/thanasis-antetokounmpo/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28297955.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">JaVale McGee</div>
-        <div class="mp-count">12 photos</div>
+        <div class="mp-name">Thanasis Antetokounmpo</div>
+        <div class="mp-count">10 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-kuzma/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28297892.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-green/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25636878.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Kyle Kuzma</div>
-        <div class="mp-count">56 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-huerter/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27891108.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Kevin Huerter</div>
-        <div class="mp-count">42 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/keldon-johnson/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27700063.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Keldon Johnson</div>
-        <div class="mp-count">34 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/wilson-chandler/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/14112788.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Wilson Chandler</div>
+        <div class="mp-name">Josh Green</div>
         <div class="mp-count">14 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/malik-beasley/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25311464.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27769454.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Malik Beasley</div>
-        <div class="mp-count">61 photos</div>
+        <div class="mp-name">Mason Plumlee</div>
+        <div class="mp-count">37 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-okogie/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27860984.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-nesmith/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/26427841.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Josh Okogie</div>
-        <div class="mp-count">30 photos</div>
+        <div class="mp-name">Aaron Nesmith</div>
+        <div class="mp-count">15 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/luka-doncic/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28425461.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tony-bradley/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/19282915.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Luka Doncic</div>
-        <div class="mp-count">286 photos</div>
+        <div class="mp-name">Tony Bradley</div>
+        <div class="mp-count">12 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/larry-nance-jr/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28092707.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Larry Nance Jr</div>
+        <div class="mp-count">59 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dirk-nowitzki/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/12483213.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Dirk Nowitzki</div>
+        <div class="mp-count">20 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jevon-carter/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28378301.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Jevon Carter</div>
+        <div class="mp-count">28 photos</div>
     </div>
 </a>
         </div>

@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "14865600", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14865600.jpg", "headline": "NBA: Playoffs-Boston Celtics at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Kim Klement", "source": "Imagn Images", "date": "2020-09-01"}, {"id": "14865599", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14865599.jpg", "headline": "NBA: Playoffs-Boston Celtics at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Kim Klement", "source": "Imagn Images", "date": "2020-09-01"}, {"id": "14754948", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14754948.jpg", "headline": "NBA: Playoffs-Brooklyn Nets at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Kim Klement", "source": "Imagn Images", "date": "2020-08-17"}, {"id": "14719544", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14719544.jpg", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Kevin C. Cox", "source": "Pool Photo", "date": "2020-08-09"}, {"id": "14719316", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14719316.jpg", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Kevin C. Cox", "source": "Pool Photo", "date": "2020-08-09"}, {"id": "14700861", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14700861.jpg", "headline": "NBA: Toronto Raptors at Orlando Magic", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Kim Klement", "source": "Imagn Images", "date": "2020-08-05"}, {"id": "14143413", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14143413.jpg", "headline": "NBA: Toronto Raptors at Golden State Warriors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Stan Szeto", "source": "Imagn Images", "date": "2020-03-05"}, {"id": "14098098", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14098098.jpg", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2020-02-25"}, {"id": "14078913", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14078913.jpg", "headline": "NBA: Phoenix Suns at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2020-02-21"}, {"id": "14033175", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14033175.jpg", "headline": "NBA: Toronto Raptors at Brooklyn Nets", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Andy Marlin", "source": "Imagn Images", "date": "2020-02-12"}, {"id": "14033140", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14033140.jpg", "headline": "NBA: Toronto Raptors at Brooklyn Nets", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Andy Marlin", "source": "Imagn Images", "date": "2020-02-12"}, {"id": "13980510", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13980510.jpg", "headline": "NBA: Toronto Raptors at Detroit Pistons", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2020-01-31"}, {"id": "13923083", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13923083.jpg", "headline": "NBA: Washington Wizards at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2020-01-17"}, {"id": "13914349", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13914349.jpg", "headline": "NBA: Toronto Raptors at Oklahoma City Thunder", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2020-01-15"}, {"id": "13901759", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13901759.jpg", "headline": "NBA: San Antonio Spurs at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2020-01-12"}, {"id": "13821771", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13821771.jpg", "headline": "NBA: Washington Wizards at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2019-12-20"}, {"id": "13803656", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13803656.jpg", "headline": "NBA: Cleveland Cavaliers at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2019-12-16"}, {"id": "13773267", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13773267.jpg", "headline": "NBA: Toronto Raptors at Chicago Bulls", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2019-12-09"}, {"id": "13595553", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13595553.jpg", "headline": "NBA: Detroit Pistons at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2019-10-30"}, {"id": "13555047", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13555047.jpg", "headline": "NBA: New Orleans Pelicans at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2019-10-22"}, {"id": "13554989", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13554989.jpg", "headline": "NBA: New Orleans Pelicans at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2019-10-22"}, {"id": "12830822", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12830822.jpg", "headline": "NBA: Finals-Golden State Warriors at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2019-05-30"}, {"id": "12764997", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12764997.jpg", "headline": "NBA: Playoffs-Toronto Raptors at Milwaukee Bucks", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-05-23"}, {"id": "12757760", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12757760.jpg", "headline": "NBA: Playoffs-Milwaukee Bucks at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2019-05-21"}, {"id": "12727426", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12727426.jpg", "headline": "NBA: Playoffs-Toronto Raptors at Milwaukee Bucks", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-05-17"}, {"id": "12711527", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12711527.jpg", "headline": "NBA: Playoffs-Toronto Raptors at Milwaukee Bucks", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-05-15"}, {"id": "12561453", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12561453.jpg", "headline": "NBA: Playoffs-Toronto Raptors at Orlando Magic", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2019-04-19"}, {"id": "12456965", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12456965.jpg", "headline": "NBA: Orlando Magic at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2019-04-01"}, {"id": "12447386", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12447386.jpg", "headline": "NBA: Toronto Raptors at Chicago Bulls", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Mike Dinovo", "source": "Imagn Images", "date": "2019-03-30"}, {"id": "12329666", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12329666.jpg", "headline": "NBA: Toronto Raptors at Cleveland Cavaliers", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "David Richard", "source": "Imagn Images", "date": "2019-03-11"}, {"id": "12346427", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12346427.jpg", "headline": "NBA: Portland Trail Blazers at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Tom Szczerbowski", "source": "Imagn Images", "date": "2019-03-01"}, {"id": "12244123", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12244123.jpg", "headline": "NBA: Boston Celtics at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2019-02-26"}, {"id": "12244086", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12244086.jpg", "headline": "NBA: Boston Celtics at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2019-02-26"}, {"id": "12088261", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12088261.jpg", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2019-01-31"}, {"id": "12068300", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12068300.jpg", "headline": "NBA: Toronto Raptors at Dallas Mavericks", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2019-01-27"}, {"id": "12068357", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12068357.jpg", "headline": "NBA: Toronto Raptors at Dallas Mavericks", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2019-01-27"}, {"id": "12057959", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12057959.jpg", "headline": "NBA: Toronto Raptors at Houston Rockets", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Troy Taormina", "source": "Imagn Images", "date": "2019-01-25"}, {"id": "12015822", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12015822.jpg", "headline": "NBA: Phoenix Suns at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2019-01-17"}, {"id": "11965510", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11965510.jpg", "headline": "NBA: Atlanta Hawks at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2019-01-08"}, {"id": "11954296", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11954296.jpg", "headline": "NBA: Indiana Pacers at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2019-01-06"}, {"id": "11722182", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11722182.jpg", "headline": "NBA: Washington Wizards at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2018-11-23"}, {"id": "11711732", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11711732.jpg", "headline": "NBA: Toronto Raptors at Atlanta Hawks", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Dale Zanine", "source": "Imagn Images", "date": "2018-11-21"}, {"id": "11705695", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11705695.jpg", "headline": "NBA: Toronto Raptors at Orlando Magic", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Kim Klement", "source": "Imagn Images", "date": "2018-11-20"}, {"id": "11666086", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11666086.jpg", "headline": "NBA: Detroit Pistons at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2018-11-14"}, {"id": "11639404", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11639404.jpg", "headline": "NBA: New York Knicks at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2018-11-10"}, {"id": "11524850", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11524850.jpg", "headline": "NBA: Dallas Mavericks at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2018-10-26"}, {"id": "11498806", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11498806.jpg", "headline": "NBA: Charlotte Hornets at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2018-10-22"}, {"id": "11461405", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11461405.jpg", "headline": "NBA: Cleveland Cavaliers at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2018-10-17"}, {"id": "11413987", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11413987.jpg", "headline": "NBA: Preseason-Brooklyn Nets at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Eric Bolte", "source": "Imagn Images", "date": "2018-10-10"}, {"id": "10816624", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10816624.jpg", "headline": "NBA: Playoffs-Cleveland Cavaliers at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2018-05-01"}, {"id": "10791545", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10791545.jpg", "headline": "NBA: Playoffs-Washington Wizards at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2018-04-17"}, {"id": "10778562", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10778562.jpg", "headline": "NBA: Toronto Raptors at Detroit Pistons", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2018-04-09"}, {"id": "10766064", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10766064.jpg", "headline": "NBA: Boston Celtics at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2018-04-04"}, {"id": "10763734", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10763734.jpg", "headline": "NBA: Toronto Raptors at Cleveland Cavaliers", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "David Richard", "source": "Imagn Images", "date": "2018-04-03"}, {"id": "10742593", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10742593.jpg", "headline": "NBA: Denver Nuggets at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2018-03-27"}, {"id": "10722921", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10722921.jpg", "headline": "NBA: Toronto Raptors at Orlando Magic", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2018-03-20"}, {"id": "10691462", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10691462.jpg", "headline": "NBA: Houston Rockets at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2018-03-09"}, {"id": "10670524", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10670524.jpg", "headline": "NBA: Toronto Raptors at Washington Wizards", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Brad Mills", "source": "Imagn Images", "date": "2018-03-02"}, {"id": "10662511", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10662511.jpg", "headline": "NBA: Toronto Raptors at Orlando Magic", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2018-02-28"}, {"id": "10649821", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10649821.jpg", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2018-02-23"}, {"id": "10649819", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10649819.jpg", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "player": "Kyle Lowry", "playerSlug": "kyle-lowry", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2018-02-23"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Kyle Lowry</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,440 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Playoffs-Toronto Raptors at Boston Celtics</div>
         <div class="credit">📷 Kim Klement · Imagn Images · Sep 05, 2020</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14865600/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14865600.jpg" alt="NBA: Playoffs-Boston Celtics at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Playoffs-Boston Celtics at Toronto Raptors</div>
-        <div class="credit">📷 Kim Klement · Imagn Images · Sep 01, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14865599/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14865599.jpg" alt="NBA: Playoffs-Boston Celtics at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Playoffs-Boston Celtics at Toronto Raptors</div>
-        <div class="credit">📷 Kim Klement · Imagn Images · Sep 01, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14754948/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14754948.jpg" alt="NBA: Playoffs-Brooklyn Nets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Playoffs-Brooklyn Nets at Toronto Raptors</div>
-        <div class="credit">📷 Kim Klement · Imagn Images · Aug 17, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14719544/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14719544.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
-        <div class="credit">📷 Kevin C. Cox · Pool Photo · Aug 09, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14719316/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14719316.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
-        <div class="credit">📷 Kevin C. Cox · Pool Photo · Aug 09, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14700861/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14700861.jpg" alt="NBA: Toronto Raptors at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Orlando Magic</div>
-        <div class="credit">📷 Kim Klement · Imagn Images · Aug 05, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14143413/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14143413.jpg" alt="NBA: Toronto Raptors at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Golden State Warriors</div>
-        <div class="credit">📷 Stan Szeto · Imagn Images · Mar 05, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14098098/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14098098.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 25, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14078913/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14078913.jpg" alt="NBA: Phoenix Suns at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Phoenix Suns at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 21, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14033175/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14033175.jpg" alt="NBA: Toronto Raptors at Brooklyn Nets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Brooklyn Nets</div>
-        <div class="credit">📷 Andy Marlin · Imagn Images · Feb 12, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14033140/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14033140.jpg" alt="NBA: Toronto Raptors at Brooklyn Nets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Brooklyn Nets</div>
-        <div class="credit">📷 Andy Marlin · Imagn Images · Feb 12, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13980510/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13980510.jpg" alt="NBA: Toronto Raptors at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 31, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13923083/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13923083.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Washington Wizards at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Jan 17, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13914349/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13914349.jpg" alt="NBA: Toronto Raptors at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Jan 15, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13901759/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13901759.jpg" alt="NBA: San Antonio Spurs at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: San Antonio Spurs at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 12, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13821771/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13821771.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Washington Wizards at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 20, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13803656/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13803656.jpg" alt="NBA: Cleveland Cavaliers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 16, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13773267/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13773267.jpg" alt="NBA: Toronto Raptors at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Dec 09, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13595553/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13595553.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Oct 30, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13555047/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13555047.jpg" alt="NBA: New Orleans Pelicans at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: New Orleans Pelicans at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Oct 22, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13554989/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13554989.jpg" alt="NBA: New Orleans Pelicans at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: New Orleans Pelicans at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Oct 22, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12830822/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12830822.jpg" alt="NBA: Finals-Golden State Warriors at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Finals-Golden State Warriors at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · May 30, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12764997/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12764997.jpg" alt="NBA: Playoffs-Toronto Raptors at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Playoffs-Toronto Raptors at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · May 23, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12757760/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12757760.jpg" alt="NBA: Playoffs-Milwaukee Bucks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Playoffs-Milwaukee Bucks at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · May 21, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12727426/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12727426.jpg" alt="NBA: Playoffs-Toronto Raptors at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Playoffs-Toronto Raptors at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · May 17, 2019</div>
-    </div>
-</div>
-<div class="affiliate-module inline">
-    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Kyle+Lowry+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop Kyle Lowry basketball shoes</span>
-        <span class="badge-info">★ Latest Model</span>
-    </a>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12711527/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12711527.jpg" alt="NBA: Playoffs-Toronto Raptors at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Playoffs-Toronto Raptors at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · May 15, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12561453/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12561453.jpg" alt="NBA: Playoffs-Toronto Raptors at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Playoffs-Toronto Raptors at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Apr 19, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12456965/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12456965.jpg" alt="NBA: Orlando Magic at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Orlando Magic at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Apr 01, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12447386/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12447386.jpg" alt="NBA: Toronto Raptors at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Chicago Bulls</div>
-        <div class="credit">📷 Mike Dinovo · Imagn Images · Mar 30, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12329666/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12329666.jpg" alt="NBA: Toronto Raptors at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Mar 11, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12346427/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12346427.jpg" alt="NBA: Portland Trail Blazers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Portland Trail Blazers at Toronto Raptors</div>
-        <div class="credit">📷 Tom Szczerbowski · Imagn Images · Mar 01, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12244123/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12244123.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Boston Celtics at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 26, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12244086/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12244086.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Boston Celtics at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 26, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12088261/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12088261.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 31, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12068300/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12068300.jpg" alt="NBA: Toronto Raptors at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 27, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12068357/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12068357.jpg" alt="NBA: Toronto Raptors at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 27, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12057959/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12057959.jpg" alt="NBA: Toronto Raptors at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · Jan 25, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12015822/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12015822.jpg" alt="NBA: Phoenix Suns at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Phoenix Suns at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Jan 17, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11965510/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11965510.jpg" alt="NBA: Atlanta Hawks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Atlanta Hawks at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Jan 08, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11954296/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11954296.jpg" alt="NBA: Indiana Pacers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Indiana Pacers at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 06, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11722182/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11722182.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Washington Wizards at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Nov 23, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11711732/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11711732.jpg" alt="NBA: Toronto Raptors at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Atlanta Hawks</div>
-        <div class="credit">📷 Dale Zanine · Imagn Images · Nov 21, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11705695/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11705695.jpg" alt="NBA: Toronto Raptors at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Orlando Magic</div>
-        <div class="credit">📷 Kim Klement · Imagn Images · Nov 20, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11666086/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11666086.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Nov 14, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11639404/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11639404.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Nov 10, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11524850/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11524850.jpg" alt="NBA: Dallas Mavericks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Dallas Mavericks at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Oct 26, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11498806/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11498806.jpg" alt="NBA: Charlotte Hornets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Charlotte Hornets at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Oct 22, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11461405/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11461405.jpg" alt="NBA: Cleveland Cavaliers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Oct 17, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11413987/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11413987.jpg" alt="NBA: Preseason-Brooklyn Nets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Preseason-Brooklyn Nets at Toronto Raptors</div>
-        <div class="credit">📷 Eric Bolte · Imagn Images · Oct 10, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10816624/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10816624.jpg" alt="NBA: Playoffs-Cleveland Cavaliers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Playoffs-Cleveland Cavaliers at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · May 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10791545/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10791545.jpg" alt="NBA: Playoffs-Washington Wizards at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Playoffs-Washington Wizards at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Apr 17, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10778562/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10778562.jpg" alt="NBA: Toronto Raptors at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Apr 09, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10766064/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10766064.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Boston Celtics at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Apr 04, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10763734/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10763734.jpg" alt="NBA: Toronto Raptors at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Apr 03, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10742593/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10742593.jpg" alt="NBA: Denver Nuggets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Denver Nuggets at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Mar 27, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10722921/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10722921.jpg" alt="NBA: Toronto Raptors at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Mar 20, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10691462/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10691462.jpg" alt="NBA: Houston Rockets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Houston Rockets at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Mar 09, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10670524/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10670524.jpg" alt="NBA: Toronto Raptors at Washington Wizards" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Washington Wizards</div>
-        <div class="credit">📷 Brad Mills · Imagn Images · Mar 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10662511/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10662511.jpg" alt="NBA: Toronto Raptors at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Toronto Raptors at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Feb 28, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10649821/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10649821.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 23, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10649819/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10649819.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-lowry/" class="player-link">Kyle Lowry</a>
-        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 23, 2018</div>
-    </div>
 </div>
         </div>
     </section>
@@ -825,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jamison-battle/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28108551.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zach-collins/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27887664.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Jamison Battle</div>
-        <div class="mp-count">10 photos</div>
+        <div class="mp-name">Zach Collins</div>
+        <div class="mp-count">13 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28412960.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ish-smith/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22264683.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Kevin Durant</div>
-        <div class="mp-count">184 photos</div>
+        <div class="mp-name">Ish Smith</div>
+        <div class="mp-count">15 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jonathan-mogbo/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25841439.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-williams/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27775098.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Jonathan Mogbo</div>
-        <div class="mp-count">11 photos</div>
+        <div class="mp-name">Patrick Williams</div>
+        <div class="mp-count">25 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-patterson/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/13944503.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/alec-burks/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25097890.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Patrick Patterson</div>
+        <div class="mp-name">Alec Burks</div>
+        <div class="mp-count">42 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/keegan-murray/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25909789.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Keegan Murray</div>
+        <div class="mp-count">24 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rj-barrett/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27667920.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">RJ Barrett</div>
+        <div class="mp-count">46 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deandre-hunter/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27750946.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">De&#x27;Andre Hunter</div>
+        <div class="mp-count">38 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jeremy-lamb/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17834397.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Jeremy Lamb</div>
         <div class="mp-count">12 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joe-ingles/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27615565.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Joe Ingles</div>
-        <div class="mp-count">17 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lou-williams/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17993380.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Lou Williams</div>
-        <div class="mp-count">44 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/georges-niang/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25881684.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Georges Niang</div>
-        <div class="mp-count">30 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/robin-lopez/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20230580.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Robin Lopez</div>
-        <div class="mp-count">34 photos</div>
     </div>
 </a>
         </div>

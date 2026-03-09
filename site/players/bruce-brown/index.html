@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "19457857", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19457857.jpg", "headline": "NBA: Denver Nuggets at Dallas Mavericks", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2022-11-18"}, {"id": "19304743", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19304743.jpg", "headline": "NBA: Los Angeles Lakers at Denver Nuggets", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2022-10-26"}, {"id": "17856906", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17856906.jpg", "headline": "NBA: Brooklyn Nets at Charlotte Hornets", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Sam Sharpe", "source": "Imagn Images", "date": "2022-03-08"}, {"id": "17805470", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17805470.jpg", "headline": "NBA: Brooklyn Nets at Toronto Raptors", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2022-03-01"}, {"id": "17762227", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17762227.jpg", "headline": "NBA: Boston Celtics at Brooklyn Nets", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Andy Marlin", "source": "Imagn Images", "date": "2022-02-24"}, {"id": "15935038", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15935038.jpg", "headline": "NBA: Brooklyn Nets at New Orleans Pelicans", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Stephen Lew", "source": "Imagn Images", "date": "2021-04-20"}, {"id": "15935035", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15935035.jpg", "headline": "NBA: Brooklyn Nets at New Orleans Pelicans", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Stephen Lew", "source": "Imagn Images", "date": "2021-04-20"}, {"id": "15580376", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15580376.jpg", "headline": "NBA: Brooklyn Nets at Sacramento Kings", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-02-15"}, {"id": "15892663", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15892663.jpg", "headline": "NBA: Brooklyn Nets at Sacramento Kings", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-02-15"}, {"id": "14032155", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14032155.jpg", "headline": "NBA: Detroit Pistons at Orlando Magic", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Kim Klement", "source": "Imagn Images", "date": "2020-02-12"}, {"id": "14002375", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14002375.jpg", "headline": "NBA: Phoenix Suns at Detroit Pistons", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2020-02-05"}, {"id": "13988287", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13988287.jpg", "headline": "NBA: Denver Nuggets at Detroit Pistons", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Tim Fuller", "source": "Imagn Images", "date": "2020-02-02"}, {"id": "13935351", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13935351.jpg", "headline": "NBA: Detroit Pistons at Washington Wizards", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Tommy Gilligan", "source": "Imagn Images", "date": "2020-01-20"}, {"id": "13930358", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13930358.jpg", "headline": "NBA: Detroit Pistons at Atlanta Hawks", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Jason Getz", "source": "Imagn Images", "date": "2020-01-18"}, {"id": "13904829", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13904829.jpg", "headline": "NBA: New Orleans Pelicans at Detroit Pistons", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2020-01-13"}, {"id": "13889398", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13889398.jpg", "headline": "NBA: Cleveland Cavaliers at Detroit Pistons", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Tim Fuller", "source": "Imagn Images", "date": "2020-01-09"}, {"id": "13883393", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13883393.jpg", "headline": "NBA: Detroit Pistons at Cleveland Cavaliers", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "David Richard", "source": "Imagn Images", "date": "2020-01-07"}, {"id": "13911542", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13911542.jpg", "headline": "NBA: Detroit Pistons at San Antonio Spurs", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Scott Wachter", "source": "Imagn Images", "date": "2019-12-28"}, {"id": "13845665", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13845665.jpg", "headline": "NBA: Detroit Pistons at San Antonio Spurs", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Scott Wachter", "source": "Imagn Images", "date": "2019-12-28"}, {"id": "13826094", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13826094.jpg", "headline": "NBA: Chicago Bulls at Detroit Pistons", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Raj Mehta", "source": "Imagn Images", "date": "2019-12-21"}, {"id": "13796541", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13796541.jpg", "headline": "NBA: Detroit Pistons at Houston Rockets", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Troy Taormina", "source": "Imagn Images", "date": "2019-12-14"}, {"id": "13745463", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13745463.jpg", "headline": "NBA: Detroit Pistons at Cleveland Cavaliers", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "David Richard", "source": "Imagn Images", "date": "2019-12-03"}, {"id": "13739089", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13739089.jpg", "headline": "NBA: San Antonio Spurs at Detroit Pistons", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Raj Mehta", "source": "Imagn Images", "date": "2019-12-01"}, {"id": "13721984", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13721984.jpg", "headline": "NBA: Orlando Magic at Detroit Pistons", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2019-11-25"}, {"id": "13595573", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13595573.jpg", "headline": "NBA: Detroit Pistons at Toronto Raptors", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2019-10-30"}, {"id": "13584523", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13584523.jpg", "headline": "NBA: Indiana Pacers at Detroit Pistons", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2019-10-28"}, {"id": "13576978", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13576978.jpg", "headline": "NBA: Philadelphia 76ers at Detroit Pistons", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Tim Fuller", "source": "Imagn Images", "date": "2019-10-26"}, {"id": "13498203", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13498203.jpg", "headline": "NBA: Preseason-Cleveland Cavaliers at Detroit Pistons", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Raj Mehta", "source": "Imagn Images", "date": "2019-10-11"}, {"id": "12572799", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12572799.jpg", "headline": "NBA: Playoffs-Milwaukee Bucks at Detroit Pistons", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2019-04-22"}, {"id": "12550668", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12550668.jpg", "headline": "NBA: Playoffs-Detroit Pistons at Milwaukee Bucks", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-04-17"}, {"id": "12455504", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12455504.jpg", "headline": "NBA: Orlando Magic at Detroit Pistons", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2019-03-28"}, {"id": "12411408", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12411408.jpg", "headline": "NBA: Detroit Pistons at Golden State Warriors", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Cary Edmondson", "source": "Imagn Images", "date": "2019-03-24"}, {"id": "12215505", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12215505.jpg", "headline": "NBA: Detroit Pistons at Atlanta Hawks", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Dale Zanine", "source": "Imagn Images", "date": "2019-02-22"}, {"id": "12108978", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12108978.jpg", "headline": "NBA: Denver Nuggets at Detroit Pistons", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2019-02-04"}, {"id": "11957735", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11957735.jpg", "headline": "NBA: San Antonio Spurs at Detroit Pistons", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Tim Fuller", "source": "Imagn Images", "date": "2019-01-07"}, {"id": "11919629", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11919629.jpg", "headline": "NBA: Detroit Pistons at Orlando Magic", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2018-12-30"}, {"id": "11886620", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11886620.jpg", "headline": "NBA: Detroit Pistons at Charlotte Hornets", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Jeremy Brevard", "source": "Imagn Images", "date": "2018-12-21"}, {"id": "11876288", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11876288.jpg", "headline": "NBA: Detroit Pistons at Minnesota Timberwolves", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Brace Hemmelgarn", "source": "Imagn Images", "date": "2018-12-19"}, {"id": "11720948", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11720948.jpg", "headline": "NBA: Houston Rockets at Detroit Pistons", "player": "Bruce Brown", "playerSlug": "bruce-brown", "photographer": "Tim Fuller", "source": "Imagn Images", "date": "2018-11-23"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Bruce Brown</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,286 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Houston Rockets at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 30, 2022</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19457857/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19457857.jpg" alt="NBA: Denver Nuggets at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Denver Nuggets at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Nov 18, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19304743/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19304743.jpg" alt="NBA: Los Angeles Lakers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Los Angeles Lakers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Oct 26, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17856906/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17856906.jpg" alt="NBA: Brooklyn Nets at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Brooklyn Nets at Charlotte Hornets</div>
-        <div class="credit">📷 Sam Sharpe · Imagn Images · Mar 08, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17805470/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17805470.jpg" alt="NBA: Brooklyn Nets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Brooklyn Nets at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Mar 01, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17762227/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17762227.jpg" alt="NBA: Boston Celtics at Brooklyn Nets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Boston Celtics at Brooklyn Nets</div>
-        <div class="credit">📷 Andy Marlin · Imagn Images · Feb 24, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15935038/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15935038.jpg" alt="NBA: Brooklyn Nets at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Brooklyn Nets at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Apr 20, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15935035/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15935035.jpg" alt="NBA: Brooklyn Nets at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Brooklyn Nets at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Apr 20, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15580376/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15580376.jpg" alt="NBA: Brooklyn Nets at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Brooklyn Nets at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Feb 15, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15892663/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15892663.jpg" alt="NBA: Brooklyn Nets at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Brooklyn Nets at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Feb 15, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14032155/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14032155.jpg" alt="NBA: Detroit Pistons at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Detroit Pistons at Orlando Magic</div>
-        <div class="credit">📷 Kim Klement · Imagn Images · Feb 12, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14002375/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14002375.jpg" alt="NBA: Phoenix Suns at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Phoenix Suns at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 05, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13988287/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13988287.jpg" alt="NBA: Denver Nuggets at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Denver Nuggets at Detroit Pistons</div>
-        <div class="credit">📷 Tim Fuller · Imagn Images · Feb 02, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13935351/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13935351.jpg" alt="NBA: Detroit Pistons at Washington Wizards" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Detroit Pistons at Washington Wizards</div>
-        <div class="credit">📷 Tommy Gilligan · Imagn Images · Jan 20, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13930358/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13930358.jpg" alt="NBA: Detroit Pistons at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Detroit Pistons at Atlanta Hawks</div>
-        <div class="credit">📷 Jason Getz · Imagn Images · Jan 18, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13904829/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13904829.jpg" alt="NBA: New Orleans Pelicans at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: New Orleans Pelicans at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 13, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13889398/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13889398.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Detroit Pistons</div>
-        <div class="credit">📷 Tim Fuller · Imagn Images · Jan 09, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13883393/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13883393.jpg" alt="NBA: Detroit Pistons at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Detroit Pistons at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Jan 07, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13911542/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13911542.jpg" alt="NBA: Detroit Pistons at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Detroit Pistons at San Antonio Spurs</div>
-        <div class="credit">📷 Scott Wachter · Imagn Images · Dec 28, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13845665/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13845665.jpg" alt="NBA: Detroit Pistons at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Detroit Pistons at San Antonio Spurs</div>
-        <div class="credit">📷 Scott Wachter · Imagn Images · Dec 28, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13826094/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13826094.jpg" alt="NBA: Chicago Bulls at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Chicago Bulls at Detroit Pistons</div>
-        <div class="credit">📷 Raj Mehta · Imagn Images · Dec 21, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13796541/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13796541.jpg" alt="NBA: Detroit Pistons at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Detroit Pistons at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · Dec 14, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13745463/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13745463.jpg" alt="NBA: Detroit Pistons at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Detroit Pistons at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Dec 03, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13739089/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13739089.jpg" alt="NBA: San Antonio Spurs at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: San Antonio Spurs at Detroit Pistons</div>
-        <div class="credit">📷 Raj Mehta · Imagn Images · Dec 01, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13721984/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13721984.jpg" alt="NBA: Orlando Magic at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Orlando Magic at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Nov 25, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13595573/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13595573.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Oct 30, 2019</div>
-    </div>
-</div>
-<div class="affiliate-module inline">
-    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Bruce+Brown+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop Bruce Brown basketball shoes</span>
-        <span class="badge-info">★ Latest Model</span>
-    </a>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13584523/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13584523.jpg" alt="NBA: Indiana Pacers at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Indiana Pacers at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Oct 28, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13576978/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13576978.jpg" alt="NBA: Philadelphia 76ers at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Philadelphia 76ers at Detroit Pistons</div>
-        <div class="credit">📷 Tim Fuller · Imagn Images · Oct 26, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13498203/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13498203.jpg" alt="NBA: Preseason-Cleveland Cavaliers at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Preseason-Cleveland Cavaliers at Detroit Pistons</div>
-        <div class="credit">📷 Raj Mehta · Imagn Images · Oct 11, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12572799/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12572799.jpg" alt="NBA: Playoffs-Milwaukee Bucks at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Playoffs-Milwaukee Bucks at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Apr 22, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12550668/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12550668.jpg" alt="NBA: Playoffs-Detroit Pistons at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Playoffs-Detroit Pistons at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 17, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12455504/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12455504.jpg" alt="NBA: Orlando Magic at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Orlando Magic at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Mar 28, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12411408/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12411408.jpg" alt="NBA: Detroit Pistons at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Detroit Pistons at Golden State Warriors</div>
-        <div class="credit">📷 Cary Edmondson · Imagn Images · Mar 24, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12215505/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12215505.jpg" alt="NBA: Detroit Pistons at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Detroit Pistons at Atlanta Hawks</div>
-        <div class="credit">📷 Dale Zanine · Imagn Images · Feb 22, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12108978/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12108978.jpg" alt="NBA: Denver Nuggets at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Denver Nuggets at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 04, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11957735/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11957735.jpg" alt="NBA: San Antonio Spurs at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: San Antonio Spurs at Detroit Pistons</div>
-        <div class="credit">📷 Tim Fuller · Imagn Images · Jan 07, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11919629/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11919629.jpg" alt="NBA: Detroit Pistons at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Detroit Pistons at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Dec 30, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11886620/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11886620.jpg" alt="NBA: Detroit Pistons at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Detroit Pistons at Charlotte Hornets</div>
-        <div class="credit">📷 Jeremy Brevard · Imagn Images · Dec 21, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11876288/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11876288.jpg" alt="NBA: Detroit Pistons at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Detroit Pistons at Minnesota Timberwolves</div>
-        <div class="credit">📷 Brace Hemmelgarn · Imagn Images · Dec 19, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11720948/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11720948.jpg" alt="NBA: Houston Rockets at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Houston Rockets at Detroit Pistons</div>
-        <div class="credit">📷 Tim Fuller · Imagn Images · Nov 23, 2018</div>
-    </div>
 </div>
         </div>
     </section>
@@ -671,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25311466.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28412960.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Kyrie Irving</div>
-        <div class="mp-count">106 photos</div>
+        <div class="mp-name">Kevin Durant</div>
+        <div class="mp-count">184 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/richaun-holmes/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/21937750.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/julius-randle/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28412862.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Richaun Holmes</div>
+        <div class="mp-name">Julius Randle</div>
+        <div class="mp-count">54 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/glenn-robinson-iii/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/15416463.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Glenn Robinson III</div>
         <div class="mp-count">28 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/keegan-murray/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25909789.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/damion-lee/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22807836.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Keegan Murray</div>
-        <div class="mp-count">24 photos</div>
+        <div class="mp-name">Damion Lee</div>
+        <div class="mp-count">17 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nassir-little/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20274419.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kelly-oubre-jr/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27993201.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Nassir Little</div>
+        <div class="mp-name">Kelly Oubre Jr</div>
+        <div class="mp-count">80 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28422248.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Miles Bridges</div>
+        <div class="mp-count">53 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/javale-mcgee/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22822685.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">JaVale McGee</div>
         <div class="mp-count">12 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/gordon-hayward/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22180389.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rj-barrett/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27667920.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Gordon Hayward</div>
-        <div class="mp-count">31 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-okogie/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27860984.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Josh Okogie</div>
-        <div class="mp-count">30 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tim-frazier/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17886181.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Tim Frazier</div>
-        <div class="mp-count">10 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20326212.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Will Barton</div>
-        <div class="mp-count">36 photos</div>
+        <div class="mp-name">RJ Barrett</div>
+        <div class="mp-count">46 photos</div>
     </div>
 </a>
         </div>

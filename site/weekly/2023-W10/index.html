@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "20178711", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20178711.jpg", "headline": "NBA: Chicago Bulls at Denver Nuggets", "player": "Zach LaVine", "playerSlug": "zach-lavine", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2023-03-08"}, {"id": "20176224", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20176224.jpg", "headline": "NBA: Dallas Mavericks at New Orleans Pelicans", "player": "Kyrie Irving", "playerSlug": "kyrie-irving", "photographer": "Stephen Lew", "source": "Imagn Images", "date": "2023-03-08"}, {"id": "20175088", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20175088.jpg", "headline": "NBA: Dallas Mavericks at New Orleans Pelicans", "player": "Luka Doncic", "playerSlug": "luka-doncic", "photographer": "Stephen Lew", "source": "Imagn Images", "date": "2023-03-08"}, {"id": "20175083", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20175083.jpg", "headline": "NBA: Dallas Mavericks at New Orleans Pelicans", "player": "Christian Wood", "playerSlug": "christian-wood", "photographer": "Stephen Lew", "source": "Imagn Images", "date": "2023-03-08"}, {"id": "20170215", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20170215.jpg", "headline": "NBA: Utah Jazz at Dallas Mavericks", "player": "Luka Doncic", "playerSlug": "luka-doncic", "photographer": "Kevin Jairaj", "source": "Imagn Images", "date": "2023-03-07"}, {"id": "20170251", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20170251.jpg", "headline": "NBA: Golden State Warriors at Oklahoma City Thunder", "player": "Klay Thompson", "playerSlug": "klay-thompson", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2023-03-07"}, {"id": "20170249", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20170249.jpg", "headline": "NBA: Golden State Warriors at Oklahoma City Thunder", "player": "Draymond Green", "playerSlug": "draymond-green", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2023-03-07"}, {"id": "20170207", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20170207.jpg", "headline": "NBA: Utah Jazz at Dallas Mavericks", "player": "Tim Hardaway Jr", "playerSlug": "tim-hardaway-jr", "photographer": "Kevin Jairaj", "source": "Imagn Images", "date": "2023-03-07"}, {"id": "20170250", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20170250.jpg", "headline": "NBA: Golden State Warriors at Oklahoma City Thunder", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2023-03-07"}, {"id": "20169684", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20169684.jpg", "headline": "NBA: Brooklyn Nets at Houston Rockets", "player": "Jalen Green", "playerSlug": "jalen-green", "photographer": "Troy Taormina", "source": "Imagn Images", "date": "2023-03-07"}, {"id": "20169461", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20169461.jpg", "headline": "NBA: Milwaukee Bucks at Orlando Magic", "player": "Jae Crowder", "playerSlug": "jae-crowder", "photographer": "Mike Watters", "source": "Imagn Images", "date": "2023-03-07"}, {"id": "20169462", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20169462.jpg", "headline": "NBA: Milwaukee Bucks at Orlando Magic", "player": "Jalen Suggs", "playerSlug": "jalen-suggs", "photographer": "Mike Watters", "source": "Imagn Images", "date": "2023-03-07"}, {"id": "20170219", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20170219.jpg", "headline": "NBA: Golden State Warriors at Oklahoma City Thunder", "player": "Josh Giddey", "playerSlug": "josh-giddey", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2023-03-07"}, {"id": "20170220", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20170220.jpg", "headline": "NBA: Golden State Warriors at Oklahoma City Thunder", "player": "Stephen Curry", "playerSlug": "stephen-curry", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2023-03-07"}, {"id": "20169466", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20169466.jpg", "headline": "NBA: Milwaukee Bucks at Orlando Magic", "player": "Brook Lopez", "playerSlug": "brook-lopez", "photographer": "Mike Watters", "source": "Imagn Images", "date": "2023-03-07"}, {"id": "20169464", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20169464.jpg", "headline": "NBA: Milwaukee Bucks at Orlando Magic", "player": "Jevon Carter", "playerSlug": "jevon-carter", "photographer": "Mike Watters", "source": "Imagn Images", "date": "2023-03-07"}, {"id": "20169460", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20169460.jpg", "headline": "NBA: Milwaukee Bucks at Orlando Magic", "player": "Paolo Banchero", "playerSlug": "paolo-banchero", "photographer": "Mike Watters", "source": "Imagn Images", "date": "2023-03-07"}, {"id": "20168114", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20168114.jpg", "headline": "NBA: Utah Jazz at Dallas Mavericks", "player": "Lauri Markkanen", "playerSlug": "lauri-markkanen", "photographer": "Kevin Jairaj", "source": "Imagn Images", "date": "2023-03-07"}, {"id": "20167611", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20167611.jpg", "headline": "NBA: Philadelphia 76ers at Minnesota Timberwolves", "player": "Kyle Anderson", "playerSlug": "kyle-anderson", "photographer": "Matt Krohn", "source": "Imagn Images", "date": "2023-03-07"}, {"id": "20163505", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20163505.jpg", "headline": "NBA: Toronto Raptors at Denver Nuggets", "player": "Chris Boucher", "playerSlug": "chris-boucher", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2023-03-06"}, {"id": "20163514", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20163514.jpg", "headline": "NBA: New Orleans Pelicans at Sacramento Kings", "player": "Dyson Daniels", "playerSlug": "dyson-daniels", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2023-03-06"}, {"id": "20162024", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20162024.jpg", "headline": "NBA: Portland Trail Blazers at Detroit Pistons", "player": "Isaiah Livers", "playerSlug": "isaiah-livers", "photographer": "David Reginek", "source": "Imagn Images", "date": "2023-03-06"}, {"id": "20163513", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20163513.jpg", "headline": "NBA: New Orleans Pelicans at Sacramento Kings", "player": "Trey Murphy III", "playerSlug": "trey-murphy-iii", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2023-03-06"}, {"id": "20163502", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20163502.jpg", "headline": "NBA: Toronto Raptors at Denver Nuggets", "player": "Nikola Jokic", "playerSlug": "nikola-jokic", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2023-03-06"}, {"id": "20163504", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20163504.jpg", "headline": "NBA: Toronto Raptors at Denver Nuggets", "player": "Jamal Murray", "playerSlug": "jamal-murray", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2023-03-06"}, {"id": "20161820", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20161820.jpg", "headline": "NBA: Boston Celtics at Cleveland Cavaliers", "player": "Isaac Okoro", "playerSlug": "isaac-okoro", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2023-03-06"}, {"id": "20161869", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20161869.jpg", "headline": "NBA: Boston Celtics at Cleveland Cavaliers", "player": "Dean Wade", "playerSlug": "dean-wade", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2023-03-06"}, {"id": "20161870", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20161870.jpg", "headline": "NBA: Boston Celtics at Cleveland Cavaliers", "player": "Evan Mobley", "playerSlug": "evan-mobley", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2023-03-06"}, {"id": "20163501", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20163501.jpg", "headline": "NBA: Toronto Raptors at Denver Nuggets", "player": "Fred VanVleet", "playerSlug": "fred-vanvleet", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2023-03-06"}, {"id": "20163499", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20163499.jpg", "headline": "NBA: Toronto Raptors at Denver Nuggets", "player": "Jeff Green", "playerSlug": "jeff-green", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2023-03-06"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Week of Mar 6</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             <div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20217589/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20217589.jpg" alt="NBA: Cleveland Cavaliers at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
@@ -361,216 +363,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nikola-jokic/" class="player-link">Nikola Jokic</a>
         <div class="headline">NBA: Chicago Bulls at Denver Nuggets</div>
         <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 08, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20178711/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20178711.jpg" alt="NBA: Chicago Bulls at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zach-lavine/" class="player-link">Zach LaVine</a>
-        <div class="headline">NBA: Chicago Bulls at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 08, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20176224/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20176224.jpg" alt="NBA: Dallas Mavericks at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyrie-irving/" class="player-link">Kyrie Irving</a>
-        <div class="headline">NBA: Dallas Mavericks at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Mar 08, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20175088/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20175088.jpg" alt="NBA: Dallas Mavericks at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/luka-doncic/" class="player-link">Luka Doncic</a>
-        <div class="headline">NBA: Dallas Mavericks at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Mar 08, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20175083/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20175083.jpg" alt="NBA: Dallas Mavericks at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/christian-wood/" class="player-link">Christian Wood</a>
-        <div class="headline">NBA: Dallas Mavericks at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Mar 08, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20170215/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20170215.jpg" alt="NBA: Utah Jazz at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/luka-doncic/" class="player-link">Luka Doncic</a>
-        <div class="headline">NBA: Utah Jazz at Dallas Mavericks</div>
-        <div class="credit">📷 Kevin Jairaj · Imagn Images · Mar 07, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20170251/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20170251.jpg" alt="NBA: Golden State Warriors at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/klay-thompson/" class="player-link">Klay Thompson</a>
-        <div class="headline">NBA: Golden State Warriors at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Mar 07, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20170249/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20170249.jpg" alt="NBA: Golden State Warriors at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/draymond-green/" class="player-link">Draymond Green</a>
-        <div class="headline">NBA: Golden State Warriors at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Mar 07, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20170207/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20170207.jpg" alt="NBA: Utah Jazz at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tim-hardaway-jr/" class="player-link">Tim Hardaway Jr</a>
-        <div class="headline">NBA: Utah Jazz at Dallas Mavericks</div>
-        <div class="credit">📷 Kevin Jairaj · Imagn Images · Mar 07, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20170250/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20170250.jpg" alt="NBA: Golden State Warriors at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Golden State Warriors at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Mar 07, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20169684/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20169684.jpg" alt="NBA: Brooklyn Nets at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-green/" class="player-link">Jalen Green</a>
-        <div class="headline">NBA: Brooklyn Nets at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · Mar 07, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20169461/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20169461.jpg" alt="NBA: Milwaukee Bucks at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
-        <div class="headline">NBA: Milwaukee Bucks at Orlando Magic</div>
-        <div class="credit">📷 Mike Watters · Imagn Images · Mar 07, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20169462/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20169462.jpg" alt="NBA: Milwaukee Bucks at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-suggs/" class="player-link">Jalen Suggs</a>
-        <div class="headline">NBA: Milwaukee Bucks at Orlando Magic</div>
-        <div class="credit">📷 Mike Watters · Imagn Images · Mar 07, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20170219/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20170219.jpg" alt="NBA: Golden State Warriors at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-giddey/" class="player-link">Josh Giddey</a>
-        <div class="headline">NBA: Golden State Warriors at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Mar 07, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20170220/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20170220.jpg" alt="NBA: Golden State Warriors at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/stephen-curry/" class="player-link">Stephen Curry</a>
-        <div class="headline">NBA: Golden State Warriors at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Mar 07, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20169466/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20169466.jpg" alt="NBA: Milwaukee Bucks at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/brook-lopez/" class="player-link">Brook Lopez</a>
-        <div class="headline">NBA: Milwaukee Bucks at Orlando Magic</div>
-        <div class="credit">📷 Mike Watters · Imagn Images · Mar 07, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20169464/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20169464.jpg" alt="NBA: Milwaukee Bucks at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jevon-carter/" class="player-link">Jevon Carter</a>
-        <div class="headline">NBA: Milwaukee Bucks at Orlando Magic</div>
-        <div class="credit">📷 Mike Watters · Imagn Images · Mar 07, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20169460/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20169460.jpg" alt="NBA: Milwaukee Bucks at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/paolo-banchero/" class="player-link">Paolo Banchero</a>
-        <div class="headline">NBA: Milwaukee Bucks at Orlando Magic</div>
-        <div class="credit">📷 Mike Watters · Imagn Images · Mar 07, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20168114/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20168114.jpg" alt="NBA: Utah Jazz at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lauri-markkanen/" class="player-link">Lauri Markkanen</a>
-        <div class="headline">NBA: Utah Jazz at Dallas Mavericks</div>
-        <div class="credit">📷 Kevin Jairaj · Imagn Images · Mar 07, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20167611/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20167611.jpg" alt="NBA: Philadelphia 76ers at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-anderson/" class="player-link">Kyle Anderson</a>
-        <div class="headline">NBA: Philadelphia 76ers at Minnesota Timberwolves</div>
-        <div class="credit">📷 Matt Krohn · Imagn Images · Mar 07, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20163505/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20163505.jpg" alt="NBA: Toronto Raptors at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
-        <div class="headline">NBA: Toronto Raptors at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 06, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20163514/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20163514.jpg" alt="NBA: New Orleans Pelicans at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dyson-daniels/" class="player-link">Dyson Daniels</a>
-        <div class="headline">NBA: New Orleans Pelicans at Sacramento Kings</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Mar 06, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20162024/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20162024.jpg" alt="NBA: Portland Trail Blazers at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/isaiah-livers/" class="player-link">Isaiah Livers</a>
-        <div class="headline">NBA: Portland Trail Blazers at Detroit Pistons</div>
-        <div class="credit">📷 David Reginek · Imagn Images · Mar 06, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20163513/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20163513.jpg" alt="NBA: New Orleans Pelicans at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-murphy-iii/" class="player-link">Trey Murphy III</a>
-        <div class="headline">NBA: New Orleans Pelicans at Sacramento Kings</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Mar 06, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20163502/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20163502.jpg" alt="NBA: Toronto Raptors at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nikola-jokic/" class="player-link">Nikola Jokic</a>
-        <div class="headline">NBA: Toronto Raptors at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 06, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20163504/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20163504.jpg" alt="NBA: Toronto Raptors at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jamal-murray/" class="player-link">Jamal Murray</a>
-        <div class="headline">NBA: Toronto Raptors at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 06, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20161820/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20161820.jpg" alt="NBA: Boston Celtics at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/isaac-okoro/" class="player-link">Isaac Okoro</a>
-        <div class="headline">NBA: Boston Celtics at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Mar 06, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20161869/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20161869.jpg" alt="NBA: Boston Celtics at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dean-wade/" class="player-link">Dean Wade</a>
-        <div class="headline">NBA: Boston Celtics at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Mar 06, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20161870/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20161870.jpg" alt="NBA: Boston Celtics at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/evan-mobley/" class="player-link">Evan Mobley</a>
-        <div class="headline">NBA: Boston Celtics at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Mar 06, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20163501/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20163501.jpg" alt="NBA: Toronto Raptors at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/fred-vanvleet/" class="player-link">Fred VanVleet</a>
-        <div class="headline">NBA: Toronto Raptors at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 06, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20163499/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20163499.jpg" alt="NBA: Toronto Raptors at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jeff-green/" class="player-link">Jeff Green</a>
-        <div class="headline">NBA: Toronto Raptors at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 06, 2023</div>
     </div>
 </div>
         </div>

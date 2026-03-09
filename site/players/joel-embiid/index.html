@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "13881550", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13881550.jpg", "headline": "NBA: Philadelphia 76ers at Houston Rockets", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Erik Williams", "source": "Imagn Images", "date": "2020-01-03"}, {"id": "13713125", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13713125.jpg", "headline": "NBA: Philadelphia 76ers at Toronto Raptors", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2019-11-25"}, {"id": "13681646", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13681646.jpg", "headline": "NBA: Philadelphia 76ers at Cleveland Cavaliers", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2019-11-17"}, {"id": "13627161", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13627161.jpg", "headline": "NBA: Philadelphia 76ers at Utah Jazz", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Russell Isabella", "source": "Imagn Images", "date": "2019-11-06"}, {"id": "13584851", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13584851.jpg", "headline": "NBA: Philadelphia 76ers at Atlanta Hawks", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Brett Davis", "source": "Imagn Images", "date": "2019-10-28"}, {"id": "13512237", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13512237.jpg", "headline": "NBA: Preseason-Philadelphia 76ers at Orlando Magic", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Kim Klement", "source": "Imagn Images", "date": "2019-10-13"}, {"id": "12695671", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12695671.jpg", "headline": "NBA: Playoffs-Philadelphia 76ers at Toronto Raptors", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2019-05-12"}, {"id": "12602945", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12602945.jpg", "headline": "NBA: Playoffs-Philadelphia 76ers at Toronto Raptors", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2019-04-27"}, {"id": "12406883", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12406883.jpg", "headline": "NBA: Philadelphia 76ers at Atlanta Hawks", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Brett Davis", "source": "Imagn Images", "date": "2019-03-23"}, {"id": "12370099", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12370099.jpg", "headline": "NBA: Philadelphia 76ers at Milwaukee Bucks", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-03-17"}, {"id": "12181181", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12181181.jpg", "headline": "NBA: All Star Game", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Bob Donnan", "source": "Imagn Images", "date": "2019-02-17"}, {"id": "12157131", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12157131.jpg", "headline": "NBA: Philadelphia 76ers at New York Knicks", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Brad Penner", "source": "Imagn Images", "date": "2019-02-13"}, {"id": "11969540", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11969540.jpg", "headline": "NBA: Philadelphia 76ers at Washington Wizards", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Geoff Burke", "source": "Imagn Images", "date": "2019-01-09"}, {"id": "11962020", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11962020.jpg", "headline": "NBA: Washington Wizards at Philadelphia 76ers", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Bill Streicher", "source": "Imagn Images", "date": "2019-01-08"}, {"id": "11906790", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11906790.jpg", "headline": "NBA: Philadelphia 76ers at Utah Jazz", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Russell Isabella", "source": "Imagn Images", "date": "2018-12-27"}, {"id": "11845735", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11845735.jpg", "headline": "NBA: Indiana Pacers at Philadelphia 76ers", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Bill Streicher", "source": "Imagn Images", "date": "2018-12-14"}, {"id": "11796161", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11796161.jpg", "headline": "NBA: Philadelphia 76ers at Toronto Raptors", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2018-12-05"}, {"id": "11571078", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11571078.jpg", "headline": "NBA: Los Angeles Clippers at Philadelphia 76ers", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Bill Streicher", "source": "Imagn Images", "date": "2018-11-01"}, {"id": "11413201", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11413201.jpg", "headline": "NBA: Philadelphia 76ers-Boys &amp; Girls Club", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Bill Streicher", "source": "Imagn Images", "date": "2018-10-10"}, {"id": "10727248", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10727248.jpg", "headline": "NBA: Philadelphia 76ers at Orlando Magic", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Kim Klement", "source": "Imagn Images", "date": "2018-03-22"}, {"id": "10727196", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10727196.jpg", "headline": "NBA: Philadelphia 76ers at Orlando Magic", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Kim Klement", "source": "Imagn Images", "date": "2018-03-22"}, {"id": "10701216", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10701216.jpg", "headline": "NBA: Indiana Pacers at Philadelphia 76ers", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Bill Streicher", "source": "Imagn Images", "date": "2018-03-13"}, {"id": "10701207", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10701207.jpg", "headline": "NBA: Indiana Pacers at Philadelphia 76ers", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Bill Streicher", "source": "Imagn Images", "date": "2018-03-13"}, {"id": "10680429", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10680429.jpg", "headline": "NBA: Philadelphia 76ers at Milwaukee Bucks", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Benny Sieu", "source": "Imagn Images", "date": "2018-03-04"}, {"id": "10666257", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10666257.jpg", "headline": "NBA: Philadelphia 76ers at Cleveland Cavaliers", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2018-03-01"}, {"id": "10657314", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10657314.jpg", "headline": "NBA: Philadelphia 76ers at Washington Wizards", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Brad Mills", "source": "Imagn Images", "date": "2018-02-25"}, {"id": "10644725", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10644725.jpg", "headline": "NBA: Philadelphia 76ers at Chicago Bulls", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "David Banks", "source": "Imagn Images", "date": "2018-02-22"}, {"id": "10556932", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10556932.jpg", "headline": "NBA: Philadelphia 76ers at Phoenix Suns", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "date": "2017-12-31"}, {"id": "10556909", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10556909.jpg", "headline": "NBA: Philadelphia 76ers at Phoenix Suns", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "date": "2017-12-31"}, {"id": "9785843", "thumb": "https://cdn.imagn.com/image/thumb/250-225/9785843.jpg", "headline": "NBA: Philadelphia 76ers at Denver Nuggets", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2016-12-30"}, {"id": "9796930", "thumb": "https://cdn.imagn.com/image/thumb/250-225/9796930.jpg", "headline": "NBA: Philadelphia 76ers at Phoenix Suns", "player": "Joel Embiid", "playerSlug": "joel-embiid", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "date": "2016-12-23"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Joel Embiid</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,230 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Philadelphia 76ers at Atlanta Hawks</div>
         <div class="credit">📷 Brett Davis · Imagn Images · Jan 30, 2020</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13881550/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13881550.jpg" alt="NBA: Philadelphia 76ers at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Houston Rockets</div>
-        <div class="credit">📷 Erik Williams · Imagn Images · Jan 03, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13713125/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13713125.jpg" alt="NBA: Philadelphia 76ers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Nov 25, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13681646/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13681646.jpg" alt="NBA: Philadelphia 76ers at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Nov 17, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13627161/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13627161.jpg" alt="NBA: Philadelphia 76ers at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Utah Jazz</div>
-        <div class="credit">📷 Russell Isabella · Imagn Images · Nov 06, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13584851/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13584851.jpg" alt="NBA: Philadelphia 76ers at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Atlanta Hawks</div>
-        <div class="credit">📷 Brett Davis · Imagn Images · Oct 28, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13512237/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13512237.jpg" alt="NBA: Preseason-Philadelphia 76ers at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Preseason-Philadelphia 76ers at Orlando Magic</div>
-        <div class="credit">📷 Kim Klement · Imagn Images · Oct 13, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12695671/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12695671.jpg" alt="NBA: Playoffs-Philadelphia 76ers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Playoffs-Philadelphia 76ers at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · May 12, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12602945/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12602945.jpg" alt="NBA: Playoffs-Philadelphia 76ers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Playoffs-Philadelphia 76ers at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Apr 27, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12406883/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12406883.jpg" alt="NBA: Philadelphia 76ers at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Atlanta Hawks</div>
-        <div class="credit">📷 Brett Davis · Imagn Images · Mar 23, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12370099/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12370099.jpg" alt="NBA: Philadelphia 76ers at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Mar 17, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12181181/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12181181.jpg" alt="NBA: All Star Game" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: All Star Game</div>
-        <div class="credit">📷 Bob Donnan · Imagn Images · Feb 17, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12157131/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12157131.jpg" alt="NBA: Philadelphia 76ers at New York Knicks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at New York Knicks</div>
-        <div class="credit">📷 Brad Penner · Imagn Images · Feb 13, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11969540/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11969540.jpg" alt="NBA: Philadelphia 76ers at Washington Wizards" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Washington Wizards</div>
-        <div class="credit">📷 Geoff Burke · Imagn Images · Jan 09, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11962020/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11962020.jpg" alt="NBA: Washington Wizards at Philadelphia 76ers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Washington Wizards at Philadelphia 76ers</div>
-        <div class="credit">📷 Bill Streicher · Imagn Images · Jan 08, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11906790/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11906790.jpg" alt="NBA: Philadelphia 76ers at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Utah Jazz</div>
-        <div class="credit">📷 Russell Isabella · Imagn Images · Dec 27, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11845735/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11845735.jpg" alt="NBA: Indiana Pacers at Philadelphia 76ers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Indiana Pacers at Philadelphia 76ers</div>
-        <div class="credit">📷 Bill Streicher · Imagn Images · Dec 14, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11796161/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11796161.jpg" alt="NBA: Philadelphia 76ers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Dec 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11571078/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11571078.jpg" alt="NBA: Los Angeles Clippers at Philadelphia 76ers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Los Angeles Clippers at Philadelphia 76ers</div>
-        <div class="credit">📷 Bill Streicher · Imagn Images · Nov 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11413201/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11413201.jpg" alt="NBA: Philadelphia 76ers-Boys &amp; Girls Club" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers-Boys &amp; Girls Club</div>
-        <div class="credit">📷 Bill Streicher · Imagn Images · Oct 10, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10727248/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10727248.jpg" alt="NBA: Philadelphia 76ers at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Orlando Magic</div>
-        <div class="credit">📷 Kim Klement · Imagn Images · Mar 22, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10727196/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10727196.jpg" alt="NBA: Philadelphia 76ers at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Orlando Magic</div>
-        <div class="credit">📷 Kim Klement · Imagn Images · Mar 22, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10701216/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10701216.jpg" alt="NBA: Indiana Pacers at Philadelphia 76ers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Indiana Pacers at Philadelphia 76ers</div>
-        <div class="credit">📷 Bill Streicher · Imagn Images · Mar 13, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10701207/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10701207.jpg" alt="NBA: Indiana Pacers at Philadelphia 76ers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Indiana Pacers at Philadelphia 76ers</div>
-        <div class="credit">📷 Bill Streicher · Imagn Images · Mar 13, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10680429/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10680429.jpg" alt="NBA: Philadelphia 76ers at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Milwaukee Bucks</div>
-        <div class="credit">📷 Benny Sieu · Imagn Images · Mar 04, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10666257/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10666257.jpg" alt="NBA: Philadelphia 76ers at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Mar 01, 2018</div>
-    </div>
-</div>
-<div class="affiliate-module inline">
-    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Under+Armour+Embiid" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop Under Armour Embiid</span>
-        <span class="badge-info">★ Latest Model</span>
-    </a>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10657314/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10657314.jpg" alt="NBA: Philadelphia 76ers at Washington Wizards" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Washington Wizards</div>
-        <div class="credit">📷 Brad Mills · Imagn Images · Feb 25, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10644725/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10644725.jpg" alt="NBA: Philadelphia 76ers at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Feb 22, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10556932/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10556932.jpg" alt="NBA: Philadelphia 76ers at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Dec 31, 2017</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10556909/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10556909.jpg" alt="NBA: Philadelphia 76ers at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Dec 31, 2017</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9785843/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9785843.jpg" alt="NBA: Philadelphia 76ers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Dec 30, 2016</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9796930/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9796930.jpg" alt="NBA: Philadelphia 76ers at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joel-embiid/" class="player-link">Joel Embiid</a>
-        <div class="headline">NBA: Philadelphia 76ers at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Dec 23, 2016</div>
-    </div>
 </div>
         </div>
     </section>
@@ -615,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28033864.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tj-warren/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/19681488.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Khris Middleton</div>
-        <div class="mp-count">60 photos</div>
+        <div class="mp-name">TJ Warren</div>
+        <div class="mp-count">15 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dennis-smith-jr/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22801305.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dario-saric/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27295334.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Dennis Smith Jr</div>
-        <div class="mp-count">22 photos</div>
+        <div class="mp-name">Dario Saric</div>
+        <div class="mp-count">21 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/clint-capela/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25082587.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dirk-nowitzki/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/12483213.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Clint Capela</div>
-        <div class="mp-count">41 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/norman-powell/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27880257.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Norman Powell</div>
-        <div class="mp-count">37 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/troy-brown-jr/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22019276.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Troy Brown Jr</div>
+        <div class="mp-name">Dirk Nowitzki</div>
         <div class="mp-count">20 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-richardson/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20338826.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-green/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25636878.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Josh Richardson</div>
-        <div class="mp-count">25 photos</div>
+        <div class="mp-name">Josh Green</div>
+        <div class="mp-count">14 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/andre-iguodala/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/19718366.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jonas-valanciunas/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28216304.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Andre Iguodala</div>
-        <div class="mp-count">42 photos</div>
+        <div class="mp-name">Jonas Valanciunas</div>
+        <div class="mp-count">37 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/coby-white/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27749926.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/richaun-holmes/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/21937750.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Coby White</div>
-        <div class="mp-count">22 photos</div>
+        <div class="mp-name">Richaun Holmes</div>
+        <div class="mp-count">28 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/andre-drummond/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27991691.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Andre Drummond</div>
+        <div class="mp-count">70 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rodney-mcgruder/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20286773.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Rodney McGruder</div>
+        <div class="mp-count">24 photos</div>
     </div>
 </a>
         </div>

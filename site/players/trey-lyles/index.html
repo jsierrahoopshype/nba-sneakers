@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "14089082", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14089082.jpg", "headline": "NBA: San Antonio Spurs at Oklahoma City Thunder", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2020-02-23"}, {"id": "14078489", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14078489.jpg", "headline": "NBA: San Antonio Spurs at Utah Jazz", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Jeffrey Swinger", "source": "Imagn Images", "date": "2020-02-21"}, {"id": "14028832", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14028832.jpg", "headline": "NBA: San Antonio Spurs at Oklahoma City Thunder", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2020-02-11"}, {"id": "14016808", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14016808.jpg", "headline": "NBA: San Antonio Spurs at Sacramento Kings", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2020-02-08"}, {"id": "13901743", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13901743.jpg", "headline": "NBA: San Antonio Spurs at Toronto Raptors", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2020-01-12"}, {"id": "13704657", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13704657.jpg", "headline": "NBA: San Antonio Spurs at New York Knicks", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Vincent Carchietta", "source": "Imagn Images", "date": "2019-11-23"}, {"id": "13667349", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13667349.jpg", "headline": "NBA: Oklahoma City Thunder at San Antonio Spurs", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Scott Wachter", "source": "Imagn Images", "date": "2019-11-07"}, {"id": "13610076", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13610076.jpg", "headline": "NBA: San Antonio Spurs at Golden State Warriors", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Cary Edmondson", "source": "Imagn Images", "date": "2019-11-01"}, {"id": "12663182", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12663182.jpg", "headline": "NBA: Playoffs-Portland Trail Blazers at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Ron Chenoy", "source": "Imagn Images", "date": "2019-05-07"}, {"id": "12462108", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12462108.jpg", "headline": "NBA: Denver Nuggets at Golden State Warriors", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2019-04-02"}, {"id": "12245280", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12245280.jpg", "headline": "NBA: Oklahoma City Thunder at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2019-02-26"}, {"id": "12108972", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12108972.jpg", "headline": "NBA: Denver Nuggets at Detroit Pistons", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2019-02-04"}, {"id": "12094282", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12094282.jpg", "headline": "NBA: Houston Rockets at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2019-02-01"}, {"id": "12064388", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12064388.jpg", "headline": "NBA: Philadelphia 76ers at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2019-01-26"}, {"id": "12058424", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12058424.jpg", "headline": "NBA: Phoenix Suns at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Ron Chenoy", "source": "Imagn Images", "date": "2019-01-25"}, {"id": "12047392", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12047392.jpg", "headline": "NBA: Denver Nuggets at Utah Jazz", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Chris Nicoll", "source": "Imagn Images", "date": "2019-01-23"}, {"id": "12027656", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12027656.jpg", "headline": "NBA: Cleveland Cavaliers at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2019-01-19"}, {"id": "12015661", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12015661.jpg", "headline": "NBA: Chicago Bulls at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Ron Chenoy", "source": "Imagn Images", "date": "2019-01-17"}, {"id": "12005346", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12005346.jpg", "headline": "NBA: Golden State Warriors at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2019-01-15"}, {"id": "11975386", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11975386.jpg", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2019-01-10"}, {"id": "11870401", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11870401.jpg", "headline": "NBA: Dallas Mavericks at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-12-18"}, {"id": "11858619", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11858619.jpg", "headline": "NBA: Toronto Raptors at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-12-16"}, {"id": "11728943", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11728943.jpg", "headline": "NBA: Denver Nuggets at Oklahoma City Thunder", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Rob Ferguson", "source": "Imagn Images", "date": "2018-11-24"}, {"id": "11700849", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11700849.jpg", "headline": "NBA: Denver Nuggets at Milwaukee Bucks", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-11-19"}, {"id": "11659991", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11659991.jpg", "headline": "NBA: Houston Rockets at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-11-13"}, {"id": "11651377", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11651377.jpg", "headline": "NBA: Milwaukee Bucks at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-11-11"}, {"id": "11572196", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11572196.jpg", "headline": "NBA: Denver Nuggets at Cleveland Cavaliers", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "David Richard", "source": "Imagn Images", "date": "2018-11-01"}, {"id": "11552926", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11552926.jpg", "headline": "NBA: New Orleans Pelicans at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-10-29"}, {"id": "11494165", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11494165.jpg", "headline": "NBA: Golden State Warriors at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-10-21"}, {"id": "11487527", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11487527.jpg", "headline": "NBA: Phoenix Suns at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-10-20"}, {"id": "10769233", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10769233.jpg", "headline": "NBA: Minnesota Timberwolves at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-04-05"}, {"id": "10758883", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10758883.jpg", "headline": "NBA: Milwaukee Bucks at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-04-01"}, {"id": "10742589", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10742589.jpg", "headline": "NBA: Denver Nuggets at Toronto Raptors", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2018-03-27"}, {"id": "10696358", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10696358.jpg", "headline": "NBA: Sacramento Kings at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-03-11"}, {"id": "10691959", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10691959.jpg", "headline": "NBA: Los Angeles Lakers at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-03-09"}, {"id": "10759288", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10759288.jpg", "headline": "NBA: Los Angeles Lakers at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-03-09"}, {"id": "10686621", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10686621.jpg", "headline": "NBA: Cleveland Cavaliers at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-03-07"}, {"id": "10684355", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10684355.jpg", "headline": "NBA: Denver Nuggets at Dallas Mavericks", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2018-03-06"}, {"id": "10670024", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10670024.jpg", "headline": "NBA: Denver Nuggets at Memphis Grizzlies", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-03-02"}, {"id": "10660889", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10660889.jpg", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-02-27"}, {"id": "10649275", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10649275.jpg", "headline": "NBA: San Antonio Spurs at Denver Nuggets", "player": "Trey Lyles", "playerSlug": "trey-lyles", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-02-23"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Trey Lyles</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,300 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Preseason-Philadelphia 76ers at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Oct 15, 2021</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14089082/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14089082.jpg" alt="NBA: San Antonio Spurs at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: San Antonio Spurs at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Feb 23, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14078489/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14078489.jpg" alt="NBA: San Antonio Spurs at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: San Antonio Spurs at Utah Jazz</div>
-        <div class="credit">📷 Jeffrey Swinger · Imagn Images · Feb 21, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14028832/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14028832.jpg" alt="NBA: San Antonio Spurs at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: San Antonio Spurs at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Feb 11, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14016808/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14016808.jpg" alt="NBA: San Antonio Spurs at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: San Antonio Spurs at Sacramento Kings</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Feb 08, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13901743/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13901743.jpg" alt="NBA: San Antonio Spurs at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: San Antonio Spurs at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 12, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13704657/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13704657.jpg" alt="NBA: San Antonio Spurs at New York Knicks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: San Antonio Spurs at New York Knicks</div>
-        <div class="credit">📷 Vincent Carchietta · Imagn Images · Nov 23, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13667349/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13667349.jpg" alt="NBA: Oklahoma City Thunder at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Oklahoma City Thunder at San Antonio Spurs</div>
-        <div class="credit">📷 Scott Wachter · Imagn Images · Nov 07, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13610076/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13610076.jpg" alt="NBA: San Antonio Spurs at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: San Antonio Spurs at Golden State Warriors</div>
-        <div class="credit">📷 Cary Edmondson · Imagn Images · Nov 01, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12663182/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12663182.jpg" alt="NBA: Playoffs-Portland Trail Blazers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Playoffs-Portland Trail Blazers at Denver Nuggets</div>
-        <div class="credit">📷 Ron Chenoy · Imagn Images · May 07, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12462108/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12462108.jpg" alt="NBA: Denver Nuggets at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Denver Nuggets at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 02, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12245280/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12245280.jpg" alt="NBA: Oklahoma City Thunder at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 26, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12108972/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12108972.jpg" alt="NBA: Denver Nuggets at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Denver Nuggets at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 04, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12094282/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12094282.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Houston Rockets at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 01, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12064388/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12064388.jpg" alt="NBA: Philadelphia 76ers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Philadelphia 76ers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 26, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12058424/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12058424.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Phoenix Suns at Denver Nuggets</div>
-        <div class="credit">📷 Ron Chenoy · Imagn Images · Jan 25, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12047392/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12047392.jpg" alt="NBA: Denver Nuggets at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Denver Nuggets at Utah Jazz</div>
-        <div class="credit">📷 Chris Nicoll · Imagn Images · Jan 23, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12027656/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12027656.jpg" alt="NBA: Cleveland Cavaliers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 19, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12015661/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12015661.jpg" alt="NBA: Chicago Bulls at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Chicago Bulls at Denver Nuggets</div>
-        <div class="credit">📷 Ron Chenoy · Imagn Images · Jan 17, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12005346/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12005346.jpg" alt="NBA: Golden State Warriors at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Golden State Warriors at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 15, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11975386/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11975386.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 10, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11870401/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11870401.jpg" alt="NBA: Dallas Mavericks at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Dallas Mavericks at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Dec 18, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11858619/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11858619.jpg" alt="NBA: Toronto Raptors at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Toronto Raptors at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Dec 16, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11728943/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11728943.jpg" alt="NBA: Denver Nuggets at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Denver Nuggets at Oklahoma City Thunder</div>
-        <div class="credit">📷 Rob Ferguson · Imagn Images · Nov 24, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11700849/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11700849.jpg" alt="NBA: Denver Nuggets at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Denver Nuggets at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Nov 19, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11659991/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11659991.jpg" alt="NBA: Houston Rockets at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Houston Rockets at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 13, 2018</div>
-    </div>
-</div>
-<div class="affiliate-module inline">
-    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Trey+Lyles+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop Trey Lyles basketball shoes</span>
-        <span class="badge-info">★ Latest Model</span>
-    </a>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11651377/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11651377.jpg" alt="NBA: Milwaukee Bucks at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Milwaukee Bucks at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 11, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11572196/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11572196.jpg" alt="NBA: Denver Nuggets at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Denver Nuggets at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Nov 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11552926/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11552926.jpg" alt="NBA: New Orleans Pelicans at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: New Orleans Pelicans at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Oct 29, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11494165/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11494165.jpg" alt="NBA: Golden State Warriors at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Golden State Warriors at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Oct 21, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11487527/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11487527.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Phoenix Suns at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Oct 20, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10769233/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10769233.jpg" alt="NBA: Minnesota Timberwolves at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10758883/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10758883.jpg" alt="NBA: Milwaukee Bucks at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Milwaukee Bucks at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10742589/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10742589.jpg" alt="NBA: Denver Nuggets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Denver Nuggets at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Mar 27, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10696358/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10696358.jpg" alt="NBA: Sacramento Kings at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Sacramento Kings at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 11, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10691959/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10691959.jpg" alt="NBA: Los Angeles Lakers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Los Angeles Lakers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 09, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10759288/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10759288.jpg" alt="NBA: Los Angeles Lakers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Los Angeles Lakers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 09, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10686621/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10686621.jpg" alt="NBA: Cleveland Cavaliers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 07, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10684355/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10684355.jpg" alt="NBA: Denver Nuggets at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Denver Nuggets at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Mar 06, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10670024/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10670024.jpg" alt="NBA: Denver Nuggets at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Denver Nuggets at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Mar 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10660889/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10660889.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 27, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10649275/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10649275.jpg" alt="NBA: San Antonio Spurs at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-lyles/" class="player-link">Trey Lyles</a>
-        <div class="headline">NBA: San Antonio Spurs at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 23, 2018</div>
-    </div>
 </div>
         </div>
     </section>
@@ -685,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/taj-gibson/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25402953.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27500660.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Taj Gibson</div>
-        <div class="mp-count">31 photos</div>
+        <div class="mp-name">Bradley Beal</div>
+        <div class="mp-count">76 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/guerschon-yabusele/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28184215.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/malik-monk/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27565590.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Guerschon Yabusele</div>
-        <div class="mp-count">10 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/paul-millsap/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/18150034.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Paul Millsap</div>
-        <div class="mp-count">36 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marcus-morris/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/12670101.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Marcus Morris</div>
-        <div class="mp-count">22 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-duren/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28378298.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Jalen Duren</div>
-        <div class="mp-count">37 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jeremy-sochan/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27407669.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Jeremy Sochan</div>
-        <div class="mp-count">16 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/andre-iguodala/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/19718366.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Andre Iguodala</div>
+        <div class="mp-name">Malik Monk</div>
         <div class="mp-count">42 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/talen-horton-tucker/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25004007.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/sekou-doumbouya/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/15947021.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Talen Horton-Tucker</div>
-        <div class="mp-count">20 photos</div>
+        <div class="mp-name">Sekou Doumbouya</div>
+        <div class="mp-count">10 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bronny-james/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28425503.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Bronny James</div>
+        <div class="mp-count">12 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ausar-thompson/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27324824.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Ausar Thompson</div>
+        <div class="mp-count">11 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27868624.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Mike Conley</div>
+        <div class="mp-count">54 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kemba-walker/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17581328.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Kemba Walker</div>
+        <div class="mp-count">14 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deandre-hunter/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27750946.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">De&#x27;Andre Hunter</div>
+        <div class="mp-count">38 photos</div>
     </div>
 </a>
         </div>

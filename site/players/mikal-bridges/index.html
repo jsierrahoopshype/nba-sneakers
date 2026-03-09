@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "11825469", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11825469.jpg", "headline": "NBA: Los Angeles Clippers at Phoenix Suns", "player": "Mikal Bridges", "playerSlug": "mikal-bridges", "photographer": "Jennifer Stewart", "source": "Imagn Images", "date": "2018-12-10"}, {"id": "11711520", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11711520.jpg", "headline": "NBA: Phoenix Suns at Chicago Bulls", "player": "Mikal Bridges", "playerSlug": "mikal-bridges", "photographer": "Mike Dinovo", "source": "Imagn Images", "date": "2018-11-21"}, {"id": "11655935", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11655935.jpg", "headline": "NBA: Phoenix Suns at Oklahoma City Thunder", "player": "Mikal Bridges", "playerSlug": "mikal-bridges", "photographer": "Rob Ferguson", "source": "Imagn Images", "date": "2018-11-12"}, {"id": "11624398", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11624398.jpg", "headline": "NBA: Boston Celtics at Phoenix Suns", "player": "Mikal Bridges", "playerSlug": "mikal-bridges", "photographer": "Jennifer Stewart", "source": "Imagn Images", "date": "2018-11-08"}, {"id": "11538866", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11538866.jpg", "headline": "NBA: Phoenix Suns at Memphis Grizzlies", "player": "Mikal Bridges", "playerSlug": "mikal-bridges", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-10-27"}, {"id": "11499488", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11499488.jpg", "headline": "NBA: Phoenix Suns at Golden State Warriors", "player": "Mikal Bridges", "playerSlug": "mikal-bridges", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2018-10-22"}, {"id": "11487479", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11487479.jpg", "headline": "NBA: Phoenix Suns at Denver Nuggets", "player": "Mikal Bridges", "playerSlug": "mikal-bridges", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-10-20"}, {"id": "11358679", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11358679.jpg", "headline": "NBA: Preseason-Sacramento Kings at Phoenix Suns", "player": "Mikal Bridges", "playerSlug": "mikal-bridges", "photographer": "Joe Camporeale", "source": "Imagn Images", "date": "2018-10-01"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Mikal Bridges</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,62 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Phoenix Suns at Dallas Mavericks</div>
         <div class="credit">📷 Jerome Miron · Imagn Images · Jan 09, 2019</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11825469/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11825469.jpg" alt="NBA: Los Angeles Clippers at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mikal-bridges/" class="player-link">Mikal Bridges</a>
-        <div class="headline">NBA: Los Angeles Clippers at Phoenix Suns</div>
-        <div class="credit">📷 Jennifer Stewart · Imagn Images · Dec 10, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11711520/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11711520.jpg" alt="NBA: Phoenix Suns at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mikal-bridges/" class="player-link">Mikal Bridges</a>
-        <div class="headline">NBA: Phoenix Suns at Chicago Bulls</div>
-        <div class="credit">📷 Mike Dinovo · Imagn Images · Nov 21, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11655935/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11655935.jpg" alt="NBA: Phoenix Suns at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mikal-bridges/" class="player-link">Mikal Bridges</a>
-        <div class="headline">NBA: Phoenix Suns at Oklahoma City Thunder</div>
-        <div class="credit">📷 Rob Ferguson · Imagn Images · Nov 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11624398/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11624398.jpg" alt="NBA: Boston Celtics at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mikal-bridges/" class="player-link">Mikal Bridges</a>
-        <div class="headline">NBA: Boston Celtics at Phoenix Suns</div>
-        <div class="credit">📷 Jennifer Stewart · Imagn Images · Nov 08, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11538866/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11538866.jpg" alt="NBA: Phoenix Suns at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mikal-bridges/" class="player-link">Mikal Bridges</a>
-        <div class="headline">NBA: Phoenix Suns at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Oct 27, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11499488/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11499488.jpg" alt="NBA: Phoenix Suns at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mikal-bridges/" class="player-link">Mikal Bridges</a>
-        <div class="headline">NBA: Phoenix Suns at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Oct 22, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11487479/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11487479.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mikal-bridges/" class="player-link">Mikal Bridges</a>
-        <div class="headline">NBA: Phoenix Suns at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Oct 20, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11358679/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11358679.jpg" alt="NBA: Preseason-Sacramento Kings at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mikal-bridges/" class="player-link">Mikal Bridges</a>
-        <div class="headline">NBA: Preseason-Sacramento Kings at Phoenix Suns</div>
-        <div class="credit">📷 Joe Camporeale · Imagn Images · Oct 01, 2018</div>
-    </div>
 </div>
         </div>
     </section>
@@ -447,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deandre-jordan/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28307517.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kentavious-caldwell-pope/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28122331.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Deandre Jordan</div>
-        <div class="mp-count">27 photos</div>
+        <div class="mp-name">Kentavious Caldwell-Pope</div>
+        <div class="mp-count">39 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/thabo-sefolosha/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/14099105.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cam-reddish/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22173759.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Thabo Sefolosha</div>
-        <div class="mp-count">18 photos</div>
+        <div class="mp-name">Cam Reddish</div>
+        <div class="mp-count">23 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/elfrid-payton/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17516873.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/24866572.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Elfrid Payton</div>
-        <div class="mp-count">14 photos</div>
+        <div class="mp-name">Jae Crowder</div>
+        <div class="mp-count">63 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-vassell/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27748913.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lance-stephenson/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17979714.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Devin Vassell</div>
-        <div class="mp-count">14 photos</div>
+        <div class="mp-name">Lance Stephenson</div>
+        <div class="mp-count">24 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/under-armour/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/14242603.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/isaiah-joe/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28329958.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Under Armour</div>
-        <div class="mp-count">45 photos</div>
+        <div class="mp-name">Isaiah Joe</div>
+        <div class="mp-count">19 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cody-zeller/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22950914.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/paul-millsap/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/18150034.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Cody Zeller</div>
-        <div class="mp-count">16 photos</div>
+        <div class="mp-name">Paul Millsap</div>
+        <div class="mp-count">36 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/oshae-brissett/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20300109.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dejounte-murray/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22367364.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Oshae Brissett</div>
-        <div class="mp-count">13 photos</div>
+        <div class="mp-name">Dejounte Murray</div>
+        <div class="mp-count">28 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/georges-niang/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25881684.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/fred-vanvleet/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/26024364.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Georges Niang</div>
-        <div class="mp-count">30 photos</div>
+        <div class="mp-name">Fred VanVleet</div>
+        <div class="mp-count">50 photos</div>
     </div>
 </a>
         </div>

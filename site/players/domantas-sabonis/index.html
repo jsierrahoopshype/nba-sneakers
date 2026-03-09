@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "19566515", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19566515.jpg", "headline": "NBA: Chicago Bulls at Sacramento Kings", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Stan Szeto", "source": "Imagn Images", "date": "2022-12-04"}, {"id": "19453900", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19453900.jpg", "headline": "NBA: San Antonio Spurs at Sacramento Kings", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2022-11-17"}, {"id": "17852282", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17852282.jpg", "headline": "NBA: New York Knicks at Sacramento Kings", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2022-03-07"}, {"id": "17778175", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17778175.jpg", "headline": "NBA: Sacramento Kings at Denver Nuggets", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2022-02-26"}, {"id": "17761310", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17761310.jpg", "headline": "NBA: Denver Nuggets at Sacramento Kings", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Sergio Estrada", "source": "Imagn Images", "date": "2022-02-24"}, {"id": "17444670", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17444670.jpg", "headline": "NBA: Indiana Pacers at Cleveland Cavaliers", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2022-01-02"}, {"id": "17365253", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17365253.jpg", "headline": "NBA: Indiana Pacers at Milwaukee Bucks", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2021-12-15"}, {"id": "17135504", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17135504.jpg", "headline": "NBA: Indiana Pacers at Denver Nuggets", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2021-11-10"}, {"id": "17101285", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17101285.jpg", "headline": "NBA: Indiana Pacers at Portland Trail Blazers", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Steve Dykes", "source": "Imagn Images", "date": "2021-11-04"}, {"id": "13874183", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13874183.jpg", "headline": "NBA: Indiana Pacers at Atlanta Hawks", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Jason Getz", "source": "Imagn Images", "date": "2020-01-04"}, {"id": "13872347", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13872347.jpg", "headline": "NBA: Indiana Pacers at Atlanta Hawks", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Jason Getz", "source": "Imagn Images", "date": "2020-01-04"}, {"id": "13789703", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13789703.jpg", "headline": "NBA: Indiana Pacers at Atlanta Hawks", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Dale Zanine", "source": "Imagn Images", "date": "2019-12-13"}, {"id": "13759048", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13759048.jpg", "headline": "NBA: Indiana Pacers at Detroit Pistons", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Raj Mehta", "source": "Imagn Images", "date": "2019-12-06"}, {"id": "13750359", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13750359.jpg", "headline": "NBA: Indiana Pacers at Oklahoma City Thunder", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2019-12-04"}, {"id": "11939917", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11939917.jpg", "headline": "NBA: Indiana Pacers at Chicago Bulls", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "David Banks", "source": "Imagn Images", "date": "2019-01-04"}, {"id": "11772900", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11772900.jpg", "headline": "NBA: Indiana Pacers at Sacramento Kings", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2018-12-01"}, {"id": "11676787", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11676787.jpg", "headline": "NBA: Miami Heat at Indiana Pacers", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Trevor Ruszkowski", "source": "Imagn Images", "date": "2018-11-16"}, {"id": "11587726", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11587726.jpg", "headline": "NBA: Boston Celtics at Indiana Pacers", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Trevor Ruszkowski", "source": "Imagn Images", "date": "2018-11-03"}, {"id": "10812172", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10812172.jpg", "headline": "NBA: Playoffs-Indiana Pacers at Cleveland Cavaliers", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2018-04-29"}, {"id": "10811782", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10811782.jpg", "headline": "NBA: Playoffs-Indiana Pacers at Cleveland Cavaliers", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2018-04-29"}, {"id": "10787553", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10787553.jpg", "headline": "NBA: Playoffs-Indiana Pacers at Cleveland Cavaliers", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "David Richard", "source": "Imagn Images", "date": "2018-04-15"}, {"id": "10670676", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10670676.jpg", "headline": "NBA: Indiana Pacers at Milwaukee Bucks", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Benny Sieu", "source": "Imagn Images", "date": "2018-03-02"}, {"id": "10662763", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10662763.jpg", "headline": "NBA: Indiana Pacers at Atlanta Hawks", "player": "Domantas Sabonis", "playerSlug": "domantas-sabonis", "photographer": "Jason Getz", "source": "Imagn Images", "date": "2018-02-28"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Domantas Sabonis</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,167 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Washington Wizards at Sacramento Kings</div>
         <div class="credit">📷 Kelley L Cox · Imagn Images · Dec 23, 2022</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19566515/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19566515.jpg" alt="NBA: Chicago Bulls at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Chicago Bulls at Sacramento Kings</div>
-        <div class="credit">📷 Stan Szeto · Imagn Images · Dec 04, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19453900/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19453900.jpg" alt="NBA: San Antonio Spurs at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: San Antonio Spurs at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 17, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17852282/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17852282.jpg" alt="NBA: New York Knicks at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: New York Knicks at Sacramento Kings</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Mar 07, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17778175/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17778175.jpg" alt="NBA: Sacramento Kings at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Sacramento Kings at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 26, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17761310/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17761310.jpg" alt="NBA: Denver Nuggets at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Denver Nuggets at Sacramento Kings</div>
-        <div class="credit">📷 Sergio Estrada · Imagn Images · Feb 24, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17444670/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17444670.jpg" alt="NBA: Indiana Pacers at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Indiana Pacers at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Jan 02, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17365253/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17365253.jpg" alt="NBA: Indiana Pacers at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Indiana Pacers at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Dec 15, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17135504/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17135504.jpg" alt="NBA: Indiana Pacers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Indiana Pacers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Nov 10, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17101285/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17101285.jpg" alt="NBA: Indiana Pacers at Portland Trail Blazers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Indiana Pacers at Portland Trail Blazers</div>
-        <div class="credit">📷 Steve Dykes · Imagn Images · Nov 04, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13874183/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13874183.jpg" alt="NBA: Indiana Pacers at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Indiana Pacers at Atlanta Hawks</div>
-        <div class="credit">📷 Jason Getz · Imagn Images · Jan 04, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13872347/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13872347.jpg" alt="NBA: Indiana Pacers at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Indiana Pacers at Atlanta Hawks</div>
-        <div class="credit">📷 Jason Getz · Imagn Images · Jan 04, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13789703/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13789703.jpg" alt="NBA: Indiana Pacers at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Indiana Pacers at Atlanta Hawks</div>
-        <div class="credit">📷 Dale Zanine · Imagn Images · Dec 13, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13759048/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13759048.jpg" alt="NBA: Indiana Pacers at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Indiana Pacers at Detroit Pistons</div>
-        <div class="credit">📷 Raj Mehta · Imagn Images · Dec 06, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13750359/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13750359.jpg" alt="NBA: Indiana Pacers at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Indiana Pacers at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Dec 04, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11939917/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11939917.jpg" alt="NBA: Indiana Pacers at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Indiana Pacers at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Jan 04, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11772900/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11772900.jpg" alt="NBA: Indiana Pacers at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Indiana Pacers at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Dec 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11676787/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11676787.jpg" alt="NBA: Miami Heat at Indiana Pacers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Miami Heat at Indiana Pacers</div>
-        <div class="credit">📷 Trevor Ruszkowski · Imagn Images · Nov 16, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11587726/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11587726.jpg" alt="NBA: Boston Celtics at Indiana Pacers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Boston Celtics at Indiana Pacers</div>
-        <div class="credit">📷 Trevor Ruszkowski · Imagn Images · Nov 03, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10812172/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10812172.jpg" alt="NBA: Playoffs-Indiana Pacers at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Playoffs-Indiana Pacers at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Apr 29, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10811782/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10811782.jpg" alt="NBA: Playoffs-Indiana Pacers at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Playoffs-Indiana Pacers at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Apr 29, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10787553/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10787553.jpg" alt="NBA: Playoffs-Indiana Pacers at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Playoffs-Indiana Pacers at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Apr 15, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10670676/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10670676.jpg" alt="NBA: Indiana Pacers at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Indiana Pacers at Milwaukee Bucks</div>
-        <div class="credit">📷 Benny Sieu · Imagn Images · Mar 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10662763/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10662763.jpg" alt="NBA: Indiana Pacers at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Indiana Pacers at Atlanta Hawks</div>
-        <div class="credit">📷 Jason Getz · Imagn Images · Feb 28, 2018</div>
-    </div>
 </div>
         </div>
     </section>
@@ -552,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zach-collins/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27887664.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-black/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28350892.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Zach Collins</div>
+        <div class="mp-name">Anthony Black</div>
         <div class="mp-count">13 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nic-claxton/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28166527.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/aaron-nesmith/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/26427841.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Nic Claxton</div>
-        <div class="mp-count">13 photos</div>
+        <div class="mp-name">Aaron Nesmith</div>
+        <div class="mp-count">15 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lamarcus-aldridge/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17521218.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-vassell/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27748913.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">LaMarcus Aldridge</div>
-        <div class="mp-count">25 photos</div>
+        <div class="mp-name">Devin Vassell</div>
+        <div class="mp-count">14 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/donovan-mitchell/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28071474.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/klay-thompson/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27886060.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Donovan Mitchell</div>
-        <div class="mp-count">199 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-patterson/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/13944503.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Patrick Patterson</div>
-        <div class="mp-count">12 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/damian-lillard/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25311090.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Damian Lillard</div>
-        <div class="mp-count">88 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/isaac-okoro/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28167621.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Isaac Okoro</div>
-        <div class="mp-count">47 photos</div>
+        <div class="mp-name">Klay Thompson</div>
+        <div class="mp-count">106 photos</div>
     </div>
 </a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/draymond-green/" class="more-player-card">
     <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28333094.jpg)"></div>
     <div class="mp-info">
         <div class="mp-name">Draymond Green</div>
         <div class="mp-count">137 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/danny-green/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20429797.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Danny Green</div>
+        <div class="mp-count">32 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/killian-hayes/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/21887387.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Killian Hayes</div>
+        <div class="mp-count">18 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/norman-powell/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27880257.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Norman Powell</div>
+        <div class="mp-count">37 photos</div>
     </div>
 </a>
         </div>

@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "25497198", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25497198.jpg", "headline": "NBA: Phoenix Suns at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2025-02-23"}, {"id": "25386574", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25386574.jpg", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2025-02-05"}, {"id": "25339325", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25339325.jpg", "headline": "NBA: New York Knicks at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2025-02-04"}, {"id": "25326018", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25326018.jpg", "headline": "NBA: Los Angeles Clippers at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2025-02-02"}, {"id": "25311113", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25311113.jpg", "headline": "NBA: Chicago Bulls at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2025-01-31"}, {"id": "25282334", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25282334.jpg", "headline": "NBA: New Orleans Pelicans at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2025-01-27"}, {"id": "25242320", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25242320.jpg", "headline": "NBA: Orlando Magic at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2025-01-21"}, {"id": "25196799", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25196799.jpg", "headline": "NBA: Boston Celtics at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2025-01-15"}, {"id": "25182287", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25182287.jpg", "headline": "NBA: Golden State Warriors at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2025-01-13"}, {"id": "25152853", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25152853.jpg", "headline": "NBA: Toronto Raptors at Cleveland Cavaliers", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "David Richard", "source": "Imagn Images", "date": "2025-01-09"}, {"id": "25125537", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25125537.jpg", "headline": "NBA: Orlando Magic at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2025-01-03"}, {"id": "25109471", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25109471.jpg", "headline": "NBA: Orlando Magic at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2025-01-03"}, {"id": "25125522", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25125522.jpg", "headline": "NBA: Orlando Magic at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2025-01-03"}, {"id": "25097971", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25097971.jpg", "headline": "NBA: Brooklyn Nets at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2025-01-01"}, {"id": "25049986", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25049986.jpg", "headline": "NBA: Houston Rockets at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2024-12-22"}, {"id": "25030930", "thumb": "https://cdn.imagn.com/image/thumb/250-225/25030930.jpg", "headline": "NBA: Brooklyn Nets at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2024-12-19"}, {"id": "24920432", "thumb": "https://cdn.imagn.com/image/thumb/250-225/24920432.jpg", "headline": "NBA: Oklahoma City Thunder at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2024-12-05"}, {"id": "24890120", "thumb": "https://cdn.imagn.com/image/thumb/250-225/24890120.jpg", "headline": "NBA: Miami Heat at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2024-12-01"}, {"id": "24819604", "thumb": "https://cdn.imagn.com/image/thumb/250-225/24819604.jpg", "headline": "NBA: Minnesota Timberwolves at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2024-11-21"}, {"id": "24587210", "thumb": "https://cdn.imagn.com/image/thumb/250-225/24587210.jpg", "headline": "NBA: Philadelphia 76ers at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2024-10-25"}, {"id": "24568121", "thumb": "https://cdn.imagn.com/image/thumb/250-225/24568121.jpg", "headline": "NBA: Cleveland Cavaliers at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2024-10-23"}, {"id": "24577359", "thumb": "https://cdn.imagn.com/image/thumb/250-225/24577359.jpg", "headline": "NBA: Cleveland Cavaliers at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2024-10-23"}, {"id": "22590898", "thumb": "https://cdn.imagn.com/image/thumb/250-225/22590898.jpg", "headline": "NBA: Brooklyn Nets at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2024-02-22"}, {"id": "22495478", "thumb": "https://cdn.imagn.com/image/thumb/250-225/22495478.jpg", "headline": "NBA: Cleveland Cavaliers at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2024-02-10"}, {"id": "22351973", "thumb": "https://cdn.imagn.com/image/thumb/250-225/22351973.jpg", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2024-01-22"}, {"id": "22642341", "thumb": "https://cdn.imagn.com/image/thumb/250-225/22642341.jpg", "headline": "NBA: Chicago Bulls at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2024-01-18"}, {"id": "22206877", "thumb": "https://cdn.imagn.com/image/thumb/250-225/22206877.jpg", "headline": "NBA: Cleveland Cavaliers at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2024-01-01"}, {"id": "22159945", "thumb": "https://cdn.imagn.com/image/thumb/250-225/22159945.jpg", "headline": "NBA: Charlotte Hornets at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2023-12-18"}, {"id": "22136104", "thumb": "https://cdn.imagn.com/image/thumb/250-225/22136104.jpg", "headline": "NBA: Charlotte Hornets at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2023-12-18"}, {"id": "22011770", "thumb": "https://cdn.imagn.com/image/thumb/250-225/22011770.jpg", "headline": "NBA: New York Knicks at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2023-12-01"}, {"id": "21935728", "thumb": "https://cdn.imagn.com/image/thumb/250-225/21935728.jpg", "headline": "NBA: Detroit Pistons at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2023-11-19"}, {"id": "21906764", "thumb": "https://cdn.imagn.com/image/thumb/250-225/21906764.jpg", "headline": "NBA: Washington Wizards at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2023-11-13"}, {"id": "21891506", "thumb": "https://cdn.imagn.com/image/thumb/250-225/21891506.jpg", "headline": "NBA: Washington Wizards at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2023-11-13"}, {"id": "21906760", "thumb": "https://cdn.imagn.com/image/thumb/250-225/21906760.jpg", "headline": "NBA: Washington Wizards at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2023-11-13"}, {"id": "20326238", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20326238.jpg", "headline": "NBA: Washington Wizards at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2023-03-26"}, {"id": "20329480", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20329480.jpg", "headline": "NBA: Washington Wizards at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2023-03-26"}, {"id": "20248841", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20248841.jpg", "headline": "NBA: Oklahoma City Thunder at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2023-03-16"}, {"id": "20230983", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20230983.jpg", "headline": "NBA: Denver Nuggets at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2023-03-14"}, {"id": "20231085", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20231085.jpg", "headline": "NBA: Denver Nuggets at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2023-03-14"}, {"id": "20112643", "thumb": "https://cdn.imagn.com/image/thumb/250-225/20112643.jpg", "headline": "NBA: Chicago Bulls at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2023-02-28"}, {"id": "19997587", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19997587.jpg", "headline": "NBA: Orlando Magic at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2023-02-14"}, {"id": "19983517", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19983517.jpg", "headline": "NBA: Detroit Pistons at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2023-02-12"}, {"id": "19964859", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19964859.jpg", "headline": "NBA: Utah Jazz at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2023-02-10"}, {"id": "19948724", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19948724.jpg", "headline": "NBA: San Antonio Spurs at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2023-02-08"}, {"id": "19860502", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19860502.jpg", "headline": "NBA: Toronto Raptors at Sacramento Kings", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2023-01-25"}, {"id": "19841880", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19841880.jpg", "headline": "NBA: New York Knicks at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2023-01-22"}, {"id": "19791507", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19791507.jpg", "headline": "NBA: Atlanta Hawks at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2023-01-14"}, {"id": "19763579", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19763579.jpg", "headline": "NBA: Charlotte Hornets at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2023-01-10"}, {"id": "19757642", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19757642.jpg", "headline": "NBA: New York Knicks at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2023-01-06"}, {"id": "19685493", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19685493.jpg", "headline": "NBA: Los Angeles Clippers at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2022-12-27"}, {"id": "19649232", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19649232.jpg", "headline": "NBA: Golden State Warriors at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2022-12-18"}, {"id": "19636747", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19636747.jpg", "headline": "NBA: Brooklyn Nets at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2022-12-16"}, {"id": "19624634", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19624634.jpg", "headline": "NBA: Sacramento Kings at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2022-12-14"}, {"id": "19624626", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19624626.jpg", "headline": "NBA: Sacramento Kings at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2022-12-14"}, {"id": "19588262", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19588262.jpg", "headline": "NBA: Los Angeles Lakers at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2022-12-07"}, {"id": "19571464", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19571464.jpg", "headline": "NBA: Boston Celtics at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2022-12-05"}, {"id": "19522755", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19522755.jpg", "headline": "NBA: Cleveland Cavaliers at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2022-11-28"}, {"id": "19434439", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19434439.jpg", "headline": "NBA: Toronto Raptors at Detroit Pistons", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2022-11-14"}, {"id": "19412032", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19412032.jpg", "headline": "NBA: Toronto Raptors at Oklahoma City Thunder", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2022-11-11"}, {"id": "19396132", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19396132.jpg", "headline": "NBA: Houston Rockets at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2022-11-09"}, {"id": "19380724", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19380724.jpg", "headline": "NBA: Chicago Bulls at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2022-11-06"}, {"id": "19262507", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19262507.jpg", "headline": "NBA: Cleveland Cavaliers at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2022-10-19"}, {"id": "19285817", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19285817.jpg", "headline": "NBA: Cleveland Cavaliers at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2022-10-19"}, {"id": "18171108", "thumb": "https://cdn.imagn.com/image/thumb/250-225/18171108.jpg", "headline": "NBA: Playoffs-Philadelphia 76ers at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2022-04-28"}, {"id": "18041589", "thumb": "https://cdn.imagn.com/image/thumb/250-225/18041589.jpg", "headline": "NBA: Philadelphia 76ers at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2022-04-07"}, {"id": "17979952", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17979952.jpg", "headline": "NBA: Indiana Pacers at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2022-03-26"}, {"id": "17960658", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17960658.jpg", "headline": "NBA: Cleveland Cavaliers at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2022-03-24"}, {"id": "17946625", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17946625.jpg", "headline": "NBA: Los Angeles Lakers at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2022-03-18"}, {"id": "17898337", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17898337.jpg", "headline": "NBA: Toronto Raptors at Los Angeles Lakers", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2022-03-14"}, {"id": "17821732", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17821732.jpg", "headline": "NBA: Detroit Pistons at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2022-03-03"}, {"id": "17675701", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17675701.jpg", "headline": "NBA: Denver Nuggets at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2022-02-12"}, {"id": "17505447", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17505447.jpg", "headline": "NBA: Toronto Raptors at Detroit Pistons", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2022-01-14"}, {"id": "17479724", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17479724.jpg", "headline": "NBA: New Orleans Pelicans at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2022-01-09"}, {"id": "17444556", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17444556.jpg", "headline": "NBA: New York Knicks at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2022-01-02"}, {"id": "17382468", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17382468.jpg", "headline": "NBA: Golden State Warriors at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2021-12-18"}, {"id": "17354208", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17354208.jpg", "headline": "NBA: Sacramento Kings at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2021-12-13"}, {"id": "17335229", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17335229.jpg", "headline": "NBA: New York Knicks at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2021-12-10"}, {"id": "17321577", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17321577.jpg", "headline": "NBA: Oklahoma City Thunder at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2021-12-08"}, {"id": "17300272", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17300272.jpg", "headline": "NBA: Washington Wizards at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2021-12-05"}, {"id": "17263306", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17263306.jpg", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2021-11-30"}, {"id": "17253129", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17253129.jpg", "headline": "NBA: Boston Celtics at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2021-11-28"}, {"id": "17196368", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17196368.jpg", "headline": "NBA: Toronto Raptors at Sacramento Kings", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2021-11-19"}, {"id": "17162031", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17162031.jpg", "headline": "NBA: Detroit Pistons at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2021-11-13"}, {"id": "17100739", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17100739.jpg", "headline": "NBA: Cleveland Cavaliers at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2021-11-05"}, {"id": "17053028", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17053028.jpg", "headline": "NBA: Orlando Magic at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2021-10-29"}, {"id": "17028607", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17028607.jpg", "headline": "NBA: Chicago Bulls at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Dan Hamilton", "source": "Imagn Images", "date": "2021-10-25"}, {"id": "17016006", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17016006.jpg", "headline": "NBA: Dallas Mavericks at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "Nick Turchiaro", "source": "Imagn Images", "date": "2021-10-23"}, {"id": "16892891", "thumb": "https://cdn.imagn.com/image/thumb/250-225/16892891.jpg", "headline": "NBA: Preseason-Philadelphia 76ers at Toronto Raptors", "player": "Scottie Barnes", "playerSlug": "scottie-barnes", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2021-10-04"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Scottie Barnes</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,636 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Toronto Raptors at Orlando Magic</div>
         <div class="credit">📷 Mike Watters · Imagn Images · Mar 04, 2025</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25497198/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25497198.jpg" alt="NBA: Phoenix Suns at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Phoenix Suns at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 23, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25386574/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25386574.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 05, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25339325/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25339325.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 04, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25326018/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25326018.jpg" alt="NBA: Los Angeles Clippers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Los Angeles Clippers at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 02, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25311113/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25311113.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 31, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25282334/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25282334.jpg" alt="NBA: New Orleans Pelicans at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: New Orleans Pelicans at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 27, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25242320/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25242320.jpg" alt="NBA: Orlando Magic at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Orlando Magic at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Jan 21, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25196799/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25196799.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Boston Celtics at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 15, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25182287/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25182287.jpg" alt="NBA: Golden State Warriors at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Golden State Warriors at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 13, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25152853/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25152853.jpg" alt="NBA: Toronto Raptors at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Toronto Raptors at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Jan 09, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25125537/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25125537.jpg" alt="NBA: Orlando Magic at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Orlando Magic at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 03, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25109471/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25109471.jpg" alt="NBA: Orlando Magic at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Orlando Magic at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 03, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25125522/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25125522.jpg" alt="NBA: Orlando Magic at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Orlando Magic at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 03, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25097971/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25097971.jpg" alt="NBA: Brooklyn Nets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Brooklyn Nets at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Jan 01, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25049986/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25049986.jpg" alt="NBA: Houston Rockets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Houston Rockets at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 22, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25030930/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25030930.jpg" alt="NBA: Brooklyn Nets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Brooklyn Nets at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Dec 19, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24920432/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24920432.jpg" alt="NBA: Oklahoma City Thunder at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 05, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24890120/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24890120.jpg" alt="NBA: Miami Heat at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Miami Heat at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Dec 01, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24819604/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24819604.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Nov 21, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24587210/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24587210.jpg" alt="NBA: Philadelphia 76ers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Philadelphia 76ers at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Oct 25, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24568121/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24568121.jpg" alt="NBA: Cleveland Cavaliers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Oct 23, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24577359/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24577359.jpg" alt="NBA: Cleveland Cavaliers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Oct 23, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22590898/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22590898.jpg" alt="NBA: Brooklyn Nets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Brooklyn Nets at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 22, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22495478/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22495478.jpg" alt="NBA: Cleveland Cavaliers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 10, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22351973/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22351973.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 22, 2024</div>
-    </div>
-</div>
-<div class="affiliate-module inline">
-    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Scottie+Barnes+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop Scottie Barnes basketball shoes</span>
-        <span class="badge-info">★ Latest Model</span>
-    </a>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22642341/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22642341.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 18, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22206877/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22206877.jpg" alt="NBA: Cleveland Cavaliers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Jan 01, 2024</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22159945/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22159945.jpg" alt="NBA: Charlotte Hornets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Charlotte Hornets at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Dec 18, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22136104/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22136104.jpg" alt="NBA: Charlotte Hornets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Charlotte Hornets at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Dec 18, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22011770/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22011770.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Dec 01, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21935728/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21935728.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Nov 19, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21906764/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21906764.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Washington Wizards at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Nov 13, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21891506/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21891506.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Washington Wizards at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Nov 13, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/21906760/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/21906760.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Washington Wizards at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Nov 13, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20326238/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20326238.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Washington Wizards at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Mar 26, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20329480/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20329480.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Washington Wizards at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Mar 26, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20248841/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20248841.jpg" alt="NBA: Oklahoma City Thunder at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Mar 16, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20230983/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20230983.jpg" alt="NBA: Denver Nuggets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Denver Nuggets at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Mar 14, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20231085/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20231085.jpg" alt="NBA: Denver Nuggets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Denver Nuggets at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Mar 14, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/20112643/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/20112643.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 28, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19997587/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19997587.jpg" alt="NBA: Orlando Magic at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Orlando Magic at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 14, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19983517/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19983517.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 12, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19964859/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19964859.jpg" alt="NBA: Utah Jazz at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Utah Jazz at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 10, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19948724/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19948724.jpg" alt="NBA: San Antonio Spurs at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: San Antonio Spurs at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 08, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19860502/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19860502.jpg" alt="NBA: Toronto Raptors at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Toronto Raptors at Sacramento Kings</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Jan 25, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19841880/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19841880.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Jan 22, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19791507/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19791507.jpg" alt="NBA: Atlanta Hawks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Atlanta Hawks at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 14, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19763579/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19763579.jpg" alt="NBA: Charlotte Hornets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Charlotte Hornets at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Jan 10, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19757642/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19757642.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 06, 2023</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19685493/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19685493.jpg" alt="NBA: Los Angeles Clippers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Los Angeles Clippers at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 27, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19649232/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19649232.jpg" alt="NBA: Golden State Warriors at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Golden State Warriors at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 18, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19636747/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19636747.jpg" alt="NBA: Brooklyn Nets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Brooklyn Nets at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Dec 16, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19624634/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19624634.jpg" alt="NBA: Sacramento Kings at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Sacramento Kings at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Dec 14, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19624626/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19624626.jpg" alt="NBA: Sacramento Kings at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Sacramento Kings at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Dec 14, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19588262/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19588262.jpg" alt="NBA: Los Angeles Lakers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Los Angeles Lakers at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Dec 07, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19571464/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19571464.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Boston Celtics at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 05, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19522755/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19522755.jpg" alt="NBA: Cleveland Cavaliers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Nov 28, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19434439/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19434439.jpg" alt="NBA: Toronto Raptors at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Toronto Raptors at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Nov 14, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19412032/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19412032.jpg" alt="NBA: Toronto Raptors at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Toronto Raptors at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Nov 11, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19396132/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19396132.jpg" alt="NBA: Houston Rockets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Houston Rockets at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Nov 09, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19380724/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19380724.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Nov 06, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19262507/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19262507.jpg" alt="NBA: Cleveland Cavaliers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Oct 19, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19285817/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19285817.jpg" alt="NBA: Cleveland Cavaliers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Oct 19, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/18171108/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18171108.jpg" alt="NBA: Playoffs-Philadelphia 76ers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Playoffs-Philadelphia 76ers at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Apr 28, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/18041589/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18041589.jpg" alt="NBA: Philadelphia 76ers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Philadelphia 76ers at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Apr 07, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17979952/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17979952.jpg" alt="NBA: Indiana Pacers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Indiana Pacers at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Mar 26, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17960658/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17960658.jpg" alt="NBA: Cleveland Cavaliers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Mar 24, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17946625/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17946625.jpg" alt="NBA: Los Angeles Lakers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Los Angeles Lakers at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Mar 18, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17898337/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17898337.jpg" alt="NBA: Toronto Raptors at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Toronto Raptors at Los Angeles Lakers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Mar 14, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17821732/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17821732.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Mar 03, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17675701/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17675701.jpg" alt="NBA: Denver Nuggets at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Denver Nuggets at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 12, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17505447/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17505447.jpg" alt="NBA: Toronto Raptors at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Toronto Raptors at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 14, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17479724/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17479724.jpg" alt="NBA: New Orleans Pelicans at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: New Orleans Pelicans at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Jan 09, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17444556/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17444556.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Jan 02, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17382468/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17382468.jpg" alt="NBA: Golden State Warriors at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Golden State Warriors at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 18, 2021</div>
-    </div>
-</div>
-<div class="affiliate-module inline">
-    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Scottie+Barnes+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop Scottie Barnes basketball shoes</span>
-        <span class="badge-info">★ Latest Model</span>
-    </a>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17354208/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17354208.jpg" alt="NBA: Sacramento Kings at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Sacramento Kings at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Dec 13, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17335229/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17335229.jpg" alt="NBA: New York Knicks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: New York Knicks at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Dec 10, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17321577/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17321577.jpg" alt="NBA: Oklahoma City Thunder at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Dec 08, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17300272/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17300272.jpg" alt="NBA: Washington Wizards at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Washington Wizards at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Dec 05, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17263306/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17263306.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Nov 30, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17253129/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17253129.jpg" alt="NBA: Boston Celtics at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Boston Celtics at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Nov 28, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17196368/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17196368.jpg" alt="NBA: Toronto Raptors at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Toronto Raptors at Sacramento Kings</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Nov 19, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17162031/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17162031.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Nov 13, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17100739/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17100739.jpg" alt="NBA: Cleveland Cavaliers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Nov 05, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17053028/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17053028.jpg" alt="NBA: Orlando Magic at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Orlando Magic at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Oct 29, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17028607/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17028607.jpg" alt="NBA: Chicago Bulls at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Chicago Bulls at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Oct 25, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17016006/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17016006.jpg" alt="NBA: Dallas Mavericks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Dallas Mavericks at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Oct 23, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/16892891/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/16892891.jpg" alt="NBA: Preseason-Philadelphia 76ers at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Preseason-Philadelphia 76ers at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Oct 04, 2021</div>
-    </div>
 </div>
         </div>
     </section>
@@ -1021,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/draymond-green/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28333094.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/under-armor/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/11932084.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Draymond Green</div>
-        <div class="mp-count">137 photos</div>
+        <div class="mp-name">Under Armor</div>
+        <div class="mp-count">13 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/luguentz-dort/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28390149.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/john-wall/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/19839053.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Luguentz Dort</div>
+        <div class="mp-name">John Wall</div>
+        <div class="mp-count">36 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/keon-ellis/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28213935.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Keon Ellis</div>
+        <div class="mp-count">11 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patrick-beverley/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/23025420.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Patrick Beverley</div>
         <div class="mp-count">33 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deandre-ayton/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22986775.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ayo-dosunmu/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28394318.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Deandre Ayton</div>
-        <div class="mp-count">43 photos</div>
+        <div class="mp-name">Ayo Dosunmu</div>
+        <div class="mp-count">34 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nikola-vucevic/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27891104.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/19837921.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Nikola Vucevic</div>
-        <div class="mp-count">82 photos</div>
+        <div class="mp-name">Montrezl Harrell</div>
+        <div class="mp-count">76 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwight-powell/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27889967.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-okogie/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27860984.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Dwight Powell</div>
-        <div class="mp-count">25 photos</div>
+        <div class="mp-name">Josh Okogie</div>
+        <div class="mp-count">30 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/gordon-hayward/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22180389.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/patty-mills/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25212352.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Gordon Hayward</div>
-        <div class="mp-count">31 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jonas-jerebko/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/12225160.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Jonas Jerebko</div>
-        <div class="mp-count">10 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/clint-capela/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25082587.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Clint Capela</div>
-        <div class="mp-count">41 photos</div>
+        <div class="mp-name">Patty Mills</div>
+        <div class="mp-count">26 photos</div>
     </div>
 </a>
         </div>

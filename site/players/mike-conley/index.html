@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "14003302", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14003302.jpg", "headline": "NBA: Denver Nuggets at Utah Jazz", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Jeffrey Swinger", "source": "Imagn Images", "date": "2020-02-05"}, {"id": "13937552", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13937552.jpg", "headline": "NBA: Indiana Pacers at Utah Jazz", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Russell Isabella", "source": "Imagn Images", "date": "2020-01-20"}, {"id": "13810614", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13810614.jpg", "headline": "NBA: Orlando Magic at Utah Jazz", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Russell Isabella", "source": "Imagn Images", "date": "2019-12-17"}, {"id": "13719308", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13719308.jpg", "headline": "NBA: Utah Jazz at Indiana Pacers", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Trevor Ruszkowski", "source": "Imagn Images", "date": "2019-11-27"}, {"id": "13719312", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13719312.jpg", "headline": "NBA: Utah Jazz at Indiana Pacers", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Trevor Ruszkowski", "source": "Imagn Images", "date": "2019-11-27"}, {"id": "13705481", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13705481.jpg", "headline": "NBA: New Orleans Pelicans at Utah Jazz", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Russell Isabella", "source": "Imagn Images", "date": "2019-11-23"}, {"id": "13685570", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13685570.jpg", "headline": "NBA: Minnesota Timberwolves at Utah Jazz", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Jeffrey Swinger", "source": "Imagn Images", "date": "2019-11-18"}, {"id": "13685562", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13685562.jpg", "headline": "NBA: Minnesota Timberwolves at Utah Jazz", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Jeffrey Swinger", "source": "Imagn Images", "date": "2019-11-18"}, {"id": "13660088", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13660088.jpg", "headline": "NBA: Brooklyn Nets at Utah Jazz", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Russell Isabella", "source": "Imagn Images", "date": "2019-11-12"}, {"id": "13577512", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13577512.jpg", "headline": "NBA: Sacramento Kings at Utah Jazz", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Russell Isabella", "source": "Imagn Images", "date": "2019-10-26"}, {"id": "13570533", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13570533.jpg", "headline": "NBA: Utah Jazz at Los Angeles Lakers", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Kelvin Kuo", "source": "Imagn Images", "date": "2019-10-25"}, {"id": "13560333", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13560333.jpg", "headline": "NBA: Oklahoma City Thunder at Utah Jazz", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Chris Nicoll", "source": "Imagn Images", "date": "2019-10-23"}, {"id": "12157266", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12157266.jpg", "headline": "NBA: Memphis Grizzlies at Chicago Bulls", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Kamil Krzaczynski", "source": "Imagn Images", "date": "2019-02-13"}, {"id": "12125724", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12125724.jpg", "headline": "NBA: Memphis Grizzlies at Oklahoma City Thunder", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Alonzo Adams", "source": "Imagn Images", "date": "2019-02-07"}, {"id": "12114667", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12114667.jpg", "headline": "NBA: Minnesota Timberwolves at Memphis Grizzlies", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2019-02-05"}, {"id": "12046635", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12046635.jpg", "headline": "NBA: Charlotte Hornets at Memphis Grizzlies", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2019-01-23"}, {"id": "12053085", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12053085.jpg", "headline": "NBA: Memphis Grizzlies at Toronto Raptors", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Tom Szczerbowski", "source": "Imagn Images", "date": "2019-01-19"}, {"id": "12009511", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12009511.jpg", "headline": "NBA: Milwaukee Bucks at Memphis Grizzlies", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2019-01-16"}, {"id": "11998641", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11998641.jpg", "headline": "NBA: Memphis Grizzlies at Houston Rockets", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Troy Taormina", "source": "Imagn Images", "date": "2019-01-14"}, {"id": "11924700", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11924700.jpg", "headline": "NBA: Memphis Grizzlies at Houston Rockets", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Troy Taormina", "source": "Imagn Images", "date": "2018-12-31"}, {"id": "11900717", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11900717.jpg", "headline": "NBA: Cleveland Cavaliers at Memphis Grizzlies", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-12-26"}, {"id": "11894932", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11894932.jpg", "headline": "NBA: Memphis Grizzlies at Los Angeles Lakers", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Kelvin Kuo", "source": "Imagn Images", "date": "2018-12-23"}, {"id": "11814112", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11814112.jpg", "headline": "NBA: Los Angeles Lakers at Memphis Grizzlies", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-12-08"}, {"id": "11655947", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11655947.jpg", "headline": "NBA: Utah Jazz at Memphis Grizzlies", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-11-12"}, {"id": "11598561", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11598561.jpg", "headline": "NBA: Memphis Grizzlies at Phoenix Suns", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "date": "2018-11-04"}, {"id": "11581664", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11581664.jpg", "headline": "NBA: Memphis Grizzlies at Utah Jazz", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Chris Nicoll", "source": "Imagn Images", "date": "2018-11-02"}, {"id": "11538707", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11538707.jpg", "headline": "NBA: Phoenix Suns at Memphis Grizzlies", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-10-27"}, {"id": "11381973", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11381973.jpg", "headline": "NBA: Preseason-Atlanta Hawks at Memphis Grizzlies", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-10-05"}, {"id": "9908744", "thumb": "https://cdn.imagn.com/image/thumb/250-225/9908744.jpg", "headline": "NBA: Phoenix Suns at Memphis Grizzlies", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2017-02-28"}, {"id": "9634006", "thumb": "https://cdn.imagn.com/image/thumb/250-225/9634006.jpg", "headline": "NBA: Minnesota Timberwolves at Memphis Grizzlies", "player": "Mike Conley", "playerSlug": "mike-conley", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2016-10-26"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Mike Conley</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,223 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Utah Jazz at Houston Rockets</div>
         <div class="credit">📷 Troy Taormina · Imagn Images · Feb 09, 2020</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14003302/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14003302.jpg" alt="NBA: Denver Nuggets at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Denver Nuggets at Utah Jazz</div>
-        <div class="credit">📷 Jeffrey Swinger · Imagn Images · Feb 05, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13937552/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13937552.jpg" alt="NBA: Indiana Pacers at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Indiana Pacers at Utah Jazz</div>
-        <div class="credit">📷 Russell Isabella · Imagn Images · Jan 20, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13810614/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13810614.jpg" alt="NBA: Orlando Magic at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Orlando Magic at Utah Jazz</div>
-        <div class="credit">📷 Russell Isabella · Imagn Images · Dec 17, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13719308/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13719308.jpg" alt="NBA: Utah Jazz at Indiana Pacers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Utah Jazz at Indiana Pacers</div>
-        <div class="credit">📷 Trevor Ruszkowski · Imagn Images · Nov 27, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13719312/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13719312.jpg" alt="NBA: Utah Jazz at Indiana Pacers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Utah Jazz at Indiana Pacers</div>
-        <div class="credit">📷 Trevor Ruszkowski · Imagn Images · Nov 27, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13705481/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13705481.jpg" alt="NBA: New Orleans Pelicans at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: New Orleans Pelicans at Utah Jazz</div>
-        <div class="credit">📷 Russell Isabella · Imagn Images · Nov 23, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13685570/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13685570.jpg" alt="NBA: Minnesota Timberwolves at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Utah Jazz</div>
-        <div class="credit">📷 Jeffrey Swinger · Imagn Images · Nov 18, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13685562/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13685562.jpg" alt="NBA: Minnesota Timberwolves at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Utah Jazz</div>
-        <div class="credit">📷 Jeffrey Swinger · Imagn Images · Nov 18, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13660088/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13660088.jpg" alt="NBA: Brooklyn Nets at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Brooklyn Nets at Utah Jazz</div>
-        <div class="credit">📷 Russell Isabella · Imagn Images · Nov 12, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13577512/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13577512.jpg" alt="NBA: Sacramento Kings at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Sacramento Kings at Utah Jazz</div>
-        <div class="credit">📷 Russell Isabella · Imagn Images · Oct 26, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13570533/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13570533.jpg" alt="NBA: Utah Jazz at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Utah Jazz at Los Angeles Lakers</div>
-        <div class="credit">📷 Kelvin Kuo · Imagn Images · Oct 25, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13560333/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13560333.jpg" alt="NBA: Oklahoma City Thunder at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Utah Jazz</div>
-        <div class="credit">📷 Chris Nicoll · Imagn Images · Oct 23, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12157266/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12157266.jpg" alt="NBA: Memphis Grizzlies at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Memphis Grizzlies at Chicago Bulls</div>
-        <div class="credit">📷 Kamil Krzaczynski · Imagn Images · Feb 13, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12125724/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12125724.jpg" alt="NBA: Memphis Grizzlies at Oklahoma City Thunder" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Memphis Grizzlies at Oklahoma City Thunder</div>
-        <div class="credit">📷 Alonzo Adams · Imagn Images · Feb 07, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12114667/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12114667.jpg" alt="NBA: Minnesota Timberwolves at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Feb 05, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12046635/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12046635.jpg" alt="NBA: Charlotte Hornets at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Charlotte Hornets at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Jan 23, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12053085/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12053085.jpg" alt="NBA: Memphis Grizzlies at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Memphis Grizzlies at Toronto Raptors</div>
-        <div class="credit">📷 Tom Szczerbowski · Imagn Images · Jan 19, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12009511/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12009511.jpg" alt="NBA: Milwaukee Bucks at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Milwaukee Bucks at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Jan 16, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11998641/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11998641.jpg" alt="NBA: Memphis Grizzlies at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Memphis Grizzlies at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · Jan 14, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11924700/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11924700.jpg" alt="NBA: Memphis Grizzlies at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Memphis Grizzlies at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · Dec 31, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11900717/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11900717.jpg" alt="NBA: Cleveland Cavaliers at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Dec 26, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11894932/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11894932.jpg" alt="NBA: Memphis Grizzlies at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Memphis Grizzlies at Los Angeles Lakers</div>
-        <div class="credit">📷 Kelvin Kuo · Imagn Images · Dec 23, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11814112/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11814112.jpg" alt="NBA: Los Angeles Lakers at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Los Angeles Lakers at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Dec 08, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11655947/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11655947.jpg" alt="NBA: Utah Jazz at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Utah Jazz at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Nov 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11598561/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11598561.jpg" alt="NBA: Memphis Grizzlies at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Memphis Grizzlies at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Nov 04, 2018</div>
-    </div>
-</div>
-<div class="affiliate-module inline">
-    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Mike+Conley+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop Mike Conley basketball shoes</span>
-        <span class="badge-info">★ Latest Model</span>
-    </a>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11581664/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11581664.jpg" alt="NBA: Memphis Grizzlies at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Memphis Grizzlies at Utah Jazz</div>
-        <div class="credit">📷 Chris Nicoll · Imagn Images · Nov 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11538707/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11538707.jpg" alt="NBA: Phoenix Suns at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Phoenix Suns at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Oct 27, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11381973/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11381973.jpg" alt="NBA: Preseason-Atlanta Hawks at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Preseason-Atlanta Hawks at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Oct 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9908744/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9908744.jpg" alt="NBA: Phoenix Suns at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Phoenix Suns at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Feb 28, 2017</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9634006/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9634006.jpg" alt="NBA: Minnesota Timberwolves at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-conley/" class="player-link">Mike Conley</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Oct 26, 2016</div>
-    </div>
 </div>
         </div>
     </section>
@@ -608,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-williams/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27921450.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deandre-ayton/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22986775.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Jalen Williams</div>
+        <div class="mp-name">Deandre Ayton</div>
+        <div class="mp-count">43 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/serge-ibaka/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/19434236.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Serge Ibaka</div>
+        <div class="mp-count">30 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/georges-niang/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25881684.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Georges Niang</div>
+        <div class="mp-count">30 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jaylin-williams/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28341016.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Jaylin Williams</div>
+        <div class="mp-count">20 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/caris-levert/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28215081.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Caris LeVert</div>
+        <div class="mp-count">48 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28033864.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Khris Middleton</div>
+        <div class="mp-count">60 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/daniel-theis/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/21998367.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Daniel Theis</div>
+        <div class="mp-count">25 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/danny-green/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20429797.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Danny Green</div>
         <div class="mp-count">32 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jeremiah-robinson-earl/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27718186.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Jeremiah Robinson-Earl</div>
-        <div class="mp-count">10 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/brandin-podziemski/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28331461.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Brandin Podziemski</div>
-        <div class="mp-count">18 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cam-reddish/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22173759.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Cam Reddish</div>
-        <div class="mp-count">23 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/sterling-brown/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/19757012.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Sterling Brown</div>
-        <div class="mp-count">19 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/demarcus-cousins/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17951581.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">DeMarcus Cousins</div>
-        <div class="mp-count">28 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tim-frazier/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17886181.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Tim Frazier</div>
-        <div class="mp-count">10 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/darius-garland/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27872836.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Darius Garland</div>
-        <div class="mp-count">73 photos</div>
     </div>
 </a>
         </div>

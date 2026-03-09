@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "13902192", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13902192.jpg", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2020-01-12"}, {"id": "13901397", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13901397.jpg", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2020-01-12"}, {"id": "13901403", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13901403.jpg", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2020-01-12"}, {"id": "13838149", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13838149.jpg", "headline": "NBA: Los Angeles Clippers at Los Angeles Lakers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2019-12-25"}, {"id": "13838142", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13838142.jpg", "headline": "NBA: Los Angeles Clippers at Los Angeles Lakers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2019-12-25"}, {"id": "13837629", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13837629.jpg", "headline": "NBA: Los Angeles Clippers at Los Angeles Lakers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2019-12-25"}, {"id": "13810503", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13810503.jpg", "headline": "NBA: Phoenix Suns at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kirby Lee", "source": "Imagn Images", "date": "2019-12-17"}, {"id": "13740244", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13740244.jpg", "headline": "NBA: Washington Wizards at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kelvin Kuo", "source": "Imagn Images", "date": "2019-12-01"}, {"id": "13739518", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13739518.jpg", "headline": "NBA: Washington Wizards at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kelvin Kuo", "source": "Imagn Images", "date": "2019-12-01"}, {"id": "13716505", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13716505.jpg", "headline": "NBA: Los Angeles Clippers at Dallas Mavericks", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2019-11-26"}, {"id": "13709894", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13709894.jpg", "headline": "NBA: New Orleans Pelicans at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Robert Hanashiro", "source": "Imagn Images", "date": "2019-11-24"}, {"id": "13709880", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13709880.jpg", "headline": "NBA: New Orleans Pelicans at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Robert Hanashiro", "source": "Imagn Images", "date": "2019-11-24"}, {"id": "13666074", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13666074.jpg", "headline": "NBA: Los Angeles Clippers at New Orleans Pelicans", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Chuck Cook", "source": "Imagn Images", "date": "2019-11-14"}, {"id": "13600393", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13600393.jpg", "headline": "NBA: San Antonio Spurs at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2019-10-31"}, {"id": "13600418", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13600418.jpg", "headline": "NBA: San Antonio Spurs at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2019-10-31"}, {"id": "13596453", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13596453.jpg", "headline": "NBA: Los Angeles Clippers at Utah Jazz", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Russell Isabella", "source": "Imagn Images", "date": "2019-10-30"}, {"id": "13564864", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13564864.jpg", "headline": "NBA: Los Angeles Clippers at Golden State Warriors", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2019-10-24"}, {"id": "12569107", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12569107.jpg", "headline": "NBA: Playoffs-Golden State Warriors at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2019-04-21"}, {"id": "12569104", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12569104.jpg", "headline": "NBA: Playoffs-Golden State Warriors at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2019-04-21"}, {"id": "12531434", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12531434.jpg", "headline": "NBA: Playoffs-Los Angeles Clippers at Golden State Warriors", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2019-04-13"}, {"id": "12531432", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12531432.jpg", "headline": "NBA: Playoffs-Los Angeles Clippers at Golden State Warriors", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2019-04-13"}, {"id": "12531429", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12531429.jpg", "headline": "NBA: Playoffs-Los Angeles Clippers at Golden State Warriors", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2019-04-13"}, {"id": "12400456", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12400456.jpg", "headline": "NBA: Los Angeles Clippers at Cleveland Cavaliers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2019-03-22"}, {"id": "12356598", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12356598.jpg", "headline": "NBA: Chicago Bulls at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kirby Lee", "source": "Imagn Images", "date": "2019-03-15"}, {"id": "12356599", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12356599.jpg", "headline": "NBA: Chicago Bulls at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kirby Lee", "source": "Imagn Images", "date": "2019-03-15"}, {"id": "12335703", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12335703.jpg", "headline": "NBA: Portland Trail Blazers at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kelvin Kuo", "source": "Imagn Images", "date": "2019-03-12"}, {"id": "12312165", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12312165.jpg", "headline": "NBA: Oklahoma City Thunder at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2019-03-08"}, {"id": "12251633", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12251633.jpg", "headline": "NBA: Los Angeles Clippers at Utah Jazz", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Russell Isabella", "source": "Imagn Images", "date": "2019-02-27"}, {"id": "12228706", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12228706.jpg", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2019-02-24"}, {"id": "12057705", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12057705.jpg", "headline": "NBA: Los Angeles Clippers at Chicago Bulls", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Mike Dinovo", "source": "Imagn Images", "date": "2019-01-25"}, {"id": "12057699", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12057699.jpg", "headline": "NBA: Los Angeles Clippers at Chicago Bulls", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Mike Dinovo", "source": "Imagn Images", "date": "2019-01-25"}, {"id": "12042556", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12042556.jpg", "headline": "NBA: Los Angeles Clippers at Dallas Mavericks", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kevin Jairaj", "source": "Imagn Images", "date": "2019-01-22"}, {"id": "11975383", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11975383.jpg", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2019-01-10"}, {"id": "11974435", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11974435.jpg", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2019-01-10"}, {"id": "11964884", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11964884.jpg", "headline": "NBA: Charlotte Hornets at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kelvin Kuo", "source": "Imagn Images", "date": "2019-01-08"}, {"id": "11889707", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11889707.jpg", "headline": "NBA: Denver Nuggets at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2018-12-22"}, {"id": "11824980", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11824980.jpg", "headline": "NBA: Los Angeles Clippers at Phoenix Suns", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Jennifer Stewart", "source": "Imagn Images", "date": "2018-12-10"}, {"id": "11795820", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11795820.jpg", "headline": "NBA: Los Angeles Clippers at Memphis Grizzlies", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-12-05"}, {"id": "11779395", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11779395.jpg", "headline": "NBA: Los Angeles Clippers at Dallas Mavericks", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2018-12-02"}, {"id": "11778175", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11778175.jpg", "headline": "NBA: Los Angeles Clippers at Dallas Mavericks", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2018-12-02"}, {"id": "11778173", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11778173.jpg", "headline": "NBA: Los Angeles Clippers at Dallas Mavericks", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2018-12-02"}, {"id": "11757799", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11757799.jpg", "headline": "NBA: Los Angeles Clippers at Sacramento Kings", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2018-11-29"}, {"id": "11701027", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11701027.jpg", "headline": "NBA: Los Angeles Clippers at Atlanta Hawks", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Dale Zanine", "source": "Imagn Images", "date": "2018-11-19"}, {"id": "11640451", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11640451.jpg", "headline": "NBA: Milwaukee Bucks at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2018-11-10"}, {"id": "11604702", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11604702.jpg", "headline": "NBA: Minnesota Timberwolves at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kelvin Kuo", "source": "Imagn Images", "date": "2018-11-05"}, {"id": "11604432", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11604432.jpg", "headline": "NBA: Minnesota Timberwolves at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kelvin Kuo", "source": "Imagn Images", "date": "2018-11-05"}, {"id": "11368485", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11368485.jpg", "headline": "NBA: Preseason-Minnesota Timberwolves at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kelvin Kuo", "source": "Imagn Images", "date": "2018-10-03"}, {"id": "10782299", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10782299.jpg", "headline": "NBA: Los Angeles Lakers at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Kelvin Kuo", "source": "Imagn Images", "date": "2018-04-11"}, {"id": "10744530", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10744530.jpg", "headline": "NBA: Los Angeles Clippers at Phoenix Suns", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Joe Camporeale", "source": "Imagn Images", "date": "2018-03-28"}, {"id": "10695196", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10695196.jpg", "headline": "NBA: Orlando Magic at Los Angeles Clippers", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2018-03-10"}, {"id": "10660888", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10660888.jpg", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-02-27"}, {"id": "10660882", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10660882.jpg", "headline": "NBA: Los Angeles Clippers at Denver Nuggets", "player": "Montrezl Harrell", "playerSlug": "montrezl-harrell", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-02-27"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Montrezl Harrell</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,377 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Miami Heat at Los Angeles Clippers</div>
         <div class="credit">📷 Kirby Lee · Imagn Images · Feb 05, 2020</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13902192/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13902192.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 12, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13901397/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13901397.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 12, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13901403/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13901403.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 12, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13838149/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13838149.jpg" alt="NBA: Los Angeles Clippers at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Los Angeles Lakers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Dec 25, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13838142/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13838142.jpg" alt="NBA: Los Angeles Clippers at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Los Angeles Lakers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Dec 25, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13837629/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13837629.jpg" alt="NBA: Los Angeles Clippers at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Los Angeles Lakers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Dec 25, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13810503/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13810503.jpg" alt="NBA: Phoenix Suns at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Phoenix Suns at Los Angeles Clippers</div>
-        <div class="credit">📷 Kirby Lee · Imagn Images · Dec 17, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13740244/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13740244.jpg" alt="NBA: Washington Wizards at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Washington Wizards at Los Angeles Clippers</div>
-        <div class="credit">📷 Kelvin Kuo · Imagn Images · Dec 01, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13739518/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13739518.jpg" alt="NBA: Washington Wizards at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Washington Wizards at Los Angeles Clippers</div>
-        <div class="credit">📷 Kelvin Kuo · Imagn Images · Dec 01, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13716505/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13716505.jpg" alt="NBA: Los Angeles Clippers at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Nov 26, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13709894/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13709894.jpg" alt="NBA: New Orleans Pelicans at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: New Orleans Pelicans at Los Angeles Clippers</div>
-        <div class="credit">📷 Robert Hanashiro · Imagn Images · Nov 24, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13709880/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13709880.jpg" alt="NBA: New Orleans Pelicans at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: New Orleans Pelicans at Los Angeles Clippers</div>
-        <div class="credit">📷 Robert Hanashiro · Imagn Images · Nov 24, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13666074/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13666074.jpg" alt="NBA: Los Angeles Clippers at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at New Orleans Pelicans</div>
-        <div class="credit">📷 Chuck Cook · Imagn Images · Nov 14, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13600393/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13600393.jpg" alt="NBA: San Antonio Spurs at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: San Antonio Spurs at Los Angeles Clippers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Oct 31, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13600418/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13600418.jpg" alt="NBA: San Antonio Spurs at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: San Antonio Spurs at Los Angeles Clippers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Oct 31, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13596453/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13596453.jpg" alt="NBA: Los Angeles Clippers at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Utah Jazz</div>
-        <div class="credit">📷 Russell Isabella · Imagn Images · Oct 30, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13564864/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13564864.jpg" alt="NBA: Los Angeles Clippers at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Oct 24, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12569107/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12569107.jpg" alt="NBA: Playoffs-Golden State Warriors at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Playoffs-Golden State Warriors at Los Angeles Clippers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Apr 21, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12569104/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12569104.jpg" alt="NBA: Playoffs-Golden State Warriors at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Playoffs-Golden State Warriors at Los Angeles Clippers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Apr 21, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12531434/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12531434.jpg" alt="NBA: Playoffs-Los Angeles Clippers at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Playoffs-Los Angeles Clippers at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 13, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12531432/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12531432.jpg" alt="NBA: Playoffs-Los Angeles Clippers at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Playoffs-Los Angeles Clippers at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 13, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12531429/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12531429.jpg" alt="NBA: Playoffs-Los Angeles Clippers at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Playoffs-Los Angeles Clippers at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 13, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12400456/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12400456.jpg" alt="NBA: Los Angeles Clippers at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Mar 22, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12356598/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12356598.jpg" alt="NBA: Chicago Bulls at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Chicago Bulls at Los Angeles Clippers</div>
-        <div class="credit">📷 Kirby Lee · Imagn Images · Mar 15, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12356599/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12356599.jpg" alt="NBA: Chicago Bulls at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Chicago Bulls at Los Angeles Clippers</div>
-        <div class="credit">📷 Kirby Lee · Imagn Images · Mar 15, 2019</div>
-    </div>
-</div>
-<div class="affiliate-module inline">
-    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Montrezl+Harrell+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop Montrezl Harrell basketball shoes</span>
-        <span class="badge-info">★ Latest Model</span>
-    </a>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12335703/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12335703.jpg" alt="NBA: Portland Trail Blazers at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Portland Trail Blazers at Los Angeles Clippers</div>
-        <div class="credit">📷 Kelvin Kuo · Imagn Images · Mar 12, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12312165/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12312165.jpg" alt="NBA: Oklahoma City Thunder at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Los Angeles Clippers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Mar 08, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12251633/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12251633.jpg" alt="NBA: Los Angeles Clippers at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Utah Jazz</div>
-        <div class="credit">📷 Russell Isabella · Imagn Images · Feb 27, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12228706/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12228706.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 24, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12057705/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12057705.jpg" alt="NBA: Los Angeles Clippers at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Chicago Bulls</div>
-        <div class="credit">📷 Mike Dinovo · Imagn Images · Jan 25, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12057699/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12057699.jpg" alt="NBA: Los Angeles Clippers at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Chicago Bulls</div>
-        <div class="credit">📷 Mike Dinovo · Imagn Images · Jan 25, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12042556/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12042556.jpg" alt="NBA: Los Angeles Clippers at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Dallas Mavericks</div>
-        <div class="credit">📷 Kevin Jairaj · Imagn Images · Jan 22, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11975383/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11975383.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 10, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11974435/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11974435.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 10, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11964884/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11964884.jpg" alt="NBA: Charlotte Hornets at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Charlotte Hornets at Los Angeles Clippers</div>
-        <div class="credit">📷 Kelvin Kuo · Imagn Images · Jan 08, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11889707/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11889707.jpg" alt="NBA: Denver Nuggets at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Denver Nuggets at Los Angeles Clippers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Dec 22, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11824980/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11824980.jpg" alt="NBA: Los Angeles Clippers at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Phoenix Suns</div>
-        <div class="credit">📷 Jennifer Stewart · Imagn Images · Dec 10, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11795820/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11795820.jpg" alt="NBA: Los Angeles Clippers at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Dec 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11779395/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11779395.jpg" alt="NBA: Los Angeles Clippers at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Dec 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11778175/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11778175.jpg" alt="NBA: Los Angeles Clippers at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Dec 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11778173/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11778173.jpg" alt="NBA: Los Angeles Clippers at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Dec 02, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11757799/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11757799.jpg" alt="NBA: Los Angeles Clippers at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Sacramento Kings</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Nov 29, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11701027/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11701027.jpg" alt="NBA: Los Angeles Clippers at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Atlanta Hawks</div>
-        <div class="credit">📷 Dale Zanine · Imagn Images · Nov 19, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11640451/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11640451.jpg" alt="NBA: Milwaukee Bucks at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Milwaukee Bucks at Los Angeles Clippers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Nov 10, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11604702/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11604702.jpg" alt="NBA: Minnesota Timberwolves at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Los Angeles Clippers</div>
-        <div class="credit">📷 Kelvin Kuo · Imagn Images · Nov 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11604432/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11604432.jpg" alt="NBA: Minnesota Timberwolves at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Los Angeles Clippers</div>
-        <div class="credit">📷 Kelvin Kuo · Imagn Images · Nov 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11368485/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11368485.jpg" alt="NBA: Preseason-Minnesota Timberwolves at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Preseason-Minnesota Timberwolves at Los Angeles Clippers</div>
-        <div class="credit">📷 Kelvin Kuo · Imagn Images · Oct 03, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10782299/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10782299.jpg" alt="NBA: Los Angeles Lakers at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Lakers at Los Angeles Clippers</div>
-        <div class="credit">📷 Kelvin Kuo · Imagn Images · Apr 11, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10744530/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10744530.jpg" alt="NBA: Los Angeles Clippers at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Phoenix Suns</div>
-        <div class="credit">📷 Joe Camporeale · Imagn Images · Mar 28, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10695196/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10695196.jpg" alt="NBA: Orlando Magic at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Orlando Magic at Los Angeles Clippers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Mar 10, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10660888/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10660888.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 27, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10660882/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10660882.jpg" alt="NBA: Los Angeles Clippers at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/montrezl-harrell/" class="player-link">Montrezl Harrell</a>
-        <div class="headline">NBA: Los Angeles Clippers at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 27, 2018</div>
-    </div>
 </div>
         </div>
     </section>
@@ -762,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/markelle-fultz/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/23091912.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/evan-fournier/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22037263.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Markelle Fultz</div>
-        <div class="mp-count">35 photos</div>
+        <div class="mp-name">Evan Fournier</div>
+        <div class="mp-count">25 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/frank-kaminsky/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/14705122.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/will-barton/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20326212.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Frank Kaminsky</div>
+        <div class="mp-name">Will Barton</div>
+        <div class="mp-count">36 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/goran-dragic/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/19566507.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Goran Dragic</div>
+        <div class="mp-count">13 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/thomas-bryant/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20360050.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Thomas Bryant</div>
         <div class="mp-count">19 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/victor-oladipo/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20337849.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/talen-horton-tucker/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25004007.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Victor Oladipo</div>
-        <div class="mp-count">22 photos</div>
+        <div class="mp-name">Talen Horton-Tucker</div>
+        <div class="mp-count">20 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joe-ingles/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27615565.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/taj-gibson/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25402953.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Joe Ingles</div>
-        <div class="mp-count">17 photos</div>
+        <div class="mp-name">Taj Gibson</div>
+        <div class="mp-count">31 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/james-harden/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28391736.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tim-frazier/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17886181.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">James Harden</div>
-        <div class="mp-count">189 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dj-augustin/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17988174.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">D.J. Augustin</div>
-        <div class="mp-count">17 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-mcdaniels/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20419515.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Jalen McDaniels</div>
+        <div class="mp-name">Tim Frazier</div>
         <div class="mp-count">10 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/damian-lillard/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25311090.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/david-nwaba/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17469712.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Damian Lillard</div>
-        <div class="mp-count">88 photos</div>
+        <div class="mp-name">David Nwaba</div>
+        <div class="mp-count">19 photos</div>
     </div>
 </a>
         </div>

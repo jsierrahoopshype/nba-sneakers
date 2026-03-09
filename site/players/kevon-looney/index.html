@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "19353867", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19353867.jpg", "headline": "NBA: Golden State Warriors at Orlando Magic", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Mike Watters", "source": "Imagn Images", "date": "2022-11-03"}, {"id": "19325114", "thumb": "https://cdn.imagn.com/image/thumb/250-225/19325114.jpg", "headline": "NBA: Golden State Warriors at Charlotte Hornets", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Jim Dedmon", "source": "Imagn Images", "date": "2022-10-29"}, {"id": "18364248", "thumb": "https://cdn.imagn.com/image/thumb/250-225/18364248.jpg", "headline": "NBA: Playoffs-Dallas Mavericks at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2022-05-26"}, {"id": "17897979", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17897979.jpg", "headline": "NBA: Washington Wizards at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2022-03-14"}, {"id": "17869937", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17869937.jpg", "headline": "NBA: Golden State Warriors at Denver Nuggets", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2022-03-10"}, {"id": "17702219", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17702219.jpg", "headline": "NBA: Denver Nuggets at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2022-02-16"}, {"id": "17687534", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17687534.jpg", "headline": "NBA: Golden State Warriors at Los Angeles Clippers", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2022-02-14"}, {"id": "17500791", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17500791.jpg", "headline": "NBA: Golden State Warriors at Milwaukee Bucks", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2022-01-13"}, {"id": "17459043", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17459043.jpg", "headline": "NBA: Golden State Warriors at Dallas Mavericks", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2022-01-05"}, {"id": "17392971", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17392971.jpg", "headline": "NBA: Sacramento Kings at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2021-12-20"}, {"id": "17382534", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17382534.jpg", "headline": "NBA: Golden State Warriors at Toronto Raptors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2021-12-18"}, {"id": "17309388", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17309388.jpg", "headline": "NBA: Orlando Magic at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2021-12-06"}, {"id": "17295459", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17295459.jpg", "headline": "NBA: San Antonio Spurs at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Stan Szeto", "source": "Imagn Images", "date": "2021-12-04"}, {"id": "17095964", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17095964.jpg", "headline": "NBA: Oklahoma City Thunder at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-10-30"}, {"id": "17129388", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17129388.jpg", "headline": "NBA: Memphis Grizzlies at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-10-28"}, {"id": "17001049", "thumb": "https://cdn.imagn.com/image/thumb/250-225/17001049.jpg", "headline": "NBA: Los Angeles Clippers at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-10-21"}, {"id": "16007870", "thumb": "https://cdn.imagn.com/image/thumb/250-225/16007870.jpg", "headline": "NBA: Golden State Warriors at New Orleans Pelicans", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Stephen Lew", "source": "Imagn Images", "date": "2021-05-03"}, {"id": "15818791", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15818791.jpg", "headline": "NBA: Chicago Bulls at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-03-29"}, {"id": "15785528", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15785528.jpg", "headline": "NBA: Philadelphia 76ers at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-03-23"}, {"id": "15483233", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15483233.jpg", "headline": "NBA: Minnesota Timberwolves at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2021-01-25"}, {"id": "15320366", "thumb": "https://cdn.imagn.com/image/thumb/250-225/15320366.jpg", "headline": "NBA: Preseason-Golden State Warriors at Sacramento Kings", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2020-12-15"}, {"id": "14106922", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14106922.jpg", "headline": "NBA: Los Angeles Lakers at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2020-02-27"}, {"id": "14106919", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14106919.jpg", "headline": "NBA: Los Angeles Lakers at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2020-02-27"}, {"id": "14243234", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14243234.jpg", "headline": "NBA: New Orleans Pelicans at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2020-02-23"}, {"id": "14016544", "thumb": "https://cdn.imagn.com/image/thumb/250-225/14016544.jpg", "headline": "NBA: Los Angeles Lakers at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Cary Edmondson", "source": "Imagn Images", "date": "2020-02-08"}, {"id": "13986523", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13986523.jpg", "headline": "NBA: Golden State Warriors at Cleveland Cavaliers", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Ken Blaze", "source": "Imagn Images", "date": "2020-02-01"}, {"id": "13834367", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13834367.jpg", "headline": "NBA: Minnesota Timberwolves at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2019-12-23"}, {"id": "13670207", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13670207.jpg", "headline": "NBA: Boston Celtics at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2019-11-15"}, {"id": "13564867", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13564867.jpg", "headline": "NBA: Los Angeles Clippers at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2019-10-24"}, {"id": "12830830", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12830830.jpg", "headline": "NBA: Finals-Golden State Warriors at Toronto Raptors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2019-05-30"}, {"id": "12646934", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12646934.jpg", "headline": "NBA: Playoffs-Golden State Warriors at Houston Rockets", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Troy Taormina", "source": "Imagn Images", "date": "2019-05-04"}, {"id": "12596320", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12596320.jpg", "headline": "NBA: Playoffs-Golden State Warriors at Los Angeles Clippers", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kirby Lee", "source": "Imagn Images", "date": "2019-04-26"}, {"id": "12569111", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12569111.jpg", "headline": "NBA: Playoffs-Golden State Warriors at Los Angeles Clippers", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Gary A. Vasquez", "source": "Imagn Images", "date": "2019-04-21"}, {"id": "12462110", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12462110.jpg", "headline": "NBA: Denver Nuggets at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2019-04-02"}, {"id": "12341352", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12341352.jpg", "headline": "NBA: Golden State Warriors at Houston Rockets", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Troy Taormina", "source": "Imagn Images", "date": "2019-03-13"}, {"id": "12325062", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12325062.jpg", "headline": "NBA: Phoenix Suns at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2019-03-10"}, {"id": "12225147", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12225147.jpg", "headline": "NBA: Houston Rockets at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2019-02-23"}, {"id": "12209739", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12209739.jpg", "headline": "NBA: Sacramento Kings at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2019-02-21"}, {"id": "12153530", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12153530.jpg", "headline": "NBA: Utah Jazz at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2019-02-12"}, {"id": "12115452", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12115452.jpg", "headline": "NBA: Philadelphia 76ers at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2019-01-31"}, {"id": "12005347", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12005347.jpg", "headline": "NBA: Golden State Warriors at Denver Nuggets", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2019-01-15"}, {"id": "11783800", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11783800.jpg", "headline": "NBA: Golden State Warriors at Atlanta Hawks", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Dale Zanine", "source": "Imagn Images", "date": "2018-12-03"}, {"id": "11739804", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11739804.jpg", "headline": "NBA: Orlando Magic at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2018-11-26"}, {"id": "11729026", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11729026.jpg", "headline": "NBA: Sacramento Kings at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2018-11-24"}, {"id": "11672838", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11672838.jpg", "headline": "NBA: Golden State Warriors at Houston Rockets", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Troy Taormina", "source": "Imagn Images", "date": "2018-11-15"}, {"id": "11661178", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11661178.jpg", "headline": "NBA: Atlanta Hawks at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2018-11-13"}, {"id": "11643799", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11643799.jpg", "headline": "NBA: Brooklyn Nets at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2018-11-10"}, {"id": "11493694", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11493694.jpg", "headline": "NBA: Golden State Warriors at Denver Nuggets", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-10-21"}, {"id": "11455862", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11455862.jpg", "headline": "NBA: Oklahoma City Thunder at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2018-10-16"}, {"id": "10758804", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10758804.jpg", "headline": "NBA: Phoenix Suns at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2018-04-01"}, {"id": "10747077", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10747077.jpg", "headline": "NBA: Milwaukee Bucks at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2018-03-29"}, {"id": "10742640", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10742640.jpg", "headline": "NBA: Indiana Pacers at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2018-03-27"}, {"id": "10689440", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10689440.jpg", "headline": "NBA: San Antonio Spurs at Golden State Warriors", "player": "Kevon Looney", "playerSlug": "kevon-looney", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2018-03-08"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Kevon Looney</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,384 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Golden State Warriors at New Orleans Pelicans</div>
         <div class="credit">📷 Stephen Lew · Imagn Images · Nov 21, 2022</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19353867/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19353867.jpg" alt="NBA: Golden State Warriors at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Golden State Warriors at Orlando Magic</div>
-        <div class="credit">📷 Mike Watters · Imagn Images · Nov 03, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/19325114/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/19325114.jpg" alt="NBA: Golden State Warriors at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Golden State Warriors at Charlotte Hornets</div>
-        <div class="credit">📷 Jim Dedmon · Imagn Images · Oct 29, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/18364248/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/18364248.jpg" alt="NBA: Playoffs-Dallas Mavericks at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Playoffs-Dallas Mavericks at Golden State Warriors</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · May 26, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17897979/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17897979.jpg" alt="NBA: Washington Wizards at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Washington Wizards at Golden State Warriors</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Mar 14, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17869937/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17869937.jpg" alt="NBA: Golden State Warriors at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Golden State Warriors at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 10, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17702219/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17702219.jpg" alt="NBA: Denver Nuggets at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Denver Nuggets at Golden State Warriors</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Feb 16, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17687534/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17687534.jpg" alt="NBA: Golden State Warriors at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Golden State Warriors at Los Angeles Clippers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Feb 14, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17500791/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17500791.jpg" alt="NBA: Golden State Warriors at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Golden State Warriors at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Jan 13, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17459043/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17459043.jpg" alt="NBA: Golden State Warriors at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Golden State Warriors at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Jan 05, 2022</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17392971/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17392971.jpg" alt="NBA: Sacramento Kings at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Sacramento Kings at Golden State Warriors</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Dec 20, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17382534/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17382534.jpg" alt="NBA: Golden State Warriors at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Golden State Warriors at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Dec 18, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17309388/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17309388.jpg" alt="NBA: Orlando Magic at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Orlando Magic at Golden State Warriors</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Dec 06, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17295459/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17295459.jpg" alt="NBA: San Antonio Spurs at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: San Antonio Spurs at Golden State Warriors</div>
-        <div class="credit">📷 Stan Szeto · Imagn Images · Dec 04, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17095964/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17095964.jpg" alt="NBA: Oklahoma City Thunder at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Oct 30, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17129388/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17129388.jpg" alt="NBA: Memphis Grizzlies at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Memphis Grizzlies at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Oct 28, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/17001049/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/17001049.jpg" alt="NBA: Los Angeles Clippers at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Los Angeles Clippers at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Oct 21, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/16007870/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/16007870.jpg" alt="NBA: Golden State Warriors at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Golden State Warriors at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · May 03, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15818791/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15818791.jpg" alt="NBA: Chicago Bulls at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Chicago Bulls at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 29, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15785528/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15785528.jpg" alt="NBA: Philadelphia 76ers at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Philadelphia 76ers at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 23, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15483233/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15483233.jpg" alt="NBA: Minnesota Timberwolves at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Jan 25, 2021</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/15320366/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/15320366.jpg" alt="NBA: Preseason-Golden State Warriors at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Preseason-Golden State Warriors at Sacramento Kings</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Dec 15, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14106922/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14106922.jpg" alt="NBA: Los Angeles Lakers at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Los Angeles Lakers at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Feb 27, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14106919/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14106919.jpg" alt="NBA: Los Angeles Lakers at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Los Angeles Lakers at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Feb 27, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14243234/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14243234.jpg" alt="NBA: New Orleans Pelicans at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: New Orleans Pelicans at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Feb 23, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/14016544/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/14016544.jpg" alt="NBA: Los Angeles Lakers at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Los Angeles Lakers at Golden State Warriors</div>
-        <div class="credit">📷 Cary Edmondson · Imagn Images · Feb 08, 2020</div>
-    </div>
-</div>
-<div class="affiliate-module inline">
-    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Kevon+Looney+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop Kevon Looney basketball shoes</span>
-        <span class="badge-info">★ Latest Model</span>
-    </a>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13986523/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13986523.jpg" alt="NBA: Golden State Warriors at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Golden State Warriors at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Feb 01, 2020</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13834367/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13834367.jpg" alt="NBA: Minnesota Timberwolves at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Golden State Warriors</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Dec 23, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13670207/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13670207.jpg" alt="NBA: Boston Celtics at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Boston Celtics at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 15, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13564867/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13564867.jpg" alt="NBA: Los Angeles Clippers at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Los Angeles Clippers at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Oct 24, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12830830/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12830830.jpg" alt="NBA: Finals-Golden State Warriors at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Finals-Golden State Warriors at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · May 30, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12646934/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12646934.jpg" alt="NBA: Playoffs-Golden State Warriors at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Playoffs-Golden State Warriors at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · May 04, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12596320/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12596320.jpg" alt="NBA: Playoffs-Golden State Warriors at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Playoffs-Golden State Warriors at Los Angeles Clippers</div>
-        <div class="credit">📷 Kirby Lee · Imagn Images · Apr 26, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12569111/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12569111.jpg" alt="NBA: Playoffs-Golden State Warriors at Los Angeles Clippers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Playoffs-Golden State Warriors at Los Angeles Clippers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Apr 21, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12462110/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12462110.jpg" alt="NBA: Denver Nuggets at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Denver Nuggets at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 02, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12341352/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12341352.jpg" alt="NBA: Golden State Warriors at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Golden State Warriors at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · Mar 13, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12325062/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12325062.jpg" alt="NBA: Phoenix Suns at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Phoenix Suns at Golden State Warriors</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Mar 10, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12225147/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12225147.jpg" alt="NBA: Houston Rockets at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Houston Rockets at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Feb 23, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12209739/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12209739.jpg" alt="NBA: Sacramento Kings at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Sacramento Kings at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Feb 21, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12153530/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12153530.jpg" alt="NBA: Utah Jazz at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Utah Jazz at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Feb 12, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12115452/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12115452.jpg" alt="NBA: Philadelphia 76ers at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Philadelphia 76ers at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Jan 31, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12005347/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12005347.jpg" alt="NBA: Golden State Warriors at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Golden State Warriors at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Jan 15, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11783800/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11783800.jpg" alt="NBA: Golden State Warriors at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Golden State Warriors at Atlanta Hawks</div>
-        <div class="credit">📷 Dale Zanine · Imagn Images · Dec 03, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11739804/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11739804.jpg" alt="NBA: Orlando Magic at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Orlando Magic at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 26, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11729026/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11729026.jpg" alt="NBA: Sacramento Kings at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Sacramento Kings at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 24, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11672838/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11672838.jpg" alt="NBA: Golden State Warriors at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Golden State Warriors at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · Nov 15, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11661178/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11661178.jpg" alt="NBA: Atlanta Hawks at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Atlanta Hawks at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 13, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11643799/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11643799.jpg" alt="NBA: Brooklyn Nets at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Brooklyn Nets at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 10, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11493694/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11493694.jpg" alt="NBA: Golden State Warriors at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Golden State Warriors at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Oct 21, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11455862/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11455862.jpg" alt="NBA: Oklahoma City Thunder at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Oct 16, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10758804/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10758804.jpg" alt="NBA: Phoenix Suns at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Phoenix Suns at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Apr 01, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10747077/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10747077.jpg" alt="NBA: Milwaukee Bucks at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Milwaukee Bucks at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 29, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10742640/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10742640.jpg" alt="NBA: Indiana Pacers at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: Indiana Pacers at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 27, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10689440/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10689440.jpg" alt="NBA: San Antonio Spurs at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevon-looney/" class="player-link">Kevon Looney</a>
-        <div class="headline">NBA: San Antonio Spurs at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 08, 2018</div>
-    </div>
 </div>
         </div>
     </section>
@@ -769,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dennis-smith-jr/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22801305.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/brandon-ingram/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28393862.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Dennis Smith Jr</div>
-        <div class="mp-count">22 photos</div>
+        <div class="mp-name">Brandon Ingram</div>
+        <div class="mp-count">45 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anfernee-simons/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/24890418.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jr-smith/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/14949246.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Anfernee Simons</div>
-        <div class="mp-count">17 photos</div>
+        <div class="mp-name">J.R. Smith</div>
+        <div class="mp-count">29 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cj-miles/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/12223793.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/paul-millsap/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/18150034.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">C.J. Miles</div>
-        <div class="mp-count">10 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/justise-winslow/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22669226.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Justise Winslow</div>
-        <div class="mp-count">13 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cole-anthony/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25565789.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Cole Anthony</div>
-        <div class="mp-count">15 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/austin-rivers/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/19769901.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Austin Rivers</div>
-        <div class="mp-count">35 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dorian-finney-smith/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28350889.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Dorian Finney-Smith</div>
+        <div class="mp-name">Paul Millsap</div>
         <div class="mp-count">36 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/davion-mitchell/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27459691.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/damion-lee/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22807836.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Davion Mitchell</div>
+        <div class="mp-name">Damion Lee</div>
         <div class="mp-count">17 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/onyeka-okongwu/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27410266.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Onyeka Okongwu</div>
+        <div class="mp-count">21 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mikal-bridges/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28174335.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Mikal Bridges</div>
+        <div class="mp-count">32 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marcus-morris/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/12670101.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Marcus Morris</div>
+        <div class="mp-count">22 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/danny-green/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20429797.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Danny Green</div>
+        <div class="mp-count">32 photos</div>
     </div>
 </a>
         </div>

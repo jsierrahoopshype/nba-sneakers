@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "11510408", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11510408.jpg", "headline": "NBA: Philadelphia 76ers at Milwaukee Bucks", "player": "Eric Bledsoe", "playerSlug": "eric-bledsoe", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-10-24"}, {"id": "11498865", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11498865.jpg", "headline": "NBA: New York Knicks at Milwaukee Bucks", "player": "Eric Bledsoe", "playerSlug": "eric-bledsoe", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-10-22"}, {"id": "10806166", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10806166.jpg", "headline": "NBA: Playoffs-Boston Celtics at Milwaukee Bucks", "player": "Eric Bledsoe", "playerSlug": "eric-bledsoe", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-04-26"}, {"id": "10796981", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10796981.jpg", "headline": "NBA: Playoffs-Boston Celtics at Milwaukee Bucks", "player": "Eric Bledsoe", "playerSlug": "eric-bledsoe", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-04-20"}, {"id": "10787276", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10787276.jpg", "headline": "NBA: Playoffs-Milwaukee Bucks at Boston Celtics", "player": "Eric Bledsoe", "playerSlug": "eric-bledsoe", "photographer": "Paul Rutherford", "source": "Imagn Images", "date": "2018-04-15"}, {"id": "10778888", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10778888.jpg", "headline": "NBA: Orlando Magic at Milwaukee Bucks", "player": "Eric Bledsoe", "playerSlug": "eric-bledsoe", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-04-09"}, {"id": "10768809", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10768809.jpg", "headline": "NBA: Brooklyn Nets at Milwaukee Bucks", "player": "Eric Bledsoe", "playerSlug": "eric-bledsoe", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-04-05"}, {"id": "10763921", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10763921.jpg", "headline": "NBA: Boston Celtics at Milwaukee Bucks", "player": "Eric Bledsoe", "playerSlug": "eric-bledsoe", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-04-03"}, {"id": "10747075", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10747075.jpg", "headline": "NBA: Milwaukee Bucks at Golden State Warriors", "player": "Eric Bledsoe", "playerSlug": "eric-bledsoe", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2018-03-29"}, {"id": "10697888", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10697888.jpg", "headline": "NBA: Milwaukee Bucks at Memphis Grizzlies", "player": "Eric Bledsoe", "playerSlug": "eric-bledsoe", "photographer": "Justin Ford", "source": "Imagn Images", "date": "2018-03-12"}, {"id": "10673988", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10673988.jpg", "headline": "NBA: New Orleans Pelicans at Milwaukee Bucks", "player": "Eric Bledsoe", "playerSlug": "eric-bledsoe", "photographer": "Benny Sieu", "source": "Imagn Images", "date": "2018-02-25"}, {"id": "10649820", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10649820.jpg", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "player": "Eric Bledsoe", "playerSlug": "eric-bledsoe", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2018-02-23"}, {"id": "10649813", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10649813.jpg", "headline": "NBA: Milwaukee Bucks at Toronto Raptors", "player": "Eric Bledsoe", "playerSlug": "eric-bledsoe", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2018-02-23"}, {"id": "9770531", "thumb": "https://cdn.imagn.com/image/thumb/250-225/9770531.jpg", "headline": "NBA: Indiana Pacers at Phoenix Suns", "player": "Eric Bledsoe", "playerSlug": "eric-bledsoe", "photographer": "Mark J. Rebilas", "source": "Imagn Images", "date": "2016-12-07"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Eric Bledsoe</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,104 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Denver Nuggets at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Nov 19, 2018</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11510408/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11510408.jpg" alt="NBA: Philadelphia 76ers at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/eric-bledsoe/" class="player-link">Eric Bledsoe</a>
-        <div class="headline">NBA: Philadelphia 76ers at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Oct 24, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11498865/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11498865.jpg" alt="NBA: New York Knicks at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/eric-bledsoe/" class="player-link">Eric Bledsoe</a>
-        <div class="headline">NBA: New York Knicks at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Oct 22, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10806166/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10806166.jpg" alt="NBA: Playoffs-Boston Celtics at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/eric-bledsoe/" class="player-link">Eric Bledsoe</a>
-        <div class="headline">NBA: Playoffs-Boston Celtics at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 26, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10796981/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10796981.jpg" alt="NBA: Playoffs-Boston Celtics at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/eric-bledsoe/" class="player-link">Eric Bledsoe</a>
-        <div class="headline">NBA: Playoffs-Boston Celtics at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 20, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10787276/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10787276.jpg" alt="NBA: Playoffs-Milwaukee Bucks at Boston Celtics" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/eric-bledsoe/" class="player-link">Eric Bledsoe</a>
-        <div class="headline">NBA: Playoffs-Milwaukee Bucks at Boston Celtics</div>
-        <div class="credit">📷 Paul Rutherford · Imagn Images · Apr 15, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10778888/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10778888.jpg" alt="NBA: Orlando Magic at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/eric-bledsoe/" class="player-link">Eric Bledsoe</a>
-        <div class="headline">NBA: Orlando Magic at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 09, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10768809/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10768809.jpg" alt="NBA: Brooklyn Nets at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/eric-bledsoe/" class="player-link">Eric Bledsoe</a>
-        <div class="headline">NBA: Brooklyn Nets at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10763921/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10763921.jpg" alt="NBA: Boston Celtics at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/eric-bledsoe/" class="player-link">Eric Bledsoe</a>
-        <div class="headline">NBA: Boston Celtics at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 03, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10747075/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10747075.jpg" alt="NBA: Milwaukee Bucks at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/eric-bledsoe/" class="player-link">Eric Bledsoe</a>
-        <div class="headline">NBA: Milwaukee Bucks at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Mar 29, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10697888/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10697888.jpg" alt="NBA: Milwaukee Bucks at Memphis Grizzlies" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/eric-bledsoe/" class="player-link">Eric Bledsoe</a>
-        <div class="headline">NBA: Milwaukee Bucks at Memphis Grizzlies</div>
-        <div class="credit">📷 Justin Ford · Imagn Images · Mar 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10673988/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10673988.jpg" alt="NBA: New Orleans Pelicans at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/eric-bledsoe/" class="player-link">Eric Bledsoe</a>
-        <div class="headline">NBA: New Orleans Pelicans at Milwaukee Bucks</div>
-        <div class="credit">📷 Benny Sieu · Imagn Images · Feb 25, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10649820/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10649820.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/eric-bledsoe/" class="player-link">Eric Bledsoe</a>
-        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 23, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10649813/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10649813.jpg" alt="NBA: Milwaukee Bucks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/eric-bledsoe/" class="player-link">Eric Bledsoe</a>
-        <div class="headline">NBA: Milwaukee Bucks at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 23, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/9770531/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/9770531.jpg" alt="NBA: Indiana Pacers at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/eric-bledsoe/" class="player-link">Eric Bledsoe</a>
-        <div class="headline">NBA: Indiana Pacers at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Dec 07, 2016</div>
-    </div>
 </div>
         </div>
     </section>
@@ -489,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ausar-thompson/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27324824.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Ausar Thompson</div>
-        <div class="mp-count">11 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/taj-gibson/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25402953.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Taj Gibson</div>
-        <div class="mp-count">31 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jaxson-hayes/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28396096.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Jaxson Hayes</div>
-        <div class="mp-count">25 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/wesley-iwundu/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/12529600.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Wesley Iwundu</div>
-        <div class="mp-count">11 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/christian-wood/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20400383.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Christian Wood</div>
-        <div class="mp-count">41 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-love/" class="more-player-card">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-love/" class="more-player-card">
     <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/24889992.jpg)"></div>
     <div class="mp-info">
         <div class="mp-name">Kevin Love</div>
         <div class="mp-count">90 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marc-gasol/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/14719545.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/davis-bertans/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/19840405.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Marc Gasol</div>
-        <div class="mp-count">42 photos</div>
+        <div class="mp-name">Davis Bertans</div>
+        <div class="mp-count">15 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cam-reddish/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22173759.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/darius-bazley/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/20272215.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Cam Reddish</div>
-        <div class="mp-count">23 photos</div>
+        <div class="mp-name">Darius Bazley</div>
+        <div class="mp-count">26 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-booker/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27890637.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Devin Booker</div>
+        <div class="mp-count">102 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tyrese-haliburton/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/26495222.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Tyrese Haliburton</div>
+        <div class="mp-count">68 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/danilo-gallinari/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/21694442.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Danilo Gallinari</div>
+        <div class="mp-count">18 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/evan-turner/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/13749381.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Evan Turner</div>
+        <div class="mp-count">13 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/derrick-white/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28122202.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Derrick White</div>
+        <div class="mp-count">15 photos</div>
     </div>
 </a>
         </div>

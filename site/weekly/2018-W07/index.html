@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "10614744", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10614744.jpg", "headline": "NBA: Los Angeles Clippers at Boston Celtics", "player": "Terry Rozier", "playerSlug": "terry-rozier", "photographer": "David Butler II", "source": "Imagn Images", "date": "2018-02-14"}, {"id": "10613504", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10613504.jpg", "headline": "NBA: Sacramento Kings at Houston Rockets", "player": "James Harden", "playerSlug": "james-harden", "photographer": "Erik Williams", "source": "Imagn Images", "date": "2018-02-14"}, {"id": "10613325", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10613325.jpg", "headline": "NBA: Phoenix Suns at Utah Jazz", "player": "Rudy Gobert&#x27;s", "playerSlug": "rudy-goberts", "photographer": "Russell Isabella", "source": "Imagn Images", "date": "2018-02-14"}, {"id": "10611811", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10611811.jpg", "headline": "NBA: San Antonio Spurs at Denver Nuggets", "player": "Darrun Hilliard", "playerSlug": "darrun-hilliard", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-02-13"}, {"id": "10611792", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10611792.jpg", "headline": "NBA: San Antonio Spurs at Denver Nuggets", "player": "Malik Beasley", "playerSlug": "malik-beasley", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-02-13"}, {"id": "10611788", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10611788.jpg", "headline": "NBA: San Antonio Spurs at Denver Nuggets", "player": "Tony Parker", "playerSlug": "tony-parker", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-02-13"}, {"id": "10611314", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10611314.jpg", "headline": "NBA: Sacramento Kings at Dallas Mavericks", "player": "Justin Jackson", "playerSlug": "justin-jackson", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2018-02-13"}, {"id": "10611666", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10611666.jpg", "headline": "NBA: San Antonio Spurs at Denver Nuggets", "player": "Juancho Hernangomez", "playerSlug": "juancho-hernangomez", "photographer": "Isaiah J. Downing", "source": "Imagn Images", "date": "2018-02-13"}, {"id": "10611192", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10611192.jpg", "headline": "NBA: Houston Rockets at Minnesota Timberwolves", "player": "James Harden", "playerSlug": "james-harden", "photographer": "Jesse Johnson", "source": "Imagn Images", "date": "2018-02-13"}, {"id": "10610476", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10610476.jpg", "headline": "NBA: Sacramento Kings at Dallas Mavericks", "player": "Harrison Barnes", "playerSlug": "harrison-barnes", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2018-02-13"}, {"id": "10610436", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10610436.jpg", "headline": "NBA: Sacramento Kings at Dallas Mavericks", "player": "Wesley Matthews", "playerSlug": "wesley-matthews", "photographer": "Jerome Miron", "source": "Imagn Images", "date": "2018-02-13"}, {"id": "10610468", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10610468.jpg", "headline": "NBA: Houston Rockets at Minnesota Timberwolves", "player": "Chris Paul", "playerSlug": "chris-paul", "photographer": "Jesse Johnson", "source": "Imagn Images", "date": "2018-02-13"}, {"id": "10610465", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10610465.jpg", "headline": "NBA: Houston Rockets at Minnesota Timberwolves", "player": "Karl-Anthony Towns", "playerSlug": "karl-anthony-towns", "photographer": "Jesse Johnson", "source": "Imagn Images", "date": "2018-02-13"}, {"id": "10610462", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10610462.jpg", "headline": "NBA: Houston Rockets at Minnesota Timberwolves", "player": "Andrew Wiggins", "playerSlug": "andrew-wiggins", "photographer": "Jesse Johnson", "source": "Imagn Images", "date": "2018-02-13"}, {"id": "10607973", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10607973.jpg", "headline": "NBA: New Orleans Pelicans at Detroit Pistons", "player": "Reggie Bullock", "playerSlug": "reggie-bullock", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2018-02-12"}, {"id": "10607992", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10607992.jpg", "headline": "NBA: Phoenix Suns at Golden State Warriors", "player": "Alex Len", "playerSlug": "alex-len", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2018-02-12"}, {"id": "10607972", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10607972.jpg", "headline": "NBA: New Orleans Pelicans at Detroit Pistons", "player": "Langston Galloway", "playerSlug": "langston-galloway", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2018-02-12"}, {"id": "10607974", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10607974.jpg", "headline": "NBA: New Orleans Pelicans at Detroit Pistons", "player": "Anthony Davis", "playerSlug": "anthony-davis", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2018-02-12"}, {"id": "10607965", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10607965.jpg", "headline": "NBA: Phoenix Suns at Golden State Warriors", "player": "Stephen Curry", "playerSlug": "stephen-curry", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2018-02-12"}, {"id": "10608076", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10608076.jpg", "headline": "NBA: San Antonio Spurs at Utah Jazz", "player": "Rudy Gobert", "playerSlug": "rudy-gobert", "photographer": "Chris Nicoll", "source": "Imagn Images", "date": "2018-02-12"}, {"id": "10607971", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10607971.jpg", "headline": "NBA: New Orleans Pelicans at Detroit Pistons", "player": "Langston Galloway", "playerSlug": "langston-galloway", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2018-02-12"}, {"id": "10607909", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10607909.jpg", "headline": "NBA: Orlando Magic at Chicago Bulls", "player": "Mario Hezonja", "playerSlug": "mario-hezonja", "photographer": "David Banks", "source": "Imagn Images", "date": "2018-02-12"}, {"id": "10607910", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10607910.jpg", "headline": "NBA: Orlando Magic at Chicago Bulls", "player": "Bismack Biyombo", "playerSlug": "bismack-biyombo", "photographer": "David Banks", "source": "Imagn Images", "date": "2018-02-12"}, {"id": "10607908", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10607908.jpg", "headline": "NBA: Orlando Magic at Chicago Bulls", "player": "Evan Fournier", "playerSlug": "evan-fournier", "photographer": "David Banks", "source": "Imagn Images", "date": "2018-02-12"}, {"id": "10608075", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10608075.jpg", "headline": "NBA: San Antonio Spurs at Utah Jazz", "player": "Jae Crowder", "playerSlug": "jae-crowder", "photographer": "Chris Nicoll", "source": "Imagn Images", "date": "2018-02-12"}, {"id": "10607914", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10607914.jpg", "headline": "NBA: Phoenix Suns at Golden State Warriors", "player": "Stephen Curry", "playerSlug": "stephen-curry", "photographer": "Kelley L Cox", "source": "Imagn Images", "date": "2018-02-12"}, {"id": "10608073", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10608073.jpg", "headline": "NBA: San Antonio Spurs at Utah Jazz", "player": "Royce O&#x27;Neale", "playerSlug": "royce-oneale", "photographer": "Chris Nicoll", "source": "Imagn Images", "date": "2018-02-12"}, {"id": "10607970", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10607970.jpg", "headline": "NBA: New Orleans Pelicans at Detroit Pistons", "player": "Darius Miller", "playerSlug": "darius-miller", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2018-02-12"}, {"id": "10607968", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10607968.jpg", "headline": "NBA: New Orleans Pelicans at Detroit Pistons", "player": "Darius Miller", "playerSlug": "darius-miller", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2018-02-12"}, {"id": "10607969", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10607969.jpg", "headline": "NBA: New Orleans Pelicans at Detroit Pistons", "player": "Rajon Rondo", "playerSlug": "rajon-rondo", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2018-02-12"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Week of Feb 12</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             <div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10629795/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10629795.jpg" alt="NBA: All Star Game-Team LeBron at Team Stephen" loading="lazy"></a>
     <div class="meta">
@@ -361,216 +363,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mario-hezonja/" class="player-link">Mario Hezonja</a>
         <div class="headline">NBA: Charlotte Hornets at Orlando Magic</div>
         <div class="credit">📷 Kim Klement · Imagn Images · Feb 14, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10614744/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10614744.jpg" alt="NBA: Los Angeles Clippers at Boston Celtics" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/terry-rozier/" class="player-link">Terry Rozier</a>
-        <div class="headline">NBA: Los Angeles Clippers at Boston Celtics</div>
-        <div class="credit">📷 David Butler II · Imagn Images · Feb 14, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10613504/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10613504.jpg" alt="NBA: Sacramento Kings at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/james-harden/" class="player-link">James Harden</a>
-        <div class="headline">NBA: Sacramento Kings at Houston Rockets</div>
-        <div class="credit">📷 Erik Williams · Imagn Images · Feb 14, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10613325/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10613325.jpg" alt="NBA: Phoenix Suns at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rudy-goberts/" class="player-link">Rudy Gobert&#x27;s</a>
-        <div class="headline">NBA: Phoenix Suns at Utah Jazz</div>
-        <div class="credit">📷 Russell Isabella · Imagn Images · Feb 14, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10611811/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10611811.jpg" alt="NBA: San Antonio Spurs at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/darrun-hilliard/" class="player-link">Darrun Hilliard</a>
-        <div class="headline">NBA: San Antonio Spurs at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 13, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10611792/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10611792.jpg" alt="NBA: San Antonio Spurs at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/malik-beasley/" class="player-link">Malik Beasley</a>
-        <div class="headline">NBA: San Antonio Spurs at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 13, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10611788/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10611788.jpg" alt="NBA: San Antonio Spurs at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tony-parker/" class="player-link">Tony Parker</a>
-        <div class="headline">NBA: San Antonio Spurs at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 13, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10611314/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10611314.jpg" alt="NBA: Sacramento Kings at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/justin-jackson/" class="player-link">Justin Jackson</a>
-        <div class="headline">NBA: Sacramento Kings at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Feb 13, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10611666/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10611666.jpg" alt="NBA: San Antonio Spurs at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/juancho-hernangomez/" class="player-link">Juancho Hernangomez</a>
-        <div class="headline">NBA: San Antonio Spurs at Denver Nuggets</div>
-        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Feb 13, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10611192/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10611192.jpg" alt="NBA: Houston Rockets at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/james-harden/" class="player-link">James Harden</a>
-        <div class="headline">NBA: Houston Rockets at Minnesota Timberwolves</div>
-        <div class="credit">📷 Jesse Johnson · Imagn Images · Feb 13, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10610476/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10610476.jpg" alt="NBA: Sacramento Kings at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/harrison-barnes/" class="player-link">Harrison Barnes</a>
-        <div class="headline">NBA: Sacramento Kings at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Feb 13, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10610436/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10610436.jpg" alt="NBA: Sacramento Kings at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/wesley-matthews/" class="player-link">Wesley Matthews</a>
-        <div class="headline">NBA: Sacramento Kings at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Feb 13, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10610468/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10610468.jpg" alt="NBA: Houston Rockets at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-paul/" class="player-link">Chris Paul</a>
-        <div class="headline">NBA: Houston Rockets at Minnesota Timberwolves</div>
-        <div class="credit">📷 Jesse Johnson · Imagn Images · Feb 13, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10610465/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10610465.jpg" alt="NBA: Houston Rockets at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/karl-anthony-towns/" class="player-link">Karl-Anthony Towns</a>
-        <div class="headline">NBA: Houston Rockets at Minnesota Timberwolves</div>
-        <div class="credit">📷 Jesse Johnson · Imagn Images · Feb 13, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10610462/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10610462.jpg" alt="NBA: Houston Rockets at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/andrew-wiggins/" class="player-link">Andrew Wiggins</a>
-        <div class="headline">NBA: Houston Rockets at Minnesota Timberwolves</div>
-        <div class="credit">📷 Jesse Johnson · Imagn Images · Feb 13, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10607973/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10607973.jpg" alt="NBA: New Orleans Pelicans at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/reggie-bullock/" class="player-link">Reggie Bullock</a>
-        <div class="headline">NBA: New Orleans Pelicans at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10607992/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10607992.jpg" alt="NBA: Phoenix Suns at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/alex-len/" class="player-link">Alex Len</a>
-        <div class="headline">NBA: Phoenix Suns at Golden State Warriors</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Feb 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10607972/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10607972.jpg" alt="NBA: New Orleans Pelicans at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/langston-galloway/" class="player-link">Langston Galloway</a>
-        <div class="headline">NBA: New Orleans Pelicans at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10607974/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10607974.jpg" alt="NBA: New Orleans Pelicans at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-davis/" class="player-link">Anthony Davis</a>
-        <div class="headline">NBA: New Orleans Pelicans at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10607965/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10607965.jpg" alt="NBA: Phoenix Suns at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/stephen-curry/" class="player-link">Stephen Curry</a>
-        <div class="headline">NBA: Phoenix Suns at Golden State Warriors</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Feb 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10608076/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10608076.jpg" alt="NBA: San Antonio Spurs at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rudy-gobert/" class="player-link">Rudy Gobert</a>
-        <div class="headline">NBA: San Antonio Spurs at Utah Jazz</div>
-        <div class="credit">📷 Chris Nicoll · Imagn Images · Feb 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10607971/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10607971.jpg" alt="NBA: New Orleans Pelicans at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/langston-galloway/" class="player-link">Langston Galloway</a>
-        <div class="headline">NBA: New Orleans Pelicans at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10607909/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10607909.jpg" alt="NBA: Orlando Magic at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mario-hezonja/" class="player-link">Mario Hezonja</a>
-        <div class="headline">NBA: Orlando Magic at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Feb 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10607910/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10607910.jpg" alt="NBA: Orlando Magic at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bismack-biyombo/" class="player-link">Bismack Biyombo</a>
-        <div class="headline">NBA: Orlando Magic at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Feb 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10607908/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10607908.jpg" alt="NBA: Orlando Magic at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/evan-fournier/" class="player-link">Evan Fournier</a>
-        <div class="headline">NBA: Orlando Magic at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Feb 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10608075/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10608075.jpg" alt="NBA: San Antonio Spurs at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jae-crowder/" class="player-link">Jae Crowder</a>
-        <div class="headline">NBA: San Antonio Spurs at Utah Jazz</div>
-        <div class="credit">📷 Chris Nicoll · Imagn Images · Feb 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10607914/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10607914.jpg" alt="NBA: Phoenix Suns at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/stephen-curry/" class="player-link">Stephen Curry</a>
-        <div class="headline">NBA: Phoenix Suns at Golden State Warriors</div>
-        <div class="credit">📷 Kelley L Cox · Imagn Images · Feb 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10608073/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10608073.jpg" alt="NBA: San Antonio Spurs at Utah Jazz" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/royce-oneale/" class="player-link">Royce O&#x27;Neale</a>
-        <div class="headline">NBA: San Antonio Spurs at Utah Jazz</div>
-        <div class="credit">📷 Chris Nicoll · Imagn Images · Feb 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10607970/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10607970.jpg" alt="NBA: New Orleans Pelicans at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/darius-miller/" class="player-link">Darius Miller</a>
-        <div class="headline">NBA: New Orleans Pelicans at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10607968/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10607968.jpg" alt="NBA: New Orleans Pelicans at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/darius-miller/" class="player-link">Darius Miller</a>
-        <div class="headline">NBA: New Orleans Pelicans at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 12, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10607969/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10607969.jpg" alt="NBA: New Orleans Pelicans at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rajon-rondo/" class="player-link">Rajon Rondo</a>
-        <div class="headline">NBA: New Orleans Pelicans at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 12, 2018</div>
     </div>
 </div>
         </div>

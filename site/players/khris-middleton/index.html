@@ -46,9 +46,6 @@ a:hover { text-decoration: underline; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
-.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 48px 0; text-align: center; }
-.hero h1 { font-size: 32px; margin-bottom: 8px; }
-.hero p { opacity: 0.8; font-size: 16px; }
 .stats-bar { display: flex; justify-content: center; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
 .stat-item { text-align: center; }
 .stat-value { font-size: 28px; font-weight: 700; }
@@ -58,6 +55,10 @@ a:hover { text-decoration: underline; }
 .section-title { font-size: 20px; font-weight: 600; }
 .section-link { font-size: 14px; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.scroll-sentinel { grid-column: 1 / -1; display: flex; justify-content: center; padding: 24px 0; }
+.scroll-spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.scroll-done { grid-column: 1 / -1; text-align: center; padding: 16px 0; color: var(--text-muted); font-size: 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .photo-card { background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
 .photo-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
 .photo-card .img-wrap { display: block; position: relative; padding-top: 66.67%; background: #f0f0f0; }
@@ -159,7 +160,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -184,6 +185,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </header>
 
 
+<script>window.__SCROLL_PHOTOS={"baseUrl": "https://jsierrahoopshype.github.io/nba-sneakers", "photos": [{"id": "13803775", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13803775.jpg", "headline": "NBA: Dallas Mavericks at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-12-16"}, {"id": "13755593", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13755593.jpg", "headline": "NBA: New York Knicks at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Michael McLoone", "source": "Imagn Images", "date": "2019-12-02"}, {"id": "13489882", "thumb": "https://cdn.imagn.com/image/thumb/250-225/13489882.jpg", "headline": "NBA: Preseason-Utah Jazz at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-10-09"}, {"id": "12757762", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12757762.jpg", "headline": "NBA: Playoffs-Milwaukee Bucks at Toronto Raptors", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "John E. Sokolowski", "source": "Imagn Images", "date": "2019-05-21"}, {"id": "12727422", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12727422.jpg", "headline": "NBA: Playoffs-Toronto Raptors at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-05-17"}, {"id": "12711523", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12711523.jpg", "headline": "NBA: Playoffs-Toronto Raptors at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-05-15"}, {"id": "12619886", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12619886.jpg", "headline": "NBA: Playoffs-Boston Celtics at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-04-30"}, {"id": "12606778", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12606778.jpg", "headline": "NBA: Playoffs-Boston Celtics at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-04-28"}, {"id": "12572732", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12572732.jpg", "headline": "NBA: Playoffs-Milwaukee Bucks at Detroit Pistons", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2019-04-22"}, {"id": "12495752", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12495752.jpg", "headline": "NBA: Atlanta Hawks at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-04-07"}, {"id": "12410352", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12410352.jpg", "headline": "NBA: Cleveland Cavaliers at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-03-24"}, {"id": "12380174", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12380174.jpg", "headline": "NBA: Los Angeles Lakers at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-03-19"}, {"id": "12370092", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12370092.jpg", "headline": "NBA: Philadelphia 76ers at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-03-17"}, {"id": "12305122", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12305122.jpg", "headline": "NBA: Indiana Pacers at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-03-07"}, {"id": "12251225", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12251225.jpg", "headline": "NBA: Milwaukee Bucks at Sacramento Kings", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Cary Edmondson", "source": "Imagn Images", "date": "2019-02-27"}, {"id": "12224429", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12224429.jpg", "headline": "NBA: Minnesota Timberwolves at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-02-23"}, {"id": "12208389", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12208389.jpg", "headline": "NBA: Boston Celtics at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-02-21"}, {"id": "12137875", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12137875.jpg", "headline": "NBA: Orlando Magic at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-02-09"}, {"id": "12120589", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12120589.jpg", "headline": "NBA: Washington Wizards at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-02-06"}, {"id": "12100504", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12100504.jpg", "headline": "NBA: Milwaukee Bucks at Washington Wizards", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Tommy Gilligan", "source": "Imagn Images", "date": "2019-02-02"}, {"id": "12076972", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12076972.jpg", "headline": "NBA: Milwaukee Bucks at Detroit Pistons", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Raj Mehta", "source": "Imagn Images", "date": "2019-01-29"}, {"id": "12027575", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12027575.jpg", "headline": "NBA: Milwaukee Bucks at Orlando Magic", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Reinhold Matay", "source": "Imagn Images", "date": "2019-01-19"}, {"id": "12004267", "thumb": "https://cdn.imagn.com/image/thumb/250-225/12004267.jpg", "headline": "NBA: Miami Heat at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2019-01-15"}, {"id": "11863272", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11863272.jpg", "headline": "NBA: Milwaukee Bucks at Detroit Pistons", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Rick Osentoski", "source": "Imagn Images", "date": "2018-12-17"}, {"id": "11751693", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11751693.jpg", "headline": "NBA: Chicago Bulls at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-11-28"}, {"id": "11700848", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11700848.jpg", "headline": "NBA: Denver Nuggets at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-11-19"}, {"id": "11624936", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11624936.jpg", "headline": "NBA: Milwaukee Bucks at Golden State Warriors", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Kyle Terada", "source": "Imagn Images", "date": "2018-11-08"}, {"id": "11596351", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11596351.jpg", "headline": "NBA: Sacramento Kings at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Benny Sieu", "source": "Imagn Images", "date": "2018-11-04"}, {"id": "11498872", "thumb": "https://cdn.imagn.com/image/thumb/250-225/11498872.jpg", "headline": "NBA: New York Knicks at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-10-22"}, {"id": "10800992", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10800992.jpg", "headline": "NBA: Playoffs-Boston Celtics at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-04-22"}, {"id": "10778884", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10778884.jpg", "headline": "NBA: Orlando Magic at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-04-09"}, {"id": "10768806", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10768806.jpg", "headline": "NBA: Brooklyn Nets at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-04-05"}, {"id": "10734635", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10734635.jpg", "headline": "NBA: San Antonio Spurs at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Benny Sieu", "source": "Imagn Images", "date": "2018-03-25"}, {"id": "10715091", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10715091.jpg", "headline": "NBA: Atlanta Hawks at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Jeff Hanisch", "source": "Imagn Images", "date": "2018-03-17"}, {"id": "10686391", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10686391.jpg", "headline": "NBA: Houston Rockets at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Benny Sieu", "source": "Imagn Images", "date": "2018-03-07"}, {"id": "10670678", "thumb": "https://cdn.imagn.com/image/thumb/250-225/10670678.jpg", "headline": "NBA: Indiana Pacers at Milwaukee Bucks", "player": "Khris Middleton", "playerSlug": "khris-middleton", "photographer": "Benny Sieu", "source": "Imagn Images", "date": "2018-03-02"}]};</script>
 <div class="page-header">
     <div class="container">
         <h1>Khris Middleton</h1>
@@ -193,7 +195,7 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <main class="container">
     <section class="section">
-        <div class="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             
 <div class="affiliate-module featured">
     <div class="module-header">
@@ -382,265 +384,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Orlando Magic at Milwaukee Bucks</div>
         <div class="credit">📷 Jeff Hanisch · Imagn Images · Dec 28, 2019</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13803775/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13803775.jpg" alt="NBA: Dallas Mavericks at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Dallas Mavericks at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Dec 16, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13755593/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13755593.jpg" alt="NBA: New York Knicks at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: New York Knicks at Milwaukee Bucks</div>
-        <div class="credit">📷 Michael McLoone · Imagn Images · Dec 02, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/13489882/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/13489882.jpg" alt="NBA: Preseason-Utah Jazz at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Preseason-Utah Jazz at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Oct 09, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12757762/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12757762.jpg" alt="NBA: Playoffs-Milwaukee Bucks at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Playoffs-Milwaukee Bucks at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · May 21, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12727422/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12727422.jpg" alt="NBA: Playoffs-Toronto Raptors at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Playoffs-Toronto Raptors at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · May 17, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12711523/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12711523.jpg" alt="NBA: Playoffs-Toronto Raptors at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Playoffs-Toronto Raptors at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · May 15, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12619886/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12619886.jpg" alt="NBA: Playoffs-Boston Celtics at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Playoffs-Boston Celtics at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 30, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12606778/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12606778.jpg" alt="NBA: Playoffs-Boston Celtics at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Playoffs-Boston Celtics at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 28, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12572732/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12572732.jpg" alt="NBA: Playoffs-Milwaukee Bucks at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Playoffs-Milwaukee Bucks at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Apr 22, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12495752/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12495752.jpg" alt="NBA: Atlanta Hawks at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Atlanta Hawks at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 07, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12410352/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12410352.jpg" alt="NBA: Cleveland Cavaliers at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Mar 24, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12380174/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12380174.jpg" alt="NBA: Los Angeles Lakers at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Los Angeles Lakers at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Mar 19, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12370092/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12370092.jpg" alt="NBA: Philadelphia 76ers at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Philadelphia 76ers at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Mar 17, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12305122/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12305122.jpg" alt="NBA: Indiana Pacers at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Indiana Pacers at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Mar 07, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12251225/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12251225.jpg" alt="NBA: Milwaukee Bucks at Sacramento Kings" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Milwaukee Bucks at Sacramento Kings</div>
-        <div class="credit">📷 Cary Edmondson · Imagn Images · Feb 27, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12224429/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12224429.jpg" alt="NBA: Minnesota Timberwolves at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Feb 23, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12208389/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12208389.jpg" alt="NBA: Boston Celtics at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Boston Celtics at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Feb 21, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12137875/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12137875.jpg" alt="NBA: Orlando Magic at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Orlando Magic at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Feb 09, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12120589/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12120589.jpg" alt="NBA: Washington Wizards at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Washington Wizards at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Feb 06, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12100504/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12100504.jpg" alt="NBA: Milwaukee Bucks at Washington Wizards" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Milwaukee Bucks at Washington Wizards</div>
-        <div class="credit">📷 Tommy Gilligan · Imagn Images · Feb 02, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12076972/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12076972.jpg" alt="NBA: Milwaukee Bucks at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Milwaukee Bucks at Detroit Pistons</div>
-        <div class="credit">📷 Raj Mehta · Imagn Images · Jan 29, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12027575/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12027575.jpg" alt="NBA: Milwaukee Bucks at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Milwaukee Bucks at Orlando Magic</div>
-        <div class="credit">📷 Reinhold Matay · Imagn Images · Jan 19, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/12004267/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/12004267.jpg" alt="NBA: Miami Heat at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Miami Heat at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Jan 15, 2019</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11863272/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11863272.jpg" alt="NBA: Milwaukee Bucks at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Milwaukee Bucks at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 17, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11751693/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11751693.jpg" alt="NBA: Chicago Bulls at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Chicago Bulls at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Nov 28, 2018</div>
-    </div>
-</div>
-<div class="affiliate-module inline">
-    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Khris+Middleton+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop Khris Middleton basketball shoes</span>
-        <span class="badge-info">★ Latest Model</span>
-    </a>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11700848/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11700848.jpg" alt="NBA: Denver Nuggets at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Denver Nuggets at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Nov 19, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11624936/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11624936.jpg" alt="NBA: Milwaukee Bucks at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Milwaukee Bucks at Golden State Warriors</div>
-        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 08, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11596351/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11596351.jpg" alt="NBA: Sacramento Kings at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Sacramento Kings at Milwaukee Bucks</div>
-        <div class="credit">📷 Benny Sieu · Imagn Images · Nov 04, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/11498872/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/11498872.jpg" alt="NBA: New York Knicks at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: New York Knicks at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Oct 22, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10800992/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10800992.jpg" alt="NBA: Playoffs-Boston Celtics at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Playoffs-Boston Celtics at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 22, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10778884/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10778884.jpg" alt="NBA: Orlando Magic at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Orlando Magic at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 09, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10768806/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10768806.jpg" alt="NBA: Brooklyn Nets at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Brooklyn Nets at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Apr 05, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10734635/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10734635.jpg" alt="NBA: San Antonio Spurs at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: San Antonio Spurs at Milwaukee Bucks</div>
-        <div class="credit">📷 Benny Sieu · Imagn Images · Mar 25, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10715091/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10715091.jpg" alt="NBA: Atlanta Hawks at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Atlanta Hawks at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Mar 17, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10686391/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10686391.jpg" alt="NBA: Houston Rockets at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Houston Rockets at Milwaukee Bucks</div>
-        <div class="credit">📷 Benny Sieu · Imagn Images · Mar 07, 2018</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/10670678/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/10670678.jpg" alt="NBA: Indiana Pacers at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/khris-middleton/" class="player-link">Khris Middleton</a>
-        <div class="headline">NBA: Indiana Pacers at Milwaukee Bucks</div>
-        <div class="credit">📷 Benny Sieu · Imagn Images · Mar 02, 2018</div>
-    </div>
 </div>
         </div>
     </section>
@@ -650,53 +393,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/michael-porter-jr/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27667924.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jordan-clarkson/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27827060.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Michael Porter Jr</div>
-        <div class="mp-count">40 photos</div>
+        <div class="mp-name">Jordan Clarkson</div>
+        <div class="mp-count">68 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deandre-hunter/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27750946.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/shai-gilgeous-alexander/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28056402.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">De&#x27;Andre Hunter</div>
-        <div class="mp-count">38 photos</div>
+        <div class="mp-name">Shai Gilgeous-Alexander</div>
+        <div class="mp-count">81 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zeke-nnaji/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27885676.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/spencer-dinwiddie/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25088691.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Zeke Nnaji</div>
-        <div class="mp-count">10 photos</div>
+        <div class="mp-name">Spencer Dinwiddie</div>
+        <div class="mp-count">35 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/terance-mann/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27588845.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/klay-thompson/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27886060.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Terance Mann</div>
-        <div class="mp-count">22 photos</div>
+        <div class="mp-name">Klay Thompson</div>
+        <div class="mp-count">106 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nic-claxton/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28166527.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-suggs/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27588850.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Nic Claxton</div>
-        <div class="mp-count">13 photos</div>
+        <div class="mp-name">Jalen Suggs</div>
+        <div class="mp-count">19 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jr-smith/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/14949246.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deandre-bembry/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17812788.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">J.R. Smith</div>
-        <div class="mp-count">29 photos</div>
+        <div class="mp-name">DeAndre&#x27; Bembry</div>
+        <div class="mp-count">27 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27891788.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-booker/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27890637.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Bruce Brown</div>
-        <div class="mp-count">63 photos</div>
+        <div class="mp-name">Devin Booker</div>
+        <div class="mp-count">102 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rudy-gobert/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28374885.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jeff-green/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25715388.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Rudy Gobert</div>
-        <div class="mp-count">85 photos</div>
+        <div class="mp-name">Jeff Green</div>
+        <div class="mp-count">69 photos</div>
     </div>
 </a>
         </div>
