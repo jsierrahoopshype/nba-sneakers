@@ -32,8 +32,13 @@ a:hover { text-decoration: underline; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
 .site-header { background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
 .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.site-logo { font-size: 22px; font-weight: 700; color: white; }
+.header-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.site-logo { font-size: 22px; font-weight: 700; color: white; white-space: nowrap; }
 .site-logo:hover { text-decoration: none; color: var(--accent); }
+.header-breadcrumb { font-size: 13px; color: rgba(255,255,255,0.6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.header-breadcrumb::before { content: '/'; margin-right: 10px; color: rgba(255,255,255,0.3); }
+.header-breadcrumb a { color: rgba(255,255,255,0.7); }
+.header-breadcrumb a:hover { color: white; text-decoration: none; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
@@ -79,8 +84,6 @@ a:hover { text-decoration: underline; }
 .page-header { padding: 32px 0; background: var(--card-bg); border-bottom: 1px solid var(--border); }
 .page-header h1 { font-size: 28px; margin-bottom: 4px; }
 .page-header .subtitle { color: var(--text-secondary); }
-.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
-.breadcrumb a { color: var(--text-secondary); }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -152,7 +155,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -160,7 +163,10 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <header class="site-header">
     <div class="container">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+        <div class="header-left">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+            <span class="header-breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/">Teams</a> / Minnesota Timberwolves</span>
+        </div>
         <div class="header-search">
             <input type="text" id="quick-search" placeholder="Search players..." autocomplete="off">
             <div id="quick-results" class="quick-results"></div>
@@ -176,16 +182,28 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/">Home</a> / <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/">Teams</a> / Minnesota Timberwolves</div>
         <h1>Minnesota Timberwolves</h1>
-        <p class="subtitle">1071 shoe photos</p>
+        <p class="subtitle">575 shoe photos</p>
     </div>
 </div>
 
 <main class="container">
     <section class="section">
         <div class="photo-grid" id="photo-grid">
-            <div class="photo-card">
+            
+<div class="affiliate-module featured">
+    <div class="module-header">
+        <span class="module-icon">👟</span>
+        <span class="module-title">Shop Minnesota Timberwolves basketball shoes's Kicks</span>
+    </div>
+    <div class="shoe-info">
+        <span class="shoe-name">Minnesota Timberwolves basketball shoes basketball shoes</span>
+        <span class="badge-info">★ Latest Model</span>
+    </div>
+    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Minnesota+Timberwolves+basketball+shoes+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn large">
+        Buy on StockX
+    </a>
+</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28412884/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28412884.jpg" alt="NBA: Toronto Raptors at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
@@ -242,13 +260,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Jesse Johnson · Imagn Images · Feb 06, 2026</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28155811/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28155811.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jakob-poeltl/" class="player-link">Jakob Poeltl</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 04, 2026</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28155808/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28155808.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bones-hyland/" class="player-link">Bones Hyland</a>
@@ -263,13 +274,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 04, 2026</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28155806/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28155806.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 04, 2026</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28155800/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28155800.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
@@ -277,30 +281,9 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 04, 2026</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28155798/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28155798.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jamal-shead/" class="player-link">Jamal Shead</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 04, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28155803/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28155803.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/gradey-dick/" class="player-link">Gradey Dick</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 04, 2026</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28155796/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28155796.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/julius-randle/" class="player-link">Julius Randle</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
-        <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 04, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28155797/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28155797.jpg" alt="NBA: Minnesota Timberwolves at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/garrett-temple/" class="player-link">Garrett Temple</a>
         <div class="headline">NBA: Minnesota Timberwolves at Toronto Raptors</div>
         <div class="credit">📷 Nick Turchiaro · Imagn Images · Feb 04, 2026</div>
     </div>
@@ -333,13 +316,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Jesse Johnson · Imagn Images · Jan 22, 2026</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27987278/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27987278.jpg" alt="NBA: San Antonio Spurs at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/victor-wembanyama/" class="player-link">Victor Wembanyama</a>
-        <div class="headline">NBA: San Antonio Spurs at Minnesota Timberwolves</div>
-        <div class="credit">📷 Jesse Johnson · Imagn Images · Jan 11, 2026</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27987276/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27987276.jpg" alt="NBA: San Antonio Spurs at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
@@ -354,33 +330,19 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 David Banks · Imagn Images · Dec 29, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27892451/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27892451.jpg" alt="NBA: Brooklyn Nets at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/danny-wolf/" class="player-link">Danny Wolf</a>
-        <div class="headline">NBA: Brooklyn Nets at Minnesota Timberwolves</div>
-        <div class="credit">📷 Bruce Kluckhohn · Imagn Images · Dec 27, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27885676/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27885676.jpg" alt="NBA: Minnesota Timberwolves at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zeke-nnaji/" class="player-link">Zeke Nnaji</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Denver Nuggets</div>
-        <div class="credit">📷 Ron Chenoy · Imagn Images · Dec 25, 2025</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27880243/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27880243.jpg" alt="NBA: New York Knicks at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/julius-randle/" class="player-link">Julius Randle</a>
         <div class="headline">NBA: New York Knicks at Minnesota Timberwolves</div>
         <div class="credit">📷 Jesse Johnson · Imagn Images · Dec 23, 2025</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27880240/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27880240.jpg" alt="NBA: New York Knicks at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/karl-anthony-towns/" class="player-link">Karl-Anthony Towns</a>
-        <div class="headline">NBA: New York Knicks at Minnesota Timberwolves</div>
-        <div class="credit">📷 Jesse Johnson · Imagn Images · Dec 23, 2025</div>
-    </div>
+</div>
+<div class="affiliate-module inline">
+    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Minnesota+Timberwolves+basketball+shoes+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
+        <span class="btn-icon">🛒</span>
+        <span class="btn-text">Shop Minnesota Timberwolves basketball shoes basketball shoes</span>
+        <span class="badge-info">★ Latest Model</span>
+    </a>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27880239/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27880239.jpg" alt="NBA: New York Knicks at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
@@ -431,20 +393,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Jesse Johnson · Imagn Images · Dec 14, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27807146/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27807146.jpg" alt="NBA: Minnesota Timberwolves at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/stephen-curry/" class="player-link">Stephen Curry</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Golden State Warriors</div>
-        <div class="credit">📷 Robert Edwards · Imagn Images · Dec 12, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27807145/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27807145.jpg" alt="NBA: Minnesota Timberwolves at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/stephen-curry/" class="player-link">Stephen Curry</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Golden State Warriors</div>
-        <div class="credit">📷 Robert Edwards · Imagn Images · Dec 12, 2025</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27741740/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27741740.jpg" alt="NBA: Minnesota Timberwolves at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/naz-reid/" class="player-link">Naz Reid</a>
@@ -487,20 +435,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Mark J. Rebilas · Imagn Images · Nov 21, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27761925/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27761925.jpg" alt="NBA: Minnesota Timberwolves at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-booker/" class="player-link">Devin Booker</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Nov 21, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27761943/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27761943.jpg" alt="NBA: Minnesota Timberwolves at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-booker/" class="player-link">Devin Booker</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Nov 21, 2025</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27630639/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27630639.jpg" alt="NBA: Washington Wizards at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/julius-randle/" class="player-link">Julius Randle</a>
@@ -518,13 +452,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27615565/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27615565.jpg" alt="NBA: Dallas Mavericks at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joe-ingles/" class="player-link">Joe Ingles</a>
-        <div class="headline">NBA: Dallas Mavericks at Minnesota Timberwolves</div>
-        <div class="credit">📷 Jesse Johnson · Imagn Images · Nov 17, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27615559/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27615559.jpg" alt="NBA: Dallas Mavericks at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cooper-flagg/" class="player-link">Cooper Flagg</a>
         <div class="headline">NBA: Dallas Mavericks at Minnesota Timberwolves</div>
         <div class="credit">📷 Jesse Johnson · Imagn Images · Nov 17, 2025</div>
     </div>
@@ -571,23 +498,9 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 John Jones · Imagn Images · Nov 03, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27498449/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27498449.jpg" alt="NBA: Minnesota Timberwolves at Brooklyn Nets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/terance-mann/" class="player-link">Terance Mann</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Brooklyn Nets</div>
-        <div class="credit">📷 John Jones · Imagn Images · Nov 03, 2025</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27480210/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27480210.jpg" alt="NBA: Minnesota Timberwolves at Charlotte Hornets" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/joan-beringer/" class="player-link">Joan Beringer</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Charlotte Hornets</div>
-        <div class="credit">📷 Jim Dedmon · Imagn Images · Nov 01, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27477816/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27477816.jpg" alt="NBA: Minnesota Timberwolves at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/sion-james/" class="player-link">Sion James</a>
         <div class="headline">NBA: Minnesota Timberwolves at Charlotte Hornets</div>
         <div class="credit">📷 Jim Dedmon · Imagn Images · Nov 01, 2025</div>
     </div>
@@ -599,17 +512,193 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Jim Dedmon · Imagn Images · Nov 01, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27477804/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27477804.jpg" alt="NBA: Minnesota Timberwolves at Charlotte Hornets" loading="lazy"></a>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27451657/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27451657.jpg" alt="NBA: Los Angeles Lakers at Minnesota Timberwolves" loading="lazy"></a>
     <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/collin-sexton/" class="player-link">Collin Sexton</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Charlotte Hornets</div>
-        <div class="credit">📷 Jim Dedmon · Imagn Images · Nov 01, 2025</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/naz-reid/" class="player-link">Naz Reid</a>
+        <div class="headline">NBA: Los Angeles Lakers at Minnesota Timberwolves</div>
+        <div class="credit">📷 Jesse Johnson · Imagn Images · Oct 29, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27427521/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27427521.jpg" alt="NBA: Indiana Pacers at Minnesota Timberwolves" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/donte-divincenzo/" class="player-link">Donte DiVincenzo</a>
+        <div class="headline">NBA: Indiana Pacers at Minnesota Timberwolves</div>
+        <div class="credit">📷 Jesse Johnson · Imagn Images · Oct 26, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27427526/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27427526.jpg" alt="NBA: Indiana Pacers at Minnesota Timberwolves" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rudy-gobert/" class="player-link">Rudy Gobert</a>
+        <div class="headline">NBA: Indiana Pacers at Minnesota Timberwolves</div>
+        <div class="credit">📷 Jesse Johnson · Imagn Images · Oct 26, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27340539/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27340539.jpg" alt="NBA: Preseason-Minnesota Timberwolves at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/julius-randle/" class="player-link">Julius Randle</a>
+        <div class="headline">NBA: Preseason-Minnesota Timberwolves at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Oct 16, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27340537/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27340537.jpg" alt="NBA: Preseason-Minnesota Timberwolves at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rudy-gobert/" class="player-link">Rudy Gobert</a>
+        <div class="headline">NBA: Preseason-Minnesota Timberwolves at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Oct 16, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27340535/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27340535.jpg" alt="NBA: Preseason-Minnesota Timberwolves at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
+        <div class="headline">NBA: Preseason-Minnesota Timberwolves at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Oct 16, 2025</div>
+    </div>
+</div>
+<div class="affiliate-module inline">
+    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Minnesota+Timberwolves+sneakers+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
+        <span class="btn-icon">🛒</span>
+        <span class="btn-text">Shop Minnesota Timberwolves sneakers basketball shoes</span>
+        <span class="badge-info">★ Latest Model</span>
+    </a>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/26128572/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/26128572.jpg" alt="NBA: Playoffs-Golden State Warriors at Minnesota Timberwolves" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/julius-randle/" class="player-link">Julius Randle</a>
+        <div class="headline">NBA: Playoffs-Golden State Warriors at Minnesota Timberwolves</div>
+        <div class="credit">📷 Jesse Johnson · Imagn Images · May 08, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/26128567/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/26128567.jpg" alt="NBA: Playoffs-Golden State Warriors at Minnesota Timberwolves" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
+        <div class="headline">NBA: Playoffs-Golden State Warriors at Minnesota Timberwolves</div>
+        <div class="credit">📷 Jesse Johnson · Imagn Images · May 08, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/26018630/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/26018630.jpg" alt="NBA: Playoffs-Los Angeles Lakers at Minnesota Timberwolves" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
+        <div class="headline">NBA: Playoffs-Los Angeles Lakers at Minnesota Timberwolves</div>
+        <div class="credit">📷 Jesse Johnson · Imagn Images · Apr 25, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25883211/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25883211.jpg" alt="NBA: Minnesota Timberwolves at Philadelphia 76ers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
+        <div class="headline">NBA: Minnesota Timberwolves at Philadelphia 76ers</div>
+        <div class="credit">📷 Kyle Ross · Imagn Images · Apr 05, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25826145/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25826145.jpg" alt="NBA: Minnesota Timberwolves at Denver Nuggets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rudy-gobert/" class="player-link">Rudy Gobert</a>
+        <div class="headline">NBA: Minnesota Timberwolves at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 01, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25826142/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25826142.jpg" alt="NBA: Minnesota Timberwolves at Denver Nuggets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
+        <div class="headline">NBA: Minnesota Timberwolves at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 01, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25826141/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25826141.jpg" alt="NBA: Minnesota Timberwolves at Denver Nuggets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jaden-mcdaniels/" class="player-link">Jaden McDaniels</a>
+        <div class="headline">NBA: Minnesota Timberwolves at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Apr 01, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25715682/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25715682.jpg" alt="NBA: New Orleans Pelicans at Minnesota Timberwolves" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
+        <div class="headline">NBA: New Orleans Pelicans at Minnesota Timberwolves</div>
+        <div class="credit">📷 Jesse Johnson · Imagn Images · Mar 19, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25700122/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25700122.jpg" alt="NBA: Indiana Pacers at Minnesota Timberwolves" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/julius-randle/" class="player-link">Julius Randle</a>
+        <div class="headline">NBA: Indiana Pacers at Minnesota Timberwolves</div>
+        <div class="credit">📷 Jesse Johnson · Imagn Images · Mar 17, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25700118/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25700118.jpg" alt="NBA: Indiana Pacers at Minnesota Timberwolves" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
+        <div class="headline">NBA: Indiana Pacers at Minnesota Timberwolves</div>
+        <div class="credit">📷 Jesse Johnson · Imagn Images · Mar 17, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25693009/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25693009.jpg" alt="NBA: Utah Jazz at Minnesota Timberwolves" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/luka-garza/" class="player-link">Luka Garza</a>
+        <div class="headline">NBA: Utah Jazz at Minnesota Timberwolves</div>
+        <div class="credit">📷 Jesse Johnson · Imagn Images · Mar 16, 2025</div>
     </div>
 </div>
         </div>
         <button class='load-more' id='load-more'>Load More Photos</button>
     </section>
 </main>
+
+<section class="more-players">
+    <div class="container">
+        <h2>More Teams to Explore</h2>
+        <div class="more-players-row">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/jazz/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28185038.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Utah Jazz</div>
+        <div class="mp-count">642 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/pacers/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28425453.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Indiana Pacers</div>
+        <div class="mp-count">350 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/thunder/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28396179.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Oklahoma City Thunder</div>
+        <div class="mp-count">596 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/bulls/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28375680.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Chicago Bulls</div>
+        <div class="mp-count">636 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/trail-blazers/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28147915.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Portland Trail Blazers</div>
+        <div class="mp-count">418 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/warriors/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28333094.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Golden State Warriors</div>
+        <div class="mp-count">1300 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/rockets/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28412960.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Houston Rockets</div>
+        <div class="mp-count">619 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/76ers/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28307725.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Philadelphia 76ers</div>
+        <div class="mp-count">390 photos</div>
+    </div>
+</a>
+        </div>
+    </div>
+</section>
 
 
 <footer class="site-footer">

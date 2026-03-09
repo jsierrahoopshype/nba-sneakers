@@ -32,8 +32,13 @@ a:hover { text-decoration: underline; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
 .site-header { background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
 .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.site-logo { font-size: 22px; font-weight: 700; color: white; }
+.header-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.site-logo { font-size: 22px; font-weight: 700; color: white; white-space: nowrap; }
 .site-logo:hover { text-decoration: none; color: var(--accent); }
+.header-breadcrumb { font-size: 13px; color: rgba(255,255,255,0.6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.header-breadcrumb::before { content: '/'; margin-right: 10px; color: rgba(255,255,255,0.3); }
+.header-breadcrumb a { color: rgba(255,255,255,0.7); }
+.header-breadcrumb a:hover { color: white; text-decoration: none; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
@@ -79,8 +84,6 @@ a:hover { text-decoration: underline; }
 .page-header { padding: 32px 0; background: var(--card-bg); border-bottom: 1px solid var(--border); }
 .page-header h1 { font-size: 28px; margin-bottom: 4px; }
 .page-header .subtitle { color: var(--text-secondary); }
-.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
-.breadcrumb a { color: var(--text-secondary); }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -152,7 +155,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -160,7 +163,10 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <header class="site-header">
     <div class="container">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+        <div class="header-left">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+            <span class="header-breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/">Teams</a> / Phoenix Suns</span>
+        </div>
         <div class="header-search">
             <input type="text" id="quick-search" placeholder="Search players..." autocomplete="off">
             <div id="quick-results" class="quick-results"></div>
@@ -176,22 +182,27 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/">Home</a> / <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/">Teams</a> / Phoenix Suns</div>
         <h1>Phoenix Suns</h1>
-        <p class="subtitle">957 shoe photos</p>
+        <p class="subtitle">444 shoe photos</p>
     </div>
 </div>
 
 <main class="container">
     <section class="section">
         <div class="photo-grid" id="photo-grid">
-            <div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28351873/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28351873.jpg" alt="NBA: Los Angeles Lakers at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lebron-james/" class="player-link">LeBron James</a>
-        <div class="headline">NBA: Los Angeles Lakers at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Feb 26, 2026</div>
+            
+<div class="affiliate-module featured">
+    <div class="module-header">
+        <span class="module-icon">👟</span>
+        <span class="module-title">Shop Phoenix Suns basketball shoes's Kicks</span>
     </div>
+    <div class="shoe-info">
+        <span class="shoe-name">Phoenix Suns basketball shoes basketball shoes</span>
+        <span class="badge-info">★ Latest Model</span>
+    </div>
+    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Phoenix+Suns+basketball+shoes+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn large">
+        Buy on StockX
+    </a>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28288059/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28288059.jpg" alt="NBA: Phoenix Suns at San Antonio Spurs" loading="lazy"></a>
     <div class="meta">
@@ -200,39 +211,11 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Scott Wachter · Imagn Images · Feb 19, 2026</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28287019/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28287019.jpg" alt="NBA: Phoenix Suns at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/victor-wembanyama/" class="player-link">Victor Wembanyama</a>
-        <div class="headline">NBA: Phoenix Suns at San Antonio Spurs</div>
-        <div class="credit">📷 Scott Wachter · Imagn Images · Feb 19, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28147915/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28147915.jpg" alt="NBA: Phoenix Suns at Portland Trail Blazers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/yang-hansen/" class="player-link">Yang Hansen</a>
-        <div class="headline">NBA: Phoenix Suns at Portland Trail Blazers</div>
-        <div class="credit">📷 Jaime Valdez · Imagn Images · Feb 03, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28148038/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28148038.jpg" alt="NBA: Phoenix Suns at Portland Trail Blazers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/javonte-cooke/" class="player-link">Javonte Cooke</a>
-        <div class="headline">NBA: Phoenix Suns at Portland Trail Blazers</div>
-        <div class="credit">📷 Jaime Valdez · Imagn Images · Feb 03, 2026</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28015067/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28015067.jpg" alt="NBA: Phoenix Suns at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jordan-goodwin/" class="player-link">Jordan Goodwin</a>
         <div class="headline">NBA: Phoenix Suns at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 15, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27950834/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27950834.jpg" alt="NBA: Oklahoma City Thunder at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/shai-gilgeous-alexander/" class="player-link">Shai Gilgeous-Alexander</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Jan 04, 2026</div>
     </div>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27890637/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27890637.jpg" alt="NBA: Phoenix Suns at New Orleans Pelicans" loading="lazy"></a>
@@ -263,62 +246,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Matthew Hinton · Imagn Images · Dec 26, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27887414/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27887414.jpg" alt="NBA: Phoenix Suns at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jose-alvarado/" class="player-link">Jose Alvarado</a>
-        <div class="headline">NBA: Phoenix Suns at New Orleans Pelicans</div>
-        <div class="credit">📷 Matthew Hinton · Imagn Images · Dec 26, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27885868/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27885868.jpg" alt="NBA: Los Angeles Lakers at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lebron-james/" class="player-link">LeBron James</a>
-        <div class="headline">NBA: Los Angeles Lakers at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Dec 23, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27885867/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27885867.jpg" alt="NBA: Los Angeles Lakers at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lebron-james/" class="player-link">LeBron James</a>
-        <div class="headline">NBA: Los Angeles Lakers at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Dec 23, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27852568/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27852568.jpg" alt="NBA: Golden State Warriors at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/stephen-curry/" class="player-link">Stephen Curry</a>
-        <div class="headline">NBA: Golden State Warriors at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Dec 18, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27751350/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27751350.jpg" alt="NBA: Phoenix Suns at Houston Rockets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
-        <div class="headline">NBA: Phoenix Suns at Houston Rockets</div>
-        <div class="credit">📷 Troy Taormina · Imagn Images · Dec 05, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27720698/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27720698.jpg" alt="NBA: Phoenix Suns at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lebron-james/" class="player-link">LeBron James</a>
-        <div class="headline">NBA: Phoenix Suns at Los Angeles Lakers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Dec 01, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27761440/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27761440.jpg" alt="NBA: Minnesota Timberwolves at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Nov 21, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27761441/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27761441.jpg" alt="NBA: Minnesota Timberwolves at Phoenix Suns" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: Minnesota Timberwolves at Phoenix Suns</div>
-        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Nov 21, 2025</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27761925/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27761925.jpg" alt="NBA: Minnesota Timberwolves at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-booker/" class="player-link">Devin Booker</a>
@@ -340,13 +267,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Allan Henry · Imagn Images · Nov 16, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27508256/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27508256.jpg" alt="NBA: Phoenix Suns at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/stephen-curry/" class="player-link">Stephen Curry</a>
-        <div class="headline">NBA: Phoenix Suns at Golden State Warriors</div>
-        <div class="credit">📷 Eakin Howard · Imagn Images · Nov 04, 2025</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27491163/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27491163.jpg" alt="NBA: San Antonio Spurs at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-booker/" class="player-link">Devin Booker</a>
@@ -359,41 +279,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/royce-oneale/" class="player-link">Royce O&#x27;Neale</a>
         <div class="headline">NBA: Phoenix Suns at Utah Jazz</div>
         <div class="credit">📷 Rob Gray · Imagn Images · Oct 27, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27423878/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27423878.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-pickett/" class="player-link">Jalen Pickett</a>
-        <div class="headline">NBA: Phoenix Suns at Denver Nuggets</div>
-        <div class="credit">📷 Christopher Hanewinckel · Imagn Images · Oct 25, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27423879/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27423879.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
-        <div class="headline">NBA: Phoenix Suns at Denver Nuggets</div>
-        <div class="credit">📷 Christopher Hanewinckel · Imagn Images · Oct 25, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25847011/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25847011.jpg" alt="NBA: Phoenix Suns at Boston Celtics" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jayson-tatum/" class="player-link">Jayson Tatum</a>
-        <div class="headline">NBA: Phoenix Suns at Boston Celtics</div>
-        <div class="credit">📷 Winslow Townson · Imagn Images · Apr 04, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25692415/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25692415.jpg" alt="NBA: Phoenix Suns at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/austin-reaves/" class="player-link">Austin Reaves</a>
-        <div class="headline">NBA: Phoenix Suns at Los Angeles Lakers</div>
-        <div class="credit">📷 Kirby Lee · Imagn Images · Mar 16, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25692414/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25692414.jpg" alt="NBA: Phoenix Suns at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/austin-reaves/" class="player-link">Austin Reaves</a>
-        <div class="headline">NBA: Phoenix Suns at Los Angeles Lakers</div>
-        <div class="credit">📷 Kirby Lee · Imagn Images · Mar 16, 2025</div>
     </div>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25692488/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25692488.jpg" alt="NBA: Sacramento Kings at Phoenix Suns" loading="lazy"></a>
@@ -424,55 +309,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Jerome Miron · Imagn Images · Mar 09, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25608646/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25608646.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nikola-jokic/" class="player-link">Nikola Jokic</a>
-        <div class="headline">NBA: Phoenix Suns at Denver Nuggets</div>
-        <div class="credit">📷 Ron Chenoy · Imagn Images · Mar 07, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25608623/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25608623.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/michael-porter-jr/" class="player-link">Michael Porter Jr</a>
-        <div class="headline">NBA: Phoenix Suns at Denver Nuggets</div>
-        <div class="credit">📷 Ron Chenoy · Imagn Images · Mar 07, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25497213/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25497213.jpg" alt="NBA: Phoenix Suns at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rj-barrett/" class="player-link">RJ Barrett</a>
-        <div class="headline">NBA: Phoenix Suns at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 23, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25497202/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25497202.jpg" alt="NBA: Phoenix Suns at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/gradey-dick/" class="player-link">Gradey Dick</a>
-        <div class="headline">NBA: Phoenix Suns at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 23, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25497207/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25497207.jpg" alt="NBA: Phoenix Suns at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jonathan-mogbo/" class="player-link">Jonathan Mogbo</a>
-        <div class="headline">NBA: Phoenix Suns at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 23, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25497197/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25497197.jpg" alt="NBA: Phoenix Suns at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ochai-agbaji/" class="player-link">Ochai Agbaji</a>
-        <div class="headline">NBA: Phoenix Suns at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 23, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25497198/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25497198.jpg" alt="NBA: Phoenix Suns at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Phoenix Suns at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 23, 2025</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25497195/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25497195.jpg" alt="NBA: Phoenix Suns at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/royce-oneale/" class="player-link">Royce O&#x27;Neale</a>
@@ -485,27 +321,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-booker/" class="player-link">Devin Booker</a>
         <div class="headline">NBA: Phoenix Suns at Toronto Raptors</div>
         <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 23, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25494656/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25494656.jpg" alt="NBA: Phoenix Suns at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chris-boucher/" class="player-link">Chris Boucher</a>
-        <div class="headline">NBA: Phoenix Suns at Toronto Raptors</div>
-        <div class="credit">📷 Dan Hamilton · Imagn Images · Feb 23, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25486734/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25486734.jpg" alt="NBA: Phoenix Suns at Chicago Bulls" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/matas-buzelis/" class="player-link">Matas Buzelis</a>
-        <div class="headline">NBA: Phoenix Suns at Chicago Bulls</div>
-        <div class="credit">📷 David Banks · Imagn Images · Feb 22, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25467261/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25467261.jpg" alt="NBA: Phoenix Suns at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dearon-fox/" class="player-link">De&#x27;Aron Fox</a>
-        <div class="headline">NBA: Phoenix Suns at San Antonio Spurs</div>
-        <div class="credit">📷 Scott Wachter · Imagn Images · Feb 20, 2025</div>
     </div>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25504659/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25504659.jpg" alt="NBA: All Star Game-Chucks Global Stars at Shaqs OGs" loading="lazy"></a>
@@ -521,6 +336,13 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Phoenix Suns at Portland Trail Blazers</div>
         <div class="credit">📷 Jaime Valdez · Imagn Images · Feb 03, 2025</div>
     </div>
+</div>
+<div class="affiliate-module inline">
+    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Phoenix+Suns+basketball+shoes+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
+        <span class="btn-icon">🛒</span>
+        <span class="btn-text">Shop Phoenix Suns basketball shoes basketball shoes</span>
+        <span class="badge-info">★ Latest Model</span>
+    </a>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25334331/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25334331.jpg" alt="NBA: Phoenix Suns at Portland Trail Blazers" loading="lazy"></a>
     <div class="meta">
@@ -557,39 +379,11 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 David Richard · Imagn Images · Jan 20, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25232474/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25232474.jpg" alt="NBA: Phoenix Suns at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/donovan-mitchell/" class="player-link">Donovan Mitchell</a>
-        <div class="headline">NBA: Phoenix Suns at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Jan 20, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25233214/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25233214.jpg" alt="NBA: Phoenix Suns at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/georges-niang/" class="player-link">Georges Niang</a>
-        <div class="headline">NBA: Phoenix Suns at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Jan 20, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25232457/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25232457.jpg" alt="NBA: Phoenix Suns at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jarrett-allen/" class="player-link">Jarrett Allen</a>
-        <div class="headline">NBA: Phoenix Suns at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Jan 20, 2025</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25161375/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25161375.jpg" alt="NBA: Atlanta Hawks at Phoenix Suns" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
         <div class="headline">NBA: Atlanta Hawks at Phoenix Suns</div>
         <div class="credit">📷 Mark J. Rebilas · Imagn Images · Jan 09, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25136597/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25136597.jpg" alt="NBA: Phoenix Suns at Charlotte Hornets" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Phoenix Suns at Charlotte Hornets</div>
-        <div class="credit">📷 Sam Sharpe · Imagn Images · Jan 07, 2025</div>
     </div>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25135547/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25135547.jpg" alt="NBA: Phoenix Suns at Charlotte Hornets" loading="lazy"></a>
@@ -605,11 +399,306 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Phoenix Suns at Charlotte Hornets</div>
         <div class="credit">📷 Sam Sharpe · Imagn Images · Jan 07, 2025</div>
     </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25111865/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25111865.jpg" alt="NBA: Phoenix Suns at Golden State Warriors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
+        <div class="headline">NBA: Phoenix Suns at Golden State Warriors</div>
+        <div class="credit">📷 Robert Edwards · Imagn Images · Dec 28, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25055731/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25055731.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
+        <div class="headline">NBA: Phoenix Suns at Denver Nuggets</div>
+        <div class="credit">📷 Ron Chenoy · Imagn Images · Dec 23, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25036090/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25036090.jpg" alt="NBA: Indiana Pacers at Phoenix Suns" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
+        <div class="headline">NBA: Indiana Pacers at Phoenix Suns</div>
+        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Dec 19, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24919178/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24919178.jpg" alt="NBA: Phoenix Suns at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bradley-beal/" class="player-link">Bradley Beal</a>
+        <div class="headline">NBA: Phoenix Suns at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Dec 05, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24757257/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24757257.jpg" alt="NBA: Phoenix Suns at Sacramento Kings" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-booker/" class="player-link">Devin Booker</a>
+        <div class="headline">NBA: Phoenix Suns at Sacramento Kings</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 13, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24757251/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24757251.jpg" alt="NBA: Phoenix Suns at Sacramento Kings" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/royce-oneale/" class="player-link">Royce O&#x27;Neale</a>
+        <div class="headline">NBA: Phoenix Suns at Sacramento Kings</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 13, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24757250/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24757250.jpg" alt="NBA: Phoenix Suns at Sacramento Kings" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/josh-okogie/" class="player-link">Josh Okogie</a>
+        <div class="headline">NBA: Phoenix Suns at Sacramento Kings</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 13, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24757252/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24757252.jpg" alt="NBA: Phoenix Suns at Sacramento Kings" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mason-plumlee/" class="player-link">Mason Plumlee</a>
+        <div class="headline">NBA: Phoenix Suns at Sacramento Kings</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Nov 13, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24732005/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24732005.jpg" alt="NBA: Sacramento Kings at Phoenix Suns" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-booker/" class="player-link">Devin Booker</a>
+        <div class="headline">NBA: Sacramento Kings at Phoenix Suns</div>
+        <div class="credit">📷 Allan Henry · Imagn Images · Nov 10, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24661896/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24661896.jpg" alt="NBA: Portland Trail Blazers at Phoenix Suns" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-booker/" class="player-link">Devin Booker</a>
+        <div class="headline">NBA: Portland Trail Blazers at Phoenix Suns</div>
+        <div class="credit">📷 Allan Henry · Imagn Images · Nov 02, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24640456/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24640456.jpg" alt="NBA: Phoenix Suns at Los Angeles Clippers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-booker/" class="player-link">Devin Booker</a>
+        <div class="headline">NBA: Phoenix Suns at Los Angeles Clippers</div>
+        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Oct 31, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24629143/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24629143.jpg" alt="NBA: Los Angeles Lakers at Phoenix Suns" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-booker/" class="player-link">Devin Booker</a>
+        <div class="headline">NBA: Los Angeles Lakers at Phoenix Suns</div>
+        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Oct 28, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/24627813/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/24627813.jpg" alt="NBA: Dallas Mavericks at Phoenix Suns" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
+        <div class="headline">NBA: Dallas Mavericks at Phoenix Suns</div>
+        <div class="credit">📷 Mark J. Rebilas · Imagn Images · Oct 26, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22965974/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22965974.jpg" alt="NBA: New Orleans Pelicans at Phoenix Suns" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
+        <div class="headline">NBA: New Orleans Pelicans at Phoenix Suns</div>
+        <div class="credit">📷 Allan Henry · Imagn Images · Apr 07, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22885494/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22885494.jpg" alt="NBA: Phoenix Suns at Denver Nuggets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/grayson-allen/" class="player-link">Grayson Allen</a>
+        <div class="headline">NBA: Phoenix Suns at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Mar 27, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22807836/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22807836.jpg" alt="NBA: Phoenix Suns at Charlotte Hornets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/damion-lee/" class="player-link">Damion Lee</a>
+        <div class="headline">NBA: Phoenix Suns at Charlotte Hornets</div>
+        <div class="credit">📷 Jim Dedmon · Imagn Images · Mar 15, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22753848/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22753848.jpg" alt="NBA: Phoenix Suns at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
+        <div class="headline">NBA: Phoenix Suns at Cleveland Cavaliers</div>
+        <div class="credit">📷 Ken Blaze · Imagn Images · Mar 11, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22681773/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22681773.jpg" alt="NBA: Houston Rockets at Phoenix Suns" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-booker/" class="player-link">Devin Booker</a>
+        <div class="headline">NBA: Houston Rockets at Phoenix Suns</div>
+        <div class="credit">📷 Joe Camporeale · Imagn Images · Mar 02, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22597231/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22597231.jpg" alt="NBA: Phoenix Suns at Houston Rockets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
+        <div class="headline">NBA: Phoenix Suns at Houston Rockets</div>
+        <div class="credit">📷 Troy Taormina · Imagn Images · Feb 23, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22493069/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22493069.jpg" alt="NBA: Phoenix Suns at Golden State Warriors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
+        <div class="headline">NBA: Phoenix Suns at Golden State Warriors</div>
+        <div class="credit">📷 John Hefti · Imagn Images · Feb 10, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25165771/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25165771.jpg" alt="NBA: Milwaukee Bucks at Phoenix Suns" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-booker/" class="player-link">Devin Booker</a>
+        <div class="headline">NBA: Milwaukee Bucks at Phoenix Suns</div>
+        <div class="credit">📷 Mark J. Rebilas · USA TODAY Sports · Feb 06, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22401531/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22401531.jpg" alt="NBA: Phoenix Suns at Miami Heat" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
+        <div class="headline">NBA: Phoenix Suns at Miami Heat</div>
+        <div class="credit">📷 Sam Navarro · Imagn Images · Jan 29, 2024</div>
+    </div>
+</div>
+<div class="affiliate-module inline">
+    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Phoenix+Suns+sneakers+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
+        <span class="btn-icon">🛒</span>
+        <span class="btn-text">Shop Phoenix Suns sneakers basketball shoes</span>
+        <span class="badge-info">★ Latest Model</span>
+    </a>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22330443/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22330443.jpg" alt="NBA: Phoenix Suns at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
+        <div class="headline">NBA: Phoenix Suns at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 19, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22330452/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22330452.jpg" alt="NBA: Phoenix Suns at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
+        <div class="headline">NBA: Phoenix Suns at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 19, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22329723/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22329723.jpg" alt="NBA: Phoenix Suns at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jusuf-nurkic/" class="player-link">Jusuf Nurkic</a>
+        <div class="headline">NBA: Phoenix Suns at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 19, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22329725/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22329725.jpg" alt="NBA: Phoenix Suns at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jusuf-nurkic/" class="player-link">Jusuf Nurkic</a>
+        <div class="headline">NBA: Phoenix Suns at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 19, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25162246/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25162246.jpg" alt="NBA: Sacramento Kings at Phoenix Suns" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
+        <div class="headline">NBA: Sacramento Kings at Phoenix Suns</div>
+        <div class="credit">📷 Mark J. Rebilas · USA TODAY Sports · Jan 16, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22295686/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22295686.jpg" alt="NBA: Phoenix Suns at Portland Trail Blazers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/eric-gordon/" class="player-link">Eric Gordon</a>
+        <div class="headline">NBA: Phoenix Suns at Portland Trail Blazers</div>
+        <div class="credit">📷 Jaime Valdez · Imagn Images · Jan 14, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22294156/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22294156.jpg" alt="NBA: Phoenix Suns at Portland Trail Blazers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
+        <div class="headline">NBA: Phoenix Suns at Portland Trail Blazers</div>
+        <div class="credit">📷 Jaime Valdez · Imagn Images · Jan 14, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22294157/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22294157.jpg" alt="NBA: Phoenix Suns at Portland Trail Blazers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
+        <div class="headline">NBA: Phoenix Suns at Portland Trail Blazers</div>
+        <div class="credit">📷 Jaime Valdez · Imagn Images · Jan 14, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22245565/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22245565.jpg" alt="NBA: Memphis Grizzlies at Phoenix Suns" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
+        <div class="headline">NBA: Memphis Grizzlies at Phoenix Suns</div>
+        <div class="credit">📷 Allan Henry · Imagn Images · Jan 07, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22245556/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22245556.jpg" alt="NBA: Memphis Grizzlies at Phoenix Suns" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-booker/" class="player-link">Devin Booker</a>
+        <div class="headline">NBA: Memphis Grizzlies at Phoenix Suns</div>
+        <div class="credit">📷 Allan Henry · Imagn Images · Jan 07, 2024</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/22142519/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/22142519.jpg" alt="NBA: Phoenix Suns at Portland Trail Blazers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
+        <div class="headline">NBA: Phoenix Suns at Portland Trail Blazers</div>
+        <div class="credit">📷 Jaime Valdez · Imagn Images · Dec 19, 2023</div>
+    </div>
 </div>
         </div>
         <button class='load-more' id='load-more'>Load More Photos</button>
     </section>
 </main>
+
+<section class="more-players">
+    <div class="container">
+        <h2>More Teams to Explore</h2>
+        <div class="more-players-row">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/timberwolves/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28412884.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Minnesota Timberwolves</div>
+        <div class="mp-count">575 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/wizards/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28165011.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Washington Wizards</div>
+        <div class="mp-count">434 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/76ers/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28307725.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Philadelphia 76ers</div>
+        <div class="mp-count">390 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/heat/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28213655.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Miami Heat</div>
+        <div class="mp-count">434 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/bucks/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28401297.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Milwaukee Bucks</div>
+        <div class="mp-count">748 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/hornets/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28422256.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Charlotte Hornets</div>
+        <div class="mp-count">445 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/celtics/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28122202.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Boston Celtics</div>
+        <div class="mp-count">517 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/nuggets/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28414630.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Denver Nuggets</div>
+        <div class="mp-count">996 photos</div>
+    </div>
+</a>
+        </div>
+    </div>
+</section>
 
 
 <footer class="site-footer">

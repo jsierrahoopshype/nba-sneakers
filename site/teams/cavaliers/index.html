@@ -32,8 +32,13 @@ a:hover { text-decoration: underline; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
 .site-header { background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
 .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.site-logo { font-size: 22px; font-weight: 700; color: white; }
+.header-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.site-logo { font-size: 22px; font-weight: 700; color: white; white-space: nowrap; }
 .site-logo:hover { text-decoration: none; color: var(--accent); }
+.header-breadcrumb { font-size: 13px; color: rgba(255,255,255,0.6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.header-breadcrumb::before { content: '/'; margin-right: 10px; color: rgba(255,255,255,0.3); }
+.header-breadcrumb a { color: rgba(255,255,255,0.7); }
+.header-breadcrumb a:hover { color: white; text-decoration: none; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
@@ -79,8 +84,6 @@ a:hover { text-decoration: underline; }
 .page-header { padding: 32px 0; background: var(--card-bg); border-bottom: 1px solid var(--border); }
 .page-header h1 { font-size: 28px; margin-bottom: 4px; }
 .page-header .subtitle { color: var(--text-secondary); }
-.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
-.breadcrumb a { color: var(--text-secondary); }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -152,7 +155,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -160,7 +163,10 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <header class="site-header">
     <div class="container">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+        <div class="header-left">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+            <span class="header-breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/">Teams</a> / Cleveland Cavaliers</span>
+        </div>
         <div class="header-search">
             <input type="text" id="quick-search" placeholder="Search players..." autocomplete="off">
             <div id="quick-results" class="quick-results"></div>
@@ -176,22 +182,27 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/">Home</a> / <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/">Teams</a> / Cleveland Cavaliers</div>
         <h1>Cleveland Cavaliers</h1>
-        <p class="subtitle">2193 shoe photos</p>
+        <p class="subtitle">1183 shoe photos</p>
     </div>
 </div>
 
 <main class="container">
     <section class="section">
         <div class="photo-grid" id="photo-grid">
-            <div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28391739/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28391739.jpg" alt="NBA: Detroit Pistons at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tobias-harris/" class="player-link">Tobias Harris</a>
-        <div class="headline">NBA: Detroit Pistons at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Mar 03, 2026</div>
+            
+<div class="affiliate-module featured">
+    <div class="module-header">
+        <span class="module-icon">👟</span>
+        <span class="module-title">Shop Cleveland Cavaliers basketball shoes's Kicks</span>
     </div>
+    <div class="shoe-info">
+        <span class="shoe-name">Cleveland Cavaliers basketball shoes basketball shoes</span>
+        <span class="badge-info">★ Latest Model</span>
+    </div>
+    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Cleveland+Cavaliers+basketball+shoes+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn large">
+        Buy on StockX
+    </a>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28391736/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28391736.jpg" alt="NBA: Detroit Pistons at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
@@ -242,27 +253,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Troy Wayrynen · Imagn Images · Feb 01, 2026</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28108136/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28108136.jpg" alt="NBA: Los Angeles Lakers at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lebron-james/" class="player-link">LeBron James</a>
-        <div class="headline">NBA: Los Angeles Lakers at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Jan 28, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28108595/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28108595.jpg" alt="NBA: Los Angeles Lakers at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/luka-doncic/" class="player-link">Luka Doncic</a>
-        <div class="headline">NBA: Los Angeles Lakers at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Jan 28, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28108622/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28108622.jpg" alt="NBA: Los Angeles Lakers at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bronny-james/" class="player-link">Bronny James</a>
-        <div class="headline">NBA: Los Angeles Lakers at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Jan 28, 2026</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28092707/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28092707.jpg" alt="NBA: Orlando Magic at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/larry-nance-jr/" class="player-link">Larry Nance Jr</a>
@@ -270,37 +260,9 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 David Richard · Imagn Images · Jan 26, 2026</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28093339/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28093339.jpg" alt="NBA: Orlando Magic at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/paolo-banchero/" class="player-link">Paolo Banchero</a>
-        <div class="headline">NBA: Orlando Magic at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Jan 26, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28093350/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28093350.jpg" alt="NBA: Orlando Magic at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tyus-jones/" class="player-link">Tyus Jones</a>
-        <div class="headline">NBA: Orlando Magic at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Jan 26, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28081593/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28081593.jpg" alt="NBA: Cleveland Cavaliers at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/noah-penda/" class="player-link">Noah Penda</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Orlando Magic</div>
-        <div class="credit">📷 Mike Watters · Imagn Images · Jan 24, 2026</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28081588/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28081588.jpg" alt="NBA: Cleveland Cavaliers at Orlando Magic" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jarrett-allen/" class="player-link">Jarrett Allen</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Orlando Magic</div>
-        <div class="credit">📷 Mike Watters · Imagn Images · Jan 24, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28081586/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28081586.jpg" alt="NBA: Cleveland Cavaliers at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jase-richardson/" class="player-link">Jase Richardson</a>
         <div class="headline">NBA: Cleveland Cavaliers at Orlando Magic</div>
         <div class="credit">📷 Mike Watters · Imagn Images · Jan 24, 2026</div>
     </div>
@@ -315,20 +277,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28071909/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28071909.jpg" alt="NBA: Sacramento Kings at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tyrese-proctor/" class="player-link">Tyrese Proctor</a>
-        <div class="headline">NBA: Sacramento Kings at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Jan 23, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28071908/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28071908.jpg" alt="NBA: Sacramento Kings at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/domantas-sabonis/" class="player-link">Domantas Sabonis</a>
-        <div class="headline">NBA: Sacramento Kings at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Jan 23, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28071476/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28071476.jpg" alt="NBA: Sacramento Kings at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/maxime-raynaud/" class="player-link">Maxime Raynaud</a>
         <div class="headline">NBA: Sacramento Kings at Cleveland Cavaliers</div>
         <div class="credit">📷 Ken Blaze · Imagn Images · Jan 23, 2026</div>
     </div>
@@ -354,23 +302,9 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Sam Sharpe · Imagn Images · Jan 21, 2026</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27872841/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27872841.jpg" alt="NBA: Charlotte Hornets at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lamelo-ball/" class="player-link">LaMelo Ball</a>
-        <div class="headline">NBA: Charlotte Hornets at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Dec 22, 2025</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27872836/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27872836.jpg" alt="NBA: Charlotte Hornets at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/darius-garland/" class="player-link">Darius Garland</a>
-        <div class="headline">NBA: Charlotte Hornets at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Dec 22, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27872831/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27872831.jpg" alt="NBA: Charlotte Hornets at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
         <div class="headline">NBA: Charlotte Hornets at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Dec 22, 2025</div>
     </div>
@@ -382,39 +316,11 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 David Richard · Imagn Images · Dec 14, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27816634/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27816634.jpg" alt="NBA: Charlotte Hornets at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/brandon-miller/" class="player-link">Brandon Miller</a>
-        <div class="headline">NBA: Charlotte Hornets at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Dec 14, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27816616/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27816616.jpg" alt="NBA: Charlotte Hornets at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="player-link">Miles Bridges</a>
-        <div class="headline">NBA: Charlotte Hornets at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Dec 14, 2025</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27750946/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27750946.jpg" alt="NBA: San Antonio Spurs at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deandre-hunter/" class="player-link">De&#x27;Andre Hunter</a>
         <div class="headline">NBA: San Antonio Spurs at Cleveland Cavaliers</div>
         <div class="credit">📷 Ken Blaze · Imagn Images · Dec 05, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27748913/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27748913.jpg" alt="NBA: San Antonio Spurs at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-vassell/" class="player-link">Devin Vassell</a>
-        <div class="headline">NBA: San Antonio Spurs at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Dec 05, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27734211/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27734211.jpg" alt="NBA: Portland Trail Blazers at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rayan-rupert/" class="player-link">Rayan Rupert</a>
-        <div class="headline">NBA: Portland Trail Blazers at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Dec 03, 2025</div>
     </div>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27734221/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27734221.jpg" alt="NBA: Portland Trail Blazers at Cleveland Cavaliers" loading="lazy"></a>
@@ -430,13 +336,13 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Portland Trail Blazers at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Dec 03, 2025</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27734220/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27734220.jpg" alt="NBA: Portland Trail Blazers at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/sidy-cissoko/" class="player-link">Sidy Cissoko</a>
-        <div class="headline">NBA: Portland Trail Blazers at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Dec 03, 2025</div>
-    </div>
+</div>
+<div class="affiliate-module inline">
+    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Cleveland+Cavaliers+basketball+shoes+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
+        <span class="btn-icon">🛒</span>
+        <span class="btn-text">Shop Cleveland Cavaliers basketball shoes basketball shoes</span>
+        <span class="badge-info">★ Latest Model</span>
+    </a>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27674481/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27674481.jpg" alt="NBA: Cleveland Cavaliers at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
@@ -450,13 +356,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tyrese-proctor/" class="player-link">Tyrese Proctor</a>
         <div class="headline">NBA: Cleveland Cavaliers at Toronto Raptors</div>
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Nov 24, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27667009/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27667009.jpg" alt="NBA: Los Angeles Clippers at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/john-collins/" class="player-link">John Collins</a>
-        <div class="headline">NBA: Los Angeles Clippers at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Nov 23, 2025</div>
     </div>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27644971/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27644971.jpg" alt="NBA: Indiana Pacers at Cleveland Cavaliers" loading="lazy"></a>
@@ -494,13 +393,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 David Richard · Imagn Images · Nov 15, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27597829/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27597829.jpg" alt="NBA: Memphis Grizzlies at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jaylen-wells/" class="player-link">Jaylen Wells</a>
-        <div class="headline">NBA: Memphis Grizzlies at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Nov 15, 2025</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27598080/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27598080.jpg" alt="NBA: Memphis Grizzlies at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/evan-mobley/" class="player-link">Evan Mobley</a>
@@ -522,25 +414,11 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 David Richard · Imagn Images · Nov 13, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27580298/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27580298.jpg" alt="NBA: Toronto Raptors at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/immanuel-quickley/" class="player-link">Immanuel Quickley</a>
-        <div class="headline">NBA: Toronto Raptors at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Nov 13, 2025</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27580286/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27580286.jpg" alt="NBA: Toronto Raptors at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deandre-hunter/" class="player-link">De&#x27;Andre Hunter</a>
         <div class="headline">NBA: Toronto Raptors at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Nov 13, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27557822/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27557822.jpg" alt="NBA: Cleveland Cavaliers at Miami Heat" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nikola-jovic/" class="player-link">Nikola Jovic</a>
-        <div class="headline">NBA: Cleveland Cavaliers at Miami Heat</div>
-        <div class="credit">📷 Rhona Wise · Imagn Images · Nov 10, 2025</div>
     </div>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27557821/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27557821.jpg" alt="NBA: Cleveland Cavaliers at Miami Heat" loading="lazy"></a>
@@ -553,20 +431,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27514908/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27514908.jpg" alt="NBA: Philadelphia 76ers at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/sam-merrill/" class="player-link">Sam Merrill</a>
-        <div class="headline">NBA: Philadelphia 76ers at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Nov 05, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27513740/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27513740.jpg" alt="NBA: Philadelphia 76ers at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/andre-drummond/" class="player-link">Andre Drummond</a>
-        <div class="headline">NBA: Philadelphia 76ers at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Nov 05, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27513739/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27513739.jpg" alt="NBA: Philadelphia 76ers at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kelly-oubre-jr/" class="player-link">Kelly Oubre Jr</a>
         <div class="headline">NBA: Philadelphia 76ers at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Nov 05, 2025</div>
     </div>
@@ -592,24 +456,249 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 David Richard · Imagn Images · Oct 31, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27466358/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27466358.jpg" alt="NBA: Toronto Raptors at Cleveland Cavaliers" loading="lazy"></a>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27466287/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27466287.jpg" alt="NBA: Toronto Raptors at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/evan-mobley/" class="player-link">Evan Mobley</a>
         <div class="headline">NBA: Toronto Raptors at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Oct 31, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27466356/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27466356.jpg" alt="NBA: Toronto Raptors at Cleveland Cavaliers" loading="lazy"></a>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27466288/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27466288.jpg" alt="NBA: Toronto Raptors at Cleveland Cavaliers" loading="lazy"></a>
     <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/brandon-ingram/" class="player-link">Brandon Ingram</a>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lonzo-ball/" class="player-link">Lonzo Ball</a>
         <div class="headline">NBA: Toronto Raptors at Cleveland Cavaliers</div>
         <div class="credit">📷 David Richard · Imagn Images · Oct 31, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27324826/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27324826.jpg" alt="NBA: Preseason-Detroit Pistons at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/sam-merrill/" class="player-link">Sam Merrill</a>
+        <div class="headline">NBA: Preseason-Detroit Pistons at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Oct 14, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27324823/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27324823.jpg" alt="NBA: Preseason-Detroit Pistons at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jarrett-allen/" class="player-link">Jarrett Allen</a>
+        <div class="headline">NBA: Preseason-Detroit Pistons at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Oct 14, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27324825/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27324825.jpg" alt="NBA: Preseason-Detroit Pistons at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/donovan-mitchell/" class="player-link">Donovan Mitchell</a>
+        <div class="headline">NBA: Preseason-Detroit Pistons at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Oct 14, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/26107143/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/26107143.jpg" alt="NBA: Playoffs-Indiana Pacers at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jarrett-allen/" class="player-link">Jarrett Allen</a>
+        <div class="headline">NBA: Playoffs-Indiana Pacers at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · May 06, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/26107138/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/26107138.jpg" alt="NBA: Playoffs-Indiana Pacers at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/isaac-okoro/" class="player-link">Isaac Okoro</a>
+        <div class="headline">NBA: Playoffs-Indiana Pacers at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · May 06, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25998301/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25998301.jpg" alt="NBA: Playoffs-Miami Heat at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jarrett-allen/" class="player-link">Jarrett Allen</a>
+        <div class="headline">NBA: Playoffs-Miami Heat at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Apr 23, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25977299/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25977299.jpg" alt="NBA: Playoffs-Miami Heat at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deandre-hunter/" class="player-link">De&#x27;Andre Hunter</a>
+        <div class="headline">NBA: Playoffs-Miami Heat at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Apr 20, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25977304/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25977304.jpg" alt="NBA: Playoffs-Miami Heat at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/donovan-mitchell/" class="player-link">Donovan Mitchell</a>
+        <div class="headline">NBA: Playoffs-Miami Heat at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Apr 20, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25920045/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25920045.jpg" alt="NBA: Indiana Pacers at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/chuma-okeke/" class="player-link">Chuma Okeke</a>
+        <div class="headline">NBA: Indiana Pacers at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Apr 13, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25920672/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25920672.jpg" alt="NBA: Indiana Pacers at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/naeqwan-tomlin/" class="player-link">Nae&#x27;Qwan Tomlin</a>
+        <div class="headline">NBA: Indiana Pacers at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Apr 13, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25880080/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25880080.jpg" alt="NBA: Chicago Bulls at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/sam-merrill/" class="player-link">Sam Merrill</a>
+        <div class="headline">NBA: Chicago Bulls at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Apr 08, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25880135/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25880135.jpg" alt="NBA: Chicago Bulls at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deandre-hunter/" class="player-link">De&#x27;Andre Hunter</a>
+        <div class="headline">NBA: Chicago Bulls at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Apr 08, 2025</div>
+    </div>
+</div>
+<div class="affiliate-module inline">
+    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Cleveland+Cavaliers+sneakers+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
+        <span class="btn-icon">🛒</span>
+        <span class="btn-text">Shop Cleveland Cavaliers sneakers basketball shoes</span>
+        <span class="badge-info">★ Latest Model</span>
+    </a>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25808275/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25808275.jpg" alt="NBA: Los Angeles Clippers at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/darius-garland/" class="player-link">Darius Garland</a>
+        <div class="headline">NBA: Los Angeles Clippers at Cleveland Cavaliers</div>
+        <div class="credit">📷 Ken Blaze · Imagn Images · Mar 30, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25794717/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25794717.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/evan-mobley/" class="player-link">Evan Mobley</a>
+        <div class="headline">NBA: Cleveland Cavaliers at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Mar 28, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25794716/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25794716.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dean-wade/" class="player-link">Dean Wade</a>
+        <div class="headline">NBA: Cleveland Cavaliers at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Mar 28, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25784932/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25784932.jpg" alt="NBA: San Antonio Spurs at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jarrett-allen/" class="player-link">Jarrett Allen</a>
+        <div class="headline">NBA: San Antonio Spurs at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Mar 27, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25783367/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25783367.jpg" alt="NBA: San Antonio Spurs at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/darius-garland/" class="player-link">Darius Garland</a>
+        <div class="headline">NBA: San Antonio Spurs at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Mar 27, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25783366/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25783366.jpg" alt="NBA: San Antonio Spurs at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/isaac-okoro/" class="player-link">Isaac Okoro</a>
+        <div class="headline">NBA: San Antonio Spurs at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Mar 27, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25768035/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25768035.jpg" alt="NBA: Cleveland Cavaliers at Portland Trail Blazers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/evan-mobley/" class="player-link">Evan Mobley</a>
+        <div class="headline">NBA: Cleveland Cavaliers at Portland Trail Blazers</div>
+        <div class="credit">📷 Jaime Valdez · Imagn Images · Mar 25, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25716312/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25716312.jpg" alt="NBA: Cleveland Cavaliers at Sacramento Kings" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/isaac-okoro/" class="player-link">Isaac Okoro</a>
+        <div class="headline">NBA: Cleveland Cavaliers at Sacramento Kings</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Mar 19, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25715669/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25715669.jpg" alt="NBA: Cleveland Cavaliers at Sacramento Kings" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ty-jerome/" class="player-link">Ty Jerome</a>
+        <div class="headline">NBA: Cleveland Cavaliers at Sacramento Kings</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Mar 19, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25715660/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25715660.jpg" alt="NBA: Cleveland Cavaliers at Sacramento Kings" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/max-strus/" class="player-link">Max Strus</a>
+        <div class="headline">NBA: Cleveland Cavaliers at Sacramento Kings</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Mar 19, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25689405/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25689405.jpg" alt="NBA: Orlando Magic at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/max-strus/" class="player-link">Max Strus</a>
+        <div class="headline">NBA: Orlando Magic at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Mar 16, 2025</div>
     </div>
 </div>
         </div>
         <button class='load-more' id='load-more'>Load More Photos</button>
     </section>
 </main>
+
+<section class="more-players">
+    <div class="container">
+        <h2>More Teams to Explore</h2>
+        <div class="more-players-row">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/76ers/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28307725.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Philadelphia 76ers</div>
+        <div class="mp-count">390 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/jazz/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28185038.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Utah Jazz</div>
+        <div class="mp-count">642 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/hornets/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28422256.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Charlotte Hornets</div>
+        <div class="mp-count">445 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/clippers/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28420341.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">LA Clippers</div>
+        <div class="mp-count">541 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/timberwolves/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28412884.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Minnesota Timberwolves</div>
+        <div class="mp-count">575 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/rockets/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28412960.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Houston Rockets</div>
+        <div class="mp-count">619 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/nuggets/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28414630.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Denver Nuggets</div>
+        <div class="mp-count">996 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/mavericks/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28391890.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Dallas Mavericks</div>
+        <div class="mp-count">760 photos</div>
+    </div>
+</a>
+        </div>
+    </div>
+</section>
 
 
 <footer class="site-footer">

@@ -32,8 +32,13 @@ a:hover { text-decoration: underline; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
 .site-header { background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
 .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.site-logo { font-size: 22px; font-weight: 700; color: white; }
+.header-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.site-logo { font-size: 22px; font-weight: 700; color: white; white-space: nowrap; }
 .site-logo:hover { text-decoration: none; color: var(--accent); }
+.header-breadcrumb { font-size: 13px; color: rgba(255,255,255,0.6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.header-breadcrumb::before { content: '/'; margin-right: 10px; color: rgba(255,255,255,0.3); }
+.header-breadcrumb a { color: rgba(255,255,255,0.7); }
+.header-breadcrumb a:hover { color: white; text-decoration: none; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
@@ -79,8 +84,6 @@ a:hover { text-decoration: underline; }
 .page-header { padding: 32px 0; background: var(--card-bg); border-bottom: 1px solid var(--border); }
 .page-header h1 { font-size: 28px; margin-bottom: 4px; }
 .page-header .subtitle { color: var(--text-secondary); }
-.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
-.breadcrumb a { color: var(--text-secondary); }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -152,7 +155,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -160,7 +163,10 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <header class="site-header">
     <div class="container">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+        <div class="header-left">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+            <span class="header-breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/">Teams</a> / New Orleans Pelicans</span>
+        </div>
         <div class="header-search">
             <input type="text" id="quick-search" placeholder="Search players..." autocomplete="off">
             <div id="quick-results" class="quick-results"></div>
@@ -176,16 +182,28 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/">Home</a> / <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/">Teams</a> / New Orleans Pelicans</div>
         <h1>New Orleans Pelicans</h1>
-        <p class="subtitle">1128 shoe photos</p>
+        <p class="subtitle">509 shoe photos</p>
     </div>
 </div>
 
 <main class="container">
     <section class="section">
         <div class="photo-grid" id="photo-grid">
-            <div class="photo-card">
+            
+<div class="affiliate-module featured">
+    <div class="module-header">
+        <span class="module-icon">👟</span>
+        <span class="module-title">Shop New Orleans Pelicans basketball shoes's Kicks</span>
+    </div>
+    <div class="shoe-info">
+        <span class="shoe-name">New Orleans Pelicans basketball shoes basketball shoes</span>
+        <span class="badge-info">★ Latest Model</span>
+    </div>
+    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=New+Orleans+Pelicans+basketball+shoes+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn large">
+        Buy on StockX
+    </a>
+</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28396086/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28396086.jpg" alt="NBA: New Orleans Pelicans at Los Angeles Lakers" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zion-williamson/" class="player-link">Zion Williamson</a>
@@ -200,60 +218,11 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Kirby Lee · Imagn Images · Mar 03, 2026</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28396329/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28396329.jpg" alt="NBA: New Orleans Pelicans at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lebron-james/" class="player-link">LeBron James</a>
-        <div class="headline">NBA: New Orleans Pelicans at Los Angeles Lakers</div>
-        <div class="credit">📷 Kirby Lee · Imagn Images · Mar 03, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28396284/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28396284.jpg" alt="NBA: New Orleans Pelicans at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/luka-doncic/" class="player-link">Luka Doncic</a>
-        <div class="headline">NBA: New Orleans Pelicans at Los Angeles Lakers</div>
-        <div class="credit">📷 Kirby Lee · Imagn Images · Mar 03, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28396270/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28396270.jpg" alt="NBA: New Orleans Pelicans at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/luka-doncic/" class="player-link">Luka Doncic</a>
-        <div class="headline">NBA: New Orleans Pelicans at Los Angeles Lakers</div>
-        <div class="credit">📷 Kirby Lee · Imagn Images · Mar 03, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28396096/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28396096.jpg" alt="NBA: New Orleans Pelicans at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jaxson-hayes/" class="player-link">Jaxson Hayes</a>
-        <div class="headline">NBA: New Orleans Pelicans at Los Angeles Lakers</div>
-        <div class="credit">📷 Kirby Lee · Imagn Images · Mar 03, 2026</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28396085/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28396085.jpg" alt="NBA: New Orleans Pelicans at Los Angeles Lakers" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zion-williamson/" class="player-link">Zion Williamson</a>
         <div class="headline">NBA: New Orleans Pelicans at Los Angeles Lakers</div>
         <div class="credit">📷 Kirby Lee · Imagn Images · Mar 03, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28333094/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28333094.jpg" alt="NBA: Golden State Warriors at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/draymond-green/" class="player-link">Draymond Green</a>
-        <div class="headline">NBA: Golden State Warriors at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Feb 24, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28331461/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28331461.jpg" alt="NBA: Golden State Warriors at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/brandin-podziemski/" class="player-link">Brandin Podziemski</a>
-        <div class="headline">NBA: Golden State Warriors at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Feb 24, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28307725/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28307725.jpg" alt="NBA: Philadelphia 76ers at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dominick-barlow/" class="player-link">Dominick Barlow</a>
-        <div class="headline">NBA: Philadelphia 76ers at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Feb 21, 2026</div>
     </div>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28307517/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28307517.jpg" alt="NBA: Philadelphia 76ers at New Orleans Pelicans" loading="lazy"></a>
@@ -263,46 +232,11 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Stephen Lew · Imagn Images · Feb 21, 2026</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28297955/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28297955.jpg" alt="NBA: Milwaukee Bucks at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/thanasis-antetokounmpo/" class="player-link">Thanasis Antetokounmpo</a>
-        <div class="headline">NBA: Milwaukee Bucks at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Feb 20, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28297921/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28297921.jpg" alt="NBA: Milwaukee Bucks at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ousmane-dieng/" class="player-link">Ousmane Dieng</a>
-        <div class="headline">NBA: Milwaukee Bucks at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Feb 20, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28297892/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28297892.jpg" alt="NBA: Milwaukee Bucks at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-kuzma/" class="player-link">Kyle Kuzma</a>
-        <div class="headline">NBA: Milwaukee Bucks at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Feb 20, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28213655/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28213655.jpg" alt="NBA: Miami Heat at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bam-adebayo/" class="player-link">Bam Adebayo</a>
-        <div class="headline">NBA: Miami Heat at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Feb 11, 2026</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28213518/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28213518.jpg" alt="NBA: Miami Heat at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/derik-queen/" class="player-link">Derik Queen</a>
         <div class="headline">NBA: Miami Heat at New Orleans Pelicans</div>
         <div class="credit">📷 Stephen Lew · Imagn Images · Feb 11, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28175750/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28175750.jpg" alt="NBA: New Orleans Pelicans at Minnesota Timberwolves" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/anthony-edwards/" class="player-link">Anthony Edwards</a>
-        <div class="headline">NBA: New Orleans Pelicans at Minnesota Timberwolves</div>
-        <div class="credit">📷 Jesse Johnson · Imagn Images · Feb 06, 2026</div>
     </div>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28158209/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28158209.jpg" alt="NBA: New Orleans Pelicans at Milwaukee Bucks" loading="lazy"></a>
@@ -326,13 +260,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Matthew Hinton · Imagn Images · Jan 30, 2026</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28122331/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28122331.jpg" alt="NBA: Memphis Grizzlies at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kentavious-caldwell-pope/" class="player-link">Kentavious Caldwell-Pope</a>
-        <div class="headline">NBA: Memphis Grizzlies at New Orleans Pelicans</div>
-        <div class="credit">📷 Matthew Hinton · Imagn Images · Jan 30, 2026</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28056684/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28056684.jpg" alt="NBA: Detroit Pistons at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/derik-queen/" class="player-link">Derik Queen</a>
@@ -345,41 +272,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jordan-poole/" class="player-link">Jordan Poole</a>
         <div class="headline">NBA: Brooklyn Nets at New Orleans Pelicans</div>
         <div class="credit">📷 Stephen Lew · Imagn Images · Jan 14, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28008635/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28008635.jpg" alt="NBA: Brooklyn Nets at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dayron-sharpe/" class="player-link">Day&#x27;Ron Sharpe</a>
-        <div class="headline">NBA: Brooklyn Nets at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 14, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28008637/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28008637.jpg" alt="NBA: Brooklyn Nets at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/drake-powell/" class="player-link">Drake Powell</a>
-        <div class="headline">NBA: Brooklyn Nets at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 14, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27998682/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27998682.jpg" alt="NBA: Denver Nuggets at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/daron-holmes-ii/" class="player-link">Daron Holmes II</a>
-        <div class="headline">NBA: Denver Nuggets at New Orleans Pelicans</div>
-        <div class="credit">📷 Matthew Hinton · Imagn Images · Jan 13, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27998686/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27998686.jpg" alt="NBA: Denver Nuggets at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tim-hardaway-jr/" class="player-link">Tim Hardaway Jr</a>
-        <div class="headline">NBA: Denver Nuggets at New Orleans Pelicans</div>
-        <div class="credit">📷 Matthew Hinton · Imagn Images · Jan 13, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27986170/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27986170.jpg" alt="NBA: New Orleans Pelicans at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/desmond-bane/" class="player-link">Desmond Bane</a>
-        <div class="headline">NBA: New Orleans Pelicans at Orlando Magic</div>
-        <div class="credit">📷 Mike Watters · Imagn Images · Jan 11, 2026</div>
     </div>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27986164/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27986164.jpg" alt="NBA: New Orleans Pelicans at Orlando Magic" loading="lazy"></a>
@@ -396,67 +288,11 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Mike Watters · Imagn Images · Jan 11, 2026</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27986168/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27986168.jpg" alt="NBA: New Orleans Pelicans at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/paolo-banchero/" class="player-link">Paolo Banchero</a>
-        <div class="headline">NBA: New Orleans Pelicans at Orlando Magic</div>
-        <div class="credit">📷 Mike Watters · Imagn Images · Jan 11, 2026</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27986148/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27986148.jpg" alt="NBA: New Orleans Pelicans at Orlando Magic" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bryce-mcgowens/" class="player-link">Bryce McGowens</a>
         <div class="headline">NBA: New Orleans Pelicans at Orlando Magic</div>
         <div class="credit">📷 Mike Watters · Imagn Images · Jan 11, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27948108/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27948108.jpg" alt="NBA: Los Angeles Lakers at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marcus-smart/" class="player-link">Marcus Smart</a>
-        <div class="headline">NBA: Los Angeles Lakers at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 06, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27947755/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27947755.jpg" alt="NBA: Los Angeles Lakers at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jake-laravia/" class="player-link">Jake Laravia</a>
-        <div class="headline">NBA: Los Angeles Lakers at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 06, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27945929/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27945929.jpg" alt="NBA: Los Angeles Lakers at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lebron-james/" class="player-link">LeBron James</a>
-        <div class="headline">NBA: Los Angeles Lakers at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 06, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27944855/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27944855.jpg" alt="NBA: Los Angeles Lakers at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/luka-doncic/" class="player-link">Luka Doncic</a>
-        <div class="headline">NBA: Los Angeles Lakers at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 06, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27922409/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27922409.jpg" alt="NBA: Portland Trail Blazers at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scoot-henderson/" class="player-link">Scoot Henderson</a>
-        <div class="headline">NBA: Portland Trail Blazers at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 02, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27921585/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27921585.jpg" alt="NBA: Portland Trail Blazers at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/sidy-cissoko/" class="player-link">Sidy Cissoko</a>
-        <div class="headline">NBA: Portland Trail Blazers at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 02, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27921510/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27921510.jpg" alt="NBA: Portland Trail Blazers at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/yang-hansen/" class="player-link">Yang Hansen</a>
-        <div class="headline">NBA: Portland Trail Blazers at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 02, 2026</div>
     </div>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27921444/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27921444.jpg" alt="NBA: Portland Trail Blazers at New Orleans Pelicans" loading="lazy"></a>
@@ -473,60 +309,11 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Stephen Lew · Imagn Images · Dec 29, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27901050/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27901050.jpg" alt="NBA: New York Knicks at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tyler-kolek/" class="player-link">Tyler Kolek</a>
-        <div class="headline">NBA: New York Knicks at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Dec 29, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27890637/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27890637.jpg" alt="NBA: Phoenix Suns at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-booker/" class="player-link">Devin Booker</a>
-        <div class="headline">NBA: Phoenix Suns at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Dec 27, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27890695/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27890695.jpg" alt="NBA: Phoenix Suns at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dillon-brooks/" class="player-link">Dillon Brooks</a>
-        <div class="headline">NBA: Phoenix Suns at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Dec 27, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27887418/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27887418.jpg" alt="NBA: Phoenix Suns at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/royce-oneale/" class="player-link">Royce O&#x27;Neale</a>
-        <div class="headline">NBA: Phoenix Suns at New Orleans Pelicans</div>
-        <div class="credit">📷 Matthew Hinton · Imagn Images · Dec 26, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27887416/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27887416.jpg" alt="NBA: Phoenix Suns at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dillon-brooks/" class="player-link">Dillon Brooks</a>
-        <div class="headline">NBA: Phoenix Suns at New Orleans Pelicans</div>
-        <div class="credit">📷 Matthew Hinton · Imagn Images · Dec 26, 2025</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27887414/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27887414.jpg" alt="NBA: Phoenix Suns at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jose-alvarado/" class="player-link">Jose Alvarado</a>
         <div class="headline">NBA: Phoenix Suns at New Orleans Pelicans</div>
         <div class="credit">📷 Matthew Hinton · Imagn Images · Dec 26, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27872583/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27872583.jpg" alt="NBA: Dallas Mavericks at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/naji-marshall/" class="player-link">Naji Marshall</a>
-        <div class="headline">NBA: Dallas Mavericks at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Dec 22, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27872580/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27872580.jpg" alt="NBA: Dallas Mavericks at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/klay-thompson/" class="player-link">Klay Thompson</a>
-        <div class="headline">NBA: Dallas Mavericks at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Dec 22, 2025</div>
     </div>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27862088/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27862088.jpg" alt="NBA: Indiana Pacers at New Orleans Pelicans" loading="lazy"></a>
@@ -549,20 +336,13 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Houston Rockets at New Orleans Pelicans</div>
         <div class="credit">📷 Stephen Lew · Imagn Images · Dec 18, 2025</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27846174/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27846174.jpg" alt="NBA: Houston Rockets at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
-        <div class="headline">NBA: Houston Rockets at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Dec 18, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27846170/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27846170.jpg" alt="NBA: Houston Rockets at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kevin-durant/" class="player-link">Kevin Durant</a>
-        <div class="headline">NBA: Houston Rockets at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Dec 18, 2025</div>
-    </div>
+</div>
+<div class="affiliate-module inline">
+    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=New+Orleans+Pelicans+basketball+shoes+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
+        <span class="btn-icon">🛒</span>
+        <span class="btn-text">Shop New Orleans Pelicans basketball shoes basketball shoes</span>
+        <span class="badge-info">★ Latest Model</span>
+    </a>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27819324/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27819324.jpg" alt="NBA: New Orleans Pelicans at Chicago Bulls" loading="lazy"></a>
     <div class="meta">
@@ -592,24 +372,333 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Stephen Lew · Imagn Images · Dec 08, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27775200/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27775200.jpg" alt="NBA: San Antonio Spurs at New Orleans Pelicans" loading="lazy"></a>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27674504/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27674504.jpg" alt="NBA: Chicago Bulls at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/harrison-barnes/" class="player-link">Harrison Barnes</a>
-        <div class="headline">NBA: San Antonio Spurs at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Dec 08, 2025</div>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/derik-queen/" class="player-link">Derik Queen</a>
+        <div class="headline">NBA: Chicago Bulls at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Nov 24, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27741740/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27741740.jpg" alt="NBA: Minnesota Timberwolves at New Orleans Pelicans" loading="lazy"></a>
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27673241/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27673241.jpg" alt="NBA: Chicago Bulls at New Orleans Pelicans" loading="lazy"></a>
     <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/naz-reid/" class="player-link">Naz Reid</a>
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zion-williamson/" class="player-link">Zion Williamson</a>
+        <div class="headline">NBA: Chicago Bulls at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Nov 24, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27629293/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27629293.jpg" alt="NBA: Denver Nuggets at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zion-williamson/" class="player-link">Zion Williamson</a>
+        <div class="headline">NBA: Denver Nuggets at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Nov 19, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27574086/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27574086.jpg" alt="NBA: Portland Trail Blazers at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-murphy-iii/" class="player-link">Trey Murphy III</a>
+        <div class="headline">NBA: Portland Trail Blazers at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Nov 12, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27572870/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27572870.jpg" alt="NBA: Portland Trail Blazers at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/derik-queen/" class="player-link">Derik Queen</a>
+        <div class="headline">NBA: Portland Trail Blazers at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Nov 12, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27451237/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27451237.jpg" alt="NBA: New Orleans Pelicans at Denver Nuggets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zion-williamson/" class="player-link">Zion Williamson</a>
+        <div class="headline">NBA: New Orleans Pelicans at Denver Nuggets</div>
+        <div class="credit">📷 Isaiah J. Downing · Imagn Images · Oct 29, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27408706/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27408706.jpg" alt="NBA: San Antonio Spurs at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-murphy-iii/" class="player-link">Trey Murphy III</a>
+        <div class="headline">NBA: San Antonio Spurs at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Oct 24, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27410884/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27410884.jpg" alt="NBA: San Antonio Spurs at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zion-williamson/" class="player-link">Zion Williamson</a>
+        <div class="headline">NBA: San Antonio Spurs at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Oct 24, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27341442/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27341442.jpg" alt="NBA: Preseason-New Orleans Pelicans at Orlando Magic" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zion-williamson/" class="player-link">Zion Williamson</a>
+        <div class="headline">NBA: Preseason-New Orleans Pelicans at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Oct 16, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27341444/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27341444.jpg" alt="NBA: Preseason-New Orleans Pelicans at Orlando Magic" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/yves-missi/" class="player-link">Yves Missi</a>
+        <div class="headline">NBA: Preseason-New Orleans Pelicans at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Oct 16, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25906829/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25906829.jpg" alt="NBA: Miami Heat at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kylor-kelley/" class="player-link">Kylor Kelley</a>
+        <div class="headline">NBA: Miami Heat at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Apr 11, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25810407/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25810407.jpg" alt="NBA: Charlotte Hornets at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/yves-missi/" class="player-link">Yves Missi</a>
+        <div class="headline">NBA: Charlotte Hornets at New Orleans Pelicans</div>
+        <div class="credit">📷 Matthew Hinton · Imagn Images · Mar 30, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25758856/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25758856.jpg" alt="NBA: Philadelphia 76ers at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jeremiah-robinson-earl/" class="player-link">Jeremiah Robinson-Earl</a>
+        <div class="headline">NBA: Philadelphia 76ers at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Mar 24, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25715683/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25715683.jpg" alt="NBA: New Orleans Pelicans at Minnesota Timberwolves" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zion-williamson/" class="player-link">Zion Williamson</a>
+        <div class="headline">NBA: New Orleans Pelicans at Minnesota Timberwolves</div>
+        <div class="credit">📷 Jesse Johnson · Imagn Images · Mar 19, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25684957/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25684957.jpg" alt="NBA: New Orleans Pelicans at San Antonio Spurs" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kelly-olynyk/" class="player-link">Kelly Olynyk</a>
+        <div class="headline">NBA: New Orleans Pelicans at San Antonio Spurs</div>
+        <div class="credit">📷 Scott Wachter · Imagn Images · Mar 15, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25628404/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25628404.jpg" alt="NBA: Memphis Grizzlies at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jeremiah-robinson-earl/" class="player-link">Jeremiah Robinson-Earl</a>
+        <div class="headline">NBA: Memphis Grizzlies at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Mar 09, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25628403/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25628403.jpg" alt="NBA: Memphis Grizzlies at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
+        <div class="headline">NBA: Memphis Grizzlies at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Mar 09, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25599915/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25599915.jpg" alt="NBA: Houston Rockets at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bruce-brown/" class="player-link">Bruce Brown</a>
+        <div class="headline">NBA: Houston Rockets at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Mar 06, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25598710/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25598710.jpg" alt="NBA: Houston Rockets at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jose-alvarado/" class="player-link">Jose Alvarado</a>
+        <div class="headline">NBA: Houston Rockets at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Mar 06, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25566804/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25566804.jpg" alt="NBA: New Orleans Pelicans at Utah Jazz" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jose-alvarado/" class="player-link">Jose Alvarado</a>
+        <div class="headline">NBA: New Orleans Pelicans at Utah Jazz</div>
+        <div class="credit">📷 Rob Gray · Imagn Images · Mar 02, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25566803/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25566803.jpg" alt="NBA: New Orleans Pelicans at Utah Jazz" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jose-alvarado/" class="player-link">Jose Alvarado</a>
+        <div class="headline">NBA: New Orleans Pelicans at Utah Jazz</div>
+        <div class="credit">📷 Rob Gray · Imagn Images · Mar 02, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25566800/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25566800.jpg" alt="NBA: New Orleans Pelicans at Utah Jazz" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cj-mccollum/" class="player-link">CJ McCollum</a>
+        <div class="headline">NBA: New Orleans Pelicans at Utah Jazz</div>
+        <div class="credit">📷 Rob Gray · Imagn Images · Mar 02, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25513053/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25513053.jpg" alt="NBA: San Antonio Spurs at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jose-alvarado/" class="player-link">Jose Alvarado</a>
+        <div class="headline">NBA: San Antonio Spurs at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Feb 25, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25494768/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25494768.jpg" alt="NBA: San Antonio Spurs at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cj-mccollum/" class="player-link">CJ McCollum</a>
+        <div class="headline">NBA: San Antonio Spurs at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Feb 23, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25494767/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25494767.jpg" alt="NBA: San Antonio Spurs at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/yves-missi/" class="player-link">Yves Missi</a>
+        <div class="headline">NBA: San Antonio Spurs at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Feb 23, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25376646/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25376646.jpg" alt="NBA: New Orleans Pelicans at Sacramento Kings" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/karlo-matkovic/" class="player-link">Karlo Matkovic</a>
+        <div class="headline">NBA: New Orleans Pelicans at Sacramento Kings</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Feb 08, 2025</div>
+    </div>
+</div>
+<div class="affiliate-module inline">
+    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=New+Orleans+Pelicans+sneakers+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
+        <span class="btn-icon">🛒</span>
+        <span class="btn-text">Shop New Orleans Pelicans sneakers basketball shoes</span>
+        <span class="badge-info">★ Latest Model</span>
+    </a>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25376638/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25376638.jpg" alt="NBA: New Orleans Pelicans at Sacramento Kings" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-murphy-iii/" class="player-link">Trey Murphy III</a>
+        <div class="headline">NBA: New Orleans Pelicans at Sacramento Kings</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Feb 08, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25375992/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25375992.jpg" alt="NBA: New Orleans Pelicans at Sacramento Kings" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jose-alvarado/" class="player-link">Jose Alvarado</a>
+        <div class="headline">NBA: New Orleans Pelicans at Sacramento Kings</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Feb 08, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25375980/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25375980.jpg" alt="NBA: New Orleans Pelicans at Sacramento Kings" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zion-williamson/" class="player-link">Zion Williamson</a>
+        <div class="headline">NBA: New Orleans Pelicans at Sacramento Kings</div>
+        <div class="credit">📷 Kelley L Cox · Imagn Images · Feb 08, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25334431/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25334431.jpg" alt="NBA: New Orleans Pelicans at Denver Nuggets" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zion-williamson/" class="player-link">Zion Williamson</a>
+        <div class="headline">NBA: New Orleans Pelicans at Denver Nuggets</div>
+        <div class="credit">📷 Ron Chenoy · Imagn Images · Feb 03, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25282165/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25282165.jpg" alt="NBA: New Orleans Pelicans at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/yves-missi/" class="player-link">Yves Missi</a>
+        <div class="headline">NBA: New Orleans Pelicans at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 27, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25282317/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25282317.jpg" alt="NBA: New Orleans Pelicans at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cj-mccollum/" class="player-link">CJ McCollum</a>
+        <div class="headline">NBA: New Orleans Pelicans at Toronto Raptors</div>
+        <div class="credit">📷 John E. Sokolowski · Imagn Images · Jan 27, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25233457/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25233457.jpg" alt="NBA: Utah Jazz at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/javonte-green/" class="player-link">Javonte Green</a>
+        <div class="headline">NBA: Utah Jazz at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 20, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25212351/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25212351.jpg" alt="NBA: Utah Jazz at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/trey-murphy-iii/" class="player-link">Trey Murphy III</a>
+        <div class="headline">NBA: Utah Jazz at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 17, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25211663/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25211663.jpg" alt="NBA: Utah Jazz at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jose-alvarado/" class="player-link">Jose Alvarado</a>
+        <div class="headline">NBA: Utah Jazz at New Orleans Pelicans</div>
+        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 17, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25188715/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25188715.jpg" alt="NBA: New Orleans Pelicans at Chicago Bulls" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zion-williamson/" class="player-link">Zion Williamson</a>
+        <div class="headline">NBA: New Orleans Pelicans at Chicago Bulls</div>
+        <div class="credit">📷 David Banks · Imagn Images · Jan 14, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25137439/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25137439.jpg" alt="NBA: Minnesota Timberwolves at New Orleans Pelicans" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zion-williamson/" class="player-link">Zion Williamson</a>
         <div class="headline">NBA: Minnesota Timberwolves at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Dec 04, 2025</div>
+        <div class="credit">📷 Matthew Hinton · Imagn Images · Jan 07, 2025</div>
     </div>
 </div>
         </div>
         <button class='load-more' id='load-more'>Load More Photos</button>
     </section>
 </main>
+
+<section class="more-players">
+    <div class="container">
+        <h2>More Teams to Explore</h2>
+        <div class="more-players-row">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/bucks/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28401297.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Milwaukee Bucks</div>
+        <div class="mp-count">748 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/mavericks/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28391890.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Dallas Mavericks</div>
+        <div class="mp-count">760 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/timberwolves/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28412884.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Minnesota Timberwolves</div>
+        <div class="mp-count">575 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/lakers/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28425503.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Los Angeles Lakers</div>
+        <div class="mp-count">853 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/hawks/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28149873.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Atlanta Hawks</div>
+        <div class="mp-count">648 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/jazz/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28185038.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Utah Jazz</div>
+        <div class="mp-count">642 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/kings/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28290046.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Sacramento Kings</div>
+        <div class="mp-count">726 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/wizards/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28165011.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Washington Wizards</div>
+        <div class="mp-count">434 photos</div>
+    </div>
+</a>
+        </div>
+    </div>
+</section>
 
 
 <footer class="site-footer">

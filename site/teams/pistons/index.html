@@ -32,8 +32,13 @@ a:hover { text-decoration: underline; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
 .site-header { background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
 .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.site-logo { font-size: 22px; font-weight: 700; color: white; }
+.header-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.site-logo { font-size: 22px; font-weight: 700; color: white; white-space: nowrap; }
 .site-logo:hover { text-decoration: none; color: var(--accent); }
+.header-breadcrumb { font-size: 13px; color: rgba(255,255,255,0.6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.header-breadcrumb::before { content: '/'; margin-right: 10px; color: rgba(255,255,255,0.3); }
+.header-breadcrumb a { color: rgba(255,255,255,0.7); }
+.header-breadcrumb a:hover { color: white; text-decoration: none; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
@@ -79,8 +84,6 @@ a:hover { text-decoration: underline; }
 .page-header { padding: 32px 0; background: var(--card-bg); border-bottom: 1px solid var(--border); }
 .page-header h1 { font-size: 28px; margin-bottom: 4px; }
 .page-header .subtitle { color: var(--text-secondary); }
-.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
-.breadcrumb a { color: var(--text-secondary); }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -152,7 +155,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -160,7 +163,10 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <header class="site-header">
     <div class="container">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+        <div class="header-left">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+            <span class="header-breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/">Teams</a> / Detroit Pistons</span>
+        </div>
         <div class="header-search">
             <input type="text" id="quick-search" placeholder="Search players..." autocomplete="off">
             <div id="quick-results" class="quick-results"></div>
@@ -176,33 +182,31 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/">Home</a> / <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/">Teams</a> / Detroit Pistons</div>
         <h1>Detroit Pistons</h1>
-        <p class="subtitle">1680 shoe photos</p>
+        <p class="subtitle">847 shoe photos</p>
     </div>
 </div>
 
 <main class="container">
     <section class="section">
         <div class="photo-grid" id="photo-grid">
-            <div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28412989/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28412989.jpg" alt="NBA: Detroit Pistons at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/victor-wembanyama/" class="player-link">Victor Wembanyama</a>
-        <div class="headline">NBA: Detroit Pistons at San Antonio Spurs</div>
-        <div class="credit">📷 Scott Wachter · Imagn Images · Mar 05, 2026</div>
+            
+<div class="affiliate-module featured">
+    <div class="module-header">
+        <span class="module-icon">👟</span>
+        <span class="module-title">Shop Detroit Pistons basketball shoes's Kicks</span>
     </div>
+    <div class="shoe-info">
+        <span class="shoe-name">Detroit Pistons basketball shoes basketball shoes</span>
+        <span class="badge-info">★ Latest Model</span>
+    </div>
+    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Detroit+Pistons+basketball+shoes+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn large">
+        Buy on StockX
+    </a>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28410088/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28410088.jpg" alt="NBA: Detroit Pistons at San Antonio Spurs" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/duncan-robinson/" class="player-link">Duncan Robinson</a>
-        <div class="headline">NBA: Detroit Pistons at San Antonio Spurs</div>
-        <div class="credit">📷 Scott Wachter · Imagn Images · Mar 05, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28410089/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28410089.jpg" alt="NBA: Detroit Pistons at San Antonio Spurs" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/stephon-castle/" class="player-link">Stephon Castle</a>
         <div class="headline">NBA: Detroit Pistons at San Antonio Spurs</div>
         <div class="credit">📷 Scott Wachter · Imagn Images · Mar 05, 2026</div>
     </div>
@@ -214,60 +218,11 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 David Richard · Imagn Images · Mar 03, 2026</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28391736/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28391736.jpg" alt="NBA: Detroit Pistons at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/james-harden/" class="player-link">James Harden</a>
-        <div class="headline">NBA: Detroit Pistons at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Mar 03, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28391741/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28391741.jpg" alt="NBA: Detroit Pistons at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jarrett-allen/" class="player-link">Jarrett Allen</a>
-        <div class="headline">NBA: Detroit Pistons at Cleveland Cavaliers</div>
-        <div class="credit">📷 David Richard · Imagn Images · Mar 03, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28378301/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28378301.jpg" alt="NBA: Detroit Pistons at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jevon-carter/" class="player-link">Jevon Carter</a>
-        <div class="headline">NBA: Detroit Pistons at Orlando Magic</div>
-        <div class="credit">📷 Mike Watters · Imagn Images · Mar 01, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28378299/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28378299.jpg" alt="NBA: Detroit Pistons at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/moritz-wagner/" class="player-link">Moritz Wagner</a>
-        <div class="headline">NBA: Detroit Pistons at Orlando Magic</div>
-        <div class="credit">📷 Mike Watters · Imagn Images · Mar 01, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28378296/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28378296.jpg" alt="NBA: Detroit Pistons at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/paolo-banchero/" class="player-link">Paolo Banchero</a>
-        <div class="headline">NBA: Detroit Pistons at Orlando Magic</div>
-        <div class="credit">📷 Mike Watters · Imagn Images · Mar 01, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28378300/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28378300.jpg" alt="NBA: Detroit Pistons at Orlando Magic" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/wendell-carter-jr/" class="player-link">Wendell Carter Jr</a>
-        <div class="headline">NBA: Detroit Pistons at Orlando Magic</div>
-        <div class="credit">📷 Mike Watters · Imagn Images · Mar 01, 2026</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28378298/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28378298.jpg" alt="NBA: Detroit Pistons at Orlando Magic" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-duren/" class="player-link">Jalen Duren</a>
         <div class="headline">NBA: Detroit Pistons at Orlando Magic</div>
         <div class="credit">📷 Mike Watters · Imagn Images · Mar 01, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28341016/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28341016.jpg" alt="NBA: Oklahoma City Thunder at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jaylin-williams/" class="player-link">Jaylin Williams</a>
-        <div class="headline">NBA: Oklahoma City Thunder at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 25, 2026</div>
     </div>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28340905/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28340905.jpg" alt="NBA: Oklahoma City Thunder at Detroit Pistons" loading="lazy"></a>
@@ -284,20 +239,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 25, 2026</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28323834/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28323834.jpg" alt="NBA: San Antonio Spurs at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/victor-wembanyama/" class="player-link">Victor Wembanyama</a>
-        <div class="headline">NBA: San Antonio Spurs at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 23, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28215006/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28215006.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 11, 2026</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28215081/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28215081.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/caris-levert/" class="player-link">Caris LeVert</a>
@@ -312,53 +253,11 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 11, 2026</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28213200/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28213200.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="player-link">Scottie Barnes</a>
-        <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 11, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28212615/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28212615.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jakob-poeltl/" class="player-link">Jakob Poeltl</a>
-        <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
-        <div class="credit">📷 John E. Sokolowski · Imagn Images · Feb 11, 2026</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28174334/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28174334.jpg" alt="NBA: New York Knicks at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cade-cunningham/" class="player-link">Cade Cunningham</a>
         <div class="headline">NBA: New York Knicks at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 06, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28174336/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28174336.jpg" alt="NBA: New York Knicks at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-brunson/" class="player-link">Jalen Brunson</a>
-        <div class="headline">NBA: New York Knicks at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 06, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28174335/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28174335.jpg" alt="NBA: New York Knicks at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mikal-bridges/" class="player-link">Mikal Bridges</a>
-        <div class="headline">NBA: New York Knicks at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 06, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28165011/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28165011.jpg" alt="NBA: Washington Wizards at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/sharife-cooper/" class="player-link">Sharife Cooper</a>
-        <div class="headline">NBA: Washington Wizards at Detroit Pistons</div>
-        <div class="credit">📷 David Reginek · Imagn Images · Feb 05, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28165007/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28165007.jpg" alt="NBA: Washington Wizards at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/sharife-cooper/" class="player-link">Sharife Cooper</a>
-        <div class="headline">NBA: Washington Wizards at Detroit Pistons</div>
-        <div class="credit">📷 David Reginek · Imagn Images · Feb 05, 2026</div>
     </div>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28165009/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28165009.jpg" alt="NBA: Washington Wizards at Detroit Pistons" loading="lazy"></a>
@@ -375,88 +274,11 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 David Reginek · Imagn Images · Feb 05, 2026</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28124098/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28124098.jpg" alt="NBA: Detroit Pistons at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/stephen-curry/" class="player-link">Stephen Curry</a>
-        <div class="headline">NBA: Detroit Pistons at Golden State Warriors</div>
-        <div class="credit">📷 Cary Edmondson · Imagn Images · Jan 30, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28123184/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28123184.jpg" alt="NBA: Detroit Pistons at Golden State Warriors" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/stephen-curry/" class="player-link">Stephen Curry</a>
-        <div class="headline">NBA: Detroit Pistons at Golden State Warriors</div>
-        <div class="credit">📷 Cary Edmondson · Imagn Images · Jan 30, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28056684/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28056684.jpg" alt="NBA: Detroit Pistons at New Orleans Pelicans" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/derik-queen/" class="player-link">Derik Queen</a>
-        <div class="headline">NBA: Detroit Pistons at New Orleans Pelicans</div>
-        <div class="credit">📷 Stephen Lew · Imagn Images · Jan 21, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28043122/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28043122.jpg" alt="NBA: Boston Celtics at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jaylen-brown/" class="player-link">Jaylen Brown</a>
-        <div class="headline">NBA: Boston Celtics at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 19, 2026</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28043066/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28043066.jpg" alt="NBA: Boston Celtics at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cade-cunningham/" class="player-link">Cade Cunningham</a>
         <div class="headline">NBA: Boston Celtics at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 19, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28043059/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28043059.jpg" alt="NBA: Boston Celtics at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/payton-pritchard/" class="player-link">Payton Pritchard</a>
-        <div class="headline">NBA: Boston Celtics at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 19, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28015067/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28015067.jpg" alt="NBA: Phoenix Suns at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jordan-goodwin/" class="player-link">Jordan Goodwin</a>
-        <div class="headline">NBA: Phoenix Suns at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 15, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27939220/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27939220.jpg" alt="NBA: New York Knicks at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/karl-anthony-towns/" class="player-link">Karl-Anthony Towns</a>
-        <div class="headline">NBA: New York Knicks at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 05, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27938490/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27938490.jpg" alt="NBA: New York Knicks at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-brunson/" class="player-link">Jalen Brunson</a>
-        <div class="headline">NBA: New York Knicks at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 05, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27909289/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27909289.jpg" alt="NBA: Detroit Pistons at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marcus-smart/" class="player-link">Marcus Smart</a>
-        <div class="headline">NBA: Detroit Pistons at Los Angeles Lakers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Dec 30, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27909285/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27909285.jpg" alt="NBA: Detroit Pistons at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lebron-james/" class="player-link">LeBron James</a>
-        <div class="headline">NBA: Detroit Pistons at Los Angeles Lakers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Dec 30, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27909287/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27909287.jpg" alt="NBA: Detroit Pistons at Los Angeles Lakers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/luka-doncic/" class="player-link">Luka Doncic</a>
-        <div class="headline">NBA: Detroit Pistons at Los Angeles Lakers</div>
-        <div class="credit">📷 Gary A. Vasquez · Imagn Images · Dec 30, 2025</div>
     </div>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27909283/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27909283.jpg" alt="NBA: Detroit Pistons at Los Angeles Lakers" loading="lazy"></a>
@@ -487,20 +309,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 20, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27861396/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27861396.jpg" alt="NBA: Charlotte Hornets at Detroit Pistons" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lamelo-ball/" class="player-link">LaMelo Ball</a>
-        <div class="headline">NBA: Charlotte Hornets at Detroit Pistons</div>
-        <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 20, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27848836/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27848836.jpg" alt="NBA: Detroit Pistons at Dallas Mavericks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/captain-america/" class="player-link">Captain America</a>
-        <div class="headline">NBA: Detroit Pistons at Dallas Mavericks</div>
-        <div class="credit">📷 Jerome Miron · Imagn Images · Dec 18, 2025</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27759849/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27759849.jpg" alt="NBA: Milwaukee Bucks at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-duren/" class="player-link">Jalen Duren</a>
@@ -513,13 +321,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cade-cunningham/" class="player-link">Cade Cunningham</a>
         <div class="headline">NBA: Milwaukee Bucks at Detroit Pistons</div>
         <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 06, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27733956/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27733956.jpg" alt="NBA: Detroit Pistons at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/giannis-antetokounmpo/" class="player-link">Giannis Antetokounmpo</a>
-        <div class="headline">NBA: Detroit Pistons at Milwaukee Bucks</div>
-        <div class="credit">📷 Michael McLoone · Imagn Images · Dec 03, 2025</div>
     </div>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27733100/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27733100.jpg" alt="NBA: Detroit Pistons at Milwaukee Bucks" loading="lazy"></a>
@@ -535,20 +336,13 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Detroit Pistons at Milwaukee Bucks</div>
         <div class="credit">📷 Michael McLoone · Imagn Images · Dec 03, 2025</div>
     </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27733120/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27733120.jpg" alt="NBA: Detroit Pistons at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/gary-harris/" class="player-link">Gary Harris</a>
-        <div class="headline">NBA: Detroit Pistons at Milwaukee Bucks</div>
-        <div class="credit">📷 Michael McLoone · Imagn Images · Dec 03, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27733114/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27733114.jpg" alt="NBA: Detroit Pistons at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kyle-kuzma/" class="player-link">Kyle Kuzma</a>
-        <div class="headline">NBA: Detroit Pistons at Milwaukee Bucks</div>
-        <div class="credit">📷 Michael McLoone · Imagn Images · Dec 03, 2025</div>
-    </div>
+</div>
+<div class="affiliate-module inline">
+    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Detroit+Pistons+basketball+shoes+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
+        <span class="btn-icon">🛒</span>
+        <span class="btn-text">Shop Detroit Pistons basketball shoes basketball shoes</span>
+        <span class="badge-info">★ Latest Model</span>
+    </a>
 </div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27719112/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27719112.jpg" alt="NBA: Atlanta Hawks at Detroit Pistons" loading="lazy"></a>
     <div class="meta">
@@ -564,37 +358,9 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="credit">📷 Rick Osentoski · Imagn Images · Dec 01, 2025</div>
     </div>
 </div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27708279/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27708279.jpg" alt="NBA: Detroit Pistons at Miami Heat" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/pelle-larsson/" class="player-link">Pelle Larsson</a>
-        <div class="headline">NBA: Detroit Pistons at Miami Heat</div>
-        <div class="credit">📷 Rhona Wise · Imagn Images · Nov 29, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27708263/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27708263.jpg" alt="NBA: Detroit Pistons at Miami Heat" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kelel-ware/" class="player-link">Kel&#x27;el Ware</a>
-        <div class="headline">NBA: Detroit Pistons at Miami Heat</div>
-        <div class="credit">📷 Rhona Wise · Imagn Images · Nov 29, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27708262/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27708262.jpg" alt="NBA: Detroit Pistons at Miami Heat" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bam-adebayo/" class="player-link">Bam Adebayo</a>
-        <div class="headline">NBA: Detroit Pistons at Miami Heat</div>
-        <div class="credit">📷 Rhona Wise · Imagn Images · Nov 29, 2025</div>
-    </div>
-</div><div class="photo-card">
     <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27708261/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27708261.jpg" alt="NBA: Detroit Pistons at Miami Heat" loading="lazy"></a>
     <div class="meta">
         <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cade-cunningham/" class="player-link">Cade Cunningham</a>
-        <div class="headline">NBA: Detroit Pistons at Miami Heat</div>
-        <div class="credit">📷 Rhona Wise · Imagn Images · Nov 29, 2025</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27708258/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27708258.jpg" alt="NBA: Detroit Pistons at Miami Heat" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/norman-powell/" class="player-link">Norman Powell</a>
         <div class="headline">NBA: Detroit Pistons at Miami Heat</div>
         <div class="credit">📷 Rhona Wise · Imagn Images · Nov 29, 2025</div>
     </div>
@@ -605,11 +371,334 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="headline">NBA: Detroit Pistons at Milwaukee Bucks</div>
         <div class="credit">📷 Michael McLoone · Imagn Images · Nov 22, 2025</div>
     </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27656249/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27656249.jpg" alt="NBA: Detroit Pistons at Milwaukee Bucks" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/duncan-robinson/" class="player-link">Duncan Robinson</a>
+        <div class="headline">NBA: Detroit Pistons at Milwaukee Bucks</div>
+        <div class="credit">📷 Michael McLoone · Imagn Images · Nov 22, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27556511/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27556511.jpg" alt="NBA: Washington Wizards at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cade-cunningham/" class="player-link">Cade Cunningham</a>
+        <div class="headline">NBA: Washington Wizards at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Nov 10, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27449268/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27449268.jpg" alt="NBA: Orlando Magic at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cade-cunningham/" class="player-link">Cade Cunningham</a>
+        <div class="headline">NBA: Orlando Magic at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Oct 29, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27449404/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27449404.jpg" alt="NBA: Orlando Magic at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-duren/" class="player-link">Jalen Duren</a>
+        <div class="headline">NBA: Orlando Magic at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Oct 29, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27449210/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27449210.jpg" alt="NBA: Orlando Magic at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cade-cunningham/" class="player-link">Cade Cunningham</a>
+        <div class="headline">NBA: Orlando Magic at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Oct 26, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27426232/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27426232.jpg" alt="NBA: Boston Celtics at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cade-cunningham/" class="player-link">Cade Cunningham</a>
+        <div class="headline">NBA: Boston Celtics at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Oct 26, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27324822/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27324822.jpg" alt="NBA: Preseason-Detroit Pistons at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-duren/" class="player-link">Jalen Duren</a>
+        <div class="headline">NBA: Preseason-Detroit Pistons at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Oct 14, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/27324824/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/27324824.jpg" alt="NBA: Preseason-Detroit Pistons at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ausar-thompson/" class="player-link">Ausar Thompson</a>
+        <div class="headline">NBA: Preseason-Detroit Pistons at Cleveland Cavaliers</div>
+        <div class="credit">📷 David Richard · Imagn Images · Oct 14, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/26007066/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/26007066.jpg" alt="NBA: Playoffs-New York Knicks at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cade-cunningham/" class="player-link">Cade Cunningham</a>
+        <div class="headline">NBA: Playoffs-New York Knicks at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Apr 24, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/26007046/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/26007046.jpg" alt="NBA: Playoffs-New York Knicks at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-duren/" class="player-link">Jalen Duren</a>
+        <div class="headline">NBA: Playoffs-New York Knicks at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Apr 24, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25873492/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25873492.jpg" alt="NBA: Sacramento Kings at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cade-cunningham/" class="player-link">Cade Cunningham</a>
+        <div class="headline">NBA: Sacramento Kings at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Apr 07, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25872926/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25872926.jpg" alt="NBA: Sacramento Kings at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ronald-holland-ii/" class="player-link">Ronald Holland II</a>
+        <div class="headline">NBA: Sacramento Kings at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Apr 07, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25849726/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25849726.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-duren/" class="player-link">Jalen Duren</a>
+        <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Apr 04, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25849627/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25849627.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ausar-thompson/" class="player-link">Ausar Thompson</a>
+        <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Apr 04, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25849646/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25849646.jpg" alt="NBA: Detroit Pistons at Toronto Raptors" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tim-hardaway-jr/" class="player-link">Tim Hardaway Jr</a>
+        <div class="headline">NBA: Detroit Pistons at Toronto Raptors</div>
+        <div class="credit">📷 Dan Hamilton · Imagn Images · Apr 04, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25794655/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25794655.jpg" alt="NBA: Cleveland Cavaliers at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ausar-thompson/" class="player-link">Ausar Thompson</a>
+        <div class="headline">NBA: Cleveland Cavaliers at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Mar 28, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25733700/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25733700.jpg" alt="NBA: Detroit Pistons at Dallas Mavericks" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dennis-schroder/" class="player-link">Dennis Schroder</a>
+        <div class="headline">NBA: Detroit Pistons at Dallas Mavericks</div>
+        <div class="credit">📷 Jerome Miron · Imagn Images · Mar 21, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25662839/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25662839.jpg" alt="NBA: Washington Wizards at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tim-hardaway-jr/" class="player-link">Tim Hardaway Jr</a>
+        <div class="headline">NBA: Washington Wizards at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Mar 13, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25553859/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25553859.jpg" alt="NBA: Brooklyn Nets at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tim-hardaway-jr/" class="player-link">Tim Hardaway Jr</a>
+        <div class="headline">NBA: Brooklyn Nets at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Mar 01, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25520980/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25520980.jpg" alt="NBA: Boston Celtics at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tim-hardaway-jr/" class="player-link">Tim Hardaway Jr</a>
+        <div class="headline">NBA: Boston Celtics at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 26, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25503917/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25503917.jpg" alt="NBA: Los Angeles Clippers at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ronald-holland-ii/" class="player-link">Ronald Holland II</a>
+        <div class="headline">NBA: Los Angeles Clippers at Detroit Pistons</div>
+        <div class="credit">📷 David Reginek · Imagn Images · Feb 24, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25476556/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25476556.jpg" alt="NBA: Detroit Pistons at San Antonio Spurs" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cade-cunningham/" class="player-link">Cade Cunningham</a>
+        <div class="headline">NBA: Detroit Pistons at San Antonio Spurs</div>
+        <div class="credit">📷 Scott Wachter · Imagn Images · Feb 21, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25422245/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25422245.jpg" alt="NBA: All Star-Rising Stars-Team G League v Team M" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ausar-thompson/" class="player-link">Ausar Thompson</a>
+        <div class="headline">NBA: All Star-Rising Stars-Team G League v Team M</div>
+        <div class="credit">📷 Kyle Terada · Imagn Images · Feb 14, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25334386/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25334386.jpg" alt="NBA: Atlanta Hawks at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cade-cunningham/" class="player-link">Cade Cunningham</a>
+        <div class="headline">NBA: Atlanta Hawks at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 03, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25334293/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25334293.jpg" alt="NBA: Atlanta Hawks at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tim-hardaway-jr/" class="player-link">Tim Hardaway Jr</a>
+        <div class="headline">NBA: Atlanta Hawks at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Feb 03, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25311474/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25311474.jpg" alt="NBA: Dallas Mavericks at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-duren/" class="player-link">Jalen Duren</a>
+        <div class="headline">NBA: Dallas Mavericks at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 31, 2025</div>
+    </div>
+</div>
+<div class="affiliate-module inline">
+    <a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Detroit+Pistons+sneakers+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn primary">
+        <span class="btn-icon">🛒</span>
+        <span class="btn-text">Shop Detroit Pistons sneakers basketball shoes</span>
+        <span class="badge-info">★ Latest Model</span>
+    </a>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25311464/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25311464.jpg" alt="NBA: Dallas Mavericks at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/malik-beasley/" class="player-link">Malik Beasley</a>
+        <div class="headline">NBA: Dallas Mavericks at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 31, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25281565/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25281565.jpg" alt="NBA: Detroit Pistons at Cleveland Cavaliers" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-duren/" class="player-link">Jalen Duren</a>
+        <div class="headline">NBA: Detroit Pistons at Cleveland Cavaliers</div>
+        <div class="credit">📷 Ken Blaze · Imagn Images · Jan 27, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25271514/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25271514.jpg" alt="NBA: Detroit Pistons at Orlando Magic" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ausar-thompson/" class="player-link">Ausar Thompson</a>
+        <div class="headline">NBA: Detroit Pistons at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Jan 25, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25271516/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25271516.jpg" alt="NBA: Detroit Pistons at Orlando Magic" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ronald-holland-ii/" class="player-link">Ronald Holland II</a>
+        <div class="headline">NBA: Detroit Pistons at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Jan 25, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25271513/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25271513.jpg" alt="NBA: Detroit Pistons at Orlando Magic" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tobias-harris/" class="player-link">Tobias Harris</a>
+        <div class="headline">NBA: Detroit Pistons at Orlando Magic</div>
+        <div class="credit">📷 Mike Watters · Imagn Images · Jan 25, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25203467/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25203467.jpg" alt="NBA: Indiana Pacers at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/ausar-thompson/" class="player-link">Ausar Thompson</a>
+        <div class="headline">NBA: Indiana Pacers at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 16, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25116541/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25116541.jpg" alt="NBA: Minnesota Timberwolves at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cade-cunningham/" class="player-link">Cade Cunningham</a>
+        <div class="headline">NBA: Minnesota Timberwolves at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 04, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25116544/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25116544.jpg" alt="NBA: Minnesota Timberwolves at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/charia-smith/" class="player-link">Charia Smith</a>
+        <div class="headline">NBA: Minnesota Timberwolves at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 04, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25108890/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25108890.jpg" alt="NBA: Charlotte Hornets at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-duren/" class="player-link">Jalen Duren</a>
+        <div class="headline">NBA: Charlotte Hornets at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 03, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25108855/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25108855.jpg" alt="NBA: Charlotte Hornets at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tim-hardaway-jr/" class="player-link">Tim Hardaway Jr</a>
+        <div class="headline">NBA: Charlotte Hornets at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 03, 2025</div>
+    </div>
+</div><div class="photo-card">
+    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/25108200/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/25108200.jpg" alt="NBA: Charlotte Hornets at Detroit Pistons" loading="lazy"></a>
+    <div class="meta">
+        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/tim-hardaway-jr/" class="player-link">Tim Hardaway Jr</a>
+        <div class="headline">NBA: Charlotte Hornets at Detroit Pistons</div>
+        <div class="credit">📷 Rick Osentoski · Imagn Images · Jan 03, 2025</div>
+    </div>
 </div>
         </div>
         <button class='load-more' id='load-more'>Load More Photos</button>
     </section>
 </main>
+
+<section class="more-players">
+    <div class="container">
+        <h2>More Teams to Explore</h2>
+        <div class="more-players-row">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/pacers/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28425453.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Indiana Pacers</div>
+        <div class="mp-count">350 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/grizzlies/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28216287.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Memphis Grizzlies</div>
+        <div class="mp-count">400 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/knicks/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28174336.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">New York Knicks</div>
+        <div class="mp-count">317 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/76ers/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28307725.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Philadelphia 76ers</div>
+        <div class="mp-count">390 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/nuggets/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28414630.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Denver Nuggets</div>
+        <div class="mp-count">996 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/spurs/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28420195.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">San Antonio Spurs</div>
+        <div class="mp-count">446 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/trail-blazers/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28147915.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Portland Trail Blazers</div>
+        <div class="mp-count">418 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/celtics/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28122202.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Boston Celtics</div>
+        <div class="mp-count">517 photos</div>
+    </div>
+</a>
+        </div>
+    </div>
+</section>
 
 
 <footer class="site-footer">

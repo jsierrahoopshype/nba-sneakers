@@ -36,8 +36,13 @@ a:hover { text-decoration: underline; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
 .site-header { background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
 .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.site-logo { font-size: 22px; font-weight: 700; color: white; }
+.header-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.site-logo { font-size: 22px; font-weight: 700; color: white; white-space: nowrap; }
 .site-logo:hover { text-decoration: none; color: var(--accent); }
+.header-breadcrumb { font-size: 13px; color: rgba(255,255,255,0.6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.header-breadcrumb::before { content: '/'; margin-right: 10px; color: rgba(255,255,255,0.3); }
+.header-breadcrumb a { color: rgba(255,255,255,0.7); }
+.header-breadcrumb a:hover { color: white; text-decoration: none; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
@@ -83,8 +88,6 @@ a:hover { text-decoration: underline; }
 .page-header { padding: 32px 0; background: var(--card-bg); border-bottom: 1px solid var(--border); }
 .page-header h1 { font-size: 28px; margin-bottom: 4px; }
 .page-header .subtitle { color: var(--text-secondary); }
-.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
-.breadcrumb a { color: var(--text-secondary); }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -156,7 +159,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 </style>
 </head>
@@ -164,7 +167,10 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 
 <header class="site-header">
     <div class="container">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+        <div class="header-left">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/" class="site-logo">👟 NBA Sneakers</a>
+            <span class="header-breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/enes-kanter/">Enes Kanter</a> / Photo</span>
+        </div>
         <div class="header-search">
             <input type="text" id="quick-search" placeholder="Search players..." autocomplete="off">
             <div id="quick-results" class="quick-results"></div>
@@ -177,12 +183,6 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     </div>
 </header>
 
-
-<div class="page-header">
-    <div class="container">
-        <div class="breadcrumb"><a href="https://jsierrahoopshype.github.io/nba-sneakers/">Home</a> / <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/enes-kanter/">Enes Kanter</a> / Photo</div>
-    </div>
-</div>
 
 <main class="container">
     <section class="section photo-detail">
@@ -219,53 +219,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rudy-gay/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/19967267.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/luka-doncic/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28425461.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Rudy Gay</div>
-        <div class="mp-count">36 photos</div>
+        <div class="mp-name">Luka Doncic</div>
+        <div class="mp-count">286 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/andre-iguodala/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/19718366.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/mike-muscala/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22230373.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Andre Iguodala</div>
-        <div class="mp-count">42 photos</div>
+        <div class="mp-name">Mike Muscala</div>
+        <div class="mp-count">12 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-johnson/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27847636.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jonathan-kuminga/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27533246.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Jalen Johnson</div>
-        <div class="mp-count">13 photos</div>
+        <div class="mp-name">Jonathan Kuminga</div>
+        <div class="mp-count">16 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zach-lavine/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27713684.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/keegan-murray/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25909789.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Zach LaVine</div>
-        <div class="mp-count">104 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/vince-carter/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/14121120.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Vince Carter</div>
-        <div class="mp-count">53 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/under-armour/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/14242603.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Under Armour</div>
-        <div class="mp-count">45 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/nemanja-bjelica/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17565269.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Nemanja Bjelica</div>
+        <div class="mp-name">Keegan Murray</div>
         <div class="mp-count">24 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/herbert-jones/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27775234.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jimmy-butler/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/25374632.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Herbert Jones</div>
-        <div class="mp-count">23 photos</div>
+        <div class="mp-name">Jimmy Butler</div>
+        <div class="mp-count">65 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/miles-bridges/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28422248.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Miles Bridges</div>
+        <div class="mp-count">53 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/devin-vassell/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27748913.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Devin Vassell</div>
+        <div class="mp-count">14 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dirk-nowitzki/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/12483213.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Dirk Nowitzki</div>
+        <div class="mp-count">20 photos</div>
     </div>
 </a>
         </div>
