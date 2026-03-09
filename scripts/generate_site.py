@@ -407,13 +407,6 @@ a:hover { text-decoration: underline; }
     color: var(--text-secondary);
 }
 
-/* Breadcrumb */
-.breadcrumb {
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-}
-.breadcrumb a { color: var(--text-secondary); }
 
 /* Footer */
 .site-footer {
@@ -894,7 +887,7 @@ document.addEventListener('DOMContentLoaded', function() {
 '''
         self._write_file('js/gallery.js', js)
     
-    def _base_template(self, title: str, content: str, photos_json: str = None, meta: Dict = None) -> str:
+    def _base_template(self, title: str, content: str, photos_json: str = None, meta: Dict = None, breadcrumb: str = '') -> str:
         """Wrap content in base HTML template
 
         meta dict supports: description, og_image, canonical
@@ -926,8 +919,13 @@ a:hover { text-decoration: underline; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
 .site-header { background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
 .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.site-logo { font-size: 22px; font-weight: 700; color: white; }
+.header-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.site-logo { font-size: 22px; font-weight: 700; color: white; white-space: nowrap; }
 .site-logo:hover { text-decoration: none; color: var(--accent); }
+.header-breadcrumb { font-size: 13px; color: rgba(255,255,255,0.6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.header-breadcrumb::before { content: '/'; margin-right: 10px; color: rgba(255,255,255,0.3); }
+.header-breadcrumb a { color: rgba(255,255,255,0.7); }
+.header-breadcrumb a:hover { color: white; text-decoration: none; }
 .site-nav { display: flex; gap: 24px; }
 .site-nav a { color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500; padding: 8px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: white; text-decoration: none; border-bottom-color: var(--accent); }
@@ -973,8 +971,6 @@ a:hover { text-decoration: underline; }
 .page-header { padding: 32px 0; background: var(--card-bg); border-bottom: 1px solid var(--border); }
 .page-header h1 { font-size: 28px; margin-bottom: 4px; }
 .page-header .subtitle { color: var(--text-secondary); }
-.breadcrumb { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
-.breadcrumb a { color: var(--text-secondary); }
 .site-footer { background: var(--primary); color: rgba(255,255,255,0.6); padding: 24px 0; margin-top: 48px; text-align: center; font-size: 13px; }
 .weekly-hero { margin-bottom: 32px; }
 .section-desc { color: var(--text-secondary); font-size: 14px; margin: -12px 0 16px 0; }
@@ -1046,7 +1042,7 @@ a:hover { text-decoration: underline; }
 .more-player-card .mp-info { padding: 10px 12px; }
 .more-player-card .mp-name { font-weight: 600; font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-player-card .mp-count { font-size: 11px; color: var(--text-muted); }
-@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
+@media (max-width: 768px) { .hero h1 { font-size: 24px; } .stats-bar { gap: 20px; } .stat-value { font-size: 22px; } .photo-grid { gap: 12px; } .site-header .container { flex-wrap: wrap; } .header-left { flex: 1 1 auto; min-width: 0; } .header-breadcrumb { display: none; } .header-search { order: 3; max-width: 100%; margin: 12px 0 0 0; width: 100%; } .more-player-card { flex: 0 0 140px; } }
 img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
 '''
 
@@ -1084,7 +1080,10 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
 
 <header class="site-header">
     <div class="container">
-        <a href="{self.base_url}/" class="site-logo">👟 NBA Sneakers</a>
+        <div class="header-left">
+            <a href="{self.base_url}/" class="site-logo">👟 NBA Sneakers</a>
+            {f'<span class="header-breadcrumb">{breadcrumb}</span>' if breadcrumb else ''}
+        </div>
         <div class="header-search">
             <input type="text" id="quick-search" placeholder="Search players..." autocomplete="off">
             <div id="quick-results" class="quick-results"></div>
@@ -1231,6 +1230,20 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         else:
             date_range = "Latest"
         
+        # Build hero photo grid with affiliate modules at key positions
+        hero_html_parts = []
+        affiliate_positions = [1, 20, 50, 100, 200]
+        for idx, photo in enumerate(hero_photos):
+            position = idx + 1
+            if self.affiliate and position in affiliate_positions:
+                module_type = "featured" if position == 1 else "inline"
+                caption = photo.get('caption', '')
+                player_name = photo.get('player_name', 'NBA')
+                module_html = self.affiliate.get_buy_button_html(caption, player_name, module_type)
+                hero_html_parts.append(module_html)
+            hero_html_parts.append(self._photo_card_html(photo))
+        hero_grid_html = "".join(hero_html_parts)
+
         content = f'''
 <section class="hero">
     <div class="container">
@@ -1247,7 +1260,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             <span class="photo-count">{len(hero_photos)} photos</span>
         </div>
         <div class="photo-grid">
-            {"".join(self._photo_card_html(p) for p in hero_photos)}
+            {hero_grid_html}
         </div>
         {f'<div class="view-more"><a href="{self.base_url}/weekly/{week}/">View all {len(weekly_photos)} photos from {self._week_label(week)} →</a></div>' if len(weekly_photos) > 20 else ''}
     </section>
@@ -1330,7 +1343,6 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / Players</div>
         <h1>Players</h1>
         <p class="subtitle">{len(players)} players in archive</p>
     </div>
@@ -1348,7 +1360,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
     </section>
 </main>
 '''
-        html = self._base_template("Players", content)
+        html = self._base_template("Players", content, breadcrumb='Players')
         self._write_file('players/index.html', html)
     
     # --- Teams ---
@@ -1386,15 +1398,78 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         ('Washington Wizards', 'wizards', ['Wizards', 'Washington Wizards']),
     ]
 
-    def _get_photos_for_team(self, search_terms: List[str]) -> List[Dict]:
-        """Get all photos where headline or caption contains any of the team's search terms"""
-        results = []
-        for photo in self.archive.photos.values():
-            text = f"{photo.get('headline', '')} {photo.get('caption', '')}".lower()
+    _POSITION_WORDS = {'guard', 'forward', 'center', 'wing', 'point'}
+
+    def _photo_belongs_to_team(self, photo: Dict, search_terms: List[str]) -> bool:
+        """Check if a photo belongs to a team by parsing caption for 'TeamName position PlayerName' pattern.
+
+        Only assigns the photo to the team that appears directly before a position word
+        and player name, so 'Detroit Pistons guard Javonte Green' matches Detroit only,
+        even if 'Miami Heat' appears elsewhere in the headline.
+        """
+        caption = photo.get('caption', '')
+        player_name = photo.get('player_name', '')
+
+        # Try caption-based attribution: look for "{team} {position} {player}"
+        if caption and player_name:
+            caption_lower = caption.lower()
             for term in search_terms:
-                if term.lower() in text:
-                    results.append(photo)
-                    break
+                term_lower = term.lower()
+                # Find all occurrences of this team term in the caption
+                start = 0
+                while True:
+                    idx = caption_lower.find(term_lower, start)
+                    if idx == -1:
+                        break
+                    # Check if a position word follows the team name
+                    after_team = caption_lower[idx + len(term_lower):].lstrip(' ,')
+                    for pos_word in self._POSITION_WORDS:
+                        if after_team.startswith(pos_word):
+                            # Check if the player name follows the position word
+                            after_pos = after_team[len(pos_word):].lstrip()
+                            if player_name.lower() in after_pos[:len(player_name) + 10].lower():
+                                return True
+                    start = idx + 1
+
+        # Fallback: if no "{team} position player" pattern was found for ANY team,
+        # use simple matching (covers photos without standard caption format)
+        text = f"{photo.get('headline', '')} {caption}".lower()
+        has_position_pattern = False
+        for _, _, terms in self.NBA_TEAMS:
+            for term in terms:
+                term_lower = term.lower()
+                if term_lower in text:
+                    cap_lower = caption.lower() if caption else ''
+                    idx = 0
+                    while True:
+                        idx = cap_lower.find(term_lower, idx)
+                        if idx == -1:
+                            break
+                        after = cap_lower[idx + len(term_lower):].lstrip(' ,')
+                        if any(after.startswith(pw) for pw in self._POSITION_WORDS):
+                            has_position_pattern = True
+                            break
+                        idx += 1
+                    if has_position_pattern:
+                        break
+            if has_position_pattern:
+                break
+
+        if has_position_pattern:
+            # The caption has structured team+position patterns but none matched
+            # this team with this player — don't include it
+            return False
+
+        # No structured pattern found at all — fall back to simple term matching
+        for term in search_terms:
+            if term.lower() in text:
+                return True
+        return False
+
+    def _get_photos_for_team(self, search_terms: List[str]) -> List[Dict]:
+        """Get photos that belong to this team, using caption parsing to avoid duplicates."""
+        results = [p for p in self.archive.photos.values()
+                   if self._photo_belongs_to_team(p, search_terms)]
         results.sort(key=lambda p: p.get('photo_date', ''), reverse=True)
         return results
 
@@ -1414,7 +1489,6 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / Teams</div>
         <h1>Teams</h1>
         <p class="subtitle">Browse shoe photos by NBA team</p>
     </div>
@@ -1428,12 +1502,64 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
     </section>
 </main>
 '''
-        html = self._base_template("Teams", content)
+        html = self._base_template("Teams", content, breadcrumb='Teams')
         self._write_file('teams/index.html', html)
 
+    def _more_teams_html(self, exclude_slug: str = '') -> str:
+        """Generate 'More Teams to Explore' section with 8 random teams (with photos)"""
+        import random
+        all_teams = self._get_all_teams()
+        candidates = [t for t in all_teams if t['count'] >= 1 and t['slug'] != exclude_slug]
+        if not candidates:
+            return ''
+        selected = random.sample(candidates, min(8, len(candidates)))
+
+        cards = []
+        for t in selected:
+            photos = self._get_photos_for_team(t['search_terms'])
+            bg_img = ''
+            if photos:
+                thumb = photos[0].get('thumbnail_url') or f"https://www.imagn.com/image/{photos[0].get('imagn_id', '')}.jpg"
+                bg_img = f' style="background-image:url({escape(thumb)})"'
+            cards.append(f'''<a href="{self.base_url}/teams/{t['slug']}/" class="more-player-card">
+    <div class="mp-img"{bg_img}></div>
+    <div class="mp-info">
+        <div class="mp-name">{escape(t['name'])}</div>
+        <div class="mp-count">{t['count']} photos</div>
+    </div>
+</a>''')
+
+        return f'''
+<section class="more-players">
+    <div class="container">
+        <h2>More Teams to Explore</h2>
+        <div class="more-players-row">
+            {"".join(cards)}
+        </div>
+    </div>
+</section>
+'''
+
     def _generate_team_page(self, team: Dict):
-        """Generate individual team page"""
+        """Generate individual team page with affiliate modules"""
         photos = self._get_photos_for_team(team['search_terms'])
+
+        # Build photo grid with affiliate modules inserted at key positions
+        photo_html_parts = []
+        affiliate_positions = [1, 20, 50, 100, 200]
+
+        for idx, photo in enumerate(photos[:60]):
+            position = idx + 1  # 1-indexed
+
+            # Insert affiliate module at designated positions
+            if self.affiliate and position in affiliate_positions:
+                module_type = "featured" if position == 1 else "inline"
+                caption = photo.get('caption', '')
+                search_name = f"{team['name']} basketball shoes" if position <= 20 else f"{team['name']} sneakers"
+                module_html = self.affiliate.get_buy_button_html(caption, search_name, module_type)
+                photo_html_parts.append(module_html)
+
+            photo_html_parts.append(self._photo_card_html(photo))
 
         photos_json = json.dumps([{
             'id': p.get('imagn_id', ''),
@@ -1448,7 +1574,6 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / <a href="{self.base_url}/teams/">Teams</a> / {escape(team["name"])}</div>
         <h1>{escape(team["name"])}</h1>
         <p class="subtitle">{len(photos)} shoe photos</p>
     </div>
@@ -1457,13 +1582,15 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
 <main class="container">
     <section class="section">
         <div class="photo-grid" id="photo-grid">
-            {"".join(self._photo_card_html(p) for p in photos[:60])}
+            {"".join(photo_html_parts)}
         </div>
         {"<button class='load-more' id='load-more'>Load More Photos</button>" if len(photos) > 60 else ""}
     </section>
 </main>
 '''
-        html = self._base_template(team['name'], content, photos_json)
+        content += self._more_teams_html(exclude_slug=team['slug'])
+
+        html = self._base_template(team['name'], content, photos_json, breadcrumb=f'<a href="{self.base_url}/teams/">Teams</a> / {escape(team["name"])}')
         self._write_file(f"teams/{team['slug']}/index.html", html)
 
     def _generate_brands_index(self):
@@ -1473,7 +1600,6 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / Brands</div>
         <h1>Brands</h1>
         <p class="subtitle">{len(brands)} brands represented</p>
     </div>
@@ -1487,7 +1613,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
     </section>
 </main>
 '''
-        html = self._base_template("Brands", content)
+        html = self._base_template("Brands", content, breadcrumb='Brands')
         self._write_file('brands/index.html', html)
     
     def _generate_weekly_index(self):
@@ -1497,7 +1623,6 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / Weekly</div>
         <h1>Weekly Galleries</h1>
         <p class="subtitle">{len(weeks)} weeks of shoe photos</p>
     </div>
@@ -1511,7 +1636,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
     </section>
 </main>
 '''
-        html = self._base_template("Weekly Galleries", content)
+        html = self._base_template("Weekly Galleries", content, breadcrumb='Weekly')
         self._write_file('weekly/index.html', html)
     
     def _generate_search_page(self):
@@ -1524,7 +1649,6 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / Search</div>
         <h1>🔍 Player Sneaker Lookup</h1>
         <p class="subtitle">Search any NBA player's shoe history</p>
     </div>
@@ -1623,7 +1747,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
 }})();
 </script>
 '''
-        html = self._base_template("Player Lookup", content)
+        html = self._base_template("Player Lookup", content, breadcrumb='Search')
         self._write_file('search/index.html', html)
     
     def _player_card_html(self, player: Dict) -> str:
@@ -1714,12 +1838,6 @@ Disallow: /search/players.json
         nav_html = f'<div class="photo-nav">{"".join(nav_parts)}</div>' if nav_parts else ''
 
         content = f'''
-<div class="page-header">
-    <div class="container">
-        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / <a href="{self.base_url}/players/{player_slug}/">{player}</a> / Photo</div>
-    </div>
-</div>
-
 <main class="container">
     <section class="section photo-detail">
         <div class="photo-detail-img">
@@ -1748,7 +1866,7 @@ Disallow: /search/players.json
             'og_image': photo.get('thumbnail_url') or photo.get('image_url', ''),
             'canonical': f"{self.base_url}/photos/{imagn_id}/",
         }
-        html = self._base_template(seo_title, content, meta=meta)
+        html = self._base_template(seo_title, content, meta=meta, breadcrumb=f'<a href="{self.base_url}/players/{player_slug}/">{player}</a> / Photo')
 
         self._write_file(f"photos/{imagn_id}/index.html", html)
 
@@ -1776,7 +1894,6 @@ Disallow: /search/players.json
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / <a href="{self.base_url}/players/">Players</a> / {escape(player['name'])}</div>
         <h1>{escape(player['name'])}</h1>
         <p class="subtitle">{len(photos)} shoe photos</p>
     </div>
@@ -1807,7 +1924,7 @@ Disallow: /search/players.json
             'og_image': og_image,
             'canonical': f"{self.base_url}/players/{player['slug']}/",
         }
-        html = self._base_template(player['name'], content, photos_json, meta=meta)
+        html = self._base_template(player['name'], content, photos_json, meta=meta, breadcrumb=f'<a href="{self.base_url}/players/">Players</a> / {escape(player["name"])}')
         self._write_file(f"players/{player['slug']}/index.html", html)
     
     def _generate_brand_page(self, brand: Dict):
@@ -1817,7 +1934,6 @@ Disallow: /search/players.json
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / <a href="{self.base_url}/brands/">Brands</a> / {escape(brand['name'])}</div>
         <h1>{escape(brand['name'])}</h1>
         <p class="subtitle">{len(photos)} shoe photos</p>
     </div>
@@ -1840,7 +1956,7 @@ Disallow: /search/players.json
             'photo_date': p.get('photo_date', '')
         } for p in photos], ensure_ascii=False)
         
-        html = self._base_template(brand['name'], content, photos_json)
+        html = self._base_template(brand['name'], content, photos_json, breadcrumb=f'<a href="{self.base_url}/brands/">Brands</a> / {escape(brand["name"])}')
         self._write_file(f"brands/{brand['slug']}/index.html", html)
     
     def _generate_weekly_page(self, week: Dict):
@@ -1851,7 +1967,6 @@ Disallow: /search/players.json
         content = f'''
 <div class="page-header">
     <div class="container">
-        <div class="breadcrumb"><a href="{self.base_url}/">Home</a> / <a href="{self.base_url}/weekly/">Weekly</a> / {label}</div>
         <h1>{label}</h1>
         <p class="subtitle">{len(photos)} shoe photos</p>
     </div>
@@ -1880,7 +1995,7 @@ Disallow: /search/players.json
             'og_image': og_image,
             'canonical': f"{self.base_url}/weekly/{week['week']}/",
         }
-        html = self._base_template(label, content, photos_json, meta=meta)
+        html = self._base_template(label, content, photos_json, meta=meta, breadcrumb=f'<a href="{self.base_url}/weekly/">Weekly</a> / {label}')
         self._write_file(f"weekly/{week['week']}/index.html", html)
     
     def _generate_embed_snippet(self):
