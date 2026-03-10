@@ -294,10 +294,20 @@ class ImagnFetcher:
             
             try:
                 print(f"Fetching page {page}...", file=sys.stderr)
+
+                # Debug: log request details
+                req = requests.Request('GET', search_url, params=params)
+                prepared = self.session.prepare_request(req)
+                print(f"[debug] URL: {prepared.url}", file=sys.stderr)
+                print(f"[debug] Headers: {dict(prepared.headers)}", file=sys.stderr)
+                print(f"[debug] Cookies: {dict(self.session.cookies)}", file=sys.stderr)
+
                 resp = self.session.get(search_url, params=params, timeout=60)
 
                 # Re-authenticate on 4xx auth-related errors and retry once
                 if resp.status_code in (400, 401, 403):
+                    print(f"[debug] {resp.status_code} response text: {resp.text[:500]}", file=sys.stderr)
+                    print(f"[debug] {resp.status_code} response headers: {dict(resp.headers)}", file=sys.stderr)
                     print(f"[login] Got {resp.status_code} on page {page}, attempting re-auth...",
                           file=sys.stderr)
                     new_cookie = self._login()
@@ -307,6 +317,9 @@ class ImagnFetcher:
                         resp = self.session.get(search_url, params=params, timeout=60)
                         print(f"[login] Retry status: {resp.status_code}",
                               file=sys.stderr)
+                        if resp.status_code in (400, 401, 403):
+                            print(f"[debug] Retry {resp.status_code} response text: {resp.text[:500]}", file=sys.stderr)
+                            print(f"[debug] Retry {resp.status_code} response headers: {dict(resp.headers)}", file=sys.stderr)
                     else:
                         print("[login] Re-auth failed, stopping fetch", file=sys.stderr)
                         break
