@@ -101,6 +101,8 @@ class ImagnFetcher:
         
     def login(self, username: str, password: str) -> bool:
         """Login to Imagn (may fail due to CAPTCHA)"""
+        # Start with a fresh session to avoid duplicate/stale cookies
+        self.session = requests.Session()
         try:
             login_url = f"{self.BASE_URL}/login"
             print(f"[login] GET {login_url}", file=sys.stderr)
@@ -174,22 +176,6 @@ class ImagnFetcher:
             if csrf_cookie:
                 self.session.cookies.set('csrftoken', csrf_cookie, domain=self.BASE_URL.split('//')[1])
                 print(f"[login] Set csrftoken cookie: {csrf_cookie[:40]}", file=sys.stderr)
-
-            # Clear any existing session cookies to avoid duplicates
-            for cookie_name in ('sessionid', 'PHPSESSID', 'session', 'sid', 'connect.sid'):
-                try:
-                    self.session.cookies.clear(domain='', path='/', name=cookie_name)
-                except KeyError:
-                    pass
-                try:
-                    self.session.cookies.clear(name=cookie_name)
-                except (KeyError, TypeError):
-                    pass
-            # Remove via iteration as a fallback for domain-scoped cookies
-            remove = [c for c in self.session.cookies if c.name in ('sessionid', 'PHPSESSID', 'session', 'sid', 'connect.sid')]
-            for c in remove:
-                self.session.cookies.clear(c.domain, c.path, c.name)
-            print(f"[login] Cleared stale session cookies", file=sys.stderr)
 
             print(f"[login] POST {action_url} with fields: {list(payload.keys())}", file=sys.stderr)
             resp = self.session.post(
