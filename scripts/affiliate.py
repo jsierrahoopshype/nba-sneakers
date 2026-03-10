@@ -219,41 +219,12 @@ class AffiliateRouter:
             ("Shop Now", "badge-default")
         )
 
-        if position == "inline":
-            return f'''
-<div class="affiliate-module inline">
-    <a href="{primary.url}" target="_blank" rel="noopener sponsored" class="buy-btn primary">
-        <span class="btn-icon">🛒</span>
-        <span class="btn-text">Shop {primary.shoe_name}</span>
-        <span class="{badge_class}">{badge_text}</span>
-    </a>
-</div>'''
+        title = header_text or f"Shop {player_name}'s Kicks"
 
-        elif position == "featured":
-            title = header_text or f"Shop {player_name}'s Kicks"
-            return f'''
-<div class="affiliate-module featured">
-    <div class="module-header">
-        <span class="module-icon">👟</span>
-        <span class="module-title">{title}</span>
-    </div>
-    <div class="shoe-info">
-        <span class="shoe-name">{primary.shoe_name}</span>
-        <span class="{badge_class}">{badge_text}</span>
-    </div>
-    <a href="{primary.url}" target="_blank" rel="noopener sponsored" class="buy-btn large">
-        Buy on {primary.program}
-    </a>
-</div>'''
-        
-        else:
-            return f'''
-<div class="affiliate-module sidebar">
-    <div class="sidebar-title">Shop the Look</div>
-    <div class="sidebar-shoe">{primary.shoe_name}</div>
-    <a href="{primary.url}" target="_blank" rel="noopener sponsored" class="buy-btn compact">
-        Shop Now →
-    </a>
+        return f'''
+<div class="affiliate-module">
+    <span class="aff-label">{title}: {primary.shoe_name}</span>
+    <a href="{primary.url}" target="_blank" rel="noopener sponsored" class="buy-btn">Buy on {primary.program} \u2192</a>
 </div>'''
 
 
