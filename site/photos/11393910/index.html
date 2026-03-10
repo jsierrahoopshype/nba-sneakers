@@ -149,6 +149,11 @@ a:hover { text-decoration: underline; }
 .aff-subtitle { font-size: 13px; color: rgba(255,255,255,0.7); }
 .buy-btn-card { padding: 10px 22px; font-size: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
 .buy-btn-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.25); }
+.players-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.player-card { position: relative; display: block; height: 150px; border-radius: 10px; overflow: hidden; background-size: cover; background-position: center; background-color: var(--primary); box-shadow: var(--shadow); text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+.player-card:hover { transform: scale(1.03); box-shadow: var(--shadow-hover); text-decoration: none; }
+.player-card-name { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 10px 8px; background: linear-gradient(transparent, rgba(0,0,0,0.75)); color: white; font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.player-card-badge { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,0.6); color: white; font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 10px; backdrop-filter: blur(4px); }
 .more-players { padding: 32px 0; }
 .more-players h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
 .more-players-row { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
@@ -207,53 +212,53 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/sandro-mamukelashvili/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28138977.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/lauri-markkanen/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28185034.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Sandro Mamukelashvili</div>
-        <div class="mp-count">10 photos</div>
+        <div class="mp-name">Lauri Markkanen</div>
+        <div class="mp-count">62 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/deanthony-melton/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27884903.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-brunson/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28174336.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">De&#x27;Anthony Melton</div>
-        <div class="mp-count">14 photos</div>
+        <div class="mp-name">Jalen Brunson</div>
+        <div class="mp-count">30 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/draymond-green/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28333094.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/justin-champagnie/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27879203.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Draymond Green</div>
-        <div class="mp-count">137 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/scottie-barnes/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28394518.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Scottie Barnes</div>
-        <div class="mp-count">112 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/brandon-miller/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27816634.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Brandon Miller</div>
-        <div class="mp-count">10 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/wesley-matthews/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22101404.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Wesley Matthews</div>
-        <div class="mp-count">42 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/isaiah-stewart/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/24839096.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Isaiah Stewart</div>
-        <div class="mp-count">18 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/keon-ellis/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28213935.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Keon Ellis</div>
+        <div class="mp-name">Justin Champagnie</div>
         <div class="mp-count">11 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jordan-clarkson/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27827060.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Jordan Clarkson</div>
+        <div class="mp-count">68 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jrue-holiday/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27574087.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Jrue Holiday</div>
+        <div class="mp-count">56 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/eric-bledsoe/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17532825.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Eric Bledsoe</div>
+        <div class="mp-count">38 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/isaac-okoro/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28167621.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Isaac Okoro</div>
+        <div class="mp-count">47 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/al-farouq-aminu/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/13712259.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Al-Farouq Aminu</div>
+        <div class="mp-count">14 photos</div>
     </div>
 </a>
         </div>
