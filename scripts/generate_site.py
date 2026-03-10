@@ -766,6 +766,57 @@ a:hover { text-decoration: underline; }
     box-shadow: 0 4px 14px rgba(0,0,0,0.25);
 }
 
+/* Players Visual Grid */
+.players-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 12px;
+}
+.player-card {
+    position: relative;
+    display: block;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--primary);
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.player-card:hover {
+    transform: scale(1.03);
+    box-shadow: var(--shadow-hover);
+    text-decoration: none;
+}
+.player-card-name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px 10px 8px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.75));
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.player-card-badge {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .site-header .container {
@@ -1090,6 +1141,11 @@ a:hover { text-decoration: underline; }
 .aff-subtitle { font-size: 13px; color: rgba(255,255,255,0.7); }
 .buy-btn-card { padding: 10px 22px; font-size: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
 .buy-btn-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.25); }
+.players-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.player-card { position: relative; display: block; height: 150px; border-radius: 10px; overflow: hidden; background-size: cover; background-position: center; background-color: var(--primary); box-shadow: var(--shadow); text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+.player-card:hover { transform: scale(1.03); box-shadow: var(--shadow-hover); text-decoration: none; }
+.player-card-name { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 10px 8px; background: linear-gradient(transparent, rgba(0,0,0,0.75)); color: white; font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.player-card-badge { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,0.6); color: white; font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 10px; backdrop-filter: blur(4px); }
 .more-players { padding: 32px 0; }
 .more-players h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
 .more-players-row { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
@@ -1404,9 +1460,35 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         self._write_file('index.html', html)
     
     def _generate_players_index(self):
-        """Generate players listing page"""
+        """Generate players listing page with visual photo grid"""
         players = self.archive.get_all_players()
-        
+
+        # Build lookup: player_slug -> latest photo thumbnail URL
+        latest_thumb = {}
+        for photo in self.archive.photos.values():
+            slug = photo.get('player_slug', '')
+            date = photo.get('photo_date', '')
+            if slug and (slug not in latest_thumb or date > latest_thumb[slug][0]):
+                thumb = photo.get('thumbnail_url') or f"https://www.imagn.com/image/{photo.get('imagn_id', '')}.jpg"
+                latest_thumb[slug] = (date, thumb)
+
+        # Build player cards
+        cards = []
+        for p in players:
+            thumb_url = ''
+            entry = latest_thumb.get(p['slug'])
+            if entry:
+                thumb_url = escape(entry[1])
+            count = p['count']
+            count_label = f"{count} photo{'s' if count != 1 else ''}"
+            cards.append(
+                f'<a href="{self.base_url}/players/{p["slug"]}/" class="player-card"'
+                f' style="background-image:url({thumb_url})">'
+                f'<span class="player-card-badge">{count_label}</span>'
+                f'<span class="player-card-name">{escape(p["name"])}</span>'
+                f'</a>'
+            )
+
         content = f'''
 <div class="page-header">
     <div class="container">
@@ -1421,8 +1503,8 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             <h2 class="section-title">All Players</h2>
             <span class="section-note">Click any player to see their shoe photos</span>
         </div>
-        <div class="list-grid">
-            {"".join(f'<a href="{self.base_url}/players/{p["slug"]}/" class="list-item"><span class="name">{escape(p["name"])}</span><span class="count">{p["count"]} photo{"s" if p["count"] != 1 else ""}</span></a>' for p in players)}
+        <div class="players-grid">
+            {"".join(cards)}
         </div>
     </section>
 </main>
