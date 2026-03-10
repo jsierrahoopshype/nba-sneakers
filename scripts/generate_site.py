@@ -1608,8 +1608,9 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             if self.affiliate and position in affiliate_positions:
                 module_type = "featured" if position == 1 else "inline"
                 caption = photo.get('caption', '')
-                search_name = f"{team['name']} basketball shoes" if position <= 20 else f"{team['name']} sneakers"
-                module_html = self.affiliate.get_buy_button_html(caption, search_name, module_type)
+                # Use short team name (e.g. "Warriors") for display text
+                short_name = team['search_terms'][0] if team.get('search_terms') else team['name']
+                module_html = self.affiliate.get_buy_button_html(caption, short_name, module_type)
                 photo_html_parts.append(module_html)
 
             photo_html_parts.append(self._photo_card_html(photo))
