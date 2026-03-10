@@ -679,21 +679,10 @@ a:hover { text-decoration: underline; }
     border-radius: 12px;
 }
 
-/* Affiliate Module Styles */
+/* Affiliate Module — shared */
 .affiliate-module {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    border-radius: 8px;
-    padding: 10px 16px;
-    color: white;
     grid-column: 1 / -1;
-}
-.aff-label {
-    font-size: 14px;
-    color: rgba(255,255,255,0.9);
+    color: white;
 }
 .buy-btn {
     display: inline-flex;
@@ -701,19 +690,80 @@ a:hover { text-decoration: underline; }
     gap: 6px;
     background: var(--accent);
     color: white;
-    padding: 6px 14px;
     border-radius: 6px;
     text-decoration: none;
-    font-size: 13px;
     white-space: nowrap;
     font-weight: 600;
     transition: all 0.2s;
 }
 .buy-btn:hover {
     background: var(--accent-hover);
-    transform: translateY(-2px);
     text-decoration: none;
     color: white;
+}
+
+/* Compact module (position 1) — single line, minimal */
+.affiliate-compact {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary);
+    border-radius: 6px;
+    padding: 6px 14px;
+}
+.affiliate-compact .aff-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+}
+.buy-btn-compact {
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+/* Engaging card module (later positions) — prominent */
+.affiliate-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    border-radius: 12px;
+    padding: 20px 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+.affiliate-card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.22);
+}
+.aff-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.aff-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+}
+.aff-card-shoe {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.95);
+}
+.aff-subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+}
+.buy-btn-card {
+    padding: 10px 22px;
+    font-size: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+.buy-btn-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
 }
 
 /* Responsive */
@@ -1026,10 +1076,20 @@ a:hover { text-decoration: underline; }
 .quick-result-item:hover { background: #fff5eb; text-decoration: none; }
 .quick-result-item .name { font-weight: 600; }
 .quick-result-item .count { color: var(--accent); font-size: 13px; font-weight: 500; background: #fff5eb; padding: 2px 8px; border-radius: 12px; }
-.affiliate-module { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: 8px; padding: 10px 16px; color: white; grid-column: 1 / -1; }
-.aff-label { font-size: 14px; color: rgba(255,255,255,0.9); }
-.buy-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: white; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-size: 13px; white-space: nowrap; font-weight: 600; }
+.affiliate-module { grid-column: 1 / -1; color: white; }
+.buy-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: white; border-radius: 6px; text-decoration: none; white-space: nowrap; font-weight: 600; transition: all 0.2s; }
 .buy-btn:hover { background: var(--accent-hover); text-decoration: none; color: white; }
+.affiliate-compact { display: flex; align-items: center; gap: 8px; background: var(--primary); border-radius: 6px; padding: 6px 14px; }
+.affiliate-compact .aff-label { font-size: 13px; color: rgba(255,255,255,0.85); }
+.buy-btn-compact { padding: 4px 10px; font-size: 12px; border-radius: 4px; }
+.affiliate-card { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: 12px; padding: 20px 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+.affiliate-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.22); }
+.aff-card-body { display: flex; flex-direction: column; gap: 2px; }
+.aff-card-title { font-size: 16px; font-weight: 700; color: white; }
+.aff-card-shoe { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.95); }
+.aff-subtitle { font-size: 13px; color: rgba(255,255,255,0.7); }
+.buy-btn-card { padding: 10px 22px; font-size: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+.buy-btn-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.25); }
 .more-players { padding: 32px 0; }
 .more-players h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
 .more-players-row { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
@@ -1250,10 +1310,9 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         for idx, photo in enumerate(hero_photos):
             position = idx + 1
             if self.affiliate and position in affiliate_positions:
-                module_type = "featured" if position == 1 else "inline"
                 caption = photo.get('caption', '')
                 player_name = photo.get('player_name', 'NBA')
-                module_html = self.affiliate.get_buy_button_html(caption, player_name, module_type)
+                module_html = self.affiliate.get_buy_button_html(caption, player_name, photo_position=position)
                 hero_html_parts.append(module_html)
             hero_html_parts.append(self._photo_card_html(photo))
         hero_grid_html = "".join(hero_html_parts)
@@ -1569,10 +1628,9 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
 
             # Insert affiliate module at designated positions
             if self.affiliate and position in affiliate_positions:
-                module_type = "featured" if position == 1 else "inline"
                 caption = photo.get('caption', '')
-                header = f"Shop {short_name} Gear" if module_type == "featured" else None
-                module_html = self.affiliate.get_buy_button_html(caption, short_name, module_type, header_text=header)
+                header = f"Shop {short_name} Gear" if position == 1 else None
+                module_html = self.affiliate.get_buy_button_html(caption, short_name, header_text=header, photo_position=position)
                 photo_html_parts.append(module_html)
 
             photo_html_parts.append(self._photo_card_html(photo))
@@ -1585,7 +1643,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
                 scroll_idx = pos - 1 - initial_count
                 if scroll_idx >= 0 and scroll_idx < len(remaining_photos):
                     caption = remaining_photos[scroll_idx].get('caption', '')
-                    module_html = self.affiliate.get_buy_button_html(caption, short_name, "inline")
+                    module_html = self.affiliate.get_buy_button_html(caption, short_name, photo_position=pos)
                     scroll_affiliate_html[scroll_idx] = module_html
 
         scroll_script = self._scroll_photos_script(remaining_photos, affiliate_html=scroll_affiliate_html)
@@ -1851,7 +1909,7 @@ Disallow: /search/players.json
         affiliate_html = ''
         if self.affiliate:
             affiliate_html = self.affiliate.get_buy_button_html(
-                photo.get('caption', ''), photo.get('player_name', ''), 'featured'
+                photo.get('caption', ''), photo.get('player_name', ''), photo_position=1
             )
 
         # Prev/Next navigation
@@ -1917,9 +1975,8 @@ Disallow: /search/players.json
 
             # Insert affiliate module at designated positions
             if self.affiliate and position in affiliate_positions:
-                module_type = "featured" if position == 1 else "inline"
                 caption = photo.get('caption', '')
-                module_html = self.affiliate.get_buy_button_html(caption, player['name'], module_type)
+                module_html = self.affiliate.get_buy_button_html(caption, player['name'], photo_position=position)
                 photo_html_parts.append(module_html)
 
             # Add photo card
@@ -1932,7 +1989,7 @@ Disallow: /search/players.json
                 scroll_idx = pos - 1 - initial_count
                 if scroll_idx >= 0 and scroll_idx < len(remaining_photos):
                     caption = remaining_photos[scroll_idx].get('caption', '')
-                    module_html = self.affiliate.get_buy_button_html(caption, player['name'], "inline")
+                    module_html = self.affiliate.get_buy_button_html(caption, player['name'], photo_position=pos)
                     scroll_affiliate_html[scroll_idx] = module_html
 
         scroll_script = self._scroll_photos_script(remaining_photos, affiliate_html=scroll_affiliate_html)

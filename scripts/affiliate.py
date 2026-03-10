@@ -201,7 +201,8 @@ class AffiliateRouter:
     
     def get_buy_button_html(self, caption: str, player_name: str,
                            position: str = "inline",
-                           header_text: str = None) -> str:
+                           header_text: str = None,
+                           photo_position: int = 0) -> str:
         links = self.get_affiliate_links(caption, player_name, num_links=3)
 
         if not links:
@@ -209,23 +210,40 @@ class AffiliateRouter:
 
         primary = links[0]
 
-        confidence_badges = {
-            "exact_match": ("✓ Exact Match", "badge-success"),
-            "closest_match": ("≈ Closest Match", "badge-warning"),
-            "latest_model": ("★ Latest Model", "badge-info"),
-        }
-        badge_text, badge_class = confidence_badges.get(
-            primary.confidence,
-            ("Shop Now", "badge-default")
+        # Position 1 = compact single-line module (top of page)
+        # Later positions = engaging card module
+        if photo_position == 1:
+            return self._compact_module_html(primary, player_name)
+        else:
+            return self._engaging_module_html(primary, player_name, header_text)
+
+    def _compact_module_html(self, link: AffiliateLink, player_name: str) -> str:
+        """Compact single-line module for top of page — minimal, unobtrusive."""
+        return (
+            f'<div class="affiliate-module affiliate-compact">'
+            f'<span class="aff-label">\U0001F45F {link.shoe_name} \u2192</span>'
+            f'<a href="{link.url}" target="_blank" rel="noopener sponsored" '
+            f'class="buy-btn buy-btn-compact">Shop on {link.program}</a>'
+            f'</div>'
         )
 
-        title = header_text or f"Shop {player_name}'s Kicks"
-
-        return f'''
-<div class="affiliate-module">
-    <span class="aff-label">{title}: {primary.shoe_name}</span>
-    <a href="{primary.url}" target="_blank" rel="noopener sponsored" class="buy-btn">Buy on {primary.program} \u2192</a>
-</div>'''
+    def _engaging_module_html(self, link: AffiliateLink, player_name: str,
+                              header_text: str = None) -> str:
+        """Engaging card module for deeper scroll positions — prominent, eye-catching."""
+        title = header_text or "Get the Kicks"
+        subtitle = f"As worn by {player_name}" if player_name and player_name != "NBA" else ""
+        subtitle_html = f'<span class="aff-subtitle">{subtitle}</span>' if subtitle else ''
+        return (
+            f'<div class="affiliate-module affiliate-card">'
+            f'<div class="aff-card-body">'
+            f'<span class="aff-card-title">\U0001F45F {title}</span>'
+            f'<span class="aff-card-shoe">{link.shoe_name}</span>'
+            f'{subtitle_html}'
+            f'</div>'
+            f'<a href="{link.url}" target="_blank" rel="noopener sponsored" '
+            f'class="buy-btn buy-btn-card">\U0001F6D2 Shop on {link.program} \u2192</a>'
+            f'</div>'
+        )
 
 
 AFFILIATE_POSITIONS = [1, 20, 50, 100, 200, 500]
@@ -233,10 +251,7 @@ AFFILIATE_POSITIONS = [1, 20, 50, 100, 200, 500]
 def should_insert_affiliate(photo_index: int) -> bool:
     return photo_index in AFFILIATE_POSITIONS
 
-def get_affiliate_module_for_position(photo_index: int, caption: str, 
+def get_affiliate_module_for_position(photo_index: int, caption: str,
                                       player_name: str) -> str:
     router = AffiliateRouter()
-    if photo_index == 1:
-        return router.get_buy_button_html(caption, player_name, "featured")
-    else:
-        return router.get_buy_button_html(caption, player_name, "inline")
+    return router.get_buy_button_html(caption, player_name, photo_position=photo_index)
