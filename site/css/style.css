@@ -568,32 +568,31 @@ a:hover { text-decoration: underline; }
 
 /* Affiliate Module Styles */
 .affiliate-module {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    border-radius: 12px;
-    padding: 16px;
-    margin: 16px 0;
+    border-radius: 8px;
+    padding: 10px 16px;
     color: white;
     grid-column: 1 / -1;
 }
-.affiliate-module.inline {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px;
-}
-.affiliate-module.featured {
-    text-align: center;
-    padding: 24px;
+.aff-label {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
 }
 .buy-btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     background: var(--accent);
     color: white;
-    padding: 12px 24px;
-    border-radius: 8px;
+    padding: 6px 14px;
+    border-radius: 6px;
     text-decoration: none;
+    font-size: 13px;
+    white-space: nowrap;
     font-weight: 600;
     transition: all 0.2s;
 }
@@ -603,49 +602,6 @@ a:hover { text-decoration: underline; }
     text-decoration: none;
     color: white;
 }
-.buy-btn.large {
-    padding: 16px 32px;
-    font-size: 18px;
-}
-.btn-icon { font-size: 16px; }
-.btn-text { font-weight: 600; }
-.badge-success { background: #28a745; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
-.badge-warning { background: #ffc107; color: #000; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
-.badge-info { background: #17a2b8; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
-.module-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 12px;
-}
-.module-icon { font-size: 24px; }
-.module-title { font-size: 18px; font-weight: 600; }
-.shoe-info { margin-bottom: 16px; }
-.shoe-name {
-    display: block;
-    font-size: 16px;
-    margin-bottom: 8px;
-    color: rgba(255,255,255,0.9);
-}
-.compare-prices {
-    margin-top: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-.compare-label {
-    font-size: 12px;
-    color: rgba(255,255,255,0.6);
-}
-.compare-link {
-    font-size: 12px;
-    color: rgba(255,255,255,0.8);
-    text-decoration: underline;
-}
-.compare-link:hover { color: white; }
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -664,8 +620,6 @@ a:hover { text-decoration: underline; }
     .stats-bar { gap: 20px; }
     .stat-value { font-size: 22px; }
     .photo-grid { gap: 12px; }
-    .affiliate-module.featured { padding: 16px; }
-    .buy-btn.large { padding: 12px 20px; font-size: 16px; }
     .site-nav { gap: 16px; }
     .site-nav a { font-size: 13px; }
 }

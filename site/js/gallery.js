@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!grid) return;
     var photos = data.photos;
     var baseUrl = data.baseUrl || '';
+    var affiliateAt = data.affiliateAt || {};
     var batch = 24;
     var loaded = 0;
 
@@ -105,6 +106,13 @@ document.addEventListener('DOMContentLoaded', function() {
         var end = Math.min(loaded + batch, photos.length);
         if (loaded >= photos.length) return;
         for (var i = loaded; i < end; i++) {
+            // Insert affiliate module before this photo if scheduled
+            var aff = affiliateAt[String(i)];
+            if (aff) {
+                var tmp = document.createElement('div');
+                tmp.innerHTML = aff;
+                while (tmp.firstChild) { grid.appendChild(tmp.firstChild); }
+            }
             var p = photos[i];
             var card = document.createElement('div');
             card.className = 'photo-card';
