@@ -884,6 +884,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!grid) return;
     var photos = data.photos;
     var baseUrl = data.baseUrl || '';
+    var affiliateAt = data.affiliateAt || {};
     var batch = 24;
     var loaded = 0;
 
@@ -902,6 +903,13 @@ document.addEventListener('DOMContentLoaded', function() {
         var end = Math.min(loaded + batch, photos.length);
         if (loaded >= photos.length) return;
         for (var i = loaded; i < end; i++) {
+            // Insert affiliate module before this photo if scheduled
+            var aff = affiliateAt[String(i)];
+            if (aff) {
+                var tmp = document.createElement('div');
+                tmp.innerHTML = aff;
+                while (tmp.firstChild) { grid.appendChild(tmp.firstChild); }
+            }
             var p = photos[i];
             var card = document.createElement('div');
             card.className = 'photo-card';
@@ -1192,8 +1200,12 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
     </div>
 </div>'''
     
-    def _scroll_photos_script(self, photos: list) -> str:
-        """Generate a <script> tag setting window.__SCROLL_PHOTOS for infinite scroll."""
+    def _scroll_photos_script(self, photos: list, affiliate_html: Dict[int, str] = None) -> str:
+        """Generate a <script> tag setting window.__SCROLL_PHOTOS for infinite scroll.
+
+        affiliate_html: optional dict mapping 0-based index in *photos* to
+        pre-rendered affiliate module HTML to insert before that photo.
+        """
         if not photos:
             return ''
         items = []
@@ -1211,7 +1223,11 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
                 'source': escape(p.get('source') or 'USA TODAY Sports'),
                 'date': p.get('photo_date', ''),
             })
-        data = json.dumps({'baseUrl': self.base_url, 'photos': items}, ensure_ascii=False)
+        data_dict = {'baseUrl': self.base_url, 'photos': items}
+        if affiliate_html:
+            # Convert int keys to strings for JSON
+            data_dict['affiliateAt'] = {str(k): v for k, v in affiliate_html.items()}
+        data = json.dumps(data_dict, ensure_ascii=False)
         return f'<script>window.__SCROLL_PHOTOS={data};</script>'
 
     def _more_players_html(self, exclude_slug: str = '') -> str:
@@ -1597,26 +1613,38 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         initial_photos = photos[:initial_count]
         remaining_photos = photos[initial_count:]
 
+        # Use short team name (e.g. "Warriors") for clean affiliate display
+        short_name = team['search_terms'][0] if team.get('search_terms') else team['name']
+
         # Build photo grid with affiliate modules inserted at key positions
         photo_html_parts = []
         affiliate_positions = [1, 20, 50, 100, 200]
 
         for idx, photo in enumerate(initial_photos):
-            position = idx + 1  # 1-indexed
+            position = idx + 1  # 1-indexed (position in full photo list)
 
             # Insert affiliate module at designated positions
             if self.affiliate and position in affiliate_positions:
                 module_type = "featured" if position == 1 else "inline"
                 caption = photo.get('caption', '')
-                # Use short team name (e.g. "Warriors") for clean display
-                short_name = team['search_terms'][0] if team.get('search_terms') else team['name']
                 header = f"Shop {short_name} Gear" if module_type == "featured" else None
                 module_html = self.affiliate.get_buy_button_html(caption, short_name, module_type, header_text=header)
                 photo_html_parts.append(module_html)
 
             photo_html_parts.append(self._photo_card_html(photo))
 
-        scroll_script = self._scroll_photos_script(remaining_photos)
+        # Pre-render affiliate modules for positions that fall in the scroll portion
+        scroll_affiliate_html = {}
+        if self.affiliate and remaining_photos:
+            for pos in affiliate_positions:
+                # pos is 1-indexed in the full list; convert to 0-indexed in remaining_photos
+                scroll_idx = pos - 1 - initial_count
+                if scroll_idx >= 0 and scroll_idx < len(remaining_photos):
+                    caption = remaining_photos[scroll_idx].get('caption', '')
+                    module_html = self.affiliate.get_buy_button_html(caption, short_name, "inline")
+                    scroll_affiliate_html[scroll_idx] = module_html
+
+        scroll_script = self._scroll_photos_script(remaining_photos, affiliate_html=scroll_affiliate_html)
 
         photos_json = json.dumps([{
             'id': p.get('imagn_id', ''),
@@ -1953,7 +1981,17 @@ Disallow: /search/players.json
             # Add photo card
             photo_html_parts.append(self._photo_card_html(photo, idx))
 
-        scroll_script = self._scroll_photos_script(remaining_photos)
+        # Pre-render affiliate modules for positions that fall in the scroll portion
+        scroll_affiliate_html = {}
+        if self.affiliate and remaining_photos:
+            for pos in affiliate_positions:
+                scroll_idx = pos - 1 - initial_count
+                if scroll_idx >= 0 and scroll_idx < len(remaining_photos):
+                    caption = remaining_photos[scroll_idx].get('caption', '')
+                    module_html = self.affiliate.get_buy_button_html(caption, player['name'], "inline")
+                    scroll_affiliate_html[scroll_idx] = module_html
+
+        scroll_script = self._scroll_photos_script(remaining_photos, affiliate_html=scroll_affiliate_html)
 
         content = f'''
 {scroll_script}
