@@ -159,10 +159,27 @@ class ImagnFetcher:
             payload[email_field] = username
             payload[password_field] = password
 
+            # Build headers needed for CSRF protection
+            csrf_token = payload.get('csrfmiddlewaretoken', '')
+            post_headers = {
+                'Referer': f"{self.BASE_URL}/login/",
+                'Origin': self.BASE_URL,
+            }
+            if csrf_token:
+                post_headers['X-CSRFToken'] = csrf_token
+                print(f"[login] X-CSRFToken: {csrf_token[:40]}", file=sys.stderr)
+
+            # Also ensure the csrftoken cookie is set on the session
+            csrf_cookie = resp.cookies.get('csrftoken')
+            if csrf_cookie:
+                self.session.cookies.set('csrftoken', csrf_cookie, domain=self.BASE_URL.split('//')[1])
+                print(f"[login] Set csrftoken cookie: {csrf_cookie[:40]}", file=sys.stderr)
+
             print(f"[login] POST {action_url} with fields: {list(payload.keys())}", file=sys.stderr)
             resp = self.session.post(
                 action_url,
                 data=payload,
+                headers=post_headers,
                 allow_redirects=True,
                 timeout=30
             )
