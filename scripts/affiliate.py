@@ -199,25 +199,26 @@ class AffiliateRouter:
         links = self.get_affiliate_links(caption, player_name, num_links=1)
         return links[0] if links else None
     
-    def get_buy_button_html(self, caption: str, player_name: str, 
-                           position: str = "inline") -> str:
+    def get_buy_button_html(self, caption: str, player_name: str,
+                           position: str = "inline",
+                           header_text: str = None) -> str:
         links = self.get_affiliate_links(caption, player_name, num_links=3)
-        
+
         if not links:
             return ""
-        
+
         primary = links[0]
-        
+
         confidence_badges = {
             "exact_match": ("✓ Exact Match", "badge-success"),
             "closest_match": ("≈ Closest Match", "badge-warning"),
             "latest_model": ("★ Latest Model", "badge-info"),
         }
         badge_text, badge_class = confidence_badges.get(
-            primary.confidence, 
+            primary.confidence,
             ("Shop Now", "badge-default")
         )
-        
+
         if position == "inline":
             return f'''
 <div class="affiliate-module inline">
@@ -227,13 +228,14 @@ class AffiliateRouter:
         <span class="{badge_class}">{badge_text}</span>
     </a>
 </div>'''
-        
+
         elif position == "featured":
+            title = header_text or f"Shop {player_name}'s Kicks"
             return f'''
 <div class="affiliate-module featured">
     <div class="module-header">
         <span class="module-icon">👟</span>
-        <span class="module-title">Shop {player_name}'s Kicks</span>
+        <span class="module-title">{title}</span>
     </div>
     <div class="shoe-info">
         <span class="shoe-name">{primary.shoe_name}</span>
