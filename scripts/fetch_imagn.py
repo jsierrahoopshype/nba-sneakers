@@ -277,15 +277,19 @@ class ImagnFetcher:
                 print(f"Fetching page {page}...", file=sys.stderr)
                 resp = self.session.get(search_url, params=params, timeout=60)
 
-                # Re-authenticate on 400/401 and retry once
-                if resp.status_code in (400, 401):
-                    print(f"Got {resp.status_code} on page {page}, attempting re-auth...",
+                # Re-authenticate on 4xx auth-related errors and retry once
+                if resp.status_code in (400, 401, 403):
+                    print(f"[login] Got {resp.status_code} on page {page}, attempting re-auth...",
                           file=sys.stderr)
                     new_cookie = self._login()
                     if new_cookie:
+                        print(f"[login] Re-auth succeeded, retrying page {page}...",
+                              file=sys.stderr)
                         resp = self.session.get(search_url, params=params, timeout=60)
+                        print(f"[login] Retry status: {resp.status_code}",
+                              file=sys.stderr)
                     else:
-                        print("Re-auth failed, stopping fetch", file=sys.stderr)
+                        print("[login] Re-auth failed, stopping fetch", file=sys.stderr)
                         break
 
                 if resp.status_code == 200:
@@ -315,7 +319,7 @@ class ImagnFetcher:
                         print(f"JSON parse error on page {page}: {e}", file=sys.stderr)
                         break
                 else:
-                    print(f"API returned status {resp.status_code} on page {page}", file=sys.stderr)
+                    print(f"[login] API returned status {resp.status_code} on page {page} (no re-auth attempted)", file=sys.stderr)
                     break
 
             except Exception as e:

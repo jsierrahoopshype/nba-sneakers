@@ -681,32 +681,31 @@ a:hover { text-decoration: underline; }
 
 /* Affiliate Module Styles */
 .affiliate-module {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    border-radius: 12px;
-    padding: 16px;
-    margin: 16px 0;
+    border-radius: 8px;
+    padding: 10px 16px;
     color: white;
     grid-column: 1 / -1;
 }
-.affiliate-module.inline {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px;
-}
-.affiliate-module.featured {
-    text-align: center;
-    padding: 24px;
+.aff-label {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
 }
 .buy-btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     background: var(--accent);
     color: white;
-    padding: 12px 24px;
-    border-radius: 8px;
+    padding: 6px 14px;
+    border-radius: 6px;
     text-decoration: none;
+    font-size: 13px;
+    white-space: nowrap;
     font-weight: 600;
     transition: all 0.2s;
 }
@@ -716,49 +715,6 @@ a:hover { text-decoration: underline; }
     text-decoration: none;
     color: white;
 }
-.buy-btn.large {
-    padding: 16px 32px;
-    font-size: 18px;
-}
-.btn-icon { font-size: 16px; }
-.btn-text { font-weight: 600; }
-.badge-success { background: #28a745; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
-.badge-warning { background: #ffc107; color: #000; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
-.badge-info { background: #17a2b8; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
-.module-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 12px;
-}
-.module-icon { font-size: 24px; }
-.module-title { font-size: 18px; font-weight: 600; }
-.shoe-info { margin-bottom: 16px; }
-.shoe-name {
-    display: block;
-    font-size: 16px;
-    margin-bottom: 8px;
-    color: rgba(255,255,255,0.9);
-}
-.compare-prices {
-    margin-top: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-.compare-label {
-    font-size: 12px;
-    color: rgba(255,255,255,0.6);
-}
-.compare-link {
-    font-size: 12px;
-    color: rgba(255,255,255,0.8);
-    text-decoration: underline;
-}
-.compare-link:hover { color: white; }
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -777,8 +733,6 @@ a:hover { text-decoration: underline; }
     .stats-bar { gap: 20px; }
     .stat-value { font-size: 22px; }
     .photo-grid { gap: 12px; }
-    .affiliate-module.featured { padding: 16px; }
-    .buy-btn.large { padding: 12px 20px; font-size: 16px; }
     .site-nav { gap: 16px; }
     .site-nav a { font-size: 13px; }
 }
@@ -884,6 +838,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!grid) return;
     var photos = data.photos;
     var baseUrl = data.baseUrl || '';
+    var affiliateAt = data.affiliateAt || {};
     var batch = 24;
     var loaded = 0;
 
@@ -902,6 +857,13 @@ document.addEventListener('DOMContentLoaded', function() {
         var end = Math.min(loaded + batch, photos.length);
         if (loaded >= photos.length) return;
         for (var i = loaded; i < end; i++) {
+            // Insert affiliate module before this photo if scheduled
+            var aff = affiliateAt[String(i)];
+            if (aff) {
+                var tmp = document.createElement('div');
+                tmp.innerHTML = aff;
+                while (tmp.firstChild) { grid.appendChild(tmp.firstChild); }
+            }
             var p = photos[i];
             var card = document.createElement('div');
             card.className = 'photo-card';
@@ -1064,20 +1026,10 @@ a:hover { text-decoration: underline; }
 .quick-result-item:hover { background: #fff5eb; text-decoration: none; }
 .quick-result-item .name { font-weight: 600; }
 .quick-result-item .count { color: var(--accent); font-size: 13px; font-weight: 500; background: #fff5eb; padding: 2px 8px; border-radius: 12px; }
-.affiliate-module { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: 12px; padding: 16px; margin: 16px 0; color: white; grid-column: 1 / -1; }
-.affiliate-module.inline { display: flex; align-items: center; justify-content: center; padding: 12px; }
-.affiliate-module.featured { text-align: center; padding: 24px; }
-.buy-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; }
-.buy-btn:hover { background: var(--accent-hover); transform: translateY(-2px); text-decoration: none; color: white; }
-.buy-btn.large { padding: 16px 32px; font-size: 18px; }
-.badge-success { background: #28a745; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
-.badge-warning { background: #ffc107; color: #000; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
-.badge-info { background: #17a2b8; padding: 4px 8px; border-radius: 4px; font-size: 11px; }
-.module-header { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px; }
-.shoe-info { margin-bottom: 16px; }
-.shoe-name { display: block; font-size: 16px; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
-.compare-prices { margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
-.compare-link { font-size: 12px; color: rgba(255,255,255,0.8); text-decoration: underline; }
+.affiliate-module { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: 8px; padding: 10px 16px; color: white; grid-column: 1 / -1; }
+.aff-label { font-size: 14px; color: rgba(255,255,255,0.9); }
+.buy-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: white; padding: 6px 14px; border-radius: 6px; text-decoration: none; font-size: 13px; white-space: nowrap; font-weight: 600; }
+.buy-btn:hover { background: var(--accent-hover); text-decoration: none; color: white; }
 .more-players { padding: 32px 0; }
 .more-players h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
 .more-players-row { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
@@ -1192,8 +1144,12 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
     </div>
 </div>'''
     
-    def _scroll_photos_script(self, photos: list) -> str:
-        """Generate a <script> tag setting window.__SCROLL_PHOTOS for infinite scroll."""
+    def _scroll_photos_script(self, photos: list, affiliate_html: Dict[int, str] = None) -> str:
+        """Generate a <script> tag setting window.__SCROLL_PHOTOS for infinite scroll.
+
+        affiliate_html: optional dict mapping 0-based index in *photos* to
+        pre-rendered affiliate module HTML to insert before that photo.
+        """
         if not photos:
             return ''
         items = []
@@ -1211,7 +1167,11 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
                 'source': escape(p.get('source') or 'USA TODAY Sports'),
                 'date': p.get('photo_date', ''),
             })
-        data = json.dumps({'baseUrl': self.base_url, 'photos': items}, ensure_ascii=False)
+        data_dict = {'baseUrl': self.base_url, 'photos': items}
+        if affiliate_html:
+            # Convert int keys to strings for JSON
+            data_dict['affiliateAt'] = {str(k): v for k, v in affiliate_html.items()}
+        data = json.dumps(data_dict, ensure_ascii=False)
         return f'<script>window.__SCROLL_PHOTOS={data};</script>'
 
     def _more_players_html(self, exclude_slug: str = '') -> str:
@@ -1597,24 +1557,38 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         initial_photos = photos[:initial_count]
         remaining_photos = photos[initial_count:]
 
+        # Use short team name (e.g. "Warriors") for clean affiliate display
+        short_name = team['search_terms'][0] if team.get('search_terms') else team['name']
+
         # Build photo grid with affiliate modules inserted at key positions
         photo_html_parts = []
         affiliate_positions = [1, 20, 50, 100, 200]
 
         for idx, photo in enumerate(initial_photos):
-            position = idx + 1  # 1-indexed
+            position = idx + 1  # 1-indexed (position in full photo list)
 
             # Insert affiliate module at designated positions
             if self.affiliate and position in affiliate_positions:
                 module_type = "featured" if position == 1 else "inline"
                 caption = photo.get('caption', '')
-                search_name = f"{team['name']} basketball shoes" if position <= 20 else f"{team['name']} sneakers"
-                module_html = self.affiliate.get_buy_button_html(caption, search_name, module_type)
+                header = f"Shop {short_name} Gear" if module_type == "featured" else None
+                module_html = self.affiliate.get_buy_button_html(caption, short_name, module_type, header_text=header)
                 photo_html_parts.append(module_html)
 
             photo_html_parts.append(self._photo_card_html(photo))
 
-        scroll_script = self._scroll_photos_script(remaining_photos)
+        # Pre-render affiliate modules for positions that fall in the scroll portion
+        scroll_affiliate_html = {}
+        if self.affiliate and remaining_photos:
+            for pos in affiliate_positions:
+                # pos is 1-indexed in the full list; convert to 0-indexed in remaining_photos
+                scroll_idx = pos - 1 - initial_count
+                if scroll_idx >= 0 and scroll_idx < len(remaining_photos):
+                    caption = remaining_photos[scroll_idx].get('caption', '')
+                    module_html = self.affiliate.get_buy_button_html(caption, short_name, "inline")
+                    scroll_affiliate_html[scroll_idx] = module_html
+
+        scroll_script = self._scroll_photos_script(remaining_photos, affiliate_html=scroll_affiliate_html)
 
         photos_json = json.dumps([{
             'id': p.get('imagn_id', ''),
@@ -1951,7 +1925,17 @@ Disallow: /search/players.json
             # Add photo card
             photo_html_parts.append(self._photo_card_html(photo, idx))
 
-        scroll_script = self._scroll_photos_script(remaining_photos)
+        # Pre-render affiliate modules for positions that fall in the scroll portion
+        scroll_affiliate_html = {}
+        if self.affiliate and remaining_photos:
+            for pos in affiliate_positions:
+                scroll_idx = pos - 1 - initial_count
+                if scroll_idx >= 0 and scroll_idx < len(remaining_photos):
+                    caption = remaining_photos[scroll_idx].get('caption', '')
+                    module_html = self.affiliate.get_buy_button_html(caption, player['name'], "inline")
+                    scroll_affiliate_html[scroll_idx] = module_html
+
+        scroll_script = self._scroll_photos_script(remaining_photos, affiliate_html=scroll_affiliate_html)
 
         content = f'''
 {scroll_script}
