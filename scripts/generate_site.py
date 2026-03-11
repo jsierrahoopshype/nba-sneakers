@@ -1346,6 +1346,56 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
     </div>
 </div>'''
     
+    def _homepage_player_cards(self, players: list) -> str:
+        """Build visual player cards with photo backgrounds for homepage"""
+        # Build lookup: player_slug -> latest photo thumbnail URL
+        latest_thumb: dict = {}
+        for photo in self.archive.photos.values():
+            slug = photo.get('player_slug', '')
+            date = photo.get('photo_date', '')
+            if slug and (slug not in latest_thumb or date > latest_thumb[slug][0]):
+                thumb = photo.get('thumbnail_url') or f"https://www.imagn.com/image/{photo.get('imagn_id', '')}.jpg"
+                latest_thumb[slug] = (date, thumb)
+
+        cards = []
+        for p in players:
+            thumb_url = ''
+            entry = latest_thumb.get(p['slug'])
+            if entry:
+                thumb_url = escape(entry[1])
+            count = p['count']
+            count_label = f"{count} photo{'s' if count != 1 else ''}"
+            cards.append(
+                f'<a href="{self.base_url}/players/{p["slug"]}/" class="player-card"'
+                f' style="background-image:url({thumb_url})">'
+                f'<span class="player-card-badge">{count_label}</span>'
+                f'<span class="player-card-name">{escape(p["name"])}</span>'
+                f'</a>'
+            )
+        return "".join(cards)
+
+    def _homepage_team_cards(self, teams: list) -> str:
+        """Build visual team cards with photo backgrounds for homepage"""
+        cards = []
+        for t in teams:
+            thumb_url = ''
+            photos = self._get_photos_for_team(t['search_terms'])
+            if photos:
+                thumb_url = escape(
+                    photos[0].get('thumbnail_url')
+                    or f"https://www.imagn.com/image/{photos[0].get('imagn_id', '')}.jpg"
+                )
+            count = t['count']
+            count_label = f"{count} photo{'s' if count != 1 else ''}"
+            cards.append(
+                f'<a href="{self.base_url}/teams/{t["slug"]}/" class="player-card"'
+                f' style="background-image:url({thumb_url})">'
+                f'<span class="player-card-badge">{count_label}</span>'
+                f'<span class="player-card-name">{escape(t["name"])}</span>'
+                f'</a>'
+            )
+        return "".join(cards)
+
     def _homepage_photo_card_html(self, photo: Dict) -> str:
         """Generate a visual card for the homepage photo grid"""
         player = escape(photo.get('player_name') or 'NBA')
@@ -1460,10 +1510,18 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         
         # Final fallback: just get all photos
         if not weekly_photos:
-            weekly_photos = self.archive.get_all_photos()[:20]
-        
-        # Show initial batch in the grid, rest via infinite scroll
+            weekly_photos = self.archive.get_all_photos()[:40]
+
+        # Ensure at least 40 photos by supplementing with recent photos
         initial_count = 40
+        if len(weekly_photos) < initial_count:
+            seen_ids = {p.get('imagn_id') for p in weekly_photos}
+            for p in self.archive.get_all_photos():
+                if p.get('imagn_id') not in seen_ids:
+                    weekly_photos.append(p)
+                    seen_ids.add(p.get('imagn_id'))
+                if len(weekly_photos) >= initial_count:
+                    break
         hero_photos = weekly_photos[:initial_count]
         remaining_photos = weekly_photos[initial_count:]
 
@@ -1502,8 +1560,8 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             <a href="{self.base_url}/players/" class="section-link">View all {stats['total_players']} players →</a>
         </div>
         <p class="section-desc">See every shoe photo for your favorite players</p>
-        <div class="list-grid">
-            {"".join(f'<a href="{self.base_url}/players/{p["slug"]}/" class="list-item"><span class="name">{escape(p["name"])}</span><span class="count">{p["count"]} photos</span></a>' for p in stats['top_players'][:12])}
+        <div class="players-grid">
+            {self._homepage_player_cards(stats['top_players'][:12])}
         </div>
     </section>
     
@@ -1513,8 +1571,8 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             <h2 class="section-title">🏀 Browse by Team</h2>
             <a href="{self.base_url}/teams/" class="section-link">View all →</a>
         </div>
-        <div class="list-grid">
-            {"".join(f'<a href="{self.base_url}/teams/{t["slug"]}/" class="list-item"><span class="name">{escape(t["name"])}</span><span class="count">{t["count"]} photos</span></a>' for t in self._get_all_teams()[:15])}
+        <div class="players-grid">
+            {self._homepage_team_cards(self._get_all_teams()[:15])}
         </div>
     </section>
     
