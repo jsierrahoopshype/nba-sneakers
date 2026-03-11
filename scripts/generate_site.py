@@ -1460,10 +1460,18 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         
         # Final fallback: just get all photos
         if not weekly_photos:
-            weekly_photos = self.archive.get_all_photos()[:20]
-        
-        # Show initial batch in the grid, rest via infinite scroll
+            weekly_photos = self.archive.get_all_photos()[:40]
+
+        # Ensure at least 40 photos by supplementing with recent photos
         initial_count = 40
+        if len(weekly_photos) < initial_count:
+            seen_ids = {p.get('imagn_id') for p in weekly_photos}
+            for p in self.archive.get_all_photos():
+                if p.get('imagn_id') not in seen_ids:
+                    weekly_photos.append(p)
+                    seen_ids.add(p.get('imagn_id'))
+                if len(weekly_photos) >= initial_count:
+                    break
         hero_photos = weekly_photos[:initial_count]
         remaining_photos = weekly_photos[initial_count:]
 
