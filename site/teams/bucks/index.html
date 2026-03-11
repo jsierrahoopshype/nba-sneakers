@@ -150,6 +150,16 @@ a:hover { text-decoration: underline; }
 .player-card:hover { transform: scale(1.03); box-shadow: var(--shadow-hover); text-decoration: none; }
 .player-card-name { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 10px 8px; background: linear-gradient(transparent, rgba(0,0,0,0.75)); color: white; font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .player-card-badge { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,0.6); color: white; font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 10px; backdrop-filter: blur(4px); }
+.sort-toggle { display: flex; gap: 4px; }
+.sort-btn { padding: 4px 12px; font-size: 12px; font-weight: 600; border: 1px solid var(--border); border-radius: 6px; background: var(--card-bg); color: var(--secondary); cursor: pointer; transition: background 0.15s, color 0.15s; }
+.sort-btn:hover { background: var(--bg); }
+.sort-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+.home-photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.home-photo-card { position: relative; display: block; height: 150px; border-radius: 10px; overflow: hidden; background-size: cover; background-position: center; background-color: var(--primary); box-shadow: var(--shadow); text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+.home-photo-card:hover { transform: scale(1.03); box-shadow: var(--shadow-hover); text-decoration: none; }
+.home-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 10px 8px; background: linear-gradient(transparent, rgba(0,0,0,0.75)); display: flex; flex-direction: column; }
+.home-card-player { color: white; font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.home-card-team { color: rgba(255,255,255,0.75); font-size: 11px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-players { padding: 32px 0; }
 .more-players h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
 .more-players-row { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
@@ -374,41 +384,41 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Teams to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/spurs/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28420195.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">San Antonio Spurs</div>
-        <div class="mp-count">446 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/pistons/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28443816.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Detroit Pistons</div>
-        <div class="mp-count">851 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/nets/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28422256.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Brooklyn Nets</div>
-        <div class="mp-count">746 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/lakers/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28443423.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Los Angeles Lakers</div>
-        <div class="mp-count">859 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/timberwolves/" class="more-player-card">
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/timberwolves/" class="more-player-card">
     <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28431241.jpg)"></div>
     <div class="mp-info">
         <div class="mp-name">Minnesota Timberwolves</div>
         <div class="mp-count">576 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/rockets/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28412960.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/heat/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28456517.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Houston Rockets</div>
-        <div class="mp-count">619 photos</div>
+        <div class="mp-name">Miami Heat</div>
+        <div class="mp-count">436 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/nuggets/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28414630.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Denver Nuggets</div>
+        <div class="mp-count">996 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/jazz/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28185038.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Utah Jazz</div>
+        <div class="mp-count">642 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/pelicans/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28441866.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">New Orleans Pelicans</div>
+        <div class="mp-count">510 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/kings/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28290046.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Sacramento Kings</div>
+        <div class="mp-count">726 photos</div>
     </div>
 </a><a href="https://jsierrahoopshype.github.io/nba-sneakers/teams/knicks/" class="more-player-card">
     <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28452140.jpg)"></div>

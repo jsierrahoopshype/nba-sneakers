@@ -154,6 +154,16 @@ a:hover { text-decoration: underline; }
 .player-card:hover { transform: scale(1.03); box-shadow: var(--shadow-hover); text-decoration: none; }
 .player-card-name { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 10px 8px; background: linear-gradient(transparent, rgba(0,0,0,0.75)); color: white; font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .player-card-badge { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,0.6); color: white; font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 10px; backdrop-filter: blur(4px); }
+.sort-toggle { display: flex; gap: 4px; }
+.sort-btn { padding: 4px 12px; font-size: 12px; font-weight: 600; border: 1px solid var(--border); border-radius: 6px; background: var(--card-bg); color: var(--secondary); cursor: pointer; transition: background 0.15s, color 0.15s; }
+.sort-btn:hover { background: var(--bg); }
+.sort-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+.home-photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.home-photo-card { position: relative; display: block; height: 150px; border-radius: 10px; overflow: hidden; background-size: cover; background-position: center; background-color: var(--primary); box-shadow: var(--shadow); text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+.home-photo-card:hover { transform: scale(1.03); box-shadow: var(--shadow-hover); text-decoration: none; }
+.home-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 10px 8px; background: linear-gradient(transparent, rgba(0,0,0,0.75)); display: flex; flex-direction: column; }
+.home-card-player { color: white; font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.home-card-team { color: rgba(255,255,255,0.75); font-size: 11px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-players { padding: 32px 0; }
 .more-players h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
 .more-players-row { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
@@ -198,57 +208,8 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
             <h2 class="section-title">📸 Latest Kicks</h2>
             <span class="photo-count">7 photos</span>
         </div>
-        <div class="photo-grid" id="photo-grid">
-            <div class="affiliate-module affiliate-compact"><span class="aff-label">👟 Bub Carrington basketball shoes →</span><a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Bub+Carrington+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn buy-btn-compact">Shop on StockX</a></div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28459768/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28459768.jpg" alt="NBA: Washington Wizards at Miami Heat" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bub-carrington/" class="player-link">Bub Carrington</a>
-        <div class="headline">NBA: Washington Wizards at Miami Heat</div>
-        <div class="credit">📷 Rhona Wise · Imagn Images · Mar 10, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28457199/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28457199.jpg" alt="NBA: Dallas Mavericks at Atlanta Hawks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/cooper-flagg/" class="player-link">Cooper Flagg</a>
-        <div class="headline">NBA: Dallas Mavericks at Atlanta Hawks</div>
-        <div class="credit">📷 Brett Davis · Imagn Images · Mar 10, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28456517/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28456517.jpg" alt="NBA: Washington Wizards at Miami Heat" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/bam-adebayo/" class="player-link">Bam Adebayo</a>
-        <div class="headline">NBA: Washington Wizards at Miami Heat</div>
-        <div class="credit">📷 Rhona Wise · Imagn Images · Mar 10, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28456318/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28456318.jpg" alt="NBA: Phoenix Suns at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/giannis-antetokounmpo/" class="player-link">Giannis Antetokounmpo</a>
-        <div class="headline">NBA: Phoenix Suns at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Mar 10, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28456317/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28456317.jpg" alt="NBA: Phoenix Suns at Milwaukee Bucks" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/giannis-antetokounmpo/" class="player-link">Giannis Antetokounmpo</a>
-        <div class="headline">NBA: Phoenix Suns at Milwaukee Bucks</div>
-        <div class="credit">📷 Jeff Hanisch · Imagn Images · Mar 10, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28449988/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28449988.jpg" alt="NBA: Philadelphia 76ers at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/donovan-mitchell/" class="player-link">Donovan Mitchell</a>
-        <div class="headline">NBA: Philadelphia 76ers at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Mar 09, 2026</div>
-    </div>
-</div><div class="photo-card">
-    <a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28449991/" class="img-wrap"><img src="https://cdn.imagn.com/image/thumb/250-225/28449991.jpg" alt="NBA: Philadelphia 76ers at Cleveland Cavaliers" loading="lazy"></a>
-    <div class="meta">
-        <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/adem-bona/" class="player-link">Adem Bona</a>
-        <div class="headline">NBA: Philadelphia 76ers at Cleveland Cavaliers</div>
-        <div class="credit">📷 Ken Blaze · Imagn Images · Mar 09, 2026</div>
-    </div>
-</div>
+        <div class="home-photo-grid" id="photo-grid">
+            <div class="affiliate-module affiliate-compact"><span class="aff-label">👟 Bub Carrington basketball shoes →</span><a href="https://stockx.com/search?utm_source=impact&utm_medium=affiliate&ir_campaignid=9060&ir_adid=530344&ir_partnerid=2686854&s=Bub+Carrington+basketball+shoes" target="_blank" rel="noopener sponsored" class="buy-btn buy-btn-compact">Shop on StockX</a></div><a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28459768/" class="home-photo-card" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28459768.jpg)"><span class="home-card-info"><span class="home-card-player">Bub Carrington</span></span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28457199/" class="home-photo-card" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28457199.jpg)"><span class="home-card-info"><span class="home-card-player">Cooper Flagg</span></span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28456517/" class="home-photo-card" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28456517.jpg)"><span class="home-card-info"><span class="home-card-player">Bam Adebayo</span></span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28456318/" class="home-photo-card" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28456318.jpg)"><span class="home-card-info"><span class="home-card-player">Giannis Antetokounmpo</span></span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28456317/" class="home-photo-card" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28456317.jpg)"><span class="home-card-info"><span class="home-card-player">Giannis Antetokounmpo</span></span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28449988/" class="home-photo-card" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28449988.jpg)"><span class="home-card-info"><span class="home-card-player">Donovan Mitchell</span></span></a><a href="https://jsierrahoopshype.github.io/nba-sneakers/photos/28449991/" class="home-photo-card" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28449991.jpg)"><span class="home-card-info"><span class="home-card-player">Adem Bona</span></span></a>
         </div>
     </section>
     

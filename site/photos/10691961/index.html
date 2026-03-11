@@ -154,6 +154,16 @@ a:hover { text-decoration: underline; }
 .player-card:hover { transform: scale(1.03); box-shadow: var(--shadow-hover); text-decoration: none; }
 .player-card-name { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 10px 8px; background: linear-gradient(transparent, rgba(0,0,0,0.75)); color: white; font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .player-card-badge { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,0.6); color: white; font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 10px; backdrop-filter: blur(4px); }
+.sort-toggle { display: flex; gap: 4px; }
+.sort-btn { padding: 4px 12px; font-size: 12px; font-weight: 600; border: 1px solid var(--border); border-radius: 6px; background: var(--card-bg); color: var(--secondary); cursor: pointer; transition: background 0.15s, color 0.15s; }
+.sort-btn:hover { background: var(--bg); }
+.sort-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+.home-photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.home-photo-card { position: relative; display: block; height: 150px; border-radius: 10px; overflow: hidden; background-size: cover; background-position: center; background-color: var(--primary); box-shadow: var(--shadow); text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+.home-photo-card:hover { transform: scale(1.03); box-shadow: var(--shadow-hover); text-decoration: none; }
+.home-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 10px 8px; background: linear-gradient(transparent, rgba(0,0,0,0.75)); display: flex; flex-direction: column; }
+.home-card-player { color: white; font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.home-card-team { color: rgba(255,255,255,0.75); font-size: 11px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-players { padding: 32px 0; }
 .more-players h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
 .more-players-row { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
@@ -212,35 +222,29 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
     <div class="container">
         <h2>More Players to Explore</h2>
         <div class="more-players-row">
-            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/draymond-green/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28333094.jpg)"></div>
+            <a href="https://jsierrahoopshype.github.io/nba-sneakers/players/avery-bradley/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17645945.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Draymond Green</div>
-        <div class="mp-count">137 photos</div>
+        <div class="mp-name">Avery Bradley</div>
+        <div class="mp-count">13 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/grayson-allen/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22885494.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/marcus-morris/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/12670101.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Grayson Allen</div>
-        <div class="mp-count">19 photos</div>
+        <div class="mp-name">Marcus Morris</div>
+        <div class="mp-count">22 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/evan-fournier/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/22037263.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/stephen-curry/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28198028.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Evan Fournier</div>
-        <div class="mp-count">25 photos</div>
+        <div class="mp-name">Stephen Curry</div>
+        <div class="mp-count">364 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jalen-suggs/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27588850.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/shelvin-mack/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/12092236.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Jalen Suggs</div>
-        <div class="mp-count">19 photos</div>
-    </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/rodney-hood/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/17896972.jpg)"></div>
-    <div class="mp-info">
-        <div class="mp-name">Rodney Hood</div>
-        <div class="mp-count">25 photos</div>
+        <div class="mp-name">Shelvin Mack</div>
+        <div class="mp-count">10 photos</div>
     </div>
 </a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/kobe-bryant/" class="more-player-card">
     <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/15491842.jpg)"></div>
@@ -248,17 +252,23 @@ img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
         <div class="mp-name">Kobe Bryant</div>
         <div class="mp-count">27 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/james-harden/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28439493.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/jaden-mcdaniels/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/28394310.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">James Harden</div>
-        <div class="mp-count">190 photos</div>
+        <div class="mp-name">Jaden McDaniels</div>
+        <div class="mp-count">25 photos</div>
     </div>
-</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/dwyane-wade/" class="more-player-card">
-    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/12493392.jpg)"></div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/royce-oneale/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27887418.jpg)"></div>
     <div class="mp-info">
-        <div class="mp-name">Dwyane Wade</div>
-        <div class="mp-count">46 photos</div>
+        <div class="mp-name">Royce O&#x27;Neale</div>
+        <div class="mp-count">71 photos</div>
+    </div>
+</a><a href="https://jsierrahoopshype.github.io/nba-sneakers/players/zeke-nnaji/" class="more-player-card">
+    <div class="mp-img" style="background-image:url(https://cdn.imagn.com/image/thumb/250-225/27885676.jpg)"></div>
+    <div class="mp-info">
+        <div class="mp-name">Zeke Nnaji</div>
+        <div class="mp-count">10 photos</div>
     </div>
 </a>
         </div>
