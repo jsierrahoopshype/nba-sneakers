@@ -253,8 +253,8 @@ class ImagnFetcher:
 
         # Calculate date range from days_back
         if days_back > 0:
-            to_date = datetime.now().strftime('%m/%d/%Y')
-            from_date = (datetime.now() - timedelta(days=days_back)).strftime('%m/%d/%Y')
+            to_date = datetime.now().strftime('%m-%d-%Y')
+            from_date = (datetime.now() - timedelta(days=days_back)).strftime('%m-%d-%Y')
         else:
             from_date = ''
             to_date = ''
