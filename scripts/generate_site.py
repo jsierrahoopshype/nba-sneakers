@@ -817,6 +817,82 @@ a:hover { text-decoration: underline; }
     backdrop-filter: blur(4px);
 }
 
+/* Sort Toggle */
+.sort-toggle {
+    display: flex;
+    gap: 4px;
+}
+.sort-btn {
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--card-bg);
+    color: var(--secondary);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+.sort-btn:hover {
+    background: var(--bg);
+}
+.sort-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Homepage Photo Grid */
+.home-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 12px;
+}
+.home-photo-card {
+    position: relative;
+    display: block;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--primary);
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.home-photo-card:hover {
+    transform: scale(1.03);
+    box-shadow: var(--shadow-hover);
+    text-decoration: none;
+}
+.home-card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px 10px 8px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.75));
+    display: flex;
+    flex-direction: column;
+}
+.home-card-player {
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.home-card-team {
+    color: rgba(255,255,255,0.75);
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .site-header .container {
@@ -1146,6 +1222,16 @@ a:hover { text-decoration: underline; }
 .player-card:hover { transform: scale(1.03); box-shadow: var(--shadow-hover); text-decoration: none; }
 .player-card-name { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 10px 8px; background: linear-gradient(transparent, rgba(0,0,0,0.75)); color: white; font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .player-card-badge { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,0.6); color: white; font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 10px; backdrop-filter: blur(4px); }
+.sort-toggle { display: flex; gap: 4px; }
+.sort-btn { padding: 4px 12px; font-size: 12px; font-weight: 600; border: 1px solid var(--border); border-radius: 6px; background: var(--card-bg); color: var(--secondary); cursor: pointer; transition: background 0.15s, color 0.15s; }
+.sort-btn:hover { background: var(--bg); }
+.sort-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+.home-photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.home-photo-card { position: relative; display: block; height: 150px; border-radius: 10px; overflow: hidden; background-size: cover; background-position: center; background-color: var(--primary); box-shadow: var(--shadow); text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+.home-photo-card:hover { transform: scale(1.03); box-shadow: var(--shadow-hover); text-decoration: none; }
+.home-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 10px 8px; background: linear-gradient(transparent, rgba(0,0,0,0.75)); display: flex; flex-direction: column; }
+.home-card-player { color: white; font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.home-card-team { color: rgba(255,255,255,0.75); font-size: 11px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-players { padding: 32px 0; }
 .more-players h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
 .more-players-row { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
@@ -1260,6 +1346,27 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
     </div>
 </div>'''
     
+    def _homepage_photo_card_html(self, photo: Dict) -> str:
+        """Generate a visual card for the homepage photo grid"""
+        player = escape(photo.get('player_name') or 'NBA')
+        player_slug = photo.get('player_slug') or self._name_to_slug(photo.get('player_name') or '')
+        imagn_id = escape(photo.get('imagn_id') or '')
+        team = escape(photo.get('team_name') or photo.get('team') or '')
+        thumb_url = photo.get('thumbnail_url') or (f"https://www.imagn.com/image/{imagn_id}.jpg" if imagn_id else '')
+        thumb = escape(thumb_url)
+        headline = escape((photo.get('headline') or '')[:100])
+
+        team_html = f'<span class="home-card-team">{team}</span>' if team else ''
+        return (
+            f'<a href="{self.base_url}/photos/{imagn_id}/" class="home-photo-card"'
+            f' style="background-image:url({thumb})">'
+            f'<span class="home-card-info">'
+            f'<span class="home-card-player">{player}</span>'
+            f'{team_html}'
+            f'</span>'
+            f'</a>'
+        )
+
     def _scroll_photos_script(self, photos: list, affiliate_html: Dict[int, str] = None) -> str:
         """Generate a <script> tag setting window.__SCROLL_PHOTOS for infinite scroll.
 
@@ -1356,11 +1463,11 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             weekly_photos = self.archive.get_all_photos()[:20]
         
         # Show initial batch in the grid, rest via infinite scroll
-        initial_count = 24
+        initial_count = 40
         hero_photos = weekly_photos[:initial_count]
         remaining_photos = weekly_photos[initial_count:]
 
-        # Build photo grid with affiliate modules at key positions
+        # Build visual photo cards with affiliate modules at key positions
         hero_html_parts = []
         affiliate_positions = [1, 20, 50, 100, 200]
         for idx, photo in enumerate(hero_photos):
@@ -1370,7 +1477,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
                 player_name = photo.get('player_name', 'NBA')
                 module_html = self.affiliate.get_buy_button_html(caption, player_name, photo_position=position)
                 hero_html_parts.append(module_html)
-            hero_html_parts.append(self._photo_card_html(photo))
+            hero_html_parts.append(self._homepage_photo_card_html(photo))
         hero_grid_html = "".join(hero_html_parts)
         scroll_script = self._scroll_photos_script(remaining_photos)
 
@@ -1383,7 +1490,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             <h2 class="section-title">📸 Latest Kicks</h2>
             <span class="photo-count">{len(weekly_photos)} photos</span>
         </div>
-        <div class="photo-grid" id="photo-grid">
+        <div class="home-photo-grid" id="photo-grid">
             {hero_grid_html}
         </div>
     </section>
@@ -1459,6 +1566,31 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         html = self._base_template("NBA Sneakers", content, photos_json, meta=meta)
         self._write_file('index.html', html)
     
+    def _sort_toggle_script(self) -> str:
+        """Generate JS for sort toggle on grid pages"""
+        return '''<script>
+(function(){
+    var grid = document.getElementById('sortable-grid');
+    if (!grid) return;
+    var btns = document.querySelectorAll('.sort-btn');
+    function doSort(mode) {
+        var cards = Array.prototype.slice.call(grid.children);
+        if (mode === 'alpha') {
+            cards.sort(function(a,b){ return (a.dataset.name||'').localeCompare(b.dataset.name||''); });
+        } else {
+            cards.sort(function(a,b){ return parseInt(a.dataset.count||0) - parseInt(b.dataset.count||0); });
+        }
+        cards.forEach(function(c){ grid.appendChild(c); });
+        btns.forEach(function(b){ b.classList.toggle('active', b.dataset.sort===mode); });
+        history.replaceState(null,'', mode==='alpha' ? '#sort=alpha' : '#sort=count');
+    }
+    btns.forEach(function(b){
+        b.addEventListener('click', function(){ doSort(b.dataset.sort); });
+    });
+    if (location.hash === '#sort=alpha') doSort('alpha');
+})();
+</script>'''
+
     def _generate_players_index(self):
         """Generate players listing page with visual photo grid"""
         players = self.archive.get_all_players()
@@ -1472,20 +1604,22 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
                 thumb = photo.get('thumbnail_url') or f"https://www.imagn.com/image/{photo.get('imagn_id', '')}.jpg"
                 latest_thumb[slug] = (date, thumb)
 
-        # Build player cards
+        # Build player cards with data attributes for sorting
         cards = []
-        for p in players:
+        for idx, p in enumerate(players):
             thumb_url = ''
             entry = latest_thumb.get(p['slug'])
             if entry:
                 thumb_url = escape(entry[1])
             count = p['count']
             count_label = f"{count} photo{'s' if count != 1 else ''}"
+            name_esc = escape(p['name'])
             cards.append(
                 f'<a href="{self.base_url}/players/{p["slug"]}/" class="player-card"'
+                f' data-name="{name_esc}" data-count="{idx}"'
                 f' style="background-image:url({thumb_url})">'
                 f'<span class="player-card-badge">{count_label}</span>'
-                f'<span class="player-card-name">{escape(p["name"])}</span>'
+                f'<span class="player-card-name">{name_esc}</span>'
                 f'</a>'
             )
 
@@ -1501,13 +1635,17 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
     <section class="section">
         <div class="section-header">
             <h2 class="section-title">All Players</h2>
-            <span class="section-note">Click any player to see their shoe photos</span>
+            <div class="sort-toggle">
+                <button class="sort-btn active" data-sort="count">By Photos</button>
+                <button class="sort-btn" data-sort="alpha">A-Z</button>
+            </div>
         </div>
-        <div class="players-grid">
+        <div class="players-grid" id="sortable-grid">
             {"".join(cards)}
         </div>
     </section>
 </main>
+{self._sort_toggle_script()}
 '''
         html = self._base_template("Players", content, breadcrumb='Players')
         self._write_file('players/index.html', html)
@@ -1632,8 +1770,32 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         return teams
 
     def _generate_teams_index(self):
-        """Generate teams listing page"""
+        """Generate teams listing page with visual photo grid"""
         teams = self._get_all_teams()
+
+        # Build lookup: team_slug -> latest photo thumbnail URL
+        latest_thumb = {}
+        for t in teams:
+            photos = self._get_photos_for_team(t['search_terms'])
+            if photos:
+                thumb = photos[0].get('thumbnail_url') or f"https://www.imagn.com/image/{photos[0].get('imagn_id', '')}.jpg"
+                latest_thumb[t['slug']] = thumb
+
+        # Build team cards with data attributes for sorting
+        cards = []
+        for idx, t in enumerate(teams):
+            thumb_url = escape(latest_thumb.get(t['slug'], ''))
+            count = t['count']
+            count_label = f"{count} photo{'s' if count != 1 else ''}"
+            name_esc = escape(t['name'])
+            cards.append(
+                f'<a href="{self.base_url}/teams/{t["slug"]}/" class="player-card"'
+                f' data-name="{name_esc}" data-count="{idx}"'
+                f' style="background-image:url({thumb_url})">'
+                f'<span class="player-card-badge">{count_label}</span>'
+                f'<span class="player-card-name">{name_esc}</span>'
+                f'</a>'
+            )
 
         content = f'''
 <div class="page-header">
@@ -1645,11 +1807,19 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
 
 <main class="container">
     <section class="section">
-        <div class="list-grid">
-            {"".join(f'<a href="{self.base_url}/teams/{t["slug"]}/" class="list-item"><span class="name">{escape(t["name"])}</span><span class="count">{t["count"]} photos</span></a>' for t in teams)}
+        <div class="section-header">
+            <h2 class="section-title">All Teams</h2>
+            <div class="sort-toggle">
+                <button class="sort-btn active" data-sort="count">By Photos</button>
+                <button class="sort-btn" data-sort="alpha">A-Z</button>
+            </div>
+        </div>
+        <div class="players-grid" id="sortable-grid">
+            {"".join(cards)}
         </div>
     </section>
 </main>
+{self._sort_toggle_script()}
 '''
         html = self._base_template("Teams", content, breadcrumb='Teams')
         self._write_file('teams/index.html', html)
