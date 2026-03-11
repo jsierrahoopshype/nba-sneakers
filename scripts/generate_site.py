@@ -1374,6 +1374,28 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             )
         return "".join(cards)
 
+    def _homepage_team_cards(self, teams: list) -> str:
+        """Build visual team cards with photo backgrounds for homepage"""
+        cards = []
+        for t in teams:
+            thumb_url = ''
+            photos = self._get_photos_for_team(t['search_terms'])
+            if photos:
+                thumb_url = escape(
+                    photos[0].get('thumbnail_url')
+                    or f"https://www.imagn.com/image/{photos[0].get('imagn_id', '')}.jpg"
+                )
+            count = t['count']
+            count_label = f"{count} photo{'s' if count != 1 else ''}"
+            cards.append(
+                f'<a href="{self.base_url}/teams/{t["slug"]}/" class="player-card"'
+                f' style="background-image:url({thumb_url})">'
+                f'<span class="player-card-badge">{count_label}</span>'
+                f'<span class="player-card-name">{escape(t["name"])}</span>'
+                f'</a>'
+            )
+        return "".join(cards)
+
     def _homepage_photo_card_html(self, photo: Dict) -> str:
         """Generate a visual card for the homepage photo grid"""
         player = escape(photo.get('player_name') or 'NBA')
@@ -1549,8 +1571,8 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             <h2 class="section-title">🏀 Browse by Team</h2>
             <a href="{self.base_url}/teams/" class="section-link">View all →</a>
         </div>
-        <div class="list-grid">
-            {"".join(f'<a href="{self.base_url}/teams/{t["slug"]}/" class="list-item"><span class="name">{escape(t["name"])}</span><span class="count">{t["count"]} photos</span></a>' for t in self._get_all_teams()[:15])}
+        <div class="players-grid">
+            {self._homepage_team_cards(self._get_all_teams()[:15])}
         </div>
     </section>
     
