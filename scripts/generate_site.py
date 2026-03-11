@@ -1710,8 +1710,30 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         return teams
 
     def _generate_teams_index(self):
-        """Generate teams listing page"""
+        """Generate teams listing page with visual photo grid"""
         teams = self._get_all_teams()
+
+        # Build lookup: team_slug -> latest photo thumbnail URL
+        latest_thumb = {}
+        for t in teams:
+            photos = self._get_photos_for_team(t['search_terms'])
+            if photos:
+                thumb = photos[0].get('thumbnail_url') or f"https://www.imagn.com/image/{photos[0].get('imagn_id', '')}.jpg"
+                latest_thumb[t['slug']] = thumb
+
+        # Build team cards
+        cards = []
+        for t in teams:
+            thumb_url = escape(latest_thumb.get(t['slug'], ''))
+            count = t['count']
+            count_label = f"{count} photo{'s' if count != 1 else ''}"
+            cards.append(
+                f'<a href="{self.base_url}/teams/{t["slug"]}/" class="player-card"'
+                f' style="background-image:url({thumb_url})">'
+                f'<span class="player-card-badge">{count_label}</span>'
+                f'<span class="player-card-name">{escape(t["name"])}</span>'
+                f'</a>'
+            )
 
         content = f'''
 <div class="page-header">
@@ -1723,8 +1745,8 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
 
 <main class="container">
     <section class="section">
-        <div class="list-grid">
-            {"".join(f'<a href="{self.base_url}/teams/{t["slug"]}/" class="list-item"><span class="name">{escape(t["name"])}</span><span class="count">{t["count"]} photos</span></a>' for t in teams)}
+        <div class="players-grid">
+            {"".join(cards)}
         </div>
     </section>
 </main>
