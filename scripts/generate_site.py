@@ -1397,24 +1397,27 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         return "".join(cards)
 
     def _homepage_photo_card_html(self, photo: Dict) -> str:
-        """Generate a visual card for the homepage photo grid"""
+        """Generate a clean gallery card for the homepage photo grid"""
         player = escape(photo.get('player_name') or 'NBA')
         player_slug = photo.get('player_slug') or self._name_to_slug(photo.get('player_name') or '')
         imagn_id = escape(photo.get('imagn_id') or '')
-        team = escape(photo.get('team_name') or photo.get('team') or '')
         thumb_url = photo.get('thumbnail_url') or (f"https://www.imagn.com/image/{imagn_id}.jpg" if imagn_id else '')
         thumb = escape(thumb_url)
         headline = escape((photo.get('headline') or '')[:100])
-
-        team_html = f'<span class="home-card-team">{team}</span>' if team else ''
+        photo_date = photo.get('photo_date', '')
+        date_html = ''
+        if photo_date:
+            date_html = f'<div class="credit">{escape(photo_date)}</div>'
         return (
-            f'<a href="{self.base_url}/photos/{imagn_id}/" class="home-photo-card"'
-            f' style="background-image:url({thumb})">'
-            f'<span class="home-card-info">'
-            f'<span class="home-card-player">{player}</span>'
-            f'{team_html}'
-            f'</span>'
+            f'<div class="photo-card">'
+            f'<a href="{self.base_url}/photos/{imagn_id}/" class="img-wrap">'
+            f'<img src="{thumb}" alt="{headline}" loading="lazy">'
             f'</a>'
+            f'<div class="meta">'
+            f'<a href="{self.base_url}/players/{player_slug}/" class="player-link">{player}</a>'
+            f'{date_html}'
+            f'</div>'
+            f'</div>'
         )
 
     def _scroll_photos_script(self, photos: list, affiliate_html: Dict[int, str] = None) -> str:
@@ -1548,7 +1551,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             <h2 class="section-title">📸 Latest Kicks</h2>
             <span class="photo-count">{len(weekly_photos)} photos</span>
         </div>
-        <div class="home-photo-grid" id="photo-grid">
+        <div class="photo-grid" id="photo-grid">
             {hero_grid_html}
         </div>
     </section>
