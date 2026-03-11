@@ -1346,6 +1346,34 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
     </div>
 </div>'''
     
+    def _homepage_player_cards(self, players: list) -> str:
+        """Build visual player cards with photo backgrounds for homepage"""
+        # Build lookup: player_slug -> latest photo thumbnail URL
+        latest_thumb: dict = {}
+        for photo in self.archive.photos.values():
+            slug = photo.get('player_slug', '')
+            date = photo.get('photo_date', '')
+            if slug and (slug not in latest_thumb or date > latest_thumb[slug][0]):
+                thumb = photo.get('thumbnail_url') or f"https://www.imagn.com/image/{photo.get('imagn_id', '')}.jpg"
+                latest_thumb[slug] = (date, thumb)
+
+        cards = []
+        for p in players:
+            thumb_url = ''
+            entry = latest_thumb.get(p['slug'])
+            if entry:
+                thumb_url = escape(entry[1])
+            count = p['count']
+            count_label = f"{count} photo{'s' if count != 1 else ''}"
+            cards.append(
+                f'<a href="{self.base_url}/players/{p["slug"]}/" class="player-card"'
+                f' style="background-image:url({thumb_url})">'
+                f'<span class="player-card-badge">{count_label}</span>'
+                f'<span class="player-card-name">{escape(p["name"])}</span>'
+                f'</a>'
+            )
+        return "".join(cards)
+
     def _homepage_photo_card_html(self, photo: Dict) -> str:
         """Generate a visual card for the homepage photo grid"""
         player = escape(photo.get('player_name') or 'NBA')
@@ -1510,8 +1538,8 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             <a href="{self.base_url}/players/" class="section-link">View all {stats['total_players']} players →</a>
         </div>
         <p class="section-desc">See every shoe photo for your favorite players</p>
-        <div class="list-grid">
-            {"".join(f'<a href="{self.base_url}/players/{p["slug"]}/" class="list-item"><span class="name">{escape(p["name"])}</span><span class="count">{p["count"]} photos</span></a>' for p in stats['top_players'][:12])}
+        <div class="players-grid">
+            {self._homepage_player_cards(stats['top_players'][:12])}
         </div>
     </section>
     
