@@ -817,6 +817,57 @@ a:hover { text-decoration: underline; }
     backdrop-filter: blur(4px);
 }
 
+/* Homepage Photo Grid */
+.home-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 12px;
+}
+.home-photo-card {
+    position: relative;
+    display: block;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--primary);
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.home-photo-card:hover {
+    transform: scale(1.03);
+    box-shadow: var(--shadow-hover);
+    text-decoration: none;
+}
+.home-card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px 10px 8px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.75));
+    display: flex;
+    flex-direction: column;
+}
+.home-card-player {
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.home-card-team {
+    color: rgba(255,255,255,0.75);
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .site-header .container {
@@ -1146,6 +1197,12 @@ a:hover { text-decoration: underline; }
 .player-card:hover { transform: scale(1.03); box-shadow: var(--shadow-hover); text-decoration: none; }
 .player-card-name { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 10px 8px; background: linear-gradient(transparent, rgba(0,0,0,0.75)); color: white; font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .player-card-badge { position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,0.6); color: white; font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 10px; backdrop-filter: blur(4px); }
+.home-photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.home-photo-card { position: relative; display: block; height: 150px; border-radius: 10px; overflow: hidden; background-size: cover; background-position: center; background-color: var(--primary); box-shadow: var(--shadow); text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+.home-photo-card:hover { transform: scale(1.03); box-shadow: var(--shadow-hover); text-decoration: none; }
+.home-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 10px 8px; background: linear-gradient(transparent, rgba(0,0,0,0.75)); display: flex; flex-direction: column; }
+.home-card-player { color: white; font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.home-card-team { color: rgba(255,255,255,0.75); font-size: 11px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .more-players { padding: 32px 0; }
 .more-players h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
 .more-players-row { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
@@ -1260,6 +1317,27 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
     </div>
 </div>'''
     
+    def _homepage_photo_card_html(self, photo: Dict) -> str:
+        """Generate a visual card for the homepage photo grid"""
+        player = escape(photo.get('player_name') or 'NBA')
+        player_slug = photo.get('player_slug') or self._name_to_slug(photo.get('player_name') or '')
+        imagn_id = escape(photo.get('imagn_id') or '')
+        team = escape(photo.get('team_name') or photo.get('team') or '')
+        thumb_url = photo.get('thumbnail_url') or (f"https://www.imagn.com/image/{imagn_id}.jpg" if imagn_id else '')
+        thumb = escape(thumb_url)
+        headline = escape((photo.get('headline') or '')[:100])
+
+        team_html = f'<span class="home-card-team">{team}</span>' if team else ''
+        return (
+            f'<a href="{self.base_url}/photos/{imagn_id}/" class="home-photo-card"'
+            f' style="background-image:url({thumb})">'
+            f'<span class="home-card-info">'
+            f'<span class="home-card-player">{player}</span>'
+            f'{team_html}'
+            f'</span>'
+            f'</a>'
+        )
+
     def _scroll_photos_script(self, photos: list, affiliate_html: Dict[int, str] = None) -> str:
         """Generate a <script> tag setting window.__SCROLL_PHOTOS for infinite scroll.
 
@@ -1356,11 +1434,11 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             weekly_photos = self.archive.get_all_photos()[:20]
         
         # Show initial batch in the grid, rest via infinite scroll
-        initial_count = 24
+        initial_count = 40
         hero_photos = weekly_photos[:initial_count]
         remaining_photos = weekly_photos[initial_count:]
 
-        # Build photo grid with affiliate modules at key positions
+        # Build visual photo cards with affiliate modules at key positions
         hero_html_parts = []
         affiliate_positions = [1, 20, 50, 100, 200]
         for idx, photo in enumerate(hero_photos):
@@ -1370,7 +1448,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
                 player_name = photo.get('player_name', 'NBA')
                 module_html = self.affiliate.get_buy_button_html(caption, player_name, photo_position=position)
                 hero_html_parts.append(module_html)
-            hero_html_parts.append(self._photo_card_html(photo))
+            hero_html_parts.append(self._homepage_photo_card_html(photo))
         hero_grid_html = "".join(hero_html_parts)
         scroll_script = self._scroll_photos_script(remaining_photos)
 
@@ -1383,7 +1461,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             <h2 class="section-title">📸 Latest Kicks</h2>
             <span class="photo-count">{len(weekly_photos)} photos</span>
         </div>
-        <div class="photo-grid" id="photo-grid">
+        <div class="home-photo-grid" id="photo-grid">
             {hero_grid_html}
         </div>
     </section>
