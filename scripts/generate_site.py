@@ -6,8 +6,8 @@ Static Site Generator for NBA Shoe Gallery
 Generates:
 - Homepage with recent photos and stats
 - Player timeline pages (/players/lebron-james/)
-- Weekly gallery pages (/weekly/2024-W52/)
-- Browse pages (/players/, /weekly/)
+- Monthly gallery pages (/monthly/2026-03/)
+- Browse pages (/players/, /monthly/)
 - Affiliate monetization modules
 
 Usage:
@@ -53,7 +53,7 @@ class SiteGenerator:
         print(f"Generating site from {len(self.archive.photos)} photos...", file=sys.stderr)
         
         # Create directories
-        for subdir in ['players', 'teams', 'weekly', 'css', 'js', 'search', 'photos']:
+        for subdir in ['players', 'teams', 'monthly', 'css', 'js', 'search', 'photos']:
             os.makedirs(os.path.join(self.output_dir, subdir), exist_ok=True)
         
         # Generate pages
@@ -63,7 +63,7 @@ class SiteGenerator:
         self._generate_search_page()
         self._generate_players_index()
         self._generate_teams_index()
-        self._generate_weekly_index()
+        self._generate_monthly_index()
         
         # Generate individual pages for all players
         players_generated = 0
@@ -80,8 +80,8 @@ class SiteGenerator:
             self._generate_team_page(team)
         print(f"Generated {len(teams)} team pages", file=sys.stderr)
 
-        for week in self.archive.get_all_weeks():
-            self._generate_weekly_page(week)
+        for month in self.archive.get_all_months():
+            self._generate_monthly_page(month)
         
         # Generate individual photo pages
         all_photos = sorted(self.archive.photos.values(), key=lambda p: p.get('photo_date', ''), reverse=True)
@@ -1292,7 +1292,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         <nav class="site-nav">
             <a href="{self.base_url}/players/">Players</a>
             <a href="{self.base_url}/teams/">Teams</a>
-            <a href="{self.base_url}/weekly/">Weekly</a>
+            <a href="{self.base_url}/monthly/">Monthly</a>
         </nav>
     </div>
 </header>
@@ -1396,6 +1396,29 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             )
         return "".join(cards)
 
+    def _homepage_month_cards(self, months: list) -> str:
+        """Build visual month cards with photo backgrounds"""
+        cards = []
+        for m in months:
+            thumb_url = ''
+            photos = self.archive.get_photos_by_month(m['month'])
+            if photos:
+                thumb_url = escape(
+                    photos[0].get('thumbnail_url')
+                    or f"https://www.imagn.com/image/{photos[0].get('imagn_id', '')}.jpg"
+                )
+            count = m['count']
+            count_label = f"{count} photo{'s' if count != 1 else ''}"
+            label = self._month_label(m['month'])
+            cards.append(
+                f'<a href="{self.base_url}/monthly/{m["month"]}/" class="player-card"'
+                f' style="background-image:url({thumb_url})">'
+                f'<span class="player-card-badge">{count_label}</span>'
+                f'<span class="player-card-name">{escape(label)}</span>'
+                f'</a>'
+            )
+        return "".join(cards)
+
     def _homepage_photo_card_html(self, photo: Dict) -> str:
         """Generate a clean gallery card for the homepage photo grid"""
         player = escape(photo.get('player_name') or 'NBA')
@@ -1491,47 +1514,45 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
 '''
 
     @staticmethod
-    def _week_label(iso_week: str) -> str:
-        """Convert ISO week like '2026-W06' to 'Week of Feb 9' format."""
+    def _month_label(month_str: str) -> str:
+        """Convert month like '2026-03' to 'March 2026' format."""
         try:
-            parts = iso_week.split('-W')
-            year, wk = int(parts[0]), int(parts[1])
-            monday = datetime.strptime(f'{year}-W{wk:02d}-1', '%G-W%V-%u')
-            return f"Week of {monday.strftime('%b %-d')}"
+            dt = datetime.strptime(month_str, '%Y-%m')
+            return dt.strftime('%B %Y')
         except Exception:
-            return iso_week
+            return month_str
 
     def _generate_homepage(self):
-        """Generate homepage - Weekly gallery as hero, then navigation to deeper content"""
+        """Generate homepage - Monthly gallery as hero, then navigation to deeper content"""
         stats = self.archive.get_stats()
-        
-        # Get this week's photos as the hero content
-        week = datetime.now().strftime('%Y-W%W')
-        weekly_photos = self.archive.get_photos_by_week(week)
-        
-        # If no photos this week, use most recent week that has photos
-        if not weekly_photos:
-            weeks = self.archive.get_all_weeks()
-            if weeks:
-                week = weeks[0]['week']  # Most recent week
-                weekly_photos = self.archive.get_photos_by_week(week)
+
+        # Get this month's photos as the hero content
+        month = datetime.now().strftime('%Y-%m')
+        monthly_photos = self.archive.get_photos_by_month(month)
+
+        # If no photos this month, use most recent month that has photos
+        if not monthly_photos:
+            months = self.archive.get_all_months()
+            if months:
+                month = months[0]['month']
+                monthly_photos = self.archive.get_photos_by_month(month)
         
         # Final fallback: just get all photos
-        if not weekly_photos:
-            weekly_photos = self.archive.get_all_photos()[:40]
+        if not monthly_photos:
+            monthly_photos = self.archive.get_all_photos()[:40]
 
         # Ensure at least 40 photos by supplementing with recent photos
         initial_count = 40
-        if len(weekly_photos) < initial_count:
-            seen_ids = {p.get('imagn_id') for p in weekly_photos}
+        if len(monthly_photos) < initial_count:
+            seen_ids = {p.get('imagn_id') for p in monthly_photos}
             for p in self.archive.get_all_photos():
                 if p.get('imagn_id') not in seen_ids:
-                    weekly_photos.append(p)
+                    monthly_photos.append(p)
                     seen_ids.add(p.get('imagn_id'))
-                if len(weekly_photos) >= initial_count:
+                if len(monthly_photos) >= initial_count:
                     break
-        hero_photos = weekly_photos[:initial_count]
-        remaining_photos = weekly_photos[initial_count:]
+        hero_photos = monthly_photos[:initial_count]
+        remaining_photos = monthly_photos[initial_count:]
 
         # Build visual photo cards with affiliate modules at key positions
         hero_html_parts = []
@@ -1554,7 +1575,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
     <section class="section weekly-hero" style="margin-top: 24px;">
         <div class="section-header">
             <h2 class="section-title">📸 Latest Kicks</h2>
-            <span class="photo-count">{len(weekly_photos)} photos</span>
+            <span class="photo-count">{len(monthly_photos)} photos</span>
         </div>
         <div class="photo-grid" id="photo-grid">
             {hero_grid_html}
@@ -1584,14 +1605,14 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         </div>
     </section>
     
-    <!-- WEEKLY ARCHIVE -->
+    <!-- MONTHLY ARCHIVE -->
     <section class="section">
         <div class="section-header">
-            <h2 class="section-title">📅 Past Weeks</h2>
-            <a href="{self.base_url}/weekly/" class="section-link">View all →</a>
+            <h2 class="section-title">📅 Past Months</h2>
+            <a href="{self.base_url}/monthly/" class="section-link">View all →</a>
         </div>
-        <div class="list-grid">
-            {"".join(f'<a href="{self.base_url}/weekly/{w["week"]}/" class="list-item"><span class="name">{self._week_label(w["week"])}</span><span class="count">{w["count"]} photos</span></a>' for w in stats['recent_weeks'][:6] if w['week'] != week)}
+        <div class="players-grid">
+            {self._homepage_month_cards([m for m in stats['recent_months'] if m['month'] != month][:6])}
         </div>
     </section>
     
@@ -1607,8 +1628,8 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
                 <div class="stat-label">Players</div>
             </div>
             <div class="stat-item">
-                <div class="stat-value">{stats['total_weeks']}</div>
-                <div class="stat-label">Weeks</div>
+                <div class="stat-value">{stats['total_months']}</div>
+                <div class="stat-label">Months</div>
             </div>
         </div>
     </section>
@@ -1625,7 +1646,7 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         
         og_image = hero_photos[0].get('thumbnail_url') or hero_photos[0].get('image_url', '') if hero_photos else ''
         meta = {
-            'description': 'Daily NBA sneaker photos from every game. Browse by player, team, and week.',
+            'description': 'Daily NBA sneaker photos from every game. Browse by player, team, and month.',
             'og_image': og_image,
             'canonical': f"{self.base_url}/",
         }
@@ -2021,28 +2042,28 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         html = self._base_template("Brands", content, breadcrumb='Brands')
         self._write_file('brands/index.html', html)
     
-    def _generate_weekly_index(self):
-        """Generate weekly galleries listing"""
-        weeks = self.archive.get_all_weeks()
-        
+    def _generate_monthly_index(self):
+        """Generate monthly galleries listing with visual cards"""
+        months = self.archive.get_all_months()
+
         content = f'''
 <div class="page-header">
     <div class="container">
-        <h1>Weekly Galleries</h1>
-        <p class="subtitle">{len(weeks)} weeks of shoe photos</p>
+        <h1>Monthly Galleries</h1>
+        <p class="subtitle">{len(months)} months of shoe photos</p>
     </div>
 </div>
 
 <main class="container">
     <section class="section">
-        <div class="list-grid">
-            {"".join(f'<a href="{self.base_url}/weekly/{w["week"]}/" class="list-item"><span class="name">{self._week_label(w["week"])}</span><span class="count">{w["count"]} photos</span></a>' for w in weeks)}
+        <div class="players-grid">
+            {self._homepage_month_cards(months)}
         </div>
     </section>
 </main>
 '''
-        html = self._base_template("Weekly Galleries", content, breadcrumb='Weekly')
-        self._write_file('weekly/index.html', html)
+        html = self._base_template("Monthly Galleries", content, breadcrumb='Monthly')
+        self._write_file('monthly/index.html', html)
     
     def _generate_search_page(self):
         """Generate the player search/lookup page"""
@@ -2381,10 +2402,10 @@ Disallow: /search/players.json
         html = self._base_template(brand['name'], content, photos_json, breadcrumb=f'<a href="{self.base_url}/brands/">Brands</a> / {escape(brand["name"])}')
         self._write_file(f"brands/{brand['slug']}/index.html", html)
     
-    def _generate_weekly_page(self, week: Dict):
-        """Generate weekly gallery page"""
-        photos = self.archive.get_photos_by_week(week['week'])
-        label = self._week_label(week['week'])
+    def _generate_monthly_page(self, month: Dict):
+        """Generate monthly gallery page"""
+        photos = self.archive.get_photos_by_month(month['month'])
+        label = self._month_label(month['month'])
 
         # Show initial batch, rest via infinite scroll
         initial_count = 24
@@ -2417,15 +2438,15 @@ Disallow: /search/players.json
             'source': p.get('source', ''),
             'photo_date': p.get('photo_date', '')
         } for p in photos], ensure_ascii=False)
-        
+
         og_image = photos[0].get('thumbnail_url') or photos[0].get('image_url', '') if photos else ''
         meta = {
             'description': f"{len(photos)} NBA sneaker photos from {label}.",
             'og_image': og_image,
-            'canonical': f"{self.base_url}/weekly/{week['week']}/",
+            'canonical': f"{self.base_url}/monthly/{month['month']}/",
         }
-        html = self._base_template(label, content, photos_json, meta=meta, breadcrumb=f'<a href="{self.base_url}/weekly/">Weekly</a> / {label}')
-        self._write_file(f"weekly/{week['week']}/index.html", html)
+        html = self._base_template(label, content, photos_json, meta=meta, breadcrumb=f'<a href="{self.base_url}/monthly/">Monthly</a> / {label}')
+        self._write_file(f"monthly/{month['month']}/index.html", html)
     
     def _generate_embed_snippet(self):
         """Generate embeddable snippet for Presto"""
@@ -2437,7 +2458,7 @@ Disallow: /search/players.json
             print("No photos for embed snippet", file=sys.stderr)
             return
         
-        week = datetime.now().strftime('%Y-W%W')
+        month = datetime.now().strftime('%Y-%m')
         
         # Generate self-contained embed
         photos_json = json.dumps([{
@@ -2450,7 +2471,7 @@ Disallow: /search/players.json
             'date': p.get('photo_date', '')
         } for p in recent], ensure_ascii=False)
         
-        embed = f'''<!-- NBA Shoe Gallery Embed - Week {week} -->
+        embed = f'''<!-- NBA Shoe Gallery Embed - {month} -->
 <style>
 .hh-embed * {{ box-sizing: border-box; margin: 0; padding: 0; }}
 .hh-embed {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 1200px; margin: 0 auto; padding: 16px; }}
@@ -2473,7 +2494,7 @@ Disallow: /search/players.json
 .hh-embed .lb .info {{ color: #fff; text-align: center; padding: 12px; }}
 </style>
 <div class="hh-embed" id="hh-embed">
-    <h2>NBA Shoe Photos of the Week</h2>
+    <h2>NBA Shoe Photos</h2>
     <div class="grid" id="hh-grid"></div>
     <div class="lb" id="hh-lb">
         <span class="close" id="hh-close">&times;</span>
@@ -2502,7 +2523,7 @@ lb.onclick=function(e){{if(e.target===lb){{lb.classList.remove('active');documen
 </script>'''
         
         self._write_file('embed.html', embed)
-        self._write_file('weekly/latest.html', embed)
+        self._write_file('monthly/latest.html', embed)
         print(f"Generated embed snippet: {len(recent)} photos", file=sys.stderr)
 
 
