@@ -1404,10 +1404,14 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
         thumb_url = photo.get('thumbnail_url') or (f"https://www.imagn.com/image/{imagn_id}.jpg" if imagn_id else '')
         thumb = escape(thumb_url)
         headline = escape((photo.get('headline') or '')[:100])
+        photographer = escape(photo.get('photographer') or 'Imagn')
+        source = escape(photo.get('source') or 'USA TODAY Sports')
         photo_date = photo.get('photo_date', '')
-        date_html = ''
+        credit_parts = [photographer, source]
         if photo_date:
-            date_html = f'<div class="credit">{escape(photo_date)}</div>'
+            credit_parts.append(escape(photo_date))
+        credit = ' · '.join(credit_parts)
+        headline_html = f'<div class="headline">{headline}</div>' if headline else ''
         return (
             f'<div class="photo-card">'
             f'<a href="{self.base_url}/photos/{imagn_id}/" class="img-wrap">'
@@ -1415,7 +1419,8 @@ document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'I
             f'</a>'
             f'<div class="meta">'
             f'<a href="{self.base_url}/players/{player_slug}/" class="player-link">{player}</a>'
-            f'{date_html}'
+            f'{headline_html}'
+            f'<div class="credit">📷 {credit}</div>'
             f'</div>'
             f'</div>'
         )
