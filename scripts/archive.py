@@ -200,7 +200,7 @@ class PhotoArchive:
     def get_all_weeks(self) -> List[Dict]:
         """Get list of all weeks with photo counts"""
         week_counts = defaultdict(int)
-        
+
         for photo in self.photos.values():
             try:
                 date = datetime.strptime(photo.get('photo_date', ''), '%Y-%m-%d')
@@ -208,25 +208,46 @@ class PhotoArchive:
                 week_counts[week] += 1
             except ValueError:
                 continue
-        
+
         weeks = [{'week': w, 'count': c} for w, c in week_counts.items()]
         weeks.sort(key=lambda w: w['week'], reverse=True)
         return weeks
+
+    def get_photos_by_month(self, month: str) -> List[Dict]:
+        """Get photos from a specific month (format: 2026-03)"""
+        photos = [p for p in self.photos.values()
+                  if p.get('photo_date', '')[:7] == month]
+        photos.sort(key=lambda p: p.get('photo_date', ''), reverse=True)
+        return photos
+
+    def get_all_months(self) -> List[Dict]:
+        """Get list of all months with photo counts"""
+        month_counts = defaultdict(int)
+        for photo in self.photos.values():
+            date_str = photo.get('photo_date', '')
+            if len(date_str) >= 7:
+                month_counts[date_str[:7]] += 1
+        months = [{'month': m, 'count': c} for m, c in month_counts.items()]
+        months.sort(key=lambda m: m['month'], reverse=True)
+        return months
     
     def get_stats(self) -> Dict:
         """Get archive statistics"""
         players = self.get_all_players()
         brands = self.get_all_brands()
         weeks = self.get_all_weeks()
-        
+        months = self.get_all_months()
+
         return {
             'total_photos': len(self.photos),
             'total_players': len(players),
             'total_brands': len([b for b in brands if b['slug'] != 'other']),
             'total_weeks': len(weeks),
+            'total_months': len(months),
             'top_players': players[:10],
             'top_brands': brands[:5],
             'recent_weeks': weeks[:4],
+            'recent_months': months[:6],
         }
 
 
