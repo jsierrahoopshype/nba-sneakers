@@ -49,24 +49,14 @@ PLAYER_SIGNATURES = {
 
 # Affiliate program configuration
 SOVRN_API_KEY = "530e01008149e736f5173d2766644aff"
-STOCKX_PARTNER_ID = "2686854"
-STOCKX_CAMPAIGN_ID = "9060"
-STOCKX_AD_ID = "530344"
 
 AFFILIATE_PROGRAMS = {
     "stockx": {
         "name": "StockX",
         "search_url": "https://stockx.com/search",
-        "tracking_params": {
-            "utm_source": "impact",
-            "utm_medium": "affiliate",
-            "ir_campaignid": STOCKX_CAMPAIGN_ID,
-            "ir_adid": STOCKX_AD_ID,
-            "ir_partnerid": STOCKX_PARTNER_ID,
-        },
         "commission": 0.08,
         "priority": 1,
-        "network": "impact",
+        "network": "sovrn",
     },
     "goat": {
         "name": "GOAT",
@@ -163,12 +153,10 @@ class AffiliateRouter:
         )
         
         for program_id, config in sorted_programs[:num_links]:
-            if config.get('network') == 'impact':
-                params = config['tracking_params'].copy()
-                params['s'] = shoe_name
-                url = config['search_url'] + '?' + urllib.parse.urlencode(params)
-            elif config.get('network') == 'sovrn':
-                if program_id == 'goat':
+            if config.get('network') == 'sovrn':
+                if program_id == 'stockx':
+                    dest_url = f"https://stockx.com/search?s={search_term_encoded}"
+                elif program_id == 'goat':
                     dest_url = f"https://www.goat.com/search?query={search_term_encoded}"
                 elif program_id == 'footlocker':
                     dest_url = f"https://www.footlocker.com/search?query={search_term_encoded}"
